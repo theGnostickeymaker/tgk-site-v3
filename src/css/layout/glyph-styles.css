@@ -1,0 +1,78 @@
+@layer components {
+
+/* glyph_styles.css
+   Version: 2.1 – Token size, muted variants, glyph state refinements */
+
+
+.glyph {
+  font-family: var(--font-display);
+  font-size: var(--glyph-size-base);
+  line-height: 1;
+  text-align: center;
+  margin-bottom: var(--glyph-margin-bottom);
+  color: var(--glyph-color);
+  text-shadow: 0 0 6px var(--shadow-glow), 0 0 4px var(--glyph-color);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.glyph:hover {
+  transform: scale(1.08);
+  text-shadow: 0 0 10px var(--shadow-glow), 0 0 14px var(--glyph-color);
+}
+
+.glyph.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   Gnostic Divider Symbol – Scroll Footer Mark
+   Version: 1.0
+   ============================================ */
+
+   .gnostic-divider {
+    margin: var(--space-xl);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .divider-symbol {
+    font-size: 2rem;
+    display: inline-block;
+    color: var(--text-accent);
+    transition: transform 0.6s ease;
+    text-shadow: 0 0 10px var(--shadow-glow);
+  }
+  
+  /* ✨ Soft glow effect */
+  .divider-symbol.glow {
+    animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      text-shadow: 0 0 8px var(--shadow-glow);
+    }
+    50% {
+      text-shadow: 0 0 16px var(--highlight);
+    }
+  }
+  
+  /* ✦ Slow spin effect */
+  .divider-symbol.spin {
+    animation: spinSymbol 12s linear infinite;
+  }
+  
+  @keyframes spinSymbol {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+}

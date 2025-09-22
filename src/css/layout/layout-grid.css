@@ -1,0 +1,33 @@
+@layer layout {
+/* ===================================================
+   Layout Grid System – The Gnostic Key
+   Version: 1.1 – Tokenized and Responsive
+   =================================================== */
+
+/* 🔹 Portal Grid – Fixed Column Sacred Layout */
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  max-width: var(--grid-max-width);
+  margin: var(--space-sm) auto;
+  padding: var(--space-xl) var(--space-md);
+  position: relative;          /* ✅ Ensures absolute children align properly */
+  overflow-x: hidden;          /* ✅ Prevents diagonal ribbon from escaping grid bounds */
+}
+
+
+/* 📱 Responsive Breakpoints */
+@media (max-width: 768px) {
+  .portal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+}

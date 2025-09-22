@@ -1,0 +1,21 @@
+@layer utilities {
+/* ===================================================
+   TGK Visibility Controls – Auth / Admin Gates
+   Version: 1.0
+   =================================================== */
+
+   .paid-visible {
+    display: none;
+  }
+  .auth-premium .paid-visible {
+    display: block;
+  }
+  
+  .admin-only {
+    display: none;
+  }
+  .auth-admin .admin-only {
+    display: block;
+  }
+  
+}

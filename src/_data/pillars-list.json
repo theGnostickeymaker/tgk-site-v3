@@ -1,0 +1,11 @@
+[
+  { "key": "the-teachings",      "public": "tgk-teachings",      "title": "The Teachings",         "glyph": "🜁", "status": "live" },
+  { "key": "the-obsidian-key",   "public": "tgk-obsidian-key",   "title": "Obsidian Key",          "glyph": "🜂", "status": "live" },
+  { "key": "the-gnostic-eye",    "public": "tgk-gnostic-eye",    "title": "Gnostic Eye",           "glyph": "☿", "status": "live" },
+  { "key": "the-vault",          "public": "tgk-vault",          "title": "The Vault",             "glyph": "✷", "status": "premium" },
+  { "key": "childrens-corner",   "public": "childrens-corner",   "title": "Children's Corner",     "glyph": "⚶", "status": "soon" },
+  { "key": "the-keymakers-dream","public": "tgk-keymakers-dream","title": "Keymaker's Dream",      "glyph": "⟁", "status": "soon" },
+  { "key": "the-resonant-key",   "public": "tgk-resonant-key",   "title": "The Resonant Key",      "glyph": "♪", "status": "soon" },
+  { "key": "tgk-shop",           "public": "tgk-shop",           "title": "TGK Shop",              "glyph": "✦", "status": "soon" },
+  { "key": "tgk-community",      "public": "tgk-community",      "title": "TGK Community",         "glyph": "☍", "status": "soon" }
+]

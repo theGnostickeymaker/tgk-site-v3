@@ -1,0 +1,145 @@
+@layer components {
+/* ===================================================
+   TGK Buttons – Standard and Variant Styles
+   Version: 1.3 – Tokenized & Theme-Aware
+   =================================================== */
+
+/* ✨ General Button Base */
+.btn {
+  font-size: var(--font-size-base, 1.1rem);
+  font-weight: 600;
+  font-family: var(--btn-font);
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  transition: var(--transition-default);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  text-align: center;
+  display: inline-block;
+}
+
+/* 🟫 Wrapper for Centered Buttons */
+.btn-wrap {
+  text-align: center;
+  margin: var(--space-lg) auto;
+}
+
+@media (max-width: 640px) {
+  .btn {
+    font-size: var(--font-size-sm);
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+
+/* ⬛ Fullwidth Variant */
+.btn.full {
+  display: block;
+  width: 100%;
+  max-width: var(--btn-max-width, 320px);
+  margin: var(--space-md) auto;
+}
+
+/* 🔷 Outline Variant */
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--text-accent);
+  color: var(--text-accent);
+}
+
+.btn-outline:hover {
+  background-color: var(--highlight);
+  color: var(--bg-primary);
+  box-shadow: 0 0 15px var(--shadow-glow);
+}
+
+/* 🟨 Primary Button – Light Gold Theme */
+.btn-primary {
+  background: var(--soft-gold, #e5c47a);
+  color: var(--base-dark, #1a1a1a);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--golden-blaze, #f6d66e);
+  color: var(--base-dark, #1a1a1a);
+  box-shadow: 0 0 15px var(--shadow-glow);
+}
+
+/* 🜁 Accent Button – Pillar Accent */
+.btn-accent {
+  background: var(--text-accent);
+  color: var(--bg-primary);
+  border: none;
+  box-shadow: 0 0 12px var(--shadow-glow);
+}
+
+.btn-accent:hover {
+  background: var(--highlight);
+  color: var(--bg-primary);
+  box-shadow: 0 0 20px var(--highlight);
+}
+
+/* 🚫 Disabled State */
+.btn:disabled,
+.btn.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+}
+.btn-sm {
+  padding: 0.4rem 1rem;
+  font-size: var(--font-size-sm);
+}
+
+/* 🔶 Upgrade Tier Buttons - Enhanced Look */
+.tier-button-group .btn {
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--soft-gold), var(--golden-blaze));
+  color: var(--base-dark);
+  box-shadow: 0 0 20px rgba(255, 215, 128, 0.4);
+  margin: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tier-button-group .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(255, 215, 128, 0.6);
+  background: linear-gradient(135deg, var(--golden-blaze), var(--soft-gold));
+}
+
+.hidden {
+  display: none !important;
+}
+
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 0;
+}
+
+.toggle-password:focus {
+  outline: none;
+  opacity: 1;
+}
+
+}

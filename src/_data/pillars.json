@@ -1,0 +1,32 @@
+{
+  "home": {
+    "name": "The Gnostic Key",
+    "tagline": "Where the erased, the forbidden, and the sacred converge",
+    "glyphs": ["✶", "𓂀", "✶"],
+    "accentClass": "accent-home"
+  },
+  "the-teachings": {
+    "name": "The Teachings",
+    "tagline": "Sacred studies ✦ charting the unknown shores of the soul",
+    "glyphs": ["✶", "◎", "✶"],
+    "accentClass": "accent-teachings"
+  },
+  "the-obsidian-key": {
+    "name": "The Obsidian Key",
+    "tagline": "Deep-dive investigations into power and pattern",
+    "glyphs": ["✶", "☿", "✶"],
+    "accentClass": "accent-obsidian"
+  },
+  "the-gnostic-eye": {
+    "name": "The Gnostic Eye",
+    "tagline": "Symbols, archetypes, and the hidden machinery",
+    "glyphs": ["✶", "👁️", "✶"],
+    "accentClass": "accent-eye"
+  },
+  "the-vault": {
+    "name": "The Vault",
+    "tagline": "Preserving the forbidden and the sacred",
+    "glyphs": ["✶", "⛨", "✶"],
+    "accentClass": "accent-vault"
+  }
+}

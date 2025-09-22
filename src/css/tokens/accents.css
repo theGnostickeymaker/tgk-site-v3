@@ -1,0 +1,1092 @@
+@layer tokens {
+/* ========================================
+   Base Template – Page Structure Wrapper
+   Class: template-base
+   ======================================== */
+
+.template-base {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ===================================================
+   accents.css – TGK Pillar Accent Themes (with Glyphs)
+   Version: 1.6 – Adds --bg-opacity controls
+   =================================================== */
+
+/* ===== Global overlay opacity baselines (safe defaults) ===== */
+html[data-theme="light"] { --bg-opacity: 0.30; }
+html[data-theme="dark"]  { --bg-opacity: 0.16; }
+
+/* If an overlay URL is missing, fall back to just the gradient */
+body { --overlay-img: var(--overlay-img, none); }
+
+/* ===================================================
+LightGold
+=================================================== */
+
+/* ✦ Lightgold Accent – Light Theme (Subtle Gold) */
+html[data-theme="light"] body.lightgold {
+  --bg-opacity: 0.3; /* NEW */
+  --text-accent: #a08040 !important;             /* softened golden brown */
+  --highlight: #fdf3c2 !important;               /* parchment-glow edge */
+  --shadow-glow: rgba(238, 209, 145, 0.14) !important;
+  --glyph-color: #c6a968 !important;
+  --strong-text: #b39558 !important;
+  --scroll-box-shadow: 0 0 18px rgba(238, 209, 145, 0.12) !important;
+  --cite-color: #b39558 !important;
+  --accent-scroll: #a08040 !important;
+  --section-border: #fdf3c2 !important;
+  --card-gradient: linear-gradient(145deg, #fefbf4 0%, #f5ebd2 30%, #e8d5a8 60%, #d9c089 85%, #bfa268 100%) !important;
+}
+
+[data-theme="light"] body.lightgold {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-default-light-overlay.png') !important;
+}
+
+html[data-theme="light"] body.lightgold .site-header,
+html[data-theme="light"] body.lightgold .site-footer {
+  background: linear-gradient(to bottom, #fffaf0, #f9f0dc)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="light"] body.lightgold .scroll-title {
+  background: linear-gradient(to right, #fdf3c2 0%, #e8d5a8 60%, #bfa268 100%) !important;
+  color: #a08040 Im !important;
+  text-shadow: 0 1px 4px rgba(238, 209, 145, 0.2) IM !important;
+}
+
+html[data-theme="light"] body.lightgold .section-block {
+  background: linear-gradient(145deg, #f5ebd2 0%, #e8d5a8 50%, #d9c08982 100%) !important;
+  border-color: #fdf3c2 !important;
+  box-shadow: 0 0 18px rgba(238, 209, 145, 0.12) !important;
+}
+
+html[data-theme="light"] body.lightgold .image-block {
+  border: 1px solid #fdf3c2 !important;
+  box-shadow: 0 0 16px rgba(238, 209, 145, 0.1) !important;
+}
+
+/* Light Theme */
+html[data-theme="light"] body.lightgold .quiz-question,
+html[data-theme="light"] body.lightgold .quiz-prompt {
+  background: linear-gradient(to right, #fefbf4, #f5ebd2) !important;
+  color: #a08040 !important;
+  border-left: 4px solid #c6a968 !important;
+  box-shadow: 0 0 12px rgba(238, 209, 145, 0.12) !important;
+}
+
+html[data-theme="light"] body.lightgold .quiz-options {
+  background: #e9d8af !important;
+  border: 1px solid #fdf3c2 !important;
+}
+
+/* === Lightgold === */
+html[data-theme="light"] body.lightgold .quiz-options button,
+html[data-theme="light"] body.lightgold .quiz-button {
+  background: #f7da8b !important;
+  color: #6a5324 !important;
+  border: 2px solid #c6a968 !important;
+  box-shadow: 0 0 6px rgba(238, 209, 145, 0.15) inset !important;
+}
+
+html[data-theme="light"] body.lightgold .quiz-options button:hover,
+html[data-theme="light"] body.lightgold .quiz-button:hover {
+  background: #fdf3c2 !important;
+  color: #3a2c0e !important;
+  border-color: #bfa268 !important;
+  box-shadow: 0 0 12px rgba(191, 162, 104, 0.3) !important;
+}
+
+html[data-theme="light"] body.lightgold {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(253, 243, 194, 0.35),
+    rgba(232, 213, 168, 0.35)
+  );
+}
+
+/* ✦ Lightgold Accent – Dark Theme (Muted Gold Shadow) */
+html[data-theme="dark"] body.lightgold {
+  --bg-opacity: 0.95; /* NEW */
+  --text-accent: #bfa865 !important;             /* deeper parchment gold */
+  --highlight: #e3d2a2 !important;
+  --shadow-glow: rgba(210, 190, 120, 0.18) !important;
+  --glyph-color: #d4bc85 !important;
+  --strong-text: #e8ce98 !important;
+  --scroll-box-shadow: 0 0 22px rgba(240, 210, 140, 0.15) !important;
+  --cite-color: #e8ce98 !important;
+  --accent-scroll: #bfa865 !important;
+  --section-border:  #e3d2a2 !important;
+  --card-gradient: linear-gradient(145deg, #181409 0%, #2d240f 25%, #3a2e14 50%, #5b4722 75%, #bfa865 100%) !important;
+}
+
+[data-theme="dark"] body.lightgold {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-default-dark-overlay.png') !important;
+}
+
+html[data-theme="dark"] body.lightgold .site-header,
+html[data-theme="dark"] body.lightgold .site-footer {
+  background: linear-gradient(to bottom, #1a140a, #2a1f0c)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="dark"] body.lightgold .scroll-title {
+  background: linear-gradient(to right, #3a2e14 0%, #5b4722 60%, #bfa865 100%) !important;
+  color: #bfa865 !important;
+  text-shadow: 0 1px 5px rgba(240, 210, 140, 0.15) !important;
+}
+
+html[data-theme="dark"] body.lightgold .section-block {
+  background: linear-gradient(145deg, #2d240f 0%, #3a2e14 50%, #5b4722 100%) !important;
+  border-color: #e3d2a2 !important;
+  box-shadow: 0 0 22px rgba(210, 190, 120, 0.15) !important;
+}
+
+html[data-theme="dark"] body.lightgold .image-block {
+  border: 1px solid #e3d2a2 !important;
+  box-shadow: 0 0 18px rgba(210, 190, 120, 0.12) !important;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] body.lightgold .quiz-question,
+html[data-theme="dark"] body.lightgold .quiz-prompt {
+  background: linear-gradient(to right, #3a2e14, #5b4722) !important;
+  color: #e8ce98 !important;
+  border-left: 4px solid #d4bc85 !important;
+  box-shadow: 0 0 14px rgba(240, 210, 140, 0.15) !important;
+}
+
+html[data-theme="dark"] body.lightgold .quiz-options {
+  background: #2d240f !important;
+  border: 1px solid #e3d2a2 !important;
+}
+
+html[data-theme="dark"] body.lightgold .quiz-options button,
+html[data-theme="dark"] body.lightgold .quiz-button {
+  background: #2d240f !important;
+  color: #e8ce98 !important;
+  border: 2px solid #d4bc85 !important;
+  box-shadow: 0 0 6px rgba(210, 190, 120, 0.12) inset !important;
+}
+
+html[data-theme="dark"] body.lightgold .quiz-options button:hover,
+html[data-theme="dark"] body.lightgold .quiz-button:hover {
+  background: #3a2e14 !important;
+  color: #fffbe8 !important;
+  border-color: #bfa865 !important;
+  box-shadow: 0 0 14px rgba(191, 162, 104, 0.3) !important;
+}
+
+html[data-theme="dark"] body.lightgold {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(58, 46, 20, 0.35),
+    rgba(95, 71, 34, 0.35)
+  );
+}
+
+/* ===================================================
+Gold
+=================================================== */
+
+/* Gold Light theme */
+html[data-theme="light"] body.gold {
+  --bg-opacity: 0.32; /* NEW */
+  --text-accent: #b88c2a !important;           /* deeper antique gold */
+  --highlight: #fff6cc !important;            /* parchment-glow gold */
+  --shadow-glow: rgba(245, 210, 120, 0.18) !important;
+  --glyph-color: #d4af37 !important;          /* ceremonial gold */
+  --strong-text: #c9a646 !important;
+  --scroll-box-shadow: 0 0 20px rgba(245, 210, 120, 0.15) !important;
+  --cite-color: #766535 !important;
+  --accent-scroll: #b88c2a !important;
+  --section-border: #fff6cc !important; 
+  --card-gradient: linear-gradient(145deg, #fefcf8 0%, #f9f1dd 30%, #f1dfb8 55%, #e4c98f 80%, #d6b875 100%) !important;
+}
+
+/* Overlay background for light theme */
+html[data-theme="light"] body.gold {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-gold-light-overlay.png') !important;
+}
+
+html[data-theme="light"] body.gold .site-header,
+html[data-theme="light"] body.gold .site-footer {
+  background: linear-gradient(to bottom, #ffffff, #fdf5e6) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+html[data-theme="light"] body.gold .scroll-title {
+  background: linear-gradient(to right, #fff6cc 0%, #e4c98f 60%, #d6b875 100%) !important;
+  color: #c9a646;
+  text-shadow: 0 1px 4px rgba(245, 210, 120, 0.2) !important;
+}
+
+html[data-theme="light"] body.gold .section-block {
+  background: linear-gradient(145deg, #f9f1dd 0%, #f1dfb8 60%, #e4c98f 100%) !important;
+  border-color: #fff6cc !important;
+  box-shadow: 0 0 20px rgba(245, 210, 120, 0.18) !important;
+}
+
+html[data-theme="light"] body.gold .image-block {
+  border: 1px solid #fff6cc !important;
+  box-shadow: 0 0 16px rgba(245, 210, 120, 0.15) !important;
+}
+
+/* Light Theme */
+html[data-theme="light"] body.gold .quiz-question,
+html[data-theme="light"] body.gold .quiz-prompt {
+  background: linear-gradient(to right, #f9f1dd, #f1dfb8) !important;
+  color: #b88c2a !important;
+  border-left: 4px solid #d4af37 !important;
+  box-shadow: 0 0 12px rgba(245, 210, 120, 0.18) !important;
+}
+
+html[data-theme="light"] body.gold .quiz-options {
+  background: #fefcf8 !important;
+  border: 1px solid #fff6cc !important;
+}
+
+/* === Gold === */
+html[data-theme="light"] body.gold .quiz-options button,
+html[data-theme="light"] body.gold .quiz-button {
+  background: #fefcf8 !important;
+  color: #735c1e !important;
+  border: 2px solid #d4af37 !important;
+  box-shadow: 0 0 6px rgba(245, 210, 120, 0.15) inset !important;
+}
+
+html[data-theme="light"] body.gold .quiz-options button:hover,
+html[data-theme="light"] body.gold .quiz-button:hover {
+  background: #fff6cc !important;
+  color: #4e3f10 !important;
+  border-color: #b88c2a !important;
+  box-shadow: 0 0 12px rgba(210, 180, 100, 0.3) !important;
+}
+
+html[data-theme="light"] body.gold {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(255, 246, 204, 0.35),
+    rgba(228, 201, 143, 0.35)
+  );
+}
+
+/* ✦ Gold Accent – The Teachings (Dark) */
+html[data-theme="dark"] body.gold {
+  --bg-opacity: 0.16; /* NEW */
+  --text-accent: #d2a53e !important;           /* golden ochre */
+  --highlight: #fbe89b !important;            /* warm luminous gold */
+  --shadow-glow: rgba(251, 215, 120, 0.25) !important;
+  --glyph-color: #ffcc66 !important;          /* muted sigil glow */
+  --strong-text: #f6d87a !important;
+  --scroll-box-shadow: 0 0 25px rgba(255, 222, 133, 0.25) !important;
+  --cite-color: #d7c180 !important;
+  --accent-scroll: #d2a53e !important;
+  --section-border: #fbe89b !important; 
+  --card-gradient: linear-gradient(145deg, #1a140a 0%, #2a1f0c 30%, #3c2b0d 55%, #6e4c1a 80%, #d2a53e 100%) !important;
+}
+
+/* Overlay background for dark theme */
+html[data-theme="dark"] body.gold {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-gold-dark-overlay.png') !important;
+}
+
+html[data-theme="dark"] body.gold .site-header,
+html[data-theme="dark"] body.gold .site-footer {
+  background: linear-gradient(to bottom, #0e0e0e, #1c1506)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="dark"] body.gold .scroll-title {
+  background: linear-gradient(to right, #3c2b0d 0%, #6e4c1a 60%, #d2a53e 100%) !important;
+  color: #f6d87a !important;
+  text-shadow: 0 1px 6px rgba(251, 215, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.gold .section-block {
+  background: linear-gradient(145deg, #2a1f0c 0%, #3c2b0d 50%, #6e4c1a 100%) !important;
+  border-color: #fbe89b !important;
+  box-shadow: 0 0 25px rgba(251, 215, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.gold .image-block {
+  border: 1px solid #fbe89b !important;
+  box-shadow: 0 0 20px rgba(251, 215, 120, 0.2) !important;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] body.gold .quiz-question,
+html[data-theme="dark"] body.gold .quiz-prompt {
+  background: linear-gradient(to right, #3c2b0d, #6e4c1a) !important;
+  color: #f6d87a !important;
+  border-left: 4px solid #ffcc66 !important;
+  box-shadow: 0 0 14px rgba(255, 222, 133, 0.2) !important;
+}
+
+html[data-theme="dark"] body.gold .quiz-options {
+  background: #1c1506 !important;
+  border: 1px solid #fbe89b !important;
+}
+
+html[data-theme="dark"] body.gold .quiz-options button,
+html[data-theme="dark"] body.gold .quiz-button {
+  background: #2a1f0c !important;
+  color: #f6d87a !important;
+  border: 2px solid #ffcc66 !important;
+  box-shadow: 0 0 6px rgba(255, 222, 133, 0.15) inset !important;
+}
+
+html[data-theme="dark"] body.gold .quiz-options button:hover,
+html[data-theme="dark"] body.gold .quiz-button:hover {
+  background: #3c2b0d !important;
+  color: #fffde2 !important;
+  border-color: #d2a53e !important;
+  box-shadow: 0 0 14px rgba(251, 215, 120, 0.3) !important;
+}
+
+html[data-theme="dark"] body.gold {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(60, 43, 13, 0.35),
+    rgba(110, 76, 26, 0.35)
+  );
+}
+
+/* ===================================================
+Gnostic Eye
+=================================================== */
+
+html[data-theme="dark"] body.eye {
+  --bg-opacity: 0.15; /* NEW */
+  --text-accent: #7581b2 !important;            /* muted indigo steel */
+  --highlight: #a6b4e3 !important;              /* soft violet mist */
+  --shadow-glow: rgba(117, 129, 178, 0.3) !important;
+  --glyph-color: #c5d1ff !important;            /* pale vision glow */
+  --strong-text: #9aa7d3 !important;
+  --scroll-box-shadow: 0 0 25px rgba(117, 129, 178, 0.3) !important;
+  --cite-color: #9aa7d3 !important;
+  --accent-scroll: #7581b2 !important;
+  --section-border: #a6b4e3 !important;
+  --card-gradient: linear-gradient(145deg, #0e111a 0%, #1b2232 35%, #2d3650 65%, #5b6693 85%, #7581b2 100%) !important;
+}
+
+[data-theme="dark"] body.eye {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-eye-dark-overlay.png') !important;
+}
+
+html[data-theme="dark"] body.eye .site-header,
+html[data-theme="dark"] body.eye .site-footer {
+  background: linear-gradient(to bottom, #0e111a, #1b2232) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+html[data-theme="dark"] body.eye .scroll-title {
+  background: linear-gradient(to right, #1b2232 0%, #5b6693 100%) !important;
+  color: #7581b2 !important;
+  text-shadow: 0 1px 6px rgba(117, 129, 178, 0.3) !important;
+}
+
+html[data-theme="dark"] body.eye .section-block {
+  background: linear-gradient(145deg, #1b2232 0%, #2d3650 60%, #5b6693 100%) !important;
+  border-color: #a6b4e3 !important;
+  box-shadow: 0 0 25px rgba(117, 129, 178, 0.3) !important;
+}
+
+html[data-theme="dark"] body.eye .image-block {
+  border: 1px solid #a6b4e3 !important;
+  box-shadow: 0 0 20px rgba(117, 129, 178, 0.25) !important;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] body.eye .quiz-question,
+html[data-theme="dark"] body.eye .quiz-prompt {
+  background: linear-gradient(to right, #1b2232, #2d3650) !important;
+  color: #c5d1ff !important;
+  border-left: 4px solid #7581b2 !important;
+  box-shadow: 0 0 14px rgba(117, 129, 178, 0.3) !important;
+}
+
+html[data-theme="dark"] body.eye .quiz-options {
+  background: #0e111a !important;
+  border: 1px solid #a6b4e3 !important;
+}
+
+html[data-theme="dark"] body.eye .quiz-options button,
+html[data-theme="dark"] body.eye .quiz-button {
+  background: #1b2232 !important;
+  color: #c5d1ff !important;
+  border: 2px solid #7581b2 !important;
+  box-shadow: 0 0 6px rgba(117, 129, 178, 0.2) inset !important;
+}
+
+html[data-theme="dark"] body.eye .quiz-options button:hover,
+html[data-theme="dark"] body.eye .quiz-button:hover {
+  background: #2d3650 !important;
+  color: #ffffff !important;
+  border-color: #a6b4e3 !important;
+  box-shadow: 0 0 14px rgba(117, 129, 178, 0.3) !important;
+}
+
+html[data-theme="dark"] body.eye {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(27, 34, 50, 0.35),
+    rgba(91, 102, 147, 0.35)
+  );
+}
+
+html[data-theme="light"] body.eye {
+  --bg-opacity: 0.34; /* NEW */
+  --text-accent: #4d5e91 !important;            /* deep sky indigo */
+  --highlight: #dbe3ff !important;              /* misty azure */
+  --shadow-glow: rgba(210, 220, 255, 0.2) !important;
+  --glyph-color: #7e90c9 !important;
+  --strong-text: #55669b !important;
+  --scroll-box-shadow: 0 0 25px rgba(210, 220, 255, 0.2) !important;
+  --cite-color: #55669b !important;
+  --accent-scroll: #94a3d5 !important;
+  --section-border: #dbe3ff !important;
+  --card-gradient: linear-gradient(145deg, #f5f7fb 0%, #e4e9f8 30%, #d3dcf3 60%, #c0cae9 85%,#94a3d5 100%) !important;
+}
+
+[data-theme="light"] body.eye {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-eye-light-overlay.png');
+}
+
+html[data-theme="light"] body.eye .site-header,
+html[data-theme="light"] body.eye .site-footer {
+  background: linear-gradient(to bottom, #f5f7fb, #e4e9f8) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+html[data-theme="light"] body.eye .scroll-title {
+  background: linear-gradient(to right, #dbe3ff 0%, #94a3d5 100%) !important;
+  color: #4d5e91 !important;
+  text-shadow: 0 1px 4px rgba(210, 220, 255, 0.2) !important;
+}
+
+html[data-theme="light"] body.eye .section-block {
+  background: linear-gradient(145deg, #e4e9f8 0%, #d3dcf3 60%, #c0cae9 100%) !important;
+  border-color: #dbe3ff !important;
+  box-shadow: 0 0 22px rgba(210, 220, 255, 0.2) !important;
+}
+
+html[data-theme="light"] body.eye .image-block {
+  border: 1px solid #dbe3ff !important;
+  box-shadow: 0 0 18px rgba(210, 220, 255, 0.15) !important;
+}
+
+/* Light Theme */
+html[data-theme="light"] body.eye .quiz-question,
+html[data-theme="light"] body.eye .quiz-prompt {
+  background: linear-gradient(to right, #e4e9f8, #d3dcf3) !important;
+  color: #4d5e91 !important;
+  border-left: 4px solid #7e90c9 !important;
+  box-shadow: 0 0 12px rgba(210, 220, 255, 0.2) !important;
+}
+
+html[data-theme="light"] body.eye .quiz-options {
+  background: #f5f7fb !important;
+  border: 1px solid #dbe3ff !important;
+}
+
+/* === Eye === */
+html[data-theme="light"] body.eye .quiz-options button,
+html[data-theme="light"] body.eye .quiz-button {
+  background: #e4e9f8 !important;
+  color: #4d5e91 !important;
+  border: 2px solid #7e90c9 !important;
+  box-shadow: 0 0 6px rgba(210, 220, 255, 0.2) inset !important;
+}
+
+html[data-theme="light"] body.eye .quiz-options button:hover,
+html[data-theme="light"] body.eye .quiz-button:hover {
+  background: #dbe3ff !important;
+  color: #2f3a66 !important;
+  border-color: #4d5e91 !important;
+  box-shadow: 0 0 12px rgba(117, 129, 178, 0.25) !important;
+}
+
+html[data-theme="light"] body.eye {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(219, 227, 255, 0.35),
+    rgba(148, 163, 213, 0.35)
+  );
+}
+
+/* ===================================================
+Obsidian Key
+=================================================== */
+
+html[data-theme="dark"] body.obsidian {
+  --bg-opacity: 0.16; /* NEW */
+  --text-accent: #de6433 !important;
+  --highlight: #f8a272 !important;
+  --shadow-glow: rgba(255, 120, 80, 0.25) !important;
+  --glyph-color: #ffa07a !important;
+  --strong-text: #ffb190 !important;
+  --scroll-box-shadow: 0 0 25px rgba(255, 120, 80, 0.25) !important;
+  --cite-color: #ffb190 !important;
+  --accent-scroll: #de6433 !important;
+  --section-border: #f8a272 !important;
+  --card-gradient: linear-gradient(145deg, #120704 0%, #2a100a 25%, #3e140a 50%, #702b1a 75%, #de6433 100%) !important;
+}
+
+[data-theme="dark"] body.obsidian {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-obsidian-dark-overlay.png') !important;
+}
+
+html[data-theme="dark"] body.obsidian .site-header,
+html[data-theme="dark"] body.obsidian .site-footer {
+  background: linear-gradient(to bottom, #120704, #2a100a) !important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="dark"] body.obsidian .scroll-title {
+  background: linear-gradient(to right, #2a100a 0%, #702b1a 60%, #de6433 100%) !important;
+  color: #de6433 !important;
+  text-shadow: 0 1px 6px rgba(255, 120, 80, 0.25) !important;
+}
+
+html[data-theme="dark"] body.obsidian .section-block {
+  background: linear-gradient(145deg, #2a100a 0%, #3e140a 50%, #702b1a 100%) !important;
+  border-color: #f8a272 !important;
+  box-shadow: 0 0 25px rgba(255, 120, 80, 0.25) !important;
+}
+
+html[data-theme="dark"] body.obsidian .image-block {
+  border: 1px solid #f8a272 !important;
+  box-shadow: 0 0 20px rgba(255, 120, 80, 0.2) !important;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] body.obsidian .quiz-question,
+html[data-theme="dark"] body.obsidian .quiz-prompt {
+  background: linear-gradient(to right, #3e140a, #702b1a) !important;
+  color: #ffb190 !important;
+  border-left: 4px solid #ffa07a !important;
+  box-shadow: 0 0 14px rgba(255, 120, 80, 0.2) !important;
+}
+
+html[data-theme="dark"] body.obsidian .quiz-options {
+  background: #2a100a !important;
+  border: 1px solid #de6433 !important;
+}
+
+html[data-theme="dark"] body.obsidian .quiz-options button,
+html[data-theme="dark"] body.obsidian .quiz-button {
+  background: #2a100a !important;
+  color: #ffb190 !important;
+  border: 2px solid #ffa07a !important;
+  box-shadow: 0 0 6px rgba(255, 120, 80, 0.12) inset !important;
+}
+
+html[data-theme="dark"] body.obsidian .quiz-options button:hover,
+html[data-theme="dark"] body.obsidian .quiz-button:hover {
+  background: #3e140a !important;
+  color: #fff1ec !important;
+  border-color: #de6433 !important;
+  box-shadow: 0 0 14px rgba(255, 120, 80, 0.3) !important;
+}
+
+html[data-theme="dark"] body.obsidian {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(42, 16, 10, 0.35),
+    rgba(112, 43, 26, 0.35)
+  );
+}
+
+html[data-theme="light"] body.obsidian {
+  --bg-opacity: 0.30; /* NEW */
+  --text-accent: #c3653f !important;
+  --highlight: #ffc3a1 !important;
+  --shadow-glow: rgba(255, 180, 140, 0.2) !important;
+  --glyph-color: #ff8850 !important;
+  --strong-text: #e2785e !important;
+  --scroll-box-shadow: 0 0 25px rgba(255, 180, 140, 0.2) !important;
+  --cite-color: #e2785e !important;
+  --accent-scroll: #c3653f !important;
+  --section-border: #ffc3a1 !important;
+  --card-gradient: linear-gradient(145deg, #fff5ef 0%, #ffe2d0 30%, #ffd1b4 60%, #f8a272 85%, #c3653f 100%) !important;
+}
+
+[data-theme="light"] body.obsidian {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-obsidian-light-overlay.png') !important;
+}
+
+html[data-theme="light"] body.obsidian .site-header,
+html[data-theme="light"] body.obsidian .site-footer {
+  background: linear-gradient(to bottom, #fff5ef, #ffe2d0)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="light"] body.obsidian .scroll-title {
+  background: linear-gradient(to right, #ffe2d0 0%, #f8a272 100%) !important;
+  color: #c3653f !important;
+  text-shadow: 0 1px 4px rgba(255, 180, 140, 0.2) !important;
+}
+
+html[data-theme="light"] body.obsidian .section-block {
+  background: linear-gradient(145deg, #ffe2d0 0%, #ffd1b4 60%, #f8a272 100%) !important;
+  border-color: #ffc3a1 !important;
+  box-shadow: 0 0 22px rgba(255, 180, 140, 0.18) !important;
+}
+
+html[data-theme="light"] body.obsidian .image-block {
+  background: linear-gradient(to right, #ffd1b4 0%, #f8a272 60%, #c3653f 100%) !important;
+  border: 1px solid #ffc3a1 !important;
+  box-shadow: 0 0 16px rgba(255, 180, 140, 0.15) !important;
+}
+
+/* Light Theme */
+html[data-theme="light"] body.obsidian .quiz-question,
+html[data-theme="light"] body.obsidian .quiz-prompt {
+  background: linear-gradient(to right, #ffe2d0, #ffc3a1) !important;
+  color: #c3653f !important;
+  border-left: 4px solid #ff8850 !important;
+  box-shadow: 0 0 12px rgba(255, 180, 140, 0.15) !important;
+}
+
+html[data-theme="light"] body.obsidian .quiz-options {
+  background: #fff5ef !important;
+  border: 1px solid #ffc3a1 !important;
+}
+
+/* === Obsidian === */
+html[data-theme="light"] body.obsidian .quiz-options button,
+html[data-theme="light"] body.obsidian .quiz-button {
+  background: #ffe2d0 !important;
+  color: #c3653f !important;
+  border: 2px solid #ff8850 !important;
+  box-shadow: 0 0 6px rgba(255, 180, 140, 0.15) inset !important;
+}
+
+html[data-theme="light"] body.obsidian .quiz-options button:hover,
+html[data-theme="light"] body.obsidian .quiz-button:hover {
+  background: #ffc3a1 !important;
+  color: #5e2f1b !important;
+  border-color: #c3653f !important;
+  box-shadow: 0 0 12px rgba(255, 120, 80, 0.3) !important;
+}
+
+html[data-theme="light"] body.obsidian {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(255, 226, 208, 0.35),
+    rgba(248, 162, 114, 0.35)
+  );
+}
+
+/* ===================================================
+The Vault
+=================================================== */
+
+html[data-theme="dark"] body.vault {
+  --bg-opacity: 0.16; /* NEW */
+  --text-accent: #918c84 !important;            /* soft stone grey */
+  --highlight: #c6bfa8 !important;
+  --shadow-glow: rgba(150, 140, 120, 0.3) !important;
+  --glyph-color: #e5ddcc !important;
+  --strong-text: #ada38b !important;
+  --scroll-box-shadow: 0 0 25px rgba(150, 140, 120, 0.3) !important;
+  --cite-color: #ada38b !important;
+  --accent-scroll: #918c84 !important;
+  --section-border: #c6bfa8 !important;
+  --card-gradient: linear-gradient(145deg, #1a1a18 0%, #2b2b28 30%, #3d3a35 55%, #5c5548 80%, #918c84 100%) !important;
+}
+
+[data-theme="dark"] body.vault {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-vault-dark-overlay.png') !important;
+}
+
+html[data-theme="dark"] body.vault .site-header,
+html[data-theme="dark"] body.vault .site-footer {
+  background: linear-gradient(to bottom, #1a1a18, #2b2b28)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="dark"] body.vault .scroll-title {
+  background: linear-gradient(to right, #2b2b28 0%, #5c5548 100%) !important;
+  color: #ada38b !important;
+  text-shadow: 0 1px 5px rgba(150, 140, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.vault .section-block {
+  background: linear-gradient(145deg, #2b2b28 0%, #3d3a35 50%, #5c5548 100%) !important;
+  border-color: #c6bfa8 !important;
+  box-shadow: 0 0 25px rgba(150, 140, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.vault .image-block {
+  border: 1px solid #c6bfa8 !important;
+  box-shadow: 0 0 20px rgba(150, 140, 120, 0.2) !important;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] body.vault .quiz-question,
+html[data-theme="dark"] body.vault .quiz-prompt {
+  background: linear-gradient(to right, #2b2b28, #3d3a35) !important;
+  color: #e5ddcc !important;
+  border-left: 4px solid #918c84 !important;
+  box-shadow: 0 0 12px rgba(150, 140, 120, 0.3) !important;
+}
+
+html[data-theme="dark"] body.vault .quiz-options {
+  background: #1a1a18 !important;
+  border: 1px solid #c6bfa8 !important;
+}
+
+html[data-theme="dark"] body.vault .quiz-options button,
+html[data-theme="dark"] body.vault .quiz-button {
+  background: #2b2b28 !important;
+  color: #e5ddcc !important;
+  border: 2px solid #918c84 !important;
+  box-shadow: 0 0 6px rgba(150, 140, 120, 0.15) inset !important;
+}
+
+html[data-theme="dark"] body.vault .quiz-options button:hover,
+html[data-theme="dark"] body.vault .quiz-button:hover {
+  background: #3d3a35 !important;
+  color: #fffaf0 !important;
+  border-color: #c6bfa8 !important;
+  box-shadow: 0 0 12px rgba(230, 215, 190, 0.3) !important;
+}
+
+html[data-theme="dark"] body.vault {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(43, 43, 40, 0.35),
+    rgba(92, 85, 72, 0.35)
+  );
+}
+
+html[data-theme="light"] body.vault {
+  --bg-opacity: 0.30; /* NEW */
+  --text-accent: #5e5a53 !important;            /* slate clay */
+  --highlight: #e6dfc5 !important;
+  --shadow-glow: rgba(230, 215, 190, 0.15) !important;
+  --glyph-color: #b7a897 !important;
+  --strong-text: #6b6559 !important;
+  --scroll-box-shadow: 0 0 25px rgba(230, 215, 190, 0.15) !important;
+  --cite-color: #6b6559 !important;
+  --accent-scroll: #a89e8c !important;
+  --section-border: #e6dfc5 !important;
+  --card-gradient: linear-gradient(145deg, #fefdf9 0%, #f2eee2 30%, #e6dfc5 55%, #d2c7a9 80%, #a89e8c 100%) !important;
+}
+
+[data-theme="light"] body.vault {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-vault-light-overlay.png') !important;
+}
+
+html[data-theme="light"] body.vault .site-header,
+html[data-theme="light"] body.vault .site-footer {
+  background: linear-gradient(to bottom, #fefdf9, #e6dfc5)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="light"] body.vault .scroll-title {
+  background: linear-gradient(to right, #f2eee2 0%, #d2c7a9 100%) !important;
+  color: #6b6559 !important;
+  text-shadow: 0 1px 4px rgba(230, 215, 190, 0.15) !important;
+}
+
+html[data-theme="light"] body.vault .section-block {
+  background: linear-gradient(145deg, #f2eee2 0%, #e6dfc5 60%, #d2c7a9 100%) !important;
+  border-color: #e6dfc5 !important;
+  box-shadow: 0 0 20px rgba(230, 215, 190, 0.15) !important;
+}
+
+html[data-theme="light"] body.vault .image-block {
+  border: 1px solid #e6dfc5 !important;
+  box-shadow: 0 0 16px rgba(230, 215, 190, 0.15) !important;
+}
+
+/* Light Theme */
+html[data-theme="light"] body.vault .quiz-question,
+html[data-theme="light"] body.vault .quiz-prompt {
+  background: linear-gradient(to right, #f2eee2, #e6dfc5) !important;
+  color: #5e5a53 !important;
+  border-left: 4px solid #a89e8c !important;
+  box-shadow: 0 0 10px rgba(230, 215, 190, 0.15) !important;
+}
+
+html[data-theme="light"] body.vault .quiz-options {
+  background: #fefdf9 !important;
+  border: 1px solid #e6dfc5 !important;
+}
+
+/* === Vault === */
+html[data-theme="light"] body.vault .quiz-options button,
+html[data-theme="light"] body.vault .quiz-button {
+  background: #f2eee2 !important;
+  color: #5e5a53 !important;
+  border: 2px solid #a89e8c !important;
+  box-shadow: 0 0 6px rgba(230, 215, 190, 0.12) inset !important;
+}
+
+html[data-theme="light"] body.vault .quiz-options button:hover,
+html[data-theme="light"] body.vault .quiz-button:hover {
+  background: #e6dfc5 !important;
+  color: #3c3934 !important;
+  border-color: #918c84 !important;
+  box-shadow: 0 0 12px rgba(150, 140, 120, 0.25) !important;
+}
+
+html[data-theme="light"] body.vault {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(242, 238, 226, 0.35),
+    rgba(210, 199, 169, 0.35)
+  );
+}
+
+/* ===================================================
+The Resonant Key (Resonant & AI Video)
+Dark: Celestial Signal | Light: Aurora Scroll
+=================================================== */
+
+/* ===== Helper (shared) ===== */
+:root body.resonant {
+  --glow-rose: rgba(209, 107, 165, 0.30) !important;
+  --glow-rose-soft: rgba(209, 107, 165, 0.18) !important;
+  --glow-aqua: rgba(95, 251, 241, 0.28) !important;
+  --glow-aqua-soft: rgba(95, 251, 241, 0.18) !important;
+}
+
+/* ============= DARK THEME ============= */
+html[data-theme="dark"] body.resonant {
+  --bg-opacity: 0.16; /* NEW */
+  --text-accent: #b290f5 !important;
+  --highlight: #e1d4f6 !important;
+  --shadow-glow: rgba(157, 132, 198, 0.25) !important; /* strong shadow glow */
+  --glow-violet: rgba(157, 132, 198, 0.30) !important; /* richer highlight glow */
+  --glow-violet-soft: rgba(157, 132, 198, 0.18) !important; /* slightly softer variant */
+  --glyph-color: #E0D2F2 !important;
+  --strong-text: #D6C5EB !important;
+  --cite-color: #CBB8E0 !important;
+  --accent-scroll: #9D84C6 !important;
+  --section-border: #CFC1E6 !important;
+
+  /* Rich violet–rose–aqua fade */
+  --card-gradient: linear-gradient(
+    145deg,
+    #0E0B14 0%,
+    #1A1526 20%,
+    #261F39 50%,
+    #3B3154 75%,
+    #9D84C6 100%
+  ) !important;
+
+  /* Dark theme — deeper violet core with subtle aqua edge */
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(5, 5, 16, 0.94),
+    rgba(44, 26, 68, 0.90),
+    rgba(20, 38, 58, 0.88)
+  ) !important;
+}
+
+/* Background overlay */
+[data-theme="dark"] body.resonant {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-resonant-dark-overlay.png') !important;
+}
+
+/* Header / Footer */
+html[data-theme="dark"] body.resonant .site-header,
+html[data-theme="dark"] body.resonant .site-footer {
+  background: linear-gradient(to bottom, #050510, #1B1032) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+/* Scroll title */
+html[data-theme="dark"] body.resonant .scroll-title {
+  background: linear-gradient(to right, #0A0E1A 0%, #2C1A44 100%) !important;
+  color: var(--glyph-color) !important;
+  text-shadow: 0 1px 6px var(--glow-aqua) !important; /* subtle signal */
+}
+
+/* Sections */
+html[data-theme="dark"] body.resonant .section-block {
+  background: linear-gradient(145deg, #0A0E1A 0%, #1B1032 50%, #2C1A44 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 25px rgba(157, 132, 198, 0.25) !important; /* direct colour */
+}
+
+/* Images */
+html[data-theme="dark"] body.resonant .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 20px var(--glow-aqua-soft) !important;
+}
+
+/* Quiz / Prompt Blocks (Dark) */
+html[data-theme="dark"] body.resonant .quiz-question,
+html[data-theme="dark"] body.resonant .quiz-prompt {
+  background: linear-gradient(to right, #0A0E1A, #1B1032) !important;
+  color: var(--glyph-color) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 12px var(--glow-rose) !important;
+}
+
+html[data-theme="dark"] body.resonant .quiz-options {
+  background: #050510 !important;
+  border: 1px solid var(--section-border) !important;
+}
+
+html[data-theme="dark"] body.resonant .quiz-options button,
+html[data-theme="dark"] body.resonant .quiz-button {
+  background: #0A0E1A !important;
+  color: var(--strong-text) !important;
+  border: 2px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 6px var(--glow-rose-soft) inset !important;
+}
+
+html[data-theme="dark"] body.resonant .quiz-options button:hover,
+html[data-theme="dark"] body.resonant .quiz-button:hover {
+  background: #1B1032 !important;
+  color: #FFFFFF !important;
+  border-color: var(--highlight) !important;
+  box-shadow: 0 0 14px var(--glow-aqua) !important;
+}
+
+/* ============= LIGHT THEME ============= */
+html[data-theme="light"] body.resonant {
+  --bg-opacity: 0.32; /* NEW */
+  --text-accent: #6E5C8A !important;
+  --highlight: #5A4873 !important;
+  --shadow-glow: rgba(157, 132, 198, 0.15) !important; /* softer shadow glow */
+  --glow-violet: rgba(157, 132, 198, 0.20) !important; /* light but visible glow */
+  --glow-violet-soft: rgba(157, 132, 198, 0.12) !important; /* very subtle for light bg */
+  --glyph-color: #9D84C6 !important;
+  --strong-text: #5A4873 !important;
+  --cite-color: #7F6A9D !important;
+  --accent-scroll: #B8A6D9 !important;
+  --section-border: #EAE4F4 !important;
+
+  /* Light airy violet fade */
+  --card-gradient: linear-gradient(
+    145deg,
+    #FBFAFD 0%,
+    #F4F0F9 20%,
+    #EAE4F4 50%,
+    #DDD3EB 75%,
+    #B8A6D9 100%
+  ) !important;
+
+  /* Light theme — soft violet haze fading to warm rose */
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(249, 244, 255, 0.94),
+    rgba(255, 240, 250, 0.90),
+    rgba(255, 247, 255, 0.88)
+  ) !important;
+}
+
+/* Background overlay */
+[data-theme="light"] body.resonant {
+  --overlay-img: url('/media/tgk-assets/pillar-backgrounds/tgk-resonant-light-overlay.png') !important;
+}
+
+/* Header / Footer */
+html[data-theme="light"] body.resonant .site-header,
+html[data-theme="light"] body.resonant .site-footer {
+  background: linear-gradient(to bottom, #FFFFFF, #F9F4FF) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+/* Scroll title */
+html[data-theme="light"] body.resonant .scroll-title {
+  background: linear-gradient(to right, #F9F4FF 0%, #FFF3F9 100%) !important;
+  color: var(--glyph-color) !important;
+  text-shadow: 0 1px 4px var(--glow-rose-soft) !important;
+}
+
+/* Sections */
+html[data-theme="light"] body.resonant .section-block {
+  background: linear-gradient(145deg, #F9F4FF 0%, #FCEAF7 60%, #FFF3F9 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 18px rgba(157, 132, 198, 0.15) !important; /* direct colour */
+}
+
+/* Images */
+html[data-theme="light"] body.resonant .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 16px var(--glow-rose-soft) !important;
+}
+
+/* Quiz / Prompt Blocks (Light) */
+html[data-theme="light"] body.resonant .quiz-question,
+html[data-theme="light"] body.resonant .quiz-prompt {
+  background: linear-gradient(to right, #F9F4FF, #FCEAF7) !important;
+  color: var(--strong-text) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 10px var(--glow-rose-soft) !important;
+}
+
+html[data-theme="light"] body.resonant .quiz-options {
+  background: #FFFFFF !important;
+  border: 1px solid var(--section-border) !important;
+}
+
+html[data-theme="light"] body.resonant .quiz-options button,
+html[data-theme="light"] body.resonant .quiz-button {
+  background: #F9F4FF !important;
+  color: var(--glyph-color) !important;
+  border: 2px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 6px rgba(90, 24, 154, 0.12) inset !important; /* subtle violet */
+}
+
+html[data-theme="light"] body.resonant .quiz-options button:hover,
+html[data-theme="light"] body.resonant .quiz-button:hover {
+  background: #FCEAF7 !important;
+  color: #1F1F25 !important;
+  border-color: var(--highlight) !important;
+  box-shadow: 0 0 12px var(--glow-rose) !important;
+}
+
+/* ===================================================
+   Footer Transparency Defaults (per pillar & theme)
+   =================================================== */
+
+/* ✦ Lightgold */
+html[data-theme="light"] body.lightgold { --footer-opacity: 0.92; }
+html[data-theme="dark"]  body.lightgold { --footer-opacity: 0.80; }
+
+/* ✦ Gold */
+html[data-theme="light"] body.gold { --footer-opacity: 0.94; }
+html[data-theme="dark"]  body.gold { --footer-opacity: 0.82; }
+
+/* ✦ Gnostic Eye */
+html[data-theme="light"] body.eye { --footer-opacity: 0.93; }
+html[data-theme="dark"]  body.eye { --footer-opacity: 0.78; }
+
+/* ✦ Obsidian Key */
+html[data-theme="light"] body.obsidian { --footer-opacity: 0.92; }
+html[data-theme="dark"]  body.obsidian { --footer-opacity: 0.80; }
+
+/* ✦ The Vault */
+html[data-theme="light"] body.vault { --footer-opacity: 0.91; }
+html[data-theme="dark"]  body.vault { --footer-opacity: 0.77; }
+
+/* ✦ Resonant Key */
+html[data-theme="light"] body.resonant { --footer-opacity: 0.95; }
+html[data-theme="dark"]  body.resonant { --footer-opacity: 0.83; }
+
+}

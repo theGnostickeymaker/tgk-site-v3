@@ -1,0 +1,49 @@
+---
+layout: layouts/base.njk
+title: "Account"
+description: "Manage subscription"
+---
+
+<h1>Account</h1>
+<p id="tier">Checking access…</p>
+
+<script>
+const params = new URLSearchParams(location.search);
+const sessionId = params.get('session_id');
+
+async function setEntitlements(){
+  if(!sessionId) return;
+  await fetch('/.netlify/functions/set-entitlements', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ session_id: sessionId })
+  });
+  history.replaceState({}, '', location.pathname);
+}
+function readTier(){
+  const m = document.cookie.match(/(?:^|; )tgk_ent=([^;]+)/);
+  if(!m) return 'free';
+  try{
+    const [payload] = decodeURIComponent(m[1]).split('.');
+    const json = JSON.parse(atob(payload.replace(/-/g,'+').replace(/_/g,'/')));
+    return json.tier || 'free';
+  }catch(e){ return 'free'; }
+}
+(async ()=>{
+  if(sessionId) await setEntitlements();
+  document.getElementById('tier').textContent = 'Your access: ' + readTier().toUpperCase();
+})();
+</script>
+
+<button id="manage">Manage Subscription</button>
+<script>
+document.getElementById("manage").onclick = async () => {
+  const email = prompt("Enter your Stripe email (test):");
+  if (!email) return;
+  const r = await fetch("/.netlify/functions/create-portal-session", {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ email })
+  });
+  const d = await r.json();
+  if (d.url) location = d.url; else alert(d.error || "Portal error");
+};
+</script>

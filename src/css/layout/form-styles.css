@@ -1,0 +1,174 @@
+@layer components {
+/* ===================================================
+   TGK Form Styles – Unified & Centered
+   Version: 1.5 – Full Token Sync + Button Update
+   =================================================== */
+
+/* 🌀 Form Container Layout */
+.form-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ================================
+   🜁 Sacred Input Field Styles
+   ================================ */
+.input-field {
+  width: 100%;
+  max-width: 480px;
+  display: block;
+  padding: var(--input-padding, 0.85rem 1.1rem);
+  font-size: var(--font-size-base);
+  font-family: var(--font-serif);
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius-base);
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.15);
+}
+
+.input-field::placeholder {
+  color: var(--input-placeholder);
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.input-field:focus {
+  outline: none;
+  background-color: var(--input-bg-focus);
+  border-color: var(--input-focus);
+  box-shadow:
+    0 0 0 2px var(--input-focus),
+    0 0 15px var(--shadow-glow);
+}
+
+/* ================================
+   🜁 Labels & Input Grouping
+   ================================ */
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-label {
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  color: var(--text-accent);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ===============================
+   💬 Feedback & Form Messaging
+   =============================== */
+.form-message {
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-sm);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.form-error {
+  color: var(--form-error-color, #d63c3c);
+}
+
+.form-success {
+  color: var(--form-success-color, #32a862);
+}
+
+/* ================================
+   🔐 Auth Container Block
+   ================================ */
+.auth-block {
+  width: 100%;
+  max-width: 960px;
+  margin: var(--space-xl) auto;
+  padding: var(--auth-padding, var(--space-xl));
+  background: var(--section-bg-bottom);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 0 40px var(--shadow-glow);
+  border: 1px solid var(--section-border);
+  text-align: center;
+}
+
+.auth-block .section-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-sm);
+  color: var(--text-accent);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ================================
+   ✴️ Unified Button Styling
+   ================================ */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size-base);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--btn-text, var(--text-primary));
+  background-color: var(--btn-bg, var(--text-accent));
+  border: none;
+  border-radius: var(--border-radius-base);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn.full {
+  width: 100%;
+  max-width: 260px;
+  margin: var(--space-md) auto 0 auto;
+}
+
+.btn.glow-hover {
+  box-shadow: 0 0 15px var(--shadow-glow);
+}
+
+.btn.glow-hover:hover {
+  background-color: var(--highlight);
+  box-shadow: 0 0 25px var(--highlight);
+  transform: translateY(-1px);
+}
+
+/* Center the subscribe form container */
+.subscribe-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Make input-wrap full width inside the centered form */
+.subscribe-form .input-wrap {
+  width: 100%;
+  margin-bottom: var(--space-md);
+}
+
+.form-error {
+  color: var(--form-error-color, #d63c3c);
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-align: center;
+}
+
+    
+#upgrade-options {
+  display: none;
+}
+}

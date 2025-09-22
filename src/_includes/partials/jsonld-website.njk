@@ -1,0 +1,26 @@
+{% set site = site or collections.all[0].data.site or globals.site %}
+{% set image = socialImage or site.share.image %}
+{% set imgAbs = image startsWith('http') ? image : (site.url ~ image) %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}",
+  "description": "{{ description or site.description }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}",
+    "logo": { "@type": "ImageObject", "url": "{{ site.url }}/favicon.ico" }
+  },
+  "inLanguage": "{{ site.lang or 'en' }}",
+  "image": { "@type": "ImageObject", "url": "{{ imgAbs }}", "width": {{ site.share.width }}, "height": {{ site.share.height }} },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

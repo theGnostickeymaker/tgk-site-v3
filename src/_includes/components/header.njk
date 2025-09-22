@@ -1,0 +1,77 @@
+{% macro TGKHeader(page, header, pillars) %}
+{# --------- Resolve context --------- #}
+{% set url = page.url or '/' %}
+{% set segs = url | replace('/',' ') | trim | split(' ') | reject('') | list %}
+{# segs examples:
+   / -> []
+   /tgk-teachings/ -> ['tgk-teachings']
+   /tgk-teachings/the-afterlife/ -> ['tgk-teachings','the-afterlife']
+   /tgk-teachings/the-afterlife/gnostic-christianity/ -> ['tgk-teachings','the-afterlife','gnostic-christianity'] #}
+
+{# map first segment to pillar key in pillars.json #}
+{% set pillarKey = header.pillar or (segs[0] if segs and pillars[segs[0]] else 'home') %}
+{% set pillarCfg = pillars[pillarKey] or pillars['home'] %}
+
+{# Titles (overrideable via front matter `header.*`) #}
+{% set siteTitle    = 'The Gnostic Key' %}
+{% set pillarTitle  = header.pillarTitle  or pillarCfg.name %}
+{% set seriesSlug   = header.series       or (segs[1] if segs|length > 1 else null) %}
+{% set seriesTitle  = header.seriesTitle  or (seriesSlug | labelize if seriesSlug else null) %}
+{% set episodeTitle = header.episodeTitle or header.title or null %}
+
+{# Glyph set: page -> header override -> pillar default #}
+{% set glyphs = header.glyphs or pillarCfg.glyphs or ['✶','𓂀','✶'] %}
+
+{# Tagline: header override -> pillar default -> home default #}
+{% set tagline = header.tagline or pillarCfg.tagline or pillars.home.tagline %}
+
+{# Accent class for body or header wrapper #}
+{% set accentClass = header.accentClass or pillarCfg.accentClass or 'accent-home' %}
+
+<header class="tgk-header {{ accentClass }}">
+  <nav class="tgk-breadcrumb">
+    <div class="site-brand">
+      <a href="/" class="header-link">{{ siteTitle }}</a>
+      {# progressive crumbs #}
+      {% if pillarKey != 'home' %}
+        <span class="crumb-sep"> | </span>
+        <a href="/{{ pillarKey }}/" class="header-link">{{ pillarTitle }}</a>
+      {% endif %}
+      {% if seriesTitle %}
+        <span class="crumb-sep"> | </span>
+        <a href="/{{ pillarKey }}/{{ seriesSlug }}/" class="header-link">{{ seriesTitle }}</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="glyphs" aria-hidden="true">
+    {% for g in glyphs %}
+      <span class="glyph-scroll">{{ g }}</span>
+    {% endfor %}
+  </div>
+
+  {# Heading logic:
+     - Home: big claim + tagline
+     - Pillar index: pillar name + pillar tagline
+     - Series index: "The X Series" (or override) + optional tagline
+     - Episode: series header smaller, then episode H1 #}
+  <div class="tgk-headlines">
+    {% if pillarKey == 'home' %}
+      <h1 class="main-logo">Unlock the Hidden Truths</h1>
+      <h2 class="main-tagline">{{ tagline }}</h2>
+
+    {% elif seriesSlug and not episodeTitle %}
+      <h1 class="main-logo">{{ seriesTitle | safe }}</h1>
+      {% if tagline %}<h2 class="main-tagline">{{ tagline }}</h2>{% endif %}
+
+    {% elif seriesSlug and episodeTitle %}
+      <h2 class="main-logo">{{ seriesTitle | safe }}</h2>
+      <h1 class="main-tagline">{{ episodeTitle | safe }}</h1>
+
+    {% else %}
+      <h1 class="main-logo">{{ pillarTitle | safe }}</h1>
+      {% if tagline %}<h2 class="main-tagline">{{ tagline }}</h2>{% endif %}
+    {% endif %}
+  </div>
+</header>
+{% endmacro %}

@@ -1,0 +1,13 @@
+{
+  "name": "The Gnostic Key",
+  "shortName": "TGK",
+  "url": "https://thegnostickey.com",
+  "lang": "en",
+  "description": "A sacred digital library of forbidden history, esoteric wisdom, and spiritual rebellion.",
+  "twitter": "@thegnostickey",
+  "share": {
+    "image": "/TGK-assets/images/share/tgk-index-main.jpg",
+    "width": 1200,
+    "height": 675
+  }
+}

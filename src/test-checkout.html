@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Stripe Test</title>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <h1>Checkout test</h1>
+  <button id="buy">Subscribe (Test)</button>
+  <script>
+    const stripe = Stripe("pk_test_xxx"); // use your publishable key
+    document.getElementById('buy').addEventListener('click', async () => {
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json' },
+        body: JSON.stringify({
+          priceId: "price_xxx",
+          successUrl: window.location.origin + '/success',
+          cancelUrl: window.location.origin + '/cancel'
+        })
+      });
+      const data = await res.json();
+      if (data.id) stripe.redirectToCheckout({ sessionId: data.id });
+    });
+  </script>
+</body>
+</html>

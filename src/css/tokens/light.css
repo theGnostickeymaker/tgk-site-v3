@@ -1,0 +1,63 @@
+@layer tokens {
+/* ===================================================
+   Light Theme – The Gnostic Key
+   Version: 1.1 – Extended with UI and Accent Tokens
+   =================================================== */
+
+   
+   [data-theme="light"] {
+    /* Base Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f0f0f0;
+    --text-primary: #1a1a1a;
+    --text-accent: #b07d04;        /* was #6a5003 - slightly deeper, richer gold */
+    --highlight: #6e3fa0;
+  
+    /* Shadows & Symbolism */
+    --shadow-glow: rgba(181, 139, 15, 0.4);  /* deepened and more visible */
+    --glyph-color: var(--text-accent);
+  
+    /* Accent Tokens */
+    --gold-accent: #b78e4c;        /* was #c9aa71 - now darker and less pale */
+    --purple-accent: #8b6fc1;
+    --vault-accent: #5a4b91;
+  
+    /* Card Defaults */
+    --card-action-bg: var(--text-accent);
+    --card-action-text: var(--bg-primary);
+    --card-action-hover: var(--highlight);
+  
+    /* Default Sections */
+    --section-bg-top: #f5f5f5;
+    --section-bg-bottom: #e8e8e8;
+    --section-border: #cccccc;
+    --section-title-color: #1a1a1a;
+    --section-subtitle-color: #4a4a4a;
+  
+    --strong-text: #4b3b1f;
+    --blockquote-text: #333;
+    --cite-color: #666;
+  
+    --welcome-text: #3c2f1f;
+    --door-callout-color: #444;
+
+    --accent-scroll: var(--text-accent);
+  
+    /* Inputs */
+    --input-bg: #f7f5f0;
+    --input-bg-focus: #fffdf9;
+    --input-border: var(--section-border);
+    --input-focus: var(--text-accent);
+    --input-placeholder: #b49e7a;
+    --input-text: var(--text-primary);
+
+    --accent-scroll: var(--text-accent);
+
+    --bg-wash: rgba(255, 255, 255, 0.90); 
+
+    /* map to main.css vars */
+    --bg-color: var(--bg-primary);
+   }
+
+
+}

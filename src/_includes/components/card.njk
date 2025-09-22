@@ -1,0 +1,9 @@
+{% macro card(href, title, desc="", meta="") -%}
+<article class="tgk-card">
+  <a class="card-link" href="{{ href }}">
+    <h3 class="card-title">{{ title }}</h3>
+    {% if desc %}<p class="card-desc">{{ desc }}</p>{% endif %}
+    {% if meta %}<p class="card-meta">{{ meta }}</p>{% endif %}
+  </a>
+</article>
+{%- endmacro %}

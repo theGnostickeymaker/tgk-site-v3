@@ -1,0 +1,16 @@
+{# _includes/partials/quiz-data-loader.njk #}
+
+{# 1) Prefer the flat map from index.js, else fall back to root #}
+{% set QUIZ_MAP = quiz.index or quiz %}
+
+{# 2) Pull the selected quiz from the map #}
+{% set q = QUIZ_MAP[quizId] %}
+
+{% if not q %}
+  <script>console.error("[TGK QUIZ] No quiz data for", "{{ quizId }}");</script>
+{% else %}
+  <script id="quiz-data" type="application/json">{{ q | dump | safe }}</script>
+  <script id="quiz-ui" type="application/json">{ "oneAtATime": true, "autoadvanceOnAnswer": true }</script>
+  <script>window.__TGK_NO_AUTOBOOT__ = false;</script>
+  <script defer src="/js/tgk-quiz-engine.js"></script>
+{% endif %}

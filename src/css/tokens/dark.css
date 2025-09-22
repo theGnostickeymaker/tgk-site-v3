@@ -1,0 +1,62 @@
+@layer tokens {
+/* ===================================================
+   Dark Theme – The Gnostic Key
+   Version: 1.1 – Extended with UI and Accent Tokens
+   =================================================== */
+
+   [data-theme="dark"] {
+    /* Accent Tokens */
+    --gold-accent: #e8c572;
+    --purple-accent: #a18bd3;
+    --vault-accent: #8470b8;
+    --highlight: #9e845d;
+  
+    /* Backgrounds & Text */
+    --bg-primary: #0e0e11;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #f4f1ea;
+    --text-accent: #e0c98d;
+  
+    /* Shadows & Symbolism */
+    --shadow-glow: rgba(255, 215, 140, 0.25);
+    --glyph-color: var(--text-accent);
+  
+    /* Card Defaults */
+    --card-action-bg: var(--text-accent);
+    --card-action-text: var(--bg-primary);
+    --card-action-hover: var(--highlight);
+  
+    /* Default Sections */
+    --strong-text: #f0dba6;
+    --blockquote-text: #e0e0e0;
+    --cite-color: #aaa;
+    --welcome-text: #f0d79b;
+    --door-callout-color: #d0d0d0;
+    --section-subtitle-color: #aaa;
+    --section-border: #f0dba6;
+    --section-bg-top: #2a2a2a;      /* previously #202020 */
+    --section-bg-bottom: #383838;   /* previously #2a2a2a */
+    --accent-scroll: var(--text-accent);
+  
+    /* Inputs */
+    --input-bg: #1b1b1f;
+    --input-bg-focus: #222;
+    --input-border: #2a2a2a;
+    --input-focus: var(--text-accent);
+    --input-placeholder: #999;
+    --input-text: #f4f1ea;
+
+    --accent-scroll: var(--text-accent);
+
+    --bg-wash: rgba(0, 0, 0, 0.90);  
+
+    --bg-color: var(--bg-primary);
+    /* optional texture underlay */
+    /* --base-img: url("/tgk-assets/images/backgrounds/fiber-dark.jpg"); */
+    
+  }
+  
+
+  
+  
+}

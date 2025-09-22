@@ -1,0 +1,784 @@
+@layer components {
+
+/* ============================================
+   🔱 Scroll Title – Unified Sacred Style
+   ============================================ */
+
+.scroll-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-accent);
+  text-align: center;
+  margin: var(--scroll-title-margin) auto var(--space-md) auto;
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--text-accent);
+  border-radius: var(--scroll-border-radius);
+  background: var(--section-bg-bottom);
+  box-shadow: var(--scroll-box-shadow);
+  letter-spacing: 0.3px;
+  line-height: var(--font-base-line);
+  max-width: 100%;
+  text-transform: uppercase;
+  position: relative;
+  transition: var(--transition-default);
+  position: relative; /* enables absolute positioning inside */
+  text-align: center;
+}
+
+.scroll-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--highlight);
+  margin: var(--space-md) auto 0 auto;
+  border-radius: 2px;
+  box-shadow: 0 0 12px var(--shadow-glow);
+  border: 2px solid var(--text-accent);
+}
+
+@media (max-width: 640px) {
+  .scroll-title {
+    font-size: var(--font-size-lg);
+    padding: var(--space-md);
+  }
+}
+
+/* 🔹 Optional Subtitle Inside Title */
+  .scroll-title .scroll-subtitle,
+  .scroll-title-sub {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1rem; /* slightly larger than var(--font-size-sm) */
+    font-weight: 500; /* slightly bolder for legibility */
+    color: var(--text-accent); /* matches the heading for visual harmony */
+    margin-top: 0.5rem;
+    text-transform: none; /* keep natural case for flow */
+    letter-spacing: 0.3px;
+    line-height: 1.6;
+    opacity: 0.85; /* subtle tone beneath main heading */
+  }
+
+/* ===========================================
+   Ritual Block – Sacred Ordered Sequence
+   Class: .ritual
+   Version: 1.2 – Fully Tokenized & Isolated
+   =========================================== */
+
+   .section-block ol.ritual {
+    list-style: none;
+    padding-left: 1.25rem;
+    margin-left: 0.5rem;
+    counter-reset: ritual-step;
+    position: relative;
+  }
+  
+  .section-block ol.ritual li {
+    counter-increment: ritual-step;
+    margin-bottom: var(--ritual-margin-bottom, 1.25rem);
+    padding-left: var(--ritual-padding-left, 0.5rem);
+    position: relative;
+    font-size: var(--ritual-font-size, 1.05rem);
+    line-height: var(--font-base-line);
+    color: var(--text-primary);
+  }
+  
+  /* Replace default number with sacred numeral */
+  .section-block ol.ritual li::before {
+    content: counter(ritual-step) ". ";
+    position: absolute;
+    left: -1.5rem;
+    font-weight: bold;
+    color: var(--text-accent);
+    font-family: var(--font-display);
+  }
+
+  /* 🔹 Clean List Styling for Scroll Chapters */
+  .section-block ul {
+    list-style-type: disc;
+    padding-left: var(--space-lg);
+    margin: var(--space-md) 0;
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .section-block ul li {
+    margin-bottom: var(--space-xs);
+  }
+
+/* ==========================================
+   List Introduction – Text Before a Sacred List
+   ========================================== */
+
+   .list-intro {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    font-family: var(--font-serif);
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    line-height: var(--font-base-line);
+  }
+
+
+  /* ============================
+   Thesis Block
+   ============================ */
+
+   .thesis-block {
+    margin: var(--space-xl) auto;
+    max-width: 960px;
+    padding: var(--thesis-padding);
+    background: var(--section-bg-bottom);
+    border-left: var(--thesis-border);
+    box-shadow: 0 0 30px var(--shadow-glow);
+  }
+  
+  .thesis-line {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-family: 'Libre Baskerville', serif;
+  }
+  
+
+/* ===============================
+   Glossary Entries (Sacred Terms)
+   =============================== */
+
+   .glossary {
+    margin: 2rem 0;
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+  
+  .glossary-entry {
+    margin-bottom: 1.25rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--text-accent);
+  }
+  
+  .glossary-entry dt {
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    color: var(--text-accent);
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+  }
+  
+  .glossary-entry dd {
+    margin: 0;
+    font-style: italic;
+    color: var(--text-primary);
+  }
+  
+  /* ==============================
+   Ritual Block – Sacred Sequence
+   ============================== */
+
+  .section-block ol {
+    list-style-type: decimal;
+    padding-left: var(--space-lg);
+    margin: var(--space-md) 0;
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .section-block ol li {
+    margin-bottom: var(--space-xs);
+  }
+  
+/* ===================================================
+Scroll header – Sacred Scroll header
+Version: 1.0 – Fully Tokenized
+=================================================== */
+
+
+.main-logo-scroll {
+  color: var(--text-accent);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-lg);
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem;
+}
+
+.main-tagline-scroll {
+  font-family: var(--font-display);
+  color: var(--text-accent);
+  font-size: var(--font-size-logo);
+  text-align: center;
+  opacity: 0.85;
+  margin-bottom: var(--space-lg);
+  background: linear-gradient(to right, transparent, var(--highlight), transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.glyph-scroll {
+  font-family: var(--font-display);
+  font-size: var(--glyph-size-base);
+  line-height: 1;
+  text-align: center;
+  margin-bottom: var(--glyph-margin-bottom);
+  color: var(--glyph-color);
+  text-shadow: 0 0 6px var(--shadow-glow), 0 0 4px var(--glyph-color);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.glyph-scroll:hover {
+  transform: scale(1.08);
+  text-shadow: 0 0 10px var(--shadow-glow), 0 0 14px var(--glyph-color);
+}
+
+.glyph-scroll.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+
+/* ===============================
+   CTA Button – Sacred Signal Link
+   =============================== */
+
+   .cta-button {
+    display: inline-block;
+    padding: var(--cta-padding);
+    font-size: var(--cta-font-size);
+    font-weight: var(--cta-font-weight);
+    text-decoration: none;
+    border-radius: var(--cta-radius);
+    border: 2px solid transparent;
+    background-color: var(--text-accent);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px var(--shadow-glow);
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+  }
+  
+  
+  .cta-button:hover {
+    background-color: var(--highlight);
+    color: var(--bg-primary);
+    box-shadow: 0 0 25px var(--highlight);
+  }
+  
+  /* ===================================================
+   Divider – Sacred Section Break
+   Version: 1.0
+   =================================================== */
+
+.divider-sigil {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--text-accent),
+    transparent
+  );
+  margin: var(--space-lg) 0;
+  box-shadow: 0 0 6px var(--shadow-glow), 0 0 2px var(--text-accent);
+}
+
+  /* ===================================================
+   Image Block – Styled Sacred Illustration
+   Version: 1.0
+   =================================================== */
+
+.image-block {
+  margin: var(--space-lg) 0;
+  padding: var(--space-sm);
+  border: 1px solid var(--glyph-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  box-shadow: 0 0 20px var(--shadow-glow);
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+body.dark .image-block {
+  border-color: var(--text-accent);
+  background-color: var(--bg-secondary);
+}
+
+.image-gnostic {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 10px var(--shadow-glow);
+}
+
+.caption-gnostic {
+  margin-top: var(--space-xs);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+  letter-spacing: 0.02em;
+  background-color: var(--shadow-glow);
+}
+  
+  /* ===================================================
+   Arabic Verse Styling – Sacred Language Format
+   Version: 1.0
+   =================================================== */
+   
+    /* Islam */
+  .arabic {
+    font-family: 'Scheherazade New', serif;
+    font-size: var(--font-size-lg);
+    text-align: left;
+    direction: rtl;
+    color: var(--text-accent);
+    line-height: 2.2;
+    margin: var(--space-md) 0;
+  }
+
+   /* Hebrew */
+  .hebrew {
+    font-family: 'Frank Ruhl Libre', 'David Libre', serif;
+    font-size: var(--font-size-lg);
+    text-align: left;
+    direction: rtl;
+    color: var(--text-accent);
+    line-height: 2.2;
+    margin: var(--space-md) 0;
+  }
+
+   /* Buddhist */
+  .sanskrit {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  direction: ltr;
+  color: var(--text-accent);
+  line-height: 2.2;
+  margin: var(--space-md) 0;
+}
+
+.pali {
+  font-family: 'Noto Serif', serif;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  direction: ltr;
+  color: var(--text-accent);
+  line-height: 2.2;
+  margin: var(--space-md) 0;
+}
+.tibetan {
+  font-family: 'Noto Serif Tibetan', serif;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  direction: ltr;
+  color: var(--text-accent);
+  line-height: 2.2;
+  margin: var(--space-md) 0;
+}
+
+ /* Eqypt */
+.egyptian-script {
+  font-family: "Noto Serif Egyptian Hieroglyphs", "Segoe UI Historic", "Libre Baskerville", serif;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  direction: ltr;
+  color: var(--text-accent);
+  line-height: 2.2;
+  margin: var(--space-md) 0;
+}
+
+.egyptian-citation {
+  font-family: "Libre Baskerville", "Georgia", serif;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  direction: ltr;
+  color: var(--text-accent);
+  line-height: 2.2;
+  margin: var(--space-md) 0;
+}
+
+.papyrus-quote {
+  font-family: "Libre Baskerville", serif;
+  font-size: var(--font-size-lg);
+  text-align: left;
+  direction: ltr;
+  color: var(--text-accent);
+  line-height: 2.2;
+  margin: var(--space-md) 0;
+}
+
+.duat-map {
+  background-color: var(--bg-map, #1a1a1a);
+  border: 2px solid var(--text-accent);
+  padding: 1rem;
+  margin: 2rem 0;
+  box-shadow: 0 0 12px var(--shadow-glow);
+  border-radius: var(--border-radius-xl);
+  text-align: left;
+  color: var(--text-accent);
+}
+
+.duat-map h3 {
+  font-family: "Cinzel", serif;
+  font-size: var(--font-size-lg);
+  margin-bottom: 0.5rem;
+  color: var(--text-accent);
+}
+
+.duat-map p {
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  font-family: "Libre Baskerville", serif;
+}
+
+.duat-map img {
+  max-width: 100%;
+  border-radius: var(--border-radius-lg);
+  margin-top: 1rem;
+}
+
+/* ===============================================
+   Sacred Scroll Nav – Responsive, Clean & Centered
+   =============================================== */
+
+.scroll-nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-sm) 0 var(--space-md);
+  font-family: var(--font-display);
+  position: relative;
+  text-align: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+/* Centered sacred underline line */
+.scroll-nav-bar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    var(--text-accent) 20%,
+    var(--text-accent) 80%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Tab buttons styled like text links */
+.tab-link {
+  all: unset;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--text-accent);
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: normal;
+  padding: var(--space-xs) var(--space-sm);
+  display: inline-block;
+  text-align: center;
+}
+
+.tab-link:hover {
+  color: var(--highlight);
+}
+
+.tab-link:hover:not(.active) {
+  color: var(--golden-blaze);
+  text-shadow: 0 0 4px var(--accent-soft);
+}
+
+.tab-link.active {
+  color: var(--soft-gold);
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.35rem;
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--soft-gold); /* optional halo */
+  transition: all 0.3s ease;
+}
+
+/* Scroll tab content toggling */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ===============================================
+   Responsive – Mobile Scroll Nav Adjustments
+   =============================================== */
+
+@media (max-width: 600px) {
+  .scroll-nav-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+  }
+
+  .tab-link {
+    white-space: nowrap;
+    font-size: var(--font-size-md);
+    padding: var(--space-xs) 0;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .scroll-nav-bar::after {
+    width: 180px; /* Narrow sacred underline for mobile */
+  }
+}
+
+/* Allow line breaks by default (desktop) */
+.line-break {
+  display: inline;
+}
+
+/* Prevent line breaks on mobile */
+@media (max-width: 600px) {
+  .line-break {
+    display: none;
+  }
+
+  .tab-link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 95vw;
+  }
+}
+
+/* 📚 Source Footer (Reference Section) */
+.source-footer {
+  margin: var(--space-xl) auto var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--section-bg-bottom);
+  border-left: 4px solid var(--text-accent);
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 0 25px var(--shadow-glow);
+  max-width: var(--grid-max-width);
+}
+
+.source-footer .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  font-family: var(--font-display);
+  color: var(--text-accent);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.source-footer .section-heading::before,
+.source-footer .section-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--text-accent);
+  opacity: 0.4;
+}
+
+.source-footer .source-list {
+  padding-left: var(--space-sm);
+  list-style-type: none;
+  line-height: 1.9;
+  font-size: var(--font-size-sm);
+}
+
+.source-footer .source-list li {
+  scroll-margin-top: 6rem;
+}
+
+.source-footer .source-list a {
+  color: var(--text-accent);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.source-footer .source-list a:hover {
+  color: var(--highlight);
+  text-decoration: none;
+}
+
+.source-footer .disclaimer {
+  margin-top: var(--space-lg);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* 🧾 Data Tables for Comparison (Chapter 4) */
+.gnostic-table-responsive {
+  overflow-x: auto;
+  margin: var(--space-lg) 0;
+  border: 1px solid var(--section-border);
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 0 12px var(--shadow-glow);
+}
+
+.gnostic-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+}
+
+.gnostic-table thead {
+  color: var(--text-accent);
+}
+
+.gnostic-table th,
+.gnostic-table td {
+  padding: var(--space-sm);
+  border: 1px solid var(--section-border);
+  text-align: left;
+}
+
+.gnostic-table th {
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+}
+
+#rightsErosionChart {
+  background: var(--card-gradient);
+  border: 2px solid var(--section-border);
+  border-radius: 6px;
+  box-shadow: var(--scroll-box-shadow);
+  max-width: 800px;
+  margin: 24px auto;
+  color: var(--strong-text);
+  transition: all 0.3s ease;
+}
+
+#rightsErosionChart thead {
+  background: var(--highlight);
+  color: var(--text-accent);
+  text-align: left;
+}
+
+#rightsErosionChart th,
+#rightsErosionChart td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--section-border);
+}
+
+#rightsErosionChart tr:last-child td {
+  border-bottom: none;
+}
+
+#rightsErosionChart tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px var(--shadow-glow);
+}
+
+
+/* 🔦 Highlight Line or Fact */
+.highlight {
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+/* Subsection Headings within Chapters */
+.sub-heading {
+  font-family: var(--font-display);
+  color: var(--text-accent);
+  font-size: var(--font-size-lg);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.scroll-date {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-sm);
+  color: var(--section-subtitle-color, var(--text-secondary));
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.soul-journey-diagram {
+  padding: var(--space-md);
+  border-left: 4px solid var(--text-accent);
+  margin: var(--space-md) 0;
+  background: var(--bg-soft);
+  box-shadow: var(--scroll-shadow-soft);
+}
+
+.soul-path {
+  list-style: none;
+  padding-left: var(--space-md);
+  margin: 0;
+}
+
+.soul-path li {
+  margin-bottom: var(--space-sm);
+  position: relative;
+  padding-left: 1rem;
+}
+
+.soul-path li::before {
+  content: "⟶";
+  position: absolute;
+  left: 0;
+  color: var(--text-accent);
+}
+.visual-toll-map {
+  text-align: center;
+  margin: var(--space-xl) 0;
+}
+
+.visual-toll-map img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid var(--section-border);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--scroll-shadow-soft);
+}
+
+.visual-toll-map figcaption {
+  font-size: 0.9rem;
+  margin-top: var(--space-sm);
+  color: var(--text-subtle);
+}
+
+.active-scroll {
+  font-weight: bold;
+  color: var(--text-accent);
+  text-decoration: underline;
+}
+
+.lead-text {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  font-style: italic;
+  line-height: var(--font-base-line);
+  color: var(--accent-soft);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  text-shadow: 0 0 4px var(--shadow-glow);
+}
+
+
+}

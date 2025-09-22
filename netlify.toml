@@ -1,0 +1,36 @@
+[build]
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+  functions = "netlify/functions"
+  edge_functions = "netlify/edge-functions"
+
+[dev]
+  command = "npx @11ty/eleventy --serve --port=8080"
+  port = 8888
+  targetPort = 8080
+  publish = "_site"
+
+[[edge_functions]]
+  function = "gate"
+  path = "/gated/*"
+
+[[redirects]]
+  from = "/:path*/index.htm"
+  to = "/:path*/"
+  status = 301
+
+# (Optional) If you have any direct .htm files/links elsewhere
+[[redirects]]
+  from = "/:path*.htm"
+  to = "/:path*.html"
+  status = 301
+
+[[redirects]]
+  from = "/:path*/index.htm"
+  to = "/:path*/"
+  status = 301
+
+[[redirects]]
+  from = "/pillars/voice-of-the-key/*"
+  to   = "/pillars/the-resonant-key/:splat"
+  status = 301
