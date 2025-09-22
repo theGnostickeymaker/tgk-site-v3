@@ -1,107 +1,19 @@
-No change again....
-
-ok could it be our includes - did we set them to be for pillars maybe - its missing the new TGE pillar and only works for the teachings?
-
-{# topbar.njk — unified header with dynamic Part meta #}
-{% set crumbs = breadcrumbs or [ { title: "The Gnostic Key", url: "/" } ] %}
-{% set pglyph = pillarGlyph or pillarGlyphs or "✶" %}
-{% set isIndex = page.fileSlug == "index" %}
-{% set hasParts = scrollsMeta and (scrollsMeta | length) > 0 %}
-
 <header class="site-header minimal" role="banner">
   <div class="site-brand">
-    {% if not hideBreadcrumbs %}
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      {% for c in crumbs %}
-        {% if not loop.last %}
-          {% if c.url %}
-            <a href="{{ c.url }}" class="header-link">{{ c.title }}</a>
-          {% else %}
-            <span class="header-link">{{ c.title }}</span>
-          {% endif %}
-          {% if loop.index < loop.length - 1 %}
-            <span class="sep"> | </span>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </nav>
-  {% endif %}
-
+    <a href="/" class="header-link">The Gnostic Key</a>
   </div>
 
-  {# Decorative glyphs #}
   <div class="glyphs" aria-hidden="true">
-    {% for g in glyphRow or [pglyph, "✶", pglyph] %}
-      <span class="glyph-scroll">{{ g }}</span>
-    {% endfor %}
+    <span class="glyph-scroll">✶</span>
+    <span class="glyph-scroll">𓂀</span>
+    <span class="glyph-scroll">✶</span>
   </div>
 
-{# Optional: Series Group above title, e.g., "The Afterlife Series" #}
-  {% if seriesGroup %}
-    <h2 class="series-title">{{ seriesGroup }}</h2>
-  {% endif %}
-
-  <h1 class="main-logo">
-    {{ scrollGroup or pillarHeading or seriesGroup or episodeGroup or title or pillarName }}
-  </h1>
-
-  {% if pillarTagline or tagline %}
-    <p class="main-tagline">{{ pillarTagline or tagline }}</p>
-  {% endif %}
-
-  {# Meta line: Series · Episode · Part title — shown for scroll parts and group entries #}
-  {% if not isIndex and (episode or hasParts or partTitle) %}
-    {% if hasParts %}
-      {% set first = scrollsMeta[0] %}
-    {% else %}
-      {% set first = null %}
-    {% endif %}
-
-    <div class="meta-row">
-      <div id="scroll-meta" class="scroll-meta" role="status" aria-live="polite">
-        <span class="series-label">Series {{ (seriesMeta and seriesMeta.number) or "1" }}</span>
-
-        {% if episode %}
-          <span class="dot" aria-hidden="true">·</span>
-          <span class="episode-label">Episode {{ episode }}</span>
-        {% endif %}
-
-        {% if partNumeral or partTitle %}
-          <span class="dot" aria-hidden="true">·</span>
-          <span class="scroll-label">
-            Part
-            {% if partNumeral %}
-              <span id="scroll-meta-numeral">{{ partNumeral }}</span>
-            {% endif %}
-            {% if partTitle %}
-              : <span id="scroll-meta-title">{{ partTitle }}</span>
-            {% endif %}
-          </span>
-        {% elif first %}
-          <span class="dot" aria-hidden="true">·</span>
-          <span class="scroll-label">
-            Part <span id="scroll-meta-numeral">{{ first.numeral }}</span>:
-            <span id="scroll-meta-title">{{ first.title }}</span>
-          </span>
-        {% endif %}
-      </div>
-
-      <button
-        class="scroll-bookmark theme-toggle-floating"
-        type="button"
-        aria-label="Bookmark this part"
-        aria-pressed="false"
-        title="Bookmark"
-        data-title="{{ title }}"
-        data-excerpt="{{ description or 'Saved from The Gnostic Key' }}"
-        data-path="{{ page.url }}"
-      >🔖</button>
-    </div>
-  {% endif %}
-
+  <h1 class="main-logo">Unlock the Hidden Truths</h1>
+  <h2 class="main-tagline">Where the erased, the forbidden, and the sacred converge</h2>
 </header>
 
-{# Floating Hamburger #}
+<!-- Floating Hamburger (top-left) -->
 <div class="floating-hamburger">
   <button
     id="hamburgerFloating"
@@ -112,21 +24,21 @@ ok could it be our includes - did we set them to be for pillars maybe - its miss
     type="button">☰</button>
 </div>
 
-{# Drawer panel #}
+<!-- Drawer panel -->
 <nav id="mobileNav" class="mobile-menu" hidden aria-hidden="true" aria-label="Mobile Navigation">
   <div class="drawer-content">
     <div class="drawer-label">Explore TGK</div>
     <ul class="nav-menu">
       <li><a href="/">Home</a></li>
       <li><a href="/pillars/the-teachings/">The Teachings</a></li>
-      <li><a href="/pillars/the-obsidian-key/">The Obsidian Key</a></li>
-      <li><a href="/pillars/the-gnostic-eye/">The Gnostic Eye</a></li>
-      <li><a href="/pillars/the-resonant-key/">The Resonant Key</a></li>
-      <li><a href="/pillars/the-vault/">The Vault</a></li>
+      <li><a href="/pillars/the-obsidian-key/">Obsidian Key</a></li>
+      <li><a href="/pillars/the-gnostic-eye/">Gnostic Eye</a></li>
+      <li><a href="/pillars/the-resonant-key/">Resonant</a></li>
+      <li><a href="/pillars/the-vault/">Vault</a></li>
       <li><a href="/pillars/the-keymakers-dream/">The Keymaker's Dream</a></li>
-      <li><a href="/pillars/childrens-corner/">The Children's Corner</a></li>
-      <li><a href="/pillars/tgk-shop/">The TGK Shop</a></li>
-      <li><a href="/pillars/tgk-community/">The TGK Community</a></li>
+      <li><a href="/pillars/childrens-corner/">Children's Corner</a></li>
+      <li><a href="/pillars/tgk-shop/">TGK Shop</a></li>
+      <li><a href="/pillars/tgk-community/">TGK Community</a></li>
     </ul>
 
     <div class="drawer-label">Connect</div>
@@ -142,4 +54,5 @@ ok could it be our includes - did we set them to be for pillars maybe - its miss
   </div>
 </nav>
 
+<!-- Overlay -->
 <div id="navOverlay" class="nav-overlay" hidden></div>

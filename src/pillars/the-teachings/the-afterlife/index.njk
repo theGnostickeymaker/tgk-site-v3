@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+title: "The Afterlife Series | The Teachings"
+description: "Exploring how different traditions understand death, rebirth, and the soul’s journey."
+tier: free
+---
+
+{% block head %}
+  {% set socialImage = "/TGK-assets/images/share/the-teachings/afterlife-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+
+  {# JSON-LD: set vars first, then include #}
+  {% set items = collections.content | bySeries("the-afterlife") | sortByEpisode %}
+  {% set headline = "The Afterlife — Episodes" %}
+  {% set base = "" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="page-title-block">
+    <p class="page-title">Death is not the end. It is the map home. This series explores the afterlife across hidden traditions.</p>
+  </section>
+
+  <section class="portal-grid">
+    {% for ep in collections.content | bySeries("the-afterlife") | sortByEpisode %}
+      <a href="{{ ep.url }}" class="gnostic-card">
+        <div class="gnostic-card-inner">
+          <div class="gnostic-card-glyph">☉</div>
+          <h2 class="gnostic-card-title">{{ ep.data.title }}</h2>
+          {% if ep.data.description %}
+            <div class="gnostic-card-tagline">{{ ep.data.description }}</div>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">☉</span>
+  </div>
+</main>

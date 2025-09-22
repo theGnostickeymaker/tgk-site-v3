@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: "The Teachings | The Gnostic Key"
+description: "Enter the sacred halls of soul-awakening teachings across hidden traditions."
+tier: free
+permalink: /tgk-teachings/index.html
+---
+
+{% block head %}
+  {% set socialImage = "/TGK-assets/images/share/the-teachings/teachings-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+
+  {# JSON-LD: set variables FIRST, then include #}
+  {% set items = teachingsSeries %}
+  {% set base = pillarUrl or '/tgk-teachings/' %}
+  {% set headline = "The Teachings — Collections" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+
+<main class="main-content">
+  <section class="page-title-block">
+    <p class="page-title">Explore Gnostic teachings across hidden traditions. Each scroll is a door.</p>
+  </section>
+
+  <section class="portal-grid">
+  {% set baseHref = pillarUrl or '/tgk-teachings/' %}
+  {% for s in teachingsSeries or [] %}
+    {% set cls = 'gnostic-card' %}
+    {% if s.status == 'soon' %}{% set cls = cls ~ ' coming-soon' %}{% endif %}
+
+    <a href="{{ baseHref ~ s.slug ~ '/' }}" class="{{ cls }}">
+      {% if s.status == 'soon' %}<div class="coming-soon-overlay">Coming Soon</div>{% endif %}
+      <div class="gnostic-card-inner">
+        <div class="gnostic-card-glyph">{{ s.glyph }}</div>
+        <h2 class="gnostic-card-title">{{ s.title }}</h2>
+        {% if s.tagline %}<div class="gnostic-card-tagline">{{ s.tagline }}</div>{% endif %}
+      </div>
+    </a>
+  {% endfor %}
+</section>
+
+</main>
