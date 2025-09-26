@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: base.njk
 title: Gospel of Thomas — TGK Edition
 description: Premium formatted edition for mobile reading.
 pillar: the-vault

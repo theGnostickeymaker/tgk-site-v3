@@ -1,0 +1,98 @@
+/* =========================
+   Admin Layout + Accent Token Consumption
+   ========================= */
+
+@layer components {
+  .admin-wrap { max-width: 1200px; margin: 0 auto; padding: var(--space-lg); color: var(--text-primary, #ddd); }
+
+  .admin-header {
+    display: grid; gap: var(--space-sm); margin-bottom: var(--space-md);
+    padding: var(--space-md); border-radius: 18px;
+    background: var(--card-gradient, var(--bg-gradient));
+    box-shadow: var(--scroll-box-shadow, 0 0 18px rgba(0,0,0,.1));
+    color: var(--text-primary, #eaeaea);
+  }
+
+  .admin-title { margin: 0; font-size: clamp(1.4rem, 2vw, 2rem); color: var(--text-accent, var(--text-primary)); }
+  .admin-meta  { opacity: .8; }
+
+  .admin-toolbar { display:flex; gap:.6rem; align-items:center; flex-wrap: wrap; }
+  .accent-chooser select,
+  .admin-toolbar input[type="search"],
+  .admin-toolbar select {
+    padding: .35rem .6rem; border-radius: 10px;
+    border: 1px solid var(--section-border, currentColor);
+    background: transparent;
+    color: var(--text-primary);
+  }
+  .admin-toolbar select:focus,
+  .admin-toolbar input[type="search"]:focus {
+    outline: none;
+    border-color: var(--text-accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--text-accent) 25%, transparent);
+  }
+
+  .btn {
+    border:1px solid var(--section-border, currentColor);
+    background: transparent; padding:.4rem .7rem;
+    border-radius: 10px; cursor:pointer;
+    color: var(--text-accent, var(--text-primary));
+  }
+  .btn.small { padding:.25rem .5rem; font-size:.85em; }
+
+  .admin-tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .admin-tabs .tab {
+    border: 1px solid var(--section-border, currentColor);
+    padding: .4rem .7rem; border-radius: 10px; cursor: pointer; background: transparent;
+    color: var(--text-primary);
+  }
+  .admin-tabs .tab.is-active { box-shadow: var(--scroll-box-shadow, 0 0 10px rgba(0,0,0,.08)); color: var(--text-accent); }
+
+  .tab-panel { display: none; margin-top: var(--space-md); color: var(--text-primary, #ddd); }
+  .tab-panel.is-active { display: block; }
+
+  .card {
+    border: 1px solid var(--section-border, currentColor);
+    border-radius: 16px; padding: 1rem; margin-bottom: 1rem;
+    backdrop-filter: blur(4px);
+    background: color-mix(in oklab, white 6%, transparent);
+    color: var(--text-primary, #ddd);
+  }
+  .card-title { margin: 0 0 .6rem; font-weight: 700; color: var(--text-accent, #ffd86b); }
+
+  .task-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .4rem; }
+  .task { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .5rem .6rem; border-radius: 12px; transition: transform .15s ease; }
+  .task:hover { transform: translateY(-1px); }
+  .task.done { opacity: .55; text-decoration: line-through; }
+  .task-tools { display: flex; gap: .3rem; align-items: center; }
+
+  .badge { border:1px solid var(--section-border, currentColor); border-radius: 999px; padding: .1rem .6rem; font-size: .75rem; opacity: .9; }
+  .badge.tier { text-transform: uppercase; letter-spacing: .02em; color: var(--text-accent); }
+  .badge.accent { text-transform: none; }
+  .tag-badge { color: var(--text-primary); opacity: .9; }
+  .note-badge { color: var(--text-accent); }
+
+  .inv-table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .inv-table th, .inv-table td { border-bottom: 1px solid var(--section-border, currentColor); padding: .5rem .6rem; text-align: left; }
+  .inv-table th { color: var(--text-accent); }
+  .inv-table td { color: var(--text-primary); }
+  .inv-table .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: .85em; opacity: .85; }
+
+  .checks { display: grid; gap: .4rem; }
+  .note { margin-top: 1rem; }
+  .dimmed { opacity: .4; }
+}
+
+/* Light/Dark fallbacks if no accent class is present */
+html[data-theme="light"] body.admin {
+  --bg-gradient: linear-gradient(145deg, #fefefe, #eaeaea);
+  --card-gradient: linear-gradient(145deg, #fff, #f6f6f6);
+  --section-border: #ddd;
+  --footer-opacity: .9;
+}
+html[data-theme="dark"] body.admin {
+  --bg-gradient: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+  --card-gradient: linear-gradient(145deg, #262626, #1b1b1b);
+  --section-border: #444;
+  --footer-opacity: .82;
+}

@@ -1,41 +1,56 @@
 ---
-layout: layouts/base.njk
-title: "The Afterlife Series | The Teachings"
-description: "Exploring how different traditions understand death, rebirth, and the soul’s journey."
-tier: free
+layout: base.njk
+title: "The Afterlife Series"
+description: "Sacred scrolls exploring how cultures across time map death, rebirth, and the hidden journey of the soul."
+tagline: "Mystical cartographies ✦ death, rebirth, and beyond"
+
+permalink: "/pillars/the-teachings/the-afterlife/index.html"
+
+
+glyph: "⛪︎"
+accent: "gold"
+bodyClass: "gold"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Teachings", url: "/pillars/the-teachings/" }
+
 ---
 
 {% block head %}
-  {% set socialImage = "/TGK-assets/images/share/the-teachings/afterlife-index.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife-index.jpg" %}
   {% include "partials/head-meta.njk" %}
-
-  {# JSON-LD: set vars first, then include #}
-  {% set items = collections.content | bySeries("the-afterlife") | sortByEpisode %}
-  {% set headline = "The Afterlife — Episodes" %}
-  {% set base = "" %}
-  {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title">Death is not the end. It is the map home. This series explores the afterlife across hidden traditions.</p>
-  </section>
 
-  <section class="portal-grid">
-    {% for ep in collections.content | bySeries("the-afterlife") | sortByEpisode %}
-      <a href="{{ ep.url }}" class="gnostic-card">
-        <div class="gnostic-card-inner">
-          <div class="gnostic-card-glyph">☉</div>
-          <h2 class="gnostic-card-title">{{ ep.data.title }}</h2>
-          {% if ep.data.description %}
-            <div class="gnostic-card-tagline">{{ ep.data.description }}</div>
-          {% endif %}
-        </div>
-      </a>
-    {% endfor %}
-  </section>
+  <h4 class="index heading">
+    Sacred scrolls exploring how cultures across time map death, rebirth, and the hidden journey of the soul.
+  </h4>
+
+  <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">☸ About The Afterlife Series</span></summary>
+      <p>
+        <strong>The Afterlife Series</strong> gathers scrolls that explore how cultures across
+        time have mapped what lies beyond death. From Egyptian Duat to Buddhist Bardos, from
+        Sufi visions to Gnostic cosmologies, these teachings reveal the many ways humanity has
+        understood the passage of the soul.
+      </p>
+      <p>
+        Each scroll is structured for seekers: with introductions, glossaries, and reflections
+        to guide deeper study. Some traditions speak of liberation, others of judgement or
+        return — but all point toward mysteries that shape how we live, die, and remember.
+      </p>
+    </details>
+
+  {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Afterlife — Index" %}
+  {% set base = page.url %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">☉</span>
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>

@@ -1,13 +1,22 @@
 ---
-layout: layouts/base.njk
-title: The Vault
-description: Preservation of forbidden and sacred texts.
-theme: null
+layout: base.njk
+title: "The Vault"
+description: "Preservation of forbidden and sacred texts."
+tagline: "Codices ✦ scrolls ✦ erased histories"
+
+glyph: "✶"
+accent: vault
+bodyClass: vault
+
 ---
 
-{% import "../../_includes/components/card.njk" as ui %}
+<section class="pillar-hero">
+  <p class="lead">Welcome to the pillar. Replace this with a proper intro and a card grid.</p>
+</section>
 
-<h1>The Vault</h1>
-<section class="grid">
-  {{ ui.card("/pillars/the-vault/codex-reborn/", "Codex Reborn", "Gnostic gospels (device-readable)") }}
+<section class="pillar-grid">
+  <ul class="card-grid">
+    <li class="card"><a href="#">Example child page</a></li>
+    <li class="card"><a href="#">Another example</a></li>
+  </ul>
 </section>

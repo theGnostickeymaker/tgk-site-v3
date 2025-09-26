@@ -1,0 +1,196 @@
+@layer tokens {
+  
+/* ===================================================
+The Resonant Key (Resonant & AI Video)
+Dark: Celestial Signal | Light: Aurora Scroll
+================================================== */
+
+/* ===== Helper (shared) ===== */
+:root body.resonant {
+  --glow-rose: rgba(209, 107, 165, 0.30) !important;
+  --glow-rose-soft: rgba(209, 107, 165, 0.18) !important;
+  --glow-aqua: rgba(95, 251, 241, 0.28) !important;
+  --glow-aqua-soft: rgba(95, 251, 241, 0.18) !important;
+}
+
+/* ============= DARK THEME ============= */
+html[data-theme="dark"] body.resonant {
+  --bg-opacity: 0.16;
+  --text-accent: #b290f5 !important;
+  --highlight: #e1d4f6 !important;
+  --shadow-glow: rgba(157, 132, 198, 0.25) !important;
+  --glow-violet: rgba(157, 132, 198, 0.30) !important;
+  --glow-violet-soft: rgba(157, 132, 198, 0.18) !important;
+  --glyph-color: #E0D2F2 !important;
+  --strong-text: #D6C5EB !important;
+  --cite-color: #CBB8E0 !important;
+  --accent-scroll: #9D84C6 !important;
+  --section-border: #CFC1E6 !important;
+
+  --card-gradient: linear-gradient(145deg, #0E0B14 0%, #1A1526 20%, #261F39 50%, #3B3154 75%, #9D84C6 100%) !important;
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(5, 5, 16, 0.94),
+    rgba(44, 26, 68, 0.90),
+    rgba(20, 38, 58, 0.88)
+  ) !important;
+}
+
+/* Header / Footer */
+html[data-theme="dark"] body.resonant .site-header,
+html[data-theme="dark"] body.resonant .site-footer {
+  background: linear-gradient(to bottom, #050510, #1B1032) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+/* Scroll title */
+html[data-theme="dark"] body.resonant .scroll-title {
+  background: linear-gradient(to right, #0A0E1A 0%, #2C1A44 100%) !important;
+  color: var(--glyph-color) !important;
+  text-shadow: 0 1px 6px var(--glow-aqua) !important;
+}
+
+/* Sections */
+html[data-theme="dark"] body.resonant .section-block {
+  background: linear-gradient(145deg, #0A0E1A 0%, #1B1032 50%, #2C1A44 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 25px rgba(157, 132, 198, 0.25) !important;
+}
+
+/* Images */
+html[data-theme="dark"] body.resonant .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 20px var(--glow-aqua-soft) !important;
+}
+
+/* Quiz Blocks */
+html[data-theme="dark"] body.resonant .quiz-question,
+html[data-theme="dark"] body.resonant .quiz-prompt {
+  background: linear-gradient(to right, #0A0E1A, #1B1032) !important;
+  color: var(--glyph-color) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 12px var(--glow-rose) !important;
+}
+
+html[data-theme="dark"] body.resonant .quiz-options {
+  background: #050510 !important;
+  border: 1px solid var(--section-border) !important;
+}
+
+html[data-theme="dark"] body.resonant .quiz-options button,
+html[data-theme="dark"] body.resonant .quiz-button {
+  background: #0A0E1A !important;
+  color: var(--strong-text) !important;
+  border: 2px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 6px var(--glow-rose-soft) inset !important;
+}
+
+html[data-theme="dark"] body.resonant .quiz-options button:hover,
+html[data-theme="dark"] body.resonant .quiz-button:hover {
+  background: #1B1032 !important;
+  color: #FFFFFF !important;
+  border-color: var(--highlight) !important;
+  box-shadow: 0 0 14px var(--glow-aqua) !important;
+}
+
+/* ============= LIGHT THEME ============= */
+html[data-theme="light"] body.resonant {
+  --bg-opacity: 0.32;
+  --text-accent: #6E5C8A !important;
+  --highlight: #5A4873 !important;
+  --shadow-glow: rgba(157, 132, 198, 0.15) !important;
+  --glow-violet: rgba(157, 132, 198, 0.20) !important;
+  --glow-violet-soft: rgba(157, 132, 198, 0.12) !important;
+  --glyph-color: #9D84C6 !important;
+  --strong-text: #5A4873 !important;
+  --cite-color: #7F6A9D !important;
+  --accent-scroll: #B8A6D9 !important;
+  --section-border: #EAE4F4 !important;
+
+  --card-gradient: linear-gradient(145deg, #FBFAFD 0%, #F4F0F9 20%, #EAE4F4 50%, #DDD3EB 75%, #B8A6D9 100%) !important;
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(249, 244, 255, 0.94),
+    rgba(255, 240, 250, 0.90),
+    rgba(255, 247, 255, 0.88)
+  ) !important;
+}
+
+/* Header / Footer */
+html[data-theme="light"] body.resonant .site-header,
+html[data-theme="light"] body.resonant .site-footer {
+  background: linear-gradient(to bottom, #FFFFFF, #F9F4FF) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+/* Scroll title */
+html[data-theme="light"] body.resonant .scroll-title {
+  background: linear-gradient(to right, #F9F4FF 0%, #FFF3F9 100%) !important;
+  color: var(--glyph-color) !important;
+  text-shadow: 0 1px 4px var(--glow-rose-soft) !important;
+}
+
+/* Sections */
+html[data-theme="light"] body.resonant .section-block {
+  background: linear-gradient(145deg, #F9F4FF 0%, #FCEAF7 60%, #FFF3F9 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 18px rgba(157, 132, 198, 0.15) !important;
+}
+
+/* Images */
+html[data-theme="light"] body.resonant .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 16px var(--glow-rose-soft) !important;
+}
+
+/* Quiz Blocks */
+html[data-theme="light"] body.resonant .quiz-question,
+html[data-theme="light"] body.resonant .quiz-prompt {
+  background: linear-gradient(to right, #F9F4FF, #FCEAF7) !important;
+  color: var(--strong-text) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 10px var(--glow-rose-soft) !important;
+}
+
+html[data-theme="light"] body.resonant .quiz-options {
+  background: #FFFFFF !important;
+  border: 1px solid var(--section-border) !important;
+}
+
+html[data-theme="light"] body.resonant .quiz-options button,
+html[data-theme="light"] body.resonant .quiz-button {
+  background: #F9F4FF !important;
+  color: var(--glyph-color) !important;
+  border: 2px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 6px rgba(90, 24, 154, 0.12) inset !important;
+}
+
+html[data-theme="light"] body.resonant .quiz-options button:hover,
+html[data-theme="light"] body.resonant .quiz-button:hover {
+  background: #FCEAF7 !important;
+  color: #1F1F25 !important;
+  border-color: var(--highlight) !important;
+  box-shadow: 0 0 12px var(--glow-rose) !important;
+}
+
+/* Footer */
+html[data-theme="light"] body.resonant { --footer-opacity: 0.95; }
+html[data-theme="dark"]  body.resonant { --footer-opacity: 0.83; }
+
+}
+
+/* Kill default body overlay completely */
+html[data-theme="light"] body::before,
+html[data-theme="dark"] body::before {
+  --overlay-bg-gradient: none !important;
+  --overlay-img: none !important;
+  opacity: 0 !important;
+}

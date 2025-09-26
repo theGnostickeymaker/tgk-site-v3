@@ -39,37 +39,6 @@ p {
 }
 
 /* ----------------------------------------
-   📜 Sacred Quote Styling
----------------------------------------- */
-blockquote {
-  font-style: italic;
-  font-family: var(--font-serif);
-  font-size: var(--font-base-size);
-  border-left: var(--blockquote-border, 4px solid var(--text-accent));
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0));
-  padding: var(--space-md) var(--space-lg);
-  margin: var(--space-md) 0;
-  color: var(--blockquote-text, var(--text-primary));
-  border-radius: var(--blockquote-radius, 15px);
-  text-align: left;
-}
-
-/* 📚 Citation Text */
-cite {
-  display: block;
-  margin-top: var(--space-sm);
-  padding-right: var(--space-md);
-  font-size: var(--font-size-sm);
-  color: var(--cite-color, var(--highlight)); /* default fallback if not themed */
-  font-style: normal;
-  text-align: right;
-  font-weight: 600;
-  font-family: var(--font-display);
-  letter-spacing: 0.4px;
-  text-shadow: 0 0 6px var(--shadow-glow);
-}
-
-/* ----------------------------------------
    🌐 Links
 ---------------------------------------- */
 a {

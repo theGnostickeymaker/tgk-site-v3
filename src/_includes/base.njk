@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-theme="{{ theme_mode or 'dark' }}" class="{{ theme_mode or 'dark' }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or "The Gnostic Key" }}</title>
+  {% if description %}<meta name="description" content="{{ description | safe }}">{% endif %}
+  {% set bust = collections.all | length %}
+
+  {# Accent autodetect BEFORE CSS loads #}
+  {% set __ac = accent %}
+  {% if not __ac and page and page.url %}
+    {% if '/admin/' in page.url %}{% set __ac = 'admin' %}
+    {% elif '/pillars/the-gnostic-eye/' in page.url %}{% set __ac = 'eye' %}
+    {% elif '/pillars/the-obsidian-key/' in page.url %}{% set __ac = 'obsidian' %}
+    {% elif '/pillars/the-vault/' in page.url %}{% set __ac = 'vault' %}
+    {% elif '/pillars/the-teachings/' in page.url %}{% set __ac = 'gold' %}
+    {% elif '/pillars/the-resonant-key/' in page.url %}{% set __ac = 'resonant' %}
+    {% elif '/pillars/the-keymakers-dream/' in page.url %}{% set __ac = 'dream' %}
+    {% elif '/pillars/childrens-corner/' in page.url %}{% set __ac = 'children' %}
+    {% elif '/pillars/tgk-shop/' in page.url %}{% set __ac = 'shop' %}
+    {% elif '/pillars/tgk-community/' in page.url %}{% set __ac = 'community' %}
+    {% endif %}
+  {% endif %}
+  {% set __ac = __ac or 'lightgold' %}
+
+  <!-- Early theme init (prevents FOUC) -->
+  <script>
+  (function(){
+    try {
+      var KEY = 'tgk_theme';
+      var fallback = '{{ theme_mode or "dark" }}';
+      var t = localStorage.getItem(KEY) || fallback;
+      document.documentElement.setAttribute('data-theme', t);
+    } catch(e){}
+  })();
+  </script>
+
+  <!-- TOKENS -->
+  <link rel="stylesheet" href="/css/tokens/light.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/dark.css?v={{ bust }}">
+
+  {# Accent token sheet (exactly one) #}
+  {% if __ac == "admin" %}
+    <link rel="stylesheet" href="/css/tokens/accents/admin.css?v={{ bust }}">
+  {% elif __ac == "eye" %}
+    <link rel="stylesheet" href="/css/tokens/accents/gnostic-eye.css?v={{ bust }}">
+  {% elif __ac == "obsidian" %}
+    <link rel="stylesheet" href="/css/tokens/accents/obsidian-key.css?v={{ bust }}">
+  {% elif __ac == "vault" %}
+    <link rel="stylesheet" href="/css/tokens/accents/the-vault.css?v={{ bust }}">
+  {% elif __ac == "gold" %}
+    <link rel="stylesheet" href="/css/tokens/accents/the-teachings.css?v={{ bust }}">
+  {% elif __ac == "resonant" %}
+    <link rel="stylesheet" href="/css/tokens/accents/the-resonant-key.css?v={{ bust }}">
+  {% elif __ac == "dream" %}
+    <link rel="stylesheet" href="/css/tokens/accents/the-keymakers-dream.css?v={{ bust }}">
+  {% elif __ac == "children" %}
+    <link rel="stylesheet" href="/css/tokens/accents/childrens-corner.css?v={{ bust }}">
+  {% elif __ac == "shop" %}
+    <link rel="stylesheet" href="/css/tokens/accents/tgk-shop.css?v={{ bust }}">
+  {% elif __ac == "community" %}
+    <link rel="stylesheet" href="/css/tokens/accents/tgk-community.css?v={{ bust }}">
+  {% elif __ac == "lightgold" %}
+    <link rel="stylesheet" href="/css/tokens/accents/lightgold.css?v={{ bust }}">
+  {% endif %}
+
+  <!-- CORE -->
+  <link rel="stylesheet" href="/css/base/gnostic-core.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/base/typography-scale.css?v={{ bust }}">
+
+  <!-- LAYOUT -->
+  <link rel="stylesheet" href="/css/layout/blocks.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/dashboard-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/footer-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/form-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/glyph-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/layout-grid.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/page-structure.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/quiz.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/header-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/stylings.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/vault-styles.css?v={{ bust }}">
+
+  <!-- COMPONENTS -->
+  <link rel="stylesheet" href="/css/components/blockquotes.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/button-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/card-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/charts.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/form-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/glossary.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/image-blocks.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/lists.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/scroll-intro-dropdown.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/sources.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/tables.css?v={{ bust }}">
+
+  <!-- NAVIGATION -->
+  <link rel="stylesheet" href="/css/navigation/nav-bar.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/navigation/theme-toggle.css?v={{ bust }}">
+
+  <!-- UTILITIES / GATING -->
+  <link rel="stylesheet" href="/css/utilities/visibility-gates.css?v={{ bust }}">
+
+  {% block head %}{% endblock %}
+</head>
+
+<body class="template-base {{ bodyClass }} {{ __ac | trim }}">
+
+  {# ONE source of truth for the header #}
+  {% block header %}
+    {% if not _includes_topbar_off %}
+      {% include "partials/topbar.njk" %}
+    {% endif %}
+  {% endblock %}
+
+  <main id="content" class="site-main" role="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <!-- JS -->
+  <script defer src="/js/nav.js?v={{ bust }}"></script>
+  {% block scripts %}{% endblock %}
+
+  <!-- Floating Controls -->
+  <div class="floating-toggles">
+    <button type="button" id="theme-toggle" class="theme-toggle-floating" aria-label="Toggle Theme">
+      <span class="icon" aria-hidden="true">☀️</span>
+    </button>
+    <button type="button" id="scrollTopBtn" class="theme-toggle-floating" title="Return to Top">⬆️</button>
+    <button type="button" id="scrollBtmBtn" class="theme-toggle-floating" title="Return to Bottom">⬇️</button>
+  </div>
+
+  <script defer src="/js/toggles.js?v={{ bust }}"></script>
+</body>
+</html>

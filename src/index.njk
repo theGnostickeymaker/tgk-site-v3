@@ -1,125 +1,39 @@
 ---
-layout: layouts/base.njk
-title: "The Gnostic Key — Unlock the Hidden Truths"
-description: "A sacred digital library of forbidden history, esoteric wisdom, and spiritual rebellion."
-accent: lightgold
-tier: free
+layout: base.njk
+title: "The Gnostic Key"
+tagline: "Where the erased, the forbidden, and the sacred converge"
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
 ---
 
 {% block head %}
-  {% set socialImage = "/TGK-assets/images/share/tgk-index-main.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/teachings-index.jpg" %}
   {% include "partials/head-meta.njk" %}
-
-  {# JSON-LD for the pillars list #}
-  {% set items = pillarsList %}
-  {% set headline = "The Gnostic Key — Pillars" %}
-  {% set base = "/" %}
-  {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title">
-      Unlock the hidden scrolls of forbidden history, esoteric wisdom, and spiritual rebellion. <br>
-      This is your gateway to The Gnostic Key.
+
+<h4 class="index heading">Sacred teachings from Gnostic, mystical, and ancient traditions, maps for life, death, and beyond.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 What is The Gnostic Key?</span></summary>
+    <p>
+      <strong>The Gnostic Key</strong> is a sanctuary for seekers, rebels, and rememberers.
+      It weaves together hidden teachings, forbidden truths, and symbolic insight across time, tradition, and taboo.
+      Each pillar holds a different aspect of the mystery: spiritual maps, deep investigations, archetypal codes, and living scrolls.
+      <br><br>
+      This site is not a church. It is a <em>vault</em>, a <em>mirror</em>, and a <em>compass</em> — offered to those who refuse to forget.
     </p>
+  </details>
 
-    <details class="disclaimer-box">
-      <summary><span class="disclaimer-heading">🗝️ About The Gnostic Key</span></summary>
-      <p>This is not a religion. It's a resistance. A digital temple. A memory device. A code hidden in plain sight.</p>
-      <p>Across every pillar—from afterlife teachings and Gnostic scrolls to royal exposés and AI prophecy—you are invited not to consume, but to <strong>remember</strong>.</p>
-      <p>The Key was never lost. You were just never shown where to look. Now the vault is open. Choose your scroll.</p>
-    </details>
-  </section>
+  {% include "partials/pillar-grid.njk" %}
 
-<!-- ✦ Pillar Grid -->
-<section class="portal-grid">
-
-  <!-- ✅ Active Cards -->
-  <a href="/tgk-teachings/" class="gnostic-card">
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">🜁</div>
-      <h2 class="gnostic-card-title">The Teachings</h2>
-      <div class="gnostic-card-tagline">Sacred wisdom and afterlife scrolls from ancient and mystical traditions.</div>
-    </div>
-  </a>
-
-  <a href="/tgk-obsidian-key/" class="gnostic-card">
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">🜂</div>
-      <h2 class="gnostic-card-title">The Obsidian Key</h2>
-      <div class="gnostic-card-tagline">Deep dives into systems of control, hidden power structures, and societal erosion.</div>
-    </div>
-  </a>
-  
-  <a href="/tgk-gnostic-eye/" class="gnostic-card">
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">☿</div>
-      <h2 class="gnostic-card-title">The Gnostic Eye</h2>
-      <div class="gnostic-card-tagline">Symbolic analysis and archetypal decoding of events, culture, and history.</div>
-    </div>
-  </a>
-
-  <!-- 🔊 Resonant: coming soon -->
-  <a href="/tgk-resonant-key/" class="gnostic-card coming-soon">
-    <div class="coming-soon-overlay">Coming Soon</div>
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">♪</div>
-      <h2 class="gnostic-card-title">The Resonant Key</h2>
-      <div class="gnostic-card-tagline">Where TGK scrolls come alive in voice and vision.</div>
-    </div>
-  </a>
-
-  <!-- 🔐 Vault: premium -->
-  <a href="/tgk-vault/" class="gnostic-card premium">
-    <div class="premium-overlay">Premium</div>
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">✷</div>
-      <h2 class="gnostic-card-title">The Vault</h2>
-      <div class="gnostic-card-tagline">Preserving erased, forbidden, and rare texts — some free, some for Keepers.</div>
-    </div>
-  </a>
-
-  <!-- 🔒 Coming Soon Cards -->
-  <a href="/childrens-corner/" class="gnostic-card coming-soon">
-    <div class="coming-soon-overlay">Coming Soon</div>
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">⚶</div>
-      <h2 class="gnostic-card-title">Children's Corner</h2>
-      <div class="gnostic-card-tagline">Mythic tales and gentle teachings for younger seekers.</div>
-    </div>
-  </a>
-
-  <a href="/tgk-keymakers-dream/" class="gnostic-card coming-soon">
-    <div class="coming-soon-overlay">Coming Soon</div>
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">⟁</div>
-      <h2 class="gnostic-card-title">Keymaker's Dream</h2>
-      <div class="gnostic-card-tagline">A personal Gnostic memoir — life as myth, shadow, and revelation.</div>
-    </div>
-  </a>
-
-  <a href="/tgk-shop/" class="gnostic-card coming-soon">
-    <div class="coming-soon-overlay">Coming Soon</div>
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">✦</div>
-      <h2 class="gnostic-card-title">TGK Shop</h2>
-      <div class="gnostic-card-tagline">Limited editions, artefacts, and collector’s decks from the Gnostic Key.</div>
-    </div>
-  </a>
-
-  <a href="/tgk-community/" class="gnostic-card coming-soon">
-    <div class="coming-soon-overlay">Coming Soon</div>
-    <div class="gnostic-card-inner">
-      <div class="gnostic-card-glyph">☍</div>
-      <h2 class="gnostic-card-title">TGK Community</h2>
-      <div class="gnostic-card-tagline">A sanctuary for seekers to connect, share, and build together.</div>
-    </div>
-  </a>
-</section>
-
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">✦</span>
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>

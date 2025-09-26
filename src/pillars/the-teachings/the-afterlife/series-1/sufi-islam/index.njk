@@ -1,0 +1,58 @@
+---
+layout: base.njk
+title: "Sufi-Islam"
+description: "Three-part journey: the false cosmos, Christ the Revealer, and the soul’s return."
+tier: free
+series_version: 1
+permalink: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/index.html"
+tagline: "Three-part journey: the false cosmos, Christ the Revealer, and the soul’s return."
+seriesMeta:
+  number: 1
+  label: "Series 1"
+  series_version: 1
+episode: 2
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Teachings", url: "/pillars/the-teachings/" }
+  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
+  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Sufi-Islam", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "Sufi-Islam — Series 1" %}
+  {% set base = "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+
+<h4 class="index heading">
+  Sufi paths through death and beyond — mystical Islam’s vision of the soul’s return to the Beloved.
+</h4>
+
+<details class="disclaimer-box">
+  <summary><span class="disclaimer-heading">☪ About Sufi Islam</span></summary>
+  <p>
+    <strong>Sufi Islam</strong> continues Series 1 with teachings that see death not as an end, 
+    but as a reunion. Drawing on Qur’anic imagery, mystical poetry, and the wisdom of saints, 
+    these scrolls explore how Sufis mapped the passage of the soul and the unveiling of hidden worlds.
+  </p>
+  <p>
+    In this tradition, the Afterlife is a journey of love and remembrance: the soul leaves the veil 
+    of separation to return to the Source. The scrolls highlight stages of judgement and mercy, 
+    visions of paradise, and the deeper teaching that <em>death itself is a lover’s meeting</em>.
+  </p>
+</details>
+
+  {% include "partials/pillar-grid.njk" %}
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  </div>
+
+</main>

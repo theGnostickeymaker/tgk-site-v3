@@ -1,1 +1,19 @@
-<script type="application/ld+json">{"ok":true}</script>
+{%- if items and items.length -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ headline | dump }},
+  "url": {{ base | dump }},
+  "hasPart": [
+    {%- for it in items -%}
+    {
+      "@type": "CreativeWork",
+      "name": {{ (it.title or "") | dump }}{% set itemUrl = it.url or it.href %}{% if itemUrl %},
+      "url": {{ itemUrl | dump }}{% endif %}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}

@@ -1,4 +1,5 @@
-/* ==============================================================
+@layer base {
+   /* ==============================================================
    TGK • GNOSTIC CORE
    One file to replace main.css + gnostic-core.css (keep accents.css separate)
    Load order: gnostic-core.css → accents.css
@@ -167,6 +168,6 @@
   --z-overlay: 11990;    /* drawer backdrop */
   --z-hamburger: 12010;  /* hamburger button */
 }
-
+}
 
 

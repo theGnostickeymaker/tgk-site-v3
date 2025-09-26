@@ -1,0 +1,39 @@
+ 
+ @layer components {
+    /* ===================================================
+   Image Block – Styled Sacred Illustration
+   Version: 1.0
+   =================================================== */
+
+.image-block {
+  margin: var(--space-lg) 0;
+  padding: var(--space-sm);
+  border: 1px solid var(--glyph-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  box-shadow: 0 0 20px var(--shadow-glow);
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+body.dark .image-block {
+  border-color: var(--text-accent);
+  background-color: var(--bg-secondary);
+}
+
+.image-gnostic {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 10px var(--shadow-glow);
+}
+
+.caption-gnostic {
+  margin-top: var(--space-xs);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+  letter-spacing: 0.02em;
+  background-color: var(--shadow-glow);
+}
+ }

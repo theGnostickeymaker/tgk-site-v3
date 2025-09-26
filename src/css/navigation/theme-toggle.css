@@ -1,4 +1,6 @@
-/* === Floating tray – fixed to viewport === */
+@layer navigation {
+  
+  /* === Floating tray – fixed to viewport === */
 .floating-toggles{
   position: fixed;                 /* <-- key: float relative to viewport */
   bottom: var(--space-md);
@@ -51,3 +53,4 @@
 /* safety: if hidden lands on a button */
 .theme-toggle-floating[hidden]{ display:none !important; }
 
+}

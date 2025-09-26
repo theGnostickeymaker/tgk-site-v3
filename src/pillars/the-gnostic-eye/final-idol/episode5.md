@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: base.njk
 pillar: the-gnostic-eye
 series: final-idol
 episode: 5

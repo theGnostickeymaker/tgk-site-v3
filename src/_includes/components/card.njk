@@ -1,9 +1,11 @@
-{% macro card(href, title, desc="", meta="") -%}
-<article class="tgk-card">
-  <a class="card-link" href="{{ href }}">
-    <h3 class="card-title">{{ title }}</h3>
-    {% if desc %}<p class="card-desc">{{ desc }}</p>{% endif %}
-    {% if meta %}<p class="card-meta">{{ meta }}</p>{% endif %}
+<div class="pillar-card {{ item.status | default('free') }}">
+  <a href="{{ item.href }}" class="card-link">
+    <div class="card-inner">
+      <div class="card-glyph">{{ item.glyph | safe }}</div>
+      <h3 class="card-title">{{ item.title }}</h3>
+      {% if item.tagline %}
+        <p class="card-tagline">{{ item.tagline }}</p>
+      {% endif %}
+    </div>
   </a>
-</article>
-{%- endmacro %}
+</div>

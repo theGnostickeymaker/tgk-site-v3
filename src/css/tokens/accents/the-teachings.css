@@ -1,0 +1,182 @@
+@layer tokens {
+  
+  /* ===================================================
+Gold
+=================================================== */
+
+/* Gold Light theme */
+html[data-theme="light"] body.gold {
+  --bg-opacity: 0.32; /* NEW */
+  --text-accent: #b88c2a !important;           /* deeper antique gold */
+  --highlight: #fff6cc !important;            /* parchment-glow gold */
+  --shadow-glow: rgba(245, 210, 120, 0.18) !important;
+  --glyph-color: #d4af37 !important;          /* ceremonial gold */
+  --strong-text: #c9a646 !important;
+  --scroll-box-shadow: 0 0 20px rgba(245, 210, 120, 0.15) !important;
+  --cite-color: #766535 !important;
+  --accent-scroll: #b88c2a !important;
+  --section-border: #fff6cc !important; 
+  --card-gradient: linear-gradient(145deg, #fefcf8 0%, #f9f1dd 30%, #f1dfb8 55%, #e4c98f 80%, #d6b875 100%) !important;
+}
+
+html[data-theme="light"] body.gold {
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+}
+
+html[data-theme="light"] body.gold .site-header,
+html[data-theme="light"] body.gold .site-footer {
+  background: linear-gradient(to bottom, #ffffff, #fdf5e6) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+html[data-theme="light"] body.gold .scroll-title {
+  background: linear-gradient(to right, #fff6cc 0%, #e4c98f 60%, #d6b875 100%) !important;
+  color: #c9a646;
+  text-shadow: 0 1px 4px rgba(245, 210, 120, 0.2) !important;
+}
+
+html[data-theme="light"] body.gold .section-block {
+  background: linear-gradient(145deg, #f9f1dd 0%, #f1dfb8 60%, #e4c98f 100%) !important;
+  border-color: #fff6cc !important;
+  box-shadow: 0 0 20px rgba(245, 210, 120, 0.18) !important;
+}
+
+html[data-theme="light"] body.gold .image-block {
+  border: 1px solid #fff6cc !important;
+  box-shadow: 0 0 16px rgba(245, 210, 120, 0.15) !important;
+}
+
+/* Light Theme */
+html[data-theme="light"] body.gold .quiz-question,
+html[data-theme="light"] body.gold .quiz-prompt {
+  background: linear-gradient(to right, #f9f1dd, #f1dfb8) !important;
+  color: #b88c2a !important;
+  border-left: 4px solid #d4af37 !important;
+  box-shadow: 0 0 12px rgba(245, 210, 120, 0.18) !important;
+}
+
+html[data-theme="light"] body.gold .quiz-options {
+  background: #fefcf8 !important;
+  border: 1px solid #fff6cc !important;
+}
+
+/* === Gold === */
+html[data-theme="light"] body.gold .quiz-options button,
+html[data-theme="light"] body.gold .quiz-button {
+  background: #fefcf8 !important;
+  color: #735c1e !important;
+  border: 2px solid #d4af37 !important;
+  box-shadow: 0 0 6px rgba(245, 210, 120, 0.15) inset !important;
+}
+
+html[data-theme="light"] body.gold .quiz-options button:hover,
+html[data-theme="light"] body.gold .quiz-button:hover {
+  background: #fff6cc !important;
+  color: #4e3f10 !important;
+  border-color: #b88c2a !important;
+  box-shadow: 0 0 12px rgba(210, 180, 100, 0.3) !important;
+}
+
+html[data-theme="light"] body.gold {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(255, 246, 204, 0.35),
+    rgba(228, 201, 143, 0.35)
+  );
+}
+
+/* ✦ Gold Accent – The Teachings (Dark) */
+html[data-theme="dark"] body.gold {
+  --bg-opacity: 0.16; /* NEW */
+  --text-accent: #d2a53e !important;           /* golden ochre */
+  --highlight: #fbe89b !important;            /* warm luminous gold */
+  --shadow-glow: rgba(251, 215, 120, 0.25) !important;
+  --glyph-color: #ffcc66 !important;          /* muted sigil glow */
+  --strong-text: #f6d87a !important;
+  --scroll-box-shadow: 0 0 25px rgba(255, 222, 133, 0.25) !important;
+  --cite-color: #d7c180 !important;
+  --accent-scroll: #d2a53e !important;
+  --section-border: #fbe89b !important; 
+  --card-gradient: linear-gradient(145deg, #1a140a 0%, #2a1f0c 30%, #3c2b0d 55%, #6e4c1a 80%, #d2a53e 100%) !important;
+}
+
+html[data-theme="dark"] body.gold {
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+}
+
+html[data-theme="dark"] body.gold .site-header,
+html[data-theme="dark"] body.gold .site-footer {
+  background: linear-gradient(to bottom, #0e0e0e, #1c1506)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="dark"] body.gold .scroll-title {
+  background: linear-gradient(to right, #3c2b0d 0%, #6e4c1a 60%, #d2a53e 100%) !important;
+  color: #f6d87a !important;
+  text-shadow: 0 1px 6px rgba(251, 215, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.gold .section-block {
+  background: linear-gradient(145deg, #2a1f0c 0%, #3c2b0d 50%, #6e4c1a 100%) !important;
+  border-color: #fbe89b !important;
+  box-shadow: 0 0 25px rgba(251, 215, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.gold .image-block {
+  border: 1px solid #fbe89b !important;
+  box-shadow: 0 0 20px rgba(251, 215, 120, 0.2) !important;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] body.gold .quiz-question,
+html[data-theme="dark"] body.gold .quiz-prompt {
+  background: linear-gradient(to right, #3c2b0d, #6e4c1a) !important;
+  color: #f6d87a !important;
+  border-left: 4px solid #ffcc66 !important;
+  box-shadow: 0 0 14px rgba(255, 222, 133, 0.2) !important;
+}
+
+html[data-theme="dark"] body.gold .quiz-options {
+  background: #1c1506 !important;
+  border: 1px solid #fbe89b !important;
+}
+
+html[data-theme="dark"] body.gold .quiz-options button,
+html[data-theme="dark"] body.gold .quiz-button {
+  background: #2a1f0c !important;
+  color: #f6d87a !important;
+  border: 2px solid #ffcc66 !important;
+  box-shadow: 0 0 6px rgba(255, 222, 133, 0.15) inset !important;
+}
+
+html[data-theme="dark"] body.gold .quiz-options button:hover,
+html[data-theme="dark"] body.gold .quiz-button:hover {
+  background: #3c2b0d !important;
+  color: #fffde2 !important;
+  border-color: #d2a53e !important;
+  box-shadow: 0 0 14px rgba(251, 215, 120, 0.3) !important;
+}
+
+html[data-theme="dark"] body.gold {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(60, 43, 13, 0.35),
+    rgba(110, 76, 26, 0.35)
+  );
+}
+
+/* ✦ Gold */
+html[data-theme="light"] body.gold { --footer-opacity: 0.94; }
+html[data-theme="dark"]  body.gold { --footer-opacity: 0.82; }
+}
+
+html[data-theme="light"] body::before,
+html[data-theme="dark"] body::before {
+  --overlay-bg-gradient: none !important;
+  --overlay-img: none !important;
+  opacity: 0 !important;
+}

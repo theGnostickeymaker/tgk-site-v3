@@ -1,12 +1,14 @@
-// src/pillars/the-teachings/the-afterlife/.11tydata.js (ESM)
 export default {
-  series: "the-afterlife",
-  seriesTitle: "The Afterlife Series",
   eleventyComputed: {
-    header: (data) => ({
-      ...(data.header || {}),
-      series: "the-afterlife",
-      seriesTitle: "The Afterlife Series"
-    })
+    pillarId: () => "the-teachings",
+    pillarName: () => "The Teachings",
+    pillarUrl: () => "/pillars/the-teachings/the-afterlife/",
+    pillarGlyph: () => "⛪︎",
+    accent: () => "gold",
+    breadcrumbs: () => ([
+      { title: "The Gnostic Key", url: "/" },
+      { title: "The Teachings", url: "/pillars/the-teachings/" },
+      { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
+    ])
   }
 };

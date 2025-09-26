@@ -1,0 +1,14 @@
+<header class="series-header">
+  <h1 class="scroll-title">{{ title or "Untitled" }}</h1>
+  {% if description %}
+    <p class="scroll-description">{{ description }}</p>
+  {% endif %}
+  <div class="scroll-meta">
+    {% if episode %}
+      <span>Episode {{ episode }}</span>
+    {% endif %}
+    {% if partNumeral %}
+      · Part {{ partNumeral }}
+    {% endif %}
+  </div>
+</header>

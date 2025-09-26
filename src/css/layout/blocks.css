@@ -1,0 +1,89 @@
+@layer layout {
+
+    /* ===========================================
+   Ritual Block – Sacred Ordered Sequence
+   Class: .ritual
+   Version: 1.2 – Fully Tokenized & Isolated
+   =========================================== */
+
+   .section-block ol.ritual {
+    list-style: none;
+    padding-left: 1.25rem;
+    margin-left: 0.5rem;
+    counter-reset: ritual-step;
+    position: relative;
+  }
+  
+  .section-block ol.ritual li {
+    counter-increment: ritual-step;
+    margin-bottom: var(--ritual-margin-bottom, 1.25rem);
+    padding-left: var(--ritual-padding-left, 0.5rem);
+    position: relative;
+    font-size: var(--ritual-font-size, 1.05rem);
+    line-height: var(--font-base-line);
+    color: var(--text-primary);
+  }
+  
+  /* Replace default number with sacred numeral */
+  .section-block ol.ritual li::before {
+    content: counter(ritual-step) ". ";
+    position: absolute;
+    left: -1.5rem;
+    font-weight: bold;
+    color: var(--text-accent);
+    font-family: var(--font-display);
+  }
+
+  /* 🔹 Clean List Styling for Scroll Chapters */
+  .section-block ul {
+    list-style-type: disc;
+    padding-left: var(--space-lg);
+    margin: var(--space-md) 0;
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .section-block ul li {
+    margin-bottom: var(--space-xs);
+  }
+
+/* ============================
+   Thesis Block
+   ============================ */
+
+   .thesis-block {
+    margin: var(--space-xl) auto;
+    max-width: 960px;
+    padding: var(--thesis-padding);
+    background: var(--section-bg-bottom);
+    border-left: var(--thesis-border);
+    box-shadow: 0 0 30px var(--shadow-glow);
+  }
+  
+  .thesis-line {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  /* ==============================
+   Ritual Block – Sacred Sequence
+   ============================== */
+
+  .section-block ol {
+    list-style-type: decimal;
+    padding-left: var(--space-lg);
+    margin: var(--space-md) 0;
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .section-block ol li {
+    margin-bottom: var(--space-xs);
+  }
+}
+

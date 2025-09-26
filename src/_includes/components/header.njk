@@ -4,9 +4,9 @@
 {% set segs = url | replace('/',' ') | trim | split(' ') | reject('') | list %}
 {# segs examples:
    / -> []
-   /tgk-teachings/ -> ['tgk-teachings']
-   /tgk-teachings/the-afterlife/ -> ['tgk-teachings','the-afterlife']
-   /tgk-teachings/the-afterlife/gnostic-christianity/ -> ['tgk-teachings','the-afterlife','gnostic-christianity'] #}
+   /the-teachings/ -> ['the-teachings']
+   /the-teachings/the-afterlife/ -> ['the-teachings','the-afterlife']
+   /the-teachings/the-afterlife/gnostic-christianity/ -> ['the-teachings','the-afterlife','gnostic-christianity'] #}
 
 {# map first segment to pillar key in pillars.json #}
 {% set pillarKey = header.pillar or (segs[0] if segs and pillars[segs[0]] else 'home') %}

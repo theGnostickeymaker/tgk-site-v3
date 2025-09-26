@@ -1,20 +1,18 @@
 ---
-layout: layouts/base.njk
-title: The Final Idol — Series I
-description: A symbolic chronicle of AI as idol, prophet, antichrist.
-theme: gnostic-eye
-pillar: the-gnostic-eye
-series: final-idol
+layout: base.njk
+title: "Pillar Title"
+description: "Short intro for this pillar."
+glyph: "✶"
+accent: "eye"   # eye | obsidian | vault | gold | resonant | dream | children | shop | community
 ---
 
-{% import "../../../_includes/components/card.njk" as ui %}
+<section class="pillar-hero">
+  <p class="lead">Welcome to the pillar. Replace this with a proper intro and a card grid.</p>
+</section>
 
-<h1>The Final Idol — Series I</h1>
-<p>Six-episode exploration of AI’s symbolic face: idol, prophet, antichrist.</p>
-
-{% set episodes = collections.content | bySeries("final-idol") | sortByEpisode %}
-<section class="grid">
-  {% for ep in episodes %}
-    {{ ui.card(ep.url, "Episode " ~ ep.data.episode ~ ": " ~ ep.data.title, ep.data.description, ep.data.tier | upper ) }}
-  {% endfor %}
+<section class="pillar-grid">
+  <ul class="card-grid">
+    <li class="card"><a href="#">Example child page</a></li>
+    <li class="card"><a href="#">Another example</a></li>
+  </ul>
 </section>

@@ -1,1 +1,14 @@
-<meta name="x-smoke" content="ok">
+{# Basic SEO/OG/Twitter; pages can set: title, description, socialImage #}
+{% set _title = title or "The Gnostic Key" %}
+{% set _desc  = description or "A sacred digital library of forbidden history, esoteric wisdom, and spiritual rebellion." %}
+{% set _img   = socialImage or "/tgk-assets/images/share/tgk-index-main.jpg" %}
+
+<meta name="description" content="{{ _desc }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ _title }}">
+<meta property="og:description" content="{{ _desc }}">
+<meta property="og:image" content="{{ _img }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ _title }}">
+<meta name="twitter:description" content="{{ _desc }}">
+<meta name="twitter:image" content="{{ _img }}">

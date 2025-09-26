@@ -16,7 +16,6 @@
   overflow-x: hidden;          /* ✅ Prevents diagonal ribbon from escaping grid bounds */
 }
 
-
 /* 📱 Responsive Breakpoints */
 @media (max-width: 768px) {
   .portal-grid {
@@ -29,5 +28,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+
 
 }

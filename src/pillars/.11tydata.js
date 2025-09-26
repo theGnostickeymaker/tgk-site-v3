@@ -1,11 +1,11 @@
 // src/pillars/.11tydata.js
 const slugMap = {
-  'the-teachings': 'tgk-teachings',
-  'the-obsidian-key': 'tgk-obsidian-key',
-  'the-gnostic-eye': 'tgk-gnostic-eye',
-  'the-vault': 'tgk-vault',
-  'the-keymakers-dream': 'tgk-keymakers-dream',
-  'the-resonant-key': 'tgk-resonant-key',
+  'the-teachings': 'the-teachings',
+  'the-obsidian-key': 'the-obsidian-key',
+  'the-gnostic-eye': 'the-gnostic-eye',
+  'the-vault': 'the-vault',
+  'the-keymakers-dream': 'the-keymakers-dream',
+  'the-resonant-key': 'the-resonant-key',
   'tgk-shop': 'tgk-shop',
   'tgk-community': 'tgk-community',
   'childrens-corner': 'childrens-corner'

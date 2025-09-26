@@ -1,16 +1,38 @@
 <header class="site-header minimal" role="banner">
-  <div class="site-brand">
-    <a href="/" class="header-link">The Gnostic Key</a>
-  </div>
+  {% if breadcrumbs %}
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <span class="crumbs">
+      {%- for bc in breadcrumbs -%}
+        {%- if not loop.first %}<span class="sep"> | </span>{% endif -%}
+        {%- if bc.url -%}<a href="{{ bc.url }}">{{ bc.title }}</a>
+        {%- else -%}<span aria-current="page">{{ bc.title }}</span>{%- endif -%}
+      {%- endfor -%}
+    </span>
+  </nav>
+  {% endif %}
 
-  <div class="glyphs" aria-hidden="true">
-    <span class="glyph-scroll">✶</span>
-    <span class="glyph-scroll">𓂀</span>
-    <span class="glyph-scroll">✶</span>
-  </div>
+  <div class="header-main">
+    {% if pillarGlyph %}
+      <span class="pillar-glyph" aria-hidden="true">{{ pillarGlyph }}</span>
+    {% endif %}
 
-  <h1 class="main-logo">Unlock the Hidden Truths</h1>
-  <h2 class="main-tagline">Where the erased, the forbidden, and the sacred converge</h2>
+    <!-- Main page title -->
+    <h1 class="page-title">{{ title }}</h1>
+
+    <!-- NEW: Series / Episode / Part chain -->
+    {% if seriesMeta %}
+      <h2 class="series-episode-chain">
+        Series {{ seriesMeta.number | roman }}
+        {% if episode %} . Episode {{ episode }}{% endif %}
+        {% if partNumeral %} . Part {{ partNumeral }}{% if partTitle %}: {{ partTitle }}{% endif %}{% endif %}
+      </h2>
+    {% endif %}
+
+    <!-- Dynamic tagline -->
+    {% if tagline %}
+      <p class="page-tagline">{{ tagline }}</p>
+    {% endif %}
+  </div>
 </header>
 
 <!-- Floating Hamburger (top-left) -->

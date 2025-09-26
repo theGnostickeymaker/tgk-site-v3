@@ -1,13 +1,34 @@
 ---
-layout: layouts/base.njk
-title: Codex Reborn
-description: Selections from the Nag Hammadi library & related texts.
-theme: null
+layout: base.njk
+title: "Codex Reborn"
+description: "Gentle spiritual stories and mythic adventures for young seekers."
+tagline: "Little lights ✦ big wonders"
+
+glyph: "✶"
+accent: vault
+bodyClass: vault
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
+
 ---
 
-{% import "../../../_includes/components/card.njk" as ui %}
+{% include "partials/head-meta.njk" %}
 
-<h1>Codex Reborn</h1>
-<section class="grid">
-  {{ ui.card("/gated/full/pillars/the-vault/codex-reborn/gospel-of-thomas/", "Gospel of Thomas (TGK Edition)", "Premium device-readable edition.") }}
-</section>
+<main class="main-content">
+  <section class="page-title-block">
+    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
+  </section>
+
+  {% include "partials/pillar-grid.njk" %}
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  </div>
+</main>
+
+{# JSON-LD #}
+{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
+{% include "partials/jsonld-collection.njk" %}
+

@@ -1,4 +1,6 @@
-/* ===================================================
+@layer navigation {
+  
+  /* ===================================================
    TGK Navigation – Header vs Floating Drawer Toggle
    Version: 4.1 (safe z-index + overlay guard)
    =================================================== */
@@ -160,3 +162,108 @@ body::-webkit-scrollbar-thumb:hover{ background-color: var(--highlight); }
 
 /* Guard against accidental sideways scroll */
 html, body{ overflow-x:hidden; }
+
+/* ===============================================
+   Sacred Scroll Nav – Responsive, Clean & Centered
+   =============================================== */
+
+.scroll-nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-sm) 0 var(--space-md);
+  font-family: var(--font-display);
+  position: relative;
+  text-align: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+/* Centered sacred underline line */
+.scroll-nav-bar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    var(--text-accent) 20%,
+    var(--text-accent) 80%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Tab buttons styled like text links */
+.tab-link {
+  all: unset;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--text-accent);
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: normal;
+  padding: var(--space-xs) var(--space-sm);
+  display: inline-block;
+  text-align: center;
+}
+
+.tab-link:hover {
+  color: var(--highlight);
+}
+
+.tab-link:hover:not(.active) {
+  color: var(--golden-blaze);
+  text-shadow: 0 0 4px var(--accent-soft);
+}
+
+.tab-link.active {
+  color: var(--soft-gold);
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.35rem;
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--soft-gold); /* optional halo */
+  transition: all 0.3s ease;
+}
+
+/* Scroll tab content toggling */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ===============================================
+   Responsive – Mobile Scroll Nav Adjustments
+   =============================================== */
+
+@media (max-width: 600px) {
+  .scroll-nav-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+  }
+
+  .tab-link {
+    white-space: nowrap;
+    font-size: var(--font-size-md);
+    padding: var(--space-xs) 0;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .scroll-nav-bar::after {
+    width: 180px; /* Narrow sacred underline for mobile */
+  }
+}
+}

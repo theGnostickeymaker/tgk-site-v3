@@ -111,57 +111,6 @@
     }
   }
 
-
-/* 💠 Emoji List Format */
-.list-emoji {
-  list-style: none !important;
-  padding-left: 0;
-  margin: var(--space-md) 0;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-  max-width: 100%;
-}
-
-.list-emoji li {
-  position: relative;
-  margin-bottom: var(--space-sm);
-  padding-left: var(--space-lg);
-}
-
-.list-emoji li::before {
-  content: "✦ ";
-  position: absolute;
-  left: 0;
-  top: 0.05rem;
-  font-size: var(--font-size-base);
-  line-height: var(--font-base-line);
-  color: var(--text-accent);
-}
-
-.list-emoji li a {
-  word-break: break-word;
-  overflow-wrap: anywhere;
-}
-
-/* 📎 Offset anchor scrolls so footnotes are not hidden under headers */
-@media (max-width: 600px) {
-  .list-emoji li {
-    padding-left: var(--space-lg); /* restore room for the emoji */
-
-  }
-
-  .list-emoji li::before {
-    left: var(--space-xs); /* nudges emoji right a bit */
-  }
-
-  .list-emoji li a {
-    display: inline;
-    word-break: break-word;
-  }
-}
-
 /* ✴️ Emphasis Tag */
 strong {
   font-weight: 600;
@@ -242,53 +191,6 @@ strong {
 }
 
 /* ---------------------------------------
-   📜 Collapsible Intros & Disclaimers
---------------------------------------- */
-.disclaimer-box summary {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding-bottom: var(--space-sm);
-  position: relative;
-}
-.disclaimer-heading { color: var(--text-accent) !important; }
-.disclaimer-box summary::-webkit-details-marker { display: none; }
-
-.disclaimer-heading::before,
-.disclaimer-heading::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background-color: var(--text-accent) !important;
-  opacity: 0.4;
-}
-
-.disclaimer-box[open] summary::after {
-  content: "▾";
-  margin-left: var(--space-xs);
-  font-size: var(--font-size-sm);
-  color: var(--text-accent) !important;
-}
-.disclaimer-box:not([open]) summary::after {
-  content: "▸";
-  margin-left: var(--space-xs);
-  font-size: var(--font-size-sm);
-  color: var(--text-accent);
-}
-
-.disclaimer-box {
-  border-top: 1px solid var(--section-border);
-  padding-top: 1rem;
-  margin-top: 1rem;
-}
-.disclaimer-box[open] {
-  background: linear-gradient(to bottom, rgba(255, 236, 192, 0.05), rgba(255, 236, 192, 0.03));
-  border-radius: var(--radius-md);
-}
-
-/* ---------------------------------------
    🧭 Bookmarks (unchanged)
 --------------------------------------- */
 .bookmark-floating { text-align: right; margin-bottom: var(--space-sm); }
@@ -353,21 +255,22 @@ body {
    🎨 Background Painter (CSS-only)
    Driven 100% by accents.css variables
 --------------------------------------- */
-body::before{
-  content:"";
+body::before {
+  content: "";
   position: fixed;
   inset: 0;
   background:
-    var(--overlay-bg-gradient, none),
+    var(--overlay-bg-gradient, var(--bg-gradient, none)), /* 👈 fallback to --bg-gradient */
     var(--overlay-img, none);
   background-size: cover, cover;
-  background-position: center center, center center; /* center both layers */
+  background-position: center center, center center;
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed, fixed;
-  opacity: var(--bg-opacity);             /* ← set per theme/pillar in accents.css */
+  opacity: var(--bg-opacity, 1); /* Make sure opacity isn't 0 */
   pointer-events: none;
   z-index: 0;
 }
+
 
 /* Keep everything above the painter */
 body > * { position: relative; z-index: 1; }
@@ -426,5 +329,5 @@ Footnotes
   background: rgba(0,0,0,.75); color: #fff; padding:.5rem .75rem; border-radius:.5rem;
   z-index:9999;
 }
-
 }
+

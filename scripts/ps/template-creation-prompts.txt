@@ -1,0 +1,17 @@
+# The Afterlife
+
+pwsh scripts/ps/create-new-afterlife-series.ps1 `
+  -PillarSlug the-teachings `
+  -SeriesSlug the-afterlife `
+  -SeriesNo 1 `
+  -Slug sufi-islam `
+  -Title "Sufi-Islam" `
+  -Episode 2 `
+  -Tier free `
+  -Glyph "⛪︎" `
+  -BodyClass gold `
+  -SeriesGroup "The Afterlife Series" `
+  -LandingDescription "Three-part journey: the false cosmos, Christ the Revealer, and the soul’s return." `
+  -WithQuizzes `
+  -Root C:\TGK\tgk-site-v3
+

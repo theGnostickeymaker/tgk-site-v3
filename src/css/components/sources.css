@@ -1,0 +1,64 @@
+@layer components {
+/* 📚 Source Footer (Reference Section) */
+.source-footer {
+  margin: var(--space-xl) auto var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--section-bg-bottom);
+  border-left: 4px solid var(--text-accent);
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 0 25px var(--shadow-glow);
+  max-width: var(--grid-max-width);
+}
+
+.source-footer .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  font-family: var(--font-display);
+  color: var(--text-accent);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.source-footer .section-heading::before,
+.source-footer .section-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--text-accent);
+  opacity: 0.4;
+}
+
+.source-footer .source-list {
+  padding-left: var(--space-sm);
+  list-style-type: none;
+  line-height: 1.9;
+  font-size: var(--font-size-sm);
+}
+
+.source-footer .source-list li {
+  scroll-margin-top: 6rem;
+}
+
+.source-footer .source-list a {
+  color: var(--text-accent);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.source-footer .source-list a:hover {
+  color: var(--highlight);
+  text-decoration: none;
+}
+
+.source-footer .disclaimer {
+  margin-top: var(--space-lg);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+}

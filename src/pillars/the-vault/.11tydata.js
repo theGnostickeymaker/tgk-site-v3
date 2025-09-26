@@ -1,8 +1,13 @@
 export default {
-  accent: "vault",
-  pillarId: "the-vault",
-  pillarName: "The Hidden Vault",
-  pillarUrl: "/pillars/the-vault/",
-  pillarGlyphs: '<span class="glyph-key">🔑</span>',
-  pillarTagline: "Hidden truths, sacred archives, forbidden histories"
+  eleventyComputed: {
+    pillarId: () => "the-vault",
+    pillarName: () => "The Vault",
+    pillarUrl: () => "/pillars/the-vault/",
+    pillarGlyph: () => "🗄️",
+    accent: () => "vault",
+    breadcrumbs: () => ([
+      { title: "The Gnostic Key", url: "/" },
+      { title: "The Vault", url: "/pillars/the-vault/" }
+    ])
+  }
 };

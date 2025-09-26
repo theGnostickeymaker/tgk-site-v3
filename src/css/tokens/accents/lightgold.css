@@ -1,0 +1,206 @@
+@layer tokens {
+
+  /* ========================================
+     Base Template – Page Structure Wrapper
+     Class: template-base
+     ======================================== */
+
+  .template-base {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-gradient, var(--bg-primary)); /* FIXED: supports --card-gradient */
+    color: var(--text-primary);
+  }
+
+  /* ===================================================
+     accents.css – TGK Pillar Accent Themes (with Glyphs)
+     Version: 1.6 – Adds --bg-opacity controls
+     =================================================== */
+
+  html[data-theme="light"] { --bg-opacity: 0.30; }
+  html[data-theme="dark"]  { --bg-opacity: 0.16; }
+
+  body { --overlay-img: var(--overlay-img, none); }
+
+  /* ===================================================
+     LightGold
+     =================================================== */
+
+  /* ✦ Lightgold Accent – Light Theme (Subtle Gold) */
+  html[data-theme="light"] body.lightgold {
+    --bg-opacity: 0.3;
+    --text-accent: #a08040 !important;
+    --highlight: #fdf3c2 !important;
+    --shadow-glow: rgba(238, 209, 145, 0.14) !important;
+    --glyph-color: #c6a968 !important;
+    --strong-text: #b39558 !important;
+    --scroll-box-shadow: 0 0 18px rgba(238, 209, 145, 0.12) !important;
+    --cite-color: #b39558 !important;
+    --accent-scroll: #a08040 !important;
+    --section-border: #fdf3c2 !important;
+    --card-gradient: linear-gradient(145deg, #fefbf4 0%, #f5ebd2 30%, #e8d5a8 60%, #d9c089 85%, #bfa268 100%) !important;
+    --bg-gradient: var(--card-gradient) !important;
+    background: var(--bg-gradient);
+  }
+
+  html[data-theme="light"] body.lightgold .site-header,
+  html[data-theme="light"] body.lightgold .site-footer {
+    background: linear-gradient(to bottom, #fffaf0, #f9f0dc) !important;
+    color: var(--text-accent) !important;
+    border-bottom: 1px solid var(--highlight) !important;
+  }
+
+  html[data-theme="light"] body.lightgold .scroll-title {
+    background: linear-gradient(to right, #fdf3c2 0%, #e8d5a8 60%, #bfa268 100%) !important;
+    color: #a08040 !important;
+    text-shadow: 0 1px 4px rgba(238, 209, 145, 0.2) !important;
+  }
+
+  html[data-theme="light"] body.lightgold .section-block {
+    background: linear-gradient(145deg, #f5ebd2 0%, #e8d5a8 50%, #d9c08982 100%) !important;
+    border-color: #fdf3c2 !important;
+    box-shadow: 0 0 18px rgba(238, 209, 145, 0.12) !important;
+  }
+
+  html[data-theme="light"] body.lightgold .image-block {
+    border: 1px solid #fdf3c2 !important;
+    box-shadow: 0 0 16px rgba(238, 209, 145, 0.1) !important;
+  }
+
+  html[data-theme="light"] body.lightgold .quiz-question,
+  html[data-theme="light"] body.lightgold .quiz-prompt {
+    background: linear-gradient(to right, #fefbf4, #f5ebd2) !important;
+    color: #a08040 !important;
+    border-left: 4px solid #c6a968 !important;
+    box-shadow: 0 0 12px rgba(238, 209, 145, 0.12) !important;
+  }
+
+  html[data-theme="light"] body.lightgold .quiz-options {
+    background: #e9d8af !important;
+    border: 1px solid #fdf3c2 !important;
+  }
+
+  html[data-theme="light"] body.lightgold .quiz-options button,
+  html[data-theme="light"] body.lightgold .quiz-button {
+    background: #f7da8b !important;
+    color: #6a5324 !important;
+    border: 2px solid #c6a968 !important;
+    box-shadow: 0 0 6px rgba(238, 209, 145, 0.15) inset !important;
+  }
+
+  html[data-theme="light"] body.lightgold .quiz-options button:hover,
+  html[data-theme="light"] body.lightgold .quiz-button:hover {
+    background: #fdf3c2 !important;
+    color: #3a2c0e !important;
+    border-color: #bfa268 !important;
+    box-shadow: 0 0 12px rgba(191, 162, 104, 0.3) !important;
+  }
+
+  html[data-theme="light"] body.lightgold {
+    --overlay-bg-gradient: linear-gradient(
+      to right,
+      rgba(253, 243, 194, 0.35),
+      rgba(232, 213, 168, 0.35)
+    );
+  }
+
+  /* ✦ Lightgold Accent – Dark Theme (Muted Gold Shadow) */
+  html[data-theme="dark"] body.lightgold {
+    --bg-opacity: 0.95;
+    --text-accent: #bfa865 !important;
+    --highlight: #e3d2a2 !important;
+    --shadow-glow: rgba(210, 190, 120, 0.18) !important;
+    --glyph-color: #d4bc85 !important;
+    --strong-text: #e8ce98 !important;
+    --scroll-box-shadow: 0 0 22px rgba(240, 210, 140, 0.15) !important;
+    --cite-color: #e8ce98 !important;
+    --accent-scroll: #bfa865 !important;
+    --section-border: #e3d2a2 !important;
+    --card-gradient: linear-gradient(145deg, #181409 0%, #2d240f 25%, #3a2e14 50%, #5b4722 75%, #bfa865 100%) !important;
+    --bg-gradient: var(--card-gradient) !important;
+    background: var(--bg-gradient);
+  }
+
+  html[data-theme="dark"] body.lightgold .site-header,
+  html[data-theme="dark"] body.lightgold .site-footer {
+    background: linear-gradient(to bottom, #1a140a, #2a1f0c) !important;
+    color: var(--text-accent) !important;
+    border-bottom: 1px solid var(--highlight) !important;
+  }
+
+  html[data-theme="dark"] body.lightgold .scroll-title {
+    background: linear-gradient(to right, #3a2e14 0%, #5b4722 60%, #bfa865 100%) !important;
+    color: #bfa865 !important;
+    text-shadow: 0 1px 5px rgba(240, 210, 140, 0.15) !important;
+  }
+
+  html[data-theme="dark"] body.lightgold .section-block {
+    background: linear-gradient(145deg, #2d240f 0%, #3a2e14 50%, #5b4722 100%) !important;
+    border-color: #e3d2a2 !important;
+    box-shadow: 0 0 22px rgba(210, 190, 120, 0.15) !important;
+  }
+
+  html[data-theme="dark"] body.lightgold .image-block {
+    border: 1px solid #e3d2a2 !important;
+    box-shadow: 0 0 18px rgba(210, 190, 120, 0.12) !important;
+  }
+
+  html[data-theme="dark"] body.lightgold .quiz-question,
+  html[data-theme="dark"] body.lightgold .quiz-prompt {
+    background: linear-gradient(to right, #3a2e14, #5b4722) !important;
+    color: #e8ce98 !important;
+    border-left: 4px solid #d4bc85 !important;
+    box-shadow: 0 0 14px rgba(240, 210, 140, 0.15) !important;
+  }
+
+  html[data-theme="dark"] body.lightgold .quiz-options {
+    background: #2d240f !important;
+    border: 1px solid #e3d2a2 !important;
+  }
+
+  html[data-theme="dark"] body.lightgold .quiz-options button,
+  html[data-theme="dark"] body.lightgold .quiz-button {
+    background: #2d240f !important;
+    color: #e8ce98 !important;
+    border: 2px solid #d4bc85 !important;
+    box-shadow: 0 0 6px rgba(210, 190, 120, 0.12) inset !important;
+  }
+
+  html[data-theme="dark"] body.lightgold .quiz-options button:hover,
+  html[data-theme="dark"] body.lightgold .quiz-button:hover {
+    background: #3a2e14 !important;
+    color: #fffbe8 !important;
+    border-color: #bfa865 !important;
+    box-shadow: 0 0 14px rgba(191, 162, 104, 0.3) !important;
+  }
+
+  html[data-theme="dark"] body.lightgold {
+    --overlay-bg-gradient: linear-gradient(
+      to right,
+      rgba(58, 46, 20, 0.35),
+      rgba(95, 71, 34, 0.35)
+    );
+  }
+
+  /* ✦ Lightgold Footer Opacity */
+  html[data-theme="light"] body.lightgold { --footer-opacity: 0.92; }
+  html[data-theme="dark"]  body.lightgold { --footer-opacity: 0.80; }
+
+  /* Kill all overlay fallback images */
+  html[data-theme="light"] body::before,
+  html[data-theme="dark"] body::before {
+    --overlay-bg-gradient: none !important;
+    --overlay-img: none !important;
+    opacity: 0 !important;
+  }
+
+  #html[data-theme="light"] body.lightgold,
+  html[data-theme="dark"] body.lightgold {
+  background: var(--bg-gradient) !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+}

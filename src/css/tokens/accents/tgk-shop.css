@@ -1,0 +1,185 @@
+@layer tokens {
+
+/* ✦ TGK Shop — Apricot Bloom Theme ✦ */
+
+/* ===== Shared Token Hues ===== */
+:root body.shop {
+  --glow-apricot: rgba(247, 230, 196, 0.25) !important;
+  --glow-aqua: rgba(174, 220, 211, 0.25) !important;
+  --glow-aqua-soft: rgba(174, 220, 211, 0.15) !important;
+}
+
+
+/* DARK THEME — Dusky Apricot with Aqua Mist */
+html[data-theme="dark"] body.shop {
+  --bg-opacity: 0.16;
+  --text-accent: #f7e6c4 !important;
+  --highlight: #b3e6dd !important;
+  --shadow-glow: var(--glow-apricot);
+  --glyph-color: #ffedd5 !important;
+  --strong-text: #f9d8ac !important;
+  --scroll-box-shadow: 0 0 20px rgba(228, 210, 180, 0.15) !important;
+  --cite-color: #dab894 !important;
+  --accent-scroll: #eac39b !important;
+  --section-border: #f6d8b2 !important;
+
+  --card-gradient: linear-gradient(
+    145deg,
+    #1b1511 0%,
+    #2e2219 30%,
+    #48321f 60%,
+    #5e4330 85%,
+    #f7e6c4 100%
+  ) !important;
+
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(36, 28, 22, 0.35),
+    rgba(81, 65, 45, 0.35)
+  ) !important;
+}
+
+
+/* LIGHT THEME — Petal Fade + Aqua Glow */
+html[data-theme="light"] body.shop {
+  --bg-opacity: 0.32;
+  --text-accent: #ac6839 !important;
+  --highlight: #b3e6dd !important;
+  --shadow-glow: var(--glow-aqua-soft);
+  --glyph-color: #dc9c61 !important;
+  --strong-text: #ac6839 !important;
+  --scroll-box-shadow: 0 0 18px rgba(247, 230, 196, 0.15) !important;
+  --cite-color: #9c6b4e !important;
+  --accent-scroll: #dc9c61 !important;
+  --section-border: #f5ddc0 !important;
+
+  --card-gradient: linear-gradient(
+    145deg,
+    #fffdf9 0%,
+    #fdf3e4 30%,
+    #f9e5c6 60%,
+    #f5d5a9 85%,
+    #dc9c61 100%
+  ) !important;
+
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(255, 250, 236, 0.35),
+    rgba(245, 213, 169, 0.35)
+  ) !important;
+}
+
+
+/* ======= SHARED ELEMENT STYLES ======= */
+
+/* Headers / Footers */
+html[data-theme="dark"] body.shop .site-header,
+html[data-theme="dark"] body.shop .site-footer {
+  background: linear-gradient(to bottom, #181210, #3a2a22) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+html[data-theme="light"] body.shop .site-header,
+html[data-theme="light"] body.shop .site-footer {
+  background: linear-gradient(to bottom, #ffffff, #fdf3e4) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+
+/* Scroll Titles */
+html[data-theme="dark"] body.shop .scroll-title {
+  background: linear-gradient(to right, #2e2219, #5e4330, #f7e6c4) !important;
+  color: #f9d8ac;
+  text-shadow: 0 1px 4px var(--glow-aqua) !important;
+}
+
+html[data-theme="light"] body.shop .scroll-title {
+  background: linear-gradient(to right, #fdf3e4, #f5d5a9, #dc9c61) !important;
+  color: #ac6839;
+  text-shadow: 0 1px 3px var(--glow-aqua-soft) !important;
+}
+
+
+/* Section Blocks */
+html[data-theme="dark"] body.shop .section-block {
+  background: linear-gradient(145deg, #2e2219 0%, #48321f 60%, #5e4330 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 22px var(--glow-apricot) !important;
+}
+
+html[data-theme="light"] body.shop .section-block {
+  background: linear-gradient(145deg, #fdf3e4 0%, #f9e5c6 60%, #f5d5a9 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 18px var(--glow-aqua-soft) !important;
+}
+
+
+/* Image Blocks */
+html[data-theme="dark"] body.shop .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 18px var(--glow-aqua-soft) !important;
+}
+
+html[data-theme="light"] body.shop .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 16px var(--glow-aqua-soft) !important;
+}
+
+
+/* Quiz Blocks */
+html[data-theme="dark"] body.shop .quiz-question,
+html[data-theme="dark"] body.shop .quiz-prompt {
+  background: linear-gradient(to right, #2e2219, #5e4330) !important;
+  color: var(--glyph-color) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 12px var(--glow-apricot) !important;
+}
+
+html[data-theme="light"] body.shop .quiz-question,
+html[data-theme="light"] body.shop .quiz-prompt {
+  background: linear-gradient(to right, #fdf3e4, #f5d5a9) !important;
+  color: var(--strong-text) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 10px var(--glow-aqua-soft) !important;
+}
+
+html[data-theme="dark"] body.shop .quiz-options,
+html[data-theme="light"] body.shop .quiz-options {
+  background: var(--bg-gradient) !important;
+  border: 1px solid var(--section-border) !important;
+}
+
+html[data-theme="dark"] body.shop .quiz-options button,
+html[data-theme="dark"] body.shop .quiz-button,
+html[data-theme="light"] body.shop .quiz-options button,
+html[data-theme="light"] body.shop .quiz-button {
+  background: var(--bg-gradient) !important;
+  color: var(--glyph-color) !important;
+  border: 2px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 6px var(--glow-apricot) inset !important;
+}
+
+html[data-theme="dark"] body.shop .quiz-button:hover,
+html[data-theme="dark"] body.shop .quiz-options button:hover,
+html[data-theme="light"] body.shop .quiz-button:hover,
+html[data-theme="light"] body.shop .quiz-options button:hover {
+  background: var(--highlight) !important;
+  color: var(--text-accent) !important;
+  border-color: var(--accent-scroll) !important;
+  box-shadow: 0 0 14px var(--glow-apricot) !important;
+}
+
+
+/* Footer Opacity */
+html[data-theme="light"] body.shop { --footer-opacity: 0.94; }
+html[data-theme="dark"]  body.shop { --footer-opacity: 0.82; }
+
+}

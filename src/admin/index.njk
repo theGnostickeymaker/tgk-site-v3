@@ -1,0 +1,220 @@
+---
+layout: base.njk
+title: "Admin — TGK Toolkit"
+bodyClass: admin
+glyph: "✶"
+---
+
+{% block head %}
+  <link rel="stylesheet" href="/css/tokens/accents/admin.css?v={{ bust }}">
+  <!-- Load ALL accents so dropdown can switch at runtime -->
+  <link rel="stylesheet" href="/css/tokens/accents/lightgold.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/gnostic-eye.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/obsidian-key.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/the-vault.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/the-teachings.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/the-resonant-key.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/the-keymakers-dream.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/childrens-corner.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/tgk-shop.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/tokens/accents/tgk-community.css?v={{ bust }}">
+{% endblock %}
+
+{% set cats = todo.categories %}
+
+<main class="admin-wrap">
+  <!-- HERO / HEADER -->
+  <section class="section-block admin-hero">
+    <header class="admin-header">
+      <h1 class="section-header admin-title">
+        TGK Admin Toolkit <small>v0.3</small>
+      </h1>
+      <div class="admin-meta">Last updated: {{ todo.lastUpdated }}</div>
+
+      <div class="admin-toolbar">
+        <label class="accent-chooser">
+          <span>Accent:</span>
+          <select id="admin-accent">
+            <option value="lightgold">Lightgold</option>
+            <option value="gold" selected>Gold</option>
+            <option value="eye">Gnostic Eye</option>
+            <option value="obsidian">Obsidian Key</option>
+            <option value="vault">Vault</option>
+            <option value="dream">Keymaker’s Dream</option>
+            <option value="children">Children’s Corner</option>
+            <option value="resonant">Resonant Key</option>
+            <option value="shop">Shop</option>
+            <option value="community">Community</option>
+          </select>
+        </label>
+        <button id="accent-sync" class="btn">Sync with page bodyClass</button>
+
+        <span style="flex:1"></span>
+
+        <!-- Inventory filters -->
+        <input type="search" id="inv-search" placeholder="Filter by title, pillar, tier, path…">
+        <select id="inv-filter-pillar" title="Filter by Pillar"></select>
+        <select id="inv-filter-tier" title="Filter by Tier"></select>
+        <select id="gating-preview" title="View as tier">
+          <option value="free">(View as) Free</option>
+          <option value="initiate">Initiate</option>
+          <option value="full">Full</option>
+        </select>
+
+        <!-- Exports -->
+        <button id="export-tasks" class="btn small">Export To-Do JSON</button>
+        <button id="export-notes" class="btn small">Export Notes</button>
+      </div>
+
+      <nav class="admin-tabs" role="tablist">
+        <button class="btn tab is-active" data-tab="todo">To-Do Board</button>
+        <button class="btn tab" data-tab="inventory">Content Inventory</button>
+        <button class="btn tab" data-tab="accents">Accent Audit</button>
+        <button class="btn tab" data-tab="checks">Build Checks</button>
+      </nav>
+    </header>
+  </section>
+
+  <!-- To-Do Board -->
+  <section id="tab-todo" class="tab-panel is-active section-block" role="tabpanel">
+    {% for cat, items in cats %}
+      <section class="section-block admin-card">
+        <h2 class="section-header">
+          {{ cat
+            | replace("siteFunctionality","Site Functionality & Templates")
+            | replace("designTheme","Design & Theme Enhancements")
+            | replace("contentGating","Content Integration & Gating")
+            | replace("testingPolish","Testing & UX Polish") }}
+        </h2>
+        <ul class="task-list" data-cat="{{ cat }}">
+          {% for item in items %}
+            {% set id = (cat + '-' + loop.index) | slug %}
+            <li class="task" data-id="{{ id }}">
+              <label>
+                <input type="checkbox" class="task-check" data-id="{{ id }}">
+                <span class="task-text">{{ item }}</span>
+              </label>
+              <div class="task-tools">
+                <span class="badge tier">todo</span>
+                <button class="btn small tag-btn" title="Tag">🏷️</button>
+                <button class="btn small note-btn" title="Add note">📝</button>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </section>
+
+  <!-- Content Inventory -->
+  <section id="tab-inventory" class="tab-panel section-block" role="tabpanel">
+    <h2 class="section-header">Content Inventory</h2>
+    <div class="table-wrap">
+      <table class="inv-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Pillar</th>
+            <th>Series/Episode</th>
+            <th>Tier</th>
+            <th>Path</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="inv-body">
+          {% for p in collections.all %}
+            {% set data = p.data or {} %}
+            {% set raw  = p.url or p.inputPath %}
+            {% set path = raw | normpath %}
+            {% if path and '/pillars/' in path %}
+              {% set pillar  = (path | split('/'))[2] %}
+              {% set series  = data.series or data.seriesLabel or '' %}
+              {% set episode = data.episode or data.slug or '' %}
+              {% set tier    = (data.tier or 'free') | lower %}
+
+              {% set missing = [] %}
+              {% if not data.title %}{% set missing = missing.concat(['title']) %}{% endif %}
+              {% if not tier %}{% set missing = missing.concat(['tier']) %}{% endif %}
+              {% if not series %}{% set missing = missing.concat(['series']) %}{% endif %}
+              {% if not episode %}{% set missing = missing.concat(['episode']) %}{% endif %}
+              {% if not data.bodyClass %}{% set missing = missing.concat(['bodyClass']) %}{% endif %}
+              {% if not data.glyph %}{% set missing = missing.concat(['glyph']) %}{% endif %}
+
+              <tr data-pill="{{ pillar }}" data-tier="{{ tier }}" data-url="{{ p.url or '' }}">
+                <td>{{ data.title or (path | replace('/',' ')) }}</td>
+                <td>{{ pillar }}</td>
+                <td>{{ series }} {{ episode }}</td>
+                <td class="tier">{{ tier }}</td>
+                <td class="mono">{{ path }}</td>
+                <td>{{ (p.date or data.date) | date("yyyy-LL-dd") }}</td>
+                <td>
+                  <a class="btn small"
+                     href="{{ 'vscode://file' ~ (p.inputPath | replace('\\\\','/') ) }}"
+                     title="Open in VSCode">Open</a>
+                </td>
+                <td>
+                  {% if missing.length %}
+                    <span class="badge" title="Missing: {{ missing | join(', ') }}">⚠️ Missing {{ missing | join(', ') }}</span>
+                  {% else %}
+                    <span class="badge">✅ OK</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Accent Audit -->
+  <section id="tab-accents" class="tab-panel section-block" role="tabpanel">
+    <h2 class="section-header">Accent Audit</h2>
+    <table class="inv-table">
+      <thead>
+        <tr><th>Title</th><th>bodyClass</th><th>glyph</th><th>Has card gradient?</th><th>Path</th></tr>
+      </thead>
+      <tbody>
+        {% for p in collections.all %}
+          {% set d    = p.data or {} %}
+          {% set raw  = p.url or p.inputPath %}
+          {% set path = raw | normpath %}
+          {% if path and '/pillars/' in path %}
+            <tr>
+              <td>{{ d.title or '—' }}</td>
+              <td><span class="badge accent">{{ d.bodyClass or '—' }}</span></td>
+              <td>{{ d.glyph or '—' }}</td>
+              <td>{% if d.cardGradient %}✓{% else %}•{% endif %}</td>
+              <td class="mono">{{ path }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Build Checks -->
+  <section id="tab-checks" class="tab-panel section-block" role="tabpanel">
+    <h2 class="section-header">Build Checks</h2>
+    <ul class="checks">
+      <li>✅ 11ty collections loaded</li>
+      <li>✅ todo.js found ({{ todo.lastUpdated }})</li>
+      <li>⚠️ Netlify/Firebase admin gating not enforced (see notes)</li>
+      <li>⚠️ Old CSS cleanup pending</li>
+    </ul>
+    <details class="note">
+      <summary>Protect /admin (recommended)</summary>
+      <ol>
+        <li><strong>Netlify Basic Auth</strong>: add <code>_headers</code> with
+          <code>/admin/*<br>  Basic-Auth: username:password</code></li>
+        <li><strong>Firebase</strong>: require <code>auth.currentUser</code> and redirect to /account if not signed in.</li>
+      </ol>
+    </details>
+  </section>
+</main>
+
+{% block scripts %}
+  <script defer src="/js/admin.js"></script>
+{% endblock %}

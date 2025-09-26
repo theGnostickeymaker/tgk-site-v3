@@ -1,0 +1,28 @@
+{# Expects pillarGrid = [ … ] #}
+<section class="pillar-grid">
+  <div class="portal-grid">   {# ← was .grid #}
+    {% for c in pillarGrid %}
+      {% set state = c.state or "default" %}
+      {% set cls = "gnostic-card" %}
+      {% if state == "premium" %}{% set cls = "gnostic-card premium" %}
+      {% elif state == "soon"   %}{% set cls = "gnostic-card coming-soon" %}
+      {% endif %}
+
+      <article class="{{ cls }}">
+        <a class="card-link" href="{{ c.href or c.url or '#' }}">
+          {% if c.image %}<figure class="card-media"><img src="{{ c.image }}" alt="" loading="lazy"></figure>{% endif %}
+          <div class="card-body">
+            {% if c.glyph %}<div class="card-glyph" aria-hidden="true">{{ c.glyph }}</div>{% endif %}
+            <h3 class="card-title">{{ c.title }}</h3>
+            {% if c.desc or c.tagline %}<p class="card-desc">{{ c.desc or c.tagline }}</p>{% endif %}
+          </div>
+          {% set badgeTxt = c.badge %}
+          {% if not badgeTxt and c.tier == "full" %}{% set badgeTxt = "Full Access" %}{% endif %}
+          {% if not badgeTxt and c.tier == "initiate" %}{% set badgeTxt = "Initiate" %}{% endif %}
+          {% if not badgeTxt and c.tier == "free" %}{% set badgeTxt = "Free" %}{% endif %}
+          {% if badgeTxt %}<div class="card-badge">{{ badgeTxt }}</div>{% endif %}
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>

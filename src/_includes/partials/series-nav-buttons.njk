@@ -1,0 +1,19 @@
+{% if seriesNav %}
+  <nav class="series-nav" aria-label="Scroll navigation">
+    {% if seriesNav.prev %}
+      <a href="{{ seriesNav.prev.url }}" class="series-prev">← {{ seriesNav.prev.label }}</a>
+    {% else %}
+      <span class="series-prev disabled">←</span>
+    {% endif %}
+
+    {% if seriesNav.home %}
+      <a href="{{ seriesNav.home.url }}" class="series-home">{{ seriesNav.home.label }}</a>
+    {% endif %}
+
+    {% if seriesNav.next %}
+      <a href="{{ seriesNav.next.url }}" class="series-next">{{ seriesNav.next.label }} →</a>
+    {% else %}
+      <span class="series-next disabled">→</span>
+    {% endif %}
+  </nav>
+{% endif %}

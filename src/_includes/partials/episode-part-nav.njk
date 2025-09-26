@@ -1,0 +1,13 @@
+<nav class="episode-scroll-nav">
+  <ul class="scroll-part-links">
+    {% for part in episodeParts %}
+      <li>
+        <a 
+          class="scroll-link {% if page.url === part.url %}active{% endif %}" 
+          href="{{ part.url }}">
+          {{ part.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

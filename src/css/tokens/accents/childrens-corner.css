@@ -1,0 +1,188 @@
+@layer tokens {
+
+  /* ===================================================
+  Children's Corner (Pillar: children)
+  Dark: Peach Twilight | Light: Pastel Peach Garden
+  ================================================== */
+
+  /* ============= DARK THEME ============= */
+  html[data-theme="dark"] body.children {
+    --bg-opacity: 0.16;
+    --text-accent: #f7c6aa !important;           /* soft pastel peach */
+    --highlight: #fddbcc !important;
+    --glyph-color: #ffe8d8 !important;
+    --shadow-glow: rgba(247, 198, 170, 0.25) !important;
+    --strong-text: #fbc8ad !important;
+    --cite-color: #f3b497 !important;
+    --accent-scroll: #f2aa8e !important;
+    --section-border: #fddbcc !important;
+
+    --card-gradient: linear-gradient(
+      145deg,
+      #1a0f0f 0%,
+      #2e1a17 35%,
+      #492b24 65%,
+      #7a4537 85%,
+      #f7c6aa 100%
+    ) !important;
+    --bg-gradient: var(--card-gradient) !important;
+    background: var(--bg-gradient) !important;
+
+    --overlay-bg-gradient: linear-gradient(
+      to right,
+      rgba(30, 15, 10, 0.88),
+      rgba(60, 28, 20, 0.84),
+      rgba(122, 69, 55, 0.82)
+    ) !important;
+  }
+
+  html[data-theme="dark"] body.children .site-header,
+  html[data-theme="dark"] body.children .site-footer {
+    background: linear-gradient(to bottom, #1a0f0f, #3b1e16) !important;
+    color: var(--text-accent) !important;
+    border-bottom: 1px solid var(--highlight) !important;
+  }
+
+  html[data-theme="dark"] body.children .scroll-title {
+    background: linear-gradient(to right, #2e1a17 0%, #7a4537 100%) !important;
+    color: var(--glyph-color) !important;
+    text-shadow: 0 1px 6px rgba(255, 212, 182, 0.2) !important;
+  }
+
+  html[data-theme="dark"] body.children .section-block {
+    background: linear-gradient(145deg, #2e1a17 0%, #492b24 60%, #7a4537 100%) !important;
+    border-color: var(--section-border) !important;
+    box-shadow: 0 0 24px rgba(247, 198, 170, 0.2) !important;
+  }
+
+  html[data-theme="dark"] body.children .image-block {
+    border: 1px solid var(--section-border) !important;
+    box-shadow: 0 0 20px rgba(247, 198, 170, 0.15) !important;
+  }
+
+  html[data-theme="dark"] body.children .quiz-question,
+  html[data-theme="dark"] body.children .quiz-prompt {
+    background: linear-gradient(to right, #1a0f0f, #492b24) !important;
+    color: var(--glyph-color) !important;
+    border-left: 4px solid var(--accent-scroll) !important;
+    box-shadow: 0 0 12px rgba(247, 198, 170, 0.25) !important;
+  }
+
+  html[data-theme="dark"] body.children .quiz-options {
+    background: #1a0f0f !important;
+    border: 1px solid var(--section-border) !important;
+  }
+
+  html[data-theme="dark"] body.children .quiz-options button,
+  html[data-theme="dark"] body.children .quiz-button {
+    background: #2e1a17 !important;
+    color: var(--strong-text) !important;
+    border: 2px solid var(--accent-scroll) !important;
+    box-shadow: 0 0 6px rgba(247, 198, 170, 0.15) inset !important;
+  }
+
+  html[data-theme="dark"] body.children .quiz-options button:hover,
+  html[data-theme="dark"] body.children .quiz-button:hover {
+    background: #7a4537 !important;
+    color: #ffffff !important;
+    border-color: var(--highlight) !important;
+    box-shadow: 0 0 14px rgba(255, 212, 182, 0.25) !important;
+  }
+
+  /* ============= LIGHT THEME ============= */
+  html[data-theme="light"] body.children {
+    --bg-opacity: 0.32;
+    --text-accent: #c16741 !important;           /* warm peachy coral */
+    --highlight: #ffece3 !important;
+    --glyph-color: #f2aa8e !important;
+    --shadow-glow: rgba(247, 198, 170, 0.12) !important;
+    --strong-text: #a44e2f !important;
+    --cite-color: #d88e70 !important;
+    --accent-scroll: #f2aa8e !important;
+    --section-border: #ffece3 !important;
+
+    --card-gradient: linear-gradient(
+      145deg,
+      #fffaf8 0%,
+      #fbeee9 30%,
+      #f7e6c4 60%,
+      #f7c6aa 85%,
+      #f2aa8e 100%
+    ) !important;
+    --bg-gradient: var(--card-gradient) !important;
+    background: var(--bg-gradient) !important;
+
+    --overlay-bg-gradient: linear-gradient(
+      to right,
+      rgba(255, 247, 240, 0.85),
+      rgba(255, 236, 228, 0.88),
+      rgba(255, 220, 205, 0.85)
+    ) !important;
+  }
+
+  html[data-theme="light"] body.children .site-header,
+  html[data-theme="light"] body.children .site-footer {
+    background: linear-gradient(to bottom, #ffffff, #fff4f0) !important;
+    color: var(--text-accent) !important;
+    border-bottom: 1px solid var(--highlight) !important;
+  }
+
+  html[data-theme="light"] body.children .scroll-title {
+    background: linear-gradient(to right, #fffaf8 0%, #f7c6aa 100%) !important;
+    color: var(--glyph-color) !important;
+    text-shadow: 0 1px 4px rgba(242, 170, 142, 0.15) !important;
+  }
+
+  html[data-theme="light"] body.children .section-block {
+    background: linear-gradient(145deg, #fbeee9 0%, #f7e6c4 60%, #f7c6aa 100%) !important;
+    border-color: var(--section-border) !important;
+    box-shadow: 0 0 18px rgba(247, 198, 170, 0.15) !important;
+  }
+
+  html[data-theme="light"] body.children .image-block {
+    border: 1px solid var(--section-border) !important;
+    box-shadow: 0 0 16px rgba(247, 198, 170, 0.12) !important;
+  }
+
+  html[data-theme="light"] body.children .quiz-question,
+  html[data-theme="light"] body.children .quiz-prompt {
+    background: linear-gradient(to right, #fbeee9, #f7e6c4) !important;
+    color: var(--strong-text) !important;
+    border-left: 4px solid var(--accent-scroll) !important;
+    box-shadow: 0 0 10px rgba(242, 170, 142, 0.18) !important;
+  }
+
+  html[data-theme="light"] body.children .quiz-options {
+    background: #ffffff !important;
+    border: 1px solid var(--section-border) !important;
+  }
+
+  html[data-theme="light"] body.children .quiz-options button,
+  html[data-theme="light"] body.children .quiz-button {
+    background: #fffaf8 !important;
+    color: var(--text-accent) !important;
+    border: 2px solid var(--accent-scroll) !important;
+    box-shadow: 0 0 6px rgba(242, 170, 142, 0.1) inset !important;
+  }
+
+  html[data-theme="light"] body.children .quiz-options button:hover,
+  html[data-theme="light"] body.children .quiz-button:hover {
+    background: #f7c6aa !important;
+    color: #3d1e10 !important;
+    border-color: var(--highlight) !important;
+    box-shadow: 0 0 12px rgba(242, 170, 142, 0.2) !important;
+  }
+
+  /* ✦ Children’s Corner Footer Opacity */
+  html[data-theme="light"] body.children { --footer-opacity: 0.96; }
+  html[data-theme="dark"]  body.children { --footer-opacity: 0.84; }
+
+}
+
+/* Kill all overlay fallback images */
+html[data-theme="light"] body::before,
+html[data-theme="dark"] body::before {
+  --overlay-bg-gradient: none !important;
+  --overlay-img: none !important;
+  opacity: 0 !important;
+}

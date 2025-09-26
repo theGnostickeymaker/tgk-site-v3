@@ -75,4 +75,26 @@
     }
   }
   
+  .glyph-scroll {
+  font-family: var(--font-display);
+  font-size: var(--glyph-size-base);
+  line-height: 1;
+  text-align: center;
+  margin-bottom: var(--glyph-margin-bottom);
+  color: var(--glyph-color);
+  text-shadow: 0 0 6px var(--shadow-glow), 0 0 4px var(--glyph-color);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.glyph-scroll:hover {
+  transform: scale(1.08);
+  text-shadow: 0 0 10px var(--shadow-glow), 0 0 14px var(--glyph-color);
+}
+
+.glyph-scroll.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 }

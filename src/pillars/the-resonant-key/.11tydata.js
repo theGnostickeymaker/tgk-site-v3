@@ -1,8 +1,13 @@
 export default {
-  accent: "resonant",
-  pillarId: "the-resonant-key",
-  pillarName: "The Resonant Key",
-  pillarUrl: "/pillars/the-resonant-key/",
-  pillarGlyphs: '<span class="glyph-note">♪</span>',
-  pillarTagline: "Audio scrolls & spoken journeys from the TGK archives"
+  eleventyComputed: {
+    pillarId: () => "the-resonant-key",
+    pillarName: () => "The Resonant Key",
+    pillarUrl: () => "/pillars/the-resonant-key/",
+    pillarGlyph: () => "🎵",
+    accent: () => "resonant",
+    breadcrumbs: () => ([
+      { title: "The Gnostic Key", url: "/" },
+      { title: "The Resonant Key", url: "/pillars/the-resonant-key/" }
+    ])
+  }
 };

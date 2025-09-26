@@ -142,4 +142,117 @@
   opacity: 1;
 }
 
+/* ===============================
+   CTA Button – Sacred Signal Link
+   =============================== */
+
+   .cta-button {
+    display: inline-block;
+    padding: var(--cta-padding);
+    font-size: var(--cta-font-size);
+    font-weight: var(--cta-font-weight);
+    text-decoration: none;
+    border-radius: var(--cta-radius);
+    border: 2px solid transparent;
+    background-color: var(--text-accent);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px var(--shadow-glow);
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+  }
+  
+  
+  .cta-button:hover {
+    background-color: var(--highlight);
+    color: var(--bg-primary);
+    box-shadow: 0 0 25px var(--highlight);
+  }
+
+  /* =============================
+   ⚡️ Tier Upgrade Buttons
+   ============================= */
+#upgrade-options {
+  margin-top: 1.5rem;
+}
+
+.tier-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: 1rem;
+}
+
+.tier-button-group .button {
+  padding: var(--btn-padding);
+  font-size: var(--font-size-base);
+  border: 2px solid var(--gold-tone);
+  background: transparent;
+  color: var(--gold-tone);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tier-button-group .button:hover {
+  background: var(--gold-tone);
+  color: var(--bg-primary);
+}
+
+/* =============================
+   🧭 Subscription Button
+   ============================= */
+#manage-subscription {
+  margin: var(--space-lg) auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#manage-sub-btn {
+  font-size: var(--font-size-base);
+  padding: var(--btn-padding);
+  font-family: var(--btn-font);
+  border: 2px solid var(--text-accent);
+  border-radius: var(--btn-radius);
+  background-color: transparent;
+  color: var(--text-accent);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#manage-sub-btn:hover {
+  background-color: var(--text-accent);
+  color: var(--bg-primary);
+}
+/* ================================
+   ✴️ Unified Button Styling
+   ================================ */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size-base);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--btn-text, var(--text-primary));
+  background-color: var(--btn-bg, var(--text-accent));
+  border: none;
+  border-radius: var(--border-radius-base);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn.full {
+  width: 100%;
+  max-width: 260px;
+  margin: var(--space-md) auto 0 auto;
+}
+
+.btn.glow-hover {
+  box-shadow: 0 0 15px var(--shadow-glow);
+}
+
+.btn.glow-hover:hover {
+  background-color: var(--highlight);
+  box-shadow: 0 0 25px var(--highlight);
+  transform: translateY(-1px);
+}
 }

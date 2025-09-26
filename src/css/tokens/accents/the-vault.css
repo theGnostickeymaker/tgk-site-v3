@@ -1,0 +1,180 @@
+@layer tokens {
+  
+/* ===================================================
+The Vault
+=================================================== */
+
+html[data-theme="dark"] body.vault {
+  --bg-opacity: 0.16; /* NEW */
+  --text-accent: #918c84 !important;            /* soft stone grey */
+  --highlight: #c6bfa8 !important;
+  --shadow-glow: rgba(150, 140, 120, 0.3) !important;
+  --glyph-color: #e5ddcc !important;
+  --strong-text: #ada38b !important;
+  --scroll-box-shadow: 0 0 25px rgba(150, 140, 120, 0.3) !important;
+  --cite-color: #ada38b !important;
+  --accent-scroll: #918c84 !important;
+  --section-border: #c6bfa8 !important;
+  --card-gradient: linear-gradient(145deg, #1a1a18 0%, #2b2b28 30%, #3d3a35 55%, #5c5548 80%, #918c84 100%) !important;
+}
+
+html[data-theme="dark"] body.vault {
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+}
+
+html[data-theme="dark"] body.vault .site-header,
+html[data-theme="dark"] body.vault .site-footer {
+  background: linear-gradient(to bottom, #1a1a18, #2b2b28)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="dark"] body.vault .scroll-title {
+  background: linear-gradient(to right, #2b2b28 0%, #5c5548 100%) !important;
+  color: #ada38b !important;
+  text-shadow: 0 1px 5px rgba(150, 140, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.vault .section-block {
+  background: linear-gradient(145deg, #2b2b28 0%, #3d3a35 50%, #5c5548 100%) !important;
+  border-color: #c6bfa8 !important;
+  box-shadow: 0 0 25px rgba(150, 140, 120, 0.25) !important;
+}
+
+html[data-theme="dark"] body.vault .image-block {
+  border: 1px solid #c6bfa8 !important;
+  box-shadow: 0 0 20px rgba(150, 140, 120, 0.2) !important;
+}
+
+/* Dark Theme */
+html[data-theme="dark"] body.vault .quiz-question,
+html[data-theme="dark"] body.vault .quiz-prompt {
+  background: linear-gradient(to right, #2b2b28, #3d3a35) !important;
+  color: #e5ddcc !important;
+  border-left: 4px solid #918c84 !important;
+  box-shadow: 0 0 12px rgba(150, 140, 120, 0.3) !important;
+}
+
+html[data-theme="dark"] body.vault .quiz-options {
+  background: #1a1a18 !important;
+  border: 1px solid #c6bfa8 !important;
+}
+
+html[data-theme="dark"] body.vault .quiz-options button,
+html[data-theme="dark"] body.vault .quiz-button {
+  background: #2b2b28 !important;
+  color: #e5ddcc !important;
+  border: 2px solid #918c84 !important;
+  box-shadow: 0 0 6px rgba(150, 140, 120, 0.15) inset !important;
+}
+
+html[data-theme="dark"] body.vault .quiz-options button:hover,
+html[data-theme="dark"] body.vault .quiz-button:hover {
+  background: #3d3a35 !important;
+  color: #fffaf0 !important;
+  border-color: #c6bfa8 !important;
+  box-shadow: 0 0 12px rgba(230, 215, 190, 0.3) !important;
+}
+
+html[data-theme="dark"] body.vault {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(43, 43, 40, 0.35),
+    rgba(92, 85, 72, 0.35)
+  );
+}
+
+html[data-theme="light"] body.vault {
+  --bg-opacity: 0.30; /* NEW */
+  --text-accent: #5e5a53 !important;            /* slate clay */
+  --highlight: #e6dfc5 !important;
+  --shadow-glow: rgba(230, 215, 190, 0.15) !important;
+  --glyph-color: #b7a897 !important;
+  --strong-text: #6b6559 !important;
+  --scroll-box-shadow: 0 0 25px rgba(230, 215, 190, 0.15) !important;
+  --cite-color: #6b6559 !important;
+  --accent-scroll: #a89e8c !important;
+  --section-border: #e6dfc5 !important;
+  --card-gradient: linear-gradient(145deg, #fefdf9 0%, #f2eee2 30%, #e6dfc5 55%, #d2c7a9 80%, #a89e8c 100%) !important;
+}
+
+html[data-theme="light"] body.vault {
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+}
+
+html[data-theme="light"] body.vault .site-header,
+html[data-theme="light"] body.vault .site-footer {
+  background: linear-gradient(to bottom, #fefdf9, #e6dfc5)!important;
+  color: var(--text-accent)!important;
+  border-bottom: 1px solid var(--highlight)!important;
+}
+
+html[data-theme="light"] body.vault .scroll-title {
+  background: linear-gradient(to right, #f2eee2 0%, #d2c7a9 100%) !important;
+  color: #6b6559 !important;
+  text-shadow: 0 1px 4px rgba(230, 215, 190, 0.15) !important;
+}
+
+html[data-theme="light"] body.vault .section-block {
+  background: linear-gradient(145deg, #f2eee2 0%, #e6dfc5 60%, #d2c7a9 100%) !important;
+  border-color: #e6dfc5 !important;
+  box-shadow: 0 0 20px rgba(230, 215, 190, 0.15) !important;
+}
+
+html[data-theme="light"] body.vault .image-block {
+  border: 1px solid #e6dfc5 !important;
+  box-shadow: 0 0 16px rgba(230, 215, 190, 0.15) !important;
+}
+
+/* Light Theme */
+html[data-theme="light"] body.vault .quiz-question,
+html[data-theme="light"] body.vault .quiz-prompt {
+  background: linear-gradient(to right, #f2eee2, #e6dfc5) !important;
+  color: #5e5a53 !important;
+  border-left: 4px solid #a89e8c !important;
+  box-shadow: 0 0 10px rgba(230, 215, 190, 0.15) !important;
+}
+
+html[data-theme="light"] body.vault .quiz-options {
+  background: #fefdf9 !important;
+  border: 1px solid #e6dfc5 !important;
+}
+
+/* === Vault === */
+html[data-theme="light"] body.vault .quiz-options button,
+html[data-theme="light"] body.vault .quiz-button {
+  background: #f2eee2 !important;
+  color: #5e5a53 !important;
+  border: 2px solid #a89e8c !important;
+  box-shadow: 0 0 6px rgba(230, 215, 190, 0.12) inset !important;
+}
+
+html[data-theme="light"] body.vault .quiz-options button:hover,
+html[data-theme="light"] body.vault .quiz-button:hover {
+  background: #e6dfc5 !important;
+  color: #3c3934 !important;
+  border-color: #918c84 !important;
+  box-shadow: 0 0 12px rgba(150, 140, 120, 0.25) !important;
+}
+
+html[data-theme="light"] body.vault {
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(242, 238, 226, 0.35),
+    rgba(210, 199, 169, 0.35)
+  );
+}
+
+/* ✦ The Vault */
+html[data-theme="light"] body.vault { --footer-opacity: 0.91; }
+html[data-theme="dark"]  body.vault { --footer-opacity: 0.77; }
+}
+
+html[data-theme="light"] body::before,
+html[data-theme="dark"] body::before {
+  --overlay-bg-gradient: none !important;
+  --overlay-img: none !important;
+  opacity: 0 !important;
+}

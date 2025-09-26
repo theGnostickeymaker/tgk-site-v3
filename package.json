@@ -1,12 +1,14 @@
 {
   "name": "tgk-site-v3",
-  "version": "0.1.0",
+  "version": "3.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "eleventy --serve",
     "build": "eleventy",
-    "clean": "rm -rf _site .cache || rmdir /s /q _site .cache"
+    "clean": "rm -rf _site .cache || rmdir /s /q _site .cache",
+    "netlify-build": "eleventy",
+    "scaffold": "node scripts/node/tgk-scaffold.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2"

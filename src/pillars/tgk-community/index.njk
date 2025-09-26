@@ -1,15 +1,34 @@
 ---
-layout: layouts/base.njk
-title: TGK Community
-description: Symbolic vision & archetypal analysis.
-theme: gnostic-eye
+layout: base.njk
+title: "TGK Community"
+description: "Gathering place for seekers of The Gnostic Key."
+tagline: "Voices together ✦ the circle of seekers"
+
+glyph: "✶"
+accent: community
+bodyClass: community
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
+
 ---
 
-{% import "../../_includes/components/card.njk" as ui %}
+{% include "partials/head-meta.njk" %}
 
-<h1>The Gnostic Eye</h1>
-<p>Symbolic decoding of events, archetypes, and myths.</p>
+<main class="main-content">
+  <section class="page-title-block">
+    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
+  </section>
 
-<section class="grid">
-  {{ ui.card("/pillars/the-gnostic-eye/final-idol/", "The Final Idol", "AI as idol/prophet/antichrist — Series I") }}
-</section>
+  {% include "partials/pillar-grid.njk" %}
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  </div>
+</main>
+
+{# JSON-LD #}
+{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
+{% include "partials/jsonld-collection.njk" %}
+

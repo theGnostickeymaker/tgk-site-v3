@@ -1,0 +1,198 @@
+@layer tokens {
+
+/* ===================================================
+The Keymaker’s Dream (Pillar: dream)
+Dark: Rose Quartz Reverie | Light: Petal Mist Memory
+================================================== */
+
+/* ============= DARK THEME ============= */
+html[data-theme="dark"] body.dream {
+  --bg-opacity: 0.16;
+  --text-accent: #d08fb3 !important;
+  --highlight: #f1c6dd !important;
+  --glyph-color: #ffd8ec !important;
+  --shadow-glow: rgba(208, 143, 179, 0.25) !important;
+  --strong-text: #f4c9dc !important;
+  --cite-color: #e4a5c4 !important;
+  --accent-scroll: #d08fb3 !important;
+  --section-border: #f1c6dd !important;
+
+  --card-gradient: linear-gradient(
+    145deg,
+    #140e14 0%,
+    #221626 35%,
+    #3a2340 65%,
+    #6a3a6f 85%,
+    #d08fb3 100%
+  ) !important;
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(20, 14, 20, 0.92),
+    rgba(34, 22, 38, 0.88),
+    rgba(58, 35, 64, 0.85)
+  ) !important;
+}
+
+/* Header / Footer */
+html[data-theme="dark"] body.dream .site-header,
+html[data-theme="dark"] body.dream .site-footer {
+  background: linear-gradient(to bottom, #100a10, #2c1a2f) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+/* Scroll Title */
+html[data-theme="dark"] body.dream .scroll-title {
+  background: linear-gradient(to right, #221626 0%, #6a3a6f 100%) !important;
+  color: var(--glyph-color) !important;
+  text-shadow: 0 1px 6px rgba(240, 160, 200, 0.3) !important;
+}
+
+/* Sections */
+html[data-theme="dark"] body.dream .section-block {
+  background: linear-gradient(145deg, #221626 0%, #3a2340 60%, #6a3a6f 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 25px rgba(208, 143, 179, 0.2) !important;
+}
+
+/* Images */
+html[data-theme="dark"] body.dream .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 20px rgba(208, 143, 179, 0.15) !important;
+}
+
+/* Quiz Blocks */
+html[data-theme="dark"] body.dream .quiz-question,
+html[data-theme="dark"] body.dream .quiz-prompt {
+  background: linear-gradient(to right, #221626, #3a2340) !important;
+  color: var(--glyph-color) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 12px rgba(240, 160, 200, 0.2) !important;
+}
+
+html[data-theme="dark"] body.dream .quiz-options {
+  background: #100a10 !important;
+  border: 1px solid var(--section-border) !important;
+}
+
+html[data-theme="dark"] body.dream .quiz-options button,
+html[data-theme="dark"] body.dream .quiz-button {
+  background: #140e14 !important;
+  color: var(--strong-text) !important;
+  border: 2px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 6px rgba(240, 160, 200, 0.15) inset !important;
+}
+
+html[data-theme="dark"] body.dream .quiz-options button:hover,
+html[data-theme="dark"] body.dream .quiz-button:hover {
+  background: #6a3a6f !important;
+  color: #fff0f7 !important;
+  border-color: var(--highlight) !important;
+  box-shadow: 0 0 14px rgba(240, 160, 200, 0.3) !important;
+}
+
+/* ============= LIGHT THEME ============= */
+html[data-theme="light"] body.dream {
+  --bg-opacity: 0.32;
+  --text-accent: #8c4670 !important;
+  --highlight: #f9e3ef !important;
+  --glyph-color: #c06b9b !important;
+  --shadow-glow: rgba(192, 107, 155, 0.12) !important;
+  --strong-text: #6c2e52 !important;
+  --cite-color: #a25d85 !important;
+  --accent-scroll: #b56b97 !important;
+  --section-border: #f3d4e6 !important;
+
+  --card-gradient: linear-gradient(
+    145deg,
+    #fffafd 0%,
+    #fdeff6 30%,
+    #f7ddeb 60%,
+    #eec4dc 85%,
+    #c06b9b 100%
+  ) !important;
+  --bg-gradient: var(--card-gradient) !important;
+  background: var(--bg-gradient) !important;
+
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(255, 250, 253, 0.92),
+    rgba(255, 235, 245, 0.88),
+    rgba(255, 240, 248, 0.85)
+  ) !important;
+}
+
+/* Header / Footer */
+html[data-theme="light"] body.dream .site-header,
+html[data-theme="light"] body.dream .site-footer {
+  background: linear-gradient(to bottom, #ffffff, #f7ddeb) !important;
+  color: var(--text-accent) !important;
+  border-bottom: 1px solid var(--highlight) !important;
+}
+
+/* Scroll Title */
+html[data-theme="light"] body.dream .scroll-title {
+  background: linear-gradient(to right, #fdeff6 0%, #eec4dc 100%) !important;
+  color: var(--glyph-color) !important;
+  text-shadow: 0 1px 4px rgba(192, 107, 155, 0.12) !important;
+}
+
+/* Sections */
+html[data-theme="light"] body.dream .section-block {
+  background: linear-gradient(145deg, #fdeff6 0%, #f7ddeb 60%, #eec4dc 100%) !important;
+  border-color: var(--section-border) !important;
+  box-shadow: 0 0 18px rgba(192, 107, 155, 0.12) !important;
+}
+
+/* Images */
+html[data-theme="light"] body.dream .image-block {
+  border: 1px solid var(--section-border) !important;
+  box-shadow: 0 0 16px rgba(192, 107, 155, 0.12) !important;
+}
+
+/* Quiz Blocks */
+html[data-theme="light"] body.dream .quiz-question,
+html[data-theme="light"] body.dream .quiz-prompt {
+  background: linear-gradient(to right, #fdeff6, #f7ddeb) !important;
+  color: var(--strong-text) !important;
+  border-left: 4px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 10px rgba(192, 107, 155, 0.18) !important;
+}
+
+html[data-theme="light"] body.dream .quiz-options {
+  background: #ffffff !important;
+  border: 1px solid var(--section-border) !important;
+}
+
+html[data-theme="light"] body.dream .quiz-options button,
+html[data-theme="light"] body.dream .quiz-button {
+  background: #fffafd !important;
+  color: var(--text-accent) !important;
+  border: 2px solid var(--accent-scroll) !important;
+  box-shadow: 0 0 6px rgba(192, 107, 155, 0.1) inset !important;
+}
+
+html[data-theme="light"] body.dream .quiz-options button:hover,
+html[data-theme="light"] body.dream .quiz-button:hover {
+  background: #eec4dc !important;
+  color: #4e2a3d !important;
+  border-color: var(--highlight) !important;
+  box-shadow: 0 0 12px rgba(192, 107, 155, 0.2) !important;
+}
+
+/* ✦ Dream Footer Opacity */
+html[data-theme="light"] body.dream { --footer-opacity: 0.95; }
+html[data-theme="dark"]  body.dream { --footer-opacity: 0.83; }
+
+}
+
+/* Kill all overlays (global fallback) */
+html[data-theme="light"] body::before,
+html[data-theme="dark"] body::before {
+  --overlay-bg-gradient: none !important;
+  --overlay-img: none !important;
+  opacity: 0 !important;
+}

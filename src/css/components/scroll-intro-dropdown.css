@@ -1,0 +1,95 @@
+@layer layout {
+  /* ---------------------------------------
+   📜 Collapsible Intros & Disclaimers
+--------------------------------------- */
+.disclaimer-box {
+  border-top: 1px solid var(--section-border);
+  padding-top: 1.25rem;
+  margin-top: 2rem;
+  transition: background 0.3s ease;
+}
+
+.disclaimer-box[open] {
+  background: linear-gradient(to bottom, rgba(255, 236, 192, 0.06), rgba(255, 236, 192, 0.02));
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 18px rgba(255, 236, 192, 0.05);
+}
+
+/* Summary Button Area */
+.disclaimer-box summary {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: var(--space-xs);
+  font-weight: 600;
+  color: var(--text-accent);
+  padding: var(--space-xs) 0;
+  font-size: 1.1rem;
+  position: relative;
+  text-align: center;
+}
+
+.disclaimer-box summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Icon toggle — right arrow or down arrow */
+.disclaimer-box[open] summary::after {
+  content: "▾";
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-accent);
+}
+.disclaimer-box:not([open]) summary::after {
+  content: "▸";
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-accent);
+}
+
+/* Heading with divider lines */
+.disclaimer-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  font-weight: 600;
+  color: var(--text-accent);
+  position: relative;
+}
+
+.disclaimer-heading::before,
+.disclaimer-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--text-accent);
+  opacity: 0.3;
+}
+
+/* Optional content styling */
+.disclaimer-box p {
+  margin: var(--space-sm) auto var(--space-md);
+  max-width: 700px;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Sacred Section Heading */
+.index.heading {
+  text-align: center;
+  font-size: var(--font-size-lg); /* or custom size like 1.4rem */
+  font-weight: 600;
+  margin-top: var(--space-vs);
+  margin-bottom: var(--space-vs);
+  color: var(--text-accent);
+  text-shadow: 0 0 5px var(--shadow-glow);
+  letter-spacing: 0.5px;
+  font-family: var(--font-serif, 'Georgia', serif); /* Optional sacred vibe */
+  line-height: 1.4;
+  padding: 0 var(--space-sm);
+}
+}

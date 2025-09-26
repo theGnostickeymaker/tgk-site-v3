@@ -5,61 +5,7 @@
   padding-left: 0.5rem;
 }
 
-/* =============================
-   ⚡️ Tier Upgrade Buttons
-   ============================= */
-#upgrade-options {
-  margin-top: 1.5rem;
-}
 
-.tier-button-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-top: 1rem;
-}
-
-.tier-button-group .button {
-  padding: var(--btn-padding);
-  font-size: var(--font-size-base);
-  border: 2px solid var(--gold-tone);
-  background: transparent;
-  color: var(--gold-tone);
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.tier-button-group .button:hover {
-  background: var(--gold-tone);
-  color: var(--bg-primary);
-}
-
-/* =============================
-   🧭 Subscription Button
-   ============================= */
-#manage-subscription {
-  margin: var(--space-lg) auto;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-#manage-sub-btn {
-  font-size: var(--font-size-base);
-  padding: var(--btn-padding);
-  font-family: var(--btn-font);
-  border: 2px solid var(--text-accent);
-  border-radius: var(--btn-radius);
-  background-color: transparent;
-  color: var(--text-accent);
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#manage-sub-btn:hover {
-  background-color: var(--text-accent);
-  color: var(--bg-primary);
-}
 
 /* =============================
    📚 Dashboard Bookmark Cards

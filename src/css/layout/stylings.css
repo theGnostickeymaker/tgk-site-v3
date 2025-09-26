@@ -1,0 +1,19 @@
+ @layer components {
+  /* ===================================================
+   Divider – Sacred Section Break
+   Version: 1.0
+   =================================================== */
+
+.divider-sigil {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--text-accent),
+    transparent
+  );
+  margin: var(--space-lg) 0;
+  box-shadow: 0 0 6px var(--shadow-glow), 0 0 2px var(--text-accent);
+}
+ }
