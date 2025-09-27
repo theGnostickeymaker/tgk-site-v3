@@ -20,16 +20,18 @@
 /* 📱 Medium breakpoint */
 @media (max-width: 768px) {
   .portal-grid {
-    grid-template-columns: 1fr; /* collapse earlier */
+    grid-template-columns: 2fr !important; /* force single column */
+    max-width: 100% !important;            /* let it expand to full width */
     gap: var(--space-md, 1rem);
     padding: var(--space-lg) var(--space-md);
   }
-}
+} 
 
   /* 📱 Small / Mobile breakpoint */
   @media (max-width: 480px) {
     .portal-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr !important; /* force single column */
+    max-width: 100% !important;            /* let it expand to full width */
       gap: var(--space-md, 1rem);
       padding: var(--space-md);
     }
