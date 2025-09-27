@@ -1,47 +1,54 @@
 export default {
-  introText: "The Afterlife, Series 1 — choose a scroll:",
+  introText: "The Afterlife, Series 1 — choose an episode:",
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/",
       title: "Gnostic Christianity",
-      glyph: "⛪︎",
-      tagline: "Visions of the hidden Christ, the false cosmos, and the soul’s path of return.",
-      status: "free"
+      glyph: "✝",
+      tagline: "The false cosmos, Christ the Revealer, and the soul’s return.",
+      tier: "free",
+      state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/",
       title: "Sufi Islam",
       glyph: "☪",
-      tagline: "Mystical Islam’s vision of death as reunion — the soul’s return to the Beloved.",
-      status: "free"
+      tagline: "The barzakh, the scales of justice, and the soul’s ascent to Allah.",
+      tier: "free",
+      state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/buddhism/",
       title: "Buddhism",
       glyph: "☸",
-      tagline: "The Bardos and the Wheel of Becoming — maps of liberation and rebirth.",
-      status: "free"
+      tagline: "The bardos, karmic cycles, and the gates to liberation.",
+      tier: "free",
+      state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/",
       title: "Kabbalah",
       glyph: "✡",
-      tagline: "The Tree of Life, the chambers of Gehenna, and the soul’s ascent through the Sefirot.",
-      status: "free"
+      tagline: "The soul’s descent, the tree of life, and return to Ein Sof.",
+      tier: "initiate",
+      state: "default"
     },
     {
-      href: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/",
+      href: "/pillars/the-teachings/the-afterlife/series-1/ancient-eygpt/",
       title: "Ancient Egypt",
       glyph: "𓂀",
-      tagline: "The Duat, the weighing of the heart, and the soul’s passage into the Field of Reeds.",
-      status: "free"
+      tagline: "Ma’at’s scales, Osiris’s judgment, and the eternal fields of Aaru.",
+      tier: "initiate",
+      state: "default"  
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/",
-      title: "Mesoamerica",
-      glyph: "🗿",
-      tagline: "Journeys through Xibalba and beyond — the soul’s trials in Mayan and Aztec afterworlds.",
-      status: "free"
+      title: "Mesoamerica ",
+      glyph: "🌽",
+      tagline: "Through Xibalba’s trials and the world tree, the soul’s passage was mapped.",
+      tier: "initiate",
+      state: "default"
     }
   ]
 };
+

@@ -1,31 +1,43 @@
 ---
 layout: base.njk
 title: "The Gnostic Key"
+description: "Where the erased, the forbidden, and the sacred converge — a sanctuary of scrolls across traditions, investigations, archetypes, and vaults of hidden memory."
 tagline: "Where the erased, the forbidden, and the sacred converge"
+
+glyph: "𓂀"
+glyphRow: ["𓂀","✦","𓂀"]
+
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
 ---
 
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-teachings/teachings-index.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/the-gnostic-key/index.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
 
-<h4 class="index heading">Sacred teachings from Gnostic, mystical, and ancient traditions, maps for life, death, and beyond.</h4>
+  <h4 class="index heading">
+    A living library — weaving sacred teachings, deep investigations,
+    archetypal codes, and forbidden archives into one key.
+  </h4>
 
   <details class="disclaimer-box">
     <summary><span class="disclaimer-heading">🔑 What is The Gnostic Key?</span></summary>
     <p>
       <strong>The Gnostic Key</strong> is a sanctuary for seekers, rebels, and rememberers.
-      It weaves together hidden teachings, forbidden truths, and symbolic insight across time, tradition, and taboo.
-      Each pillar holds a different aspect of the mystery: spiritual maps, deep investigations, archetypal codes, and living scrolls.
-      <br><br>
-      This site is not a church. It is a <em>vault</em>, a <em>mirror</em>, and a <em>compass</em> — offered to those who refuse to forget.
+      It weaves together hidden teachings, forbidden truths, and symbolic insight across
+      time, tradition, and taboo. Each pillar carries a different aspect of the Mystery:
+      spiritual maps, deep investigations, archetypal codes, and living scrolls.
+    </p>
+    <p>
+      This site is not a church. It is a <em>vault</em>, a <em>mirror</em>, and a <em>compass</em> —
+      offered to those who refuse to forget.
     </p>
   </details>
 
+  {# Pillar Grid with status overlays (Coming Soon / Premium / Tier tags) #}
   {% include "partials/pillar-grid.njk" %}
 
   {% set items = pillarGrid %}

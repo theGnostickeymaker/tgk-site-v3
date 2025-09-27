@@ -1,19 +1,37 @@
- @layer components {
+@layer components {
   /* ===================================================
-   Divider – Sacred Section Break
-   Version: 1.0
-   =================================================== */
+     Divider – Sacred Section Break
+     Version: 1.1 – Tokenised & Glow-Balanced
+     =================================================== */
 
-.divider-sigil {
-  border: none;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--text-accent),
-    transparent
-  );
-  margin: var(--space-lg) 0;
-  box-shadow: 0 0 6px var(--shadow-glow), 0 0 2px var(--text-accent);
+  .divider-sigil {
+    border: none;
+    height: 1px;
+    width: 100%;
+    margin: var(--space-lg) auto;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--text-accent),
+      transparent
+    );
+    box-shadow: 0 0 6px var(--shadow-glow), 0 0 2px var(--text-accent);
+    opacity: 0.85; /* slightly softened for balance */
+  }
+
+  /* ✦ Centered variant (shorter width) */
+  .divider-sigil.centered {
+    width: 60%;
+  }
+
+  /* ✦ Decorative symbol overlay */
+  .divider-sigil::after {
+    content: "✦";
+    display: block;
+    text-align: center;
+    margin-top: -0.9rem; /* lifts above line */
+    font-size: 1rem;
+    color: var(--text-accent);
+    text-shadow: 0 0 6px var(--shadow-glow);
+  }
 }
- }

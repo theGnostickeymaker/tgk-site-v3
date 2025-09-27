@@ -1,97 +1,117 @@
 @layer components {
+  /* ===========================================
+     Rights Erosion Chart (SYSTEMIC Scrolls)
+     =========================================== */
+  #rightsErosionChart {
+    background: var(--card-gradient);
+    border: 2px solid var(--section-border);
+    border-radius: var(--border-radius-base, 6px);
+    box-shadow: var(--scroll-box-shadow);
+    max-width: 800px;
+    margin: var(--space-lg) auto;
+    color: var(--strong-text);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
 
-#rightsErosionChart {
-  background: var(--card-gradient);
-  border: 2px solid var(--section-border);
-  border-radius: 6px;
-  box-shadow: var(--scroll-box-shadow);
-  max-width: 800px;
-  margin: 24px auto;
-  color: var(--strong-text);
-  transition: all 0.3s ease;
-}
+  #rightsErosionChart thead {
+    background: var(--highlight);
+    color: var(--text-accent);
+    text-align: left;
+  }
 
-#rightsErosionChart thead {
-  background: var(--highlight);
-  color: var(--text-accent);
-  text-align: left;
-}
+  #rightsErosionChart th,
+  #rightsErosionChart td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--section-border);
+    font-family: var(--font-serif);
+  }
 
-#rightsErosionChart th,
-#rightsErosionChart td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--section-border);
-}
+  #rightsErosionChart tr:last-child td {
+    border-bottom: none;
+  }
 
-#rightsErosionChart tr:last-child td {
-  border-bottom: none;
-}
+  #rightsErosionChart tbody tr:hover {
+    background-color: var(--table-hover-bg, rgba(255,255,255,0.05));
+    box-shadow: 0 0 10px var(--shadow-glow);
+  }
 
-#rightsErosionChart tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 10px var(--shadow-glow);
-}
+  /* ===========================================
+     Soul Journey Diagram (Afterlife Scrolls)
+     =========================================== */
+  .soul-journey-diagram {
+    padding: var(--space-md);
+    border-left: 4px solid var(--text-accent);
+    margin: var(--space-md) 0;
+    background: var(--bg-soft, rgba(0,0,0,0.02));
+    box-shadow: var(--scroll-shadow-soft);
+    border-radius: var(--border-radius-base);
+  }
 
-.soul-journey-diagram {
-  padding: var(--space-md);
-  border-left: 4px solid var(--text-accent);
-  margin: var(--space-md) 0;
-  background: var(--bg-soft);
-  box-shadow: var(--scroll-shadow-soft);
-}
+  .soul-path {
+    list-style: none;
+    padding-left: var(--space-md);
+    margin: 0;
+  }
 
-.soul-path {
-  list-style: none;
-  padding-left: var(--space-md);
-  margin: 0;
-}
+  .soul-path li {
+    margin-bottom: var(--space-sm);
+    position: relative;
+    padding-left: 1rem;
+  }
 
-.soul-path li {
-  margin-bottom: var(--space-sm);
-  position: relative;
-  padding-left: 1rem;
-}
+  .soul-path li::before {
+    content: "⟶";
+    position: absolute;
+    left: 0;
+    color: var(--text-accent);
+    font-weight: bold;
+  }
 
-.soul-path li::before {
-  content: "⟶";
-  position: absolute;
-  left: 0;
-  color: var(--text-accent);
-}
-.visual-toll-map {
-  text-align: center;
-  margin: var(--space-xl) 0;
-}
+  /* ===========================================
+     Visual Toll Map
+     =========================================== */
+  .visual-toll-map {
+    text-align: center;
+    margin: var(--space-xl) 0;
+  }
 
-.visual-toll-map img {
-  max-width: 100%;
-  height: auto;
-  border: 2px solid var(--section-border);
-  border-radius: var(--border-radius-base);
-  box-shadow: var(--scroll-shadow-soft);
-}
+  .visual-toll-map img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--section-border);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--scroll-shadow-soft);
+  }
 
-.visual-toll-map figcaption {
-  font-size: 0.9rem;
-  margin-top: var(--space-sm);
-  color: var(--text-subtle);
-}
+  .visual-toll-map figcaption {
+    font-size: var(--font-size-sm, 0.9rem);
+    margin-top: var(--space-sm);
+    color: var(--text-subtle, var(--text-secondary));
+    font-family: var(--font-serif);
+  }
 
-.active-scroll {
-  font-weight: bold;
-  color: var(--text-accent);
-  text-decoration: underline;
-}
+  /* ===========================================
+     Active Scroll Indicator
+     =========================================== */
+  .active-scroll {
+    font-weight: bold;
+    color: var(--text-accent);
+    text-decoration: underline;
+  }
 
-.lead-text {
-  font-family: var(--font-display);
-  font-size: var(--font-size-lg);
-  font-weight: 500;
-  font-style: italic;
-  line-height: var(--font-base-line);
-  color: var(--accent-soft);
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-lg);
-  text-shadow: 0 0 4px var(--shadow-glow);
-}
+  /* ===========================================
+     Lead Text / Pull Quote
+     =========================================== */
+  .lead-text {
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    font-style: italic;
+    line-height: var(--font-base-line);
+    color: var(--lead-text-color, var(--accent-soft));
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    text-shadow: 0 0 4px var(--shadow-glow);
+  }
 }

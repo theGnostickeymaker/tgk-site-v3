@@ -10,25 +10,40 @@ bodyClass: shop
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
-
 ---
 
-{% include "partials/head-meta.njk" %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/tgk-shop/shop-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
-  </section>
+
+<h4 class="index heading">Sacred artefacts, sigils, cards, and limited editions from The Gnostic Key.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 About TGK Shop</span></summary>
+    <p>
+      <strong>TGK Shop</strong> is the artefact pillar of The Gnostic Key — a place where
+      seekers can hold the work in physical form. From tarot decks and symbolic prints
+      to sigils and crafted editions, the shop offers sacred objects for collection and
+      ritual use.
+    </p>
+    <p>
+      More than merchandise, these artefacts extend the living scrolls into tangible
+      form — tokens of remembrance, tools for practice, and works of art infused with
+      the vision of The Gnostic Key.
+    </p>
+  </details>
 
   {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>
-
-{# JSON-LD #}
-{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
-{% include "partials/jsonld-collection.njk" %}
-

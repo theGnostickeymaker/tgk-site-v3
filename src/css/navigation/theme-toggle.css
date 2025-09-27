@@ -1,56 +1,63 @@
 @layer navigation {
-  
-  /* === Floating tray – fixed to viewport === */
-.floating-toggles{
-  position: fixed;                 /* <-- key: float relative to viewport */
-  bottom: var(--space-md);
-  right:  var(--space-md);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-sm);
-  z-index: 99999;                  /* above footer & overlays */
-  pointer-events: none;            /* tray doesn’t intercept clicks */
-}
+  /* ===================================================
+     Floating Toggles – Theme & Utility Tray
+     Version: 1.2 – Tokenised + Accessible
+     =================================================== */
 
-/* show immediately (JS adds .is-visible) */
-.floating-toggles.is-visible { pointer-events: auto; }
-
-/* mobile/tablet: move to top-right if you want */
-@media (max-width: 1024px){
-  .floating-toggles{
-    top: var(--space-md);
-    bottom: auto;
+  .floating-toggles {
+    position: fixed;
+    bottom: var(--space-md);
+    right:  var(--space-md);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-sm);
+    z-index: var(--z-floating, 10050); /* tokenised instead of hard 99999 */
+    pointer-events: none;              /* tray itself doesn’t intercept clicks */
   }
-}
 
-/* buttons */
-.theme-toggle-floating{
-  background-color: transparent;
-  color: var(--text-accent);
-  width: var(--toggle-size, 3rem);
-  height: var(--toggle-size, 3rem);
-  border-radius: 9999px;
-  font-size: var(--font-size-toggle, 1.25rem);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 0 12px var(--shadow-glow);
-  transition: transform .2s ease, background-color .2s ease, color .2s ease;
-  border: 0;
-  outline: 0;
-  backdrop-filter: blur(2px);
-  pointer-events: auto;            /* re-enable on the buttons themselves */
-}
+  /* show immediately (JS adds .is-visible) */
+  .floating-toggles.is-visible { pointer-events: auto; }
 
-.theme-toggle-floating:hover{
-  transform: scale(1.1);
-  background-color: var(--highlight);
-  color: var(--bg-primary);
-}
+  /* mobile/tablet: dock to top-right */
+  @media (max-width: 1024px) {
+    .floating-toggles {
+      top: var(--space-md);
+      right: var(--space-md);
+      bottom: auto;
+    }
+  }
 
-/* safety: if hidden lands on a button */
-.theme-toggle-floating[hidden]{ display:none !important; }
+  /* button base */
+  .theme-toggle-floating {
+    font-family: var(--font-display);
+    background-color: transparent;
+    color: var(--text-accent);
+    width: var(--toggle-size, 3rem);
+    height: var(--toggle-size, 3rem);
+    border-radius: 9999px;
+    font-size: var(--font-size-toggle, 1.25rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 12px var(--shadow-glow);
+    border: 0;
+    outline: 0;
+    backdrop-filter: blur(2px);
+    pointer-events: auto; /* re-enable only on the buttons */
+    transition: transform .2s ease, background-color .2s ease, color .2s ease;
+  }
 
+  .theme-toggle-floating:hover {
+    background-color: var(--highlight);
+    color: var(--bg-primary);
+  }
+
+  .theme-toggle-floating:focus-visible {
+    outline: 2px solid var(--highlight);
+    outline-offset: 2px;
+  }
+
+  .theme-toggle-floating[hidden] { display:none !important; }
 }

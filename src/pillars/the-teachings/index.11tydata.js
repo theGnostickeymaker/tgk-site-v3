@@ -6,21 +6,24 @@ export default {
       title: "Afterlife Series",
       glyph: "☸",
       tagline: "Soul journeys from six mystical traditions.",
-      status: "free"
+      tier: "free",
+      state: "default"
     },
     {
       href: "/pillars/the-teachings/know-your-rights/",
       title: "Know Your Rights",
       glyph: "⚖️",
       tagline: "Legal knowledge as spiritual empowerment.",
-      status: "free"
+      tier: "free",
+      state: "coming-soon"
     },
     {
       href: "/pillars/the-teachings/the-sacred-texts/",
       title: "Sacred Texts",
       glyph: "📖",
       tagline: "Gospels, sutras, scrolls, and forbidden books.",
-      status: "free"
+      tier: "free",
+      state: "coming-soon"
     }
   ]
 };

@@ -11,28 +11,34 @@
   </nav>
   {% endif %}
 
-  <div class="header-main">
-    {% if pillarGlyph %}
-      <span class="pillar-glyph" aria-hidden="true">{{ pillarGlyph }}</span>
-    {% endif %}
+<div class="header-main">
+  {% if glyphRow %}
+    <span class="pillar-glyph-row" aria-hidden="true">
+      {% for g in glyphRow %}
+        <span class="pillar-glyph">{{ g }}</span>
+      {% endfor %}
+    </span>
+  {% elseif pillarGlyph or glyph %}
+    <span class="pillar-glyph" aria-hidden="true">{{ pillarGlyph or glyph }}</span>
+  {% endif %}
 
-    <!-- Main page title -->
-    <h1 class="page-title">{{ title }}</h1>
+  <!-- Main page title -->
+  <h1 class="page-title">{{ title }}</h1>
 
-    <!-- NEW: Series / Episode / Part chain -->
-    {% if seriesMeta %}
-      <h2 class="series-episode-chain">
-        Series {{ seriesMeta.number | roman }}
-        {% if episode %} . Episode {{ episode }}{% endif %}
-        {% if partNumeral %} . Part {{ partNumeral }}{% if partTitle %}: {{ partTitle }}{% endif %}{% endif %}
-      </h2>
-    {% endif %}
+  <!-- NEW: Series / Episode / Part chain -->
+  {% if seriesMeta %}
+    <h2 class="series-episode-chain">
+      Series {{ seriesMeta.number | roman }}
+      {% if episode %} . Episode {{ episode }}{% endif %}
+      {% if partNumeral %} . Part {{ partNumeral }}{% if partTitle %}: {{ partTitle }}{% endif %}{% endif %}
+    </h2>
+  {% endif %}
 
-    <!-- Dynamic tagline -->
-    {% if tagline %}
-      <p class="page-tagline">{{ tagline }}</p>
-    {% endif %}
-  </div>
+  <!-- Dynamic tagline -->
+  {% if tagline %}
+    <p class="page-tagline">{{ tagline }}</p>
+  {% endif %}
+</div>
 </header>
 
 <!-- Floating Hamburger (top-left) -->
@@ -53,14 +59,16 @@
     <ul class="nav-menu">
       <li><a href="/">Home</a></li>
       <li><a href="/pillars/the-teachings/">The Teachings</a></li>
-      <li><a href="/pillars/the-obsidian-key/">Obsidian Key</a></li>
-      <li><a href="/pillars/the-gnostic-eye/">Gnostic Eye</a></li>
-      <li><a href="/pillars/the-resonant-key/">Resonant</a></li>
-      <li><a href="/pillars/the-vault/">Vault</a></li>
-      <li><a href="/pillars/the-keymakers-dream/">The Keymaker's Dream</a></li>
-      <li><a href="/pillars/childrens-corner/">Children's Corner</a></li>
-      <li><a href="/pillars/tgk-shop/">TGK Shop</a></li>
-      <li><a href="/pillars/tgk-community/">TGK Community</a></li>
+
+      <li class="disabled"><span aria-disabled="true">Obsidian Key</span></li>
+      <li class="disabled"><span aria-disabled="true">Gnostic Eye</span></li>
+      <li class="disabled"><span aria-disabled="true">Resonant</span></li>
+      <li class="disabled"><span aria-disabled="true">Vault</span></li>
+      <li class="disabled"><span aria-disabled="true">The Keymaker's Dream</span></li>
+      <li class="disabled"><span aria-disabled="true">Children's Corner</span></li>
+      <li class="disabled"><span aria-disabled="true">TGK Shop</span></li>
+  <li class="disabled"><span aria-disabled="true">TGK Community</span></li>
+
     </ul>
 
     <div class="drawer-label">Connect</div>

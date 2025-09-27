@@ -1,58 +1,63 @@
 @layer base {
-/* ===================================================
-   Typographic Scale – Sacred Hierarchy
-   Version: 1.2 – Fully Tokenized & Responsive-Ready
-   =================================================== */
+  /* ===================================================
+     Typographic Scale – Sacred Hierarchy
+     Version: 1.3 – Fully Tokenized & Clean
+     =================================================== */
 
-/* ----------------------------------------
-   🌍 Global Body Type
----------------------------------------- */
-body {
-  font-family: var(--font-serif);
-  font-size: var(--font-base-size);
-  line-height: var(--font-base-line);
-}
+  /* 🌍 Global Body Type */
+  body {
+    font-family: var(--font-serif, 'Libre Baskerville', serif);
+    font-size: var(--font-base-size, 1.05rem);
+    line-height: var(--font-base-line, 1.85);
+    color: var(--text-primary);
+  }
 
-/* ----------------------------------------
-   🕯️ Sacred Headers
----------------------------------------- */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  color: var(--text-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: var(--space-md) 0;
-}
+  /* 🕯️ Sacred Headers (defaults for all headings) */
+  h1, h2, h3, h4, h5, h6 {
+    margin: var(--space-md) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-accent);
+  }
 
-h1 { font-size: var(--font-size-h1, 2.5rem); }
-h2 { font-size: var(--font-size-h2, 2rem); }
-h3 { font-size: var(--font-size-h3, 1.75rem); }
-h4 { font-size: var(--font-size-h4, 1.5rem); }
-h5 { font-size: var(--font-size-h5, 1.25rem); }
-h6 { font-size: var(--font-size-h6, 1rem); }
+  /* ✦ Page / Sacred Titles */
+  h1, .page-title, .scroll-title, .index.heading {
+    font-family: var(--page-title, 'Cormorant Garamond', serif);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
 
-/* ----------------------------------------
-   ✧ Paragraphs & Body Text
----------------------------------------- */
-p {
-  margin-bottom: var(--space-md);
-}
+  /* ✧ Display Headings (card titles, subheaders) */
+  h2, h3, .card-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
 
-/* ----------------------------------------
-   🌐 Links
----------------------------------------- */
-a {
-  color: var(--text-accent);
-  text-decoration: none;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
+  /* ✎ Body Copy */
+  p, li, .card-desc, .disclaimer-box p {
+    font-family: var(--font-serif, 'Libre Baskerville', serif);
+    font-weight: 400;
+    line-height: 1.6;
+  }
 
-a:hover,
-a:focus {
-  color: var(--highlight);
-  text-shadow: 0 0 8px var(--shadow-glow);
-}
+  /* 🏷️ Badges & Overlays */
+  .card-badge,
+  .card-overlay .banner {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
 
-
-
+  /* 🌐 Links */
+  a {
+    color: var(--text-accent);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  a:hover,
+  a:focus {
+    color: var(--highlight);
+    text-shadow: 0 0 8px var(--shadow-glow);
+  }
 }

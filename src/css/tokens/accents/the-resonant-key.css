@@ -26,6 +26,9 @@ html[data-theme="dark"] body.resonant {
   --cite-color: #CBB8E0 !important;
   --accent-scroll: #9D84C6 !important;
   --section-border: #CFC1E6 !important;
+  --text-primary: #f2f2f7 !important;
+  --text-secondary: #c7c2d6 !important;
+  --text-muted: #9d93b8 !important;
 
   --card-gradient: linear-gradient(145deg, #0E0B14 0%, #1A1526 20%, #261F39 50%, #3B3154 75%, #9D84C6 100%) !important;
   --bg-gradient: var(--card-gradient) !important;
@@ -37,6 +40,11 @@ html[data-theme="dark"] body.resonant {
     rgba(44, 26, 68, 0.90),
     rgba(20, 38, 58, 0.88)
   ) !important;
+
+  --badge-bg: rgba(45, 25, 70, 0.9) !important;      /* deep violet glass */
+  --badge-text: #F9F7FF !important;                  /* bright white */
+  --badge-border: #9D84C6 !important;                /* violet accent */
+  --badge-shadow: 0 2px 8px rgba(95, 251, 241, 0.25) !important; /* aqua glow */
 }
 
 /* Header / Footer */
@@ -110,6 +118,9 @@ html[data-theme="light"] body.resonant {
   --cite-color: #7F6A9D !important;
   --accent-scroll: #B8A6D9 !important;
   --section-border: #EAE4F4 !important;
+  --text-primary: #1a1a1a !important;
+  --text-secondary: #4a4a4a !important;
+  --text-muted: #666 !important;
 
   --card-gradient: linear-gradient(145deg, #FBFAFD 0%, #F4F0F9 20%, #EAE4F4 50%, #DDD3EB 75%, #B8A6D9 100%) !important;
   --bg-gradient: var(--card-gradient) !important;
@@ -121,6 +132,11 @@ html[data-theme="light"] body.resonant {
     rgba(255, 240, 250, 0.90),
     rgba(255, 247, 255, 0.88)
   ) !important;
+
+  --badge-bg: rgba(249, 244, 255, 0.9) !important;   /* pale lilac */
+  --badge-text: #5A4873 !important;                  /* strong dark violet */
+  --badge-border: #B8A6D9 !important;                /* pastel violet edge */
+  --badge-shadow: 0 2px 6px rgba(157, 132, 198, 0.2) !important;
 }
 
 /* Header / Footer */

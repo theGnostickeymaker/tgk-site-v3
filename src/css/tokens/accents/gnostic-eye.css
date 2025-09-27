@@ -1,24 +1,54 @@
 @layer tokens {
 /* ===================================================
-Gnostic Eye
-=================================================== */
+   Gnostic Eye (Pillar: eye)
+   Dark: Indigo Steel | Light: Azure Mist
+   ================================================== */
 
+/* ============= DARK THEME ============= */
 html[data-theme="dark"] body.eye {
-  --bg-opacity: 0.15; /* NEW */
-  --text-accent: #7581b2 !important;            /* muted indigo steel */
-  --highlight: #a6b4e3 !important;              /* soft violet mist */
+  /* Core tokens */
+  --bg-opacity: 0.15 !important;
+  --text-primary: #f4f1ea !important;
+  --text-secondary: #aaa !important;
+  --text-muted: #888 !important;
+
+  /* Accents */
+  --text-accent: #7581b2 !important;   /* muted indigo steel */
+  --highlight: #a6b4e3 !important;     /* soft violet mist */
   --shadow-glow: rgba(117, 129, 178, 0.3) !important;
-  --glyph-color: #c5d1ff !important;            /* pale vision glow */
+  --glyph-color: #c5d1ff !important;   /* pale vision glow */
   --strong-text: #9aa7d3 !important;
-  --scroll-box-shadow: 0 0 25px rgba(117, 129, 178, 0.3) !important;
   --cite-color: #9aa7d3 !important;
   --accent-scroll: #7581b2 !important;
   --section-border: #a6b4e3 !important;
-  --card-gradient: linear-gradient(145deg, #0e111a 0%, #1b2232 35%, #2d3650 65%, #5b6693 85%, #7581b2 100%) !important;
-}
 
-html[data-theme="dark"] body.eye {
+  /* Gradients */
+  --card-gradient: linear-gradient(
+    145deg,
+    #0e111a 0%,
+    #1b2232 35%,
+    #2d3650 65%,
+    #5b6693 85%,
+    #7581b2 100%
+  ) !important;
   --bg-gradient: var(--card-gradient) !important;
+
+  /* Badges */
+  --badge-bg: rgba(117, 129, 178, 0.35) !important;
+  --badge-text: #c5d1ff !important;
+  --badge-border: rgba(117, 129, 178, 0.35) !important;
+  --badge-shadow: 0 1px 4px rgba(117, 129, 178, 0.2) !important;
+
+  /* Footer */
+  --footer-opacity: 0.78 !important;
+
+  /* Overlay painter */
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(27, 34, 50, 0.35),
+    rgba(91, 102, 147, 0.35)
+  ) !important;
+
   background: var(--bg-gradient) !important;
 }
 
@@ -37,16 +67,15 @@ html[data-theme="dark"] body.eye .scroll-title {
 
 html[data-theme="dark"] body.eye .section-block {
   background: linear-gradient(145deg, #1b2232 0%, #2d3650 60%, #5b6693 100%) !important;
-  border-color: #a6b4e3 !important;
+  border-color: var(--section-border) !important;
   box-shadow: 0 0 25px rgba(117, 129, 178, 0.3) !important;
 }
 
 html[data-theme="dark"] body.eye .image-block {
-  border: 1px solid #a6b4e3 !important;
+  border: 1px solid var(--section-border) !important;
   box-shadow: 0 0 20px rgba(117, 129, 178, 0.25) !important;
 }
 
-/* Dark Theme */
 html[data-theme="dark"] body.eye .quiz-question,
 html[data-theme="dark"] body.eye .quiz-prompt {
   background: linear-gradient(to right, #1b2232, #2d3650) !important;
@@ -57,7 +86,7 @@ html[data-theme="dark"] body.eye .quiz-prompt {
 
 html[data-theme="dark"] body.eye .quiz-options {
   background: #0e111a !important;
-  border: 1px solid #a6b4e3 !important;
+  border: 1px solid var(--section-border) !important;
 }
 
 html[data-theme="dark"] body.eye .quiz-options button,
@@ -76,30 +105,51 @@ html[data-theme="dark"] body.eye .quiz-button:hover {
   box-shadow: 0 0 14px rgba(117, 129, 178, 0.3) !important;
 }
 
-html[data-theme="dark"] body.eye {
-  --overlay-bg-gradient: linear-gradient(
-    to right,
-    rgba(27, 34, 50, 0.35),
-    rgba(91, 102, 147, 0.35)
-  );
-}
-
+/* ============= LIGHT THEME ============= */
 html[data-theme="light"] body.eye {
-  --bg-opacity: 0.34; /* NEW */
-  --text-accent: #4d5e91 !important;            /* deep sky indigo */
-  --highlight: #dbe3ff !important;              /* misty azure */
+  /* Core tokens */
+  --bg-opacity: 0.34 !important;
+  --text-primary: #1a1a1a !important;
+  --text-secondary: #4a4a4a !important;
+  --text-muted: #666 !important;
+
+  /* Accents */
+  --text-accent: #4d5e91 !important;   /* deep sky indigo */
+  --highlight: #dbe3ff !important;     /* misty azure */
   --shadow-glow: rgba(210, 220, 255, 0.2) !important;
   --glyph-color: #7e90c9 !important;
   --strong-text: #55669b !important;
-  --scroll-box-shadow: 0 0 25px rgba(210, 220, 255, 0.2) !important;
   --cite-color: #55669b !important;
   --accent-scroll: #94a3d5 !important;
   --section-border: #dbe3ff !important;
-  --card-gradient: linear-gradient(145deg, #f5f7fb 0%, #e4e9f8 30%, #d3dcf3 60%, #c0cae9 85%,#94a3d5 100%) !important;
-}
 
-html[data-theme="light"] body.eye {
+  /* Gradients */
+  --card-gradient: linear-gradient(
+    145deg,
+    #f5f7fb 0%,
+    #e4e9f8 30%,
+    #d3dcf3 60%,
+    #c0cae9 85%,
+    #94a3d5 100%
+  ) !important;
   --bg-gradient: var(--card-gradient) !important;
+
+  /* Badges */
+  --badge-bg: rgba(219, 227, 255, 0.6) !important;
+  --badge-text: #4d5e91 !important;
+  --badge-border: rgba(148, 163, 213, 0.45) !important;
+  --badge-shadow: 0 1px 4px rgba(148, 163, 213, 0.2) !important;
+
+  /* Footer */
+  --footer-opacity: 0.93 !important;
+
+  /* Overlay painter */
+  --overlay-bg-gradient: linear-gradient(
+    to right,
+    rgba(219, 227, 255, 0.35),
+    rgba(148, 163, 213, 0.35)
+  ) !important;
+
   background: var(--bg-gradient) !important;
 }
 
@@ -118,16 +168,15 @@ html[data-theme="light"] body.eye .scroll-title {
 
 html[data-theme="light"] body.eye .section-block {
   background: linear-gradient(145deg, #e4e9f8 0%, #d3dcf3 60%, #c0cae9 100%) !important;
-  border-color: #dbe3ff !important;
+  border-color: var(--section-border) !important;
   box-shadow: 0 0 22px rgba(210, 220, 255, 0.2) !important;
 }
 
 html[data-theme="light"] body.eye .image-block {
-  border: 1px solid #dbe3ff !important;
+  border: 1px solid var(--section-border) !important;
   box-shadow: 0 0 18px rgba(210, 220, 255, 0.15) !important;
 }
 
-/* Light Theme */
 html[data-theme="light"] body.eye .quiz-question,
 html[data-theme="light"] body.eye .quiz-prompt {
   background: linear-gradient(to right, #e4e9f8, #d3dcf3) !important;
@@ -138,10 +187,9 @@ html[data-theme="light"] body.eye .quiz-prompt {
 
 html[data-theme="light"] body.eye .quiz-options {
   background: #f5f7fb !important;
-  border: 1px solid #dbe3ff !important;
+  border: 1px solid var(--section-border) !important;
 }
 
-/* === Eye === */
 html[data-theme="light"] body.eye .quiz-options button,
 html[data-theme="light"] body.eye .quiz-button {
   background: #e4e9f8 !important;
@@ -157,21 +205,11 @@ html[data-theme="light"] body.eye .quiz-button:hover {
   border-color: #4d5e91 !important;
   box-shadow: 0 0 12px rgba(117, 129, 178, 0.25) !important;
 }
-
-html[data-theme="light"] body.eye {
-  --overlay-bg-gradient: linear-gradient(
-    to right,
-    rgba(219, 227, 255, 0.35),
-    rgba(148, 163, 213, 0.35)
-  );
 }
 
-/* ✦ Gnostic Eye */
-html[data-theme="light"] body.eye { --footer-opacity: 0.93; }
-html[data-theme="dark"]  body.eye { --footer-opacity: 0.78; }
-
-}
-
+/* ===================================================
+   Kill all overlay fallback images (global)
+   =================================================== */
 html[data-theme="light"] body::before,
 html[data-theme="dark"] body::before {
   --overlay-bg-gradient: none !important;

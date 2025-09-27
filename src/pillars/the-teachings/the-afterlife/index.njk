@@ -1,56 +1,44 @@
 ---
 layout: base.njk
-title: "The Afterlife Series"
-description: "Sacred scrolls exploring how cultures across time map death, rebirth, and the hidden journey of the soul."
-tagline: "Mystical cartographies ✦ death, rebirth, and beyond"
+title: "The Afterlife"
+description: "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond."
+tagline: "Maps of death, rebirth, and remembrance ✦ sacred teachings of the beyond."
+tier: free
+
+glyph: "✦"
+glyphRow: ["𓂀","✦","𓂀"]
 
 permalink: "/pillars/the-teachings/the-afterlife/index.html"
-
-
-glyph: "⛪︎"
-accent: "gold"
-bodyClass: "gold"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
-
+  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
 ---
 
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife-index.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
 
-  <h4 class="index heading">
-    Sacred scrolls exploring how cultures across time map death, rebirth, and the hidden journey of the soul.
-  </h4>
+<h4 class="index heading">
+  Teachings that weave together ancient wisdom and living guidance — afterlife maps, rights scrolls, and paths of remembrance.
+</h4>
 
-  <details class="disclaimer-box">
-      <summary><span class="disclaimer-heading">☸ About The Afterlife Series</span></summary>
-      <p>
-        <strong>The Afterlife Series</strong> gathers scrolls that explore how cultures across
-        time have mapped what lies beyond death. From Egyptian Duat to Buddhist Bardos, from
-        Sufi visions to Gnostic cosmologies, these teachings reveal the many ways humanity has
-        understood the passage of the soul.
-      </p>
-      <p>
-        Each scroll is structured for seekers: with introductions, glossaries, and reflections
-        to guide deeper study. Some traditions speak of liberation, others of judgement or
-        return — but all point toward mysteries that shape how we live, die, and remember.
-      </p>
-    </details>
+<details class="disclaimer-box">
+  <summary><span class="disclaimer-heading">🔑 About The Afterlife</span></summary>
+  <p>
+    <strong>The Afterlife</strong> gathers scrolls that explain and preserve: afterlife maps,
+    rights of the people, and pathways of remembrance drawn from Gnostic, mystical, and ancient sources.
+  </p>
+</details>
 
-  {% include "partials/pillar-grid.njk" %}
+{% include "partials/pillar-grid.njk" %}
 
-  {% set items = pillarGrid %}
-  {% set headline = "The Afterlife — Index" %}
-  {% set base = page.url %}
-  {% include "partials/jsonld-collection.njk" %}
+<div class="gnostic-divider">
+  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+</div>
 
-  <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-  </div>
 </main>

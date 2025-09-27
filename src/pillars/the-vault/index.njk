@@ -1,22 +1,49 @@
 ---
 layout: base.njk
 title: "The Vault"
-description: "Preservation of forbidden and sacred texts."
+description: "Preservation of forbidden and sacred texts — codices, scrolls, and erased histories."
 tagline: "Codices ✦ scrolls ✦ erased histories"
 
 glyph: "✶"
 accent: vault
 bodyClass: vault
 
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
 ---
 
-<section class="pillar-hero">
-  <p class="lead">Welcome to the pillar. Replace this with a proper intro and a card grid.</p>
-</section>
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/vault-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
 
-<section class="pillar-grid">
-  <ul class="card-grid">
-    <li class="card"><a href="#">Example child page</a></li>
-    <li class="card"><a href="#">Another example</a></li>
-  </ul>
-</section>
+<main class="main-content">
+
+<h4 class="index heading">Preserving forbidden and sacred texts — codices, scrolls, and erased histories kept safe in the Vault.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 About The Vault</span></summary>
+    <p>
+      <strong>The Vault</strong> is the library of The Gnostic Key — a pillar devoted to
+      preserving forbidden and sacred writings. Here you’ll find codices, scrolls, and
+      erased histories: the texts others tried to burn, banish, or forget.
+    </p>
+    <p>
+      From Gnostic gospels to mystical archives, from forbidden documents to ancient
+      transmissions, the Vault safeguards these works so they remain accessible to
+      seekers. It is not just an archive — it is a sanctuary of memory, where the
+      written word survives erasure.
+    </p>
+  </details>
+
+  {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  </div>
+</main>

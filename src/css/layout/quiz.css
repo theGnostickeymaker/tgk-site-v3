@@ -1,158 +1,137 @@
 @layer components {
-/* ===================================================
-   TGK Quiz System – Sacred Evaluation Component
-   Version: 2.0 – Fully Tokenized & Theme-Safe
-   =================================================== */
+  /* ===================================================
+     TGK Quiz System – Sacred Evaluation Component
+     Version: 2.1 – Fully Tokenized & Theme-Safe
+     =================================================== */
 
-/* 🜁 Quiz Block Wrapper */
-.quiz-question {
-  margin-bottom: var(--space-xl);
-  background: var(--section-bg-bottom);
-  border: 1px solid var(--section-border);
-  border-radius: var(--border-radius-base);
-  box-shadow: var(--scroll-shadow-soft);
-  padding: 0;
-  padding-top: var(--space-md);
-  padding-bottom: var(--space-md);
-  padding-left: var(--space-md) !important;
-  padding-right:var(--space-md) !important;
-}
+  /* 🜁 Quiz Block Wrapper */
+  .quiz-question {
+    margin-bottom: var(--space-xl);
+    background: var(--section-bg-bottom);
+    border: 1px solid var(--section-border);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--scroll-shadow-soft);
+    padding: var(--space-md);
+  }
 
-/* ✧ Prompt Title */
-.quiz-prompt {
-  font-family: var(--font-serif);
-  font-weight: bold;
-  font-size: var(--font-size-base);
-  margin-bottom: var(--space-sm);
-  color: var(--text-accent);
-  line-height: var(--font-base-line);
-  padding-left: var(--space-md); /* 👈 Add this line */
-}
+  /* ✧ Prompt Title */
+  .quiz-prompt {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-sm);
+    color: var(--text-accent);
+    line-height: var(--font-base-line);
+    padding-left: var(--space-sm);
+  }
 
-/* Answer group */
-.quiz-options {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: var(--space-sm) !important;
-}
+  /* 🔹 Answer group */
+  .quiz-options {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-sm) !important;
+  }
 
-/* The buttons themselves */
-.quiz-options button,
-.quiz-button {
-  width: 100% !important;
-  display: block !important;
-  padding: var(--btn-padding) !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-  background: var(--bg-secondary);
-  border: 2px solid var(--text-subtle);
-  border-radius: var(--border-radius-base);
-  box-shadow: 0 0 0 1px var(--section-border) inset;
-  font-family: var(--font-serif);
-  font-size: var(--font-size-base);
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: var(--transition-default);
-}
+  .quiz-options li {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: block !important;
+  }
 
-.quiz-options button:hover,
-.quiz-button:hover {
-  background: var(--highlight);
-  color: var(--bg-primary);
-  border-color: var(--text-accent);
-  box-shadow: 0 0 10px var(--text-accent);
-}
+  /* 🔘 Buttons */
+  .quiz-options button,
+  .quiz-button {
+    width: 100% !important;
+    display: block !important;
+    padding: var(--btn-padding) !important;
+    box-sizing: border-box !important;
+    background: var(--bg-secondary);
+    border: 2px solid var(--section-border);
+    border-radius: var(--border-radius-base);
+    font-family: var(--font-serif);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition-default);
+    box-shadow: inset 0 0 3px rgba(0,0,0,.08);
+  }
 
-/* 🔸 Hover State */
-.quiz-options button:hover,
-.quiz-button:hover {
-  background: var(--highlight);
-  color: var(--bg-primary);
-}
+  /* 🔸 Hover State */
+  .quiz-options button:hover,
+  .quiz-button:hover {
+    background: var(--highlight);
+    color: var(--bg-primary);
+    border-color: var(--text-accent);
+    box-shadow: 0 0 10px var(--shadow-glow);
+  }
 
-/* ✅ Correct Selection */
-.quiz-button.correct-answer {
-  background: var(--text-accent);
-  color: var(--bg-primary);
-  border-color: var(--text-accent);
-}
+  /* ✅ Correct Selection */
+  .quiz-button.correct-answer {
+    background: var(--text-accent);
+    color: var(--bg-primary);
+    border-color: var(--text-accent);
+  }
 
-/* ❌ Incorrect Selection */
-.quiz-button.wrong-answer,
-.quiz-button.quiz-wrong {
-  background: var(--quiz-wrong-bg);
-  border-color: var(--section-border);
-  opacity: 0.7;
-}
+  /* ❌ Incorrect Selection */
+  .quiz-button.wrong-answer,
+  .quiz-button.quiz-wrong {
+    background: var(--quiz-wrong-bg);
+    border-color: var(--section-border);
+    opacity: 0.75;
+  }
 
-/* 🔘 Disabled State */
-.quiz-button.quiz-disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
+  /* 🔘 Disabled */
+  .quiz-button.quiz-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
+  }
 
-/* 🔷 Selected Outline */
-.quiz-button.quiz-selected {
-  outline: 2px solid var(--quiz-outline-selected);
-}
+  /* 🔷 Selected Outline */
+  .quiz-button.quiz-selected {
+    outline: 2px solid var(--quiz-outline-selected);
+    outline-offset: 2px;
+  }
 
-/* 🜂 Reveal Text */
-.quiz-reveal {
-  display: none;
-  margin-top: var(--space-xs);
-  font-style: italic;
-  font-size: var(--font-small);
-  color: var(--quiz-reveal-text);
-  padding-left: var(--space-sm);
-  transition: opacity 0.3s ease;
-}
+  /* 🜂 Reveal Text */
+  .quiz-reveal {
+    display: none;
+    margin-top: var(--space-xs);
+    font-style: italic;
+    font-size: var(--font-size-sm);
+    color: var(--quiz-reveal-text);
+    padding-left: var(--space-sm);
+    transition: opacity 0.3s ease;
+  }
 
-.quiz-reveal.show {
-  display: block;
-  opacity: 1;
-}
+  .quiz-reveal.show {
+    display: block;
+    opacity: 1;
+  }
 
-/* 📣 Feedback */
-.quiz-feedback {
-  font-weight: bold;
-  margin-top: var(--space-sm);
-  font-size: var(--font-size-base);
-  color: var(--text-accent);
-  display: none;
-}
+  /* 📣 Feedback */
+  .quiz-feedback {
+    font-weight: 600;
+    margin-top: var(--space-sm);
+    font-size: var(--font-size-base);
+    color: var(--text-accent);
+    display: none;
+    text-align: center;
+  }
 
-.quiz-feedback.show {
-  display: block;
-}
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.incorrect { color: var(--quiz-wrong-text); }
 
-.quiz-feedback.incorrect {
-  color: var(--quiz-wrong-text);
-}
-
-/* 🔹 Answer Option Group – Bullet-Proofed */
-.quiz-options,
-.quiz-options li {
-  list-style: none !important;
-  padding: 0;
-  margin: 0;
-}
-
-/* Button container (if li is used) */
-.quiz-options li {
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100% !important;
-  display: block !important;
-}
-
-.quiz-score {
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 1em;
-  color: var(--accent-color, gold);
-}
-
+  /* 📊 Score */
+  .quiz-score {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-accent);
+    text-align: center;
+  }
 }

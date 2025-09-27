@@ -10,25 +10,39 @@ bodyClass: eye
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
-
 ---
 
-{% include "partials/head-meta.njk" %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-gnostic-eye/eye-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
-  </section>
+
+<h4 class="index heading">Symbolic and archetypal analysis of culture, power, and events — decoding the code beneath the world.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 About The Gnostic Eye</span></summary>
+    <p>
+      <strong>The Gnostic Eye</strong> is the pillar of vision and analysis — where
+      culture, politics, and events are seen not just as history, but as symbols.
+      Through archetypal lenses, it reads the signs of the age and the masks of power.
+    </p>
+    <p>
+      From modern idols to ancient archetypes, this pillar reveals the patterns that
+      shape our collective story. The Eye is a watcher, a decoder, and a witness to
+      the hidden geometry of the world.
+    </p>
+  </details>
 
   {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>
-
-{# JSON-LD #}
-{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
-{% include "partials/jsonld-collection.njk" %}
-

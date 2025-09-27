@@ -1,278 +1,233 @@
 @layer layout {
-/* header_styles.css – Refactored for TGK Theme System */
-/* Version: 2.1 – Token fix and verification */
+  /* ===================================================
+     TGK Header Styles – Refactored for Theme Tokens
+     Version: 2.2 – Sticky fix + tokenisation
+     =================================================== */
 
-.site-brand {
-  font-family: var(--font-display);
-  color: var(--text-accent);
-  font-size: calc(var(--font-size-logo) * 0.7); /* reduce size by ~30% */
-  text-align: center;
-  opacity: 0.75; /* slightly lower opacity for subtlety */
-  margin-bottom: var(--space-md); /* tighten the spacing */
-  background: linear-gradient(to right, transparent, var(--highlight), transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-/* ===== TGK Header (content-height only) ===== */
-.site-header{
-  /* visual */
-  position: sticky;
-  top: 0;
-  filter: none !important;  
-  background: linear-gradient(to top, var(--bg-secondary), var(--bg-primary));
-  border-bottom: 2px solid var(--text-accent);
-  box-sizing: border-box;
-  width: 100%;
-  padding: var(--space-xl) var(--space-md) var(--space-sm);
-  text-align: center;
-  z-index: var(--z-header) !important;
-
-  /* stacking + sizing */
-  position: relative;
-  z-index: 1000;
-  flex: 0 0 auto;     /* <-- never grow */
-  height: auto;       /* <-- size to content */
-  min-height: 0;      /* <-- kill any inherited 100%/100vh */
-}
-
-.site-header.minimal{
-  /* visual (nav-only look) */
-  background-color: var(--bg-primary);
-  box-shadow: var(--header-box-shadow, 0 2px 20px rgba(255,215,150,.08));
-  border-bottom: var(--header-border-bottom, 2px solid var(--text-accent));
-  margin-bottom: var(--space-lg);
-  padding: var(--space-md) var(--space-md) var(--space-md);
-
-  /* layout */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  box-sizing: border-box;
-
-  /* hard reset to prevent full-height header */
-  flex: 0 0 auto !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-/* If a header inner wrapper has transforms, neutralize just for layout */
-.site-header .header-inner{
-  transform: none !important;
-  perspective: none !important;
-  filter: none !important;
-}
-
-/* scrolled state stays the same */
-.site-header.scrolled{
-  box-shadow: 0 8px 30px rgba(0,0,0,.25);
-  backdrop-filter: blur(6px);
-}
-
-/* mobile */
-@media (max-width: 600px){
-  .navbar{ flex-direction: column; gap: var(--space-md); }
-}
-
-
-.main-logo {
-  color: var(--text-accent);
-  font-family: var(--font-display);
-  font-size: var(--font-size-logo);
-  text-align: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin: 1rem 0 0.5rem;
-}
-
-.main-tagline {
-  font-family: var(--font-serif);
-  color: var(--text-accent);
-  font-size: var(--font-siza-xl);
-  font-style: italic;
-  text-align: center;
-  opacity: 0.85;
-  margin-bottom: var(--space-lg);
-  background: linear-gradient(to right, transparent, var(--highlight), transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-/* Header Link Styling */
-.header-link {
-  background: none;
-  padding: var(--space-xl) var(--space-md) var(--space-sm);
-  text-align: center;
-  position: relative;
-  line-height: 1.2;
-  z-index: 1000;
-}
-
-.header-link:hover {
-  text-decoration: underline; /* optional: or add a glow, color change, etc. */
-}
-
-/* ===================================================
-   📍 Breadcrumb Navigation Slot – Fully Tokenised
-   =================================================== */
-.breadcrumb-slot {
-  margin-top: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
-.breadcrumb-slot a {
-  color: var(--text-accent);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color var(--transition-default), text-shadow var(--transition-default);
-}
-
-.breadcrumb-slot a:hover,
-.breadcrumb-slot a:focus {
-  color: var(--highlight);
-  text-shadow: 0 0 6px var(--shadow-glow);
-}
-
-.breadcrumb-slot span {
-  color: var(--text-accent);
-  opacity: 0.6;
-  font-weight: 400;
-}
-
-/* Make sure the hero does NOT pick up .site-header sticky/nav styles */
-.hero-header{
-  min-height: 32vh; background: transparent;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  position: relative;
-  padding: 0;
-}
-
-/* Your existing hero classes keep working */
-.hero-header .header-link { text-decoration: none; }
-
-
-
-/* ----------------------------------------
-   📱 Responsive Scaling
----------------------------------------- */
-@media (max-width: 768px) {
-  .breadcrumb-slot {
-    font-size: calc(var(--font-size-base, 1rem) * 0.8);
-    gap: var(--space-xs);
+  /* --- Site Brand (mini logo in header) --- */
+  .site-brand {
+    font-family: var(--font-display);
+    color: var(--text-accent);
+    font-size: calc(var(--font-size-logo, 2rem) * 0.7);
+    text-align: center;
+    opacity: 0.75;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(to right, transparent, var(--highlight), transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
   }
-}
 
-/* ============================================
-   🔱 Scroll Title – Unified Sacred Style
-   ============================================ */
+  /* --- Header container --- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to top, var(--bg-secondary), var(--bg-primary));
+    border-bottom: 2px solid var(--text-accent);
+    width: 100%;
+    padding: var(--space-xl) var(--space-md) var(--space-sm);
+    text-align: center;
+    z-index: var(--z-header, 3000);
+    height: auto;
+    min-height: 0;
+  }
 
-.scroll-title {
-  font-family: var(--font-display);
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  color: var(--text-accent);
-  text-align: center;
-  margin: var(--scroll-title-margin) auto var(--space-md) auto;
-  padding: var(--space-md) var(--space-lg);
-  border: 1px solid var(--text-accent);
-  border-radius: var(--scroll-border-radius);
-  background: var(--section-bg-bottom);
-  box-shadow: var(--scroll-box-shadow);
-  letter-spacing: 0.3px;
-  line-height: var(--font-base-line);
-  max-width: 100%;
-  text-transform: uppercase;
-  position: relative;
-  transition: var(--transition-default);
-  position: relative; /* enables absolute positioning inside */
-  text-align: center;
-}
-
-.scroll-title::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: var(--highlight);
-  margin: var(--space-md) auto 0 auto;
-  border-radius: 2px;
-  box-shadow: 0 0 12px var(--shadow-glow);
-  border: 2px solid var(--text-accent);
-}
-
-@media (max-width: 640px) {
-  .scroll-title {
-    font-size: var(--font-size-lg);
+  .site-header.minimal {
+    background-color: var(--bg-primary);
+    box-shadow: var(--header-box-shadow, 0 2px 20px rgba(255, 215, 150, .08));
+    border-bottom: var(--header-border-bottom, 2px solid var(--text-accent));
+    margin-bottom: var(--space-lg);
     padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto !important;
+    min-height: 0 !important;
   }
-}
 
-/* 🔹 Optional Subtitle Inside Title */
+  .site-header .header-inner {
+    transform: none !important;
+    perspective: none !important;
+    filter: none !important;
+  }
+
+  .site-header.scrolled {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+    backdrop-filter: blur(6px);
+  }
+
+  /* --- Main logo + tagline --- */
+  .main-logo {
+    color: var(--text-accent);
+    font-family: var(--font-display);
+    font-size: var(--font-size-logo, 2rem);
+    text-align: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .main-tagline {
+    font-family: var(--font-serif);
+    color: var(--text-accent);
+    font-size: var(--font-size-xl, 1.75rem); /* fixed typo */
+    font-style: italic;
+    text-align: center;
+    opacity: 0.85;
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(to right, transparent, var(--highlight), transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* --- Header links --- */
+  .header-link {
+    background: none;
+    padding: var(--space-xl) var(--space-md) var(--space-sm);
+    text-align: center;
+    position: relative;
+    line-height: 1.2;
+    z-index: 1000;
+  }
+
+  .header-link:hover {
+    text-decoration: underline;
+  }
+
+  /* --- Breadcrumb Navigation --- */
+  .breadcrumb-slot {
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+    font-family: var(--font-serif);
+  }
+
+  .breadcrumb-slot a {
+    color: var(--text-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-default), text-shadow var(--transition-default);
+  }
+
+  .breadcrumb-slot a:hover,
+  .breadcrumb-slot a:focus {
+    color: var(--highlight);
+    text-shadow: 0 0 6px var(--shadow-glow);
+  }
+
+  .breadcrumb-slot span {
+    color: var(--text-accent);
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
+  /* --- Hero Header (does not inherit sticky/nav styles) --- */
+  .hero-header {
+    min-height: 32vh;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    position: relative;
+    padding: 0;
+  }
+
+  .hero-header .header-link {
+    text-decoration: none;
+  }
+
+  /* --- Scroll Title --- */
+  .scroll-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl, 1.75rem);
+    font-weight: 600;
+    color: var(--text-accent);
+    text-align: center;
+    margin: var(--scroll-title-margin, 2rem) auto var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid var(--text-accent);
+    border-radius: var(--scroll-border-radius, 12px);
+    background: var(--section-bg-bottom);
+    box-shadow: var(--scroll-box-shadow);
+    letter-spacing: 0.3px;
+    line-height: var(--font-base-line);
+    text-transform: uppercase;
+    transition: var(--transition-default);
+    max-width: 100%;
+  }
+
+  .scroll-title::after {
+    content: "";
+    display: block;
+    width: var(--scroll-title-line-w, 50px);
+    height: var(--scroll-title-line-h, 3px);
+    background: var(--highlight);
+    margin: var(--space-md) auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 12px var(--shadow-glow);
+    border: 2px solid var(--text-accent);
+  }
+
   .scroll-title .scroll-subtitle,
   .scroll-title-sub {
     display: block;
     font-family: var(--font-serif);
-    font-size: 1rem; /* slightly larger than var(--font-size-sm) */
-    font-weight: 500; /* slightly bolder for legibility */
-    color: var(--text-accent); /* matches the heading for visual harmony */
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-accent);
     margin-top: 0.5rem;
-    text-transform: none; /* keep natural case for flow */
+    text-transform: none;
     letter-spacing: 0.3px;
     line-height: 1.6;
-    opacity: 0.85; /* subtle tone beneath main heading */
+    opacity: 0.85;
   }
 
-  /* ===================================================
-Scroll header – Sacred Scroll header
-Version: 1.0 – Fully Tokenized
-=================================================== */
+  /* --- Scroll Header Variant --- */
+  .main-logo-scroll {
+    color: var(--text-accent);
+    font-family: var(--font-serif);
+    font-size: var(--font-size-lg, 1.5rem);
+    text-align: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 1rem 0 0.5rem;
+  }
 
+  .main-tagline-scroll {
+    font-family: var(--font-display);
+    color: var(--text-accent);
+    font-size: var(--font-size-logo, 2rem);
+    text-align: center;
+    opacity: 0.85;
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(to right, transparent, var(--highlight), transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
-.main-logo-scroll {
-  color: var(--text-accent);
-  font-family: var(--font-serif);
-  font-size: var(--font-size-lg);
-  text-align: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin: 1rem 0 0.5rem;
-}
+  /* --- Extras --- */
+  .highlight { font-weight: bold; color: var(--highlight); }
 
-.main-tagline-scroll {
-  font-family: var(--font-display);
-  color: var(--text-accent);
-  font-size: var(--font-size-logo);
-  text-align: center;
-  opacity: 0.85;
-  margin-bottom: var(--space-lg);
-  background: linear-gradient(to right, transparent, var(--highlight), transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
+  .sub-heading {
+    font-family: var(--font-display);
+    color: var(--text-accent);
+    font-size: var(--font-size-lg, 1.5rem);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
 
-/* 🔦 Highlight Line or Fact */
-.highlight {
-  font-weight: bold;
-  color: var(--highlight);
-}
+  .scroll-date {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-sm);
+    color: var(--section-subtitle-color, var(--text-secondary));
+    margin-bottom: var(--space-sm);
+    text-align: center;
+  }
 
-/* Subsection Headings within Chapters */
-.sub-heading {
-  font-family: var(--font-display);
-  color: var(--text-accent);
-  font-size: var(--font-size-lg);
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-sm);
-}
-
-.scroll-date {
-  font-family: var(--font-serif);
-  font-size: var(--font-size-sm);
-  color: var(--section-subtitle-color, var(--text-secondary));
-  margin-bottom: var(--space-sm);
-  text-align: center;
-}
+  /* --- Responsive scaling --- */
+  @media (max-width: 768px) {
+    .breadcrumb-slot {
+      font-size: calc(var(--font-size-base, 1rem) * 0.85);
+      gap: var(--space-xs);
+    }
+    .scroll-title { font-size: var(--font-size-lg, 1.4rem); }
+  }
 }

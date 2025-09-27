@@ -1,34 +1,37 @@
 @layer layout {
-/* ===================================================
-   Layout Grid System – The Gnostic Key
-   Version: 1.1 – Tokenized and Responsive
-   =================================================== */
+  /* ===================================================
+     Layout Grid System – The Gnostic Key
+     Version: 1.2 – Tokenized and Responsive
+     =================================================== */
 
-/* 🔹 Portal Grid – Fixed Column Sacred Layout */
-.portal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-lg);
-  max-width: var(--grid-max-width);
-  margin: var(--space-sm) auto;
-  padding: var(--space-xl) var(--space-md);
-  position: relative;          /* ✅ Ensures absolute children align properly */
-  overflow-x: hidden;          /* ✅ Prevents diagonal ribbon from escaping grid bounds */
-}
-
-/* 📱 Responsive Breakpoints */
-@media (max-width: 768px) {
+  /* 🔹 Portal Grid – Sacred Layout */
   .portal-grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg, 1.5rem);
+    row-gap: var(--space-lg, 1.5rem); /* ✅ explicit row-gap for safety */
+    max-width: calc(3 * 280px + 4 * var(--space-xl)); /* ≈ 3 cards + gaps */
+    margin: var(--space-md) auto;
+    padding: var(--space-xl) var(--space-md);
+    position: relative;   /* ✅ allows absolute children like ribbons */
+    overflow-x: hidden;   /* ✅ prevents badge/ribbon spill */
   }
-}
 
-@media (max-width: 480px) {
-  .portal-grid {
-    grid-template-columns: 1fr;
+  /* 📱 Medium breakpoint */
+  @media (max-width: 768px) {
+    .portal-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md, 1rem);
+      padding: var(--space-lg) var(--space-md);
+    }
   }
-}
 
-
-
+  /* 📱 Small / Mobile breakpoint */
+  @media (max-width: 480px) {
+    .portal-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md, 1rem);
+      padding: var(--space-md);
+    }
+  }
 }

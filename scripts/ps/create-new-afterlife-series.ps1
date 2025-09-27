@@ -16,16 +16,20 @@ param(
   [int]    $SeriesVersion = 1,
   [string] $LandingDescription = "Three-part journey.",
   [string] $Root = '.',
-  [switch] $WithQuizzes
+  [switch] $WithQuizzes,
+
+  # Card state
+  [ValidateSet('default','coming-soon','draft','archived')]
+  [string] $State = 'default'
 )
 
-# Resolve root path
+# =========================
+# Path + Helpers
+# =========================
 if (-not $PSBoundParameters.ContainsKey('Root') -or [string]::IsNullOrWhiteSpace($Root) -or $Root -eq '.') {
   $Root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 }
 
-
-# Helpers
 function Write-Utf8File($Path, $Content) {
   $parent = Split-Path -Path $Path -Parent
   [System.IO.Directory]::CreateDirectory($parent) | Out-Null
@@ -44,23 +48,25 @@ function To-TitleCase([string]$s){
   return ($parts | ForEach-Object { $_.Substring(0,1).ToUpper() + $_.Substring(1).ToLower() }) -join " "
 }
 
-# Derived
-$seriesKey   = "$SeriesSlug-s$SeriesNo"
-$PillarNameDefault = To-TitleCase $PillarSlug
-$SeriesTitleDefault = To-TitleCase $SeriesSlug
-$episodeRoot = Join-Path $Root "src/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug"
-$SeriesDir   = Join-Path $Root "src/pillars/$PillarSlug/$SeriesSlug"
-$mediaBase   = "/media/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug"
-$socialImage = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug.jpg"
-
 # =========================
-# Series HUB landing (/pillars/$PillarSlug/$SeriesSlug/)
+# Derived Vars
 # =========================
+$seriesKey          = "$SeriesSlug-s$SeriesNo"
 $PillarNameDefault  = To-TitleCase $PillarSlug
 $SeriesTitleDefault = To-TitleCase $SeriesSlug
+$episodeRoot        = Join-Path $Root "src/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug"
 $SeriesHomeRoot     = Join-Path $Root "src/pillars/$PillarSlug/$SeriesSlug"
+$SeriesRoot         = Join-Path $Root "src/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo"
+$mediaBase          = "/media/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug"
+$socialImage        = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug.jpg"
 
-# Hub .11tydata.js (metadata)
+# =========================
+# Series HUB landing (pillar-level directory)
+# =========================
+
+# .11tydata.js (only if missing)
+$seriesHubDataPath = Join-Path $SeriesHomeRoot ".11tydata.js"
+if (-not (Test-Path $seriesHubDataPath)) {
 $seriesHubData = @"
 export default {
   eleventyComputed: {
@@ -77,26 +83,32 @@ export default {
   }
 };
 "@
-Write-Utf8File (Join-Path $SeriesHomeRoot ".11tydata.js") $seriesHubData
+  Write-Utf8File $seriesHubDataPath $seriesHubData
+} else {
+  Write-Host "⚠️ Skipped existing: $seriesHubDataPath"
+}
 
-# Hub index.11tydata.js → SERIES cards
+# Hub index.11tydata.js → append a SERIES card (or create file)
 $hubFile = Join-Path $SeriesHomeRoot "index.11tydata.js"
-
 $newSeriesCard = @"
     {
       href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/",
       title: "$SeriesTitleDefault — Series $SeriesNo",
       glyph: "$Glyph",
       tagline: "$LandingDescription",
-      status: "$Tier"
+      tier: "$Tier",
+      state: "$State"
     }
 "@
-
 if (Test-Path $hubFile) {
   $existing = Get-Content $hubFile -Raw
-  if ($existing -match 'pillarGrid: \[') {
+  $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/")
+  if ($existing -notmatch $needle) {
     $updated = $existing -replace '(pillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newSeriesCard`$2"
     Set-Content $hubFile $updated -Encoding UTF8
+    Write-Host "✅ Appended series card to: $hubFile"
+  } else {
+    Write-Host "⚠️ Skipped duplicate series card in: $hubFile"
   }
 } else {
   $seriesHubLanding = @"
@@ -110,61 +122,122 @@ $newSeriesCard
   Write-Utf8File $hubFile $seriesHubLanding
 }
 
-# Hub index.njk (template)
-$seriesHubIndex = @"
+# =========================
+# Pillar Landing index.njk (only if missing)
+# =========================
+$pillarIndexPath = Join-Path $SeriesHomeRoot "index.njk"
+if (-not (Test-Path $pillarIndexPath)) {
+$pillarIndexNJK = @"
 ---
 layout: base.njk
 title: "$SeriesTitleDefault"
-permalink: "/pillars/$PillarSlug/$SeriesSlug/index.html"
-tagline: "Mystical cartographies ✦ life, death, and beyond"
+description: "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond."
+tier: free
 
 glyph: "$Glyph"
-accent: "$BodyClass"
-bodyClass: "$BodyClass"
+glyphRow: ["$Glyph","$Glyph","$Glyph"]
+
+permalink: "/pillars/$PillarSlug/$SeriesSlug/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
+  - { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" }
 ---
 
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug-index.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
 
-  <h4 class="index heading">
-    Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond.
-  </h4>
+<h4 class="index heading">
+  Teachings that weave together ancient wisdom and living guidance — afterlife maps, rights scrolls, and paths of remembrance.
+</h4>
 
-  <details class="disclaimer-box">
-    <summary><span class="disclaimer-heading">🔑 What is The Gnostic Key?</span></summary>
-    <p>
-      <strong>The Gnostic Key</strong> is a sanctuary for seekers, rebels, and rememberers.
-      It weaves together hidden teachings, forbidden truths, and symbolic insight across time, tradition, and taboo.
-      Each pillar holds a different aspect of the mystery: spiritual maps, deep investigations, archetypal codes, and living scrolls.
-      <br><br>
-      This site is not a church. It is a <em>vault</em>, a <em>mirror</em>, and a <em>compass</em> — offered to those who refuse to forget.
-    </p>
-  </details>
+<details class="disclaimer-box">
+  <summary><span class="disclaimer-heading">🔑 About $SeriesTitleDefault</span></summary>
+  <p>
+    <strong>$SeriesTitleDefault</strong> gathers scrolls that explain and preserve: afterlife maps,
+    rights of the people, and pathways of remembrance drawn from Gnostic, mystical, and ancient sources.
+  </p>
+</details>
 
-  {% include "partials/pillar-grid.njk" %}
+{% include "partials/pillar-grid.njk" %}
 
-  {% set items = pillarGrid %}
-  {% set headline = "$SeriesTitleDefault — Index" %}
-  {% set base = page.url %}
-  {% include "partials/jsonld-collection.njk" %}
+<div class="gnostic-divider">
+  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+</div>
 
-  <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-  </div>
 </main>
 "@
-Write-Utf8File (Join-Path $SeriesHomeRoot "index.njk") $seriesHubIndex
+  Write-Utf8File $pillarIndexPath $pillarIndexNJK
+} else {
+  Write-Host "⚠️ Skipped existing pillar landing page: $pillarIndexPath"
+}
 
 # =========================
-# Series landing (/series-$SeriesNo/)
+# Series Landing (SeriesRoot)
 # =========================
-$SeriesRoot = Join-Path $Root "src/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo"
+# index.njk (only if missing)
+$seriesIndexNJKPath = Join-Path $SeriesRoot "index.njk"
+if (-not (Test-Path $seriesIndexNJKPath)) {
+$seriesIndexNJK = @"
+---
+layout: base.njk
+title: "$SeriesTitleDefault — Series $SeriesNo"
+description: "$LandingDescription"
+tier: $Tier
 
-# Series .11tydata.js (metadata)
+glyph: "$Glyph"
+
+seriesMeta:
+  number: $SeriesNo
+  label: "Series $SeriesNo"
+  series_version: $SeriesVersion
+permalink: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
+  - { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" }
+  - { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug-series$SeriesNo.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+
+<h4 class="index heading">
+  The first scroll cycle of the Afterlife Series — mapping death, rebirth, and the soul’s passage through the great traditions.
+</h4>
+
+<details class="disclaimer-box">
+  <summary><span class="disclaimer-heading">☸ About Series $SeriesNo</span></summary>
+  <p>
+    <strong>Series $SeriesNo</strong> opens the journey with foundational maps of the beyond.
+    These scrolls trace how ancient and mystical traditions charted the fate of the soul after death.
+  </p>
+</details>
+
+{% include "partials/pillar-grid.njk" %}
+
+<div class="gnostic-divider">
+  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+</div>
+
+</main>
+"@
+  Write-Utf8File $seriesIndexNJKPath $seriesIndexNJK
+} else {
+  Write-Host "⚠️ Skipped existing series landing page: $seriesIndexNJKPath"
+}
+
+# .11tydata.js (metadata – keep current always; overwrite ok if you prefer)
 $seriesDotData = @"
 export default {
   layout: "base.njk",
@@ -181,162 +254,56 @@ export default {
 "@
 Write-Utf8File (Join-Path $SeriesRoot ".11tydata.js") $seriesDotData
 
-# Series index.11tydata.js → EPISODE cards
-$seriesIndexPath = Join-Path $SeriesRoot "index.11tydata.js"
-
-$newCard = @"
+# Series index.11tydata.js → EPISODE cards (append-or-create)
+$seriesIndexDataPath = Join-Path $SeriesRoot "index.11tydata.js"
+$newEpisodeCard = @"
     {
       href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/",
       title: "$Title",
       glyph: "$Glyph",
       tagline: "$LandingDescription",
-      status: "$Tier"
+      tier: "$Tier",
+      state: "$State"
     }
 "@
-
-if (Test-Path $seriesIndexPath) {
-  $existing = Get-Content $seriesIndexPath -Raw
-  if ($existing -match 'pillarGrid: \[') {
-    $updated = $existing -replace '(pillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newCard`$2"
-    Set-Content -Path $seriesIndexPath -Value $updated -Encoding UTF8
+if (Test-Path $seriesIndexDataPath) {
+  $existing = Get-Content $seriesIndexDataPath -Raw
+  $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/")
+  if ($existing -notmatch $needle) {
+    $updated = $existing -replace '(pillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newEpisodeCard`$2"
+    Set-Content $seriesIndexDataPath $updated -Encoding UTF8
+    Write-Host "✅ Appended episode card to: $seriesIndexDataPath"
+  } else {
+    Write-Host "⚠️ Skipped duplicate episode card in: $seriesIndexDataPath"
   }
 } else {
   $seriesCards = @"
 export default {
   introText: "$SeriesTitleDefault, Series $SeriesNo — choose an episode:",
   pillarGrid: [
-$newCard
+$newEpisodeCard
   ]
 };
 "@
-  Write-Utf8File $seriesIndexPath $seriesCards
+  Write-Utf8File $seriesIndexDataPath $seriesCards
 }
 
-
-# Series index.njk (template)
-$seriesIndexNjk = @"
----
-layout: base.njk
-title: "$SeriesTitleDefault — Series $SeriesNo"
-description: "$LandingDescription"
-seriesMeta:
-  number: $SeriesNo
-  label: "Series $SeriesNo"
-  series_version: $SeriesVersion
-pillar: $PillarSlug
-series: $SeriesSlug
-permalink: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/index.html"
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
-  - { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" }
-  - { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
----
-
-<main class="main-content">
-
-<h4 class="index heading">$LandingDescription</h4>
-
-  {% include "partials/pillar-grid.njk" %}
-
-  <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-  </div>
-
-</main>
-"@
-Write-Utf8File (Join-Path $SeriesRoot "index.njk") $seriesIndexNjk
-
-
 # =========================
-# Episode-level .11tydata.js
+# Episode landing (episodeRoot)
 # =========================
-$episodeData = @"
-export default {
-  seriesLabel: "$SeriesGroup",
-  pillarLabel: "$PillarSlug",
-  glyphRow: ["$Glyph","𓂀","$Glyph"],
-  seriesHome: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/",
-  pillarHome: "/pillars/$PillarSlug/",
-  episode: $Episode,
-  tagline: "$Title, Episode $Episode tagline",
-  seriesMeta: { number: $SeriesNo, label: "Series $SeriesNo", series_version: $SeriesVersion },
-  episodeParts: [
-    { title: "Part I — TBD", desc: "", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/" },
-    { title: "Part II — TBD", desc: "", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-2/" },
-    { title: "Part III — TBD", desc: "", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-3/" }
-  ],
-  layout: "base.njk",
-  pillar: "$PillarSlug",
-  series: "$SeriesSlug",
-  eleventyComputed: {
-    slug: (d) => d.slug || d.page.fileSlug,
-    permalink: (d) => d.permalink || d.page.url,
-    imgBase: (d) => d.imgBase || "$mediaBase",
-    imgPrefix: (d) => d.imgPrefix || "$Slug-",
-    socialImage: (d) => d.socialImage || "/pillars/$PillarSlug/$SeriesSlug/og/$Slug.jpg",
-    breadcrumbsBase: (d) => [
-      { title: "The Gnostic Key", url: "/" },
-      { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" },
-      { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" },
-      { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" },
-      { title: "$Title", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/" }
-    ],
-    breadcrumbs: (d) => [ ...(d.breadcrumbsBase || []), d.title ? { title: d.title } : null ].filter(Boolean)
-  }
-};
-"@
-Write-Utf8File (Join-Path $episodeRoot "$Slug.11tydata.js") $episodeData
 
-
-# =========================
-# index.11tydata.js (landing)
-# =========================
-$landingData = @"
-export default {
-  introText: "$LandingDescription",
-  tagline: "$LandingDescription",
-  seriesMeta: { number: $SeriesNo, label: "Series $SeriesNo", series_version: $SeriesVersion },
-  episode: $Episode,
-  disclaimerTitle: "⚠️ Diversity of Sources",
-  disclaimerText: "<p>Interpretations vary across schools and texts in this pillar/series.</p>",
-  pillarGrid: [
-    {
-      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/",
-      title: "Part I — TBD",
-      glyph: "$Glyph",
-      tagline: "$Title, Part I tagline",
-      status: "$Tier"
-    },
-    {
-      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-2/",
-      title: "Part II — TBD",
-      glyph: "$Glyph",
-      tagline: "$Title, Part II tagline",
-      status: "$Tier"
-    },
-    {
-      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-3/",
-      title: "Part III — TBD",
-      glyph: "$Glyph",
-      tagline: "$Title, Part III tagline",
-      status: "$Tier"
-    }
-  ]
-};
-"@
-Write-Utf8File (Join-Path $episodeRoot "index.11tydata.js") $landingData
-
-# =========================
-# index.njk
-# =========================
-$indexNjk = @"
+# index.njk (only if missing)
+$episodeIndexPath = Join-Path $episodeRoot "index.njk"
+if (-not (Test-Path $episodeIndexPath)) {
+$episodeIndexNJK = @"
 ---
 layout: base.njk
 title: "$Title"
 description: "$LandingDescription"
 tier: $Tier
+
+glyph: "$Glyph"
+
 series_version: $SeriesVersion
 permalink: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/index.html"
 tagline: "$LandingDescription"
@@ -351,11 +318,10 @@ breadcrumbs:
   - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
   - { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" }
   - { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
-  - { title: "$Title", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/" }
 ---
 
 {% block head %}
-  {% set socialImage = "$socialImage" %}
+  {% set socialImage = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug.jpg" %}
   {% include "partials/head-meta.njk" %}
   {% set items = pillarGrid %}
   {% set headline = "$Title — Series $SeriesNo" %}
@@ -365,17 +331,63 @@ breadcrumbs:
 
 <main class="main-content">
 
-<h4 class="index heading">$LandingDescription</h4>
+<h4 class="index heading">
+  $Title — $LandingDescription
+</h4>
 
-  {% include "partials/pillar-grid.njk" %}
+<details class="disclaimer-box">
+  <summary><span class="disclaimer-heading">$Glyph About $Title</span></summary>
+  <p>
+    <strong>$Title</strong> begins this episode’s journey into hidden teachings.
+  </p>
+</details>
 
-  <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-  </div>
+{% include "partials/pillar-grid.njk" %}
+
+<div class="gnostic-divider">
+  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+</div>
 
 </main>
 "@
-Write-Utf8File (Join-Path $episodeRoot "index.njk") $indexNjk
+  Write-Utf8File $episodeIndexPath $episodeIndexNJK
+} else {
+  Write-Host "⚠️ Skipped existing episode landing page: $episodeIndexPath"
+}
+
+# index.11tydata.js (parts) – append-or-create (NO overwrite afterwards)
+$episodeIndexDataPath = Join-Path $episodeRoot "index.11tydata.js"
+$newPartCards = @"
+    { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/", title: "Part I — TBD",  glyph: "$Glyph", tagline: "$Title, Part I tagline",  tier: "$Tier", state: "$State" },
+    { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-2/", title: "Part II — TBD", glyph: "$Glyph", tagline: "$Title, Part II tagline", tier: "$Tier", state: "$State" },
+    { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-3/", title: "Part III — TBD",glyph: "$Glyph", tagline: "$Title, Part III tagline",tier: "$Tier", state: "$State" }
+"@
+if (Test-Path $episodeIndexDataPath) {
+  $existing = Get-Content $episodeIndexDataPath -Raw
+  $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/")
+  if ($existing -notmatch $needle) {
+    $updated = $existing -replace '(pillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newPartCards`$2"
+    Set-Content $episodeIndexDataPath $updated -Encoding UTF8
+    Write-Host "✅ Appended part cards to: $episodeIndexDataPath"
+  } else {
+    Write-Host "⚠️ Skipped duplicate part cards in: $episodeIndexDataPath"
+  }
+} else {
+  $episodeIndexData = @"
+export default {
+  introText: "$Title — a three-part journey.",
+  tagline: "$LandingDescription",
+  seriesMeta: { number: $SeriesNo, label: "Series $SeriesNo", series_version: $SeriesVersion },
+  episode: $Episode,
+  disclaimerTitle: "⚠️ Diversity of Sources",
+  disclaimerText: "<p>Interpretations vary across schools and texts in this pillar/series.</p>",
+  pillarGrid: [
+$newPartCards
+  ]
+};
+"@
+  Write-Utf8File $episodeIndexDataPath $episodeIndexData
+}
 
 # =========================
 # Scroll Parts + Quiz Files
@@ -384,7 +396,6 @@ for ($i = 1; $i -le 3; $i++) {
   $roman = Roman $i
   $partDir = Join-Path $episodeRoot "part-$i"
   $permalink = "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-$i/index.html"
-  $social = "/media/share/$PillarSlug/$SeriesSlug/$Slug-part-$i.jpg"
   $imgBase = "$mediaBase/part-$i"
   $partId = "part$i"
   $quizId = "$SeriesSlug-s$SeriesNo-$Slug-part$i"
@@ -392,7 +403,7 @@ for ($i = 1; $i -le 3; $i++) {
   $partMd = @"
 ---
 layout: base.njk
-title: "$Title — Part $roman"
+title: "$Title"
 description: ""
 tier: $Tier
 episode: $Episode
@@ -401,11 +412,12 @@ partTitle: "Part $roman — TBD"
 tagline: "$Title, TBD"
 slug: "part-$i"
 permalink: "$permalink"
-socialImage: "$social"
+socialImage: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-part-$i.jpg"
 imgBase: "$imgBase"
 imgPrefix: "$Slug-"
 bodyClass: "$BodyClass"
 glyph: "$Glyph"
+glyphRow: ["$Glyph","$Glyph","$Glyph"]
 seriesId: "$seriesKey"
 episodeId: "$Slug"
 partId: "$partId"
@@ -419,26 +431,17 @@ breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
   - { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" }
-  - { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
+  - { title: "Series $(Roman $SeriesNo)", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
   - { title: "$Title", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/" }
-  - { title: "Part $roman", url: "$permalink" }
+  - { title: "Part $roman" }
 ---
-
-<!-- ========================= PART $roman ========================= -->
-
-<nav class="scroll-tabs" role="navigation" aria-label="Part Map">
-  <a class="tab-link" href="#quiz"      data-title="Quiz">Quiz</a>
-  <a class="tab-link" href="#glossary"  data-title="Glossary">Glossary</a>
-  <a class="tab-link" href="#discuss"   data-title="Discussion">Discuss</a>
-  <a class="tab-link" href="#series"    data-title="Series Map">Series Map</a>
-</nav>
 
 <main class="main-content">
 <section class="content-container">
 
 <details class="disclaimer-box">
   <summary>
-    <span class="disclaimer-heading">⚠️ Previously in Part I/II/II etc</span>
+    <span class="disclaimer-heading">⚠️ Previously in Part I/II/etc</span>
   </summary>
   <p>TBD</p>
 </details>
@@ -456,71 +459,10 @@ breadcrumbs:
   </ul>
 </section>
 
-<figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.jpg" 
-         alt="TBD" 
-         class="image-gnostic" 
-         loading="lazy">
-  </picture>
-  <figcaption class="caption-gnostic">TBC.
-  </figcaption>
-</figure>
-
-<section class="section-block">
-  <h2 class="section-heading">Chapter 1: TBC</h2>
-    <p>For most of the dead</p>
-    <h4 class="section-subheading">1. List Heading</h4>
-    <h4 class="section-subheading">2. List Heading</h4>
-    <h4 class="section-subheading">3. List Heading</h4>
-</section>
-
-<section class="section-block">
-  <blockquote class="blockquote">
-      <em>TBD</em>
-    </blockquote>
-  </section>
-</section>
-
-<section class="section-block" id="discuss">
-  <h2 class="section-heading">🗣️ Discussion Prompt: </h2>
-    <p>TBD</p>
-
-    <div class="btn-wrap">
-      <a href="https://t.me/thegnostickey" 
-        target="_blank" 
-        rel="noopener" 
-        class="btn btn-outline" 
-        aria-label="Join The Gnostic Key Telegram Channel">
-        💬 Join the Temple on Telegram</a>
-    </div>
-
-    <div class="btn-wrap">
-      <a href="https://x.com/thegnostickey" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="btn btn-outline"
-        aria-label="Share this article on X (formerly Twitter)">
-        📤 Send Your Spark to the Network on X</a>
-    </div>
-</section>
-
 <section class="section-block" id="quiz">
   <h2 class="section-heading">🧠 Quiz</h2>
-    <div id="quiz-container" data-quiz-id="{{ quizId }}"></div>
+  <div id="quiz-container" data-quiz-id="{{ quizId }}"></div>
   {% include "partials/quiz-data-loader.njk" %}
-</section>
-
-<section class="section-block">
-  <h2 class="section-heading">📖 Glossary</h2>
-  <p class="section-subtitle">TBD</p>
-  <dl class="glossary">
-    <div class="glossary-entry">
-      <dt>TBD</dt>
-      <dd>TBD</dd>
-    </div>
-  </dl>
 </section>
 
 <section class="section-block" id="series">
@@ -530,26 +472,22 @@ breadcrumbs:
 
 {% include "partials/series-nav-buttons.njk" %}
 
-<details class="disclaimer-box">
-  <summary>
-    <span class="disclaimer-heading">⚠️ Disclaimer</span>
-  </summary>
-  <p>TBD</p>
-</details>
-
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">$Glyph</span>
-</div>
 </section>
-
 </main>
 "@
-  Write-Utf8File (Join-Path $partDir "index.md") $partMd
+  $partPath = Join-Path $partDir "index.md"
+  if (-not (Test-Path $partPath)) {
+    Write-Utf8File $partPath $partMd
+  } else {
+    Write-Host "⚠️ Skipped existing part file: $partPath"
+  }
 
   if ($WithQuizzes) {
     $quizDir = Join-Path $Root "src/_data/quiz/$PillarSlug/$SeriesSlug/series-$SeriesNo"
+    [System.IO.Directory]::CreateDirectory($quizDir) | Out-Null
     $quizPath = Join-Path $quizDir "$quizId.js"
-    $quizJs = @"
+    if (-not (Test-Path $quizPath)) {
+      $quizJs = @"
 export default {
   meta: {
     seriesId: "$seriesKey",
@@ -574,11 +512,28 @@ export default {
   ]
 };
 "@
-    Write-Utf8File $quizPath $quizJs
+      Write-Utf8File $quizPath $quizJs
+    } else {
+      Write-Host "⚠️ Skipped existing quiz file: $quizPath"
+    }
   }
 }
 
-Write-Host "✅ Created full episode at: $episodeRoot"
+Write-Host "✅ Created/updated episode at: $episodeRoot"
+
+# =========================
+# Social Image Placeholders
+# =========================
+$shareDir = Join-Path $Root "src/media/tgk-assets/images/share/$PillarSlug/$SeriesSlug"
+[System.IO.Directory]::CreateDirectory($shareDir) | Out-Null
+$shareFile = Join-Path $shareDir "$Slug.jpg"
+if (-not (Test-Path $shareFile)) {
+  $pngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+  $pngBytes  = [Convert]::FromBase64String($pngBase64)
+  [IO.File]::WriteAllBytes($shareFile, $pngBytes)
+} else {
+  Write-Host "⚠️ Skipped existing share image: $shareFile"
+}
 
 # =========================
 # Media Folders (src + tgk-assets mirror + placeholders)
@@ -586,7 +541,6 @@ Write-Host "✅ Created full episode at: $episodeRoot"
 $mediaRootSrc   = Join-Path $Root "src/media/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug"
 $mediaRootShare = Join-Path $Root "src/media/tgk-assets/$PillarSlug/$SeriesSlug/$Slug"
 
-# Simple 1x1 px transparent PNG as base64
 $pngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
 $pngBytes  = [Convert]::FromBase64String($pngBase64)
 
@@ -595,21 +549,14 @@ foreach ($dir in @($mediaRootSrc, $mediaRootShare)) {
     $target = Join-Path $dir "part-$i"
     [System.IO.Directory]::CreateDirectory($target) | Out-Null
 
-    # Placeholder names
     $jpgPath = Join-Path $target "placeholder.jpg"
     $webpPath = Join-Path $target "placeholder.webp"
 
-    if (-not (Test-Path $jpgPath)) {
-      [IO.File]::WriteAllBytes($jpgPath, $pngBytes)
-    }
-    if (-not (Test-Path $webpPath)) {
-      [IO.File]::WriteAllBytes($webpPath, $pngBytes)
-    }
+    if (-not (Test-Path $jpgPath)) { [IO.File]::WriteAllBytes($jpgPath, $pngBytes) }
+    if (-not (Test-Path $webpPath)) { [IO.File]::WriteAllBytes($webpPath, $pngBytes) }
   }
 }
 
 Write-Host "📂 Media + placeholder images prepared:"
 Write-Host "   - $mediaRootSrc"
 Write-Host "   - $mediaRootShare"
-
-

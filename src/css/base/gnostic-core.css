@@ -1,173 +1,168 @@
 @layer base {
-   /* ==============================================================
-   TGK • GNOSTIC CORE
-   One file to replace main.css + gnostic-core.css (keep accents.css separate)
-   Load order: gnostic-core.css → accents.css
-   ============================================================== */
+  /* ==============================================================
+     TGK • GNOSTIC CORE
+     One file to replace main.css + gnostic-core.css (accents.css separate)
+     ============================================================== */
 
-/* ---------------------------------------
-   🕯️ Root Tokens (neutral fallbacks)
-   (Accents will override many of these)
---------------------------------------- */
-:root {
-  /* Typography */
-  --font-serif: 'Libre Baskerville', serif;
-  --font-display: 'Cinzel', serif;
-  --page-title: 'Cormorant Garamond', serif;
+  :root {
+    /* Typography */
+    --font-serif: 'Libre Baskerville', serif;
+    --font-display: 'Cinzel', serif;
+    --page-title: 'Cormorant Garamond', serif;
 
-  --font-size-base: 1rem;
-  --font-size-vs: 0.8rem;
-  --font-size-sm: 1rem;
-  --font-size-lg: 1.5rem;
-  --font-size-xl: 1.75rem;
-  --font-size-logo: 2rem;
-  --font-size-nav: 1.1rem;
-  --font-size-toggle: 1.2rem;
+    --font-size-base: 1rem;
+    --font-size-vs: 0.8rem;
+    --font-size-sm: 1rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 1.75rem;
+    --font-size-logo: 2rem;
+    --font-size-nav: 1.1rem;
+    --font-size-toggle: 1.2rem;
 
-  --font-base-size: 1.05rem;
-  --font-base-line: 1.85;
-  --font-small: 0.95rem;
-  --font-size-form-label: var(--font-small);
+    --font-base-size: 1.05rem;
+    --font-base-line: 1.85;
+    --font-small: 0.95rem;
+    --font-size-form-label: var(--font-small);
 
-  /* Colors (neutral defaults; accents override) */
-  --text-primary: #1a1a1a;
-  --text-secondary: #777;
-  --text-accent: #5e412f;
+    /* Colors (neutral defaults; accents override) */
+    --text-primary: #1a1a1a;
+    --text-secondary: #777;
+    --text-accent: #5e412f;
 
-  --bg-primary: #fff7e6;
-  --bg-secondary: #f3efe6;
-  --surface-alt: #f9f5ec;
+    --bg-primary: #fff7e6;
+    --bg-secondary: #f3efe6;
+    --surface-alt: #f9f5ec;
 
-  --gold-accent: #c9aa71;
-  --purple-accent: #8b6fc1;
-  --vault-accent: #5a4b91;
+    --gold-accent: #c9aa71;
+    --purple-accent: #8b6fc1;
+    --vault-accent: #5a4b91;
 
-  --highlight: #7a5c45;
-  --shadow-glow: rgba(212, 175, 55, 0.2);
-  --accent-glow: #d4c186;
-  --accent-soft: #9f8f72;
+    --highlight: #7a5c45;
+    --shadow-glow: rgba(212, 175, 55, 0.2);
+    --accent-glow: #d4c186;
+    --accent-soft: #9f8f72;
 
-  --soft-gold: #e5c47a;
-  --golden-blaze: #f6d66e;
-  --base-dark: #1a1a1a;
+    --soft-gold: #e5c47a;
+    --golden-blaze: #f6d66e;
+    --base-dark: #1a1a1a;
 
-  --accent-main: var(--text-accent);
-  --accent-soft-glow: var(--shadow-glow);
+    --accent-main: var(--text-accent);
+    --accent-soft-glow: var(--shadow-glow);
 
-  /* Sections */
-  --section-subtitle-color: var(--text-secondary);
-  --welcome-text: var(--text-accent);
-  --door-callout-color: var(--text-primary);
-  --scroll-title-margin: 2rem;
-  --scroll-border-radius: 12px;
-  --scroll-box-shadow: 0 0 25px var(--shadow-glow);
-  --scroll-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --cite-color: var(--highlight);
+    /* Sections */
+    --section-subtitle-color: var(--text-secondary);
+    --welcome-text: var(--text-accent);
+    --door-callout-color: var(--text-primary);
+    --scroll-title-margin: 2rem;
+    --scroll-border-radius: 12px;
+    --scroll-box-shadow: 0 0 25px var(--shadow-glow);
+    --scroll-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --cite-color: var(--highlight);
 
-  /* Forms */
-  --input-bg: #f7f5f0;
-  --input-bg-focus: #fffdf9;
-  --input-border: #2a2a2a;
-  --input-focus: var(--text-accent);
-  --input-placeholder: #b49e7a;
-  --input-text: var(--text-primary);
-  --input-padding: 0.85rem 1.1rem;
+    /* Forms */
+    --input-bg: #f7f5f0;
+    --input-bg-focus: #fffdf9;
+    --input-border: #2a2a2a;
+    --input-focus: var(--text-accent);
+    --input-placeholder: #b49e7a;
+    --input-text: var(--text-primary);
+    --input-padding: 0.85rem 1.1rem;
 
-  --form-error-color: #d63c3c;
-  --form-success-color: #32a862;
+    --form-error-color: #d63c3c;
+    --form-success-color: #32a862;
 
-  --auth-padding: var(--space-xl);
-  --auth-radius: var(--border-radius-base);
+    --auth-padding: var(--space-xl);
+    --auth-radius: var(--border-radius-base);
 
-  /* Spacing & Layout */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
+    /* Spacing & Layout */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
 
-  --floating-margin: var(--space-lg);
-  --meta-padding: var(--space-sm) var(--space-md);
-  --grid-max-width: 1100px;
-  --max-width-container: 1400px;
+    --floating-margin: var(--space-lg);
+    --meta-padding: var(--space-sm) var(--space-md);
+    --grid-max-width: 1100px;
+    --max-width-container: 1400px;
 
-  /* Glyphs */
-  --glyph-size-small: 1.6rem;
-  --glyph-size-base: 2.2rem;
-  --glyph-size-large: 3rem;
-  --glyph-margin-bottom: 1rem;
-  --glyph-color: var(--text-accent);
-  --strong-text: var(--text-accent);
+    /* Glyphs */
+    --glyph-size-small: 1.6rem;
+    --glyph-size-base: 2.2rem;
+    --glyph-size-large: 3rem;
+    --glyph-margin-bottom: 1rem;
+    --glyph-color: var(--text-accent);
+    --strong-text: var(--text-accent);
 
-  /* Buttons & UI */
-  --btn-font: var(--font-display);
-  --btn-radius: var(--border-radius-base);
-  --btn-padding: 0.65rem 1.2rem;
-  --btn-padding-lg: 0.75rem 1.5rem;
-  --btn-shadow: var(--shadow-glow);
-  --btn-max-width: 320px;
+    /* Buttons & UI */
+    --btn-font: var(--font-display);
+    --btn-radius: var(--border-radius-base);
+    --btn-padding: 0.65rem 1.2rem;
+    --btn-padding-lg: 0.75rem 1.5rem;
+    --btn-shadow: var(--shadow-glow);
+    --btn-max-width: 320px;
 
-  --cta-radius: 6px;
-  --cta-padding: 0.75rem 1.5rem;
-  --cta-font-size: 1rem;
-  --cta-font-weight: bold;
+    --cta-radius: 6px;
+    --cta-padding: 0.75rem 1.5rem;
+    --cta-font-size: 1rem;
+    --cta-font-weight: bold;
 
-  --toggle-size: 2.625rem;
-  --radius-md: 6px;
+    --toggle-size: 2.625rem;
+    --radius-sm: 0.25rem;   /* ✅ Added small radius */
+    --radius-md: 6px;
+    --radius-xl: 1.5rem;    /* ✅ Added extra-large radius */
 
-  /* Quiz & Feedback */
-  --quiz-wrong-bg: rgba(255, 0, 0, 0.08);
-  --quiz-wrong-bg-heavy: rgba(255, 0, 0, 0.1);
-  --quiz-wrong-text: #cc4444;
-  --quiz-outline-selected: var(--highlight);
-  --quiz-reveal-text: var(--highlight);
+    /* Quiz & Feedback */
+    --quiz-wrong-bg: rgba(255, 0, 0, 0.08);
+    --quiz-wrong-bg-heavy: rgba(255, 0, 0, 0.1);
+    --quiz-wrong-text: #cc4444;
+    --quiz-outline-selected: var(--highlight);
+    --quiz-reveal-text: var(--highlight);
 
-  /* Cards & Actions */
-  --card-action-bg: var(--text-accent);
-  --card-action-text: var(--bg-primary);
-  --card-action-hover: var(--highlight);
+    /* Cards & Actions */
+    --card-action-bg: var(--text-accent);
+    --card-action-text: var(--bg-primary);
+    --card-action-hover: var(--highlight);
 
-  /* Glossary & Rituals */
-  --glossary-indent: 1rem;
-  --ritual-padding-left: 0.5rem;
-  --ritual-margin-bottom: 1.25rem;
-  --ritual-font-size: 1.05rem;
+    /* Glossary & Rituals */
+    --glossary-indent: 1rem;
+    --ritual-padding-left: 0.5rem;
+    --ritual-margin-bottom: 1.25rem;
+    --ritual-font-size: 1.05rem;
 
-  --thesis-padding: var(--space-lg);
-  --thesis-border: 4px solid var(--text-accent);
+    --thesis-padding: var(--space-lg);
+    --thesis-border: 4px solid var(--text-accent);
 
-  /* Footer */
-  --footer-padding: var(--space-lg) var(--space-md);
-  --footer-font-size: var(--font-size-sm);
-  --footer-divider-spacing: var(--space-sm);
-  --footer-glyph-size: var(--glyph-size-small);
-  --footer-opacity: 0.88;           /* accents.css will override per theme/pillar */
+    /* Footer */
+    --footer-padding: var(--space-lg) var(--space-md);
+    --footer-font-size: var(--font-size-sm);
+    --footer-divider-spacing: var(--space-sm);
+    --footer-glyph-size: var(--glyph-size-small);
+    --footer-opacity: 0.88; /* accents.css will override per pillar */
 
-  /* Borders & Motion */
-  --border-radius-base: 0.5rem;
-  --border-radius-lg: 1rem;
-  --transition-default: all 0.3s ease;
+    /* Borders & Motion */
+    --border-radius-base: 0.5rem;
+    --border-radius-lg: 1rem;
+    --transition-default: all 0.3s ease;
 
-  /* Banner Overlay Positioning */
-  --overlay-left-shift: -2.7rem;
-  --overlay-width: 200px;
+    /* Banner Overlay Positioning */
+    --overlay-left-shift: -2.7rem;
+    --overlay-width: 200px;
 
-  /* Background painter defaults (accents will override) */
-  --bg-color: transparent;          /* not used by painter, but kept for compatibility */
-  --overlay-img: none;
-  --overlay-bg-gradient: none;
-  --bg-wash: transparent;
-  --text: #eaeaea;
+    /* Background painter defaults */
+    --bg-color: transparent;
+    --overlay-img: none;
+    --overlay-bg-gradient: none;
+    --bg-wash: transparent;
+    --text: #eaeaea;
 
-  /* Global background intensity (can be overridden by accents.css) */
-  --bg-opacity: 0.24;               /* sensible default; darker on dark themes via accents */
+    --bg-opacity: 0.24; /* global background intensity */
 
-  --z-header: 3000;      /* header sits above bg painter */
-  --z-floating: 9000;    /* scroll-top / theme toggle */
-  --z-drawer: 12000;     /* mobile drawer panel */
-  --z-overlay: 11990;    /* drawer backdrop */
-  --z-hamburger: 12010;  /* hamburger button */
+    /* Z-indexes */
+    --z-header: 3000;
+    --z-floating: 9000;
+    --z-drawer: 12000;
+    --z-overlay: 11990;
+    --z-hamburger: 12010;
+  }
 }
-}
-
-

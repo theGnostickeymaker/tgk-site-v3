@@ -1,33 +1,49 @@
 ---
 layout: base.njk
 title: "The Keymaker’s Dream"
-description: "A personal Gnostic memoir—memory quests and archetypal encounters."
+description: "A personal Gnostic memoir — memory quests and archetypal encounters."
 tagline: "Memory as myth ✦ the life behind the lock"
+
 glyph: "✶"
 accent: dream
 bodyClass: dream
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
-
 ---
 
-{% include "partials/head-meta.njk" %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-keymakers-dream/dream-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
-  </section>
+
+<h4 class="index heading">A personal Gnostic memoir — memory quests, archetypal encounters, and the dream of the Keymaker.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 About The Keymaker’s Dream</span></summary>
+    <p>
+      <strong>The Keymaker’s Dream</strong> is the memoir pillar of The Gnostic Key —
+      a record of lived gnosis, where memory itself becomes myth. Here are scrolls that
+      trace encounters with archetypes, guardians of memory, and the hidden figures who
+      haunt the inner world.
+    </p>
+    <p>
+      Blending personal narrative with symbolic vision, this pillar opens a window into
+      the life behind the lock: the story of a seeker whose dream is also a map, whose
+      myth is also a memory.
+    </p>
+  </details>
 
   {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>
-
-{# JSON-LD #}
-{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
-{% include "partials/jsonld-collection.njk" %}
-

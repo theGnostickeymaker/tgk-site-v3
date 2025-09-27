@@ -1,26 +1,59 @@
 {# Expects pillarGrid = [ … ] #}
 <section class="pillar-grid">
-  <div class="portal-grid">   {# ← was .grid #}
+  <div class="portal-grid">
     {% for c in pillarGrid %}
-      {% set state = c.state or "default" %}
+      {% set state = c.state or c.status or "default" %}
       {% set cls = "gnostic-card" %}
-      {% if state == "premium" %}{% set cls = "gnostic-card premium" %}
-      {% elif state == "soon"   %}{% set cls = "gnostic-card coming-soon" %}
+      {% if state == "premium" %}{% set cls = cls + " premium" %}
+      {% elif state == "coming-soon" %}{% set cls = cls + " coming-soon" %}
+      {% elif state == "locked" %}{% set cls = cls + " locked" %}
+      {% elif state == "archived" %}{% set cls = cls + " archived" %}
+      {% elif state == "draft" %}{% set cls = cls + " draft" %}
       {% endif %}
 
       <article class="{{ cls }}">
         <a class="card-link" href="{{ c.href or c.url or '#' }}">
-          {% if c.image %}<figure class="card-media"><img src="{{ c.image }}" alt="" loading="lazy"></figure>{% endif %}
+          
+          {# Optional image thumbnail #}
+          {% if c.image %}
+            <figure class="card-media">
+              <img src="{{ c.image }}" alt="" loading="lazy">
+            </figure>
+          {% endif %}
+
           <div class="card-body">
-            {% if c.glyph %}<div class="card-glyph" aria-hidden="true">{{ c.glyph }}</div>{% endif %}
+            {% if c.glyph %}
+              <div class="card-glyph" aria-hidden="true">{{ c.glyph }}</div>
+            {% endif %}
             <h3 class="card-title">{{ c.title }}</h3>
-            {% if c.desc or c.tagline %}<p class="card-desc">{{ c.desc or c.tagline }}</p>{% endif %}
+
+            {# Only show tagline/desc if it exists AND isn't equal to the state #}
+            {% if (c.desc and c.desc != state) or (c.tagline and c.tagline != state) %}
+              <p class="card-desc">{{ c.desc or c.tagline }}</p>
+            {% endif %}
           </div>
+
+          {# --- Overlay banners --- #}
+          {% if state == "coming-soon" %}
+            <div class="card-overlay"><span class="banner">Coming Soon</span></div>
+          {% elif state == "premium" %}
+            <div class="card-overlay"><span class="banner">Premium</span></div>
+          {% elif state == "locked" %}
+            <div class="card-overlay"><span class="banner">Locked</span></div>
+          {% elif state == "archived" %}
+            <div class="card-overlay"><span class="banner">Archived</span></div>
+          {% elif state == "draft" %}
+            <div class="card-overlay"><span class="banner">In Development</span></div>
+          {% endif %}
+
+          {# --- Tier badge (Free / Initiate / Full) --- #}
           {% set badgeTxt = c.badge %}
           {% if not badgeTxt and c.tier == "full" %}{% set badgeTxt = "Full Access" %}{% endif %}
           {% if not badgeTxt and c.tier == "initiate" %}{% set badgeTxt = "Initiate" %}{% endif %}
           {% if not badgeTxt and c.tier == "free" %}{% set badgeTxt = "Free" %}{% endif %}
-          {% if badgeTxt %}<div class="card-badge">{{ badgeTxt }}</div>{% endif %}
+          {% if badgeTxt %}
+            <div class="card-badge">{{ badgeTxt }}</div>
+          {% endif %}
         </a>
       </article>
     {% endfor %}

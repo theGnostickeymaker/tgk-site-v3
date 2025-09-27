@@ -1,34 +1,56 @@
 @layer components {
-/* 🧾 Data Tables for Comparison (Chapter 4) */
-.gnostic-table-responsive {
-  overflow-x: auto;
-  margin: var(--space-lg) 0;
-  border: 1px solid var(--section-border);
-  border-radius: var(--border-radius-base);
-  box-shadow: 0 0 12px var(--shadow-glow);
-}
+  /* ===================================================
+     🧾 Gnostic Data Tables – Comparative Layout
+     Version: 1.1 – Tokenised & Accessible
+     =================================================== */
+  .gnostic-table-responsive {
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+    border: 1px solid var(--section-border);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 0 12px var(--shadow-glow);
+    background: var(--bg-primary);
+  }
 
-.gnostic-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--font-size-sm);
-  font-family: var(--font-serif);
-  color: var(--text-primary);
-}
+  .gnostic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm, 0.95rem);
+    font-family: var(--font-serif, 'Libre Baskerville', serif);
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
 
-.gnostic-table thead {
-  color: var(--text-accent);
-}
+  /* Header row */
+  .gnostic-table thead {
+    background: var(--section-bg-top, var(--bg-secondary));
+    color: var(--text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid var(--text-accent);
+  }
 
-.gnostic-table th,
-.gnostic-table td {
-  padding: var(--space-sm);
-  border: 1px solid var(--section-border);
-  text-align: left;
-}
+  .gnostic-table th,
+  .gnostic-table td {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--section-border);
+    text-align: left;
+    vertical-align: top;
+  }
 
-.gnostic-table th {
-  font-family: var(--font-display);
-  font-size: var(--font-size-base);
-}
+  .gnostic-table th {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: var(--font-size-base, 1rem);
+    font-weight: 700;
+  }
+
+  /* Zebra striping for rows */
+  .gnostic-table tbody tr:nth-child(odd) {
+    background: var(--surface-alt, rgba(0,0,0,0.02));
+  }
+
+  .gnostic-table tbody tr:hover {
+    background: var(--highlight, rgba(255,255,200,0.08));
+    transition: background 0.2s ease;
+  }
 }

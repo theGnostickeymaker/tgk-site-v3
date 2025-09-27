@@ -1,151 +1,122 @@
 @layer components {
   /* ----------------------------------------
-   📜 Sacred Quote Styling
----------------------------------------- */
-blockquote {
-  font-style: italic;
-  font-family: var(--font-serif);
-  font-size: var(--font-base-size);
-  border-left: var(--blockquote-border, 4px solid var(--text-accent));
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0));
-  padding: var(--space-md) var(--space-lg);
-  margin: var(--space-md) 0;
-  color: var(--blockquote-text, var(--text-primary));
-  border-radius: var(--blockquote-radius, 15px);
-  text-align: left;
-}
+     📜 Sacred Quote Styling
+  ---------------------------------------- */
+  blockquote {
+    font-style: italic;
+    font-family: var(--font-serif);
+    font-size: var(--font-base-size);
+    border-left: var(--blockquote-border, 4px solid var(--text-accent));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0));
+    padding: var(--space-md) var(--space-lg);
+    margin: var(--space-md) 0;
+    color: var(--blockquote-text, var(--text-primary));
+    border-radius: var(--blockquote-radius, 15px);
+    text-align: left;
+  }
 
-/* 📚 Citation Text */
-cite {
-  display: block;
-  margin-top: var(--space-sm);
-  padding-right: var(--space-md);
-  font-size: var(--font-size-sm);
-  color: var(--cite-color, var(--highlight)); /* default fallback if not themed */
-  font-style: normal;
-  text-align: right;
-  font-weight: 600;
-  font-family: var(--font-display);
-  letter-spacing: 0.4px;
-  text-shadow: 0 0 6px var(--shadow-glow);
-}
+  /* 📚 Citation Text */
+  cite {
+    display: block;
+    margin-top: var(--space-sm);
+    padding-right: var(--space-md);
+    font-size: var(--font-size-sm);
+    color: var(--cite-color, var(--highlight));
+    font-style: normal;
+    text-align: right;
+    font-weight: 600;
+    font-family: var(--font-display);
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 6px var(--shadow-glow);
+  }
 
-/* ===================================================
-   Arabic Verse Styling – Sacred Language Format
-   Version: 1.0
-   =================================================== */
-   
-    /* Islam */
+  /* ===================================================
+     🌍 Sacred Language Formatting
+     Shared base + tradition overrides
+     =================================================== */
+  .sacred-script {
+    font-size: var(--font-size-lg);
+    line-height: 2.2;
+    margin: var(--space-md) 0;
+    color: var(--text-accent);
+    text-align: left;
+  }
+
+  /* Islam */
   .arabic {
+    color-scheme: sacred-script;
     font-family: 'Scheherazade New', serif;
-    font-size: var(--font-size-lg);
-    text-align: left;
     direction: rtl;
-    color: var(--text-accent);
-    line-height: 2.2;
-    margin: var(--space-md) 0;
   }
 
-   /* Hebrew */
+  /* Hebrew */
   .hebrew {
+    color-scheme: sacred-script;
     font-family: 'Frank Ruhl Libre', 'David Libre', serif;
-    font-size: var(--font-size-lg);
-    text-align: left;
     direction: rtl;
-    color: var(--text-accent);
-    line-height: 2.2;
-    margin: var(--space-md) 0;
   }
 
-   /* Buddhist */
+  /* Indic / Buddhist */
   .sanskrit {
-  font-family: 'Noto Serif Devanagari', serif;
-  font-size: var(--font-size-lg);
-  text-align: left;
-  direction: ltr;
-  color: var(--text-accent);
-  line-height: 2.2;
-  margin: var(--space-md) 0;
-}
+    color-scheme: sacred-script;
+    font-family: 'Noto Serif Devanagari', serif;
+    direction: ltr;
+  }
 
-.pali {
-  font-family: 'Noto Serif', serif;
-  font-size: var(--font-size-lg);
-  text-align: left;
-  direction: ltr;
-  color: var(--text-accent);
-  line-height: 2.2;
-  margin: var(--space-md) 0;
-}
-.tibetan {
-  font-family: 'Noto Serif Tibetan', serif;
-  font-size: var(--font-size-lg);
-  text-align: left;
-  direction: ltr;
-  color: var(--text-accent);
-  line-height: 2.2;
-  margin: var(--space-md) 0;
-}
+  .pali {
+    color-scheme: sacred-script;
+    font-family: 'Noto Serif', serif;
+    direction: ltr;
+  }
 
- /* Eqypt */
-.egyptian-script {
-  font-family: "Noto Serif Egyptian Hieroglyphs", "Segoe UI Historic", "Libre Baskerville", serif;
-  font-size: var(--font-size-lg);
-  text-align: left;
-  direction: ltr;
-  color: var(--text-accent);
-  line-height: 2.2;
-  margin: var(--space-md) 0;
-}
+  .tibetan {
+    color-scheme: sacred-script;
+    font-family: 'Noto Serif Tibetan', serif;
+    direction: ltr;
+  }
 
-.egyptian-citation {
-  font-family: "Libre Baskerville", "Georgia", serif;
-  font-size: var(--font-size-lg);
-  text-align: left;
-  direction: ltr;
-  color: var(--text-accent);
-  line-height: 2.2;
-  margin: var(--space-md) 0;
-}
+  /* Egypt */
+  .egyptian-script {
+    color-scheme: sacred-script;
+    font-family: 'Noto Serif Egyptian Hieroglyphs', 'Segoe UI Historic', var(--font-serif);
+    direction: ltr;
+  }
 
-.papyrus-quote {
-  font-family: "Libre Baskerville", serif;
-  font-size: var(--font-size-lg);
-  text-align: left;
-  direction: ltr;
-  color: var(--text-accent);
-  line-height: 2.2;
-  margin: var(--space-md) 0;
-}
+  .egyptian-citation,
+  .papyrus-quote {
+    color-scheme: sacred-script;
+    font-family: var(--font-serif);
+    direction: ltr;
+  }
 
-.duat-map {
-  background-color: var(--bg-map, #1a1a1a);
-  border: 2px solid var(--text-accent);
-  padding: 1rem;
-  margin: 2rem 0;
-  box-shadow: 0 0 12px var(--shadow-glow);
-  border-radius: var(--border-radius-xl);
-  text-align: left;
-  color: var(--text-accent);
-}
+  /* Special block component */
+  .duat-map {
+    background-color: var(--bg-map, #1a1a1a);
+    border: 2px solid var(--text-accent);
+    padding: 1rem;
+    margin: 2rem 0;
+    box-shadow: 0 0 12px var(--shadow-glow);
+    border-radius: var(--border-radius-lg);
+    text-align: left;
+    color: var(--text-accent);
+  }
 
-.duat-map h3 {
-  font-family: "Cinzel", serif;
-  font-size: var(--font-size-lg);
-  margin-bottom: 0.5rem;
-  color: var(--text-accent);
-}
+  .duat-map h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    margin-bottom: 0.5rem;
+    color: var(--text-accent);
+  }
 
-.duat-map p {
-  font-size: var(--font-size-lg);
-  line-height: 1.6;
-  font-family: "Libre Baskerville", serif;
-}
+  .duat-map p {
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    font-family: var(--font-serif);
+  }
 
-.duat-map img {
-  max-width: 100%;
-  border-radius: var(--border-radius-lg);
-  margin-top: 1rem;
-}
-
+  .duat-map img {
+    max-width: 100%;
+    border-radius: var(--border-radius-lg);
+    margin-top: 1rem;
+  }
 }

@@ -1,32 +1,34 @@
 @layer components {
-/* ===============================
-   Glossary Entries (Sacred Terms)
-   =============================== */
-
-   .glossary {
-    margin: 2rem 0;
+  /* ===============================
+     📖 Glossary Entries (Sacred Terms)
+     =============================== */
+  .glossary {
+    margin: var(--space-xl) 0;
     padding: 0;
-    font-size: 1rem;
-    line-height: 1.85;
+    font-size: var(--font-size-base, 1rem);
+    line-height: var(--font-base-line, 1.85);
   }
-  
+
   .glossary-entry {
-    margin-bottom: 1.25rem;
-    padding-left: 1rem;
+    margin-bottom: var(--space-md, 1.25rem);
+    padding-left: var(--glossary-indent, 1rem);
     border-left: 2px solid var(--text-accent);
   }
-  
+
   .glossary-entry dt {
-    font-weight: bold;
-    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-family: var(--font-display, 'Cinzel', serif);
     color: var(--text-accent);
-    margin-bottom: 0.25rem;
-    font-size: 1.05rem;
+    margin-bottom: var(--space-xs, 0.25rem);
+    font-size: var(--font-size-sm, 1.05rem);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
-  
+
   .glossary-entry dd {
     margin: 0;
     font-style: italic;
+    font-family: var(--font-serif, 'Libre Baskerville', serif);
     color: var(--text-primary);
   }
 }

@@ -10,25 +10,40 @@ bodyClass: obsidian
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
-
 ---
 
-{% include "partials/head-meta.njk" %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-obsidian-key/obsidian-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
-  </section>
+
+<h4 class="index heading">Deep investigations into hidden power, systemic erosion, and the machinery of control.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 About The Obsidian Key</span></summary>
+    <p>
+      <strong>The Obsidian Key</strong> is the investigative pillar of The Gnostic Key —
+      a place for deep dives into systems of control, societal erosion, and the hidden
+      architecture of power. Here the scrolls unravel the illusions that mask injustice.
+    </p>
+    <p>
+      From the <em>House of Grift</em> to <em>SYSTEMIC</em>, these investigations map
+      corruption, expose courtroom alchemy, and confront the shadow structures that
+      shape our world. The Obsidian Key is not just research — it is a lens, sharpened
+      to cut through the myths and reveal what lies beneath.
+    </p>
+  </details>
 
   {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>
-
-{# JSON-LD #}
-{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
-{% include "partials/jsonld-collection.njk" %}
-

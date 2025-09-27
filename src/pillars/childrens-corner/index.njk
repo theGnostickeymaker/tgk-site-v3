@@ -10,25 +10,40 @@ bodyClass: children
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
-
 ---
 
-{% include "partials/head-meta.njk" %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/childrens-corner/children-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
-  </section>
+
+<h4 class="index heading">Gentle stories, parables, and mythic adventures — guiding little lights toward big wonders.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 About Children’s Corner</span></summary>
+    <p>
+      <strong>Children’s Corner</strong> is the storytelling pillar of The Gnostic Key —
+      a place for young seekers to explore gentle parables, spiritual fables, and
+      mythic adventures. Here teachings are simplified into tales that open the heart
+      and spark the imagination.
+    </p>
+    <p>
+      Designed to be kind and accessible, these stories offer children a way to
+      encounter mystery and meaning in forms they can hold. The Corner is a safe,
+      luminous space where memory and myth meet play and wonder.
+    </p>
+  </details>
 
   {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>
-
-{# JSON-LD #}
-{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
-{% include "partials/jsonld-collection.njk" %}
-

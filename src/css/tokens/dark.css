@@ -1,44 +1,49 @@
 @layer tokens {
-/* ===================================================
-   Dark Theme – The Gnostic Key
-   Version: 1.1 – Extended with UI and Accent Tokens
-   =================================================== */
+  /* ===================================================
+     Dark Theme – The Gnostic Key
+     Version: 1.2 – Synced with base + accents
+     =================================================== */
 
-   [data-theme="dark"] {
-    /* Accent Tokens */
+  [data-theme="dark"] {
+    /* ✦ Accent Tokens */
     --gold-accent: #e8c572;
     --purple-accent: #a18bd3;
     --vault-accent: #8470b8;
     --highlight: #9e845d;
-  
-    /* Backgrounds & Text */
+
+    /* ✦ Backgrounds & Text */
     --bg-primary: #0e0e11;
     --bg-secondary: #1a1a1a;
+    --bg-wash: rgba(0, 0, 0, 0.90);
+    --bg-color: var(--bg-primary);
+
     --text-primary: #f4f1ea;
     --text-accent: #e0c98d;
-  
-    /* Shadows & Symbolism */
+    --strong-text: #f0dba6;
+    --text-secondary: #aaa; /* fallback match with section-subtitle */
+    --text-muted: #888;     /* softer meta text */
+
+    /* ✦ Shadows & Symbols */
     --shadow-glow: rgba(255, 215, 140, 0.25);
     --glyph-color: var(--text-accent);
-  
-    /* Card Defaults */
+    --accent-scroll: var(--text-accent);
+
+    /* ✦ Card Defaults */
     --card-action-bg: var(--text-accent);
     --card-action-text: var(--bg-primary);
     --card-action-hover: var(--highlight);
-  
-    /* Default Sections */
-    --strong-text: #f0dba6;
+
+    /* ✦ Sections */
     --blockquote-text: #e0e0e0;
     --cite-color: #aaa;
     --welcome-text: #f0d79b;
     --door-callout-color: #d0d0d0;
     --section-subtitle-color: #aaa;
     --section-border: #f0dba6;
-    --section-bg-top: #2a2a2a;      /* previously #202020 */
-    --section-bg-bottom: #383838;   /* previously #2a2a2a */
-    --accent-scroll: var(--text-accent);
-  
-    /* Inputs */
+    --section-bg-top: #2a2a2a;
+    --section-bg-bottom: #383838;
+
+    /* ✦ Inputs & Forms */
     --input-bg: #1b1b1f;
     --input-bg-focus: #222;
     --input-border: #2a2a2a;
@@ -46,16 +51,15 @@
     --input-placeholder: #999;
     --input-text: #f4f1ea;
 
-    --accent-scroll: var(--text-accent);
+    /* ✦ Footer / Overlay */
+    --footer-opacity: 0.85;
+    --overlay-bg-gradient: linear-gradient(
+      to right,
+      rgba(158, 132, 93, 0.15),
+      rgba(224, 201, 141, 0.1)
+    );
 
-    --bg-wash: rgba(0, 0, 0, 0.90);  
-
-    --bg-color: var(--bg-primary);
-
-    
+    /* ✦ Global Opacity */
+    --bg-opacity: 0.16; /* slightly lighter wash than light theme */
   }
-  
-
-  
-  
 }

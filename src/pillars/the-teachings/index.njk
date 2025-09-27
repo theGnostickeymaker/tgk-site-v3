@@ -1,52 +1,54 @@
 ---
 layout: base.njk
 
-title: "The Teachings"
-description: "Teachings that weave together ancient wisdom and living guidance — afterlife maps, rights scrolls, and paths of remembrance."
-tagline: "Sacred knowledge ✦ guides for seekers across time"
+title: "The Afterlife Series"
+description: "Exploring how different traditions understand death, rebirth, and the soul’s journey."
+tagline: "Sacred maps and living rights ✦ teachings across time and tradition."
 
-glyph: "☸"
+glyph: "𓂀"
+glyphRow: ["✦","𓂀","✦"]
+
 accent: gold
 bodyClass: gold
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-
+  - { title: "The Teachings", url: "/pillars/the-teachings/" }
 ---
 
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-teachings/afterlife-index.jpg" %}
   {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "The Afterlife — Episodes" %}
+  {% set base = "/pillars/the-teachings/the-afterlife/" %}
+  {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
 <main class="main-content">
 
-<h4 class="index heading">Teachings that weave together ancient wisdom and living guidance — afterlife maps, rights scrolls, and paths of remembrance.</h4>
+  <h4 class="index heading">
+    Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond.
+  </h4>
 
   <details class="disclaimer-box">
-    <summary><span class="disclaimer-heading">🔑 About The Teachings</span></summary>
+    <summary><span class="disclaimer-heading">🔑 About the Afterlife Series</span></summary>
     <p>
-    <strong>The Teachings</strong> is the classroom of The Gnostic Key — a pillar devoted
-    to guiding seekers through wisdom traditions and living knowledge. Here you’ll find
-    scrolls that explain and preserve: afterlife maps, rights of the people, and
-    pathways of remembrance drawn from Gnostic, mystical, and ancient sources.
-  </p>
-  <p>
-    Designed to be accessible and structured, these scrolls often include glossaries,
-    quizzes, and guides for deeper learning. The Teachings is where knowledge is
-    transmitted, not just uncovered — a gateway into the many traditions that help us
-    live, die, and remember well.
-  </p>
+      The <strong>Afterlife Series</strong> explores how different traditions describe the
+      passage of the soul. From Gnostic Christianity to Buddhism, Kabbalah to Sufi Islam,
+      each episode maps the unseen journeys of death, rebirth, and remembrance.
+    </p>
+    <p>
+      These scrolls combine symbolic depth with accessible structure. Expect glossaries,
+      quizzes, and guides that help you walk these pathways consciously — learning not
+      only what comes after death, but how to live more fully now.
+    </p>
   </details>
 
   {% include "partials/pillar-grid.njk" %}
 
-  {% set items = pillarGrid %}
-  {% set headline = "The Gnostic Key — Pillars" %}
-  {% set base = "/" %}
-  {% include "partials/jsonld-collection.njk" %}
-
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
+
 </main>

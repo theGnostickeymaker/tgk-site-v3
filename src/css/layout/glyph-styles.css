@@ -1,100 +1,90 @@
 @layer components {
+  /* ===================================================
+     Glyph Styling – Sacred Symbols
+     Version: 2.2 – Unified + Tokenised
+     =================================================== */
 
-/* glyph_styles.css
-   Version: 2.1 – Token size, muted variants, glyph state refinements */
+  .glyph,
+  .glyph-scroll {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: var(--glyph-size-base, 2.2rem);
+    line-height: 1;
+    text-align: center;
+    margin-bottom: var(--glyph-margin-bottom, 1rem);
+    color: var(--glyph-color, currentColor);
+    text-shadow: 
+      0 0 6px var(--shadow-glow, transparent),
+      0 0 4px var(--glyph-color, currentColor);
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block;
+  }
 
+  .glyph:hover,
+  .glyph-scroll:hover {
+    transform: scale(1.08);
+    text-shadow: 
+      0 0 10px var(--shadow-glow, transparent),
+      0 0 14px var(--glyph-color, currentColor);
+  }
 
-.glyph {
-  font-family: var(--font-display);
-  font-size: var(--glyph-size-base);
-  line-height: 1;
-  text-align: center;
-  margin-bottom: var(--glyph-margin-bottom);
-  color: var(--glyph-color);
-  text-shadow: 0 0 6px var(--shadow-glow), 0 0 4px var(--glyph-color);
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-  display: inline-block;
-}
+  .glyph.centered,
+  .glyph-scroll.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.glyph:hover {
-  transform: scale(1.08);
-  text-shadow: 0 0 10px var(--shadow-glow), 0 0 14px var(--glyph-color);
-}
-
-.glyph.centered {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ============================================
-   Gnostic Divider Symbol – Scroll Footer Mark
-   Version: 1.0
-   ============================================ */
-
-   .gnostic-divider {
-    margin: var(--space-xl);
+  /* ===================================================
+     Gnostic Divider Symbol – Scroll Footer Mark
+     Version: 1.1 – Glow + Spin Effects
+     =================================================== */
+  .gnostic-divider {
+    margin: var(--space-xl, 3rem) auto;
     text-align: center;
     position: relative;
     z-index: 2;
   }
-  
+
   .divider-symbol {
-    font-size: 2rem;
+    font-size: var(--glyph-size-large, 3rem);
     display: inline-block;
-    color: var(--text-accent);
+    color: var(--text-accent, #5e412f);
+    text-shadow: 0 0 10px var(--shadow-glow, rgba(0,0,0,0.25));
     transition: transform 0.6s ease;
-    text-shadow: 0 0 10px var(--shadow-glow);
   }
-  
-  /* ✨ Soft glow effect */
+
+  /* ✨ Soft glow pulse */
   .divider-symbol.glow {
     animation: pulseGlow 2.5s ease-in-out infinite;
   }
-  
+
   @keyframes pulseGlow {
-    0%, 100% {
-      text-shadow: 0 0 8px var(--shadow-glow);
-    }
-    50% {
-      text-shadow: 0 0 16px var(--highlight);
-    }
+    0%, 100% { text-shadow: 0 0 8px var(--shadow-glow); }
+    50%      { text-shadow: 0 0 16px var(--highlight); }
   }
-  
-  /* ✦ Slow spin effect */
+
+  /* ✦ Slow spin */
   .divider-symbol.spin {
     animation: spinSymbol 12s linear infinite;
   }
-  
+
   @keyframes spinSymbol {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
-  
-  .glyph-scroll {
-  font-family: var(--font-display);
-  font-size: var(--glyph-size-base);
+
+  .pillar-glyph-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-xxl, 2.5rem);
   line-height: 1;
-  text-align: center;
-  margin-bottom: var(--glyph-margin-bottom);
-  color: var(--glyph-color);
-  text-shadow: 0 0 6px var(--shadow-glow), 0 0 4px var(--glyph-color);
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  color: var(--glyph-color, var(--text-accent));
+  text-shadow: 0 0 12px var(--shadow-glow);
+}
+
+.pillar-glyph-row .pillar-glyph {
   display: inline-block;
-}
-
-.glyph-scroll:hover {
-  transform: scale(1.08);
-  text-shadow: 0 0 10px var(--shadow-glow), 0 0 14px var(--glyph-color);
-}
-
-.glyph-scroll.centered {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  animation: glyph-spin 8s linear infinite;
 }
 }

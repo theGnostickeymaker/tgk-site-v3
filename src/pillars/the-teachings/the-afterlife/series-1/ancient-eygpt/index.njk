@@ -1,0 +1,54 @@
+---
+layout: base.njk
+title: "Ancient Eygpt "
+description: "Through the weighing of the heart, the halls of Ma’at, and the journey to Osiris, Ancient Egypt mapped the soul’s fate beyond death."
+tier: initiate
+
+glyph: "𓂀"
+
+series_version: 1
+permalink: "/pillars/the-teachings/the-afterlife/series-1/ancient-eygpt/index.html"
+tagline: "Through the weighing of the heart, the halls of Ma’at, and the journey to Osiris, Ancient Egypt mapped the soul’s fate beyond death."
+seriesMeta:
+  number: 1
+  label: "Series 1"
+  series_version: 1
+episode: 5
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Teachings", url: "/pillars/the-teachings/" }
+  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
+  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Ancient Eygpt ", url: "/pillars/the-teachings/the-afterlife/series-1/ancient-eygpt/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-eygpt.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "Ancient Eygpt  — Series 1" %}
+  {% set base = "/pillars/the-teachings/the-afterlife/series-1/ancient-eygpt/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+
+<h4 class="index heading">
+  Ancient Eygpt  — Through the weighing of the heart, the halls of Ma’at, and the journey to Osiris, Ancient Egypt mapped the soul’s fate beyond death.
+</h4>
+
+<details class="disclaimer-box">
+  <summary><span class="disclaimer-heading">𓂀 About Ancient Eygpt </span></summary>
+  <p>
+    <strong>Ancient Eygpt </strong> begins this episode’s journey into hidden teachings.
+  </p>
+</details>
+
+{% include "partials/pillar-grid.njk" %}
+
+<div class="gnostic-divider">
+  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+</div>
+
+</main>

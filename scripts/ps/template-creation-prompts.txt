@@ -4,14 +4,14 @@ pwsh scripts/ps/create-new-afterlife-series.ps1 `
   -PillarSlug the-teachings `
   -SeriesSlug the-afterlife `
   -SeriesNo 1 `
-  -Slug sufi-islam `
-  -Title "Sufi-Islam" `
-  -Episode 2 `
-  -Tier free `
-  -Glyph "⛪︎" `
+  -Slug mesoamerica  `
+  -Title "Mesoamerica " `
+  -Episode 6 `
+  -Tier initiate `
+  -Glyph "🌽" `
   -BodyClass gold `
   -SeriesGroup "The Afterlife Series" `
-  -LandingDescription "Three-part journey: the false cosmos, Christ the Revealer, and the soul’s return." `
+  -LandingDescription "Through the weighing of the heart, the halls of Ma’at, and the journey to Osiris, Ancient Egypt mapped the soul’s fate beyond death." `
   -WithQuizzes `
   -Root C:\TGK\tgk-site-v3
 

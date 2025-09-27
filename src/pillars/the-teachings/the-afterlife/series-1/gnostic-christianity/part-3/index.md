@@ -1,19 +1,21 @@
 ---
 layout: base.njk
-title: "Gnostic Christianity"
-description: "The soul’s ascent through the spheres — liberation from the Archons and return to the hidden God."
+title: "Gnostic christianity"
+description: ""
 tier: free
 episode: 1
 partNumeral: III
-partTitle: "The Soul’s Return"
-tagline: "The ascent of the soul, passing the Archons, and reunion with the Source."
+partTitle: "Part III — TBD"
+tagline: "Gnostic christianity , TBD"
 slug: "part-3"
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/index.html"
-socialImage: "/media/share/the-teachings/the-afterlife/gnostic-christianity-part-3.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity-part-3.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3"
 imgPrefix: "gnostic-christianity-"
 bodyClass: "gold"
-glyph: "⛪︎"
+
+glyph: "✝"
+
 seriesId: "the-afterlife-s1"
 episodeId: "gnostic-christianity"
 partId: "part3"
@@ -26,28 +28,18 @@ seriesMeta:
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
-  - { title: "The Afterlife Series", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
-  - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
-  - { title: "Part III — The Soul’s Return", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/index.html" }
+  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
+  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Gnostic christianity ", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
+  - { title: "Part III" }
 ---
-
-
-<!-- ========================= PART III ========================= -->
-
-<nav class="scroll-tabs" role="navigation" aria-label="Part Map">
-  <a class="tab-link" href="#quiz"      data-title="Quiz">Quiz</a>
-  <a class="tab-link" href="#glossary"  data-title="Glossary">Glossary</a>
-  <a class="tab-link" href="#discuss"   data-title="Discussion">Discuss</a>
-  <a class="tab-link" href="#series"    data-title="Series Map">Series Map</a>
-</nav>
 
 <main class="main-content">
 <section class="content-container">
 
 <details class="disclaimer-box">
   <summary>
-    <span class="disclaimer-heading">⚠️ Previously in Part I/II/II etc</span>
+    <span class="disclaimer-heading">⚠️ Previously in Part I/II/etc</span>
   </summary>
   <p>TBD</p>
 </details>
@@ -65,71 +57,10 @@ breadcrumbs:
   </ul>
 </section>
 
-<figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.jpg" 
-         alt="TBD" 
-         class="image-gnostic" 
-         loading="lazy">
-  </picture>
-  <figcaption class="caption-gnostic">TBC.
-  </figcaption>
-</figure>
-
-<section class="section-block">
-  <h2 class="section-heading">Chapter 1: TBC</h2>
-    <p>For most of the dead</p>
-    <h4 class="section-subheading">1. List Heading</h4>
-    <h4 class="section-subheading">2. List Heading</h4>
-    <h4 class="section-subheading">3. List Heading</h4>
-</section>
-
-<section class="section-block">
-  <blockquote class="blockquote">
-      <em>TBD</em>
-    </blockquote>
-  </section>
-</section>
-
-<section class="section-block" id="discuss">
-  <h2 class="section-heading">🗣️ Discussion Prompt: </h2>
-    <p>TBD</p>
-
-    <div class="btn-wrap">
-      <a href="https://t.me/thegnostickey" 
-        target="_blank" 
-        rel="noopener" 
-        class="btn btn-outline" 
-        aria-label="Join The Gnostic Key Telegram Channel">
-        💬 Join the Temple on Telegram</a>
-    </div>
-
-    <div class="btn-wrap">
-      <a href="https://x.com/thegnostickey" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="btn btn-outline"
-        aria-label="Share this article on X (formerly Twitter)">
-        📤 Send Your Spark to the Network on X</a>
-    </div>
-</section>
-
 <section class="section-block" id="quiz">
   <h2 class="section-heading">🧠 Quiz</h2>
-    <div id="quiz-container" data-quiz-id="{{ quizId }}"></div>
+  <div id="quiz-container" data-quiz-id="{{ quizId }}"></div>
   {% include "partials/quiz-data-loader.njk" %}
-</section>
-
-<section class="section-block">
-  <h2 class="section-heading">📖 Glossary</h2>
-  <p class="section-subtitle">TBD</p>
-  <dl class="glossary">
-    <div class="glossary-entry">
-      <dt>TBD</dt>
-      <dd>TBD</dd>
-    </div>
-  </dl>
 </section>
 
 <section class="section-block" id="series">
@@ -139,16 +70,5 @@ breadcrumbs:
 
 {% include "partials/series-nav-buttons.njk" %}
 
-<details class="disclaimer-box">
-  <summary>
-    <span class="disclaimer-heading">⚠️ Disclaimer</span>
-  </summary>
-  <p>TBD</p>
-</details>
-
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
-</div>
 </section>
-
 </main>

@@ -1,64 +1,63 @@
 @layer components {
-/* ==========================================
-   List Introduction – Text Before a Sacred List
-   ========================================== */
-
-   .list-intro {
+  /* ==========================================
+     📜 List Introduction – Sacred List Preface
+     ========================================== */
+  .list-intro {
     font-size: var(--font-size-lg);
     font-weight: 500;
-    font-family: var(--font-serif);
+    font-family: var(--font-display, 'Cinzel', serif);
     color: var(--text-primary);
     margin-bottom: var(--space-sm);
     line-height: var(--font-base-line);
+    letter-spacing: 0.02em;
   }
 
-/* 💠 Emoji List Format */
-.list-emoji {
-  list-style: none !important;
-  padding-left: 0;
-  margin: var(--space-md) 0;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-  max-width: 100%;
-}
+  /* 💠 Emoji / Symbolic List Format */
+  .list-emoji {
+    --list-emoji-char: "✦"; /* can be overridden per pillar/accent */
+    list-style: none !important;
+    padding-left: 0;
+    margin: var(--space-md) 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+  }
 
-.list-emoji li {
-  position: relative;
-  margin-bottom: var(--space-sm);
-  padding-left: var(--space-lg);
-}
-
-.list-emoji li::before {
-  content: "✦ ";
-  position: absolute;
-  left: 0;
-  top: 0.05rem;
-  font-size: var(--font-size-base);
-  line-height: var(--font-base-line);
-  color: var(--text-accent);
-}
-
-.list-emoji li a {
-  word-break: break-word;
-  overflow-wrap: anywhere;
-}
-
-/* 📎 Offset anchor scrolls so footnotes are not hidden under headers */
-@media (max-width: 600px) {
   .list-emoji li {
-    padding-left: var(--space-lg); /* restore room for the emoji */
-
+    position: relative;
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-lg);
   }
 
   .list-emoji li::before {
-    left: var(--space-xs); /* nudges emoji right a bit */
+    content: var(--list-emoji-char);
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    font-size: var(--font-size-base);
+    line-height: var(--font-base-line);
+    color: var(--text-accent);
   }
 
   .list-emoji li a {
-    display: inline;
     word-break: break-word;
+    overflow-wrap: anywhere;
   }
-}
+
+  /* 📎 Responsive tweak: anchors + bullets */
+  @media (max-width: 600px) {
+    .list-emoji li {
+      padding-left: var(--space-lg); /* keep space for emoji */
+    }
+
+    .list-emoji li::before {
+      left: var(--space-xs); /* nudge bullet in */
+    }
+
+    .list-emoji li a {
+      display: inline;
+      word-break: break-word;
+    }
+  }
 }

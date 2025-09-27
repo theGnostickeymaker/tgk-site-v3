@@ -10,25 +10,40 @@ bodyClass: resonant
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "<SET PILLAR NAME>", url: "<SET PILLAR URL>" }
-
 ---
 
-{% include "partials/head-meta.njk" %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-resonant-key/resonant-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
 
 <main class="main-content">
-  <section class="page-title-block">
-    <p class="page-title"><!-- Optional intro one-liner for this pillar --></p>
-  </section>
+
+<h4 class="index heading">Audiobooks, spoken scrolls, and immersive soundscape rituals — voices of memory in a sound temple of the hidden.</h4>
+
+  <details class="disclaimer-box">
+    <summary><span class="disclaimer-heading">🔑 About The Resonant Key</span></summary>
+    <p>
+      <strong>The Resonant Key</strong> is the auditory pillar of The Gnostic Key — a
+      sanctuary for sound, voice, and vibration. Here scrolls are spoken aloud, texts
+      become audiobooks, and rituals unfold through immersive soundscapes.
+    </p>
+    <p>
+      The Resonant Key is more than listening: it is a sound temple, a place where
+      memory vibrates through tone and resonance. It invites seekers to step inside
+      the echo — to hear what was once hidden, and to feel wisdom through the ear as
+      much as the eye.
+    </p>
+  </details>
 
   {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "The Gnostic Key — Pillars" %}
+  {% set base = "/" %}
+  {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
 </main>
-
-{# JSON-LD #}
-{% set items = pillarGrid %}{% set headline = title + " — Index" %}{% set base = page.url %}
-{% include "partials/jsonld-collection.njk" %}
-
