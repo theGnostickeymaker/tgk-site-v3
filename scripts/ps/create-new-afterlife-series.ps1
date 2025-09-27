@@ -151,6 +151,7 @@ breadcrumbs:
 {% endblock %}
 
 <main class="main-content">
+<section class="content-container">
 
 <h4 class="index heading">
   Teachings that weave together ancient wisdom and living guidance — afterlife maps, rights scrolls, and paths of remembrance.
@@ -180,7 +181,7 @@ breadcrumbs:
 # =========================
 # Series Landing (SeriesRoot)
 # =========================
-# index.njk (only if missing)
+#
 $seriesIndexNJKPath = Join-Path $SeriesRoot "index.njk"
 if (-not (Test-Path $seriesIndexNJKPath)) {
 $seriesIndexNJK = @"
@@ -211,6 +212,7 @@ breadcrumbs:
 {% endblock %}
 
 <main class="main-content">
+<section class="content-container">
 
 <h4 class="index heading">
   The first scroll cycle of the Afterlife Series — mapping death, rebirth, and the soul’s passage through the great traditions.
@@ -330,6 +332,7 @@ breadcrumbs:
 {% endblock %}
 
 <main class="main-content">
+<section class="content-container">
 
 <h4 class="index heading">
   $Title — $LandingDescription
