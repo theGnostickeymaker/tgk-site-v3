@@ -14,7 +14,7 @@ imgBase: "/media/the-teachings/the-afterlife/series-1/mesoamerica/part-1"
 imgPrefix: "mesoamerica-"
 bodyClass: "gold"
 glyph: "🌽"
-
+glyphRow: ["🌽","𓂀","🌽"]
 seriesId: "the-afterlife-s1"
 episodeId: "mesoamerica"
 partId: "part1"
