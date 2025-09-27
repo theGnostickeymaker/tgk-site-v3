@@ -17,14 +17,14 @@
     overflow-x: hidden;   /* ✅ prevents badge/ribbon spill */
   }
 
-  /* 📱 Medium breakpoint */
-  @media (max-width: 768px) {
-    .portal-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-md, 1rem);
-      padding: var(--space-lg) var(--space-md);
-    }
+/* 📱 Medium breakpoint */
+@media (max-width: 768px) {
+  .portal-grid {
+    grid-template-columns: 1fr; /* collapse earlier */
+    gap: var(--space-md, 1rem);
+    padding: var(--space-lg) var(--space-md);
   }
+}
 
   /* 📱 Small / Mobile breakpoint */
   @media (max-width: 480px) {
