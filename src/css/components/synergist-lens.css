@@ -1,0 +1,67 @@
+/* =========================
+   Synergist Lens (Tokenised)
+   ========================= */
+.synergist-lens {
+  border: 1px solid var(--section-border);
+  border-radius: var(--radius-md, 12px);
+  padding: var(--space-xl, 2rem);
+  margin-top: var(--space-2xl, 2.5rem);
+  background: var(--card-gradient);
+  box-shadow: var(--scroll-box-shadow);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.synergist-lens h2.section-heading {
+  text-align: center;
+  font-size: var(--font-lg, 1.6rem);
+  margin-bottom: var(--space-lg, 1.5rem);
+  color: var(--text-accent);
+  letter-spacing: var(--tracking-wide, 0.05em);
+  text-transform: uppercase;
+  padding-bottom: var(--space-sm, 0.5rem);
+
+}
+
+.synergist-lens .lens-block {
+  margin-top: var(--space-lg, 1.5rem);
+}
+
+.synergist-lens .lens-heading {
+  font-size: var(--font-md, 1.2rem);
+  margin-bottom: var(--space-xs, 0.5rem);
+  color: var(--text-accent);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs, 0.5rem);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.synergist-lens .lens-heading .pillar-glyph {
+  font-size: 1.2em;
+  color: var(--glyph-color);
+  text-shadow: 0 0 6px var(--shadow-glow);
+}
+
+.synergist-lens ul {
+  list-style: none;
+  padding-left: var(--space-md, 1rem);
+  margin: 0;
+}
+
+.synergist-lens ul li {
+  margin: 0.3rem 0;
+  color: var(--text-muted);
+}
+
+.synergist-lens ul li a {
+  color: var(--link-color);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--section-border);
+  transition: all 0.2s ease;
+}
+
+.synergist-lens ul li a:hover {
+  color: var(--link-hover);
+  border-bottom-color: var(--link-hover);
+}

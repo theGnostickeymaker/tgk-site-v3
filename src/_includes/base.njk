@@ -85,6 +85,7 @@
 
   <!-- COMPONENTS -->
   <link rel="stylesheet" href="/css/components/blockquotes.css?v={{ bust }}">
+
   <link rel="stylesheet" href="/css/components/button-styles.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/card-styles.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/charts.css?v={{ bust }}">
@@ -93,6 +94,7 @@
   <link rel="stylesheet" href="/css/components/lists.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/scroll-intro-dropdown.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/sources.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/synergist-lens.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/tables.css?v={{ bust }}">
 
   <!-- NAVIGATION -->
@@ -117,6 +119,7 @@
   <main id="content" class="site-main" role="main">
     {{ content | safe }}
   </main>
+  
 
   {% include "partials/footer.njk" %}
 
@@ -134,5 +137,14 @@
   </div>
 
   <script defer src="/js/toggles.js?v={{ bust }}"></script>
+
+  <!-- QUIZ SYSTEM -->
+  <script type="module">
+    import quizzes from "/_data/quiz/index.js";
+    window.quizzes = quizzes;
+    console.log("[TGK QUIZ] ✅ Loaded quizzes:", Object.keys(quizzes));
+  </script>
+  <script defer src="/js/quiz-engine.js?v={{ bust }}"></script>
+
 </body>
 </html>

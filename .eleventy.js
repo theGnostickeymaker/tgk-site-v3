@@ -147,6 +147,6 @@ export default function(eleventyConfig) {
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md"]
+    templateFormats: ["njk", "md", "11ty.js"]
   };
 }

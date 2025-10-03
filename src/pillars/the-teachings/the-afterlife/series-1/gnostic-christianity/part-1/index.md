@@ -7,7 +7,7 @@ episode: 1
 partNumeral: I
 partTitle: "The World is Not What it Seems"
 tagline: "The false cosmos, Archonic interrogation, and the soul’s hidden map of return."
-slug: "part-1"
+slug: "gnostic-christianity"
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/index.html"
 socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity-part-1.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1"
@@ -32,8 +32,27 @@ breadcrumbs:
   - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "Part I" }
----
 
+# ⚯ Synergist Lens fields
+lensEnabled: true
+crossLinks:
+  - pillar: the-teachings
+    series: the-afterlife
+    slug: buddhism
+    type: resonance
+    note: "Kenosis ↔ Śūnyatā"
+vaultRefs:
+  - id: vault:gospel-of-thomas
+communityThreads:
+  - id: thread:gnostic-christianity
+    title: "Archons, Memory, and the False Cosmos"
+relatedProducts:
+  - id: real-archetypes:larry-ellison-card
+    type: tarot-card
+    promo: "From *The Real Archetypes* deck"
+nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
+
+---
 
 <main class="main-content">
 <section class="content-container">
@@ -310,11 +329,7 @@ breadcrumbs:
   </figcaption>
 </figure>
 
-<section class="section-block" id="quiz">
-  <h2 class="section-heading">🧠 Quiz: How Well Do You See Through the Illusion?</h2>
-  <div id="quiz-container" data-quiz-id="{{ quizId }}"></div>
-  {% include "partials/quiz-data-loader.njk" %}
-</section>
+{% include "partials/quiz-block.njk" %}
 
   <!--Glossary-->
 <section class="section-block" id="glossary">
@@ -380,37 +395,15 @@ breadcrumbs:
   <p>Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>.  
   Your words might become the flame that awakens another.</p>
 
-  <!-- Telegram (stable direct link) -->
-  <div class="btn-wrap">
-    <a 
-      href="https://t.me/thegnostickey" 
-      target="_blank" 
-      rel="noopener" 
-      class="btn btn-outline" 
-      aria-label="Join The Gnostic Key Telegram Channel"
-    >
-      💬 <strong>Join the Temple on Telegram</strong>
-    </a>
-  </div>
-
-  <!-- X / Twitter -->
-  <div class="btn-wrap">
-    <a 
-      href="https://x.com/thegnostickey" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="btn btn-outline"
-      aria-label="Share this scroll on X (formerly Twitter)"
-    >
-      📤 <strong>Send Your Spark to the Network on X</strong>
-    </a>
-  </div>
+  {% include "partials/share-buttons.njk" %}
 </section>
 
 <section class="section-block" id="series">
   <h2 class="section-heading">📜 Episode Parts</h2>
   {% include "partials/episode-part-nav.njk" %}
 </section>
+
+{% include "partials/synergist-lens.njk" %}
 
 {% include "partials/series-nav-buttons.njk" %}
 

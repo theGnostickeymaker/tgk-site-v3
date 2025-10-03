@@ -1,38 +1,60 @@
 ---
 layout: base.njk
-title: "buddhism"
-description: ""
+title: "Buddhism"
+description: "Part I of the Afterlife Series. Karma, rebirth (not ‘soul’ transmigration), the Six Realms, Tibetan bardos, Pure Land, and practices for a clear death."
 tier: free
-episode: 3
+episode: 4
 partNumeral: I
-partTitle: "Part I — TBD"
-tagline: "buddhism , TBD"
+partTitle: "The Wheel of Becoming"
+tagline: "Karma, realms, and the endless cycle of becoming."
 slug: "part-1"
 permalink: "/pillars/the-teachings/the-afterlife/series-1/buddhism/part-1/index.html"
 socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/buddhism-part-1.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/buddhism/part-1"
 imgPrefix: "buddhism-"
-bodyClass: "gold"
+bodyClass: "saffron"
 
 glyph: "☸"
+pillar: "the-teachings"
+series: "the-afterlife"
 
 seriesId: "the-afterlife-s1"
 episodeId: "buddhism"
 partId: "part1"
 quizId: "the-afterlife-s1-buddhism-part1"
+
 seriesMeta:
   number: 1
   label: "Series 1"
   series_version: 1
 
+lensEnabled: true
+crossLinks:
+  - pillar: "the-teachings"
+    series: "the-afterlife"
+    slug: "gnostic-christianity"
+    type: "resonance"
+    note: "Śūnyatā ↔ Kenosis"
+vaultRefs:
+  - id: "vault:tibetan-book-of-the-dead"
+    note: "Root Tibetan source text"
+communityThreads:
+  - id: "thread:buddhism-afterlife"
+    title: "Cycles of Becoming and Liberation"
+relatedProducts:
+  - id: "codex-arcana:buddhist-afterlife-card"
+    type: "tarot-card"
+    promo: "Codex Arcana Tarot — Buddhist Afterlife archetype"
+
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
   - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
-  - { title: "buddhism ", url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/" }
+  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Buddhism", url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/" }
   - { title: "Part I" }
 ---
+
 
 <main class="main-content">
 <section class="content-container">

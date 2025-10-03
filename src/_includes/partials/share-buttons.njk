@@ -1,0 +1,28 @@
+{% set shareTitle = title or page.fileSlug or "The Gnostic Key" %}
+{% set shareUrl = permalink or page.url or "https://thegnostickey.com" %}
+
+<div class="share-buttons">
+  <!-- Telegram -->
+  <div class="btn-wrap">
+    <a 
+      href="https://t.me/share/url?url={{ shareUrl | url }}&text={{ shareTitle | urlencode }}"
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="btn btn-accent"
+      aria-label="Share this scroll on Telegram">
+      💬 <strong>Share on Telegram</strong>
+    </a>
+  </div>
+
+  <!-- X (Twitter) -->
+  <div class="btn-wrap">
+    <a 
+      href="https://x.com/intent/tweet?url={{ shareUrl | url }}&text={{ shareTitle | urlencode }}"
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="btn btn-accent"
+      aria-label="Share this scroll on X (formerly Twitter)">
+      📤 <strong>Share on X</strong>
+    </a>
+  </div>
+</div>

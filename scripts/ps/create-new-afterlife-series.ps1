@@ -412,23 +412,34 @@ tier: $Tier
 episode: $Episode
 partNumeral: $roman
 partTitle: "Part $roman — TBD"
-tagline: "$Title, TBD"
+tagline: "Tagline for Part $roman"
 slug: "part-$i"
 permalink: "$permalink"
 socialImage: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-part-$i.jpg"
 imgBase: "$imgBase"
 imgPrefix: "$Slug-"
 bodyClass: "$BodyClass"
+
 glyph: "$Glyph"
+pillar: "$PillarSlug"
+series: "$SeriesSlug"
+
 glyphRow: ["$Glyph","$Glyph","$Glyph"]
 seriesId: "$seriesKey"
 episodeId: "$Slug"
 partId: "$partId"
 quizId: "$quizId"
+quizIntro: "Can you see through the veil of Part $roman?"
 seriesMeta:
   number: $SeriesNo
   label: "Series $SeriesNo"
   series_version: $SeriesVersion
+
+lensEnabled: true
+crossLinks: []
+vaultRefs: []
+communityThreads: []
+relatedProducts: []
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -462,27 +473,94 @@ breadcrumbs:
   </ul>
 </section>
 
-<section class="section-block" id="quiz">
-  <h2 class="section-heading">🧠 Quiz</h2>
-  <div id="quiz-container" data-quiz-id="{{ quizId }}"></div>
-  {% include "partials/quiz-data-loader.njk" %}
+<blockquote class="blockquote">
+  &ldquo;Your eyes shall be opened, and you shall be like gods, knowing good and evil.&rdquo;<br>
+  <cite>
+    <em>Genesis 3:5</em> (Gnostic lens), 
+    <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fgenesis-3.pdf?alt=media" target="_blank" rel="noopener noreferrer">Source</a>
+  </cite>
+</blockquote>
+
+<!--Image block-->
+<figure class="image-block">
+  <picture>
+    <source srcset="{{ imgBase }}/{{ imgPrefix }}eden-serpent-gnosis.webp" type="image/webp">
+    <img src="{{ imgBase }}/{{ imgPrefix }}eden-serpent-gnosis.jpg" alt="Gnostic vision of the Eden awakening" class="image-gnostic" loading="lazy">
+  </picture>
+  <figcaption class="caption-gnostic">Caption.</figcaption>
+</figure>
+
+<!--🧘 Practicing Gnosis Today-->
+<section class="section-block">
+  <h2 class="section-heading">🧘 Chapter 17: Practicing Gnosis Today</h2>
+  <p><strong>Gnosis isn’t philosophy. It’s practice.</strong></p>
+  <p>Mirror meditation exercise here…</p>
 </section>
 
+<!-- 🎨 Creative Prompt -->
+<section class="section-block">
+  <h2 class="section-heading">🎨 Creative Prompt</h2>
+  <p>Prompt instructions here…</p>
+  {% include "partials/share-buttons.njk" %}
+</section>
+
+<!--Glossary-->
+<section class="section-block" id="glossary">
+  <h2 class="section-heading">📖 Glossary</h2>
+  <dl class="glossary">
+    <div class="glossary-entry">
+      <dt>TBD</dt>
+      <dd>TBD.</dd>
+    </div>
+  </dl>
+</section>
+
+<!--Quiz-->
+{% include "partials/quiz-block.njk" %}
+
+<!--Discussion Block-->
+<section class="section-block" id="discuss">
+  <h2 class="section-heading">🗣️ Discussion Prompt:</h2>
+  <p>TBD</p>
+  {% include "partials/share-buttons.njk" %}
+</section>
+
+<!-- 📚 Gnostic Sources & Study Path -->
+<section class="section-block">
+  <h2 class="section-heading">📚 Gnostic Sources &amp; Study Path</h2>
+  <ul class="list-emoji">
+    <li>The Nag Hammadi Scriptures</li>
+    <li>The Gnostic Gospels — Elaine Pagels</li>
+  </ul>
+</section>
+
+<!--Episode Parts-->
 <section class="section-block" id="series">
   <h2 class="section-heading">📜 Episode Parts</h2>
   {% include "partials/episode-part-nav.njk" %}
 </section>
 
+<!--Synergist Lens-->
+{% if lensEnabled %}
+<section class="section-block synergist-lens">
+  {% include "partials/synergist-lens.njk" %}
+</section>
+{% endif %}
+
+<!--Part Nav Buttons-->
 {% include "partials/series-nav-buttons.njk" %}
+
+<div class="gnostic-divider">
+  <span class="divider-symbol pillar-glyph glow" aria-hidden="true">"$Glyph"</span>
+</div>
 
 </section>
 </main>
 "@
+
   $partPath = Join-Path $partDir "index.md"
   if (-not (Test-Path $partPath)) {
     Write-Utf8File $partPath $partMd
-  } else {
-    Write-Host "⚠️ Skipped existing part file: $partPath"
   }
 
   if ($WithQuizzes) {
@@ -498,7 +576,7 @@ export default {
     partId: "part$i",
     quizId: "$quizId"
   },
-  intro: "Can you see through the first veil?",
+  intro: "$((Get-Content (Join-Path $partDir 'index.md') -Raw | Select-String 'quizIntro:' | ForEach-Object { $_.ToString().Split(':')[1].Trim() }))",
   questions: [
     {
       id: "q1",

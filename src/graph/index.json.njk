@@ -1,0 +1,32 @@
+---
+permalink: "/graph/index.json"
+eleventyExcludeFromCollections: true
+---
+{
+  "nodes": [
+    {%- for page in collections.all -%}
+      {%- if page.data.seriesId and page.data.episodeId and page.data.partId -%}
+        {
+          "id": "{{ page.data.seriesId }}:{{ page.data.episodeId }}:{{ page.data.partId }}",
+          "title": "{{ page.data.title | escape }}",
+          "pillar": "{{ page.data.pillar or '' }}",
+          "series": "{{ page.data.series or '' }}",
+          "url": "{{ page.url }}"
+        }{% if not loop.last %},{% endif %}
+      {%- endif -%}
+    {%- endfor -%}
+  ],
+  "edges": [
+    {%- for page in collections.all -%}
+      {%- if page.data.crossLinks -%}
+        {%- for link in page.data.crossLinks -%}
+          {
+            "from": "{{ page.data.seriesId }}:{{ page.data.episodeId }}:{{ page.data.partId }}",
+            "to": "{{ link.pillar }}:{{ link.series }}:{{ link.slug }}",
+            "type": "{{ link.type }}"
+          }{% if not loop.last or not loop.parent.last %},{% endif %}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}

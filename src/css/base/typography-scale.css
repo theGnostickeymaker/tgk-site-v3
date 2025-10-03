@@ -51,7 +51,7 @@
 
   /* 🌐 Links */
   a {
-    color: var(--text-accent);
+    color: var(--text-accent) !important;
     text-decoration: none;
     transition: color 0.3s ease, text-shadow 0.3s ease;
   }

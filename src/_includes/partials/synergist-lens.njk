@@ -1,0 +1,65 @@
+{% if (crossLinks and crossLinks.length) 
+   or (vaultRefs and vaultRefs.length) 
+   or (communityThreads and communityThreads.length) 
+   or (relatedProducts and relatedProducts.length) %}
+
+<section class="section-block synergist-lens id="lens"">
+  <h2 class="section-heading">∞ Synergist Lens</h2>
+
+  {% if crossLinks and crossLinks.length %}
+  <div class="lens-block">
+    <h3 class="lens-heading">
+      <span class="pillar-glyph">⚯</span> Cross-Threads
+    </h3>
+    <ul>
+      {% for link in crossLinks %}
+        <li>
+          {{ link.from }} ✧ {{ link.to }}
+          {% if link.type %}<em>({{ link.type }})</em>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if vaultRefs and vaultRefs.length %}
+  <div class="lens-block">
+    <h3 class="lens-heading">
+      <span class="pillar-glyph">📜</span> Vault References
+    </h3>
+    <ul>
+      {% for ref in vaultRefs %}
+        <li><a href="/vault/{{ ref }}">{{ ref }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if communityThreads and communityThreads.length %}
+  <div class="lens-block">
+    <h3 class="lens-heading">
+      <span class="pillar-glyph">✺</span> Community Threads
+    </h3>
+    <ul>
+      {% for thread in communityThreads %}
+        <li><a href="/community/{{ thread | slug }}">{{ thread }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if relatedProducts and relatedProducts.length %}
+  <div class="lens-block">
+    <h3 class="lens-heading">
+      <span class="pillar-glyph">⚒</span> Related Artifacts
+    </h3>
+    <ul>
+      {% for product in relatedProducts %}
+        <li><a href="/shop/{{ product | slug }}">{{ product }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+</section>
+{% endif %}

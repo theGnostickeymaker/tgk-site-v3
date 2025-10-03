@@ -1,26 +1,24 @@
-{# -------------------------------
-  Quiz Data Loader Partial
-  Injects JSON into script tag for quiz engine
--------------------------------- #}
+{# ----------------------------------------------
+  Quiz Data Loader
+  Injects quiz JSON into a <script> tag
+  with a unique ID for JS renderer
+------------------------------------------------ #}
 
 {% if quizId %}
   {% set quizData = quiz[quizId] %}
-  
   {% if quizData %}
-    <script type="application/json" id="quiz-data-{{ quizId }}">
+    <script 
+      type="application/json" 
+      id="quiz-data-{{ quizId }}" 
+      class="quiz-data">
       {{ quizData | dump | safe }}
     </script>
     <script>
-      console.log("[TGK QUIZ] Loaded quiz data for:", "{{ quizId }}");
+      console.log("[TGK QUIZ] ✅ Injected data for quizId: {{ quizId }}");
     </script>
   {% else %}
-    <script>
-      console.warn("[TGK QUIZ] ⚠️ No quiz data found for: '{{ quizId }}'");
-    </script>
+    <script>console.warn("[TGK QUIZ] ⚠️ No quiz data found for '{{ quizId }}'");</script>
   {% endif %}
-
 {% else %}
-  <script>
-    console.warn("[TGK QUIZ] ⚠️ quizId not defined in partial.");
-  </script>
+  <script>console.warn("[TGK QUIZ] ⚠️ No quizId passed to loader");</script>
 {% endif %}

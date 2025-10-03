@@ -1,12 +1,16 @@
-<nav class="episode-scroll-nav">
+<nav class="episode-scroll-nav pillar-nav {{ __ac }}">
   <ul class="scroll-part-links">
     {% for part in episodeParts %}
       <li>
         <a 
           class="scroll-link {% if page.url === part.url %}active{% endif %}" 
           href="{{ part.url }}">
-          {{ part.title }}
+          <span class="part-number">{{ loop.index | roman }}</span>
+          <span class="part-title">{{ part.title }}</span>
         </a>
+        {% if part.desc %}
+          <p class="part-desc">{{ part.desc }}</p>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
