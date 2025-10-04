@@ -1,13 +1,15 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "Part III of the Afterlife Series — The soul’s map of return through death, the toll gates, and gnosis as the password of liberation."
+description: "Part III of the Afterlife Series — the soul’s map of return through death, the toll gates, and gnosis as the password of liberation."
 tier: free
+
 episode: 1
 partNumeral: III
 partTitle: "The Soul’s Return"
 tagline: "The toll gates of the Archons, the deathless spark, and the memory that frees the soul."
 slug: "part-3"
+
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/index.html"
 socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity-part-3.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3"

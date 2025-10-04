@@ -192,6 +192,7 @@ description: "$LandingDescription"
 tier: $Tier
 
 glyph: "$Glyph"
+glyphRow: ["$Glyph","$Glyph","$Glyph"]
 
 seriesMeta:
   number: $SeriesNo
@@ -199,11 +200,6 @@ seriesMeta:
   series_version: $SeriesVersion
 permalink: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/index.html"
 
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
-  - { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" }
-  - { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
 ---
 
 {% block head %}

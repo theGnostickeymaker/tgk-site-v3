@@ -7,8 +7,22 @@ export default {
   disclaimerText: "<p>Interpretations vary across schools and texts in this pillar/series.</p>",
 
   pillarGrid: [
-    { href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/", title: "Part I — TBD", glyph: "✝", tagline: "Gnostic Christianity, Part I tagline", tier: "free", state: "default" },
-    { href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/", title: "Part II — TBD", glyph: "✝", tagline: "Gnostic Christianity, Part II tagline", tier: "free", state: "default" },
-    { href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/", title: "Part III — TBD", glyph: "✝", tagline: "Gnostic Christianity, Part III tagline", tier: "free", state: "default" }
+    { href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/", 
+      title: "Part I — The World Is Not What It Seems", glyph: "✝", 
+      tagline: "The hidden God, Sophia’s fall, the Demiurge, and the spark within.", 
+      tier: "free", 
+      state: "default" },
+    { href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/", 
+      title: "Part II — The Revealer and the Spark", 
+      glyph: "✝", 
+      tagline: "From the false god to the forgotten light — the Christ of Gnosis.", 
+      tier: "free", 
+      state: "default" },
+    { href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/", 
+      title: "Part III — The Soul’s Return", 
+      glyph: "✝", 
+      tagline: "The toll gates of the Archons, the deathless spark, and the memory that frees the soul.", 
+      tier: "free", 
+      state: "default" }
   ]
 };

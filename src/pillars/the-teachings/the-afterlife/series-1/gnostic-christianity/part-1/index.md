@@ -1,13 +1,15 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "The false cosmos, Archonic interrogation, and the soul’s hidden map of return."
+description: "Part I of the Afterlife Series — the false cosmos, Archonic interrogation, and the soul’s hidden map of return."
 tier: free
+
 episode: 1
 partNumeral: I
 partTitle: "The World Is Not What It Seems"
 tagline: "The hidden God, Sophia’s fall, the Demiurge, and the spark within."
 slug: "part-1"
+
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/index.html"
 socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity-part-1.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1"

@@ -1,13 +1,15 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "The hidden gospel of the Revealer, the mirror, and the awakening spark."
+description: "Part II of the Afterlife Series — the hidden gospel of the Revealer, the mirror, and the awakening spark."
 tier: free
+
 episode: 1
 partNumeral: II
 partTitle: "The Revealer and the Spark"
 tagline: "From the false god to the forgotten light — the Christ of Gnosis."
 slug: "part-2"
+
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/index.html"
 socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity-part-2.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2"
