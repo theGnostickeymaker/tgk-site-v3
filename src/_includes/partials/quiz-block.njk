@@ -5,9 +5,13 @@
    ======================================================= #}
 
 {% if quizId %}
-<section class="section-block quiz-block" data-quiz-id="{{ quizId }}">
+<section 
+  id="quiz"
+  class="section-block quiz-block" 
+  data-quiz-id="{{ quizId }}">
+  
   <h2 class="section-heading">🧠 Quiz</h2>
   <div class="quiz-container"></div>
 </section>
-
 {% endif %}
+

@@ -3,7 +3,7 @@ export default {
     pillarId: () => "the-teachings",
     pillarName: () => "The Teachings",
     pillarUrl: () => "/pillars/the-teachings/",
-    pillarGlyph: () => "✶",
+    pillarGlyph: () => "⛪︎",
     accent: () => "gold",
     breadcrumbs: () => ([
       { title: "The Gnostic Key", url: "/" },

@@ -275,62 +275,50 @@
     text-decoration: none;
 }
 
-.episode-scroll-nav {
-  margin-top: 2.5rem;
-  border-left: 3px solid var(--accent);
-  padding-left: 1.25rem;
-}
+  .scroll-part-links.list-emoji {
+    --list-emoji-char: "✦"; /* default symbol, override per pillar */
+  }
 
-.scroll-part-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+  .scroll-part-links.list-emoji li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: var(--space-md);
+    padding-left: var(--space-xl);
+  }
 
-.scroll-part-links li {
-  margin: 1.75rem 0;
-  transition: transform 0.2s ease;
-}
+  .scroll-part-links.list-emoji li::before {
+    content: var(--list-emoji-char);
+    color: var(--accent);
+    font-size: 1rem;
+    top: 0.25rem;
+  }
 
-.scroll-part-links li:hover {
-  transform: translateX(6px);
-}
+  .scroll-link {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
 
-.scroll-link {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--accent); /* links now always use pillar accent */
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
+  .scroll-link:hover {
+    text-decoration: underline;
+  }
 
-.scroll-link .part-glyph {
-  font-size: 1.2rem;
-  color: var(--accent);
-}
+  .scroll-link.active {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
-.scroll-link .part-number {
-  font-family: var(--font-decorative, serif);
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--accent);
-}
+  .part-number {
+    margin-right: 0.25rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
 
-.scroll-link.active {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.part-desc {
-  margin: 0.4rem 0 0 2.2rem;
-  font-size: 0.92rem;
-  color: var(--muted-text);
-  line-height: 1.5;
-  max-width: 65ch;
-}
-
-
-
+  .part-desc {
+    font-size: 1.1rem;
+    color: var(--muted-text);
+  }
 }

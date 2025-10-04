@@ -1,0 +1,46 @@
+{# ========================================================= 
+   Reference Section Partial
+   Uses list-emoji for symbolic bullets
+   Consumes front-matter `references:` block
+   Styled with .source-footer wrapper
+   ========================================================= #}
+
+{% if references %}
+<section id="resources" class="section-block source-footer">
+  <h2 class="section-heading">{{ references.title }}</h2>
+
+  {% if references.intro %}
+    <p class="intro">{{ references.intro }}</p>
+  {% endif %}
+
+  {% if references.readings %}
+    <h3 class="sub-heading">🔍 Recommended Reading</h3>
+    <ul class="list-emoji">
+      {% for item in references.readings %}
+        <li>
+          <strong>{{ item.title }}</strong>
+          {% if item.desc %}&mdash; {{ item.desc }}{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if references.scholarly %}
+    <h3 class="sub-heading">📖 Scholarly Sources &amp; Translations</h3>
+    <ul class="list-emoji">
+      {% for item in references.scholarly %}
+        <li>
+          {{ item.author }} ({{ item.year }}). 
+          <em>{{ item.work }}</em>.
+          {% if item.pub %} {{ item.pub }}.{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <p class="disclaimer">
+    These sources are recommended for study and context — they represent diverse voices
+    and are offered as entry points, not dogma.
+  </p>
+</section>
+{% endif %}

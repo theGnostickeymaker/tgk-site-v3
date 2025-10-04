@@ -1,34 +1,35 @@
 @layer components {
   /* ===================================================
-     TGK Buttons – Unified System
-     Version: 2.1 – Harmonised & Tokenised
+     TGK Buttons – Refined Minimal Variant
+     Version: 3.0 – Glow + Outline, No Heavy Fills
      =================================================== */
 
   /* ✨ General Button Base */
   .btn {
     display: inline-block;
-    padding: var(--btn-padding, 0.65rem 1.2rem);
+    padding: var(--btn-padding, 0.65rem 1.4rem);
     font-size: var(--font-size-base, 1rem);
     font-family: var(--btn-font, var(--font-display));
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-radius: var(--btn-radius, var(--border-radius-base));
+    border-radius: var(--btn-radius, var(--radius-md));
     cursor: pointer;
     text-align: center;
-    transition: var(--transition-default, all 0.3s ease);
+    transition: all 0.3s ease;
 
-    /* Token-driven defaults */
-    color: var(--btn-text, var(--bg-primary));
-    background-color: var(--btn-bg, var(--text-accent));
-    border: var(--btn-border, none);
-    box-shadow: var(--btn-shadow, 0 0 12px var(--shadow-glow));
+    /* Minimal default look: transparent background, glowing text */
+    color: var(--text-accent);
+    background: transparent;
+    border: 2px solid var(--text-accent);
+    box-shadow: 0 0 8px transparent;
   }
 
   .btn:hover {
-    background: var(--btn-hover-bg, var(--highlight));
-    color: var(--btn-hover-text, var(--bg-primary));
-    box-shadow: var(--btn-hover-shadow, 0 0 20px var(--highlight));
+    color: var(--bg-primary);
+    background: var(--text-accent);
+    border-color: var(--text-accent);
+    box-shadow: 0 0 15px var(--text-accent);
   }
 
   /* 🟫 Wrapper for Centered Buttons */
@@ -44,7 +45,7 @@
     }
   }
 
-  /* ⬛ Fullwidth Variant */
+  /* 🔷 Fullwidth Variant */
   .btn.full {
     display: block;
     width: 100%;
@@ -52,41 +53,56 @@
     margin: var(--space-md) auto;
   }
 
-  /* 🔷 Outline Variant */
-  .btn-outline {
+  /* 🔶 Tier Buttons – reworked as glowing sigils */
+  .tier-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: 1rem;
+  }
+
+  .tier-button-group .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--accent-scroll);
+    color: var(--accent-scroll);
     background: transparent;
-    border: 2px solid var(--text-accent);
-    color: var(--text-accent);
-    box-shadow: none;
-  }
-  .btn-outline:hover {
-    background-color: var(--highlight);
-    color: var(--bg-primary);
-    box-shadow: 0 0 15px var(--shadow-glow);
+    box-shadow: 0 0 12px transparent;
+    transition: all 0.25s ease;
   }
 
-  /* 🟨 Primary Variant */
-  .btn-primary {
+  .tier-button-group .btn:hover {
+    color: var(--bg-primary);
     background: var(--accent-scroll);
-    color: var(--bg-primary);
-  }
-  .btn-primary:hover {
-    background: var(--highlight);
-    color: var(--bg-primary);
+    box-shadow: 0 0 25px var(--accent-scroll);
+    transform: translateY(-2px);
   }
 
-  /* 🜁 Accent Variant (pillar accent override) */
-  .btn-accent {
+  /* ✴️ CTA Button (bigger glow, etched outline) */
+  .cta-button {
+    border: 2px solid var(--text-accent);
+    background: transparent;
+    color: var(--text-accent);
+    font-weight: bold;
+    box-shadow: 0 0 15px transparent;
+  }
+  .cta-button:hover {
     background: var(--text-accent);
     color: var(--bg-primary);
+    box-shadow: 0 0 25px var(--text-accent);
   }
 
   /* 🚫 Disabled */
   .btn:disabled,
   .btn.btn-disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
-    filter: grayscale(0.3);
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+    background: transparent;
+    box-shadow: none;
   }
 
   /* ⬜ Small Variant */
@@ -95,38 +111,12 @@
     font-size: var(--font-size-sm);
   }
 
-  /* 🔶 Tier Buttons (inherits from .btn) */
-  .tier-button-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-top: 1rem;
+  /* ✨ Glow Hover Utility */
+  .btn.glow-hover {
+    box-shadow: 0 0 10px transparent;
   }
-  .tier-button-group .btn {
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--soft-gold, #e5c47a), var(--golden-blaze, #f6d66e));
-    color: var(--base-dark, #1a1a1a);
-    box-shadow: 0 0 20px rgba(255, 215, 128, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .tier-button-group .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 30px rgba(255, 215, 128, 0.6);
-    background: linear-gradient(135deg, var(--golden-blaze, #f6d66e), var(--soft-gold, #e5c47a));
-  }
-
-  /* ✴️ CTA Button (harmonised with .btn) */
-  .cta-button {
-    border: 2px solid transparent;
-    font-weight: bold;
-    box-shadow: 0 0 20px var(--shadow-glow);
-  }
-  .cta-button:hover {
-    background-color: var(--highlight);
-    box-shadow: 0 0 25px var(--highlight);
+  .btn.glow-hover:hover {
+    box-shadow: 0 0 20px var(--highlight);
   }
 
   /* 🧭 Manage Subscription */
@@ -135,20 +125,5 @@
     text-align: center;
     display: flex;
     justify-content: center;
-  }
-
-  /* ✨ Hover Glow Variant */
-  .btn.glow-hover {
-    box-shadow: 0 0 15px var(--shadow-glow);
-  }
-  .btn.glow-hover:hover {
-    background-color: var(--highlight);
-    box-shadow: 0 0 25px var(--highlight);
-    transform: translateY(-1px);
-  }
-
-  /* Utility */
-  .hidden {
-    display: none !important;
   }
 }

@@ -256,7 +256,7 @@ export default {
 "@
 Write-Utf8File (Join-Path $SeriesRoot ".11tydata.js") $seriesDotData
 
-# Series index.11tydata.js → EPISODE cards (append-or-create)
+# .11tydata.js (metadata + episode cards + nav)
 $seriesIndexDataPath = Join-Path $SeriesRoot "index.11tydata.js"
 $newEpisodeCard = @"
     {
@@ -268,15 +268,21 @@ $newEpisodeCard = @"
       state: "$State"
     }
 "@
+
+$newEpisodeNav = @"
+    { title: "$Title", desc: "$LandingDescription", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/" }
+"@
+
 if (Test-Path $seriesIndexDataPath) {
   $existing = Get-Content $seriesIndexDataPath -Raw
   $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/")
   if ($existing -notmatch $needle) {
     $updated = $existing -replace '(pillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newEpisodeCard`$2"
+    $updated = $updated -replace '(seriesNav:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newEpisodeNav`$2"
     Set-Content $seriesIndexDataPath $updated -Encoding UTF8
-    Write-Host "✅ Appended episode card to: $seriesIndexDataPath"
+    Write-Host "✅ Appended episode + nav card to: $seriesIndexDataPath"
   } else {
-    Write-Host "⚠️ Skipped duplicate episode card in: $seriesIndexDataPath"
+    Write-Host "⚠️ Skipped duplicate episode/nav card in: $seriesIndexDataPath"
   }
 } else {
   $seriesCards = @"
@@ -284,6 +290,19 @@ export default {
   introText: "$SeriesTitleDefault, Series $SeriesNo — choose an episode:",
   pillarGrid: [
 $newEpisodeCard
+  ],
+  seriesNav: [
+$newEpisodeNav
+  ],
+  layout: "base.njk",
+  pillar: "$PillarSlug",
+  series: "$SeriesSlug",
+  seriesMeta: { number: $SeriesNo, label: "Series $SeriesNo", series_version: $SeriesVersion },
+  breadcrumbs: [
+    { title: "The Gnostic Key", url: "/" },
+    { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" },
+    { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" },
+    { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
   ]
 };
 "@
@@ -348,7 +367,7 @@ breadcrumbs:
 {% include "partials/pillar-grid.njk" %}
 
 <div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  <span class="divider-symbol pillar-glyph spin spin" aria-hidden="true">{{ pillarGlyph }}</span>
 </div>
 
 </main>
@@ -360,11 +379,25 @@ breadcrumbs:
 
 # index.11tydata.js (parts) – append-or-create (NO overwrite afterwards)
 $episodeIndexDataPath = Join-Path $episodeRoot "index.11tydata.js"
+
+# ① Define part cards (for pillarGrid)
 $newPartCards = @"
-    { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/", title: "Part I — TBD",  glyph: "$Glyph", tagline: "$Title, Part I tagline",  tier: "$Tier", state: "$State" },
+    { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/", title: "Part I — TBD", glyph: "$Glyph", tagline: "$Title, Part I tagline", tier: "$Tier", state: "$State" },
     { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-2/", title: "Part II — TBD", glyph: "$Glyph", tagline: "$Title, Part II tagline", tier: "$Tier", state: "$State" },
-    { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-3/", title: "Part III — TBD",glyph: "$Glyph", tagline: "$Title, Part III tagline",tier: "$Tier", state: "$State" }
+    { href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-3/", title: "Part III — TBD", glyph: "$Glyph", tagline: "$Title, Part III tagline", tier: "$Tier", state: "$State" }
 "@
+
+# ② Generate a mirrored version for seriesNav (text-based nav)
+# Strip extra fields from $newPartCards dynamically for cleaner links
+$seriesNav = ($newPartCards -split "`n" | ForEach-Object {
+    if ($_ -match 'href:\s*"([^"]+)"' -and $_ -match 'title:\s*"([^"]+)"') {
+        $url = $matches[1]
+        $title = $matches[2] -replace "— TBD",""
+        "    { title: `"$title`", desc: `"$Title, navigation link`", url: `"$url`" },"
+    }
+}) -join "`n"
+
+# ③ Write or append to file
 if (Test-Path $episodeIndexDataPath) {
   $existing = Get-Content $episodeIndexDataPath -Raw
   $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/")
@@ -384,12 +417,14 @@ export default {
   episode: $Episode,
   disclaimerTitle: "⚠️ Diversity of Sources",
   disclaimerText: "<p>Interpretations vary across schools and texts in this pillar/series.</p>",
+
   pillarGrid: [
 $newPartCards
   ]
 };
 "@
   Write-Utf8File $episodeIndexDataPath $episodeIndexData
+  Write-Host "✅ Created new: $episodeIndexDataPath (includes pillarGrid + seriesNav)"
 }
 
 # =========================
@@ -424,7 +459,6 @@ glyph: "$Glyph"
 pillar: "$PillarSlug"
 series: "$SeriesSlug"
 
-glyphRow: ["$Glyph","$Glyph","$Glyph"]
 seriesId: "$seriesKey"
 episodeId: "$Slug"
 partId: "$partId"
@@ -448,7 +482,43 @@ breadcrumbs:
   - { title: "Series $(Roman $SeriesNo)", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
   - { title: "$Title", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/" }
   - { title: "Part $roman" }
+
+glossary:
+  - term: "TBC"
+    def: "TBC."
+  - term: "TBC"
+    def: "TBC."
+
+references:
+  title: "📚 Sources & Study Path"
+  intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
+  readings:
+    - title: "⚡ Title One"
+      desc: "Short description of why it matters"
+    - title: "⚡ Title Two"
+      desc: "Short description of why it matters"
+    - title: "⚡ Title Three"
+      desc: "Short description of why it matters"
+  scholarly:
+    - author: "Lastname, F."
+      work: "Book or Paper Title"
+      year: 2000
+      pub: "Publisher"
+    - author: "Lastname, F."
+      work: "Another Title"
+      year: 2010
+      pub: "Publisher"
+
 ---
+
+<nav class="scroll-tabs" role="navigation" aria-label="Part Map"> 
+  <a class="tab-link" href="#quiz" data-title="Quiz">Quiz</a> 
+  <a class="tab-link" href="#glossary" data-title="Glossary">Glossary</a> 
+  <a class="tab-link" href="#discuss" data-title="Discussion">Discuss</a>
+  <a class="tab-link" href="#series" data-title="Series Map">Series Map</a>
+  <a class="tab-link" href="#resources" data-title="Resources">Resources</a>
+  <a class="tab-link" href="#lens" data-title="Lens">Synergist Lens</a> 
+</nav>
 
 <main class="main-content">
 <section class="content-container">
@@ -526,32 +596,31 @@ breadcrumbs:
 </section>
 
 <!-- 📚 Gnostic Sources & Study Path -->
-<section class="section-block">
-  <h2 class="section-heading">📚 Gnostic Sources &amp; Study Path</h2>
-  <ul class="list-emoji">
-    <li>The Nag Hammadi Scriptures</li>
-    <li>The Gnostic Gospels — Elaine Pagels</li>
-  </ul>
-</section>
+{% include "partials/reference-section.njk" %}
 
 <!--Episode Parts-->
 <section class="section-block" id="series">
-  <h2 class="section-heading">📜 Episode Parts</h2>
-  {% include "partials/episode-part-nav.njk" %}
+  <h2 class="section-heading">📜 Series Map</h2>
+  {% include "partials/series-nav-buttons.njk" %}
 </section>
 
-<!--Synergist Lens-->
-{% if lensEnabled %}
-<section class="section-block synergist-lens">
-  {% include "partials/synergist-lens.njk" %}
+<!--∞ Synergist Lens-->
+{% include "partials/synergist-lens.njk" %}
+
+<!-- 🔑 CTA Buttons (only for free tier) -->
+{% if tier == "free" %}
+<section class="section-block" id="cta">
+  <h2 class="section-heading">🔑 Unlock More Scrolls</h2>
+  <p>Enjoying this scroll? Subscribe for full access or support the project directly.</p>
+  {% include "partials/cta-buttons.njk" %}
 </section>
 {% endif %}
 
-<!--Part Nav Buttons-->
-{% include "partials/series-nav-buttons.njk" %}
+<!-- Episode Part Nav -->
+{% include "partials/episode-part-nav.njk" %}
 
 <div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph glow" aria-hidden="true">"$Glyph"</span>
+  <span class="divider-symbol pillar-glyph spin spin" aria-hidden="true">{{ pillarGlyph }}</span>
 </div>
 
 </section>
@@ -576,7 +645,12 @@ export default {
     partId: "part$i",
     quizId: "$quizId"
   },
-  intro: "$((Get-Content (Join-Path $partDir 'index.md') -Raw | Select-String 'quizIntro:' | ForEach-Object { $_.ToString().Split(':')[1].Trim() }))",
+  intro: "$(
+    (Get-Content (Join-Path $partDir 'index.md') -Raw |
+    Select-String '^\s*quizIntro:\s*["'']?(.*?)["'']?\s*$' |
+    ForEach-Object { $_.Matches[0].Groups[1].Value.Trim() }
+    )
+  )",
   questions: [
     {
       id: "q1",
@@ -601,6 +675,153 @@ export default {
 }
 
 Write-Host "✅ Created/updated episode at: $episodeRoot"
+
+$quizIndexPath = Join-Path $Root "src/_data/quiz/index.js"
+
+# Step 1: read current file (or create new if missing)
+if (Test-Path $quizIndexPath) {
+  $lines = Get-Content $quizIndexPath
+} else {
+  $lines = @("import placeholder from './placeholder.js';", "", "export default {", "};")
+}
+
+# Step 2: build new imports + map lines
+$newImports = @()
+$newMaps    = @()
+for ($i=1; $i -le 3; $i++) {
+  $alias = "${Slug.Replace('-','')}Part$i"
+  $rel   = "./$PillarSlug/$SeriesSlug/series-$SeriesNo/the-afterlife-s$SeriesNo-$Slug-part$i.js"
+  $newImports += "import $alias from '$rel';"
+  $newMaps    += "  [$alias.meta.quizId]: $alias,"
+}
+
+# Step 3: collect existing imports/maps
+$existingImports = $lines | Where-Object { $_ -like 'import*' }
+$existingMaps    = $lines | Where-Object { $_ -match '\[.*meta.quizId\]' }
+
+# Step 4: merge + dedupe + sort
+$allImports = ($existingImports + $newImports | Sort-Object | Get-Unique)
+$allMaps    = ($existingMaps + $newMaps | Sort-Object | Get-Unique)
+
+# Step 5: rebuild file
+$rebuild = @()
+$rebuild += $allImports
+$rebuild += ""
+$rebuild += "export default {"
+$rebuild += $allMaps
+$rebuild += "};"
+
+Set-Content $quizIndexPath $rebuild -Encoding UTF8
+Write-Host "✅ Quiz index updated and alphabetised."
+
+# =========================
+# Episode-specific .11tydata.js (slug-level)
+# =========================
+$episodeDotDataPath = Join-Path $episodeRoot "$Slug.11tydata.js"
+
+# Build seriesNav dynamically from the series-level index.11tydata.js
+$seriesIndexDataPath = Join-Path $SeriesRoot "index.11tydata.js"
+if (Test-Path $seriesIndexDataPath) {
+  $seriesContent = Get-Content $seriesIndexDataPath -Raw
+
+  # Match whole object blocks inside pillarGrid or seriesNav
+  $episodeBlocks = [regex]::Matches($seriesContent, '\{[^}]*\}') | ForEach-Object { $_.Value }
+
+  $seriesNav = foreach ($block in $episodeBlocks) {
+    $url   = if ($block -match 'href:\s*"([^"]+)"') { $matches[1] } else { "" }
+    $title = if ($block -match 'title:\s*"([^"]+)"') { $matches[1] } else { "" }
+    $desc  = if ($block -match 'tagline:\s*"([^"]+)"') { $matches[1] } else { "" }
+
+    if ($url -and $title) {
+      "    { title: `"$title`", desc: `"$desc`", url: `"$url`" },"
+    }
+  } -join "`n"
+
+} else {
+  Write-Host "⚠️ Could not build seriesNav (series index missing: $seriesIndexDataPath)"
+  $seriesNav = ""
+}
+
+if (-not (Test-Path $episodeDotDataPath)) {
+$episodeDotData = @"
+export default {
+  seriesLabel: "The Afterlife Series",
+  pillarLabel: "$PillarNameDefault",
+  glyphRow: ["$Glyph", "☥", "$Glyph"],
+  seriesHome: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/",
+  pillarHome: "/pillars/$PillarSlug/",
+  episode: $Episode,
+  tagline: "$LandingDescription",
+  seriesMeta: { number: $SeriesNo, label: "Series $SeriesNo", series_version: $SeriesVersion },
+  episodeParts: [
+    { title: "Part I", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/" },
+    { title: "Part II", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-2/" },
+    { title: "Part III", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-3/" }
+  ],
+  seriesNav: [
+$seriesNav
+  ],
+  layout: "base.njk",
+  pillar: "$PillarSlug",
+  series: "$SeriesSlug",
+  eleventyComputed: {
+    slug: (d) => d.slug || d.page.fileSlug,
+    permalink: (d) => d.permalink || d.page.url,
+    imgBase: (d) => d.imgBase || "$mediaBase",
+    imgPrefix: (d) => d.imgPrefix || "$Slug-",
+    socialImage: (d) => d.socialImage || "$socialImage",
+    breadcrumbsBase: () => [
+      { title: "The Gnostic Key", url: "/" },
+      { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" },
+      { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" },
+      { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
+    ],
+    breadcrumbs: (d) => [...(d.breadcrumbsBase || []), d.title ? { title: d.title } : null].filter(Boolean)
+  }
+};
+"@
+  Write-Utf8File $episodeDotDataPath $episodeDotData
+  Write-Host "✅ Created episode data file: $episodeDotDataPath"
+} else {
+  Write-Host "⚠️ Skipped existing episode data file: $episodeDotDataPath"
+}
+
+# =========================
+# Sync seriesNav into every episode's .11tydata.js
+# =========================
+$seriesIndexDataPath = Join-Path $SeriesRoot "index.11tydata.js"
+if (Test-Path $seriesIndexDataPath) {
+  $seriesContent = Get-Content $seriesIndexDataPath -Raw
+
+  # extract all episodes from pillarGrid
+  $episodeBlocks = [regex]::Matches($seriesContent, '\{[^}]*\}') | ForEach-Object { $_.Value }
+
+  $seriesNav = foreach ($block in $episodeBlocks) {
+    $url   = if ($block -match 'href:\s*"([^"]+)"') { $matches[1] } else { "" }
+    $title = if ($block -match 'title:\s*"([^"]+)"') { $matches[1] } else { "" }
+    $desc  = if ($block -match 'tagline:\s*"([^"]+)"') { $matches[1] } else { "" }
+    if ($url -and $title) {
+      "    { title: `"$title`", desc: `"$desc`", url: `"$url`" },"
+    }
+  } -join "`n"
+
+  # now push that into EVERY episode’s .11tydata.js under the series
+  $episodeDirs = Get-ChildItem $SeriesRoot -Directory
+  foreach ($ep in $episodeDirs) {
+    $epDataFile = Join-Path $ep.FullName "$($ep.Name).11tydata.js"
+    if (Test-Path $epDataFile) {
+      $content = Get-Content $epDataFile -Raw
+      if ($content -match 'seriesNav:\s*\[') {
+        $newContent = $content -replace '(seriesNav:\s*\[[\s\S]*?\])',
+          "seriesNav: [`n$seriesNav`n  ]"
+        Set-Content $epDataFile $newContent -Encoding UTF8
+        Write-Host "🔄 Synced seriesNav in: $epDataFile"
+      }
+    }
+  }
+} else {
+  Write-Host "⚠️ Series index missing, cannot sync seriesNav."
+}
 
 # =========================
 # Social Image Placeholders

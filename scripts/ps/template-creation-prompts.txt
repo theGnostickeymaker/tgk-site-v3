@@ -1,17 +1,15 @@
-# The Afterlife
-
+# The Afterlife — Sufi Islam (Episode 2)
 pwsh scripts/ps/create-new-afterlife-series.ps1 `
   -PillarSlug the-teachings `
   -SeriesSlug the-afterlife `
   -SeriesNo 1 `
-  -Slug mesoamerica  `
-  -Title "Mesoamerica " `
-  -Episode 6 `
-  -Tier initiate `
-  -Glyph "🌽" `
+  -Slug sufi-islam `
+  -Title "Sufi Islam" `
+  -Episode 2 `
+  -Tier free `
+  -Glyph "☪" `
   -BodyClass gold `
   -SeriesGroup "The Afterlife Series" `
-  -LandingDescription "Through the weighing of the heart, the halls of Ma’at, and the journey to Osiris, Ancient Egypt mapped the soul’s fate beyond death." `
+  -LandingDescription "The barzakh, the scales of justice, and the soul’s ascent to Allah." `
   -WithQuizzes `
   -Root C:\TGK\tgk-site-v3
-

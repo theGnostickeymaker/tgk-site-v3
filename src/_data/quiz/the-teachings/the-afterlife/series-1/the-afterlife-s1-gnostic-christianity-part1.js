@@ -5,11 +5,7 @@ export default {
     partId: "part1",
     quizId: "the-afterlife-s1-gnostic-christianity-part1"
   },
-    get intro() {
-    return `🧠 Test your insight into ${this.meta.episodeId
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, c => c.toUpperCase())} — ${this.meta.partId.replace("part", "Part ")}`;
-  },
+  intro: "How well do you see through the illusion? Test your memory of the hidden cosmology.",
   questions: [
     {
       id: "q1",
@@ -33,7 +29,7 @@ export default {
         { key: "D", label: "The brother of Jesus in Gnostic myth" }
       ],
       answer: "C",
-      explanation: "Yaldabaoth is the false god — a blind creator who rules the material world without knowledge of the true Source."
+      explanation: "Yaldabaoth is the false god — a blind Demiurge who rules the material world without knowledge of the true Source."
     },
     {
       id: "q3",

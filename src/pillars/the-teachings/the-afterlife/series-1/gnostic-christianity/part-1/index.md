@@ -1,13 +1,13 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "Part I of the Afterlife Series. Exploring the false cosmos, Archonic powers, and the soul’s hidden map of return."
+description: "The false cosmos, Archonic interrogation, and the soul’s hidden map of return."
 tier: free
 episode: 1
 partNumeral: I
-partTitle: "The World is Not What it Seems"
-tagline: "The false cosmos, Archonic interrogation, and the soul’s hidden map of return."
-slug: "gnostic-christianity"
+partTitle: "The World Is Not What It Seems"
+tagline: "The hidden God, Sophia’s fall, the Demiurge, and the spark within."
+slug: "part-1"
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/index.html"
 socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity-part-1.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1"
@@ -15,44 +15,82 @@ imgPrefix: "gnostic-christianity-"
 bodyClass: "gold"
 
 glyph: "✝"
+pillar: "the-teachings"
+series: "the-afterlife"
 
 seriesId: "the-afterlife-s1"
 episodeId: "gnostic-christianity"
 partId: "part1"
 quizId: "the-afterlife-s1-gnostic-christianity-part1"
+quizIntro: "Can you see through the veil of Part I?"
 seriesMeta:
   number: 1
   label: "Series 1"
   series_version: 1
 
+lensEnabled: true
+crossLinks: []
+vaultRefs: []
+communityThreads: []
+relatedProducts: []
+
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
   - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "Part I" }
 
-# ⚯ Synergist Lens fields
-lensEnabled: true
-crossLinks:
-  - pillar: the-teachings
-    series: the-afterlife
-    slug: buddhism
-    type: resonance
-    note: "Kenosis ↔ Śūnyatā"
-vaultRefs:
-  - id: vault:gospel-of-thomas
-communityThreads:
-  - id: thread:gnostic-christianity
-    title: "Archons, Memory, and the False Cosmos"
-relatedProducts:
-  - id: real-archetypes:larry-ellison-card
-    type: tarot-card
-    promo: "From *The Real Archetypes* deck"
-nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
+glossary:
+  - term: "Pleroma"
+    def: "The divine realm of Fullness — the Source of all spiritual reality. Beyond time, matter, or separation. Where the true God and Aeons reside."
+  - term: "Sophia"
+    def: "The Aeon of Wisdom. In her longing to create, she fell from the Pleroma and birthed the Demiurge. Her light remains hidden in humanity."
+  - term: "Yaldabaoth"
+    def: "The blind god — the Demiurge. A malformed being who believes he is the only god. Architect of the false world, ruler of the Archons."
+  - term: "Demiurge"
+    def: "Greek for 'craftsman.' In Gnostic texts, the Demiurge is the false god who creates the material world as a counterfeit of the true divine realm."
+  - term: "Archons"
+    def: "Cosmic rulers and system enforcers created by Yaldabaoth. They control the false reality through fear, conformity, and illusion."
+  - term: "Divine Spark"
+    def: "A fragment of the true God hidden within each human soul. Planted by Sophia. It remembers the Pleroma and seeks to return."
+  - term: "Gnosis"
+    def: "Inner, direct knowing — not belief, but remembrance of divine truth. The soul’s recognition of its true origin beyond illusion."
+  - term: "Gospel of Thomas"
+    def: "A Gnostic text of Jesus’ sayings, emphasising inner knowledge over ritual or sacrifice. Hidden for centuries, rediscovered in 1945 at Nag Hammadi."
+  - term: "Nag Hammadi"
+    def: "The Egyptian site where a cache of lost Gnostic texts was found in 1945. These scrolls restored long-buried teachings of early Christianity."
 
+
+references:
+  title: "📚 Sources & Study Path"
+  intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
+  readings:
+    - title: "⚡ Apocryphon of John"
+      desc: "The vision where Sophia’s act and Yaldabaoth’s arrogance are revealed."
+    - title: "⚡ Gospel of Thomas"
+      desc: "Sayings of Jesus as a revealer of the hidden spark."
+    - title: "⚡ Hypostasis of the Archons"
+      desc: "Details the rulers of illusion and their architecture of control."
+  scholarly:
+    - author: "Jonas, H."
+      work: "The Gnostic Religion"
+      year: 1958
+      pub: "Beacon Press"
+    - author: "Pagels, E."
+      work: "The Gnostic Gospels"
+      year: 1979
+      pub: "Random House"
 ---
+
+<nav class="scroll-tabs" role="navigation" aria-label="Part Map"> 
+  <a class="tab-link" href="#glossary" data-title="Glossary">Glossary</a> 
+  <a class="tab-link" href="#discuss" data-title="Discussion">Discuss</a>
+  <a class="tab-link" href="#series" data-title="Series Map">Series Map</a>
+  <a class="tab-link" href="#resources" data-title="Resources">Resources</a>
+  <a class="tab-link" href="#lens" data-title="Lens">Synergist Lens</a> 
+</nav>
 
 <main class="main-content">
 <section class="content-container">
@@ -98,7 +136,7 @@ nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
   </blockquote>
 </section>
 
-  <!--Chapter 2: Sophia&rsquo;s Fall & the Birth of Yaldabaoth-->
+<!--Chapter 2: Sophia&rsquo;s Fall & the Birth of Yaldabaoth-->
 <section class="section-block">
   <h2 class="section-heading">🐍 Chapter 2: Sophia&rsquo;s Fall &amp; the Birth of Yaldabaoth</h2>
 
@@ -162,7 +200,7 @@ nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
   </figcaption>
 </figure>
 
-  <!--Chapter 3: The Spark Within-->
+<!--Chapter 3: The Spark Within-->
   <section class="section-block">
   <h2 class="section-heading">💎 Chapter 3: The Spark Within</h2>
 
@@ -222,7 +260,7 @@ nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
   </figcaption>
 </figure>
 
-  <!--🕷️ Chapter 4: Meet the Archons-->
+<!--🕷️ Chapter 4: Meet the Archons-->
   <section class="section-block">
   <h2 class="section-heading">🕷️ Chapter 4: Meet the Archons</h2>
 
@@ -274,7 +312,7 @@ nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
   </figcaption>
 </figure>
 
-  <!--🌳 Chapter 5: Eden Was a Trap-->
+<!--🌳 Chapter 5: Eden Was a Trap-->
   <section class="section-block">
   <h2 class="section-heading">🌳 Chapter 5: Eden Was a Trap</h2>
 
@@ -329,54 +367,8 @@ nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
   </figcaption>
 </figure>
 
-{% include "partials/quiz-block.njk" %}
-
-  <!--Glossary-->
-<section class="section-block" id="glossary">
-  <h2 class="section-heading">📖 Glossary</h2>
-  <p class="section-subtitle">Decode the hidden language of the soul&rsquo;s exile and return</p>
-  <dl class="glossary">
-    <div class="glossary-entry">
-      <dt>Pleroma</dt>
-      <dd>The divine realm of Fullness&mdash;the Source of all spiritual reality. Beyond time, matter, or separation. Where the true God and Aeons reside.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Sophia</dt>
-      <dd>The Aeon of Wisdom. In her longing to create, she fell from the <strong>Pleroma</strong> and birthed the Demiurge. Her light remains hidden in humanity.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Yaldabaoth</dt>
-      <dd>The blind god&mdash;the Demiurge. A malformed being who believes he is the only god. Architect of the false world, ruler of the Archons.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Demiurge</dt>
-      <dd>Greek for &ldquo;craftsman.&rdquo; In Gnostic texts, the Demiurge is the false god who creates the material world as a counterfeit of the true divine realm.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Archons</dt>
-      <dd>Cosmic rulers and system enforcers created by <strong>Yaldabaoth</strong>. They control the false reality through fear, conformity, and illusion.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Divine Spark</dt>
-      <dd>A fragment of the true God hidden within each human soul. Planted by <strong>Sophia</strong>. It remembers the <strong>Pleroma</strong> and seeks to return.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Gnosis</dt>
-      <dd>Inner, direct knowing&mdash;not belief, but remembrance of divine truth. The soul&rsquo;s recognition of its true origin beyond illusion.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Gospel of Thomas</dt>
-      <dd>A Gnostic text of Jesus&rsquo; sayings, emphasising inner knowledge over ritual or sacrifice. Hidden for centuries, rediscovered in 1945 at Nag Hammadi.</dd>
-    </div>
-    <div class="glossary-entry">
-      <dt>Nag Hammadi</dt>
-      <dd>The Egyptian site where a cache of lost Gnostic texts was found in 1945. These scrolls restored long-buried teachings of early Christianity.</dd>
-    </div>
-  </dl>
-</section>
-
-  <!-- 🔥 Scroll I – Share & Reflect -->
-  <section class="section-block" id="discuss">
+<!-- 🔥 Scroll I – Share & Reflect -->
+  <section class="section-block">
   <h2 class="section-heading">🗣️ Discussion Prompt: What Spark Are You Reigniting?</h2>
 
   <p>You&rsquo;ve walked the hidden cosmology&mdash;the <strong>Pleroma</strong>, <strong>Sophia&rsquo;s</strong> fall, the veil of illusion, and the buried <strong>divine spark</strong>. Now we ask:</p>
@@ -398,17 +390,40 @@ nodeId: the-teachings:the-afterlife:gnostic-christianity:part1
   {% include "partials/share-buttons.njk" %}
 </section>
 
+<!--Quiz-->
+{% include "partials/quiz-block.njk" %}
+
+<!--📖 Glossary-->
+  {% include "partials/glossary-block.njk" %}
+
+<!--📚 References-->
+{% include "partials/reference-section.njk" %}
+
+<!--📜 Series Map-->
 <section class="section-block" id="series">
-  <h2 class="section-heading">📜 Episode Parts</h2>
-  {% include "partials/episode-part-nav.njk" %}
+  <h2 class="section-heading">📜 Series Map</h2>
+  {% include "partials/series-nav-buttons.njk" %}
 </section>
 
+<!--∞ Synergist Lens-->
 {% include "partials/synergist-lens.njk" %}
 
-{% include "partials/series-nav-buttons.njk" %}
+<!-- 🔑 CTA Buttons (only for free tier) -->
+{% if tier == "free" %}
+<section class="section-block" id="cta">
+  <h2 class="section-heading">🔑 Unlock More Scrolls</h2>
+  <p>Enjoying this scroll? Subscribe for full access or support the project directly.</p>
+  {% include "partials/cta-buttons.njk" %}
+</section>
+{% endif %}
+
+<!-- Episode Part Nav -->
+{% include "partials/episode-part-nav.njk" %}
 
 <div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph glow" aria-hidden="true">⛪︎</span>
+  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
 </div>
+
 </section>
 </main>
+
