@@ -469,6 +469,12 @@ seriesMeta:
   label: "Series $SeriesNo"
   series_version: $SeriesVersion
 
+# 🔮 Section Visibility Controls
+discussEnabled: true         # if false, hides "Discussion" tab + section
+resourcesEnabled: true       # optional override for “Resources” tab
+seriesNavEnabled: true       # optional override for “Series Map” tab
+quizEnabled: true
+
 lensEnabled: true
 crossLinks: []
 vaultRefs: []
@@ -511,14 +517,7 @@ references:
 
 ---
 
-<nav class="scroll-tabs" role="navigation" aria-label="Part Map"> 
-  <a class="tab-link" href="#quiz" data-title="Quiz">Quiz</a> 
-  <a class="tab-link" href="#glossary" data-title="Glossary">Glossary</a> 
-  <a class="tab-link" href="#discuss" data-title="Discussion">Discuss</a>
-  <a class="tab-link" href="#series" data-title="Series Map">Series Map</a>
-  <a class="tab-link" href="#resources" data-title="Resources">Resources</a>
-  <a class="tab-link" href="#lens" data-title="Lens">Synergist Lens</a> 
-</nav>
+{% include "partials/scroll-tabs.njk" %}
 
 <main class="main-content">
 <section class="content-container">

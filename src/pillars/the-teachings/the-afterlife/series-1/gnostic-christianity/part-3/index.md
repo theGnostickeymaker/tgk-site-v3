@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Gnostic Christianity — Part III: The Soul’s Return"
+title: "Gnostic Christianity"
 description: "Part III of the Afterlife Series — The soul’s map of return through death, the toll gates, and gnosis as the password of liberation."
 tier: free
 episode: 1
@@ -27,6 +27,12 @@ seriesMeta:
   number: 1
   label: "Series 1"
   series_version: 1
+
+# 🔮 Section Visibility Controls
+discussEnabled: true         # if false, hides "Discussion" tab + section
+resourcesEnabled: true       # optional override for “Resources” tab
+seriesNavEnabled: true       # optional override for “Series Map” tab
+quizEnabled: true
 
 lensEnabled: true
 crossLinks: []
@@ -87,14 +93,7 @@ references:
       pub: "Brill Academic"
 ---
 
-<nav class="scroll-tabs" role="navigation" aria-label="Part Map"> 
-  <a class="tab-link" href="#quiz" data-title="Quiz">Quiz</a> 
-  <a class="tab-link" href="#glossary" data-title="Glossary">Glossary</a> 
-  <a class="tab-link" href="#discuss" data-title="Discussion">Discuss</a>
-  <a class="tab-link" href="#series" data-title="Series Map">Series Map</a>
-  <a class="tab-link" href="#resources" data-title="Resources">Resources</a>
-  <a class="tab-link" href="#lens" data-title="Lens">Synergist Lens</a> 
-</nav>
+{% include "partials/scroll-tabs.njk" %}
 
 <main class="main-content">
 <section class="content-container">
@@ -547,6 +546,29 @@ references:
   Title it <em>&ldquo;I Remember.&rdquo;</em> Speak the truth of your origin. What tries to stop you? What burns brighter?</p>
 
   <p><strong>Want to share it?</strong></p>
+  {% include "partials/share-buttons.njk" %}
+</section>
+
+<!-- 🗣️ Discussion Prompt -->
+<section class="section-block" id="discuss">
+  <h2 class="section-heading">🗣️ Discussion Prompt: Will You Remember at the Gate?</h2>
+
+  <blockquote>
+    <strong>&ldquo;If you had to speak your soul&rsquo;s origin at death, what would you say?&rdquo;</strong>
+  </blockquote>
+
+  <p>This scroll is not mythology.  
+  It is rehearsal.</p>
+
+  <p>The toll gates are real, and forgetting is already here.  
+  So ask yourself now, before the veils fall:</p>
+
+  <ul class="list-emoji">
+    <li>What do you truly remember about where you came from?</li>
+    <li>What false gods still whisper to you &mdash; and do you still listen?</li>
+    <li>If you met the Archons tonight, would you know the words?</li>
+    <li>Have you died before death, or are you still clinging to the mask?</li>
+  </ul>
   {% include "partials/share-buttons.njk" %}
 </section>
 

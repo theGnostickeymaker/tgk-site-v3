@@ -28,6 +28,12 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🔮 Section Visibility Controls
+discussEnabled: true         # if false, hides "Discussion" tab + section
+resourcesEnabled: true       # optional override for “Resources” tab
+seriesNavEnabled: true       # optional override for “Series Map” tab
+quizEnabled: true
+
 lensEnabled: true
 crossLinks: []
 vaultRefs: []
@@ -84,13 +90,7 @@ references:
       pub: "Random House"
 ---
 
-<nav class="scroll-tabs" role="navigation" aria-label="Part Map"> 
-  <a class="tab-link" href="#glossary" data-title="Glossary">Glossary</a> 
-  <a class="tab-link" href="#discuss" data-title="Discussion">Discuss</a>
-  <a class="tab-link" href="#series" data-title="Series Map">Series Map</a>
-  <a class="tab-link" href="#resources" data-title="Resources">Resources</a>
-  <a class="tab-link" href="#lens" data-title="Lens">Synergist Lens</a> 
-</nav>
+{% include "partials/scroll-tabs.njk" %}
 
 <main class="main-content">
 <section class="content-container">
@@ -368,7 +368,7 @@ references:
 </figure>
 
 <!-- 🔥 Scroll I – Share & Reflect -->
-  <section class="section-block">
+  <section class="section-block" id="discuss">
   <h2 class="section-heading">🗣️ Discussion Prompt: What Spark Are You Reigniting?</h2>
 
   <p>You&rsquo;ve walked the hidden cosmology&mdash;the <strong>Pleroma</strong>, <strong>Sophia&rsquo;s</strong> fall, the veil of illusion, and the buried <strong>divine spark</strong>. Now we ask:</p>

@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Gnostic Christianity — Part II"
+title: "Gnostic Christianity"
 description: "The hidden gospel of the Revealer, the mirror, and the awakening spark."
 tier: free
 episode: 1
@@ -27,6 +27,12 @@ seriesMeta:
   number: 1
   label: "Series 1"
   series_version: 1
+
+# 🔮 Section Visibility Controls
+discussEnabled: true         # if false, hides "Discussion" tab + section
+resourcesEnabled: true       # optional override for “Resources” tab
+seriesNavEnabled: true       # optional override for “Series Map” tab
+quizEnabled: true
 
 lensEnabled: true
 crossLinks: []
@@ -81,14 +87,7 @@ references:
       pub: "Publisher"
 ---
 
-<nav class="scroll-tabs" role="navigation" aria-label="Part Map">
-  <a class="tab-link" href="#quiz" data-title="Quiz">Quiz</a>
-  <a class="tab-link" href="#glossary" data-title="Glossary">Glossary</a>
-  <a class="tab-link" href="#discuss" data-title="Discussion">Discuss</a>
-  <a class="tab-link" href="#series" data-title="Series Map">Series Map</a>
-  <a class="tab-link" href="#resources" data-title="Resources">Resources</a>
-  <a class="tab-link" href="#lens" data-title="Lens">Synergist Lens</a>
-</nav>
+{% include "partials/scroll-tabs.njk" %}
 
 <main class="main-content">
 <section class="content-container">
