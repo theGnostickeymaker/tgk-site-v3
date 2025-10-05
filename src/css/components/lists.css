@@ -10,6 +10,7 @@
     margin-bottom: var(--space-sm);
     line-height: var(--font-base-line);
     letter-spacing: 0.02em;
+    text-align: left;
   }
 
   /* 💠 Emoji / Symbolic List Format */
@@ -28,31 +29,46 @@
     position: relative;
     margin-bottom: var(--space-sm);
     padding-left: var(--space-lg);
+    line-height: 1.7;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
   }
 
+  /* ✦ sacred bullet symbol */
   .list-emoji li::before {
     content: var(--list-emoji-char);
     position: absolute;
     left: 0;
-    top: 0.05rem;
-    font-size: var(--font-size-base);
+    top: 0.1rem;
+    font-size: 1em;
     line-height: var(--font-base-line);
     color: var(--text-accent);
+    opacity: 0.9;
   }
 
+  /* 🔗 unified list link styling */
   .list-emoji li a {
+    color: var(--text-accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
     word-break: break-word;
     overflow-wrap: anywhere;
+  }
+
+  .list-emoji li a:hover {
+    color: var(--highlight);
+    text-shadow: 0 0 8px var(--shadow-glow);
   }
 
   /* 📎 Responsive tweak: anchors + bullets */
   @media (max-width: 600px) {
     .list-emoji li {
-      padding-left: var(--space-lg); /* keep space for emoji */
+      padding-left: var(--space-lg);
     }
 
     .list-emoji li::before {
-      left: var(--space-xs); /* nudge bullet in */
+      left: var(--space-xs);
     }
 
     .list-emoji li a {

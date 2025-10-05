@@ -3,6 +3,7 @@ layout: base.njk
 title: "Gnostic Christianity"
 description: "Part I of the Afterlife Series — the false cosmos, Archonic interrogation, and the soul’s hidden map of return."
 tier: free
+scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-I"
 
 episode: 1
 partNumeral: I
@@ -38,9 +39,39 @@ quizEnabled: true
 
 lensEnabled: true
 crossLinks: []
-vaultRefs: []
+
+vaultRefs:
+  - title: "Apocryphon of John"
+    desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark hidden within humanity."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/apocryphon-of-john/"
+  - title: "Gospel of Thomas"
+    desc: "A collection of secret sayings attributed to Jesus — teaching the inner path of self-knowledge and remembrance of the divine spark."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/"
+  - title: "Pistis Sophia"
+    desc: "Sophia’s lament and the soul’s descent through the Aeons."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/pistis-sophia/"
+
 communityThreads: []
 relatedProducts: []
+
+# === Discussion Prompt Block ===
+discussionEnabled: true     # Toggle on/off for this scroll
+
+shareEnabled: true             # Future toggle for social sharing buttons (defaults to true)
+showTelegramButton: true       # Toggle for Telegram link
+showShareButton: true          # Toggle for “Share This Scroll” button
+shareHashtags: "#TheGnosticKey #Gnosis"  # Optional extra hashtags
+
+discussion:
+  promptTitle: "Will You Remember at the Gate?"
+  intro: "You’ve crossed the toll gates and reclaimed the spark. Now reflect:"
+  question: "If you had to speak your soul’s origin at death, what would you say?"
+  points:
+    - "What false gods still whisper to you?"
+    - "Have you died before death?"
+    - "What would you say to your own divine spark?"
+  footer: "💬 Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
+
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -70,16 +101,15 @@ glossary:
   - term: "Nag Hammadi"
     def: "The Egyptian site where a cache of lost Gnostic texts was found in 1945. These scrolls restored long-buried teachings of early Christianity."
 
-
 references:
   title: "📚 Sources & Study Path"
   intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
   readings:
-    - title: "⚡ Apocryphon of John"
+    - title: "Apocryphon of John"
       desc: "The vision where Sophia’s act and Yaldabaoth’s arrogance are revealed."
-    - title: "⚡ Gospel of Thomas"
+    - title: "Gospel of Thomas"
       desc: "Sayings of Jesus as a revealer of the hidden spark."
-    - title: "⚡ Hypostasis of the Archons"
+    - title: "Hypostasis of the Archons"
       desc: "Details the rulers of illusion and their architecture of control."
   scholarly:
     - author: "Jonas, H."
@@ -109,13 +139,15 @@ references:
 
   <p>He looked into the void and declared himself supreme.</p>
 
-<blockquote class="blockquote">
-  <em>&ldquo;I am God, and there is no other beside me.&rdquo;</em><br>
-  <cite>
-    Yaldabaoth, <em>Apocryphon of John</em>.  
-    <a href="/TGK-vault/codex-reborn/gnostic-texts/apocryphon-of-john.html" target="_blank" rel="noopener noreferrer">Source</a>
-  </cite>
-</blockquote>
+  <blockquote class="blockquote">
+    <em>&ldquo;I am God, and there is no other beside me.&rdquo;</em><br>
+    <cite>
+      Yaldabaoth, <em>Apocryphon of John</em>.  
+      <a href="/pillars/the-vault/codex-reborn/gnostic-texts/apocryphon-of-john/" 
+        target="_blank" 
+        rel="noopener noreferrer">Source</a>
+    </cite>
+  </blockquote>
 
   <p>The Gnostics named him <strong>Yaldabaoth</strong>. Others called him <em>Saklas</em> (&ldquo;fool&rdquo;) or <em>Samael</em> (&ldquo;the blind one&rdquo;).</p>
 
@@ -129,13 +161,13 @@ references:
 
   <p>This is the Gospel the Church burned. The message that didn&rsquo;t demand belief, but <em>remembrance</em>. Not of dogma. Of origin. Of the light you carry.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;Jesus said: If you have gained this within you, what you have will save you. If you do not have this in [you], what you do not have in you [will] kill you.&rdquo;<br>
-    <cite>
-      <em>Gospel of Thomas</em>, Saying 70, 
-      <a href="/TGK-vault/codex-reborn/gnostic-texts/the-gospel-of-thomas.html#thomas-70" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;Jesus said: If you have gained this within you, what you have will save you. If you do not have this in you, what you do not have in you will kill you.&rdquo;<br>
+  <cite>
+    <em>Gospel of Thomas</em>, Saying 70, 
+    <a href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-70" target="_blank" rel="noopener noreferrer">Source</a>
+  </cite>
+</blockquote>
 </section>
 
 <!--Chapter 2: Sophia&rsquo;s Fall & the Birth of Yaldabaoth-->
@@ -148,14 +180,18 @@ references:
   
   <p>And in that solitary act, something ruptured. A child of imbalance was born&mdash;blind, arrogant, malformed. He did not know the light. He could not see the <strong>Pleroma</strong>. He was cast out into the void, and there, mistaking his isolation for supremacy, he declared himself the only god.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;He said, &rsquo;I am a jealous god, and there is no other god beside me.&rsquo;
-    And by saying this, he admitted his ignorance.&rdquo;<br>
-    <cite>
-      <em>Hypostasis of the Archons</em>, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-hypostasis-of-the-archons.pdf?alt=media&token=da6581ee-aa82-4e41-87b8-887d1366481a" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;He said, &lsquo;I am a jealous god, and there is no other god beside me.&rsquo;
+  Thus he revealed his ignorance.&rdquo;<br>
+  <cite>
+    <em>The Hypostasis of the Archons</em> (paraphrased from NHC II,4 94:20–95:5). 
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/hypostasis-of-the-archons/index.html" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
 
   <p>The Gnostics named him <strong>Yaldabaoth</strong>&mdash;lion-faced, serpent-bodied, the Demiurge.</p>
 
@@ -170,13 +206,13 @@ references:
   Into <em>you</em>.</p>
 
   <blockquote class="blockquote">
-    &ldquo;She became a shadow of herself, lost in the chaos…  
-    But the light remembered her.&rdquo;<br>
+    &ldquo;She became a shadow of herself… lost in the chaos. But the light remembered her.&rdquo;<br>
     <cite>
       <em>Pistis Sophia</em>, Book I, Chapter 32, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fpistis-sophia.pdf?alt=media&token=42240904-b77e-43cc-a2b2-2290a75e4462" target="_blank" rel="noopener noreferrer">Source</a>
+      <a href="https://www.gnosis.org/library/pistis-sophia/ps036.htm" target="_blank" rel="noopener noreferrer">Source</a>
     </cite>
   </blockquote>
+
 
   <p><strong>Yaldabaoth</strong> built a kingdom of control&mdash;<strong>Sophia</strong> planted rebellion inside its very clay.</p>
 </section>
@@ -221,11 +257,12 @@ references:
   The pull toward something you can&rsquo;t name&mdash;but remember.</p>
 
   <blockquote class="blockquote">
-    &ldquo;You are from the place where light came into being by itself.  
-    You came from it and will return there.&rdquo;<br>
+    <em>“You are from the place where light came into being by itself.  
+    You came from it and will return there.”</em><br>
     <cite>
-      <em>Gospel of Truth</em>, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-gospel-of-truth.pdf?alt=media&token=f9cfcfa3-a25b-42f6-9e13-3674b5bc2298" target="_blank" rel="noopener noreferrer">Source</a>
+      <em>Gospel of Truth</em> (NHC I,3 31:35–32:4), trans. Marvin Meyer.  
+      <a href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-truth/index.html" 
+        target="_blank" rel="noopener noreferrer">Source</a>
     </cite>
   </blockquote>
 
@@ -277,8 +314,12 @@ references:
   <blockquote class="blockquote">
     &ldquo;They are like thieves who entered by stealth into the house that is not theirs.&rdquo;<br>
     <cite>
-      <em>Hypostasis of the Archons</em>, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-hypostasis-of-the-archons.pdf?alt=media&token=da6581ee-aa82-4e41-87b8-887d1366481a" target="_blank" rel="noopener noreferrer">Source</a>
+      <em>The Hypostasis of the Archons</em> (NHC II,4 89:15–20), trans. Marvin Meyer.  
+      <a 
+        href="/pillars/the-vault/codex-reborn/gnostic-texts/hypostasis-of-the-archons/index.html" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >Source</a>
     </cite>
   </blockquote>
 
@@ -333,8 +374,12 @@ references:
   <blockquote class="blockquote">
     &ldquo;Your eyes shall be opened, and you shall be like gods, knowing good and evil.&rdquo;<br>
     <cite>
-      <em>Genesis 3:5</em> (Gnostic lens), 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fgenesis-3.pdf?alt=media&token=5949afc0-9b32-470b-bfd2-7c122be82174" target="_blank" rel="noopener noreferrer">Source</a>
+      <em>Genesis 3 : 5</em> (King James Version — Gnostic lens).  
+      <a 
+        href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fgenesis-3.pdf?alt=media&token=5949afc0-9b32-470b-bfd2-7c122be82174" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >Source</a>
     </cite>
   </blockquote>
 
@@ -369,28 +414,7 @@ references:
   </figcaption>
 </figure>
 
-<!-- 🔥 Scroll I – Share & Reflect -->
-  <section class="section-block" id="discuss">
-  <h2 class="section-heading">🗣️ Discussion Prompt: What Spark Are You Reigniting?</h2>
-
-  <p>You&rsquo;ve walked the hidden cosmology&mdash;the <strong>Pleroma</strong>, <strong>Sophia&rsquo;s</strong> fall, the veil of illusion, and the buried <strong>divine spark</strong>. Now we ask:</p>
-
-  <blockquote>
-    <strong>What part of yourself have you forgotten?<br>
-    And what truth is ready to be brought forth from within?</strong>
-  </blockquote>
-
-  <ul class="list-emoji">
-    <li>Where do you still obey the false world?</li>
-    <li>When did you first feel the spark awaken in your life?</li>
-    <li>What would you say to <strong>Sophia</strong>, if she stood before you now?</li>
-  </ul>
-
-  <p>Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>.  
-  Your words might become the flame that awakens another.</p>
-
-  {% include "partials/share-buttons.njk" %}
-</section>
+{% include "partials/discussion-prompt.njk" %}
 
 <!--Quiz-->
 {% include "partials/quiz-block.njk" %}
@@ -418,6 +442,8 @@ references:
   {% include "partials/cta-buttons.njk" %}
 </section>
 {% endif %}
+
+{% include "partials/share-buttons.njk" %}
 
 <!-- Episode Part Nav -->
 {% include "partials/episode-part-nav.njk" %}

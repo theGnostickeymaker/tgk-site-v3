@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: "Gospel of Truth"
+description: "A poetic meditation on ignorance, revelation, and the joy of return — attributed to Valentinus, revealing the mystery of remembrance and reunion with the Source."
+tagline: "Mystic reflection ✦ divine remembrance ✦ the return to fullness"
+glyph: "📜"
+glyphRow: ["🜂","📜","🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+permalink: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-truth/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Gnostic Texts", url: "/pillars/the-vault/codex-reborn/gnostic-texts/" }
+  - { title: "Gospel of Truth" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gnostic-texts/gospel-of-truth.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index heading">
+      Gospel of Truth — a radiant reflection on remembrance and the return to the Source.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 About the Gospel of Truth</span></summary>
+      <p>
+        The <em>Gospel of Truth</em>, likely composed by <strong>Valentinus</strong> in the 2nd century CE,
+        reads not as narrative but as a spiritual sermon on the awakening from ignorance into divine remembrance.
+        It speaks of <em>the Word</em> coming into the world to heal the wound of forgetfulness and restore humanity to the Father.
+      </p>
+      <p>
+        Discovered among the <strong>Nag Hammadi</strong> codices, this text belongs to the same current of revelation as
+        the <em>Gospel of Thomas</em> and the <em>Apocryphon of John</em> — all teaching that salvation is
+        remembrance, and that the Word of Truth awakens the spark within.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "Gnostic Texts — Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-truth/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

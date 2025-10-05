@@ -1,0 +1,60 @@
+---
+layout: base.njk
+title: "Gnostic Texts"
+description: "Recovered revelations from Nag Hammadi — the secret gospels of Christ and Sophia."
+tagline: "Secret gospels ✦ revelations ✦ the hidden Christ"
+collectionId: "the-vault-codex-reborn-gnostic-texts"
+
+glyph: "🜂"
+glyphRow: ["🜂","🕯","🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+permalink: "/pillars/the-vault/codex-reborn/gnostic-texts/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Gnostic Texts", url: "/pillars/the-vault/codex-reborn/gnostic-texts/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gnostic-texts.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index heading">
+      Gnostic Texts — recovered revelations of the hidden Christ and Sophia’s wisdom.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">🜂 About Gnostic Texts</span></summary>
+      <p>
+        This library gathers the core Gnostic writings — the <em>Apocryphon of John</em>,
+        the <em>Gospel of Thomas</em>, the <em>Gospel of Truth</em>, <em>Pistis Sophia</em>,
+        and related revelations. Preserved from Nag Hammadi and other caches, they unveil
+        the false cosmos, the call to remembrance, and the path of return.
+      </p>
+      <p>
+        Each scroll is formatted for study and linked across <strong>The Teachings</strong>
+        so you can follow the thread from scripture to living practice.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "Gnostic Texts — Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/gnostic-texts/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

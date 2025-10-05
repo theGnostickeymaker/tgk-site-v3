@@ -3,6 +3,7 @@ layout: base.njk
 title: "Gnostic Christianity"
 description: "Part II of the Afterlife Series — the hidden gospel of the Revealer, the mirror, and the awakening spark."
 tier: free
+scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-II"
 
 episode: 1
 partNumeral: II
@@ -31,16 +32,44 @@ seriesMeta:
   series_version: 1
 
 # 🔮 Section Visibility Controls
-discussEnabled: true         # if false, hides "Discussion" tab + section
-resourcesEnabled: true       # optional override for “Resources” tab
-seriesNavEnabled: true       # optional override for “Series Map” tab
+discussEnabled: true
+resourcesEnabled: true
+seriesNavEnabled: true
 quizEnabled: true
 
 lensEnabled: true
+
 crossLinks: []
-vaultRefs: []
+
+vaultRefs:
+  - title: "The Second Treatise of the Great Seth"
+    desc: "Christ’s declaration that the rulers’ crucifixion was an illusion — the divine Light cannot be slain."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/second-treatise-of-the-great-seth/"
+  - title: "Gospel of Thomas"
+    desc: "Hidden sayings of Jesus that unveil the Kingdom within and beyond."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/"
+
 communityThreads: []
 relatedProducts: []
+
+# === Discussion Prompt Block ===
+discussionEnabled: true
+
+shareEnabled: true
+showTelegramButton: true
+showShareButton: true
+shareHashtags: "#TheGnosticKey #Gnosis"
+
+discussion:
+  promptTitle: "What Did Christ Reflect Back to You?"
+  intro: "This scroll wasn’t a theory. It was a trigger — a memory, a flare from the soul’s forgotten sky."
+  question: "What part of yourself did you meet in the mirror, and are you still afraid of its light?"
+  points:
+    - "What belief cracked open after hearing the Gnostic Christ speak?"
+    - "Did a **divine spark** stir? If so, what tried to put it out?"
+    - "What would **Sophia** whisper to you right now?"
+    - "Where does the system still own you — and what would rebellion look like?"
+  footer: "💬 Post your reflection using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Or bring your gnosis directly to the Temple."
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -52,19 +81,19 @@ breadcrumbs:
 
 glossary:
   - term: "Gnosis"
-    def: "Direct, inner knowing of the divine—not belief or doctrine. The spark remembering the Source. The heart of Gnostic Christianity."
+    def: "Direct, inner knowing of the divine — not belief or doctrine. The spark remembering the Source. The heart of Gnostic Christianity."
   - term: "Divine Spark"
     def: "A fragment of the Pleroma planted in the soul by Sophia. Hidden beneath flesh, trauma, and illusion, but unextinguished."
   - term: "Christ the Revealer"
-    def: "In Gnostic texts, Jesus is not a sacrificial saviour but a divine agent from the Pleroma—here to awaken, not to die."
+    def: "In Gnostic texts, Jesus is not a sacrificial saviour but a divine agent from the Pleroma — here to awaken, not to die."
   - term: "Gospel of Thomas"
-    def: "A mystical collection of Jesus’ sayings. Emphasises self-knowledge, paradox, and hidden truth. Suppressed by the Church, rediscovered at Nag Hammadi."
+    def: "A mystical collection of Jesus’ sayings emphasising self-knowledge, paradox, and hidden truth. Suppressed by the Church, rediscovered at Nag Hammadi."
   - term: "Second Treatise of the Great Seth"
-    def: "A Gnostic text where Christ mocks the Archons, revealing that his crucifixion was an illusion—his true self was never touched."
+    def: "A Gnostic text where Christ mocks the Archons, revealing that his crucifixion was an illusion — his true self was never touched."
   - term: "Sophia"
     def: "The divine feminine Aeon of Wisdom. She fell into the lower realms and scattered her light into humanity. She rises through our awakening."
   - term: "Archons"
-    def: "Forces of illusion and control—system enforcers created by the Demiurge to keep souls asleep. They rule through fear, shame, and distraction."
+    def: "Forces of illusion and control — system enforcers created by the Demiurge to keep souls asleep. They rule through fear, shame, and distraction."
   - term: "Mirror of Christ"
     def: "A central Gnostic teaching: Christ is not to be worshipped but recognised. He is the image of what we are beneath the lie."
 
@@ -72,21 +101,21 @@ references:
   title: "📚 Sources & Study Path"
   intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
   readings:
-    - title: "⚡ Title One"
-      desc: "Short description of why it matters"
-    - title: "⚡ Title Two"
-      desc: "Short description of why it matters"
-    - title: "⚡ Title Three"
-      desc: "Short description of why it matters"
+    - title: "The Gospel of Thomas"
+      desc: "A collection of sayings of the Living Jesus, revealing the path to inner light."
+    - title: "The Second Treatise of the Great Seth"
+      desc: "Christ’s discourse of divine laughter and freedom from the illusion of crucifixion."
+    - title: "The Hypostasis of the Archons"
+      desc: "Sophia’s intervention in the realm of the rulers — the cosmic backdrop to Christ’s revelation."
   scholarly:
-    - author: "Lastname, F."
-      work: "Book or Paper Title"
-      year: 2000
-      pub: "Publisher"
-    - author: "Lastname, F."
-      work: "Another Title"
-      year: 2010
-      pub: "Publisher"
+    - author: "Bullard, Roger A."
+      work: "The Second Treatise of the Great Seth (Nag Hammadi Codex VII, 2)"
+      year: 1970
+      pub: "The Gnostic Society Library"
+    - author: "Meyer, Marvin"
+      work: "The Nag Hammadi Scriptures"
+      year: 2007
+      pub: "HarperOne"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -112,13 +141,18 @@ references:
   <p>He did not demand worship.  
   He invited remembrance.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;Jesus said: He who drinks from my mouth will become like me, and I will become like him, and the hidden things will be revealed to him.&rdquo;<br>
-    <cite>
-      <em>Gospel of Thomas</em>, Saying 108,  
-      <a href="/TGK-vault/codex-reborn/gnostic-texts/the-gospel-of-thomas.html#thomas-108" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;Jesus said: He who drinks from my mouth will become like me, and I will become like him, and the hidden things will be revealed to him.&rdquo;<br>
+  <cite>
+    <em>Gospel of Thomas</em> (Saying 108 — NHC II,2 51:10–15),  
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-108" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
+
 
   <p>This was no metaphor.  
   He wasn&rsquo;t calling followers.  
@@ -165,13 +199,20 @@ references:
 
   <p>To Thomas. To Mary Magdalene. To James and John. He passed on keys. Codes. A map of the soul&rsquo;s origin and return.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;If your leaders say to you, &lsquo;Look, the Kingdom is in the sky,&rsquo; then the birds will get there before you. If they say it is in the sea, then the fish will get there before you. Rather, the Kingdom is inside of you, and it is outside of you..&rdquo;<br>
-    <cite>
-      <em>Gospel of Thomas</em>, Saying 3, 
-      <a href="/TGK-vault/codex-reborn/gnostic-texts/the-gospel-of-thomas.html#thomas-3" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;If your leaders say to you, &lsquo;Look, the Kingdom is in the sky,&rsquo; then the birds will get there before you. 
+  If they say it is in the sea, then the fish will get there before you. 
+  Rather, the Kingdom is inside of you, and it is outside of you.&rdquo;<br>
+  <cite>
+    <em>Gospel of Thomas</em> (Saying 3 — NHC II,2 32:10–33:5),  
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-3" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
+
 
   <p>This wasn&rsquo;t dogma. It was <strong>initiation</strong>.</p>
 
@@ -185,13 +226,17 @@ references:
 
   <p>The real Christ? Already gone. Already risen. Already <em>returning to the <strong>Pleroma</strong></em>.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;They thought they had killed me. But I was not theirs to kill.&rdquo;<br>
-    <cite>
-      <em>Second Treatise of the Great Seth</em>, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-second-treatise-of-the-great-seth.pdf?alt=media&token=275f75db-3355-4bd2-9907-204cc226b0f6" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;They thought they had killed me. But I was not theirs to kill.&rdquo;<br>
+  <cite>
+    <em>The Second Treatise of the Great Seth</em> (NHC VII,2 55:15–56:5),  
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/second-treatise-of-the-great-seth/"
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
 
   <p>This is the Christ they buried&mdash;the one who came to show you what you <strong>are</strong>.</p>
   <p>Not a worshipper. A mirror. A spark. A sovereign soul who forgot.</p>
@@ -236,13 +281,18 @@ references:
   <p>To the Gnostics, religion became the new Archon&mdash;a system built not to save, but to suppress.</p>
   <p>The Christ they preached? Dead. Obedient. Chained to a cross.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;Woe to the Pharisees, for they are like a dog lying in the manger of the cattle; for he neither eats nor does he let the cattle eat.&rdquo;<br>
-    <cite>
-      <em>Gospel of Thomas</em>, Saying 102, 
-      <a href="/TGK-vault/codex-reborn/gnostic-texts/the-gospel-of-thomas.html#thomas-102" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;Woe to the Pharisees, for they are like a dog lying in the manger of the cattle; for he neither eats nor does he let the cattle eat.&rdquo;<br>
+  <cite>
+    <em>Gospel of Thomas</em> (Saying 102 — NHC II,2 51:1-5),  
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-102" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
+
 
   <p>The early Church canonised four gospels and buried dozens.</p>
   <p>They labelled Thomas, Mary, Philip&mdash;<em>heresy</em>.  
@@ -293,13 +343,18 @@ references:
 
   <p>It&rsquo;s trauma work. It&rsquo;s shadow work. It&rsquo;s rebellion that begins in silence&mdash;and explodes in knowing.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;Jesus said: He who seeks, let him not cease seeking until he finds; and when he finds he will be troubled, and when he is troubled he will be amazed, and he will reign over the All.&rdquo;<br>
-    <cite>
-      <em>Gospel of Thomas</em>, Saying 2, 
-      <a href="/TGK-vault/codex-reborn/gnostic-texts/the-gospel-of-thomas.html#thomas-2" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;Jesus said: He who seeks, let him not cease seeking until he finds; and when he finds he will be troubled, and when he is troubled he will be amazed, and he will reign over the All.&rdquo;<br>
+  <cite>
+    <em>Gospel of Thomas</em> (Saying 2 — NHC II,2 32:2–10),  
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-2" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
+
 
   <p>The Gnostic path isn&rsquo;t for the pure. It&rsquo;s for the <em>raw</em>&mdash;the broken open. The honest.</p>
 
@@ -346,10 +401,10 @@ references:
   Every truth spoken cracks the lie that broke her.</p>
 
   <blockquote class="blockquote">
-    &ldquo;She became a shadow of herself… lost in the chaos. But the light remembered her.&rdquo;<br>
+    &ldquo;Take courage. It is I; be not afraid.&rdquo;<br>
     <cite>
-      <em>Pistis Sophia</em>, Book I, Chapter 32, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fpistis-sophia.pdf?alt=media&token=42240904-b77e-43cc-a2b2-2290a75e4462" target="_blank" rel="noopener noreferrer">Source</a>
+      <em>Pistis Sophia</em>, Book I, Chapter 5,  
+      <a href="https://www.gnosis.org/library/pistis-sophia/ps005.htm" target="_blank" rel="noopener noreferrer">Source</a>
     </cite>
   </blockquote>
 
@@ -407,6 +462,8 @@ references:
   {% include "partials/share-buttons.njk" %}
 </section>
 
+{% include "partials/discussion-prompt.njk" %}
+
 <!--Quiz-->
 {% include "partials/quiz-block.njk" %}
 
@@ -434,11 +491,13 @@ references:
 </section>
 {% endif %}
 
+{% include "partials/share-buttons.njk" %}
+
 <!-- Episode Part Nav -->
 {% include "partials/episode-part-nav.njk" %}
 
 <div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">{{ pillarGlyph }}</span>
+  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
 </div>
 
 </section>

@@ -3,13 +3,18 @@ layout: base.njk
 title: "The Vault"
 description: "Preservation of forbidden and sacred texts — codices, scrolls, and erased histories."
 tagline: "Codices ✦ scrolls ✦ erased histories"
+pillarId: "the-vault"
 
-glyph: "✶"
+bodyClass: "vault"
+glyph: "⛪︎"
+glyphRow: ["🜂","🕯","🜂"]
 accent: vault
-bodyClass: vault
+tier: free
 
+permalink: "/pillars/the-vault/index.html"
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
 ---
 
 {% block head %}
@@ -18,32 +23,37 @@ breadcrumbs:
 {% endblock %}
 
 <main class="main-content">
+  <section class="content-container">
 
-<h4 class="index heading">Preserving forbidden and sacred texts — codices, scrolls, and erased histories kept safe in the Vault.</h4>
+    <h4 class="index heading">
+      Preserving forbidden and sacred texts — codices, scrolls, and erased histories kept safe in the Vault.
+    </h4>
 
-  <details class="disclaimer-box">
-    <summary><span class="disclaimer-heading">🔑 About The Vault</span></summary>
-    <p>
-      <strong>The Vault</strong> is the library of The Gnostic Key — a pillar devoted to
-      preserving forbidden and sacred writings. Here you’ll find codices, scrolls, and
-      erased histories: the texts others tried to burn, banish, or forget.
-    </p>
-    <p>
-      From Gnostic gospels to mystical archives, from forbidden documents to ancient
-      transmissions, the Vault safeguards these works so they remain accessible to
-      seekers. It is not just an archive — it is a sanctuary of memory, where the
-      written word survives erasure.
-    </p>
-  </details>
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">🔑 About The Vault</span></summary>
+      <p>
+        <strong>The Vault</strong> is the library of <em>The Gnostic Key</em> — a pillar devoted to
+        preserving forbidden and sacred writings. Here you’ll find codices, scrolls, and
+        erased histories: the texts others tried to burn, banish, or forget.
+      </p>
+      <p>
+        From Gnostic gospels to mystical archives, from forbidden documents to ancient
+        transmissions, the Vault safeguards these works so they remain accessible to
+        seekers. It is not just an archive — it is a sanctuary of memory, where the
+        written word survives erasure.
+      </p>
+    </details>
 
-  {% include "partials/pillar-grid.njk" %}
+    {% include "partials/pillar-grid.njk" %}
 
-  {% set items = pillarGrid %}
-  {% set headline = "The Gnostic Key — Pillars" %}
-  {% set base = "/" %}
-  {% include "partials/jsonld-collection.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "The Gnostic Key — The Vault" %}
+    {% set base = "/pillars/the-vault/" %}
+    {% include "partials/jsonld-collection.njk" %}
 
-  <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-  </div>
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
 </main>

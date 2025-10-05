@@ -1,0 +1,65 @@
+---
+layout: base.njk
+title: "The Apocalypse of Paul"
+description: "Paul’s visionary ascent through the heavens — toll gates, interrogators, and the soul’s liberation."
+tagline: "A Gnostic ascent through the heavens ✦ toll gates ✦ the sign of freedom"
+glyph: "🕯"
+glyphRow: ["🜂","🕯","🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+permalink: "/pillars/the-vault/codex-reborn/gnostic-texts/apocalypse-of-paul/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Gnostic Texts", url: "/pillars/the-vault/codex-reborn/gnostic-texts/" }
+  - { title: "The Apocalypse of Paul" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gnostic-texts/apocalypse-of-paul.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- ⚠️ Authorship & Origin Note -->
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">📢 Authorship & Origin Disclosure</span>
+      </summary>
+      <p>
+        Translation © <strong>George W. MacRae</strong> &amp; <strong>William R. Murdock</strong>.<br>
+        Presented by permission through <em>The Gnostic Society Library</em> as part of the 
+        <strong>Nag Hammadi Collection</strong>.<br>
+        This edition is reproduced for <strong>educational and spiritual purposes</strong> under fair use.  
+        All rights remain with the translators and publisher.
+      </p>
+      <p>
+        Original source:  
+        <a href="https://www.gnosis.org/naghamm/apo-paul.html" target="_blank" rel="noopener noreferrer">
+          gnosis.org – The Apocalypse of Paul
+        </a>
+      </p>
+    </details>
+
+    <p>
+      This text, known as <em>The Apocalypse of Paul</em> (Nag Hammadi Codex V,2), recounts Paul’s ascent through the heavens guided by the Holy Spirit.  
+      It unveils the <strong>toll gates</strong>, <strong>interrogators</strong>, and <strong>heavenly powers</strong> confronting the soul, and reveals the hidden <strong>sign</strong> of liberation from the cosmic archons.
+    </p>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "The Apocalypse of Paul — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/gnostic-texts/apocalypse-of-paul/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

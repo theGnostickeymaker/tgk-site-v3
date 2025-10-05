@@ -1,0 +1,58 @@
+---
+layout: base.njk
+title: "The Second Treatise of the Great Seth"
+description: "A Gnostic discourse spoken in the voice of Christ from the Pleroma — mocking the rulers who believed they crucified him and revealing the triumph of the true Light beyond illusion."
+tagline: "Christ laughs at the false powers ✦ the incorruptible union of the sons of light ✦ Sophia’s silent witness"
+glyph: "☀"
+glyphRow: ["🜃", "☀", "🜃"]
+accent: vault
+bodyClass: vault
+tier: free
+permalink: "/pillars/the-vault/codex-reborn/gnostic-texts/second-treatise-of-the-great-seth/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Gnostic Texts", url: "/pillars/the-vault/codex-reborn/gnostic-texts/" }
+  - { title: "The Second Treatise of the Great Seth" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gnostic-texts/second-treatise-of-the-great-seth.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- 📜 Preservation / Authorship Note -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📖 Preservation & Authorship</span></summary>
+      <p>
+        This presentation of <em>The Second Treatise of the Great Seth</em> 
+        (Nag Hammadi Codex VII, 2) appears by permission from the public-domain 
+        translation of <strong>Roger A. Bullard</strong>.  
+        It forms part of <strong>The Vault / Codex Reborn</strong> within 
+        <em>The Gnostic Key</em>, preserved for educational and spiritual purposes.
+      </p>
+      <p>
+        Original source:  
+        <a href="https://www.gnosis.org/naghamm/2seth.html" target="_blank" rel="noopener noreferrer">
+          gnosis.org – The Second Treatise of the Great Seth
+        </a>.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "The Second Treatise of the Great Seth — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/gnostic-texts/second-treatise-of-the-great-seth/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

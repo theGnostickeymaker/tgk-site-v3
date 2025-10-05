@@ -10,7 +10,7 @@
   .site-main {
     max-width: var(--grid-max-width, 1100px);
     margin: 0 auto;
-    padding: var(--space-lg) var(--space-md);
+    padding: var(--space-vs) var(--space-md);
     line-height: var(--font-base-line);
   }
 

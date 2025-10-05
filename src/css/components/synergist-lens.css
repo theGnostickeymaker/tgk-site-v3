@@ -43,25 +43,55 @@
   text-shadow: 0 0 6px var(--shadow-glow);
 }
 
+/* 🔮 Unified Sacred List Look (Lens-Scoped) */
 .synergist-lens ul {
+  --lens-bullet: "✦";
   list-style: none;
-  padding-left: var(--space-md, 1rem);
-  margin: 0;
+  padding-left: 0;
+  margin: var(--space-md, 1rem) 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
 }
 
 .synergist-lens ul li {
-  margin: 0.3rem 0;
-  color: var(--text-muted);
+  position: relative;
+  margin-bottom: var(--space-sm, 0.6rem);
+  padding-left: var(--space-lg, 1.25rem);
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+}
+
+.synergist-lens ul li::before {
+  content: var(--lens-bullet);
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  font-size: 1em;
+  color: var(--text-accent);
+  opacity: 0.9;
 }
 
 .synergist-lens ul li a {
-  color: var(--link-color);
+  color: var(--text-accent);
+  font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px dashed var(--section-border);
-  transition: all 0.2s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .synergist-lens ul li a:hover {
-  color: var(--link-hover);
-  border-bottom-color: var(--link-hover);
+  color: var(--highlight);
+  text-shadow: 0 0 8px var(--shadow-glow);
+}
+
+/* 📱 Responsive nudge */
+@media (max-width: 600px) {
+  .synergist-lens ul li {
+    padding-left: var(--space-lg);
+  }
+  .synergist-lens ul li::before {
+    left: var(--space-xs);
+  }
 }

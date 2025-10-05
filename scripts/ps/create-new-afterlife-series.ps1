@@ -477,6 +477,27 @@ vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
+# === Discussion Prompt Block ===
+discussionEnabled: true     # Toggle on/off for this scroll
+
+shareEnabled: true             # Future toggle for social sharing buttons (defaults to true)
+showTelegramButton: true       # Toggle for Telegram link
+showShareButton: true          # Toggle for “Share This Scroll” button
+shareHashtags: "#TheGnosticKey #Gnosis"  # Optional extra hashtags
+
+# === Discussion Prompt Block ===
+discussionEnabled: true        # true = show the section, false = hide
+
+discussion:
+  promptTitle: "{{DISCUSSION_PROMPT_TITLE}}"     # e.g. “What Spark Are You Reigniting?”
+  intro: "{{DISCUSSION_INTRO}}"                  # Optional: short setup line
+  question: "{{DISCUSSION_QUESTION}}"            # Main discussion question
+  points:
+    - "{{DISCUSSION_POINT_1}}"                   # Optional reflection points
+    - "{{DISCUSSION_POINT_2}}"
+    - "{{DISCUSSION_POINT_3}}"
+  footer: "{{DISCUSSION_FOOTER}}"                # Optional closing line or default fallback
+
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
@@ -495,11 +516,11 @@ references:
   title: "📚 Sources & Study Path"
   intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
   readings:
-    - title: "⚡ Title One"
+    - title: "Title One"
       desc: "Short description of why it matters"
-    - title: "⚡ Title Two"
+    - title: "Title Two"
       desc: "Short description of why it matters"
-    - title: "⚡ Title Three"
+    - title: "Title Three"
       desc: "Short description of why it matters"
   scholarly:
     - author: "Lastname, F."
@@ -580,20 +601,18 @@ references:
   </dl>
 </section>
 
+{% include "partials/discussion-prompt.njk" %}
+
 <!--Quiz-->
 {% include "partials/quiz-block.njk" %}
 
-<!--Discussion Block-->
-<section class="section-block" id="discuss">
-  <h2 class="section-heading">🗣️ Discussion Prompt:</h2>
-  <p>TBD</p>
-  {% include "partials/share-buttons.njk" %}
-</section>
+<!--📖 Glossary-->
+  {% include "partials/glossary-block.njk" %}
 
-<!-- 📚 Gnostic Sources & Study Path -->
+<!--📚 References-->
 {% include "partials/reference-section.njk" %}
 
-<!--Episode Parts-->
+<!--📜 Series Map-->
 <section class="section-block" id="series">
   <h2 class="section-heading">📜 Series Map</h2>
   {% include "partials/series-nav-buttons.njk" %}
@@ -610,6 +629,8 @@ references:
   {% include "partials/cta-buttons.njk" %}
 </section>
 {% endif %}
+
+{% include "partials/share-buttons.njk" %}
 
 <!-- Episode Part Nav -->
 {% include "partials/episode-part-nav.njk" %}

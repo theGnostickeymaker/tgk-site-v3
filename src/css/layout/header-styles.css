@@ -222,6 +222,67 @@
     text-align: center;
   }
 
+/* --- Tagline (above or below main title) --- */
+  .index-tagline {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(var(--font-size-vs), 1.3vw, var(--font-size-sm));
+    line-height: 1.6;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 auto var(--space-md);
+    max-width: 60ch;
+    opacity: 0.9;
+    text-transform: none;
+    margin-bottom: var(--space-xs); /* was var(--space-md) */
+  }
+
+  /* --- Index Heading (subtitle paragraph / h4) --- */
+  .index.heading {
+    font-family: var(--page-title);
+    font-weight: 500;
+    font-size: clamp(var(--font-size-sm), 1.6vw, var(--font-size-lg));
+    line-height: 1.7;
+    text-align: center;
+    max-width: 80ch;
+    margin: var(--space-md) auto var(--space-xl);
+    color: var(--highlight);
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 6px var(--shadow-glow);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    margin-top: var(--space-xs); /* was var(--space-md) */
+  }
+
+  /* --- Reduce space between tagline and main title --- */
+  .index-hero,
+  .pillar-header,
+  .teachings-index-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding-top: var(--space-sm);  /* 🟡 new: stops collapse above title */
+    padding-bottom: var(--space-xs);
+  }
+
+    /* Tagline + Heading directly follow without additional vertical space */
+  .index-tagline + .page-title,
+  .page-title + .index.heading {
+    margin-top: 0;
+  }
+
+  /* optional: small-screen tweak for tighter stacking */
+  @media (max-width: 768px) {
+    .index-hero {
+      gap: calc(var(--space-xs) * 0.6);
+      padding-top: var(--space-xs);
+      padding-bottom: var(--space-xs);
+    }
+  }
   /* --- Responsive scaling --- */
   @media (max-width: 768px) {
     .breadcrumb-slot {

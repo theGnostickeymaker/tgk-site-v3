@@ -1,0 +1,17 @@
+{
+  "include": [
+    "src/**/*.js",
+    "eleventy.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "_site"
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "checkJs": false
+  }
+}

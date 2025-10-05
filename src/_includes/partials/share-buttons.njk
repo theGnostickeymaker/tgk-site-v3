@@ -1,20 +1,45 @@
+{# === SOCIAL SHARE BUTTONS === #}
+{% set siteBase = "https://thegnostickey.com" %}
 {% set shareTitle = title or page.fileSlug or "The Gnostic Key" %}
-{% set shareUrl = permalink or page.url or "https://thegnostickey.com" %}
+{% set relativeUrl = permalink or page.url or "/" %}
+{% set shareUrl = siteBase + relativeUrl %}
 
-<div class="share-buttons">
-  <!-- Telegram -->
-  <div class="btn-wrap">
-    <a href="https://t.me/share/url?url={{ shareUrl | url }}&text={{ shareTitle | urlencode }}"
-       target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-      💬 <strong>Share on Telegram</strong>
-    </a>
-  </div>
+<section id="share" class="section-block share-section">
+  <h2 class="section-heading">📤 Share This Scroll</h2>
+  <p>Spread the light – every share is a spark of remembrance.</p>
 
-  <!-- X -->
-  <div class="btn-wrap">
-    <a href="https://x.com/intent/tweet?url={{ shareUrl | url }}&text={{ shareTitle | urlencode }}"
-       target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-      📤 <strong>Share on X</strong>
-    </a>
+  <div class="btn-row">
+    <!-- Share this scroll (Telegram) -->
+    <div class="btn-wrap">
+      <a href="https://t.me/share/url?url={{ shareUrl | urlencode }}&text={{ shareTitle | urlencode }}%20%23TheGnosticKey"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-outline"
+         aria-label="Share this scroll on Telegram">
+        🔗 <strong>Share on Telegram</strong>
+      </a>
+    </div>
+
+    <!-- Share on X -->
+    <div class="btn-wrap">
+      <a href="https://x.com/intent/tweet?url={{ shareUrl | urlencode }}&text={{ shareTitle | urlencode }}%20%23TheGnosticKey"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-outline"
+         aria-label="Share this scroll on X (formerly Twitter)">
+        📤 <strong>Share on X</strong>
+      </a>
+    </div>
+
+    <!-- Official Telegram channel -->
+    <div class="btn-wrap">
+      <a href="https://t.me/TheGnosticKey"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-outline"
+         aria-label="Visit The Gnostic Key Telegram channel">
+        💬 <strong>Join Our Channel</strong>
+      </a>
+    </div>
   </div>
-</div>
+</section>

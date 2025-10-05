@@ -35,7 +35,7 @@ body.dark .image-block {
 .caption-gnostic {
   margin-top: var(--space-xs);
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--highlight);
   font-size: var(--font-sm);
   letter-spacing: 0.02em;
   background-color: var(--shadow-glow);

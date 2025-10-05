@@ -3,6 +3,7 @@ layout: base.njk
 title: "Gnostic Christianity"
 description: "Part III of the Afterlife Series — the soul’s map of return through death, the toll gates, and gnosis as the password of liberation."
 tier: free
+scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-III"
 
 episode: 1
 partNumeral: III
@@ -31,16 +32,59 @@ seriesMeta:
   series_version: 1
 
 # 🔮 Section Visibility Controls
-discussEnabled: true         # if false, hides "Discussion" tab + section
-resourcesEnabled: true       # optional override for “Resources” tab
-seriesNavEnabled: true       # optional override for “Series Map” tab
+discussEnabled: true
+resourcesEnabled: true
+seriesNavEnabled: true
 quizEnabled: true
 
 lensEnabled: true
-crossLinks: []
-vaultRefs: []
+
+crossLinks:
+  - title: "Part II — The Revealer and the Spark"
+    path: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
+    desc: "The hidden Christ awakens the spark within the soul — the prelude to the journey through death."
+  - title: "The Gospel of Philip"
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-philip/"
+    desc: "Teachings on union, rebirth, and the bridal chamber — the soul’s sacred reunion with the Light."
+  - title: "The Apocalypse of Paul"
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/apocalypse-of-paul/"
+    desc: "Paul’s journey through the heavens — the soul’s map through the toll gates of death and return."
+
+vaultRefs:
+  - title: "Gospel of Mary"
+    desc: "Mary’s vision of the soul’s dialogue with the powers — a hidden guide to transcending ignorance and wrath."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-mary/"
+  - title: "Gospel of Philip"
+    desc: "A text of mystical union and initiation — the bridal chamber where the divided soul remembers its divine twin."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-philip/"
+  - title: "Apocalypse of Paul"
+    desc: "A visionary ascent through the heavens — revealing the soul’s interrogation by the Archons and its liberation through gnosis."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/apocalypse-of-paul/"
+  - title: "Pistis Sophia"
+    desc: "The lament and redemption of Sophia — the cosmic drama mirrored in every soul’s return through the Aeons."
+    path: "/pillars/the-vault/codex-reborn/gnostic-texts/pistis-sophia/"
+
 communityThreads: []
 relatedProducts: []
+
+shareEnabled: true
+showTelegramButton: true
+showShareButton: true
+shareHashtags: "#TheGnosticKey #Gnosis"
+
+# === Discussion Prompt Block ===
+discussionEnabled: true
+
+discussion:
+  promptTitle: "Will You Remember at the Gate?"
+  intro: "This scroll is not mythology. It is rehearsal.\n\nThe toll gates are real, and forgetting is already here. So ask yourself now, before the veils fall:"
+  question: "If you had to speak your soul’s origin at death, what would you say?"
+  points:
+    - "What do you truly remember about where you came from?"
+    - "What false gods still whisper to you — and do you still listen?"
+    - "If you met the Archons tonight, would you know the words?"
+    - "Have you died before death, or are you still clinging to the mask?"
+  footer: "💬 Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Or bring your gnosis directly to the Temple."
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -62,23 +106,25 @@ glossary:
   - term: "Demiurge"
     def: "The false creator god — a blind architect of the material cosmos. Those who align with him remain trapped in illusion and return."
   - term: "Divine Spark"
-    def: "A piece of the Light buried within each soul. Planted by **Sophia**. When remembered, it leads the soul back to the **Pleroma**."
+    def: "A piece of the Light buried within each soul. Planted by Sophia. When remembered, it leads the soul back to the Pleroma."
   - term: "Forgetfulness"
     def: "The soul’s greatest danger. To forget one’s origin is to be recycled — trapped in rebirth, trauma, and illusion until gnosis awakens."
   - term: "Sophia"
     def: "Divine Wisdom — the Aeon who fell into the lower realms. Her scattered light lives in souls. When we awaken, she rises with us."
+  - term: "Gospel of Philip"
+    def: "A Gnostic sacramental text on union, resurrection, and the bridal chamber of the soul."
   - term: "Apocalypse of Paul"
-    def: "A Gnostic text detailing the soul’s ascent after death, the toll gates, and the cosmic interrogators. A hidden map of spiritual return."
+    def: "A Gnostic vision of the soul’s ascent, confronting the powers that bind humanity after death."
 
 references:
   title: "📚 Sources & Study Path"
   intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
   readings:
-    - title: "⚡ The Nag Hammadi Scriptures"
+    - title: "The Nag Hammadi Scriptures"
       desc: "Primary Gnostic texts translated with commentary."
-    - title: "⚡ The Gnostic Gospels — Elaine Pagels"
+    - title: "The Gnostic Gospels — Elaine Pagels"
       desc: "Accessible introduction to the hidden Christianities."
-    - title: "⚡ The Gnostic Religion — Hans Jonas"
+    - title: "The Gnostic Religion — Hans Jonas"
       desc: "Philosophical exploration of Gnostic mythos."
   scholarly:
     - author: "Meyer, M."
@@ -94,6 +140,7 @@ references:
       year: 1988
       pub: "Brill Academic"
 ---
+
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -123,13 +170,21 @@ references:
   <p>There are <strong>toll gates</strong>. Guardians. Archons who question, distort, delay.</p>
   <p>They demand answers. Passwords. Recognition.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;If the soul does not remember the words of light, it will be seized and cast back into the world.&rdquo;<br>
+<section class="section-block">
+  <blockquote id="mary-22" class="blockquote">
+    &ldquo;All nature, all formations, all creatures exist in and with one another, 
+    and they will be resolved again into their own roots.&rdquo;<br>
     <cite>
-      <em>Gospel of Mary</em>, BG 8502:9, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-gospel-according-to-mary-magdalene.pdf?alt=media&token=a00c8b1e-71a1-4e8d-b2ad-93548f6fe27b" target="_blank" rel="noopener noreferrer">Source</a>
+      <em>Gospel of Mary</em>, BG 8502 IV 4:22,&nbsp;
+      <a 
+        href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-mary/#mary-22"
+        target="_blank" 
+        rel="noopener noreferrer">
+        Source
+      </a>
     </cite>
   </blockquote>
+</section>
 
   <p>This is why gnosis matters &mdash; not just for life, but for <strong>death</strong>.</p>
   <p>If the soul remembers its origin, if it knows the lie, it can pass.</p>
@@ -241,13 +296,18 @@ references:
   <p>Jesus, to them, was not a sacrifice.  
   He was a living transmission &mdash; a Revealer from the Light, come to teach souls how to <em>return</em>.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;He who has known himself has already achieved knowledge of the depth.&rdquo;<br>
-    <cite>
-      Adapted from <em>Gospel of Truth</em>, NHC I,3:22–25  
-      (<a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-gospel-of-truth.pdf?alt=media&token=f9cfcfa3-a25b-42f6-9e13-3674b5bc2298" target="_blank" rel="noopener noreferrer">trans. Meyer, 2007</a>)
-    </cite>
-  </blockquote>
+<blockquote id="truth-22" class="blockquote">
+  &ldquo;He who has come to know himself has already achieved knowledge of the depth of all.&rdquo;<br>
+  <cite>
+    <em>Gospel of Truth</em>, NHC I,3:22–25,&nbsp;
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-truth/" 
+      target="_blank" 
+      rel="noopener noreferrer">
+      Source
+    </a>
+  </cite>
+</blockquote>
 
   <p>In the <em>Pistis Sophia</em>, he gives Mary passwords, names of light, and radiant seals &mdash; not to dominate others, but to <strong>guide the dead</strong>.</p>
 
@@ -396,13 +456,20 @@ references:
   <p>It is <strong>the original state</strong>.</p>
   <p>Not reward &mdash; <em>return</em>.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;You are from the place where light came into being by itself. You came from it, and you will return there.&rdquo;<br>
-    <cite>
-      <em>Gospel of Truth</em>, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-gospel-of-truth.pdf?alt=media&token=f9cfcfa3-a25b-42f6-9e13-3674b5bc2298" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  &ldquo;You are from the place where light came into being by itself.  
+  You came from it, and you will return there.&rdquo;<br>
+  <cite>
+    <em>Gospel of Truth</em>, NHC I,3:30–32,&nbsp;
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-truth/" 
+      target="_blank" 
+      rel="noopener noreferrer">
+      Source
+    </a>
+  </cite>
+</blockquote>
+
 
   <p>In the <strong>Pleroma</strong>, the soul is no longer separate.</p>
   <p>It does not float like a ghost. It does not worship. It <strong>remembers what it is</strong>: not a fragment, but the <em>All</em>.</p>
@@ -453,12 +520,17 @@ references:
 
   <p>This is the real resurrection &mdash; the rising of the <strong>divine spark</strong> <em>while you still breathe</em>.</p>
 
-<blockquote class="blockquote">
+<blockquote id="thomas-108" class="blockquote">
   &ldquo;Whoever drinks from my mouth will become like me.  
   I myself shall become that person, and the hidden things will be revealed to them.&rdquo;<br>
   <cite>
-    <em>Gospel of Thomas</em>, Saying 108,  
-    <a href="/TGK-vault/codex-reborn/gnostic-texts/the-gospel-of-thomas.html#thomas-108" target="_blank" rel="noopener noreferrer">Source</a>
+    <em>Gospel of Thomas</em>, Saying 108,&nbsp;
+    <a 
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-108" 
+      target="_blank" 
+      rel="noopener noreferrer">
+      Source
+    </a>
   </cite>
 </blockquote>
 
@@ -574,6 +646,8 @@ references:
   {% include "partials/share-buttons.njk" %}
 </section>
 
+{% include "partials/discussion-prompt.njk" %}
+
 <!--Quiz-->
 {% include "partials/quiz-block.njk" %}
 
@@ -601,11 +675,13 @@ references:
 </section>
 {% endif %}
 
+{% include "partials/share-buttons.njk" %}
+
 <!-- Episode Part Nav -->
 {% include "partials/episode-part-nav.njk" %}
 
 <div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin spin" aria-hidden="true">{{ pillarGlyph }}</span>
+  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
 </div>
 
 </section>

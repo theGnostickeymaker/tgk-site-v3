@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: "The Hypostasis of the Archons (The Reality of the Rulers)"
+description: "A Gnostic revelation describing the origins of the Archons — rulers of the material cosmos — and humanity’s divine resistance through spirit and gnosis."
+tagline: "The Reality of the Rulers ✦ Sophia’s intervention ✦ the birth of the true human"
+glyph: "👁"
+glyphRow: ["🜂", "👁", "🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+permalink: "/pillars/the-vault/codex-reborn/gnostic-texts/hypostasis-of-the-archons/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Gnostic Texts", url: "/pillars/the-vault/codex-reborn/gnostic-texts/" }
+  - { title: "The Hypostasis of the Archons" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gnostic-texts/hypostasis-of-the-archons.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- 📜 Preservation / Authorship Note -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📖 Preservation & Authorship</span></summary>
+      <p>
+        This translation of <em>The Hypostasis of the Archons</em> (also known as 
+        <em>The Reality of the Rulers</em>, Nag Hammadi Codex II, 4) appears here by 
+        permission and under license from <strong>Dr. Willis Barnstone</strong>, who retains all copyright.  
+        It was first published in <em>The Gnostic Bible</em>, © 2003 by Willis Barnstone & Marvin Meyer.
+      </p>
+      <p>
+        This presentation is preserved in <strong>The Vault / Codex Reborn</strong> for educational and 
+        spiritual purposes under fair use.  
+        Original source:  
+        <a href="https://www.gnosis.org/naghamm/hypostas.html" target="_blank" rel="noopener noreferrer">
+          gnosis.org – The Reality of the Rulers
+        </a>.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "The Hypostasis of the Archons — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/gnostic-texts/hypostasis-of-the-archons/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

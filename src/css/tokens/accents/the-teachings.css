@@ -108,6 +108,26 @@
     box-shadow: 0 0 12px rgba(210, 180, 100, 0.3) !important;
   }
 
+  html[data-theme="light"] body.gold {
+    /* Episode Navigation Tokens */
+    --episode-nav-bg: linear-gradient(
+      135deg,
+      #fffaf4 0%,
+      #f9f1dd 40%,
+      #f1dfb8 80%
+    ) !important;
+    --episode-nav-border: rgba(0, 0, 0, 0.05) !important;
+    --episode-nav-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+
+    --episode-link-color: var(--text-accent) !important;
+    --episode-link-bg-hover: var(--text-accent) !important;
+    --episode-link-text-hover: #1a1a1a !important;
+    --episode-link-border-hover: var(--text-accent) !important;
+    --episode-link-glow: 0 0 15px rgba(184, 140, 42, 0.35) !important;
+
+    --episode-divider-color: rgba(0, 0, 0, 0.35) !important;
+  }
+
   /* ✦ Gold – Dark Theme */
   html[data-theme="dark"] body.gold {
     /* Core tokens */
@@ -211,6 +231,26 @@
     box-shadow: 0 0 14px rgba(251, 215, 120, 0.3) !important;
   }
 
+  html[data-theme="dark"] body.gold {
+    --episode-nav-bg: linear-gradient(
+      145deg,
+      #2a1f0c 0%,
+      #3c2b0d 50%,
+      #6e4c1a 100%
+    ) !important;
+    --episode-nav-border: rgba(255, 255, 255, 0.08) !important;
+    --episode-nav-shadow: 0 0 25px rgba(255, 222, 133, 0.25) !important;
+
+    --episode-link-color: var(--text-accent) !important;
+    --episode-link-bg-hover: var(--text-accent) !important;
+    --episode-link-text-hover: #1a1a1a !important;
+    --episode-link-border-hover: var(--text-accent) !important;
+    --episode-link-glow: 0 0 15px rgba(251, 215, 120, 0.3) !important;
+
+    --episode-divider-color: rgba(255, 255, 255, 0.5) !important;
+  }
+}
+
   /* ===================================================
      Global overlay reset (light/dark)
      =================================================== */
@@ -220,4 +260,4 @@
     --overlay-img: none !important;
     opacity: 0 !important;
   }
-}
+

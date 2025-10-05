@@ -1,30 +1,31 @@
 @layer navigation {
   /* ===================================================
      Floating Toggles – Theme & Utility Tray
-     Version: 1.2 – Tokenised + Accessible
+     Version: 1.3 – Bottom-Left Placement
      =================================================== */
 
   .floating-toggles {
     position: fixed;
     bottom: var(--space-md);
-    right:  var(--space-md);
+    right:  var(--space-md);   /* moved from right to left */
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;  /* mirror alignment for left edge */
     gap: var(--space-sm);
-    z-index: var(--z-floating, 10050); /* tokenised instead of hard 99999 */
-    pointer-events: none;              /* tray itself doesn’t intercept clicks */
+    z-index: var(--z-floating, 10050);
+    pointer-events: none;
   }
 
   /* show immediately (JS adds .is-visible) */
   .floating-toggles.is-visible { pointer-events: auto; }
 
-  /* mobile/tablet: dock to top-right */
+  /* mobile/tablet: keep bottom-left on all viewports */
   @media (max-width: 1024px) {
     .floating-toggles {
-      top: var(--space-md);
+      bottom: var(--space-md);
+      left: auto;
       right: var(--space-md);
-      bottom: auto;
+      top: auto;
     }
   }
 
@@ -45,7 +46,7 @@
     border: 0;
     outline: 0;
     backdrop-filter: blur(2px);
-    pointer-events: auto; /* re-enable only on the buttons */
+    pointer-events: auto;
     transition: transform .2s ease, background-color .2s ease, color .2s ease;
   }
 
@@ -59,5 +60,5 @@
     outline-offset: 2px;
   }
 
-  .theme-toggle-floating[hidden] { display:none !important; }
+  .theme-toggle-floating[hidden] { display: none !important; }
 }

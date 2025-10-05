@@ -12,11 +12,13 @@
     <h3 class="lens-heading">
       <span class="pillar-glyph">⚯</span> Cross-Threads
     </h3>
-    <ul>
-      {% for link in crossLinks %}
-        <li>
-          {{ link.from }} ✧ {{ link.to }}
-          {% if link.type %}<em>({{ link.type }})</em>{% endif %}
+    <ul class="lens-list">
+      {% for item in crossLinks %}
+        <li class="lens-item">
+          <a href="{{ item.path }}" class="lens-link">{{ item.title }}</a>
+          {% if item.desc %}
+            <p class="lens-desc">{{ item.desc }}</p>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
@@ -28,9 +30,14 @@
     <h3 class="lens-heading">
       <span class="pillar-glyph">📜</span> Vault References
     </h3>
-    <ul>
+    <ul class="lens-list">
       {% for ref in vaultRefs %}
-        <li><a href="/vault/{{ ref }}" class="lens-link">{{ ref }}</a></li>
+        <li class="lens-item">
+          <a href="{{ ref.path }}" class="lens-link">{{ ref.title }}</a>
+          {% if ref.desc %}
+            <p class="lens-desc">{{ ref.desc }}</p>
+          {% endif %}
+        </li>
       {% endfor %}
     </ul>
   </div>
@@ -41,9 +48,14 @@
     <h3 class="lens-heading">
       <span class="pillar-glyph">✺</span> Community Threads
     </h3>
-    <ul>
+    <ul class="lens-list">
       {% for thread in communityThreads %}
-        <li><a href="/community/{{ thread | slug }}" class="lens-link">{{ thread }}</a></li>
+        <li class="lens-item">
+          <a href="{{ thread.path }}" class="lens-link">{{ thread.title }}</a>
+          {% if thread.desc %}
+            <p class="lens-desc">{{ thread.desc }}</p>
+          {% endif %}
+        </li>
       {% endfor %}
     </ul>
   </div>
@@ -54,9 +66,14 @@
     <h3 class="lens-heading">
       <span class="pillar-glyph">⚒</span> Related Artifacts
     </h3>
-    <ul>
+    <ul class="lens-list">
       {% for product in relatedProducts %}
-        <li><a href="/shop/{{ product | slug }}" class="lens-link">{{ product }}</a></li>
+        <li class="lens-item">
+          <a href="{{ product.path }}" class="lens-link">{{ product.title }}</a>
+          {% if product.desc %}
+            <p class="lens-desc">{{ product.desc }}</p>
+          {% endif %}
+        </li>
       {% endfor %}
     </ul>
   </div>

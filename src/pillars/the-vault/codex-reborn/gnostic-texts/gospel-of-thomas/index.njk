@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: "Gospel of Thomas"
+description: "Sayings of the Living Jesus — the inner gospel of self-knowledge and remembrance."
+tagline: "Hidden sayings ✦ inner revelation ✦ the kingdom within"
+glyph: "✝"
+glyphRow: ["🜂","✝","🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+permalink: "/pillars/the-vault/codex-reborn/gnostic-texts/gospal-of-thomas/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Gnostic Texts", url: "/pillars/the-vault/codex-reborn/gnostic-texts/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gnostic-texts/gospal-of-thomas.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "Gnostic Texts — Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/gnostic-texts/gospal-of-thomas/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

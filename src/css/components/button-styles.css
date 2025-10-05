@@ -17,8 +17,6 @@
     cursor: pointer;
     text-align: center;
     transition: all 0.3s ease;
-
-    /* Minimal default look: transparent background, glowing text */
     color: var(--text-accent);
     background: transparent;
     border: 2px solid var(--text-accent);
@@ -32,16 +30,30 @@
     box-shadow: 0 0 15px var(--text-accent);
   }
 
-  /* 🟫 Wrapper for Centered Buttons */
+  /* 🟫 Wrapper for Centered or Grouped Buttons */
   .btn-wrap {
     text-align: center;
-    margin: var(--space-lg) auto;
+    margin: var(--space-md) auto;
   }
 
-  @media (max-width: 640px) {
-    .btn {
-      font-size: var(--font-size-sm, 0.9rem);
-      padding: var(--space-sm) var(--space-md);
+  /* ✅ Button Rows (used in discussion + share + CTA areas) */
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .btn-row .btn-wrap {
+    margin: 0; /* prevent double margins inside row */
+  }
+
+  @media (max-width: 768px) {
+    .btn-row {
+      flex-direction: column;
+      gap: var(--space-sm);
     }
   }
 
@@ -88,6 +100,7 @@
     font-weight: bold;
     box-shadow: 0 0 15px transparent;
   }
+
   .cta-button:hover {
     background: var(--text-accent);
     color: var(--bg-primary);
@@ -115,6 +128,7 @@
   .btn.glow-hover {
     box-shadow: 0 0 10px transparent;
   }
+
   .btn.glow-hover:hover {
     box-shadow: 0 0 20px var(--highlight);
   }
@@ -126,4 +140,30 @@
     display: flex;
     justify-content: center;
   }
+
+  /* ---------------------------------------------------
+     Button Rows – Unified for Desktop + iPad
+     --------------------------------------------------- */
+
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .btn-row .btn-wrap {
+    margin: 0;
+  }
+
+  /* stack only on small phones */
+  @media (max-width: 600px) {
+    .btn-row {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+  }
+
 }
