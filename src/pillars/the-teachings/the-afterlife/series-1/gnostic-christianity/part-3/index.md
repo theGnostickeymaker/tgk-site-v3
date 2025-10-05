@@ -177,7 +177,7 @@ references:
     <cite>
       <em>Gospel of Mary</em>, BG 8502 IV 4:22,&nbsp;
       <a 
-        href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-mary/#mary-22"
+        href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-mary/"
         target="_blank" 
         rel="noopener noreferrer">
         Source
@@ -230,12 +230,21 @@ references:
   <p>Each gate is a veil. A test.  
   Proof of whether you awakened <em>before</em> death &mdash; or remained asleep inside it.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;When the soul leaves the body, it is confronted by the Archons who ask: &lsquo;Where do you come from? Who sent you? What signs do you bring back?&rsquo;&rdquo;<br>
-    <cite>
-      (Paraphrased from <em><a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-apocalypse-of-john.pdf?alt=media&token=14e4f415-91ea-4658-ae67-209fa48b834d" target="_blank" rel="noopener noreferrer">Apocalypse of Paul</a></em>, NHC V,2)
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  <p>
+    &ldquo;When the soul leaves the body, it is confronted by the Archons who ask:  
+    &lsquo;Where do you come from? Who sent you? What signs do you bring back?&rsquo;&rdquo;
+  </p>
+  <cite>
+    Paraphrased from <em>
+      <a 
+        href="/pillars/the-vault/codex-reborn/gnostic-texts/apocalypse-of-paul/"
+        target="_blank" 
+        rel="noopener noreferrer"
+      >The Apocalypse of Paul</a>
+    </em>, NHC V,2.
+  </cite>
+</blockquote>
 
   <p>If the soul remembers the true Source, the answers are simple.</p>
   <p>But if it clings to ego, identity, belief &mdash; it stumbles.</p>
@@ -391,13 +400,21 @@ references:
 
   <p>You are recycled. Reinserted. Re-enchained in the wheel of birth, trauma, conformity, and amnesia.</p>
 
-  <blockquote class="blockquote">
-    &ldquo;The soul that does not possess gnosis is powerless after death… It is thrown into forgetfulness and cast back into the world.&rdquo;<br>
-    <cite>
-      <em>Gospel of Philip</em>, NHC II,3:67.1–5, 
-      <a href="https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-teachings%2Fgnostic-christianity%2Fthe-gospel-of-truth.pdf?alt=media&token=f9cfcfa3-a25b-42f6-9e13-3674b5bc2298" target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  <p>
+    &ldquo;The soul that does not possess <em>gnosis</em> is powerless after death…  
+    It is thrown into forgetfulness and cast back into the world.&rdquo;
+  </p>
+  <cite>
+    <em>The Gospel of Philip</em>, NHC II,3 : 67.1–5.  
+    <a
+      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-philip/"
+      target="_blank"
+      rel="noopener noreferrer">
+    </a>
+  </cite>
+</blockquote>
+
 
   <p>In the Gnostic vision, this cycle is not growth.  
   It&rsquo;s containment.</p>
