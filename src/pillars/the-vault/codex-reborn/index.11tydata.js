@@ -25,7 +25,7 @@ export default {
         href: "/pillars/the-vault/codex-reborn/gnostic-texts/",
         glyph: "🜂",
         tier: "free",
-        state: "coming-soon"
+        state: "default"
       },
       {
         title: "Mystical Traditions",
