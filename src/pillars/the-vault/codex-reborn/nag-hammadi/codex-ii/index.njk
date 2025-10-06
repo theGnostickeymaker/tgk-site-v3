@@ -1,0 +1,44 @@
+---
+title: "Codex II"
+layout: "base.njk"
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-codex-ii.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      Codex II — the heart of the Nag Hammadi Library, containing the <em>Apocryphon of John</em>, <em>Gospel of Thomas</em>, and <em>Gospel of Philip</em>.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 About Codex II</span></summary>
+      <p>
+        <strong>Codex II</strong> is the most complete and influential manuscript within the Nag Hammadi Library. 
+        It preserves core Gnostic revelations, including the <em>Apocryphon of John</em>, the <em>Gospel of Thomas</em>, 
+        the <em>Gospel of Philip</em>, and <em>Hypostasis of the Archons</em>. Together these writings form the 
+        cornerstone of Gnostic cosmology, psychology, and the path of awakening.
+      </p>
+      <p>
+        Within Codex II, the voice of the revealer speaks not of belief but of <strong>remembrance</strong>. 
+        It maps the soul’s journey through the false heavens, revealing the luminous descent and return of the Spirit.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "Codex II — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

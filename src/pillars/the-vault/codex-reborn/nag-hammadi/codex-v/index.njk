@@ -1,0 +1,77 @@
+---
+layout: base.njk
+title: "Nag Hammadi – Codex II"
+description: "The central manuscript of the Nag Hammadi Library — containing the Apocryphon of John, Gospel of Thomas, Gospel of Philip, and other core Gnostic revelations."
+tagline: "The heart of the Nag Hammadi Library ✦ remembrance ✦ revelation ✦ return"
+tier: free
+glyph: "📜"
+glyphRow: ["📜", "🕯", "📜"]
+accent: vault
+bodyClass: vault
+
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
+  - { title: "Codex II" }
+
+vaultMeta:
+  collection: "Codex Reborn"
+  subset: "Nag Hammadi Library – Codex II"
+  origin: "Discovered 1945, Upper Egypt"
+  curator: "Coptic Museum, Cairo"
+  date: "4th century CE"
+  condition: "Well-preserved papyrus, bound in leather"
+  language: "Coptic (Sahidic dialect)"
+  license: "Educational / Spiritual Use Only"
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-codex-ii.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      <strong>Codex II</strong> — the heart of the Nag Hammadi Library, preserving the
+      <em>Apocryphon of John</em>, <em>Gospel of Thomas</em>, <em>Gospel of Philip</em>,
+      and <em>Hypostasis of the Archons</em>.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 About Codex II</span></summary>
+      <p>
+        <strong>Codex II</strong> is the most complete and influential manuscript within the Nag Hammadi Library.
+        It preserves the foundation texts of Gnostic spirituality — tracing the soul’s origin in the
+        <em>Pleroma</em>, its descent into matter, and the memory of return through divine knowledge.
+      </p>
+      <p>
+        These writings form the spiritual architecture of <strong>Gnosis</strong>:
+        the <em>Apocryphon of John</em> maps creation and the fall of Sophia;
+        the <em>Gospel of Thomas</em> reveals the inner sayings of the Living Jesus;
+        the <em>Gospel of Philip</em> teaches the mystery of union;
+        and the <em>Hypostasis of the Archons</em> unveils the powers who rule the false heavens.
+      </p>
+      <p>
+        Together, they chart the soul’s awakening — from ignorance to illumination,
+        from imprisonment to remembrance.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "Codex II — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: "Gnostic Texts"
+description: "Recovered revelations from Nag Hammadi — the secret gospels of Christ and Sophia."
+tagline: "Secret gospels ✦ revelations ✦ the hidden Christ"
+glyph: "🜂"
+glyphRow: ["🜂","🕯","🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+
+# ✅ Corrected permalink for Apocryphon of John (Codex II)
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
+  - { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" }
+  - { title: "Apocryphon of John" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi/apocryphon-of-john.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "Nag Hammadi — Codex II ✦ Apocryphon of John Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

@@ -1,0 +1,73 @@
+---
+layout: base.njk
+title: "The Gospel of Thomas"
+description: "114 sayings of the Living Jesus — the hidden gospel of self-knowledge and remembrance of the Light within."
+tagline: "Hidden sayings ✦ inner revelation ✦ the kingdom within"
+glyph: "📜"
+glyphRow: ["🜂","📜","🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
+  - { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" }
+  - { title: "The Gospel of Thomas" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gospel-of-thomas.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      The Gospel of Thomas — 114 hidden sayings of the Living Jesus, revealing the kingdom within and the path of inner illumination.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 Authorship & Translation</span></summary>
+      <p>
+        Translated by <strong>Thomas O. Lambdin</strong>.<br>
+        Published in <em>The Nag Hammadi Library in English</em>, ed. James M. Robinson (Harper & Row, 1988).<br>
+        Reproduced for <strong>educational and spiritual use</strong> under fair-use.  
+        All rights remain with the translators and publisher.
+      </p>
+      <p>
+        Source:&nbsp;
+        <a href="https://www.gnosis.org/naghamm/gosthom.html" target="_blank" rel="noopener noreferrer">
+          gnosis.org – The Gospel of Thomas
+        </a>
+      </p>
+    </details>
+
+    <p>
+      <em>The Gospel of Thomas</em> (Nag Hammadi Codex II, 2) is a collection of 114 sayings attributed to the Living Jesus.  
+      It offers no narrative — only parables, riddles, and declarations that point inward toward direct self-knowledge.  
+      Its central message: <strong>the Kingdom is within you and it is spread out upon the Earth, but men do not see it.</strong>
+    </p>
+
+    <p>
+      These sayings preserve the voice of a mystical Christ who teaches awakening through remembrance, not belief —  
+      a journey of recognition where the seeker and the Light become one.
+    </p>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "The Gospel of Thomas — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

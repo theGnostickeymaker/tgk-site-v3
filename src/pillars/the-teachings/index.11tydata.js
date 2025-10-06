@@ -24,7 +24,7 @@ export default {
         glyph: "⚖", 
         desc: "Scrolls of civil liberty, law, and self-defence.", 
         tier: "free", 
-        state: "active" 
+        state: "coming-soon" 
       },
       { 
         href: "#", 

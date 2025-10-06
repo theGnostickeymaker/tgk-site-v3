@@ -1,0 +1,44 @@
+---
+title: "Codex I"
+layout: "base.njk"
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-codex-i.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      Codex I — the first of the Nag Hammadi manuscripts, containing the <em>Gospel of Truth</em> and other early revelations of Light.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 About Codex I</span></summary>
+      <p>
+        <strong>Codex I</strong> of the Nag Hammadi Library, also known as the <em>Jung Codex</em>, was among the first to be discovered. 
+        It includes the <em>Gospel of Truth</em> — a poetic reflection on self-knowledge and the Father’s embrace — 
+        as well as the <em>Tripartite Tractate</em> and <em>Treatise on the Resurrection</em>.
+      </p>
+      <p>
+        These writings reveal the central Valentinian vision: that ignorance is the true exile, 
+        and remembrance the act of redemption. Within these pages the seeker learns that to know oneself 
+        is to return to the Source.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "Codex I — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

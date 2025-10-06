@@ -1,0 +1,71 @@
+---
+layout: base.njk
+title: "Codex Reborn"
+description: "Recovered Gnostic gospels and apocrypha — preserved fragments of the ancient Light."
+tagline: "Recovered scrolls ✦ hidden revelations ✦ the voice of Sophia"
+seriesId: "the-vault-codex-reborn"
+
+glyph: "📜"
+glyphRow: ["🜂","🕯","🜂"]
+accent: vault
+bodyClass: vault
+tier: free
+
+permalink: "/pillars/the-vault/codex-reborn/berlin-codex/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/codex-reborn.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      Codex Reborn — recovered gospels and apocrypha of the hidden Christ and Sophia.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📚 About Codex Reborn</span></summary>
+
+      <p>
+        <strong>Codex Reborn</strong> forms part of <strong>The Vault</strong> — the archival pillar of 
+        <em>The Gnostic Key</em> — where sacred, forbidden, and forgotten texts are preserved for 
+        study and remembrance. It gathers the <strong>Gnostic Gospels</strong> recovered from 
+        Nag Hammadi and other ancient libraries, curated for modern seekers of gnosis.
+      </p>
+
+      <p>
+        These scrolls, once buried in sand or condemned by empire, are restored within the 
+        <strong>Vault of Remembrance</strong>. Each text reveals fragments of a celestial map — 
+        Sophia’s descent, the false creator, and the awakening of the soul’s divine spark.
+      </p>
+
+      <p>
+        The Codex Reborn collection is organised into five sub-libraries: the 
+        <em>Nag Hammadi Library</em>, the <em>Berlin Codex</em>, the <em>Codex Tchacos</em>, 
+        <em>Biblical & Apocryphal Texts</em>, and <em>Independent Texts</em>. 
+        Each section offers curated scrolls linked across <strong>The Teachings</strong> and 
+        <strong>The Gnostic Eye</strong>, forming a unified library of remembrance.
+      </p>
+    </details>
+
+  </section>
+
+  {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "Codex Reborn — Library Index" %}
+  {% set base = "/pillars/the-vault/codex-reborn/" %}
+  {% include "partials/jsonld-collection.njk" %}
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  </div>
+</main>

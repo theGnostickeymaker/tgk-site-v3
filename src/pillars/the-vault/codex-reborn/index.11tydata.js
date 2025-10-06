@@ -17,30 +17,46 @@ export default {
       { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
     ]),
 
-    // === Section Cards (Layer below The Vault) ===
+    // === Library Collections (Codex Reborn Sub-libraries)
     pillarGrid: () => ([
       {
-        title: "Gnostic Texts",
-        desc: "Recovered revelations from Nag Hammadi — the secret gospels of Christ and Sophia.",
-        href: "/pillars/the-vault/codex-reborn/gnostic-texts/",
-        glyph: "🜂",
+        title: "Nag Hammadi Library",
+        desc: "Thirteen ancient codices discovered in 1945 — the hidden gospels of Sophia and the Light.",
+        href: "/pillars/the-vault/codex-reborn/nag-hammadi/",
+        glyph: "📜",
         tier: "free",
         state: "default"
       },
       {
-        title: "Mystical Traditions",
-        desc: "Hidden writings from Kabbalah, Sufism, Buddhism, Egypt, and beyond.",
-        href: "/pillars/the-vault/codex-reborn/mystical-traditions/",
-        glyph: "✡️",
+        title: "Berlin Codex",
+        desc: "Preserving the Gospel of Mary and other texts once erased by orthodoxy.",
+        href: "/pillars/the-vault/codex-reborn/berlin-codex/",
+        glyph: "💮",
+        tier: "initiate",
+        state: "default"
+      },
+      {
+        title: "Codex Tchacos",
+        desc: "Modern discovery including the controversial Gospel of Judas — revelation through betrayal.",
+        href: "/pillars/the-vault/codex-reborn/codex-tchacos/",
+        glyph: "☥",
+        tier: "initiate",
+        state: "coming-soon"
+      },
+      {
+        title: "Biblical & Apocryphal Texts",
+        desc: "Canonical and extra-canonical scriptures reinterpreted through the Gnostic lens.",
+        href: "/pillars/the-vault/codex-reborn/biblical-apocrypha/",
+        glyph: "🌿",
         tier: "free",
         state: "coming-soon"
       },
       {
-        title: "Forbidden Documents",
-        desc: "Erased histories, banned manuscripts, and censored revelations preserved in the Vault.",
-        href: "/pillars/the-vault/codex-reborn/forbidden-documents/",
-        glyph: "🚫",
-        tier: "free",
+        title: "Independent Texts",
+        desc: "Major Gnostic treatises such as the Pistis Sophia — vast revelations of Light and descent.",
+        href: "/pillars/the-vault/codex-reborn/independent-texts/",
+        glyph: "🕊",
+        tier: "full",
         state: "coming-soon"
       }
     ])

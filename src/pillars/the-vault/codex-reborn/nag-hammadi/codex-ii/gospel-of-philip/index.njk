@@ -1,0 +1,74 @@
+---
+layout: base.njk
+title: "The Gospel of Philip"
+description: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and the reunion of the soul with the Light."
+tagline: "Union ✦ mystery ✦ the bridal chamber of Light"
+glyph: "🕯"
+glyphRow: ["🜂","🕯","🜂"]
+accent: vault
+bodyClass: vault
+tier: initiate
+
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
+  - { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" }
+  - { title: "The Gospel of Philip" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/gospel-of-philip.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      The Gospel of Philip — sayings on unity, illusion, and the bridal chamber: the soul’s reunion with its forgotten twin in the Light.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 Authorship & Translation</span></summary>
+      <p>
+        Translated by <strong>W. W. Isenberg</strong>.<br>
+        Published in <em>The Nag Hammadi Library in English</em>, ed. James M. Robinson (Harper & Row, 1988).<br>
+        Reproduced for <strong>educational and spiritual use</strong> under fair-use.  
+        All rights remain with the translators and publisher.
+      </p>
+      <p>
+        Source:&nbsp;
+        <a href="https://www.gnosis.org/naghamm/gop.html" target="_blank" rel="noopener noreferrer">
+          gnosis.org – The Gospel of Philip
+        </a>
+      </p>
+    </details>
+
+    <p>
+      <em>The Gospel of Philip</em> (Nag Hammadi Codex II, 3) gathers brief reflections on
+      initiation, illusion, and the sacred mystery called the <strong>Bridal Chamber</strong>.
+      It teaches that true union arises when the divided aspects of being — male and female, matter and spirit — are reconciled in gnosis.
+    </p>
+
+    <p>
+      Unlike the canonical gospels, Philip’s text speaks in symbols rather than story.
+      It offers a sacramental vision of redemption through <strong>knowledge, love, and inner marriage</strong> — 
+      the reunion of Christ and Sophia within the soul.
+    </p>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "The Gospel of Philip — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

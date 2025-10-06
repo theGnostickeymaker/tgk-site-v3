@@ -25,18 +25,10 @@ export default {
         state: "default"
       },
       {
-        title: "House of Grift Documents",
-        desc: "Declassified royal and elite correspondence — original source files from the House of Grift investigations.",
-        href: "/pillars/the-vault/house-of-grift-documents/",
-        glyph: "👑",
-        tier: "initiate",
-        state: "coming-soon"
-      },
-      {
-        title: "SYSTEMIC Archives",
-        desc: "Legislative evidence, court transcripts, and rights-erosion case files supporting the SYSTEMIC series.",
-        href: "/pillars/the-vault/systemic-documents/",
-        glyph: "⚖️",
+        title: "Mystical Traditions Archive",
+        desc: "Sufi, Buddhist, Kabbalistic, and Egyptian spiritual writings.",
+        href: "/pillars/the-vault/mystical-traditions/",
+        glyph: "🕉️",
         tier: "initiate",
         state: "coming-soon"
       },
@@ -45,8 +37,8 @@ export default {
         desc: "Erased histories, banned books, and censored knowledge preserved for study and remembrance.",
         href: "/pillars/the-vault/forbidden-documents/",
         glyph: "🚫",
-        tier: "free",
-        state: "default"
+        tier: "initiate",
+        state: "coming-soon"
       }
     ])
   }

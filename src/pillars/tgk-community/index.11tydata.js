@@ -3,7 +3,7 @@ export default {
     pillarGrid: () => ([
       { 
         href: "#", 
-        title: "Forums", 
+        title: "Forums for the initiated", 
         glyph: "💬", 
         desc: "Discussion boards.", 
         tier: "free", 

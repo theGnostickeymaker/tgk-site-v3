@@ -128,9 +128,9 @@
   }
 
   .section-subtitle {
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-md);
     font-weight: 400;
-    color: var(--section-subtitle-color, var(--text-secondary));
+    color: var(--text-primary);
     font-family: var(--font-serif);
     margin: -0.5rem 0 var(--space-lg);
     line-height: var(--font-base-line);

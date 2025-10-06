@@ -1,35 +1,71 @@
 export default {
+  // 📖 Series + Pillar Metadata
   seriesLabel: "The Afterlife Series",
   pillarLabel: "The Teachings",
   glyphRow: ["✝", "☥", "✝"],
   seriesHome: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/",
   pillarHome: "/pillars/the-teachings/",
-  episode: 1,
-  tagline: "The false cosmos, Christ the Revealer, and the soul’s return.",
-  seriesMeta: { number: 1, label: "Series 1", series_version: 1 },
-  episodeParts: [
-    { title: "Part I", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/" },
-    { title: "Part II", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/" },
-    { title: "Part III", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/" }
-  ],
-  seriesNav: [
-    { title: "Gnostic Christianity", desc: "The false cosmos, Christ the Revealer, and the soul’s return.", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" },
-  ],
+  tagline: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.",
   layout: "base.njk",
+
+  // 🔹 Series Hierarchy
   pillar: "the-teachings",
   series: "the-afterlife",
+  episode: 1,
+  seriesMeta: {
+    number: 1,
+    label: "Series 1",
+    series_version: 1
+  },
+
+  // 🔹 Episode Parts (for dynamic part navigation)
+  episodeParts: [
+    {
+      title: "Part I — The World Is Not What It Seems",
+      desc: "The false cosmos, Sophia’s fall, and the hidden map of return.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
+    },
+    {
+      title: "Part II — The Revealer and the Spark",
+      desc: "The hidden Christ awakens the divine spark within the soul.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
+    },
+    {
+      title: "Part III — The Soul’s Return",
+      desc: "Through the toll gates of death, the awakened soul remembers its home.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
+    }
+  ],
+
+  // 🔹 Series Nav (for episode-level overview)
+  seriesNav: [
+    {
+      title: "Gnostic Christianity",
+      desc: "The false cosmos, Christ the Revealer, and the soul’s return.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
+    }
+  ],
+
+  // 🧭 Computed properties for flexible page rendering
   eleventyComputed: {
-    slug: (d) => d.slug || d.page.fileSlug,
-    permalink: (d) => d.permalink || d.page.url,
-    imgBase: (d) => d.imgBase || "/media/the-teachings/the-afterlife/series-1/gnostic-christianity",
-    imgPrefix: (d) => d.imgPrefix || "gnostic-christianity-",
-    socialImage: (d) => d.socialImage || "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity.jpg",
+    slug: (data) => data.slug || data.page.fileSlug,
+    permalink: (data) => data.permalink || data.page.url,
+    imgBase: (data) =>
+      data.imgBase ||
+      "/media/the-teachings/the-afterlife/series-1/gnostic-christianity",
+    imgPrefix: (data) => data.imgPrefix || "gnostic-christianity-",
+    socialImage: (data) =>
+      data.socialImage ||
+      "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity.jpg",
+
+    // 🔹 Breadcrumb generation (auto-extends with current title)
     breadcrumbsBase: () => [
       { title: "The Gnostic Key", url: "/" },
       { title: "The Teachings", url: "/pillars/the-teachings/" },
       { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" },
-      { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+      { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
     ],
-    breadcrumbs: (d) => [...(d.breadcrumbsBase || []), d.title ? { title: d.title } : null].filter(Boolean)
+    breadcrumbs: (data) =>
+      [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
   }
 };

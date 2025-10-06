@@ -8,7 +8,7 @@ glyph: "✝"
 
 series_version: 1
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/index.html"
-tagline: "The false cosmos, Christ the Revealer, and the soul’s return."
+tagline: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
 seriesMeta:
   number: 1
   label: "Series 1"
@@ -19,7 +19,7 @@ breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
   - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
 ---
 
 {% block head %}
@@ -32,27 +32,34 @@ breadcrumbs:
 {% endblock %}
 
 <main class="main-content">
-<section class="content-container">
+  <section class="content-container">
 
-  <h4 class="index heading">
-    Gnostic Christianity – the false cosmos, Christ the Revealer and the soul’s return.
-  </h4>
+    <!-- 🜂 Intro -->
+    <h4 class="index-heading">
+      Gnostic Christianity — the false cosmos, Christ the Revealer, and the soul’s return.
+    </h4>
 
-  <details class="disclaimer-box">
-    <summary>
-      <span class="disclaimer-heading">✝ About Gnostic Christianity</span>
-    </summary>
-    <p>
-      <strong>Gnostic Christianity</strong> begins the journey into the hidden teachings of the
-      early believers – a faith of inner revelation, cosmic illusion and the soul’s awakening
-      to its divine origin.
-    </p>
-  </details>
+    <!-- ⚠️ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">✝ About Gnostic Christianity</span></summary>
+      <p>
+        <strong>Gnostic Christianity</strong> begins the journey into the hidden teachings of
+        the early seekers — a tradition of inner revelation, cosmic illusion, and the soul’s
+        awakening to its divine origin.
+      </p>
+      <p>
+        This series follows the descent of Sophia, the revelation of the Living Christ, and the
+        soul’s remembrance of its spark — a map of return through gnosis, not belief.
+      </p>
+    </details>
 
-{% include "partials/pillar-grid.njk" %}
+    <!-- ✦ Series Grid -->
+    {% include "partials/pillar-grid.njk" %}
 
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin spin" aria-hidden="true">{{ pillarGlyph }}</span>
-</div>
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+    </div>
 
+  </section>
 </main>

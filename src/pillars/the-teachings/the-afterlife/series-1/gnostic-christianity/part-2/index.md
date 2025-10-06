@@ -3,12 +3,12 @@ layout: base.njk
 title: "Gnostic Christianity"
 description: "Part II of the Afterlife Series — the hidden gospel of the Revealer, the mirror, and the awakening spark."
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-II"
+scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-2"
 
 episode: 1
 partNumeral: II
 partTitle: "The Revealer and the Spark"
-tagline: "From the false god to the forgotten light — the Christ of Gnosis."
+tagline: "From the false god to the forgotten light ✦ the Christ of Gnosis"
 slug: "part-2"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/index.html"
@@ -36,18 +36,20 @@ discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
-
 lensEnabled: true
 
 crossLinks: []
 
-vaultRefs:
-  - title: "The Second Treatise of the Great Seth"
-    desc: "Christ’s declaration that the rulers’ crucifixion was an illusion — the divine Light cannot be slain."
-    path: "/pillars/the-vault/codex-reborn/gnostic-texts/second-treatise-of-the-great-seth/"
+vaultRefs: 
   - title: "Gospel of Thomas"
     desc: "Hidden sayings of Jesus that unveil the Kingdom within and beyond."
-    path: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/"
+    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
+  - title: "The Second Treatise of the Great Seth"
+    desc: "Christ’s declaration that the rulers’ crucifixion was an illusion — the divine Light cannot be slain."
+    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/"
+  - title: "The Hypostasis of the Archons"
+    desc: "The rulers of material existence and Sophia’s hidden intervention on behalf of humanity."
+    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
 
 communityThreads: []
 relatedProducts: []
@@ -62,14 +64,18 @@ shareHashtags: "#TheGnosticKey #Gnosis"
 
 discussion:
   promptTitle: "What Did Christ Reflect Back to You?"
-  intro: "This scroll wasn’t a theory. It was a trigger — a memory, a flare from the soul’s forgotten sky."
+  intro: "This scroll isn’t theory — it’s a trigger, a flare from the soul’s forgotten sky."
   question: "What part of yourself did you meet in the mirror, and are you still afraid of its light?"
   points:
     - "What belief cracked open after hearing the Gnostic Christ speak?"
-    - "Did a **divine spark** stir? If so, what tried to put it out?"
-    - "What would **Sophia** whisper to you right now?"
+    - "Did a <strong>divine spark</strong> stir? If so, what tried to put it out?"
+    - "What would <strong>Sophia</strong> whisper to you right now?"
     - "Where does the system still own you — and what would rebellion look like?"
   footer: "💬 Post your reflection using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Or bring your gnosis directly to the Temple."
+
+creativePrompt:
+  text: "Custom creative prompt for this scroll."
+  sharePrompt: "Custom prompt for social sharing."
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -81,9 +87,9 @@ breadcrumbs:
 
 glossary:
   - term: "Gnosis"
-    def: "Direct, inner knowing of the divine — not belief or doctrine. The spark remembering the Source. The heart of Gnostic Christianity."
+    def: "Direct, inner knowing of the divine — not belief or doctrine; the spark remembering the Source, the heart of Gnostic Christianity."
   - term: "Divine Spark"
-    def: "A fragment of the Pleroma planted in the soul by Sophia. Hidden beneath flesh, trauma, and illusion, but unextinguished."
+    def: "A fragment of the Pleroma planted in the soul by Sophia — hidden beneath flesh, trauma, and illusion, yet unextinguished."
   - term: "Christ the Revealer"
     def: "In Gnostic texts, Jesus is not a sacrificial saviour but a divine agent from the Pleroma — here to awaken, not to die."
   - term: "Gospel of Thomas"
@@ -91,18 +97,18 @@ glossary:
   - term: "Second Treatise of the Great Seth"
     def: "A Gnostic text where Christ mocks the Archons, revealing that his crucifixion was an illusion — his true self was never touched."
   - term: "Sophia"
-    def: "The divine feminine Aeon of Wisdom. She fell into the lower realms and scattered her light into humanity. She rises through our awakening."
+    def: "The divine feminine Aeon of Wisdom who fell into the lower realms and scattered her light into humanity. She rises through our awakening."
   - term: "Archons"
-    def: "Forces of illusion and control — system enforcers created by the Demiurge to keep souls asleep. They rule through fear, shame, and distraction."
+    def: "Forces of illusion and control — system enforcers created by the Demiurge to keep souls asleep; they rule through fear and distraction."
   - term: "Mirror of Christ"
-    def: "A central Gnostic teaching: Christ is not to be worshipped but recognised. He is the image of what we are beneath the lie."
+    def: "A central Gnostic teaching: Christ is not to be worshipped but recognised — the mirror of our true self beneath the lie."
 
 references:
   title: "📚 Sources & Study Path"
-  intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
+  intro: "For those who wish to go deeper, these texts offer both insight and initiation into the tradition."
   readings:
     - title: "The Gospel of Thomas"
-      desc: "A collection of sayings of the Living Jesus, revealing the path to inner light."
+      desc: "Sayings of the Living Jesus revealing the path to inner light."
     - title: "The Second Treatise of the Great Seth"
       desc: "Christ’s discourse of divine laughter and freedom from the illusion of crucifixion."
     - title: "The Hypostasis of the Archons"
@@ -116,7 +122,9 @@ references:
       work: "The Nag Hammadi Scriptures"
       year: 2007
       pub: "HarperOne"
+
 ---
+
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -144,15 +152,14 @@ references:
 <blockquote class="blockquote">
   &ldquo;Jesus said: He who drinks from my mouth will become like me, and I will become like him, and the hidden things will be revealed to him.&rdquo;<br>
   <cite>
-    <em>Gospel of Thomas</em> (Saying 108 — NHC II,2 51:10–15),  
+    <em>Gospel of Thomas</em> (Saying 108 — NHC II,2 51:10–15).  
     <a 
-      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-108" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-108" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
   </cite>
 </blockquote>
-
 
   <p>This was no metaphor.  
   He wasn&rsquo;t calling followers.  
@@ -204,15 +211,14 @@ references:
   If they say it is in the sea, then the fish will get there before you. 
   Rather, the Kingdom is inside of you, and it is outside of you.&rdquo;<br>
   <cite>
-    <em>Gospel of Thomas</em> (Saying 3 — NHC II,2 32:10–33:5),  
+    <em>Gospel of Thomas</em> (Saying 3 — NHC II,2 32:10–33:5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-3" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-3" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
   </cite>
 </blockquote>
-
 
   <p>This wasn&rsquo;t dogma. It was <strong>initiation</strong>.</p>
 
@@ -229,9 +235,9 @@ references:
 <blockquote class="blockquote">
   &ldquo;They thought they had killed me. But I was not theirs to kill.&rdquo;<br>
   <cite>
-    <em>The Second Treatise of the Great Seth</em> (NHC VII,2 55:15–56:5),  
+    <em>The Second Treatise of the Great Seth</em> (NHC VII,2 55:15–56:5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/gnostic-texts/second-treatise-of-the-great-seth/"
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -284,15 +290,14 @@ references:
 <blockquote class="blockquote">
   &ldquo;Woe to the Pharisees, for they are like a dog lying in the manger of the cattle; for he neither eats nor does he let the cattle eat.&rdquo;<br>
   <cite>
-    <em>Gospel of Thomas</em> (Saying 102 — NHC II,2 51:1-5),  
+    <em>Gospel of Thomas</em> (Saying 102 — NHC II,2 51:1–5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-102" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-102" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
   </cite>
 </blockquote>
-
 
   <p>The early Church canonised four gospels and buried dozens.</p>
   <p>They labelled Thomas, Mary, Philip&mdash;<em>heresy</em>.  
@@ -346,15 +351,14 @@ references:
 <blockquote class="blockquote">
   &ldquo;Jesus said: He who seeks, let him not cease seeking until he finds; and when he finds he will be troubled, and when he is troubled he will be amazed, and he will reign over the All.&rdquo;<br>
   <cite>
-    <em>Gospel of Thomas</em> (Saying 2 — NHC II,2 32:2–10),  
+    <em>Gospel of Thomas</em> (Saying 2 — NHC II,2 32:2–10).  
     <a 
-      href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-2" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-2" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
   </cite>
 </blockquote>
-
 
   <p>The Gnostic path isn&rsquo;t for the pure. It&rsquo;s for the <em>raw</em>&mdash;the broken open. The honest.</p>
 
@@ -404,7 +408,7 @@ references:
     &ldquo;Take courage. It is I; be not afraid.&rdquo;<br>
     <cite>
       <em>Pistis Sophia</em>, Book I, Chapter 5,  
-      <a href="https://www.gnosis.org/library/pistis-sophia/ps005.htm" target="_blank" rel="noopener noreferrer">Source</a>
+      <a href="https://www.gnosis.org/library/pistis-sophia/ps009.htm" target="_blank" rel="noopener noreferrer">Source</a>
     </cite>
   </blockquote>
 
@@ -441,27 +445,6 @@ references:
   </figcaption>
 </figure>
 
-<!-- Discussion -->
-<section class="section-block" id="discuss">
-  <h2 class="section-heading">🗣️ Discussion Prompt: What Did Christ Reflect Back to You?</h2>
-    <blockquote>
-    <strong>&ldquo;What part of yourself did you meet in the mirror, and are you still afraid of its light?&rdquo;</strong>
-  </blockquote>
-
-  <p>This scroll wasn&rsquo;t a theory. It was a trigger&mdash;a memory, a flare from the soul&rsquo;s forgotten sky.</p>
-
-  <ul class="list-emoji">
-    <li>What belief cracked open after hearing the Gnostic Christ speak?</li>
-    <li>Did a <strong>divine spark</strong> stir? If so, what tried to put it out?</li>
-    <li>What would <strong>Sophia</strong> whisper to you right now?</li>
-    <li>Where does the system still own you&mdash;and what would rebellion look like?</li>
-  </ul>
-
-  <p>Post your reflection using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>.  
-  Or bring your gnosis directly to the Temple.</p>
-  {% include "partials/share-buttons.njk" %}
-</section>
-
 {% include "partials/discussion-prompt.njk" %}
 
 <!--Quiz-->
@@ -479,19 +462,22 @@ references:
   {% include "partials/series-nav-buttons.njk" %}
 </section>
 
-<!--∞ Synergist Lens-->
-{% include "partials/synergist-lens.njk" %}
+<!-- 📚 Reference Sources -->
+{% include "partials/reference-section.njk" %}
 
-<!-- 🔑 CTA Buttons (only for free tier) -->
-{% if tier == "free" %}
-<section class="section-block" id="cta">
-  <h2 class="section-heading">🔑 Unlock More Scrolls</h2>
-  <p>Enjoying this scroll? Subscribe for full access or support the project directly.</p>
-  {% include "partials/cta-buttons.njk" %}
+<!-- 📜 Series Navigation -->
+<section class="section-block" id="series">
+  <h2 class="section-heading">📜 Series Map</h2>
+  {% include "partials/series-nav-buttons.njk" %}
 </section>
-{% endif %}
 
-{% include "partials/share-buttons.njk" %}
+<!-- ∞ Synergist Lens (Cross-links, Vault, Community, Artifacts) -->
+{% if (crossLinks and crossLinks.length) 
+   or (vaultRefs and vaultRefs.length) 
+   or (communityThreads and communityThreads.length) 
+   or (relatedProducts and relatedProducts.length) %}
+  {% include "partials/synergist-lens.njk" %}
+{% endif %}
 
 <!-- Episode Part Nav -->
 {% include "partials/episode-part-nav.njk" %}

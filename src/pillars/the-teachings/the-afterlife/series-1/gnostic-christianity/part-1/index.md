@@ -3,12 +3,12 @@ layout: base.njk
 title: "Gnostic Christianity"
 description: "Part I of the Afterlife Series — the false cosmos, Archonic interrogation, and the soul’s hidden map of return."
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-I"
+scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-1"
 
 episode: 1
 partNumeral: I
 partTitle: "The World Is Not What It Seems"
-tagline: "The hidden God, Sophia’s fall, the Demiurge, and the spark within."
+tagline: "The hidden God ✦ Sophia’s fall ✦ the Demiurge ✦ the spark within"
 slug: "part-1"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/index.html"
@@ -32,35 +32,38 @@ seriesMeta:
   series_version: 1
 
 # 🔮 Section Visibility Controls
-discussEnabled: true         # if false, hides "Discussion" tab + section
-resourcesEnabled: true       # optional override for “Resources” tab
-seriesNavEnabled: true       # optional override for “Series Map” tab
+discussEnabled: true
+resourcesEnabled: true
+seriesNavEnabled: true
 quizEnabled: true
-
 lensEnabled: true
+
 crossLinks: []
 
 vaultRefs:
   - title: "Apocryphon of John"
     desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark hidden within humanity."
-    path: "/pillars/the-vault/codex-reborn/gnostic-texts/apocryphon-of-john/"
+    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/"
+
   - title: "Gospel of Thomas"
     desc: "A collection of secret sayings attributed to Jesus — teaching the inner path of self-knowledge and remembrance of the divine spark."
-    path: "/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/"
+    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
+
   - title: "Pistis Sophia"
     desc: "Sophia’s lament and the soul’s descent through the Aeons."
-    path: "/pillars/the-vault/codex-reborn/gnostic-texts/pistis-sophia/"
+    path: "/pillars/the-vault/codex-reborn/independent-texts/pistis-sophia/"
+
 
 communityThreads: []
 relatedProducts: []
 
 # === Discussion Prompt Block ===
-discussionEnabled: true     # Toggle on/off for this scroll
+discussionEnabled: true
 
-shareEnabled: true             # Future toggle for social sharing buttons (defaults to true)
-showTelegramButton: true       # Toggle for Telegram link
-showShareButton: true          # Toggle for “Share This Scroll” button
-shareHashtags: "#TheGnosticKey #Gnosis"  # Optional extra hashtags
+shareEnabled: true
+showTelegramButton: true
+showShareButton: true
+shareHashtags: "#TheGnosticKey #Gnosis"
 
 discussion:
   promptTitle: "Will You Remember at the Gate?"
@@ -72,6 +75,9 @@ discussion:
     - "What would you say to your own divine spark?"
   footer: "💬 Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
 
+creativePrompt:
+  text: "Custom creative prompt for this scroll."
+  sharePrompt: "Custom prompt for social sharing."
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -83,44 +89,44 @@ breadcrumbs:
 
 glossary:
   - term: "Pleroma"
-    def: "The divine realm of Fullness — the Source of all spiritual reality. Beyond time, matter, or separation. Where the true God and Aeons reside."
+    def: "The divine realm of Fullness — the Source of all spiritual reality, beyond time or matter."
   - term: "Sophia"
     def: "The Aeon of Wisdom. In her longing to create, she fell from the Pleroma and birthed the Demiurge. Her light remains hidden in humanity."
   - term: "Yaldabaoth"
-    def: "The blind god — the Demiurge. A malformed being who believes he is the only god. Architect of the false world, ruler of the Archons."
+    def: "The blind god — the Demiurge who believes he alone is God. Architect of the false world and ruler of the Archons."
   - term: "Demiurge"
-    def: "Greek for 'craftsman.' In Gnostic texts, the Demiurge is the false god who creates the material world as a counterfeit of the true divine realm."
+    def: "Greek for ‘craftsman.’ In Gnostic texts, the false god who creates the material world as a counterfeit of the true divine realm."
   - term: "Archons"
-    def: "Cosmic rulers and system enforcers created by Yaldabaoth. They control the false reality through fear, conformity, and illusion."
+    def: "Cosmic rulers and system enforcers born of Yaldabaoth, controlling the false reality through fear and illusion."
   - term: "Divine Spark"
-    def: "A fragment of the true God hidden within each human soul. Planted by Sophia. It remembers the Pleroma and seeks to return."
+    def: "A fragment of the true God hidden within each human soul, planted by Sophia and yearning for return."
   - term: "Gnosis"
-    def: "Inner, direct knowing — not belief, but remembrance of divine truth. The soul’s recognition of its true origin beyond illusion."
+    def: "Inner knowing — not belief, but remembrance of divine truth and the soul’s origin beyond illusion."
   - term: "Gospel of Thomas"
-    def: "A Gnostic text of Jesus’ sayings, emphasising inner knowledge over ritual or sacrifice. Hidden for centuries, rediscovered in 1945 at Nag Hammadi."
+    def: "A Gnostic text of Jesus’ sayings, emphasising inner knowledge over ritual. Rediscovered in 1945 at Nag Hammadi."
   - term: "Nag Hammadi"
-    def: "The Egyptian site where a cache of lost Gnostic texts was found in 1945. These scrolls restored long-buried teachings of early Christianity."
+    def: "The Egyptian site where a cache of lost Gnostic texts was found in 1945, restoring long-buried teachings of early Christianity."
 
 references:
-  title: "📚 Sources & Study Path"
-  intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
+  title: "Sources & Study Path"
+  intro: "For those wishing to go deeper..."
   readings:
     - title: "Apocryphon of John"
-      desc: "The vision where Sophia’s act and Yaldabaoth’s arrogance are revealed."
+      desc: "Sophia’s act and Yaldabaoth’s arrogance revealed."
     - title: "Gospel of Thomas"
-      desc: "Sayings of Jesus as a revealer of the hidden spark."
-    - title: "Hypostasis of the Archons"
-      desc: "Details the rulers of illusion and their architecture of control."
+      desc: "Sayings of Jesus revealing hidden self-knowledge."
   scholarly:
     - author: "Jonas, H."
+      year: "1958"
       work: "The Gnostic Religion"
-      year: 1958
       pub: "Beacon Press"
     - author: "Pagels, E."
+      year: "1979"
       work: "The Gnostic Gospels"
-      year: 1979
       pub: "Random House"
+
 ---
+
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -139,15 +145,17 @@ references:
 
   <p>He looked into the void and declared himself supreme.</p>
 
-  <blockquote class="blockquote">
-    <em>&ldquo;I am God, and there is no other beside me.&rdquo;</em><br>
-    <cite>
-      Yaldabaoth, <em>Apocryphon of John</em>.  
-      <a href="/pillars/the-vault/codex-reborn/gnostic-texts/apocryphon-of-john/" 
-        target="_blank" 
-        rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  <em>&ldquo;I am God, and there is no other beside me.&rdquo;</em><br>
+  <cite>
+    Yaldabaoth, <em>Apocryphon of John</em>.  
+    <a 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
 
   <p>The Gnostics named him <strong>Yaldabaoth</strong>. Others called him <em>Saklas</em> (&ldquo;fool&rdquo;) or <em>Samael</em> (&ldquo;the blind one&rdquo;).</p>
 
@@ -162,10 +170,15 @@ references:
   <p>This is the Gospel the Church burned. The message that didn&rsquo;t demand belief, but <em>remembrance</em>. Not of dogma. Of origin. Of the light you carry.</p>
 
 <blockquote class="blockquote">
-  &ldquo;Jesus said: If you have gained this within you, what you have will save you. If you do not have this in you, what you do not have in you will kill you.&rdquo;<br>
+  &ldquo;Jesus said: If you have gained this within you, what you have will save you. 
+  If you do not have this in you, what you do not have in you will kill you.&rdquo;<br>
   <cite>
-    <em>Gospel of Thomas</em>, Saying 70, 
-    <a href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-thomas/#thomas-70" target="_blank" rel="noopener noreferrer">Source</a>
+    <em>Gospel of Thomas</em>, Saying 70 — 
+    <a 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-70" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
   </cite>
 </blockquote>
 </section>
@@ -181,12 +194,12 @@ references:
   <p>And in that solitary act, something ruptured. A child of imbalance was born&mdash;blind, arrogant, malformed. He did not know the light. He could not see the <strong>Pleroma</strong>. He was cast out into the void, and there, mistaking his isolation for supremacy, he declared himself the only god.</p>
 
 <blockquote class="blockquote">
-  &ldquo;He said, &lsquo;I am a jealous god, and there is no other god beside me.&rsquo;
+  &ldquo;He said, &lsquo;I am a jealous god, and there is no other god beside me.&rsquo; 
   Thus he revealed his ignorance.&rdquo;<br>
   <cite>
-    <em>The Hypostasis of the Archons</em> (paraphrased from NHC II,4 94:20–95:5). 
+    <em>The Hypostasis of the Archons</em> (paraphrased from NHC II,4 94:20–95:5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/gnostic-texts/hypostasis-of-the-archons/index.html" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -256,15 +269,18 @@ references:
   The dream that speaks in symbols.  
   The pull toward something you can&rsquo;t name&mdash;but remember.</p>
 
-  <blockquote class="blockquote">
-    <em>“You are from the place where light came into being by itself.  
-    You came from it and will return there.”</em><br>
-    <cite>
-      <em>Gospel of Truth</em> (NHC I,3 31:35–32:4), trans. Marvin Meyer.  
-      <a href="/pillars/the-vault/codex-reborn/gnostic-texts/gospel-of-truth/index.html" 
-        target="_blank" rel="noopener noreferrer">Source</a>
-    </cite>
-  </blockquote>
+<blockquote class="blockquote">
+  <em>&ldquo;You are from the place where light came into being by itself.  
+  You came from it and will return there.&rdquo;</em><br>
+  <cite>
+    <em>Gospel of Truth</em> (NHC I,3 31:35–32:4), trans. Marvin Meyer.  
+    <a 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
 
   <p>The Archons fear this spark.  
   They build religions to tame it.  
@@ -312,16 +328,16 @@ references:
   <p>Some dwell in the stars. Some whisper through governments and churches. Some live in your own mind&mdash;inherited patterns, trauma loops, programmes.</p>
 
   <blockquote class="blockquote">
-    &ldquo;They are like thieves who entered by stealth into the house that is not theirs.&rdquo;<br>
-    <cite>
-      <em>The Hypostasis of the Archons</em> (NHC II,4 89:15–20), trans. Marvin Meyer.  
-      <a 
-        href="/pillars/the-vault/codex-reborn/gnostic-texts/hypostasis-of-the-archons/index.html" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >Source</a>
-    </cite>
-  </blockquote>
+  &ldquo;They are like thieves who entered by stealth into the house that is not theirs.&rdquo;<br>
+  <cite>
+    <em>The Hypostasis of the Archons</em> (NHC II,4 89:15–20), trans. Marvin Meyer.  
+    <a 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >Source</a>
+  </cite>
+</blockquote>
 
   <p>The Archons do not create&mdash;they copy. They feed. They police.</p>
   
@@ -431,19 +447,22 @@ references:
   {% include "partials/series-nav-buttons.njk" %}
 </section>
 
-<!--∞ Synergist Lens-->
-{% include "partials/synergist-lens.njk" %}
+<!-- 📚 Reference Sources -->
+{% include "partials/reference-section.njk" %}
 
-<!-- 🔑 CTA Buttons (only for free tier) -->
-{% if tier == "free" %}
-<section class="section-block" id="cta">
-  <h2 class="section-heading">🔑 Unlock More Scrolls</h2>
-  <p>Enjoying this scroll? Subscribe for full access or support the project directly.</p>
-  {% include "partials/cta-buttons.njk" %}
+<!-- 📜 Series Navigation -->
+<section class="section-block" id="series">
+  <h2 class="section-heading">📜 Series Map</h2>
+  {% include "partials/series-nav-buttons.njk" %}
 </section>
-{% endif %}
 
-{% include "partials/share-buttons.njk" %}
+<!-- ∞ Synergist Lens (Cross-links, Vault, Community, Artifacts) -->
+{% if (crossLinks and crossLinks.length) 
+   or (vaultRefs and vaultRefs.length) 
+   or (communityThreads and communityThreads.length) 
+   or (relatedProducts and relatedProducts.length) %}
+  {% include "partials/synergist-lens.njk" %}
+{% endif %}
 
 <!-- Episode Part Nav -->
 {% include "partials/episode-part-nav.njk" %}
