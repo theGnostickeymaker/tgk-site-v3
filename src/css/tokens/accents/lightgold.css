@@ -53,7 +53,9 @@
       rgba(232, 213, 168, 0.35)
     ) !important;
 
-    background: var(--bg-gradient) !important;
+    --bg-primary: #fefbf4 !important; /* soft parchment gold base */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
   }
 
   /* Component overrides – light */
@@ -145,7 +147,10 @@
       #5b4722 75%,
       #bfa865 100%
     ) !important;
-    --bg-gradient: var(--card-gradient) !important;
+
+    --bg-primary: #181409 !important; /* deep antique gold tone */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
 
     /* Badge tokens */
     --badge-bg: rgba(191, 162, 104, 0.35) !important;

@@ -23,7 +23,7 @@
 
     /* Accents */
     --text-accent: #f7e6c4 !important;
-    --highlight: #b3e6dd !important;
+    --highlight: #f5d8af !important;     /* warm apricot-gold glow (fixed) */
     --glyph-color: #ffedd5 !important;
     --shadow-glow: var(--glow-apricot) !important;
     --strong-text: #f9d8ac !important;
@@ -40,7 +40,10 @@
       #5e4330 85%,
       #f7e6c4 100%
     ) !important;
-    --bg-gradient: var(--card-gradient) !important;
+
+    --bg-primary: #1b1511 !important; /* deep dusky apricot tone */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
 
     /* Badge tokens */
     --badge-bg: rgba(247, 230, 196, 0.25) !important;
@@ -77,7 +80,7 @@
 
     /* Accents */
     --text-accent: #ac6839 !important;
-    --highlight: #b3e6dd !important;
+    --highlight: #7b6d5c !important;
     --glyph-color: #dc9c61 !important;
     --shadow-glow: var(--glow-aqua-soft) !important;
     --strong-text: #ac6839 !important;
@@ -94,7 +97,10 @@
       #f5d5a9 85%,
       #dc9c61 100%
     ) !important;
-    --bg-gradient: var(--card-gradient) !important;
+
+    --bg-primary: #1b1511 !important; /* deep dusky apricot tone */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
 
     /* Badge tokens */
     --badge-bg: rgba(245, 221, 192, 0.55) !important;
@@ -112,7 +118,9 @@
       rgba(245, 213, 169, 0.35)
     ) !important;
 
-    background: var(--bg-gradient) !important;
+    --bg-primary: #fffdf9 !important; /* soft apricot bloom base */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
   }
 
   /* Component overrides — light */

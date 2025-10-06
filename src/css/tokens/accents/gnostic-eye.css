@@ -31,7 +31,10 @@ html[data-theme="dark"] body.eye {
     #5b6693 85%,
     #7581b2 100%
   ) !important;
-  --bg-gradient: var(--card-gradient) !important;
+
+  --bg-primary: #0e111a !important; /* solid indigo steel tone */
+  --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+  background: var(--bg-primary) !important;
 
   /* Badges */
   --badge-bg: rgba(117, 129, 178, 0.35) !important;
@@ -132,7 +135,10 @@ html[data-theme="light"] body.eye {
     #c0cae9 85%,
     #94a3d5 100%
   ) !important;
-  --bg-gradient: var(--card-gradient) !important;
+
+  --bg-primary: #f5f7fb !important; /* solid azure mist tone */
+  --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+  background: var(--bg-primary) !important;
 
   /* Badges */
   --badge-bg: rgba(219, 227, 255, 0.6) !important;

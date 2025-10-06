@@ -32,7 +32,10 @@
       #7a4537 85%,
       #f7c6aa 100%
     ) !important;
-    --bg-gradient: var(--card-gradient) !important;
+
+    --bg-primary: #1a0f0f !important; /* deep twilight peach-brown */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important; 
 
     /* Badges */
     --badge-bg: rgba(247, 198, 170, 0.35) !important;
@@ -134,7 +137,10 @@
       #f7c6aa 85%,
       #f2aa8e 100%
     ) !important;
-    --bg-gradient: var(--card-gradient) !important;
+    
+    --bg-primary: #fff7f2 !important; /* pastel peach cream */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
 
     /* Badges */
     --badge-bg: rgba(255, 236, 227, 0.65) !important;

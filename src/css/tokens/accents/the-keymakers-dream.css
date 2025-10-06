@@ -35,7 +35,10 @@
       #eec4dc 85%,
       #c06b9b 100%
     ) !important;
-    --bg-gradient: var(--card-gradient) !important;
+
+    --bg-primary: #fdeff6 !important; /* flat petal mist tone */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
 
     /* Badges */
     --badge-bg: rgba(243, 212, 230, 0.55) !important;
@@ -145,7 +148,10 @@
       #6a3a6f 85%,
       #d08fb3 100%
     ) !important;
-    --bg-gradient: var(--card-gradient) !important;
+
+    --bg-primary: #1c111e !important; /* deep rose-violet tone */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
 
     /* Badges */
     --badge-bg: rgba(208, 143, 179, 0.25) !important;

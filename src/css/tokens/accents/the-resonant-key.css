@@ -32,7 +32,10 @@ html[data-theme="dark"] body.resonant {
 
   --card-gradient: linear-gradient(145deg, #0E0B14 0%, #1A1526 20%, #261F39 50%, #3B3154 75%, #9D84C6 100%) !important;
   --bg-gradient: var(--card-gradient) !important;
-  background: var(--bg-gradient) !important;
+
+  --bg-primary: #0e0b14 !important; /* deep violet-black base */
+  --bg-gradient: var(--bg-primary) !important;
+  background: var(--bg-primary) !important;
 
   --overlay-bg-gradient: linear-gradient(
     to right,
@@ -124,7 +127,10 @@ html[data-theme="light"] body.resonant {
 
   --card-gradient: linear-gradient(145deg, #FBFAFD 0%, #F4F0F9 20%, #EAE4F4 50%, #DDD3EB 75%, #B8A6D9 100%) !important;
   --bg-gradient: var(--card-gradient) !important;
-  background: var(--bg-gradient) !important;
+
+  --bg-primary: #f9f4ff !important; /* aurora lilac tone */
+  --bg-gradient: var(--bg-primary) !important;
+  background: var(--bg-primary) !important;
 
   --overlay-bg-gradient: linear-gradient(
     to right,

@@ -52,7 +52,9 @@
       rgba(248, 162, 114, 0.35)
     ) !important;
 
-    background: var(--bg-gradient) !important;
+    --bg-primary: #fff5ef !important; /* soft parchment coral base */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
   }
 
   /* Component overrides – light */
@@ -162,7 +164,9 @@
       rgba(112, 43, 26, 0.35)
     ) !important;
 
-    background: var(--bg-gradient) !important;
+    --bg-primary: #120704 !important; /* deep ember-black tone */
+    --bg-gradient: var(--bg-primary) !important; /* flatten gradient */
+    background: var(--bg-primary) !important;
   }
 
   /* Component overrides – dark */
