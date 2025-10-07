@@ -3,36 +3,20 @@
      🌌 Floating Scroll Nav
      Compact glowing buttons
      =================================================== */
-  .scroll-tabs,
-  .episode-part-nav {
+  .scroll-tabs {
     display: flex;
     justify-content: center;
     gap: var(--space-sm);
-    position: sticky;
+    position: sticky; /* stays visible when scrolling */
+    top: 0;
     z-index: var(--z-floating, 9999);
     background: var(--bg-gradient);
     backdrop-filter: blur(8px);
     padding: var(--space-xs) var(--space-xs);
     border-radius: var(--radius-xl);
-    box-shadow: 0 0 12px var(--shadow-glow);
-  }
-
-  .scroll-tabs {
-    position: sticky;
-    top: 0;
+    width: fit-content;
     margin: 0 auto var(--space-md);
-    width: fit-content;
-  }
-
-  .episode-part-nav {
-    position: relative;
-    bottom: 0;
-    margin: var(--space-lg) auto 0;
-    width: fit-content;
-    flex-wrap: nowrap;
-  overflow-x: auto;
-  white-space: nowrap;
-
+    box-shadow: 0 0 12px var(--shadow-glow);
   }
 
   .scroll-tabs .tab-link {
@@ -71,28 +55,28 @@
     }
   }
 
-    /* ===========================================
-     📱 Mobile Separator Enhancement
-     Keeps clarity in multi-line tab layouts
-     =========================================== */
-  @media (max-width: 700px) {
-    .scroll-tabs .tab-link {
-      position: relative;
-    }
-
-    .scroll-tabs .tab-link::after {
-      content: "";
-      display: block;
-      width: 60%;
-      height: 1px;
-      margin: 0.4rem auto 0;
-      background: var(--border-soft, rgba(255, 255, 255, 0.2));
-      opacity: 0.6;
-    }
-
-    .scroll-tabs .tab-link:last-of-type::after {
-      content: none;
-    }
+  /* ===========================================
+   📱 Mobile Tab Separator (Visual Rhythm)
+   =========================================== */
+@media (max-width: 700px) {
+  .scroll-tabs .tab-link {
+    position: relative;
   }
+
+  /* ✦ separator between buttons */
+  .scroll-tabs .tab-link::after {
+    content: "✦";
+    font-size: 0.9em;
+    color: var(--text-accent, rgba(255,255,255,0.6));
+    opacity: 0.6;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+
+  /* remove for the last tab */
+  .scroll-tabs .tab-link:last-of-type::after {
+    content: none;
+  }
+}
 
 }

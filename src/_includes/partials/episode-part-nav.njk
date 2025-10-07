@@ -7,18 +7,20 @@
   {% endfor %}
 
   {% if currentIndex > -1 %}
-    <nav class="episode-part-nav {{ __ac }}">
-      <div class="episode-nav-links">
-        {% if currentIndex > 0 %}
-          {% set prevPart = episodeParts[currentIndex - 1] %}
-          <a href="{{ prevPart.url }}" class="episode-prev">← {{ prevPart.title }}</a>
-        {% endif %}
+    <nav class="scroll-tabs {{ __ac }}" role="navigation" aria-label="Part Navigation" data-nav="episode-part-nav">
+      {% if currentIndex > 0 %}
+        {% set prevPart = episodeParts[currentIndex - 1] %}
+        <a href="{{ prevPart.url }}" class="tab-link episode-prev" data-title="Previous Part">
+          ← {{ prevPart.title }}
+        </a>
+      {% endif %}
 
-        {% if currentIndex < (episodeParts.length - 1) %}
-          {% set nextPart = episodeParts[currentIndex + 1] %}
-          <a href="{{ nextPart.url }}" class="episode-next">{{ nextPart.title }} →</a>
-        {% endif %}
-      </div>
+      {% if currentIndex < (episodeParts.length - 1) %}
+        {% set nextPart = episodeParts[currentIndex + 1] %}
+        <a href="{{ nextPart.url }}" class="tab-link episode-next" data-title="Next Part">
+          {{ nextPart.title }} →
+        </a>
+      {% endif %}
     </nav>
   {% endif %}
 {% endif %}
