@@ -55,28 +55,38 @@
     }
   }
 
-  /* ===========================================
-   📱 Mobile Tab Separator (Visual Rhythm)
-   =========================================== */
-@media (max-width: 700px) {
-  .scroll-tabs .tab-link {
-    position: relative;
+    /* ===========================================
+     📱 Mobile Tab Separator (Visual Rhythm)
+     =========================================== */
+  @media (max-width: 850px) {
+    .scroll-tabs {
+      overflow-x: auto;
+      overflow-y: visible;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .scroll-tabs .tab-link {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* ✦ separator between buttons */
+    .scroll-tabs .tab-link::after {
+      content: "✦";
+      font-size: 0.9em;
+      line-height: 1;
+      vertical-align: middle;
+      color: var(--text-accent, #fff);
+      opacity: 0.65;
+      margin: 0 0.55rem;
+    }
+
+    /* Remove for the last tab */
+    .scroll-tabs .tab-link:last-of-type::after {
+      content: none;
+    }
   }
 
-  /* ✦ separator between buttons */
-  .scroll-tabs .tab-link::after {
-    content: "✦";
-    font-size: 0.9em;
-    color: var(--text-accent, rgba(255,255,255,0.6));
-    opacity: 0.6;
-    margin-left: 0.6rem;
-    margin-right: 0.6rem;
-  }
-
-  /* remove for the last tab */
-  .scroll-tabs .tab-link:last-of-type::after {
-    content: none;
-  }
-}
 
 }
