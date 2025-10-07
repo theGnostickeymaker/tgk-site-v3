@@ -60,82 +60,217 @@ $SeriesRoot         = Join-Path $Root "src/pillars/$PillarSlug/$SeriesSlug/serie
 $mediaBase          = "/media/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug"
 $socialImage        = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug.jpg"
 
-# =========================
-# Series HUB landing (pillar-level directory)
-# =========================
+# ============================================================
+# Series HUB landing (.11tydata.js generator)
+# Updated: 2025-10 | Aligns with new TGK scroll architecture
+# ============================================================
 
-# .11tydata.js (only if missing)
 $seriesHubDataPath = Join-Path $SeriesHomeRoot ".11tydata.js"
+
 if (-not (Test-Path $seriesHubDataPath)) {
-$seriesHubData = @"
+  $seriesHubData = @"
 export default {
   eleventyComputed: {
+    // 🏛️ Pillar + Series identity
     pillarId: () => "$PillarSlug",
     pillarName: () => "$PillarNameDefault",
-    pillarUrl: () => "/pillars/$PillarSlug/$SeriesSlug/",
+    pillarUrl: () => "/pillars/$PillarSlug/",
     pillarGlyph: () => "$Glyph",
     accent: () => "$BodyClass",
+
+    // 🧭 Breadcrumb hierarchy
     breadcrumbs: () => ([
       { title: "The Gnostic Key", url: "/" },
       { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" },
       { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" }
-    ])
+    ]),
+
+    // 🔖 Series meta for card-grid + intro
+    seriesLabel: () => "$SeriesLabelDefault",
+    seriesIntro: () => "$SeriesIntroDefault",
+
+    // 🕸️ Synergist Lens — cross-pillar linkage
+    synergistLens: () => ({
+      glyph: "⚯",
+      description: "$SynergistDescriptionDefault",
+      crossLinks: [
+        { title: "$CrossLink1Title", url: "$CrossLink1Url" },
+        { title: "$CrossLink2Title", url: "$CrossLink2Url" }
+      ],
+      vaultRefs: [
+        { title: "$VaultRef1Title", url: "$VaultRef1Url" },
+        { title: "$VaultRef2Title", url: "$VaultRef2Url" }
+      ]
+    })
   }
 };
 "@
   Write-Utf8File $seriesHubDataPath $seriesHubData
+  Write-Host "✅ Created: $seriesHubDataPath"
 } else {
   Write-Host "⚠️ Skipped existing: $seriesHubDataPath"
 }
 
-# Hub index.11tydata.js → append a SERIES card (or create file)
+
+# ============================================================
+# 🜂 TGK Hub index.11tydata.js Generator
+# Updated: 2025-10 | Follows new eleventyComputed pillar schema
+# ============================================================
+
 $hubFile = Join-Path $SeriesHomeRoot "index.11tydata.js"
+
 $newSeriesCard = @"
-    {
-      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/",
-      title: "$SeriesTitleDefault — Series $SeriesNo",
-      glyph: "$Glyph",
-      tagline: "$LandingDescription",
-      tier: "$Tier",
-      state: "$State"
-    }
+      { 
+        href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/", 
+        title: "$SeriesTitleDefault — Series $SeriesNo", 
+        glyph: "$Glyph", 
+        desc: "$LandingDescription", 
+        tier: "$Tier", 
+        state: "$State" 
+      }
 "@
+
 if (Test-Path $hubFile) {
+  # Append a new card if not already present
   $existing = Get-Content $hubFile -Raw
   $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/")
   if ($existing -notmatch $needle) {
-    $updated = $existing -replace '(pillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newSeriesCard`$2"
+    $updated = $existing -replace '(\bpillarGrid:\s*\(\)\s*=>\s*\(\[\s*[\s\S]*?)(\n\s*\]\))', "`$1,`n$newSeriesCard`$2"
+    if ($updated -eq $existing) {
+      # Alternate match for pillarGrid without arrow function (legacy pattern)
+      $updated = $existing -replace '(\bpillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newSeriesCard`$2"
+    }
     Set-Content $hubFile $updated -Encoding UTF8
-    Write-Host "✅ Appended series card to: $hubFile"
+    Write-Host "✅ Appended new series card to: $hubFile"
   } else {
     Write-Host "⚠️ Skipped duplicate series card in: $hubFile"
   }
 } else {
+  # Create fresh eleventyComputed structure
   $seriesHubLanding = @"
-export default { 
-  introText: "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond.",
-  pillarGrid: [
+export default {
+  eleventyComputed: {
+    pillarId: () => "$PillarSlug",
+    pillarName: () => "$PillarNameDefault",
+    pillarUrl: () => "/pillars/$PillarSlug/",
+    pillarGlyph: () => "$Glyph",
+    accent: () => "$BodyClass",
+    breadcrumbs: () => ([
+      { title: "The Gnostic Key", url: "/" },
+      { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
+    ]),
+    pillarGrid: () => ([
 $newSeriesCard
-  ]
+    ])
+  }
 };
 "@
   Write-Utf8File $hubFile $seriesHubLanding
+  Write-Host "✅ Created new hub metadata file: $hubFile"
 }
 
-# =========================
-# Pillar Landing index.njk (only if missing)
-# =========================
+
+# ============================================================
+# 🕎 TGK Pillar Landing index.njk Generator
+# Updated: 2025-10 | Aligns with TGK unified layout + JSON-LD
+# ============================================================
+
 $pillarIndexPath = Join-Path $SeriesHomeRoot "index.njk"
+
 if (-not (Test-Path $pillarIndexPath)) {
 $pillarIndexNJK = @"
 ---
 layout: base.njk
-title: "$SeriesTitleDefault"
-description: "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond."
-tier: free
+title: "$PillarNameDefault"
+description: "Scrolls of wisdom, initiation, and remembrance — the spiritual foundation of The Gnostic Key."
+tagline: "Ancient wisdom ✦ modern revelation ✦ paths of remembrance"
+pillarId: "$PillarSlug"
 
 glyph: "$Glyph"
-glyphRow: ["$Glyph","$Glyph","$Glyph"]
+glyphRow: ["🜂","🕯","🜂"]
+
+accent: $BodyClass
+bodyClass: $BodyClass
+
+tier: $Tier
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/$PillarSlug/$PillarSlug-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- 🜂 Series Overview -->
+    <h4 class="index heading">
+      Journeys through the world’s afterlife traditions – scrolls revealing death, rebirth
+      and the soul’s passage beyond the veil.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">☥ About the Afterlife Series</span>
+      </summary>
+      <p>
+        <strong>The Afterlife Series</strong> explores the sacred maps of death and return found in
+        the world’s great mystical traditions. Each scroll traces the soul’s journey through
+        judgement, transformation and remembrance.
+      </p>
+      <p>
+        From the Gnostic revelations of early Christianity to the Sufi, Kabbalistic, Buddhist,
+        Egyptian and Mesoamerican visions of the beyond, these teachings reveal that death is
+        not an ending but a passage – a return to the Source from which all spirits arise.
+      </p>
+    </details>
+
+    <!-- 🗝️ Dynamic Series Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- 🔗 JSON-LD Metadata for Structured Collection -->
+    {% set items = pillarGrid %}
+    {% set headline = "$PillarNameDefault — Pillars of Initiation" %}
+    {% set base = "/pillars/$PillarSlug/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <!-- 🜃 Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>
+"@
+  Write-Utf8File $pillarIndexPath $pillarIndexNJK
+  Write-Host "✅ Created new pillar landing page: $pillarIndexPath"
+} else {
+  Write-Host "⚠️ Skipped existing pillar landing page: $pillarIndexPath"
+}
+
+
+# ============================================================
+# ⚯ TGK Series Landing index.njk Generator
+# Updated: 2025-10 | Matches unified TGK layout schema
+# ============================================================
+
+$seriesIndexNJKPath = Join-Path $SeriesRoot "index.njk"
+
+if (-not (Test-Path $seriesIndexNJKPath)) {
+$seriesIndexNJK = @"
+---
+layout: base.njk
+title: "$SeriesTitleDefault"
+description: "$LandingDescription"
+tier: $Tier
+seriesId: "$PillarSlug-$SeriesSlug"
+
+glyph: "$Glyph"
+glyphRow: ["✶","☥","$Glyph"]
 
 permalink: "/pillars/$PillarSlug/$SeriesSlug/index.html"
 
@@ -151,113 +286,52 @@ breadcrumbs:
 {% endblock %}
 
 <main class="main-content">
-<section class="content-container">
+  <section class="content-container">
 
-<h4 class="index heading">
-  Teachings that weave together ancient wisdom and living guidance — afterlife maps, rights scrolls, and paths of remembrance.
-</h4>
+    <!-- 🜂 Series Intro -->
+    <h4 class="index heading">
+      Teachings that weave together ancient wisdom and living guidance —
+      afterlife maps, rights scrolls, and paths of remembrance.
+    </h4>
 
-<details class="disclaimer-box">
-  <summary><span class="disclaimer-heading">🔑 About $SeriesTitleDefault</span></summary>
-  <p>
-    <strong>$SeriesTitleDefault</strong> gathers scrolls that explain and preserve: afterlife maps,
-    rights of the people, and pathways of remembrance drawn from Gnostic, mystical, and ancient sources.
-  </p>
-</details>
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">🔑 About $SeriesTitleDefault</span></summary>
+      <p>
+        <strong>$SeriesTitleDefault</strong> gathers scrolls that explain and preserve afterlife maps,
+        rights of the people, and pathways of remembrance drawn from Gnostic, mystical,
+        and ancient sources.
+      </p>
+    </details>
 
-{% include "partials/pillar-grid.njk" %}
+    <!-- ✨ Series Scroll Grid -->
+    {% include "partials/pillar-grid.njk" %}
 
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-</div>
+    <!-- 🜃 Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
 
-</main>
-"@
-  Write-Utf8File $pillarIndexPath $pillarIndexNJK
-} else {
-  Write-Host "⚠️ Skipped existing pillar landing page: $pillarIndexPath"
-}
-
-# =========================
-# Series Landing (SeriesRoot)
-# =========================
-#
-$seriesIndexNJKPath = Join-Path $SeriesRoot "index.njk"
-if (-not (Test-Path $seriesIndexNJKPath)) {
-$seriesIndexNJK = @"
----
-layout: base.njk
-title: "$SeriesTitleDefault — Series $SeriesNo"
-description: "$LandingDescription"
-tier: $Tier
-
-glyph: "$Glyph"
-glyphRow: ["$Glyph","$Glyph","$Glyph"]
-
-seriesMeta:
-  number: $SeriesNo
-  label: "Series $SeriesNo"
-  series_version: $SeriesVersion
-permalink: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/index.html"
-
----
-
-{% block head %}
-  {% set socialImage = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug-series$SeriesNo.jpg" %}
-  {% include "partials/head-meta.njk" %}
-{% endblock %}
-
-<main class="main-content">
-<section class="content-container">
-
-<h4 class="index heading">
-  The first scroll cycle of the Afterlife Series — mapping death, rebirth, and the soul’s passage through the great traditions.
-</h4>
-
-<details class="disclaimer-box">
-  <summary><span class="disclaimer-heading">☸ About Series $SeriesNo</span></summary>
-  <p>
-    <strong>Series $SeriesNo</strong> opens the journey with foundational maps of the beyond.
-    These scrolls trace how ancient and mystical traditions charted the fate of the soul after death.
-  </p>
-</details>
-
-{% include "partials/pillar-grid.njk" %}
-
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-</div>
-
+  </section>
 </main>
 "@
   Write-Utf8File $seriesIndexNJKPath $seriesIndexNJK
+  Write-Host "✅ Created new series landing page: $seriesIndexNJKPath"
 } else {
   Write-Host "⚠️ Skipped existing series landing page: $seriesIndexNJKPath"
 }
 
-# .11tydata.js (metadata – keep current always; overwrite ok if you prefer)
-$seriesDotData = @"
-export default {
-  layout: "base.njk",
-  pillar: "$PillarSlug",
-  series: "$SeriesSlug",
-  seriesMeta: { number: $SeriesNo, label: "Series $SeriesNo", series_version: $SeriesVersion },
-  breadcrumbs: [
-    { title: "The Gnostic Key", url: "/" },
-    { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" },
-    { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" },
-    { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
-  ]
-};
-"@
-Write-Utf8File (Join-Path $SeriesRoot ".11tydata.js") $seriesDotData
 
-# .11tydata.js (metadata + episode cards + nav)
+# ============================================================
+# ⚙️ TGK Series Metadata + Episode Index Generator
+# Updated: 2025-10 | Matches new TGK schema (pillarGrid only)
+# ============================================================
+
 $seriesIndexDataPath = Join-Path $SeriesRoot "index.11tydata.js"
+
 $newEpisodeCard = @"
     {
-      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/",
-      title: "$Title",
+      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/",
+      title: "$SeriesTitleDefault — Series $SeriesNo",
       glyph: "$Glyph",
       tagline: "$LandingDescription",
       tier: "$Tier",
@@ -265,45 +339,31 @@ $newEpisodeCard = @"
     }
 "@
 
-$newEpisodeNav = @"
-    { title: "$Title", desc: "$LandingDescription", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/" }
-"@
-
 if (Test-Path $seriesIndexDataPath) {
+  # Append a new series card if not already present
   $existing = Get-Content $seriesIndexDataPath -Raw
-  $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/")
+  $needle = [regex]::Escape("/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/")
   if ($existing -notmatch $needle) {
-    $updated = $existing -replace '(pillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newEpisodeCard`$2"
-    $updated = $updated -replace '(seriesNav:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newEpisodeNav`$2"
+    $updated = $existing -replace '(\bpillarGrid:\s*\[[\s\S]*?)(\n\s*\])', "`$1,`n$newEpisodeCard`$2"
     Set-Content $seriesIndexDataPath $updated -Encoding UTF8
-    Write-Host "✅ Appended episode + nav card to: $seriesIndexDataPath"
+    Write-Host "✅ Appended new series card to: $seriesIndexDataPath"
   } else {
-    Write-Host "⚠️ Skipped duplicate episode/nav card in: $seriesIndexDataPath"
+    Write-Host "⚠️ Skipped duplicate series card in: $seriesIndexDataPath"
   }
 } else {
+  # Create fresh series metadata file in current schema
   $seriesCards = @"
-export default {
-  introText: "$SeriesTitleDefault, Series $SeriesNo — choose an episode:",
+export default { 
+  introText: "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond.",
   pillarGrid: [
 $newEpisodeCard
-  ],
-  seriesNav: [
-$newEpisodeNav
-  ],
-  layout: "base.njk",
-  pillar: "$PillarSlug",
-  series: "$SeriesSlug",
-  seriesMeta: { number: $SeriesNo, label: "Series $SeriesNo", series_version: $SeriesVersion },
-  breadcrumbs: [
-    { title: "The Gnostic Key", url: "/" },
-    { title: "$PillarNameDefault", url: "/pillars/$PillarSlug/" },
-    { title: "$SeriesTitleDefault", url: "/pillars/$PillarSlug/$SeriesSlug/" },
-    { title: "Series $SeriesNo", url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/" }
   ]
 };
 "@
   Write-Utf8File $seriesIndexDataPath $seriesCards
+  Write-Host "✅ Created new series metadata file: $seriesIndexDataPath"
 }
+
 
 # =========================
 # Episode landing (episodeRoot)

@@ -54,39 +54,4 @@
       padding: 0.3rem 0.6rem;
     }
   }
-
-    /* ===========================================
-     📱 Mobile Tab Separator (Visual Rhythm)
-     =========================================== */
-  @media (max-width: 850px) {
-    .scroll-tabs {
-      overflow-x: auto;
-      overflow-y: visible;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .scroll-tabs .tab-link {
-      position: relative;
-      display: inline-block;
-    }
-
-    /* ✦ separator between buttons */
-    .scroll-tabs .tab-link::after {
-      content: "✦";
-      font-size: 0.9em;
-      line-height: 1;
-      vertical-align: middle;
-      color: var(--text-accent, #fff);
-      opacity: 0.65;
-      margin: 0 0.55rem;
-    }
-
-    /* Remove for the last tab */
-    .scroll-tabs .tab-link:last-of-type::after {
-      content: none;
-    }
-  }
-
-
 }
