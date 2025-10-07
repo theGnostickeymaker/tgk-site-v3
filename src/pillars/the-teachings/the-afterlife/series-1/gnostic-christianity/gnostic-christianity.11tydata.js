@@ -21,17 +21,17 @@ export default {
   // 🔹 Episode Parts (for dynamic part navigation)
   episodeParts: [
     {
-      title: "Part I — The World Is Not What It Seems",
+      title: "Part I",
       desc: "The false cosmos, Sophia’s fall, and the hidden map of return.",
       url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
     },
     {
-      title: "Part II — The Revealer and the Spark",
+      title: "Part II",
       desc: "The hidden Christ awakens the divine spark within the soul.",
       url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
     },
     {
-      title: "Part III — The Soul’s Return",
+      title: "Part III",
       desc: "Through the toll gates of death, the awakened soul remembers its home.",
       url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
     }
