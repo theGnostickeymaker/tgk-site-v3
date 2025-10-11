@@ -30,6 +30,38 @@ vaultMeta:
   external: "https://www.gnosis.org/naghamm/apo-paul.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 3rd–4th century CE"
+
+# 🔗 Auto-injected navigation (v3.6)
+
+
+seriesNav:
+  -
+    title: "First Apocalypse of James"
+    desc: "A revelation of the risen Christ to James — teaching fearlessness before the Archons and the mysteries of deliverance."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/first-apocalypse-of-james/"
+  -
+    title: "Second Apocalypse of James"
+    desc: "James receives hidden instructions for the soul’s ascent beyond the rulers of the world — the secret passwords of deliverance."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/second-apocalypse-of-james/"
+  -
+    title: "Apocalypse of Adam"
+    desc: "The primeval testament of Adam — revealing the fall of light and prophecy of redemption."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-adam/"
+  -
+    title: "Fragment on the Origin of the World (Codex V Variant)"
+    desc: "A parallel cosmological vision — differing in tone from Codex II yet sharing the same divine drama."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/origin-fragment/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: '--', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 
@@ -142,3 +174,22 @@ vaultMeta:
 
   </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

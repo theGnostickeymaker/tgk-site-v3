@@ -1,0 +1,85 @@
+{# ===========================================================
+   ⚯ TGK — Synergist Lens (Global View) v2.3
+   Purpose:
+   Displays interconnections between the current scroll and
+   other content types (scrolls, vault texts, threads, products)
+   by reading from `/src/_data/synergyMap.json`.
+
+   🔹 Data Structure Expected:
+     synergyMap = {
+       nodes: [
+         { id: "scroll001", title: "Gnostic Christianity", url: "/pillars/…", pillar: "the-teachings" },
+         { id: "vault003", title: "Apocryphon of John", url: "/pillars/the-vault/…", pillar: "the-vault" },
+         …
+       ],
+       edges: [
+         { source: "scroll001", target: "vault003", relation: "vaultRef" },
+         { source: "scroll001", target: "scroll002", relation: "crossLink" }
+       ]
+     }
+
+   🔹 Front Matter Required:
+     - scrollId: unique ID for current scroll (must match node.id)
+
+   🔹 Relation Key:
+     vaultRef  → Vault
+     crossLink → Scroll
+     community → Community
+     product   → Artifact
+
+   🧭 Behaviour:
+   - Finds all edges where source == current scrollId
+   - Displays each related node as a symbolic card
+   - Applies relation-based class for accent styling
+
+   🜂 To-Do:
+   Integrate D3.js / Cytoscape for dynamic visual mode later.
+   =========================================================== #}
+
+{% if synergyMap and scrollId %}
+<section id="synergist-lens-global" class="section-block synergist-lens-global">
+  <h2 class="section-heading">⚯ The Synergist Lens — Global View</h2>
+  <p class="section-subtitle">
+    Interconnections across all pillars of <strong>The Gnostic Key</strong>.
+  </p>
+
+  {# --- Filter edges for current scroll --- #}
+  {% set edges = synergyMap.edges | filter(e => e.source == scrollId) %}
+
+  {% if edges and edges.length %}
+    <div class="lens-global-grid">
+      {% for edge in edges %}
+        {% set target = synergyMap.nodes | find(n => n.id == edge.target) %}
+        {% if target %}
+          <article class="lens-global-card relation-{{ edge.relation }}">
+            <header>
+              <h3 class="lens-global-title">
+                <a href="{{ target.url | safe }}" class="lens-link">{{ target.title }}</a>
+              </h3>
+            </header>
+
+            <p class="lens-global-meta">
+              <span class="lens-pill">
+                {{ target.pillar | replace('the-', '') | capitalize }}
+              </span>
+              <span class="lens-type">
+                {{ edge.relation
+                  | replace('vaultRef', 'Vault')
+                  | replace('crossLink', 'Scroll')
+                  | replace('community', 'Community')
+                  | replace('product', 'Artifact') }}
+              </span>
+            </p>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="lens-empty">
+      No global connections found yet.<br>
+      Add <code>crossLinks</code>, <code>vaultRefs</code>, or other arrays in your
+      <strong>index.11tydata.js</strong> to populate this view.
+    </p>
+  {% endif %}
+</section>
+{% endif %}

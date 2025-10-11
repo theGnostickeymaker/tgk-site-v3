@@ -1,32 +1,35 @@
-// src/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/index.11tydata.js
 export default {
+  layout: "base.njk",
+  pillar: "the-vault",
+  series: "codex-reborn",
+  collection: "nag-hammadi",
+  codex: "codex-ii",
   title: "Apocryphon of John",
   description:
     "The Secret Book of John — Sophia’s fall and the birth of Yaldabaoth. A revelation of the false cosmos and the soul’s hidden origin.",
   glyph: "🜂",
-  tier: "free",
-  layout: "base.njk",
   bodyClass: "vault",
   accent: "vault",
-  pillarLabel: "the-vault",
-  seriesLabel: "Codex II — Nag Hammadi Library",
+  tier: "free",
 
-  // 🧭 permalink – new correct path
-  permalink:
-    "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/index.html",
+  // === Tagging ===
+  tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi", "codex-ii", "apocryphon-of-john"],
 
-  // 🔹 Breadcrumb Trail
+  // === Header Glyph Row ===
+  glyphRow: ["🜂", "🕯", "🜂"],
+
+  // === Breadcrumb Trail ===
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" },
     { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" },
-    { title: "Apocryphon of John" }
+    { title: "Apocryphon of John", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" }
   ],
 
-  // 🔹 Sibling navigation (within Codex II)
-  seriesLinks: [
+  // === Local Series Navigation (within Codex II) ===
+  seriesNav: [
     {
       title: "Gospel of Thomas",
       desc: "Sayings of the living Jesus revealed to Thomas — the hidden wisdom of inner sight.",
@@ -49,7 +52,7 @@ export default {
     }
   ],
 
-  // 🔹 Synergist Lens (cross-pillar links)
+  // === Synergist Lens (Cross-Pillar Connections) ===
   synergistLens: {
     crossLinks: [
       {
@@ -63,5 +66,18 @@ export default {
         desc: "Parallels between ancient revelation and modern AI prophecy — the machine as new Demiurge."
       }
     ]
-  }
+  },
+
+  // === Vault Source Metadata ===
+  vaultSource: {
+    type: "PDF",
+    path: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-vault%2Fcodex-reborn%2Fnag-hammadi%2Fcodex-ii%2Fapocryphon-of-john.pdf?alt=media",
+    format: "translated",
+    translator: "Frederik Wisse (Nag Hammadi Library in English)",
+    language: "English",
+    access: "public"
+  },
+
+  showLens: true,
+  showSeriesNav: true
 };

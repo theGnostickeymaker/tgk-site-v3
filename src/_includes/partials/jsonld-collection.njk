@@ -1,3 +1,37 @@
+{# =========================================================
+   🔍 TGK — JSON-LD Collection Generator (v2.2)
+   Purpose:
+   Injects structured data (schema.org) for SEO and discovery.
+   Designed for TGK series, scroll indexes, and Vault listings.
+
+   ✅ Data Inputs:
+   • headline → Overall title of the collection
+   • base     → Canonical URL (e.g. page.url or series base)
+   • items    → Array of objects with at least `title` and/or `url`
+                Accepts either { title, url } or { title, href }
+
+   🧭 Behaviour:
+   • Only renders <script> if `items` exists and has length > 0
+   • Uses CollectionPage with `hasPart` of CreativeWork entries
+   • Gracefully skips null URLs and titles without breaking syntax
+
+   ✨ Output Example:
+   {
+     "@context": "https://schema.org",
+     "@type": "CollectionPage",
+     "name": "The Afterlife Series",
+     "url": "https://thegnostickey.com/pillars/the-teachings/the-afterlife/",
+     "hasPart": [
+       { "@type": "CreativeWork", "name": "Gnostic Christianity", "url": "…" },
+       { "@type": "CreativeWork", "name": "Sufi Islam", "url": "…" }
+     ]
+   }
+
+   ⚙️ Notes:
+   • Safe for reuse across any collection view.
+   • For individual scrolls, use `jsonld-scroll.njk` instead.
+   ========================================================= #}
+
 {%- if items and items.length -%}
 <script type="application/ld+json">
 {
@@ -9,8 +43,11 @@
     {%- for it in items -%}
     {
       "@type": "CreativeWork",
-      "name": {{ (it.title or "") | dump }}{% set itemUrl = it.url or it.href %}{% if itemUrl %},
-      "url": {{ itemUrl | dump }}{% endif %}
+      "name": {{ (it.title or "") | dump }}
+      {%- set itemUrl = it.url or it.href -%}
+      {%- if itemUrl %},
+      "url": {{ itemUrl | dump }}
+      {%- endif -%}
     }{% if not loop.last %},{% endif %}
     {%- endfor -%}
   ]

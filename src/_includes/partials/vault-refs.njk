@@ -1,0 +1,23 @@
+{# ===========================================================
+   🜂 TGK — Vault References Partial (v1.0)
+   Purpose:
+   Renders a list of linked sacred or archival texts drawn from
+   the front matter field `vaultRefs:` automatically injected
+   by Synergist Lens / Retrofit.
+   =========================================================== #}
+
+{% set refs = vaultRefs or page.vaultRefs %}
+{% if refs and refs.length %}
+<section id="vault-refs" class="section-block vault-references">
+  <h2 class="section-heading">📜 Referenced Vault Texts</h2>
+  <ul class="list-vault-refs">
+    {% for ref in refs %}
+      <li>
+        <a href="{{ ref.path }}" class="vault-link">
+          {{ ref.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

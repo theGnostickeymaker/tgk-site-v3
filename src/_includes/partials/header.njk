@@ -1,4 +1,26 @@
-{# deprecated — header is now split into:
-   - partials/topbar.njk  (nav)
-   - partials/hero.njk    (hero/branding)
-   This file intentionally renders nothing. #}
+{# =========================================================
+   ⚠️ TGK — Header Partial (Deprecated v2.0)
+   Purpose:
+   This file is intentionally blank.
+
+   🧭 Historical Context:
+   Previously handled both site navigation and hero section.
+   As of TGK Rebuild v3.0 (2025), the header has been modularised:
+     • partials/topbar.njk  → Primary navigation + theme toggles
+     • partials/hero.njk    → Pillar-specific branding / glyph hero
+
+   ✅ Reason for Deprecation:
+   • Prevents duplication of header markup
+   • Improves performance and readability
+   • Allows pillar-based dynamic theming
+
+   ⚙️ Current Behaviour:
+   This placeholder remains to satisfy legacy includes until all
+   templates have migrated to the modular system.
+
+   🧩 Safe to remove once:
+   • All layouts reference topbar.njk + hero.njk directly
+   • No remaining `{% include "partials/header.njk" %}` calls exist
+   ========================================================= #}
+
+{# intentionally blank #}

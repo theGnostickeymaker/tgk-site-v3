@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: "Sufi Islam"
+description: "Three-part journey."
+tier: free
+glyph: "☪"
+series_version: 1
+permalink: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/index.html"
+tagline: "Three-part journey through the false cosmos and the Revealer."
+seriesMeta:
+  number: 1
+  label: "Series 1"
+  series_version: 1
+episode: 2
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Teachings", url: "/pillars/the-teachings/" }
+  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
+  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "Sufi Islam — Series 1" %}
+  {% set base = "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+    <h4 class="index-heading">
+      tagline: ""Three-part journey through the false cosmos and the Revealer."",
+    </h4>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+    </div>
+  </section>
+</main>

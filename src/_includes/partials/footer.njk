@@ -1,20 +1,49 @@
+{# =========================================================
+   ⚖️ TGK — Global Site Footer (v2.3)
+   Purpose:
+   Appears on every page; provides legal links, company info,
+   and closing glyphs reflecting TGK’s symbolic system.
+
+   ✅ Contains:
+   • Primary navigation (Home / Privacy / Terms / About)
+   • Legal + publishing details
+   • Symbolic glyph row (☉ 🜂 ☿ ✷)
+   
+   🧭 Behaviour:
+   • Globally included via base.njk
+   • Uses accent-aware glow styling (auto from pillar theme)
+   • Designed for responsive center alignment
+   
+   Future Extensions:
+   • Add dynamic year (via JS or Nunjucks date)
+   • Optional social icons (X, Telegram, Patreon)
+   ========================================================= #}
+
 <footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-links">
+
+    {# 🔹 Footer Navigation Links #}
+    <nav class="footer-links" aria-label="Footer Navigation">
       <a href="/">Home</a><span class="footer-divider">✧</span>
       <a href="/legal/privacy.html">Privacy Policy</a><span class="footer-divider">✧</span>
       <a href="/legal/terms.html">Terms &amp; Conditions</a><span class="footer-divider">✧</span>
       <a href="/legal/about.html">About</a>
-    </div>
+    </nav>
 
-    <p class="footer-note">© 2025 The Gnostic Key. All Rights Reserved.</p>
-    <p class="footer-note">Published by <em>The Gnostic Key Limited</em><br>Registered in England &amp; Wales No. 16342669</p>
+    {# 🔹 Legal / Company Information #}
+    <p class="footer-note">© {{ "now" | date("yyyy") }} The Gnostic Key. All Rights Reserved.</p>
+    <p class="footer-note">
+      Published by <em>The Gnostic Key Limited</em><br>
+      Registered in England &amp; Wales No. 16342669
+    </p>
 
-    <div class="footer-glyphs">
+    {# 🔹 Symbolic Glyph Row #}
+    <div class="footer-glyphs" aria-hidden="true">
       <span class="footer-glyph glow-soft">☉</span>
       <span class="footer-glyph glow-soft">🜂</span>
       <span class="footer-glyph glow-soft">☿</span>
       <span class="footer-glyph glow-soft">✷</span>
     </div>
+
   </div>
 </footer>

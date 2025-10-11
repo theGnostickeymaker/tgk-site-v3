@@ -1,3 +1,15 @@
+{# =========================================================
+   🜂 TGK — Episode Part Navigation (v2.3)
+   Purpose:
+   Dynamically displays floating navigation between scroll parts.
+   Compatible with YAML literal blocks injected by retrofit v3.5.
+   ========================================================= #}
+
+{% set partsData = episodeParts %}
+{% if partsData and partsData is string %}
+  {% set episodeParts = partsData | safe | fromJson %}
+{% endif %}
+
 {% if episodeParts and episodeParts.length %}
   {% set currentIndex = -1 %}
   {% for part in episodeParts %}
@@ -7,20 +19,19 @@
   {% endfor %}
 
   {% if currentIndex > -1 %}
-    <nav class="scroll-tabs {{ __ac }}" role="navigation" aria-label="Part Navigation" data-nav="episode-part-nav">
-      {% if currentIndex > 0 %}
-        {% set prevPart = episodeParts[currentIndex - 1] %}
-        <a href="{{ prevPart.url }}" class="tab-link episode-prev" data-title="Previous Part">
-          ← {{ prevPart.title }}
-        </a>
-      {% endif %}
-
-      {% if currentIndex < (episodeParts.length - 1) %}
-        {% set nextPart = episodeParts[currentIndex + 1] %}
-        <a href="{{ nextPart.url }}" class="tab-link episode-next" data-title="Next Part">
-          {{ nextPart.title }} →
-        </a>
-      {% endif %}
-    </nav>
+  <nav class="scroll-tabs episode-nav" role="navigation" aria-label="Part Navigation">
+    {% if currentIndex > 0 %}
+      {% set prevPart = episodeParts[currentIndex - 1] %}
+      <a href="{{ prevPart.url }}" class="tab-link episode-prev" aria-label="Previous: {{ prevPart.title }}">
+        ← {{ prevPart.title }}
+      </a>
+    {% endif %}
+    {% if currentIndex < (episodeParts.length - 1) %}
+      {% set nextPart = episodeParts[currentIndex + 1] %}
+      <a href="{{ nextPart.url }}" class="tab-link episode-next" aria-label="Next: {{ nextPart.title }}">
+        {{ nextPart.title }} →
+      </a>
+    {% endif %}
+  </nav>
   {% endif %}
 {% endif %}

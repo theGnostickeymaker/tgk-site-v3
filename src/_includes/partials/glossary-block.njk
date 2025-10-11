@@ -1,20 +1,51 @@
-<section class="section-block" id="glossary">
-  <h2 class="section-heading">📖 Glossary</h2>
-  <p class="section-subtitle">Decode the hidden language of exile and return</p>
+{# =========================================================
+   📖 TGK — Glossary Partial (v2.2)
+   Purpose:
+   Renders key symbolic and doctrinal terms for a given scroll
+   (e.g., "Gnosis", "Sophia", "Demiurge", etc.).
+
+   ✅ Data Source:
+   glossary: {
+     subtitle: "string (optional)",
+     terms: [
+       { term: "Gnosis", def: "Direct inner knowing..." },
+       { term: "Sophia", def: "Divine Wisdom fallen into matter..." }
+     ]
+   }
+
+   🧭 Behaviour:
+   • Only renders if glossary.terms exists and has entries
+   • Supports optional subtitle
+   • Defaults to placeholder entry if no terms found
+   • Safe for any TGK pillar, series, or episode
+
+   ✨ Styling:
+   Controlled by `glossary.css` (nested inside pillar accent theme)
+   ========================================================= #}
+
+{% if glossary %}
+<section id="glossary" class="section-block glossary-section" aria-labelledby="glossary-heading">
+  <h2 id="glossary-heading" class="section-heading">📖 Glossary</h2>
+  <p class="section-subtitle">
+    {{ glossary.subtitle or "Decode the hidden language of exile and return" }}
+  </p>
 
   <dl class="glossary">
-    {% if glossary and glossary.length %}
-      {% for entry in glossary %}
-      <div class="glossary-entry">
-        <dt>{{ entry.term }}</dt>
-        <dd>{{ entry.def }}</dd>
-      </div>
+    {# 🔹 Render each glossary entry if present #}
+    {% if glossary.terms and glossary.terms.length %}
+      {% for entry in glossary.terms %}
+        <div class="glossary-entry">
+          <dt class="glossary-term">{{ entry.term }}</dt>
+          <dd class="glossary-definition">{{ entry.def }}</dd>
+        </div>
       {% endfor %}
     {% else %}
-      <div class="glossary-entry">
+      {# 🔸 Fallback if glossary is empty #}
+      <div class="glossary-entry placeholder">
         <dt>TBD</dt>
-        <dd>Glossary terms will appear here.</dd>
+        <dd>Glossary terms will appear here once defined.</dd>
       </div>
     {% endif %}
   </dl>
 </section>
+{% endif %}

@@ -30,6 +30,26 @@ vaultMeta:
   external: "https://www.gnosis.org/library/marygosp.htm"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
+
+# 🔗 Auto-injected navigation (v3.6)
+
+
+seriesNav:
+  -
+    title: "Apocryphon of John (Fragment)"
+    desc: "A shorter variant of the revelation text, preserved alongside Mary’s gospel in the same codex."
+    url: "/pillars/the-vault/codex-reborn/berlin-codex/apocryphon-of-john-fragment/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: '--', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 <main class="main-content">
@@ -424,3 +444,22 @@ vaultMeta:
 
 </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

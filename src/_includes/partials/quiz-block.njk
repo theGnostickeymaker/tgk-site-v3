@@ -1,7 +1,19 @@
 {# =======================================================
-   Quiz Block
-   Renders a quiz section with heading + container + data
-   Requires `quizId` in front-matter
+   🧠 TGK — Dynamic Quiz Block (v2.1)
+   Purpose:
+   Injects the quiz mount point, title, and introduction
+   for quizzes loaded dynamically by quiz-engine.js.
+
+   ✅ Expects (from front matter or .11tydata.js):
+   • quizId      → required (string) matches /src/_data/quiz/[quizId].js
+   • quizIntro   → optional (HTML or text intro override)
+   • quiz.meta.* → optional legacy inline metadata (title/intro)
+
+   ⚙️ Behaviour:
+   - Creates a <section> with data-quiz-id="{{ quizId }}"
+   - quiz-engine.js automatically mounts the quiz UI here
+   - Supports either static or dynamically loaded data files
+   - Safe fallback when quizId is missing (renders nothing)
    ======================================================= #}
 
 {% if quizId %}
@@ -9,9 +21,22 @@
   id="quiz"
   class="section-block quiz-block" 
   data-quiz-id="{{ quizId }}">
-  
-  <h2 class="section-heading">🧠 Quiz</h2>
+
+  {# --- Title & intro --- #}
+  {% set quizTitle = quiz and quiz.meta and quiz.meta.title %}
+  {% set introText = quizIntro or (quiz and quiz.meta and quiz.meta.intro) %}
+
+  {% if quizTitle %}
+    <h2 class="section-heading">🧠 {{ quizTitle }}</h2>
+  {% else %}
+    <h2 class="section-heading">🧠 Quiz</h2>
+  {% endif %}
+
+  {% if introText %}
+    <p class="section-subtitle quiz-intro">{{ introText | safe }}</p>
+  {% endif %}
+
+  {# --- Quiz UI mount container --- #}
   <div class="quiz-container"></div>
 </section>
 {% endif %}
-

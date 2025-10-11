@@ -31,9 +31,39 @@ vaultMeta:
   external: "https://www.gnosis.org/naghamm/apocjn-davies.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
+
+# 🔗 Auto-injected navigation (v3.6)
+
+
+seriesNav:
+  -
+    title: "Gospel of Thomas"
+    desc: "Sayings of the living Jesus revealed to Thomas — the hidden wisdom of inner sight."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
+  -
+    title: "Gospel of Philip"
+    desc: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and self-knowledge."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+  -
+    title: "Hypostasis of the Archons"
+    desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
+  -
+    title: "On the Origin of the World"
+    desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the light that redeems it."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: '--', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
-
-
 
 <main class="main-content">
 <section class="content-container">
@@ -1399,3 +1429,22 @@ Until the present day.]<br></p>
 
 </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,14 +1,51 @@
+{# =========================================================
+   🜂 TGK — Series / Scroll Header Partial (v2.3)
+   Purpose:
+   Renders a concise title + description banner for scrolls
+   (episodes, parts, or standalone teachings).
+
+   ✅ Data Sources:
+   • title          → main scroll title (from front matter)
+   • description    → subheading / short summary
+   • episode        → episode number (optional)
+   • partNumeral    → Roman numeral (I, II, III)
+   • partTitle      → optional part subtitle (future use)
+
+   🧭 Behaviour:
+   • Displays title, description, and meta line dynamically
+   • Works for both episode-level and part-level pages
+   • Safely hides missing fields without breaking layout
+
+   ✨ Accessibility / SEO:
+   • Uses <h1> for top-level scroll heading
+   • Semantic meta block grouped under <div.scroll-meta>
+
+   ⚙️ Styling:
+   • Themed by pillar accent variables (e.g. --accent-color)
+   • Usually followed by scroll content or tab navigation
+   ========================================================= #}
+
 <header class="series-header">
-  <h1 class="scroll-title">{{ title or "Untitled" }}</h1>
+  <!-- 🪶 Scroll Title -->
+  <h1 class="scroll-title">
+    {{ title or "Untitled Scroll" }}
+  </h1>
+
+  <!-- 🗒️ Optional Description -->
   {% if description %}
-    <p class="scroll-description">{{ description }}</p>
+    <p class="scroll-description">
+      {{ description }}
+    </p>
   {% endif %}
+
+  <!-- 📜 Episode / Part Metadata -->
   <div class="scroll-meta">
     {% if episode %}
-      <span>Episode {{ episode }}</span>
+      <span class="scroll-episode">Episode {{ episode }}</span>
     {% endif %}
+    {% if episode and partNumeral %} · {% endif %}
     {% if partNumeral %}
-      · Part {{ partNumeral }}
+      <span class="scroll-part">Part {{ partNumeral }}</span>
     {% endif %}
   </div>
 </header>

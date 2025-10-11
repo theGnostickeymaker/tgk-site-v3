@@ -1,11 +1,22 @@
-{# ----------------------------------------------
-  Quiz Data Loader
-  Injects quiz JSON into a <script> tag
-  with a unique ID for JS renderer
------------------------------------------------- #}
+{# =======================================================
+   🧠 TGK — Quiz Data Loader (v2.1)
+   Purpose:
+   Injects quiz JSON into a <script> tag for the client-side
+   quiz-engine.js to locate and render dynamically.
+
+   ✅ Expects:
+   - quizId → string (matches /src/_data/quiz/[quizId].js)
+   - quiz   → optional global data object (legacy)
+   
+   ⚙️ Behaviour:
+   - If the Eleventy data cascade already includes quiz[quizId],
+     it embeds that data as inline JSON.
+   - Otherwise, the JS loader will fetch it dynamically at runtime.
+   ======================================================= #}
 
 {% if quizId %}
-  {% set quizData = quiz[quizId] %}
+  {# --- Try Eleventy global data first (for build-time availability) --- #}
+  {% set quizData = quiz and quiz[quizId] %}
   {% if quizData %}
     <script 
       type="application/json" 
@@ -14,10 +25,13 @@
       {{ quizData | dump | safe }}
     </script>
     <script>
-      console.log("[TGK QUIZ] ✅ Injected data for quizId: {{ quizId }}");
+      console.log("[TGK QUIZ] ✅ Inline data injected for quizId: {{ quizId }}");
     </script>
   {% else %}
-    <script>console.warn("[TGK QUIZ] ⚠️ No quiz data found for '{{ quizId }}'");</script>
+    {# --- Fallback: runtime fetch handled by quiz-engine.js --- #}
+    <script>
+      console.log("[TGK QUIZ] ⚙️ Deferred load: will fetch /_data/quiz/{{ quizId }}.js");
+    </script>
   {% endif %}
 {% else %}
   <script>console.warn("[TGK QUIZ] ⚠️ No quizId passed to loader");</script>

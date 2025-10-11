@@ -1,8 +1,27 @@
 {# ========================================================= 
-   Reference Section Partial
-   Uses list-emoji for symbolic bullets
-   Consumes front-matter `references:` block
-   Styled with .source-footer wrapper
+   🜏 TGK — Reference Section Partial (v2.1)
+   Purpose:
+   Renders end-of-scroll reading lists and scholarly citations.
+
+   ✅ Expects front-matter object:
+     references:
+       title: "Further Study"
+       intro: "Explore the roots of this teaching."
+       readings:
+         - { title: "The Nag Hammadi Library", desc: "A collection of Gnostic scriptures." }
+       scholarly:
+         - { author: "Elaine Pagels", year: 1979, work: "The Gnostic Gospels", pub: "Random House" }
+
+   ⚙️ Styling:
+   - Uses `.section-block.source-footer` wrapper
+   - Symbolic bullets via `.list-emoji`
+   - Intended to appear before the footer / quiz section
+
+   🧩 Structure:
+   - references.title → section heading
+   - references.intro → optional intro paragraph
+   - references.readings → “Recommended Reading” list
+   - references.scholarly → “Scholarly Sources & Translations” list
    ========================================================= #}
 
 {% if references %}
@@ -13,6 +32,7 @@
     <p class="intro">{{ references.intro }}</p>
   {% endif %}
 
+  {# --- Recommended Reading --- #}
   {% if references.readings %}
     <h3 class="sub-heading">🔍 Recommended Reading</h3>
     <ul class="list-emoji">
@@ -25,6 +45,7 @@
     </ul>
   {% endif %}
 
+  {# --- Scholarly Sources & Translations --- #}
   {% if references.scholarly %}
     <h3 class="sub-heading">📖 Scholarly Sources &amp; Translations</h3>
     <ul class="list-emoji">
@@ -39,8 +60,8 @@
   {% endif %}
 
   <p class="disclaimer">
-    These sources are recommended for study and context — they represent diverse voices
-    and are offered as entry points, not dogma.
+    These sources are recommended for study and context —
+    they represent diverse voices and are offered as entry points, not dogma.
   </p>
 </section>
 {% endif %}

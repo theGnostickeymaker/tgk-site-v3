@@ -1,4 +1,22 @@
-{# === SOCIAL SHARE BUTTONS === #}
+{# ===========================================================
+   🜂 TGK — Social Share Section (v2.2)
+   Purpose:
+   Enables readers to share a scroll directly to Telegram, X (Twitter),
+   or join The Gnostic Key’s official channel.
+
+   ✅ Expected Data:
+     - title        → Scroll title (from front matter)
+     - permalink    → Canonical permalink (Eleventy)
+     - page.url     → Fallback for current page URL
+     - siteBase     → TGK site root (defaults to https://thegnostickey.com)
+
+   💡 Behaviour:
+     - Dynamically encodes scroll title and URL
+     - Adds default hashtag #TheGnosticKey
+     - Consistent with TGK’s “btn-row” and “btn-outline” styling
+     - Can be appended at the end of any scroll layout
+   =========================================================== #}
+
 {% set siteBase = "https://thegnostickey.com" %}
 {% set shareTitle = title or page.fileSlug or "The Gnostic Key" %}
 {% set relativeUrl = permalink or page.url or "/" %}
@@ -6,10 +24,11 @@
 
 <section id="share" class="section-block share-section">
   <h2 class="section-heading">📤 Share This Scroll</h2>
-  <p>Spread the light – every share is a spark of remembrance.</p>
+  <p class="section-subtitle">Spread the light — every share is a spark of remembrance.</p>
 
   <div class="btn-row">
-    <!-- Share this scroll (Telegram) -->
+
+    {# --- Telegram Direct Share --- #}
     <div class="btn-wrap">
       <a href="https://t.me/share/url?url={{ shareUrl | urlencode }}&text={{ shareTitle | urlencode }}%20%23TheGnosticKey"
          target="_blank"
@@ -20,7 +39,7 @@
       </a>
     </div>
 
-    <!-- Share on X -->
+    {# --- Share on X (formerly Twitter) --- #}
     <div class="btn-wrap">
       <a href="https://x.com/intent/tweet?url={{ shareUrl | urlencode }}&text={{ shareTitle | urlencode }}%20%23TheGnosticKey"
          target="_blank"
@@ -31,13 +50,13 @@
       </a>
     </div>
 
-    <!-- Official Telegram channel -->
+    {# --- Official TGK Telegram Channel --- #}
     <div class="btn-wrap">
       <a href="https://t.me/TheGnosticKey"
          target="_blank"
          rel="noopener noreferrer"
          class="btn btn-outline"
-         aria-label="Visit The Gnostic Key Telegram channel">
+         aria-label="Join The Gnostic Key Telegram channel">
         💬 <strong>Join Our Channel</strong>
       </a>
     </div>

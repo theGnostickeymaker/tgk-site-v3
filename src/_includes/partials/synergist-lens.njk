@@ -1,83 +1,101 @@
-{% if (crossLinks and crossLinks.length) 
-   or (vaultRefs and vaultRefs.length) 
-   or (communityThreads and communityThreads.length) 
+{# ===========================================================
+   ⚯ TGK — Synergist Lens (Local View) v2.4
+   -----------------------------------------------------------
+   Purpose:
+     Displays all interconnections for the current scroll:
+       • Cross-linked scrolls (crossLinks)
+       • Vault texts (vaultRefs)
+       • Community discussions (communityThreads)
+       • Related shop artifacts (relatedProducts)
+
+   ✅ Expected Front Matter Arrays:
+     crossLinks:
+       - { title: "The Machine’s Mask", path: "/pillars/the-obsidian-key/systemic/the-machines-mask/", desc: "The illusion of authority and control." }
+     vaultRefs:
+       - { title: "Apocryphon of John", path: "/pillars/the-vault/codex-reborn/apocryphon-of-john/", desc: "Primary Gnostic cosmology text." }
+     communityThreads:
+       - { title: "Who is Sophia?", path: "https://t.me/TheGnosticKey/1321", desc: "Telegram discussion on divine wisdom." }
+     relatedProducts:
+       - { title: "TGK Tarot: The Real Archetypes", path: "/shop/the-real-archetypes/", desc: "A satirical, symbolic TGK collector’s deck." }
+
+   ⚙️ Placement:
+     - Appended at end of scroll layout
+     - Pairs with optional global lens (`synergist-lens-global.njk`)
+
+   💡 Styling:
+     - Uses `.lens-block`, `.lens-list`, `.lens-item`
+     - Glyphs: ⚯ = crossLinks | 📜 = vaultRefs | ✺ = community | ⚒ = artifacts
+   =========================================================== #}
+
+{% if (crossLinks and crossLinks.length)
+   or (vaultRefs and vaultRefs.length)
+   or (communityThreads and communityThreads.length)
    or (relatedProducts and relatedProducts.length) %}
 
-<!-- ∞ Synergist Lens -->
 <section id="lens" class="section-block synergist-lens" tabindex="-1" aria-labelledby="lens-heading">
-  <h2 id="lens-heading" class="section-heading">∞ Synergist Lens</h2>
+  <h2 id="lens-heading" class="section-heading">⚯ Synergist Lens</h2>
+  <p class="section-subtitle">
+    Revealing the living web between scrolls, vaults, communities, and artifacts.
+  </p>
 
+  {# --- Cross Threads --- #}
   {% if crossLinks and crossLinks.length %}
   <div class="lens-block">
-    <h3 class="lens-heading">
-      <span class="pillar-glyph">⚯</span> Cross-Threads
-    </h3>
+    <h3 class="lens-heading"><span class="pillar-glyph">⚯</span> Cross-Threads</h3>
     <ul class="lens-list">
       {% for item in crossLinks %}
         <li class="lens-item">
           <a href="{{ item.path }}" class="lens-link">{{ item.title }}</a>
-          {% if item.desc %}
-            <p class="lens-desc">{{ item.desc }}</p>
-          {% endif %}
+          {% if item.desc %}<p class="lens-desc">{{ item.desc }}</p>{% endif %}
         </li>
       {% endfor %}
     </ul>
   </div>
   {% endif %}
 
+  {# --- Vault References --- #}
   {% if vaultRefs and vaultRefs.length %}
   <div class="lens-block">
-    <h3 class="lens-heading">
-      <span class="pillar-glyph">📜</span> Vault References
-    </h3>
+    <h3 class="lens-heading"><span class="pillar-glyph">📜</span> Vault References</h3>
     <ul class="lens-list">
       {% for ref in vaultRefs %}
         <li class="lens-item">
-          <a href="{{ ref.path }}" class="lens-link">{{ ref.title }}</a>
-          {% if ref.desc %}
-            <p class="lens-desc">{{ ref.desc }}</p>
-          {% endif %}
+          <a href="{{ ref.path or ref.url }}" class="lens-link">{{ ref.title }}</a> 
+          {% if ref.desc %}<p class="lens-desc">{{ ref.desc }}</p>{% endif %}
         </li>
       {% endfor %}
     </ul>
   </div>
   {% endif %}
 
+  {# --- Community Threads --- #}
   {% if communityThreads and communityThreads.length %}
   <div class="lens-block">
-    <h3 class="lens-heading">
-      <span class="pillar-glyph">✺</span> Community Threads
-    </h3>
+    <h3 class="lens-heading"><span class="pillar-glyph">✺</span> Community Threads</h3>
     <ul class="lens-list">
       {% for thread in communityThreads %}
         <li class="lens-item">
-          <a href="{{ thread.path }}" class="lens-link">{{ thread.title }}</a>
-          {% if thread.desc %}
-            <p class="lens-desc">{{ thread.desc }}</p>
-          {% endif %}
+          <a href="{{ thread.path }}" class="lens-link" target="_blank" rel="noopener noreferrer">{{ thread.title }}</a>
+          {% if thread.desc %}<p class="lens-desc">{{ thread.desc }}</p>{% endif %}
         </li>
       {% endfor %}
     </ul>
   </div>
   {% endif %}
 
+  {# --- Related Artifacts --- #}
   {% if relatedProducts and relatedProducts.length %}
   <div class="lens-block">
-    <h3 class="lens-heading">
-      <span class="pillar-glyph">⚒</span> Related Artifacts
-    </h3>
+    <h3 class="lens-heading"><span class="pillar-glyph">⚒</span> Related Artifacts</h3>
     <ul class="lens-list">
       {% for product in relatedProducts %}
         <li class="lens-item">
           <a href="{{ product.path }}" class="lens-link">{{ product.title }}</a>
-          {% if product.desc %}
-            <p class="lens-desc">{{ product.desc }}</p>
-          {% endif %}
+          {% if product.desc %}<p class="lens-desc">{{ product.desc }}</p>{% endif %}
         </li>
       {% endfor %}
     </ul>
   </div>
   {% endif %}
-
 </section>
 {% endif %}

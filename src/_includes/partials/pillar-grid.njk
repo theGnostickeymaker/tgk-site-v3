@@ -1,23 +1,68 @@
-{# Expects pillarGrid = [ … ] #}
+{# =========================================================
+   🜂 TGK — Pillar / Series Grid Partial (v3.0)
+   Purpose:
+   Renders a responsive card grid for collections such as:
+   • Pillar landing pages
+   • Series selection pages
+   • Episode or Vault collections
+
+   ✅ Expects:
+   - pillarGrid = [
+       {
+         href, title, glyph, desc/tagline,
+         tier (free/initiate/full),
+         state (default, coming-soon, premium, locked, archived, draft),
+         image (optional thumbnail),
+         badge (optional override)
+       }
+     ]
+
+   🧭 Behaviour:
+   • Automatically applies classes and overlays per state
+   • Shows a glyph and title prominently
+   • Adds tier badge (“Free”, “Initiate”, “Full Access”)
+   • Clean fallback handling for missing fields
+
+   ✨ State Guide:
+   default      → normal card
+   coming-soon  → greyed banner
+   premium      → golden glow
+   locked       → semi-transparent lock overlay
+   archived     → faded aesthetic
+   draft        → soft gradient + “In Development” label
+
+   ⚙️ Notes:
+   • Fully responsive (uses .portal-grid layout container)
+   • Accessible — non-decorative text always wrapped in <p>/<h3>
+   • Safe for reuse on Vault, Teachings, Obsidian Key, etc.
+   ========================================================= #}
+
+{%- if pillarGrid and pillarGrid.length -%}
 <section class="pillar-grid">
   <div class="portal-grid">
     {% for c in pillarGrid %}
+      {# --- Derive state + CSS class --- #}
       {% set state = c.state or c.status or "default" %}
       {% set cls = "gnostic-card" %}
-      {% if state == "premium" %}{% set cls = cls + " premium" %}
-      {% elif state == "coming-soon" %}{% set cls = cls + " coming-soon" %}
-      {% elif state == "locked" %}{% set cls = cls + " locked" %}
-      {% elif state == "archived" %}{% set cls = cls + " archived" %}
-      {% elif state == "draft" %}{% set cls = cls + " draft" %}
+      {% if state == "premium" %}
+        {% set cls = cls + " premium" %}
+      {% elif state == "coming-soon" %}
+        {% set cls = cls + " coming-soon" %}
+      {% elif state == "locked" %}
+        {% set cls = cls + " locked" %}
+      {% elif state == "archived" %}
+        {% set cls = cls + " archived" %}
+      {% elif state == "draft" %}
+        {% set cls = cls + " draft" %}
       {% endif %}
 
       <article class="{{ cls }}">
         <a class="card-link" href="{{ c.href or c.url or '#' }}">
-          
-          {# Optional image thumbnail #}
+
+          {# --- Optional thumbnail image --- #}
           {% if c.image %}
             <figure class="card-media">
-              <img src="{{ c.image }}" alt="" loading="lazy">
+              <img src="{{ c.image }}" alt="{{ c.title or 'Card Image' }}" loading="lazy">
             </figure>
           {% endif %}
 
@@ -25,15 +70,16 @@
             {% if c.glyph %}
               <div class="card-glyph" aria-hidden="true">{{ c.glyph }}</div>
             {% endif %}
-            <h3 class="card-title">{{ c.title }}</h3>
 
-            {# Only show tagline/desc if it exists AND isn't equal to the state #}
+            <h3 class="card-title">{{ c.title or "Untitled" }}</h3>
+
+            {# --- Optional tagline / description --- #}
             {% if (c.desc and c.desc != state) or (c.tagline and c.tagline != state) %}
               <p class="card-desc">{{ c.desc or c.tagline }}</p>
             {% endif %}
           </div>
 
-          {# --- Overlay banners --- #}
+          {# --- Overlay banners for card state --- #}
           {% if state == "coming-soon" %}
             <div class="card-overlay"><span class="banner">Coming Soon</span></div>
           {% elif state == "premium" %}
@@ -46,7 +92,7 @@
             <div class="card-overlay"><span class="banner">In Development</span></div>
           {% endif %}
 
-          {# --- Tier badge (Free / Initiate / Full) --- #}
+          {# --- Tier badge logic --- #}
           {% set badgeTxt = c.badge %}
           {% if not badgeTxt and c.tier == "full" %}{% set badgeTxt = "Full Access" %}{% endif %}
           {% if not badgeTxt and c.tier == "initiate" %}{% set badgeTxt = "Initiate" %}{% endif %}
@@ -59,3 +105,4 @@
     {% endfor %}
   </div>
 </section>
+{%- endif -%}

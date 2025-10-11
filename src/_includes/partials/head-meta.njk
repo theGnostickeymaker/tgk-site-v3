@@ -1,14 +1,47 @@
-{# Basic SEO/OG/Twitter; pages can set: title, description, socialImage #}
+{# =========================================================
+   🧠 TGK — Head Meta Partial (v2.3)
+   Purpose:
+   Defines essential SEO and social metadata for TGK pages.
+   Ensures consistent sharing appearance across platforms.
+
+   ✅ Accepts Front Matter or Computed Data:
+   - title:         Page title (defaults to “The Gnostic Key”)
+   - description:   SEO description (defaults to TGK mission line)
+   - socialImage:   Absolute or relative OG/Twitter image path
+
+   🧭 Behaviour:
+   • Provides fallbacks for all key fields
+   • Automatically fills OG and Twitter metadata
+   • Used globally in <head> via base.njk
+   • Supports Eleventy computed data inheritance
+
+   ✨ Styling / Assets:
+   • OG and Twitter image → /tgk-assets/images/share/
+   • Use 1200×630px minimum for best preview quality
+   ========================================================= #}
+
 {% set _title = title or "The Gnostic Key" %}
 {% set _desc  = description or "A sacred digital library of forbidden history, esoteric wisdom, and spiritual rebellion." %}
 {% set _img   = socialImage or "/tgk-assets/images/share/tgk-index-main.jpg" %}
 
+<!-- 🔹 Basic SEO -->
 <meta name="description" content="{{ _desc }}">
+<meta name="author" content="The Gnostic Key Limited">
+
+<!-- 🔹 Open Graph -->
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="The Gnostic Key">
 <meta property="og:title" content="{{ _title }}">
 <meta property="og:description" content="{{ _desc }}">
 <meta property="og:image" content="{{ _img }}">
+<meta property="og:url" content="{{ site.url | default('https://thegnostickey.com') ~ (page.url or '/') }}">
+
+<!-- 🔹 Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@thegnostickey">
 <meta name="twitter:title" content="{{ _title }}">
 <meta name="twitter:description" content="{{ _desc }}">
 <meta name="twitter:image" content="{{ _img }}">
+
+<!-- 🔹 Canonical -->
+<link rel="canonical" href="{{ site.url | default('https://thegnostickey.com') ~ (page.url or '/') }}">

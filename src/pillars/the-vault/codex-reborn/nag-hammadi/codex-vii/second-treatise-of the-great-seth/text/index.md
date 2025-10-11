@@ -30,6 +30,18 @@ vaultMeta:
   external: "https://www.gnosis.org/naghamm/2seth.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd–3rd century CE"
+
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: '--', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 
@@ -145,3 +157,22 @@ vaultMeta:
 
 </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

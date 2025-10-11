@@ -1,30 +1,54 @@
+{# ===========================================================
+   🜂 TGK — Scroll Section Tabs (v2.2)
+   Purpose:
+   Generates floating navigation links for key content anchors
+   within a scroll (quiz, glossary, creative, discussion, etc.).
+
+   ✅ Expects data from front matter or .11tydata.js:
+     - quizId / quizEnabled
+     - glossary.terms[] or glossary[]
+     - creativePrompt.text
+     - discussEnabled (optional override)
+     - seriesMeta
+     - references
+
+   ⚙️ Behaviour:
+   - Each section renders conditionally (only if data exists)
+   - Used by the floating "scroll-tabs" nav component
+   - Styled globally in `/css/components/_scroll-tabs.css`
+   =========================================================== #}
+
 <nav class="scroll-tabs" role="navigation" aria-label="Part Map">
 
+  {# --- Quiz Section --- #}
   {% if quizId or quizEnabled %}
     <a class="tab-link" href="#quiz" data-title="Quiz">Quiz</a>
   {% endif %}
 
-  {% if glossary and glossary.length %}
+  {# --- Glossary Section --- #}
+  {% set glossaryItems = glossary.terms or glossary %}
+  {% if glossaryItems and glossaryItems.length %}
     <a class="tab-link" href="#glossary" data-title="Glossary">Glossary</a>
   {% endif %}
 
+  {# --- Creative Prompt --- #}
+  {% if creativePrompt and creativePrompt.text %}
+    <a class="tab-link" href="#create" data-title="Create">Create</a>
+  {% endif %}
+
+  {# --- Discussion Prompt --- #}
   {% if discussEnabled != false %}
     <a class="tab-link" href="#discuss" data-title="Discussion">Discuss</a>
   {% endif %}
 
+  {# --- Series Map / Next-Part Nav --- #}
   {% if seriesMeta %}
-    <a class="tab-link" href="#series" data-title="Series Map">Series Map</a>
+    <a class="tab-link jump-to" href="#series" data-title="Series Map" data-jump="series">Series Map</a>
   {% endif %}
 
+  {# --- References / Resources --- #}
   {% if references %}
     <a class="tab-link" href="#resources" data-title="Resources">Resources</a>
-  {% endif %}
-
-  {% if (crossLinks and crossLinks.length)
-     or (vaultRefs and vaultRefs.length)
-     or (communityThreads and communityThreads.length)
-     or (relatedProducts and relatedProducts.length) %}
-    <a class="tab-link" href="#lens" data-title="Lens">Synergist Lens</a>
   {% endif %}
 
 </nav>

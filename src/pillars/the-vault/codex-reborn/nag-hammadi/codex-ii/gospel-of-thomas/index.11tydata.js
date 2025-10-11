@@ -1,30 +1,35 @@
 export default {
+  layout: "base.njk",
+  pillar: "the-vault",
+  series: "codex-reborn",
+  collection: "nag-hammadi",
+  codex: "codex-ii",
   title: "The Gospel of Thomas",
   description:
     "114 sayings of the Living Jesus — the hidden gospel of self-knowledge and remembrance. A path of illumination through direct knowing of the Light within.",
   glyph: "📜",
-  tier: "free",
-  layout: "base.njk",
   bodyClass: "vault",
   accent: "vault",
-  pillarLabel: "the-vault",
-  seriesLabel: "Codex II — Nag Hammadi Library",
+  tier: "free",
 
-  permalink:
-    "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/index.html",
+  // === Tagging ===
+  tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi", "codex-ii", "gospel-of-thomas"],
 
-  // 🔹 Breadcrumb Trail
+  // === Header Glyph Row ===
+  glyphRow: ["🜂", "🕯", "🜂"],
+
+  // === Breadcrumb Trail ===
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" },
     { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" },
-    { title: "The Gospel of Thomas" }
+    { title: "The Gospel of Thomas", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/" }
   ],
 
-  // 🔹 Series Grid (Codex II siblings)
-  seriesLinks: [
+  // === Local Series Navigation (within Codex II) ===
+  seriesNav: [
     {
       title: "Apocryphon of John",
       desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark within humanity.",
@@ -47,7 +52,7 @@ export default {
     }
   ],
 
-  // 🔹 Synergist Lens (cross-pillar threads)
+  // === Synergist Lens (Cross-Pillar Connections) ===
   synergistLens: {
     crossLinks: [
       {
@@ -63,12 +68,16 @@ export default {
     ]
   },
 
-  // 🔹 Vault Reference (for future Lens/Map)
-  vaultRefs: [
-    {
-      title: "The Gospel of Thomas (Full Text)",
-      desc: "A collection of 114 sayings attributed to Jesus — teaching that the Kingdom is within and around you.",
-      path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
-    }
-  ]
+  // === Vault Source Metadata ===
+  vaultSource: {
+    type: "PDF",
+    path: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-vault%2Fcodex-reborn%2Fnag-hammadi%2Fcodex-ii%2Fgospel-of-thomas.pdf?alt=media",
+    format: "translated",
+    translator: "Bentley Layton / NHLE",
+    language: "English",
+    access: "public"
+  },
+
+  showLens: true,
+  showSeriesNav: true
 };

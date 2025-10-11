@@ -30,6 +30,30 @@ vaultMeta:
   external: "https://www.gnosis.org/naghamm/got.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
+
+# 🔗 Auto-injected navigation (v3.6)
+
+
+seriesNav:
+  -
+    title: "Tripartite Tractate"
+    desc: "A grand cosmological narrative describing emanation, fall, and restoration within the divine Fullness."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/tripartite-tractate/"
+  -
+    title: "Treatise on the Resurrection"
+    desc: "A letter on spiritual rebirth and the awakening of the inner man, attributed to Rheginos."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/treatise-on-the-resurrection/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: '--', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 <main class="main-content">
@@ -195,3 +219,21 @@ vaultMeta:
 </div>
 </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

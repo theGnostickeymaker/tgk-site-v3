@@ -1,5 +1,18 @@
+{# ===========================================================
+   🜂 TGK — Series Navigation Partial (v2.3)
+   Compatible with YAML literal block arrays.
+   =========================================================== #}
+
+{% set navData = seriesNav or page.seriesNav or collections.currentPage and collections.currentPage.data and collections.currentPage.data.seriesNav %}
+{% if navData and navData is string %}
+  {% set seriesNav = navData | safe | fromJson %}
+{% else %}
+  {% set seriesNav = navData %}
+{% endif %}
+
 {% if seriesNav and seriesNav.length %}
-  <p>Explore the next gates:</p>
+<section id="series" class="section-block series-navigation">
+  <h2 class="section-heading">🜂 Explore the Next Gates</h2>
   <ul class="list-emoji">
     {% for item in seriesNav %}
       <li>
@@ -11,6 +24,10 @@
       </li>
     {% endfor %}
   </ul>
+</section>
 {% else %}
-  <p class="series-map-empty">⚠️ No seriesNav found — add it to your episode .11tydata.js</p>
+<section id="series" class="section-block series-navigation-empty">
+  <p class="series-map-empty">⚠️ No <code>seriesNav</code> found — ensure it’s exported or injected.</p>
+</section>
 {% endif %}
+

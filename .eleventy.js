@@ -99,6 +99,19 @@ export default function(eleventyConfig) {
       return result;
     });
 
+    //--------------------------------------------------------------
+    // 🧩 Add fromJson filter (for retrofit YAML literal blocks)
+    //--------------------------------------------------------------
+    eleventyConfig.addFilter("fromJson", function(value) {
+      try {
+        return JSON.parse(value);
+      } catch (err) {
+        console.warn("⚠️ fromJson filter could not parse:", value);
+        return [];
+      }
+    });
+
+
   /* =========================
      3) Shortcodes
   ========================= */

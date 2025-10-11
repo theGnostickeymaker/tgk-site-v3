@@ -1,0 +1,160 @@
+{
+  "generatedAt": "2025-10-11T13:44:58",
+  "nodes": [
+    {
+      "id": "the-teachings-the-afterlife-series-1-gnostic-christianity-part-1",
+      "title": "Gnostic Christianity",
+      "url": "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/index.html",
+      "pillar": "the-teachings",
+      "series": "the-afterlife",
+      "episode": "gnostic-christianity",
+      "part": "part1",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-teachings-the-afterlife-series-1-gnostic-christianity-part-2",
+      "title": "Gnostic Christianity",
+      "url": "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/index.html",
+      "pillar": "the-teachings",
+      "series": "the-afterlife",
+      "episode": "gnostic-christianity",
+      "part": "part2",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-teachings-the-afterlife-series-1-gnostic-christianity-part-3",
+      "title": "Gnostic Christianity",
+      "url": "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/index.html",
+      "pillar": "the-teachings",
+      "series": "the-afterlife",
+      "episode": "gnostic-christianity",
+      "part": "part3",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-teachings-the-afterlife-series-1-sufi-islam-part-1",
+      "title": "Sufi Islam",
+      "url": "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/index.html",
+      "pillar": "the-teachings",
+      "series": "the-afterlife",
+      "episode": "sufi-islam",
+      "part": "part1",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-teachings-the-afterlife-series-1-sufi-islam-part-2",
+      "title": "Sufi Islam",
+      "url": "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/index.html",
+      "pillar": "the-teachings",
+      "series": "the-afterlife",
+      "episode": "sufi-islam",
+      "part": "part2",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-teachings-the-afterlife-series-1-sufi-islam-part-3",
+      "title": "Sufi Islam",
+      "url": "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/index.html",
+      "pillar": "the-teachings",
+      "series": "the-afterlife",
+      "episode": "sufi-islam",
+      "part": "part3",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-berlin-codex-gospel-of-mary",
+      "title": "The Gospel of Mary (Magdalene)",
+      "url": "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-nag-hammadi-codex-i-gospel-of-truth",
+      "title": "The Gospel of Truth",
+      "url": "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-apocryphon-of-john",
+      "title": "The Apocryphon of John (The Secret Book of John)",
+      "url": "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-philip",
+      "title": "The Gospel of Philip",
+      "url": "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "initiate",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-thomas",
+      "title": "The Gospel of Thomas",
+      "url": "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "free",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-hypostasis-of-the-archons",
+      "title": "The Hypostasis of the Archons (The Reality of the Rulers)",
+      "url": "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "initiate",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-nag-hammadi-codex-v-apocalypse-of-paul",
+      "title": "The Apocalypse of Paul",
+      "url": "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "initiate",
+      "type": "scroll"
+    },
+    {
+      "id": "the-vault-codex-reborn-nag-hammadi-codex-vii-second-treatise-of-the-great-seth",
+      "title": "The Second Treatise of the Great Seth",
+      "url": "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/index.html",
+      "pillar": "",
+      "series": "",
+      "episode": "",
+      "part": "",
+      "tier": "free",
+      "type": "scroll"
+    }
+  ],
+  "edges": []
+}

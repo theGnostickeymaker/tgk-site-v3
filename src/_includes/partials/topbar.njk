@@ -1,47 +1,87 @@
+{# ===========================================================
+   🜂 TGK — Unified Site Header (v3.0)
+   Purpose:
+   Renders the global header for all scrolls, vaults, and index pages.
+   Combines breadcrumb navigation, glyph/title block, and mobile drawer.
+
+   ✅ Expected Data:
+     - title           → Scroll / page title
+     - tagline         → Optional subtitle
+     - breadcrumbs     → Array of { title, url }
+     - glyphRow        → Array of glyphs for header cluster
+     - pillarGlyph     → Pillar-specific glyph
+     - glyph           → Fallback glyph (optional)
+     - seriesMeta      → { number, label } (optional)
+     - episode         → Numeric episode index
+     - partNumeral     → Roman or numeric string for part number
+     - partTitle       → Optional subtitle for part
+
+   🧭 Behaviour:
+     - Breadcrumbs auto-render with separators
+     - Series chain builds dynamically if data exists
+     - Hamburger button controls overlay + mobile nav panel
+     - Keyboard / screen-reader safe (ARIA + tabindex handling)
+   =========================================================== #}
+
 <header class="site-header minimal" role="banner">
+  {# --- Breadcrumb Navigation --- #}
   {% if breadcrumbs %}
   <nav class="breadcrumbs" aria-label="Breadcrumb">
     <span class="crumbs">
       {%- for bc in breadcrumbs -%}
         {%- if not loop.first %}<span class="sep"> | </span>{% endif -%}
-        {%- if bc.url -%}<a href="{{ bc.url }}">{{ bc.title }}</a>
-        {%- else -%}<span aria-current="page">{{ bc.title }}</span>{%- endif -%}
+        {%- if bc.url -%}
+          <a href="{{ bc.url }}">{{ bc.title }}</a>
+        {%- else -%}
+          <span aria-current="page">{{ bc.title }}</span>
+        {%- endif -%}
       {%- endfor -%}
     </span>
   </nav>
   {% endif %}
 
-<div class="header-main">
+  {# --- Main Header Block --- #}
+  <div class="header-main">
+    {# Glyph logic: row, single pillar, or fallback #}
     {% if glyphRow %}
-    <span class="pillar-glyph-row" aria-hidden="true">
-      {% for g in glyphRow %}
-        <span class="pillar-glyph">{{ g }}</span>
-      {% endfor %}
-    </span>
-  {% elseif pillarGlyph or glyph %}
-    <span class="pillar-glyph" aria-hidden="true">{{ pillarGlyph or glyph }}</span>
-  {% endif %}
+      <span class="pillar-glyph-row" aria-hidden="true">
+        {% for g in glyphRow %}
+          <span class="pillar-glyph">{{ g }}</span>
+        {% endfor %}
+      </span>
+    {% elseif pillarGlyph or glyph %}
+      <span class="pillar-glyph" aria-hidden="true">{{ pillarGlyph or glyph }}</span>
+    {% endif %}
 
-  <!-- Main page title -->
-  <h1 class="page-title">{{ title }}</h1>
+    {# --- Main Title --- #}
+    <h1 class="page-title">{{ title }}</h1>
 
-  <!-- NEW: Series / Episode / Part chain -->
-  {% if seriesMeta %}
-    <h2 class="series-episode-chain">
-      Series {{ seriesMeta.number | roman }}
-      {% if episode %} . Episode {{ episode }}{% endif %}
-      {% if partNumeral %} . Part {{ partNumeral }}{% if partTitle %}: {{ partTitle }}{% endif %}{% endif %}
-    </h2>
-  {% endif %}
+    {# --- Series / Episode / Part Chain --- #}
+    {% if seriesMeta %}
+      <h2 class="series-episode-chain">
+        Series {{ seriesMeta.number | roman }}
+        {% if episode %} · Episode {{ episode }}{% endif %}
+        {% if partNumeral %}
+          · Part {{ partNumeral }}
+          {% if partTitle %}: {{ partTitle }}{% endif %}
+        {% endif %}
+      </h2>
+    {% endif %}
 
-  <!-- Dynamic tagline -->
-  {% if tagline %}
-    <p class="page-tagline">{{ tagline }}</p>
-  {% endif %}
-</div>
+    {# --- Dynamic Tagline --- #}
+    {% if tagline %}
+      <p class="page-tagline">{{ tagline }}</p>
+    {% endif %}
+  </div>
 </header>
 
-<!-- Floating Hamburger (top-left) -->
+{# ===========================================================
+   📱 Floating Hamburger + Drawer Navigation
+   Accessible toggle pattern with overlay blocker.
+   JS must sync [aria-expanded] + [hidden] states.
+   =========================================================== #}
+
+<!-- Floating Hamburger (top-left corner) -->
 <div class="floating-hamburger">
   <button
     id="hamburgerFloating"
@@ -52,23 +92,27 @@
     type="button">☰</button>
 </div>
 
-<!-- Drawer panel -->
-<nav id="mobileNav" class="mobile-menu" hidden aria-hidden="true" aria-label="Mobile Navigation">
+<!-- Drawer Navigation Panel -->
+<nav
+  id="mobileNav"
+  class="mobile-menu"
+  hidden
+  aria-hidden="true"
+  aria-label="Mobile Navigation">
   <div class="drawer-content">
+
     <div class="drawer-label">Explore TGK</div>
     <ul class="nav-menu">
       <li><a href="/">Home</a></li>
       <li><a href="/pillars/the-teachings/">The Teachings</a></li>
-
       <li class="disabled"><span aria-disabled="true">Obsidian Key</span></li>
       <li class="disabled"><span aria-disabled="true">Gnostic Eye</span></li>
       <li class="disabled"><span aria-disabled="true">Resonant</span></li>
       <li><a href="/pillars/the-vault/">Vault</a></li>
-      <li class="disabled"><span aria-disabled="true">The Keymaker's Dream</span></li>
-      <li class="disabled"><span aria-disabled="true">Children's Corner</span></li>
+      <li class="disabled"><span aria-disabled="true">The Keymaker’s Dream</span></li>
+      <li class="disabled"><span aria-disabled="true">Children’s Corner</span></li>
       <li class="disabled"><span aria-disabled="true">TGK Shop</span></li>
-  <li class="disabled"><span aria-disabled="true">TGK Community</span></li>
-
+      <li class="disabled"><span aria-disabled="true">TGK Community</span></li>
     </ul>
 
     <div class="drawer-label">Connect</div>
@@ -84,5 +128,5 @@
   </div>
 </nav>
 
-<!-- Overlay -->
+<!-- Overlay (click to close drawer) -->
 <div id="navOverlay" class="nav-overlay" hidden></div>

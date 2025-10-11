@@ -30,6 +30,38 @@ vaultMeta:
   external: "https://www.gnosis.org/naghamm/gosthom.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
+
+# 🔗 Auto-injected navigation (v3.6)
+
+
+seriesNav:
+  -
+    title: "Apocryphon of John"
+    desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark within humanity."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/"
+  -
+    title: "Gospel of Philip"
+    desc: "Teachings on unity, illusion, and the bridal chamber — the mystical reunion of the soul with the Light."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+  -
+    title: "Hypostasis of the Archons"
+    desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
+  -
+    title: "On the Origin of the World"
+    desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the Light that redeems it."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: '--', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 
@@ -872,3 +904,21 @@ vaultMeta:
 </div>
 </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

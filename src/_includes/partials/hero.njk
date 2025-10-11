@@ -1,35 +1,69 @@
-{# --- Resolve pillar values safely (no object literals / no ternary) --- #}
+{# =========================================================
+   🌄 TGK — Hero Header Partial (v2.4)
+   Purpose:
+   Renders the main hero banner (title, glyph, and tagline)
+   for home, pillar landing pages, and scroll-level intros.
+
+   ✅ Data Sources:
+   • pillarUrl, pillarName, pillarGlyphs, pillarTagline
+   • heroTitle, heroTagline
+   • landing (boolean)
+   • page.url (Eleventy built-in)
+
+   🧭 Behaviour:
+   • Shows global hero on home (✶ Unlock the Hidden Truths)
+   • Shows pillar hero on landing pages (/pillars/.../)
+   • Shows custom hero for scrolls with heroTitle/tagline
+   • Automatically switches glyphs based on pillar context
+
+   ✨ Accessibility:
+   • Uses <h1> for main page title (dynamic context)
+   • Glyph animation is marked aria-hidden for screen readers
+
+   ⚙️ Styling:
+   Controlled via pillar accent theme (e.g. gold.css, obsidian.css)
+   ========================================================= #}
+
+{# --- Resolve pillar values safely --- #}
 {% set P_url     = pillarUrl     or false %}
 {% set P_name    = pillarName    or false %}
 {% set P_glyphs  = pillarGlyphs  or false %}
 {% set P_tagline = pillarTagline or false %}
 
+{# --- Determine context --- #}
 {% set isHome    = page.url == '/' %}
 {% set isLanding = (landing) or (P_url and page.url and page.url == P_url) %}
 
-{# glyph: ✶ on home; otherwise use pillar glyphs if provided #}
+{# --- Choose glyph: ✶ on home, otherwise pillar glyph(s) --- #}
 {% set glyphHTML = '✶' %}
-{% if not isHome and P_glyphs %}{% set glyphHTML = P_glyphs %}{% endif %}
+{% if not isHome and P_glyphs %}
+  {% set glyphHTML = P_glyphs %}
+{% endif %}
 
-{# Render hero only when needed #}
+{# --- Render hero block only when relevant --- #}
 {% if isHome or isLanding or heroTitle or heroTagline %}
 <header class="hero-header">
   <div class="site-brand">
     <a href="/" class="header-link">The Gnostic Key</a>
   </div>
 
-  <div class="glyph-scroll" aria-hidden="true">{{ glyphHTML | safe }}</div>
+  <div class="glyph-scroll" aria-hidden="true">
+    {{ glyphHTML | safe }}
+  </div>
 
   {% if isHome %}
+    {# 🏠 Home Page Hero #}
     <h1 class="main-logo-scroll">Unlock the Hidden Truths</h1>
 
   {% elseif isLanding and P_name %}
+    {# 🏛 Pillar Landing Hero #}
     <h1 class="pillar-title">{{ P_name }}</h1>
     {% if P_tagline %}
       <div class="main-tagline">{{ P_tagline }}</div>
     {% endif %}
 
   {% else %}
+    {# 📜 Scroll or Subpage Hero #}
     {% if heroTitle %}
       <h1 class="pillar-title">{{ heroTitle }}</h1>
     {% endif %}

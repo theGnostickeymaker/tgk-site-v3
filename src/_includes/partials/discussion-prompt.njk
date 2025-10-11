@@ -1,3 +1,24 @@
+{# =========================================================
+   🗣️ TGK — Discussion Prompt Partial (v2.2)
+   Purpose:
+   Invites the seeker to reflect, question, and share insights
+   after completing a scroll or section.
+
+   ✅ Data Source:
+   - discussion.promptTitle (string)
+   - discussion.intro (html/markdown allowed)
+   - discussion.question (string)
+   - discussion.points (array of strings)
+   - discussion.footer (html/markdown allowed)
+   - discussionEnabled (bool) — can disable via false
+
+   🧭 Behaviour:
+   • Automatically builds share links for X (Twitter) and Telegram
+   • Fallback text if no data is provided
+   • Works at any level: pillar / series / episode
+   ========================================================= #}
+
+{% if discussionEnabled != false %}
   {% set siteBase = "https://thegnostickey.com" %}
   {% set shareTitle = title or page.fileSlug or "The Gnostic Key" %}
   {% set relativeUrl = permalink or page.url or "/" %}
@@ -6,67 +27,71 @@
   {% set sharePrompt = discussion.question or discussion.promptTitle or "Reflect with The Gnostic Key" %}
   {% set encodedSharePrompt = sharePrompt | striptags | urlencode %}
 
-  {% if discussionEnabled != false %}
   <section id="discuss" class="section-block discussion-prompt">
     <h2 class="section-heading">
       🗣️ {{ discussion.promptTitle or "Discussion Prompt: What Spark Are You Reigniting?" }}
     </h2>
 
+    {# 🔹 Intro text (optional) #}
     {% if discussion.intro %}
       <p>{{ discussion.intro | safe }}</p>
     {% else %}
       <p>
         You’ve walked the hidden cosmology – the <strong>Pleroma</strong>,
-        <strong>Sophia’s</strong> fall, the veil of illusion and the buried divine spark.
+        <strong>Sophia’s</strong> fall, the veil of illusion, and the buried divine spark.
         Now we ask:
       </p>
     {% endif %}
 
+    {# 🔹 Main question (optional) #}
     {% if discussion.question %}
-    <blockquote>
-      <strong>{{ discussion.question }}</strong>
-    </blockquote>
+      <blockquote>
+        <strong>{{ discussion.question }}</strong>
+      </blockquote>
     {% endif %}
 
+    {# 🔹 Discussion points (optional list) #}
     {% if discussion.points %}
-    <ul class="list-emoji">
-      {% for p in discussion.points %}
-        <li>{{ p }}</li>
-      {% endfor %}
-    </ul>
+      <ul class="list-emoji">
+        {% for p in discussion.points %}
+          <li>{{ p }}</li>
+        {% endfor %}
+      </ul>
     {% endif %}
 
+    {# 🔹 Footer or default share message #}
     {% if discussion.footer %}
       <p>{{ discussion.footer | safe }}</p>
     {% else %}
       <p>
         Share your reflections using <strong>#TheGnosticKey</strong> and tag
-        <strong>@thegnostickey</strong>.  
-        Your words might become the flame that awakens another.
+        <strong>@thegnostickey</strong> — your words might become the flame that awakens another.
       </p>
     {% endif %}
 
-    <!-- Buttons -->
+    {# 🔹 Buttons: Share and Community #}
     <div class="btn-row">
+      <!-- 📤 Discuss on X -->
       <div class="btn-wrap">
         <a href="https://x.com/intent/tweet?url={{ shareUrl | urlencode }}&text={{ encodedSharePrompt }}%20%23TheGnosticKey"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-outline"
-          aria-label="Share on X (formerly Twitter)">
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-outline"
+           aria-label="Discuss this topic on X (formerly Twitter)">
           📤 <strong>Discuss on X</strong>
         </a>
       </div>
 
+      <!-- 💬 Join Telegram -->
       <div class="btn-wrap">
         <a href="https://t.me/TheGnosticKey"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-outline"
-          aria-label="Join The Gnostic Key Telegram channel">
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-outline"
+           aria-label="Join The Gnostic Key Telegram community">
           💬 <strong>Join Us on Telegram</strong>
         </a>
       </div>
     </div>
   </section>
-  {% endif %}
+{% endif %}

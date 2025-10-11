@@ -30,6 +30,38 @@ vaultMeta:
   external: "https://www.gnosis.org/naghamm/hypostas.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 3rd century CE"
+
+# 🔗 Auto-injected navigation (v3.6)
+
+
+seriesNav:
+  -
+    title: "Apocryphon of John"
+    desc: "Revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark hidden within humanity."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/"
+  -
+    title: "Gospel of Thomas"
+    desc: "Sayings of the Living Jesus — the hidden wisdom of self-knowledge and remembrance."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
+  -
+    title: "Gospel of Philip"
+    desc: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and the reunion of the soul with the Light."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+  -
+    title: "On the Origin of the World"
+    desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the Light that redeems it."
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: '--', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 
@@ -571,3 +603,22 @@ vaultMeta:
 
 </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

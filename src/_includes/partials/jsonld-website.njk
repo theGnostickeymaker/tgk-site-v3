@@ -1,6 +1,49 @@
+{# =========================================================
+   🌐 TGK — Global Site JSON-LD (v2.3)
+   Purpose:
+   Defines The Gnostic Key as a structured WebSite entity
+   for SEO, social discovery, and rich search results.
+
+   ✅ Data Sources:
+   • site (object)  → site-wide metadata (site.json or global config)
+   • description    → page/series-specific override
+   • socialImage    → override for OG/social preview image
+
+   🧭 Behaviour:
+   • Provides schema.org WebSite entity with SearchAction
+   • Dynamically resolves image to absolute URL
+   • Fallbacks gracefully if site data or image are missing
+
+   ✨ Output Example:
+   {
+     "@context": "https://schema.org",
+     "@type": "WebSite",
+     "name": "The Gnostic Key",
+     "url": "https://thegnostickey.com",
+     "description": "A sacred digital library of forbidden history…",
+     "publisher": {
+       "@type": "Organization",
+       "name": "The Gnostic Key",
+       "url": "https://thegnostickey.com",
+       "logo": { "@type": "ImageObject", "url": "https://thegnostickey.com/favicon.ico" }
+     },
+     "inLanguage": "en",
+     "image": { "@type": "ImageObject", "url": "https://thegnostickey.com/tgk-assets/images/share/tgk-index-main.jpg" },
+     "potentialAction": {
+       "@type": "SearchAction",
+       "target": "https://thegnostickey.com/search?q={search_term_string}",
+       "query-input": "required name=search_term_string"
+     }
+   }
+
+   ⚙️ Notes:
+   • Should be included in <head> of every layout (once only)
+   • Complements jsonld-collection.njk and jsonld-scroll.njk
+   ========================================================= #}
+
 {% set site = site or collections.all[0].data.site or globals.site %}
 {% set image = socialImage or site.share.image %}
-{% set imgAbs = image startsWith('http') ? image : (site.url ~ image) %}
+{% set imgAbs = image and (image startsWith('http') ? image : (site.url ~ image)) %}
 
 <script type="application/ld+json">
 {
@@ -13,10 +56,18 @@
     "@type": "Organization",
     "name": "{{ site.name }}",
     "url": "{{ site.url }}",
-    "logo": { "@type": "ImageObject", "url": "{{ site.url }}/favicon.ico" }
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/favicon.ico"
+    }
   },
   "inLanguage": "{{ site.lang or 'en' }}",
-  "image": { "@type": "ImageObject", "url": "{{ imgAbs }}", "width": {{ site.share.width }}, "height": {{ site.share.height }} },
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ imgAbs }}",
+    "width": {{ site.share.width or 1200 }},
+    "height": {{ site.share.height or 630 }}
+  },
   "potentialAction": {
     "@type": "SearchAction",
     "target": "{{ site.url }}/search?q={search_term_string}",

@@ -1,14 +1,14 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "Part III of the Afterlife Series — the soul’s map of return through death, the toll gates, and gnosis as the password of liberation."
+description: "Part III of the Afterlife Series — The soul’s journey through the toll gates, the trial of memory, and the final return to the Pleroma."
 tier: free
 scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-3"
 
 episode: 1
 partNumeral: III
-partTitle: "The Soul’s Return"
-tagline: "The toll gates of the Archons ✦ the deathless spark ✦ the memory that frees the soul"
+partTitle: "The Toll Gates & the Return"
+tagline: "Archons ✦ Memory ✦ Death as Initiation ✦ The Pleromic Homecoming"
 slug: "part-3"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/index.html"
@@ -24,118 +24,132 @@ series: "the-afterlife"
 seriesId: "the-afterlife-s1"
 episodeId: "gnostic-christianity"
 partId: "part3"
-quizId: "the-afterlife-s1-gnostic-christianity-part3"
+quizId: "the-afterlife-s1-gnostic-christianity-part-3"
+quizTitle: "Gnostic Christianity — Part II: The Toll Gates & the Return"
 quizIntro: "Can you see through the veil of Part III?"
 seriesMeta:
   number: 1
   label: "Series 1"
   series_version: 1
 
-# 🔮 Section Visibility Controls
+# Visibility
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
-lensEnabled: true
+discussionPromptEnabled: true
 
-crossLinks: []
-
-vaultRefs:
-  - title: "Gospel of Mary"
-    desc: "Mary’s vision of the soul’s dialogue with the powers — a hidden guide to transcending ignorance and wrath."
-    path: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/"
-
-  - title: "Gospel of Philip"
-    desc: "A text of mystical union and initiation — the bridal chamber where the divided soul remembers its divine twin."
-    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
-
-  - title: "Apocalypse of Paul"
-    desc: "A visionary ascent through the heavens — revealing the soul’s interrogation by the Archons and its liberation through gnosis."
-    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/"
-
-communityThreads: []
-relatedProducts: []
-
-shareEnabled: true
-showTelegramButton: true
-showShareButton: true
-shareHashtags: "#TheGnosticKey #Gnosis"
-
-# === Discussion Prompt Block ===
-discussionEnabled: true
+# ⚯ Synergist Lens data
+creativePrompt:
+  text: "Write a poem from the perspective of your soul at the toll gate, standing between the false god and the Light. Title it <em>&ldquo;I Remember.&rdquo;</em> Speak the truth of your origin. What tries to stop you? What burns brighter?"
+  sharePrompt: "What truth does your soul remember?"
 
 discussion:
   promptTitle: "Will You Remember at the Gate?"
-  intro: |
-    This scroll is not mythology — it is rehearsal.  
-    The toll gates are real, and forgetting is already here.  
-    So ask yourself now, before the veils fall:
+  intro: "This scroll is not mythology — it is rehearsal. The toll gates are real, and forgetting is already here. So ask yourself now, before the veils fall:"
   question: "If you had to speak your soul’s origin at death, what would you say?"
   points:
     - "What do you truly remember about where you came from?"
     - "What false gods still whisper to you — and do you still listen?"
     - "If you met the Archons tonight, would you know the words?"
     - "Have you died before death, or are you still clinging to the mask?"
-  footer: "💬 Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Or bring your gnosis directly to the Temple."
+  footer: "Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong> — your memory may become another’s awakening."
 
-creativePrompt:
-  text: "Write a poem from the perspective of your soul at the toll gate, standing between the false god and the Light. Title it “I Remember.” Speak the truth of your origin. What tries to stop you? What burns brighter?"
-  sharePrompt: "Want to share it?"
+glossary:
+  subtitle: "Terms for the soul’s exile, escape, and return to the Pleroma."
+  terms:
+    - term: "Pleroma"
+      def: "The Fullness — the divine source-realm of light, truth, and unity. The soul’s origin and ultimate destination in Gnostic cosmology."
+    - term: "Toll Gates"
+      def: "Spiritual checkpoints guarded by Archons in the afterlife. Each gate tests the soul’s memory, identity, and degree of gnosis."
+    - term: "Gnosis"
+      def: "Inner remembrance of divine truth. The soul’s key to bypassing the Archons and returning home after death."
+    - term: "Archons"
+      def: "Rulers of illusion — astral gatekeepers created by the Demiurge. They deceive, interrogate, and obscure the soul’s path."
+    - term: "Demiurge"
+      def: "The false creator god — a blind architect of the material cosmos. Those who align with him remain trapped in illusion and return."
+    - term: "Divine Spark"
+      def: "A piece of the Light buried within each soul. Planted by <strong>Sophia</strong>. When remembered, it leads the soul back to the <strong>Pleroma</strong>."
+    - term: "Forgetfulness"
+      def: "The soul’s greatest danger. To forget one’s origin is to be recycled — trapped in rebirth, trauma, and illusion until gnosis awakens."
+    - term: "Sophia"
+      def: "Divine Wisdom — the Aeon who fell into the lower realms. Her scattered light lives in souls. When we awaken, she rises with us."
+    - term: "Apocalypse of Paul"
+      def: "A Gnostic text detailing the soul’s ascent after death, the toll gates, and the cosmic interrogators. A hidden map of spiritual return."
+
+references:
+  title: "Sources & Study Path"
+  intro: "For those wishing to go deeper into the mysteries of death and return."
+  readings:
+    - title: "Apocalypse of Paul"
+      desc: "A map of the soul’s ascent through the toll gates and the guardians of illusion."
+    - title: "Pistis Sophia"
+      desc: "Mary receives the seals and passwords for the souls ascending through the seven heavens."
+    - title: "Gospel of Philip"
+      desc: "The mystical union and the cycle of forgetfulness and awakening."
+  scholarly:
+    - author: "Jonas, H."
+      year: "1958"
+      work: "The Gnostic Religion"
+      pub: "Beacon Press"
+    - author: "Pagels, E."
+      year: "1979"
+      work: "The Gnostic Gospels"
+      pub: "Random House"
+    - author: "Meyer, M."
+      year: "2007"
+      work: "The Nag Hammadi Scriptures"
+      pub: "HarperOne"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
   - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
-  - { title: "Part III" }
+  - { title: "III" }
 
-glossary:
-  - term: "Pleroma"
-    def: "The Fullness — the divine source-realm of light, truth, and unity; the soul’s origin and ultimate destination."
-  - term: "Toll Gates"
-    def: "Spiritual checkpoints guarded by Archons in the afterlife; each gate tests the soul’s memory and degree of gnosis."
-  - term: "Gnosis"
-    def: "Inner remembrance of divine truth — the soul’s key to bypassing the Archons and returning home after death."
-  - term: "Archons"
-    def: "Rulers of illusion — astral gatekeepers created by the Demiurge to keep souls trapped in forgetfulness."
-  - term: "Demiurge"
-    def: "The false creator god — a blind architect of the material cosmos; those who serve him remain bound to illusion."
-  - term: "Divine Spark"
-    def: "A fragment of the Light buried within each soul, planted by Sophia; when remembered, it leads the soul back to the Pleroma."
-  - term: "Forgetfulness"
-    def: "The soul’s greatest danger — to forget one’s origin is to be recycled in rebirth until gnosis awakens."
-  - term: "Sophia"
-    def: "Divine Wisdom, the Aeon who fell into the lower realms; her scattered light lives in souls and rises as we awaken."
-  - term: "Gospel of Philip"
-    def: "A Gnostic sacramental text on union, resurrection, and the bridal chamber of the soul."
-  - term: "Apocalypse of Paul"
-    def: "A Gnostic vision of the soul’s ascent confronting the powers that bind humanity after death."
+# 🔗 Auto-injected navigation (v3.6)
+episodeParts:
+  -
+    title: "Part I"
+    desc: "The false cosmos, Sophia’s fall, and the hidden map of return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
+  -
+    title: "Part II"
+    desc: "The hidden Christ awakens the divine spark within the soul."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
+  -
+    title: "Part III"
+    desc: "Through the toll gates of death, the awakened soul remembers its home."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
 
-references:
-  title: "📚 Sources & Study Path"
-  intro: "For those wishing to go deeper, these texts offer both insight and initiation into the tradition."
-  readings:
-    - title: "The Nag Hammadi Scriptures"
-      desc: "Primary Gnostic texts translated with commentary."
-    - title: "The Gnostic Gospels — Elaine Pagels"
-      desc: "An accessible introduction to the hidden Christianities."
-    - title: "The Gnostic Religion — Hans Jonas"
-      desc: "A philosophical exploration of the Gnostic mythos."
-  scholarly:
-    - author: "Meyer, M."
-      work: "The Nag Hammadi Scriptures"
-      year: 2007
-      pub: "HarperOne"
-    - author: "Pagels, E."
-      work: "The Gnostic Gospels"
-      year: 1979
-      pub: "Random House"
-    - author: "Robinson, J. M. (Ed.)"
-      work: "The Nag Hammadi Library in English"
-      year: 1988
-      pub: "Brill Academic"
+seriesNav:
+  -
+    title: "Gnostic Christianity"
+    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
+  -
+    title: "Sufi Islam"
+    desc: "Three-part journey through the false cosmos and the Revealer."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  - { title: 'Gospel of Mary', path: '/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/' }
+  - { title: 'The Apocalypse of Paul', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/' }
+  - { title: 'Gospel of Truth', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/' }
+  - { title: 'Gospel of Philip', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/' }
+  - { title: 'Gospel of Thomas', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/' }
+
+communityThreads:
+  - { id: 'the-afterlife-s1-gnostic-christianity-part3', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
+
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -621,40 +635,36 @@ references:
   What once ruled you that no longer does?</p>
 </section>
 
-<!-- 🎨 Creative Prompt -->
-{% include "partials/creative-prompt.njk" %}
-
-{% include "partials/discussion-prompt.njk" %}
-
-<!--Quiz-->
-{% include "partials/quiz-block.njk" %}
-
-<!--📖 Glossary-->
+  {% include "partials/creative-prompt.njk" %}
+  {% include "partials/discussion-prompt.njk" %}
+  {% include "partials/quiz-block.njk" %}
   {% include "partials/glossary-block.njk" %}
+  {% include "partials/reference-section.njk" %}
 
-<!--📚 References-->
-{% include "partials/reference-section.njk" %}
-
-<!--📜 Series Map-->
-<section class="section-block" id="series">
-  <h2 class="section-heading">📜 Series Map</h2>
   {% include "partials/series-nav-buttons.njk" %}
-</section>
+  {% include "partials/episode-part-nav.njk" %}
 
-<!-- ∞ Synergist Lens (Cross-links, Vault, Community, Artifacts) -->
-{% if (crossLinks and crossLinks.length) 
-   or (vaultRefs and vaultRefs.length) 
-   or (communityThreads and communityThreads.length) 
-   or (relatedProducts and relatedProducts.length) %}
-  {% include "partials/synergist-lens.njk" %}
-{% endif %}
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
+  </div>
 
-<!-- Episode Part Nav -->
-{% include "partials/episode-part-nav.njk" %}
-
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
-</div>
-
-</section>
+  </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

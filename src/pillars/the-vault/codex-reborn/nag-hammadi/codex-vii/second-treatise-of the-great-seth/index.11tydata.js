@@ -1,49 +1,61 @@
 export default {
-  title: "The Second Treatise of the Great Seth",
-  description:
-    "A Gnostic discourse spoken in the voice of Christ from the Pleroma — mocking the rulers who believed they crucified him and revealing the triumph of the true Light beyond illusion.",
-  glyph: "🜃",
-  tier: "adept",
   layout: "base.njk",
+  pillar: "the-vault",
+  series: "codex-reborn",
+  collection: "nag-hammadi",
+  codex: "codex-vii",
+  title: "Nag Hammadi – Codex VII",
+  description:
+    "Codex VII preserves visionary hymns and treatises attributed to Sethian Gnosticism — including the laughter of the true Christ and the primordial voice of the Divine Mind.",
+  glyph: "📜",
   bodyClass: "vault",
   accent: "vault",
-  pillarLabel: "the-vault",
-  seriesLabel: "Codex VII — Nag Hammadi Library",
+  tier: "adept",
 
-  // 🧭 Permalink
-  permalink:
-    "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/index.html",
+  // === Tagging ===
+  tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi", "codex-vii"],
 
-  // 🔹 Breadcrumbs
+  // === Header Glyph Row ===
+  glyphRow: ["🜂", "🕯", "🜂"],
+
+  // === Breadcrumb Trail ===
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" },
-    { title: "Codex VII", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/" },
-    { title: "The Second Treatise of the Great Seth" }
+    { title: "Codex VII", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/" }
   ],
 
-  // 🔹 Sibling Navigation (Codex VII)
-  seriesLinks: [
+  // === Texts within Codex VII ===
+  pillarGrid: [
+    {
+      title: "The Second Treatise of the Great Seth",
+      desc: "A Gnostic discourse spoken in the voice of Christ from the Pleroma — mocking the rulers who believed they crucified him and revealing the triumph of the true Light beyond illusion.",
+      href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/",
+      glyph: "🜃",
+      tier: "adept",
+      state: "default"
+    },
     {
       title: "The Three Steles of Seth",
       desc: "A hymn of ascent — the soul’s praise to the Light, uttered in the name of Seth the Perfect One.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/three-steles-of-seth/"
-    },
-    {
-      title: "The Second Treatise of the Great Seth",
-      desc: "A proclamation of divine laughter from Christ in the Pleroma — mocking the false powers who believed they crucified the true Light.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/"
+      href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/three-steles-of-seth/",
+      glyph: "🕯",
+      tier: "adept",
+      state: "coming-soon"
     },
     {
       title: "Trimorphic Protennoia",
-      desc: "The primordial voice of the divine Feminine — the Word before the world, speaking creation and redemption into being.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/trimorphic-protennoia/"
+      desc: "The primordial voice of the Divine Feminine — the Word before the world, speaking creation and redemption into being.",
+      href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/trimorphic-protennoia/",
+      glyph: "🌒",
+      tier: "adept",
+      state: "coming-soon"
     }
   ],
 
-  // 🔹 Synergist Lens (cross-pillar connections)
+  // === Synergist Lens (Cross-Pillar Connections) ===
   synergistLens: {
     crossLinks: [
       {
@@ -62,5 +74,18 @@ export default {
         desc: "Parallels between ancient Archonic deception and the modern digital demiurge."
       }
     ]
-  }
+  },
+
+  // === Vault Source Metadata ===
+  vaultSource: {
+    type: "PDF",
+    path: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-vault%2Fcodex-reborn%2Fnag-hammadi%2Fcodex-vii%2Fcodex-vii.pdf?alt=media",
+    format: "translated",
+    translator: "Bentley Layton / NHLE",
+    language: "English",
+    access: "public"
+  },
+
+  showLens: true,
+  showSeriesNav: false
 };

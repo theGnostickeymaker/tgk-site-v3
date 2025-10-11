@@ -1,14 +1,14 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "Part II of the Afterlife Series — the hidden gospel of the Revealer, the mirror, and the awakening spark."
+description: "Part II of the Afterlife Series — The Christ of Gnosis and the spark that remembers beyond death."
 tier: free
 scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-2"
 
 episode: 1
 partNumeral: II
 partTitle: "The Revealer and the Spark"
-tagline: "From the false god to the forgotten light ✦ the Christ of Gnosis"
+tagline: "The Hidden Christ ✦ The Light Within ✦ The Return Begins"
 slug: "part-2"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/index.html"
@@ -24,105 +24,114 @@ series: "the-afterlife"
 seriesId: "the-afterlife-s1"
 episodeId: "gnostic-christianity"
 partId: "part2"
-quizId: "the-afterlife-s1-gnostic-christianity-part2"
+quizId: "the-afterlife-s1-gnostic-christianity-part-2"
+quizTitle: "Gnostic Christianity — Part II: The Revealer and the Spark"
 quizIntro: "Can you see through the veil of Part II?"
 seriesMeta:
   number: 1
   label: "Series 1"
   series_version: 1
 
-# 🔮 Section Visibility Controls
+# Visibility
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
-lensEnabled: true
+discussionPromptEnabled: true
 
-crossLinks: []
-
-vaultRefs: 
-  - title: "Gospel of Thomas"
-    desc: "Hidden sayings of Jesus that unveil the Kingdom within and beyond."
-    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
-  - title: "The Second Treatise of the Great Seth"
-    desc: "Christ’s declaration that the rulers’ crucifixion was an illusion — the divine Light cannot be slain."
-    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/"
-  - title: "The Hypostasis of the Archons"
-    desc: "The rulers of material existence and Sophia’s hidden intervention on behalf of humanity."
-    path: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
-
-communityThreads: []
-relatedProducts: []
-
-# === Discussion Prompt Block ===
-discussionEnabled: true
-
-shareEnabled: true
-showTelegramButton: true
-showShareButton: true
-shareHashtags: "#TheGnosticKey #Gnosis"
+# ⚯ Synergist Lens data
+creativePrompt:
+  text: "Compose a short meditation or image titled <em>&ldquo;The Spark Within.&rdquo;</em> Describe how the divine light moves through your life without words of faith or fear — only remembrance."
+  sharePrompt: "Where does the light speak through you?"
 
 discussion:
-  promptTitle: "What Did Christ Reflect Back to You?"
-  intro: "This scroll isn’t theory — it’s a trigger, a flare from the soul’s forgotten sky."
-  question: "What part of yourself did you meet in the mirror, and are you still afraid of its light?"
+  promptTitle: "What Does Liberation Mean to a Soul That Remembers?"
+  intro: "You’ve seen the false light and met the Revealer within. Now the question turns inward."
+  question: "When Christ awakens inside you — what must die for the spark to live?"
   points:
-    - "What belief cracked open after hearing the Gnostic Christ speak?"
-    - "Did a <strong>divine spark</strong> stir? If so, what tried to put it out?"
-    - "What would <strong>Sophia</strong> whisper to you right now?"
-    - "Where does the system still own you — and what would rebellion look like?"
-  footer: "💬 Post your reflection using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Or bring your gnosis directly to the Temple."
+    - "What belief still keeps you in bondage?"
+    - "Where does love become knowledge in your life?"
+    - "Can you recognise the Christ within others without worship?"
+  footer: "Share your insight using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong> — your remembrance may light another’s path."
 
-creativePrompt:
-  text: "Custom creative prompt for this scroll."
-  sharePrompt: "Custom prompt for social sharing."
+glossary:
+  subtitle: "Terms for understanding Christ as the inner Revealer."
+  terms:
+    - term: "Christ the Revealer"
+      def: "The emanation of the true God who awakens gnosis in souls, not a sacrifice but a mirror of remembrance."
+    - term: "Logos"
+      def: "The divine Word or principle of order through which the Light speaks into form."
+    - term: "Sophia"
+      def: "Wisdom personified; her repentance and ascent parallel the soul’s own return."
+    - term: "Gnosis"
+      def: "The knowledge of the heart — direct union with the Light beyond belief and ritual."
+    - term: "Pleroma"
+      def: "The Fullness — the realm of divine completion from which all emanations flow."
+    - term: "Mirror of Christ"
+      def: "To see Christ as a reflection of the true Self, not a figure apart but a memory of origin."
+
+references:
+  title: "Sources & Study Path"
+  intro: "Texts exploring Christ as the Revealer and the spark of Gnosis."
+  readings:
+    - title: "Gospel of Truth"
+      desc: "Christ reveals that ignorance and forgetfulness are the true sin."
+    - title: "Gospel of Philip"
+      desc: "Teaches union and illumination through knowledge of the inner Christ."
+  scholarly:
+    - author: "Pagels, E."
+      year: "1979"
+      work: "The Gnostic Gospels"
+      pub: "Random House"
+    - author: "Meyer, M."
+      year: "2007"
+      work: "The Nag Hammadi Scriptures"
+      pub: "HarperOne"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
   - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
-  - { title: "Part II" }
+  - { title: "II" }
 
-glossary:
-  - term: "Gnosis"
-    def: "Direct, inner knowing of the divine — not belief or doctrine; the spark remembering the Source, the heart of Gnostic Christianity."
-  - term: "Divine Spark"
-    def: "A fragment of the Pleroma planted in the soul by Sophia — hidden beneath flesh, trauma, and illusion, yet unextinguished."
-  - term: "Christ the Revealer"
-    def: "In Gnostic texts, Jesus is not a sacrificial saviour but a divine agent from the Pleroma — here to awaken, not to die."
-  - term: "Gospel of Thomas"
-    def: "A mystical collection of Jesus’ sayings emphasising self-knowledge, paradox, and hidden truth. Suppressed by the Church, rediscovered at Nag Hammadi."
-  - term: "Second Treatise of the Great Seth"
-    def: "A Gnostic text where Christ mocks the Archons, revealing that his crucifixion was an illusion — his true self was never touched."
-  - term: "Sophia"
-    def: "The divine feminine Aeon of Wisdom who fell into the lower realms and scattered her light into humanity. She rises through our awakening."
-  - term: "Archons"
-    def: "Forces of illusion and control — system enforcers created by the Demiurge to keep souls asleep; they rule through fear and distraction."
-  - term: "Mirror of Christ"
-    def: "A central Gnostic teaching: Christ is not to be worshipped but recognised — the mirror of our true self beneath the lie."
+# 🔗 Auto-injected navigation (v3.6)
+episodeParts:
+  -
+    title: "Part I"
+    desc: "The false cosmos, Sophia’s fall, and the hidden map of return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
+  -
+    title: "Part II"
+    desc: "The hidden Christ awakens the divine spark within the soul."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
+  -
+    title: "Part III"
+    desc: "Through the toll gates of death, the awakened soul remembers its home."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
 
-references:
-  title: "📚 Sources & Study Path"
-  intro: "For those who wish to go deeper, these texts offer both insight and initiation into the tradition."
-  readings:
-    - title: "The Gospel of Thomas"
-      desc: "Sayings of the Living Jesus revealing the path to inner light."
-    - title: "The Second Treatise of the Great Seth"
-      desc: "Christ’s discourse of divine laughter and freedom from the illusion of crucifixion."
-    - title: "The Hypostasis of the Archons"
-      desc: "Sophia’s intervention in the realm of the rulers — the cosmic backdrop to Christ’s revelation."
-  scholarly:
-    - author: "Bullard, Roger A."
-      work: "The Second Treatise of the Great Seth (Nag Hammadi Codex VII, 2)"
-      year: 1970
-      pub: "The Gnostic Society Library"
-    - author: "Meyer, Marvin"
-      work: "The Nag Hammadi Scriptures"
-      year: 2007
-      pub: "HarperOne"
+seriesNav:
+  -
+    title: "Gnostic Christianity"
+    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
+  -
+    title: "Sufi Islam"
+    desc: "Three-part journey through the false cosmos and the Revealer."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+lensEnabled: true
 
+crossLinks: []
+
+vaultRefs:
+  - { title: 'Gospel of Thomas', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/' }
+  - { title: 'The Second Treatise of the Great Seth', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/' }
+
+communityThreads:
+  - { id: 'the-afterlife-s1-gnostic-christianity-part2', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 
@@ -445,46 +454,36 @@ references:
   </figcaption>
 </figure>
 
-{% include "partials/discussion-prompt.njk" %}
-
-<!--Quiz-->
-{% include "partials/quiz-block.njk" %}
-
-<!--📖 Glossary-->
+  {% include "partials/creative-prompt.njk" %}
+  {% include "partials/discussion-prompt.njk" %}
+  {% include "partials/quiz-block.njk" %}
   {% include "partials/glossary-block.njk" %}
+  {% include "partials/reference-section.njk" %}
 
-<!--📚 References-->
-{% include "partials/reference-section.njk" %}
-
-<!--📜 Series Map-->
-<section class="section-block" id="series">
-  <h2 class="section-heading">📜 Series Map</h2>
   {% include "partials/series-nav-buttons.njk" %}
-</section>
+  {% include "partials/episode-part-nav.njk" %}
 
-<!-- 📚 Reference Sources -->
-{% include "partials/reference-section.njk" %}
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
+  </div>
 
-<!-- 📜 Series Navigation -->
-<section class="section-block" id="series">
-  <h2 class="section-heading">📜 Series Map</h2>
-  {% include "partials/series-nav-buttons.njk" %}
-</section>
-
-<!-- ∞ Synergist Lens (Cross-links, Vault, Community, Artifacts) -->
-{% if (crossLinks and crossLinks.length) 
-   or (vaultRefs and vaultRefs.length) 
-   or (communityThreads and communityThreads.length) 
-   or (relatedProducts and relatedProducts.length) %}
-  {% include "partials/synergist-lens.njk" %}
-{% endif %}
-
-<!-- Episode Part Nav -->
-{% include "partials/episode-part-nav.njk" %}
-
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
-</div>
-
-</section>
+  </section>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

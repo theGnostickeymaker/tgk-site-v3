@@ -1,31 +1,45 @@
 export default {
+  layout: "base.njk",
+  pillar: "the-vault",
+  series: "codex-reborn",
+  collection: "nag-hammadi",
+  codex: "codex-v",
   title: "The Apocalypse of Paul",
   description:
-    "Paul’s visionary ascent through the heavens — confronting the toll gates, interrogators, and rulers of the cosmos, and discovering the soul’s liberation through hidden knowledge.",
+    "Paul’s visionary ascent through the heavens — confronting toll gates, interrogators, and rulers of the cosmos, and discovering the soul’s liberation through hidden knowledge.",
   glyph: "🕯",
-  tier: "initiate",
-  layout: "base.njk",
   bodyClass: "vault",
   accent: "vault",
-  pillarLabel: "the-vault",
-  seriesLabel: "Codex V — Nag Hammadi Library",
+  tier: "initiate",
 
-  // 🧭 Permalink
-  permalink:
-    "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/index.html",
+  // === Tagging ===
+  tags: [
+    "pillar",
+    "the-vault",
+    "codex-reborn",
+    "nag-hammadi",
+    "codex-v",
+    "apocalypse-of-paul"
+  ],
 
-  // 🔹 Breadcrumbs
+  // === Header Glyph Row ===
+  glyphRow: ["📜", "🕯", "📜"],
+
+  // === Breadcrumb Trail ===
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" },
     { title: "Codex V", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/" },
-    { title: "The Apocalypse of Paul" }
+    {
+      title: "The Apocalypse of Paul",
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/"
+    }
   ],
 
-  // 🔹 Codex V Sibling Scrolls
-  seriesLinks: [
+  // === Local Series Navigation (within Codex V) ===
+  seriesNav: [
     {
       title: "First Apocalypse of James",
       desc: "A revelation of the risen Christ to James — teaching fearlessness before the Archons and the mysteries of deliverance.",
@@ -43,12 +57,12 @@ export default {
     },
     {
       title: "Fragment on the Origin of the World (Codex V Variant)",
-      desc: "A parallel cosmological vision — differing in tone from Codex II, yet sharing the same divine drama.",
+      desc: "A parallel cosmological vision — differing in tone from Codex II yet sharing the same divine drama.",
       url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/origin-fragment/"
     }
   ],
 
-  // 🔹 Synergist Lens – Cross-Pillar Links
+  // === Synergist Lens (Cross-Pillar Connections) ===
   synergistLens: {
     crossLinks: [
       {
@@ -63,9 +77,22 @@ export default {
       },
       {
         title: "Gospel of Mary",
-        path: "/pillars/the-vault/codex-reborn/nag-hammadi/berlin-codex/gospel-of-mary/",
+        path: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/",
         desc: "Mary’s ascent through the powers parallels Paul’s dialogue with the celestial rulers — two visions of liberation through knowledge."
       }
     ]
-  }
+  },
+
+  // === Vault Source Metadata ===
+  vaultSource: {
+    type: "PDF",
+    path: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-vault%2Fcodex-reborn%2Fnag-hammadi%2Fcodex-v%2Fapocalypse-of-paul.pdf?alt=media",
+    format: "translated",
+    translator: "Bentley Layton / NHLE",
+    language: "English",
+    access: "public"
+  },
+
+  showLens: true,
+  showSeriesNav: true
 };
