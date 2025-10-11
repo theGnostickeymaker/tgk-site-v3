@@ -16,9 +16,6 @@ export default {
     { title: "The Vault", url: "/pillars/the-vault/" }
   ],
 
-  // === Glyph Row for Header ===
-  glyphRow: ["🜂", "🕯", "🜂"],
-
   // === Vault Category Grid ===
   pillarGrid: [
     {
