@@ -25,6 +25,7 @@ seriesId: "the-afterlife-s1"
 episodeId: "sufi-islam"
 partId: "part1"
 quizId: "the-afterlife-s1-sufi-islam-part-1"
+quizTitle: "Sufi Islam — Part I"
 quizIntro: "Can you see through the veil of I?"
 seriesMeta:
   number: 1
@@ -36,15 +37,22 @@ discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
+lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens data
+# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
+crossLinks: []
+vaultRefs: []
+communityThreads: []
+relatedProducts: []
+
+# 🎨 Creative Prompt (optional; section hidden if empty)
 creativePrompt:
   text: ""
   sharePrompt: ""
 
-# 🗣 Discussion Prompt (optional scaffolding)
+# 🗣 Discussion Prompt
 discussion:
   promptTitle: "What spark are you reigniting?"
   intro: "You’ve walked through illusion and shadow — now speak from your own flame."
@@ -75,6 +83,7 @@ references:
       work: "TBC"
       pub: "TBC"
 
+# 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
@@ -83,41 +92,6 @@ breadcrumbs:
   - { title: "Sufi Islam", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" }
   - { title: "I" }
 
-# 🔗 Auto-injected navigation (v3.6)
-episodeParts:
-  -
-    title: "Part I"
-    desc: "The false world and the seeker’s first awakening."
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
-  -
-    title: "Part II"
-    desc: "The unveiling of divine remembrance through devotion."
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-  -
-    title: "Part III"
-    desc: "The soul’s reunion with the Beloved — union beyond self."
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
-
-seriesNav:
-  -
-    title: "Gnostic Christianity"
-    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
-    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
-  -
-    title: "Sufi Islam"
-    desc: "Three-part journey through the false cosmos and the Revealer."
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-lensEnabled: true
-
-crossLinks: []
-
-vaultRefs:
-  []
-
-communityThreads:
-  - { id: 'the-afterlife-s1-sufi-islam-part1', platform: 'tgk-community' }
-
-relatedProducts: []
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -145,9 +119,3 @@ relatedProducts: []
 
   </section>
 </main>
-
-
-
-
-
-

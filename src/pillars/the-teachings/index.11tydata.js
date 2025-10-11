@@ -6,7 +6,7 @@ export default {
   pillarGlyph: "⛪︎",
   accent: "gold",
 
-  // 🌍 Pillar Overview Grid (Series list)
+  // 🌍 Pillar Overview Grid
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-afterlife/",

@@ -22,17 +22,29 @@ export default {
   introText: "— a three-part journey through the false cosmos, the Revealer, and the soul’s return.",
   disclaimerTitle: "⚠️ Diversity of Sources",
   disclaimerText:
-    "<p>Interpretations vary across mystical schools and manuscripts within this pillar and series.</p>",
+    "<p>Interpretations vary across Gnostic schools and manuscripts within this pillar and series.</p>",
 
   // 🔹 Episode Parts (for dynamic part navigation)
   episodeParts: [
-    { title: "Part I", desc: "The false world and the seeker’s first awakening.", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/" },
-    { title: "Part II", desc: "The unveiling of divine remembrance through devotion.", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/" },
-    { title: "Part III", desc: "The soul’s reunion with the Beloved — union beyond self.", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/" }
+    {
+      title: "Part I",
+      desc: "The false cosmos, Sophia’s fall, and the hidden map of return.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
+    },
+    {
+      title: "Part II",
+      desc: "The hidden Christ awakens the divine spark within the soul.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
+    },
+    {
+      title: "Part III",
+      desc: "Through the toll gates of death, the awakened soul remembers its home.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
+    }
   ],
 
   // 🔹 Series Navigation (cross-episode buttons)
-    seriesNav: [
+  seriesNav: [
     { title: "Gnostic Christianity", desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" },
     { title: "Sufi Islam", desc: "Three-part journey through the false cosmos and the Revealer.", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" }
   ],
@@ -41,27 +53,27 @@ export default {
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/",
-      title: "Part I — TBD",
+      title: "Part I — The World Is Not What It Seems",
       glyph: "☪",
-      tagline: "TBD",
+      tagline: "The hidden God ✦ Sophia’s fall ✦ the Demiurge ✦ the spark within.",
       tier: "free",
-      state: "coming-soon"
+      state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/",
-      title: "Part II — TBD",
+      title: "Part II — The Revealer and the Spark",
       glyph: "☪",
-      tagline: "TBD",
+      tagline: "From the false god to the forgotten light ✦ the Christ of Gnosis.",
       tier: "free",
-      state: "coming-soon"
+      state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/",
-      title: "Part III — TBD",
+      title: "Part III — The Soul’s Return",
       glyph: "☪",
-      tagline: "TBD",
+      tagline: "The toll gates of the Archons ✦ the deathless spark ✦ the memory that frees the soul.",
       tier: "free",
-      state: "coming-soon"
+      state: "default"
     }
   ],
 

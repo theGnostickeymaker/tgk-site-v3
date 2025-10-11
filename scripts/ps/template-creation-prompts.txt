@@ -1,6 +1,6 @@
 # Create AL series files and folders
 
-pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\create-new-afterlife-series_v2.5.ps1" `
+pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\create-new-afterlife-series_v2.6.ps1" `
   -Root "C:\TGK\tgk-site-v3" `
   -PillarSlug "the-teachings" `
   -SeriesSlug "the-afterlife" `
@@ -13,7 +13,7 @@ pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\create-new-aft
   -BodyClass "gold" `
   -WithQuizzes `
   -WithImages `
-  -ConfirmOverwrite   # (or -Force)
+  -ConfirmOverwrite   # (or -Force) 
 
 # Retrofit seriesnav
 
