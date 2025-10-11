@@ -37,17 +37,10 @@ discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
-lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
 # ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
-crossLinks: []
-vaultRefs: []
-communityThreads: []
-relatedProducts: []
-
-# 🎨 Creative Prompt (optional; section hidden if empty)
 creativePrompt:
   text: ""
   sharePrompt: ""
@@ -92,6 +85,39 @@ breadcrumbs:
   - { title: "Sufi Islam", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" }
   - { title: "II" }
 
+# 🔗 Auto-injected navigation (v3.6)
+episodeParts:
+  -
+    title: "Part I"
+    desc: "The false cosmos, Sophia’s fall, and the hidden map of return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
+  -
+    title: "Part II"
+    desc: "The hidden Christ awakens the divine spark within the soul."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
+  -
+    title: "Part III"
+    desc: "Through the toll gates of death, the awakened soul remembers its home."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
+
+seriesNav:
+  -
+    title: "\"{{ Title"
+  -
+    title: "Gnostic Christianity"
+    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
+lensEnabled: true
+
+crossLinks: []
+
+vaultRefs:
+  []
+
+communityThreads:
+  - { id: 'the-afterlife-s1-sufi-islam-part2', platform: 'tgk-community' }
+
+relatedProducts: []
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -119,3 +145,4 @@ breadcrumbs:
 
   </section>
 </main>
+

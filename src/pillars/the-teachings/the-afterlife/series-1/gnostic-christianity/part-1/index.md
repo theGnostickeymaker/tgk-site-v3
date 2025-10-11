@@ -119,13 +119,11 @@ episodeParts:
 
 seriesNav:
   -
+    title: "\"{{ Title"
+  -
     title: "Gnostic Christianity"
     desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
-  -
-    title: "Sufi Islam"
-    desc: "Three-part journey through the false cosmos and the Revealer."
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
 lensEnabled: true
 
 crossLinks: []
@@ -460,6 +458,8 @@ relatedProducts: []
 
   </section>
 </main>
+
+
 
 
 

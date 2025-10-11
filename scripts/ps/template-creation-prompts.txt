@@ -29,6 +29,6 @@ pwsh ./scripts/ps/synergist-lens-retrofit_v3.6.ps1 -Root "C:\TGK\tgk-site-v3"
 
 # Crawl the scrolls for front matter updates
 
-pwsh ./scripts/ps/synergist-lens-retrofit_v3.4.ps1 -Root "C:\TGK\tgk-site-v3"
+pwsh ./scripts/ps/synergist-lens-retrofit_v3.6.ps1 -Root "C:\TGK\tgk-site-v3"
 
 
