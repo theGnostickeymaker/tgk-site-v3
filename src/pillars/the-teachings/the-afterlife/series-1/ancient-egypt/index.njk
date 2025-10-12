@@ -1,0 +1,66 @@
+---
+layout: base.njk
+title: "Ancient Egypt"
+description: "The Weighing of the Heart, the Duat, and the Resurrection of Light."
+tier: initiate
+
+glyph: "𓂀"
+series_version: 1
+permalink: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/index.html"
+tagline: "The Ka ✦ The Duat ✦ The Akh"
+seriesMeta:
+  number: 1
+  label: "Series 1"
+  series_version: 1
+episode: 5
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Teachings", url: "/pillars/the-teachings/" }
+  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
+  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
+  - { title: "Ancient Egypt" }
+---
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "Ancient Egypt — Series 1" %}
+  {% set base = "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- 🜂 Intro -->
+    <h4 class="index-heading">
+      Ancient Egypt — The Ka, the Duat, and the Akh: The Resurrection Mysteries of the Nile.
+    </h4>
+
+    <!-- ⚠️ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">𓂀 About Ancient Egypt</span></summary>
+      <p>
+        <strong>Ancient Egyptian afterlife teachings</strong> reveal one of humanity’s oldest maps of the soul’s return.
+        Through <em>Ma’at</em>, the cosmic law of truth and balance, the dead were not judged by belief — but by resonance.
+        Every soul had to remember its name (<em>Ren</em>), nourish its essence (<em>Ka</em>), and pass the
+        twelve gates of the <em>Duat</em> before becoming <em>Akh</em> — radiant, eternal light.
+      </p>
+      <p>
+        In this three-part journey, we follow the soul’s path from mummification and ritual preservation,
+        through the Duat’s trials and passwords, to the Weighing of the Heart and the birth of the immortal Akh.
+        What the Egyptians called resurrection, the Gnostics would later call <em>gnosis</em> — remembering the divine within.
+      </p>
+    </details>
+
+    <!-- ✦ Series Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>
