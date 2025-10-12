@@ -17,18 +17,6 @@ pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\create-new-aft
 
 # Retrofit seriesnav
 
-pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\update-seriesnav-auto.ps1" `
-  -Root "C:\TGK\tgk-site-v3" `
-  -PillarSlug "the-teachings" `
-  -SeriesSlug "the-afterlife" `
-  -SeriesNo 1
-
-# Retrofit data
-
-pwsh ./scripts/ps/update-seriesnav-auto.ps1 -Root "C:\TGK\tgk-site-v3"
-
-# Crawl the scrolls for front matter updates
-
 pwsh ./scripts/ps/synergist-lens-retrofit_v3.9a.ps1 -Root "C:\TGK\tgk-site-v3"
 
 

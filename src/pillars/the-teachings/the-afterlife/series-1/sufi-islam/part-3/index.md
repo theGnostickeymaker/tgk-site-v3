@@ -39,7 +39,7 @@ resourcesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
-creativePromptEnabled: false
+creativePromptEnabled: true
 discussionPromptEnabled: true
 
 # 🎨 Creative Prompt
@@ -161,6 +161,10 @@ seriesNav:
     title: "Buddhism"
     desc: "The path of Buddhism within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
+  -
+    title: "Ancient Egypt"
+    desc: "The path of Ancient Egypt within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -385,5 +389,6 @@ seriesNav:
 
   </section>
 </main>
+
 
 

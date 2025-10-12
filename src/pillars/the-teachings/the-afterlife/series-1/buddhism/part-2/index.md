@@ -149,18 +149,18 @@ breadcrumbs:
 
 # 🔗 Auto-injected navigation (v4.0)
 episodeParts:
-  - title: "Part I — Roots & Cosmology"
-    desc: "The Wheel of Life, the Six Realms, and the cosmic structure of becoming."
+  -
+    title: "Part I — Roots & Cosmology"
+    desc: "The Wheel of Life, the Six Realms, and the cosmology of becoming."
     url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/part-1/"
-
-  - title: "Part II — The Path of Compassion"
-    desc: "The Bodhisattva vow, the awakened heart, and the six perfections of virtue."
+  -
+    title: "Part II — The Path of Compassion"
+    desc: "The Bodhisattva vow, the awakened heart, and the six perfections."
     url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/part-2/"
-
-  - title: "Part III — The Diamond Path"
-    desc: "Through the bardos, the clear light, and the final gates of liberation beyond rebirth."
+  -
+    title: "Part III — The Diamond Path"
+    desc: "Through the bardos, the clear light, and the gates of liberation beyond rebirth."
     url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/part-3/"
-
 
 seriesNav:
   -
@@ -179,6 +179,10 @@ seriesNav:
     title: "Buddhism"
     desc: "The path of Buddhism within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
+  -
+    title: "Ancient Egypt"
+    desc: "The path of Ancient Egypt within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -872,3 +876,4 @@ seriesNav:
 
   </section>
 </main>
+
