@@ -20,6 +20,7 @@ bodyClass: "gold"
 
 # 🕯 Pillar Metadata
 glyph: "✡"
+glyphRow: ["✡", "☥", "✡"]
 pillar: "the-teachings"
 series: "the-afterlife"
 
@@ -150,18 +151,18 @@ breadcrumbs:
 
 # 🔗 Auto-injected navigation (v4.0)
 episodeParts:
-  - title: "Part I — The Roots of Kabbalah"
-    desc: "Ein Sof, emanation, and the cosmic architecture of the soul."
+  -
+    title: "Part I"
+    desc: "The Kabbalistic Worldview."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/"
-
-  - title: "Part II — The Tree of Life & the Soul’s Ascent"
-    desc: "Ten Sefirot, the thresholds of light, and the map of return."
+  -
+    title: "Part II"
+    desc: "Ten Thresholds of Light, The Soul&rsquo;s Ascent Through the Tree of Life."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/"
-
-  - title: "Part III — The Soul’s Journey After Death"
-    desc: "The Guf, the soul’s contract, and the final restoration of harmony."
+  -
+    title: "Part III"
+    desc: "The Soul&rsquo;s Journey After Death."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/"
-
 
 seriesNav:
   -
@@ -176,6 +177,10 @@ seriesNav:
     title: "Kabbalah"
     desc: "The path of Kabbalah within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
+  -
+    title: "Buddhism"
+    desc: "The path of Buddhism within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
 ---
 
 
@@ -224,7 +229,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}malkhut-gate-sparks.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}malkhut-gate-sparks.png" alt="Mystical roots glowing with divine sparks" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}malkhut-gate-sparks.jpg" alt="Mystical roots glowing with divine sparks" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Malkhut is where heaven hides in the dirt. To rise, you must kneel, not in submission, but in revelation.</figcaption>
   </figure>
@@ -263,7 +268,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}yesod-mirror-moon.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}yesod-mirror-moon.png" alt="Moonlight reflecting over a cosmic lake" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}yesod-mirror-moon.jpg" alt="Moonlight reflecting over a cosmic lake" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Yesod is the secret engine behind the veil. What you dream, feel, and desire flows here, and shapes what comes next.</figcaption>
   </figure>
@@ -305,7 +310,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}hod-sacred-mirror.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}hod-sacred-mirror.png" alt="Sacred mirrored hall with symbols" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}hod-sacred-mirror.jpg" alt="Sacred mirrored hall with symbols" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Hod is the echo of the Word, a mirror of divine speech. But the soul must learn to hear the signal, not the noise.</figcaption>
   </figure>
@@ -347,7 +352,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}netzach-flame-will.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}netzach-flame-will.png" alt="Figure climbing through golden flame" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}netzach-flame-will.jpg" alt="Figure climbing through golden flame" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Netzach is the fire that climbs. Victory is not a moment, it&rsquo;s a flame that refuses to die.</figcaption>
   </figure>
@@ -386,7 +391,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}tiferet-sun-heart.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}tiferet-sun-heart.png" alt="Golden sun at center of Tree of Life" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}tiferet-sun-heart.jpg" alt="Golden sun at center of Tree of Life" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Tiferet is the sacred heart. The gate of remembrance. Beauty is not perfection, it is the fusion of everything you are.</figcaption>
   </figure>
@@ -426,7 +431,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}geburah-sword-flame.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}geburah-sword-flame.png" alt="Figure inside sacred fire with sword" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}geburah-sword-flame.jpg" alt="Figure inside sacred fire with sword" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Geburah is the blade of truth. It burns not to destroy you, but to reveal what was never you to begin with.</figcaption>
   </figure>
@@ -470,7 +475,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}chesed-divine-mercy.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}chesed-divine-mercy.png" alt="Radiant river of light from divine hand" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}chesed-divine-mercy.jpg" alt="Radiant river of light from divine hand" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Chesed is the hand that gives without condition. Mercy is not weakness, it is the strength of the Divine overflowing through you.</figcaption>
   </figure>
@@ -510,7 +515,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}binah-divine-mother.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}binah-divine-mother.png" alt="Divine Mother holding cosmic light" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}binah-divine-mother.jpg" alt="Divine Mother holding cosmic light" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Binah is the Womb of the Divine. To understand is not to explain, it is to hold the world without breaking.</figcaption>
   </figure>
@@ -552,7 +557,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}chokhmah-divine-flash.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}chokhmah-divine-flash.png" alt="Lightning spark of divine wisdom" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}chokhmah-divine-flash.jpg" alt="Lightning spark of divine wisdom" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Chokhmah is the divine flash. Wisdom is not what you learn, it&rsquo;s what strikes you, blinds you, and changes everything forever.</figcaption>
   </figure>
@@ -594,7 +599,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}keter-crown-light.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}keter-crown-light.png" alt="Crown of radiant light in cosmic void" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}keter-crown-light.jpg" alt="Crown of radiant light in cosmic void" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Keter is the light before light. You don&rsquo;t reach it. You disappear into it.</figcaption>
   </figure>
@@ -632,3 +637,4 @@ seriesNav:
 
   </section>
 </main>
+

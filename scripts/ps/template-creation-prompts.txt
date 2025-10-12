@@ -5,11 +5,11 @@ pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\create-new-aft
   -PillarSlug "the-teachings" `
   -SeriesSlug "the-afterlife" `
   -SeriesNo 1 `
-  -Slug "sufi-islam" `
-  -Title "Sufi Islam" `
-  -Episode 2 `
-  -Tier "free" `
-  -Glyph "☪" `
+  -Slug "buddhism" `
+  -Title "Buddhism" `
+  -Episode 4 `
+  -Tier "initiate" `
+  -Glyph "☸" `
   -BodyClass "gold" `
   -WithQuizzes `
   -WithImages `

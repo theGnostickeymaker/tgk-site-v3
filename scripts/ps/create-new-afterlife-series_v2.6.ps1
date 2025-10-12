@@ -507,8 +507,10 @@ socialImage: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-$partSlug.j
 imgBase: "$imgBase"
 imgPrefix: "$imgPrefix"
 bodyClass: "$(Yaml-Escape $BodyClass)"
-
 glyph: "$(Yaml-Escape $Glyph)"
+glyphRow: ["$(Yaml-Escape $Glyph)", "☥", "$(Yaml-Escape $Glyph)"]
+glyph: "$(Yaml-Escape $Glyph)"
+
 pillar: "$PillarSlug"
 series: "$SeriesSlug"
 

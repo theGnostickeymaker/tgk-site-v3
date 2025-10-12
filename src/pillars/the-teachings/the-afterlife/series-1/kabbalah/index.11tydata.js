@@ -44,7 +44,7 @@ export default {
   ],
 
   // 🧭 Cross-Episode Navigation (series map)
-  seriesNav: [
+    seriesNav: [
     {
       title: "Gnostic Christianity",
       desc: "The false cosmos, Christ the Revealer, and the soul’s return.",
@@ -61,7 +61,14 @@ export default {
       desc: "The path of Kabbalah within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
     }
+  ,
+    {
+      title: "Buddhism",
+      desc: "The path of Buddhism within the Afterlife Series.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
+    }
   ],
+
 // 🧭 Scroll Grid Cards (episode landing page)
   pillarGrid: [
     {
@@ -107,3 +114,5 @@ export default {
       [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
   }
 };
+
+

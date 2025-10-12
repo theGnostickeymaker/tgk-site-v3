@@ -18,6 +18,7 @@ imgPrefix: "sufi-islam-"
 bodyClass: "gold"
 
 glyph: "☪"
+glyphRow: ["☪", "☥", "☪"]
 pillar: "the-teachings"
 series: "the-afterlife"
 
@@ -125,18 +126,18 @@ breadcrumbs:
 
 # 🔗 Auto-injected navigation (v4.0)
 episodeParts:
-  - title: "Part I — The Veil Between Worlds"
+  -
+    title: "Part I — The Veil Between Worlds"
     desc: "Barzakh, purification, and the mirror realm where the soul meets its own light and shadow."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
-
-  - title: "Part II — The Ascent & the Beloved"
+  -
+    title: "Part II — The Ascent & the Beloved"
     desc: "Longing, remembrance, and the spiral dance of union with the Divine."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-
-  - title: "Part III — Fanā’ and the Eternal Dance"
+  -
+    title: "Part III — Fanā’ and the Eternal Dance"
     desc: "Annihilation, abiding, and the soul’s return into the endless unfolding of Love."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
-
 
 seriesNav:
   -
@@ -151,6 +152,10 @@ seriesNav:
     title: "Kabbalah"
     desc: "The path of Kabbalah within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
+  -
+    title: "Buddhism"
+    desc: "The path of Buddhism within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -400,4 +405,5 @@ seriesNav:
 
   </section>
 </main>
+
 

@@ -18,6 +18,7 @@ imgPrefix: "kabbalah-"
 bodyClass: "gold"
 
 glyph: "✡"
+glyphRow: ["✡", "☥", "✡"]
 pillar: "the-teachings"
 series: "the-afterlife"
 
@@ -140,18 +141,18 @@ breadcrumbs:
 
 # 🔗 Auto-injected navigation (v4.0)
 episodeParts:
-  - title: "Part I — The Roots of Kabbalah"
-    desc: "Ein Sof, emanation, and the cosmic architecture of the soul."
+  -
+    title: "Part I"
+    desc: "The Kabbalistic Worldview."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/"
-
-  - title: "Part II — The Tree of Life & the Soul’s Ascent"
-    desc: "Ten Sefirot, the thresholds of light, and the map of return."
+  -
+    title: "Part II"
+    desc: "Ten Thresholds of Light, The Soul&rsquo;s Ascent Through the Tree of Life."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/"
-
-  - title: "Part III — The Soul’s Journey After Death"
-    desc: "The Guf, the soul’s contract, and the final restoration of harmony."
+  -
+    title: "Part III"
+    desc: "The Soul&rsquo;s Journey After Death."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/"
-
 
 seriesNav:
   -
@@ -166,6 +167,10 @@ seriesNav:
     title: "Kabbalah"
     desc: "The path of Kabbalah within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
+  -
+    title: "Buddhism"
+    desc: "The path of Buddhism within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
 ---
 
 
@@ -224,7 +229,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}tree-of-souls.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}tree-of-souls.png" alt="Celestial Tree of Souls and the Guf" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}tree-of-souls.jpg" alt="Celestial Tree of Souls and the Guf" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">
       You were chosen before the world began. The Guf holds your origin, and your return awaits.
@@ -274,7 +279,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-contract-oath.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}soul-contract-oath.png" alt="Radiant soul making pre-birth oath with angel" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}soul-contract-oath.jpg" alt="Radiant soul making pre-birth oath with angel" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">
       You saw your life before you lived it, and still you came. That is not weakness. That is a warrior&rsquo;s oath.
@@ -325,7 +330,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}death-soul-transition.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}death-soul-transition.png" alt="Soul rising peacefully from body" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}death-soul-transition.jpg" alt="Soul rising peacefully from body" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">
       You are not your body. You never were. Death is not the end of you, it&rsquo;s the return of what&rsquo;s true.
@@ -359,3 +364,4 @@ seriesNav:
 
   </section>
 </main>
+

@@ -44,6 +44,15 @@ export default {
       tier: "free",
       state: "active"
     }
+  ,
+    {
+      href: "/pillars/the-teachings/the-afterlife/series-1/buddhism/",
+      title: "Buddhism",
+      glyph: "☸",
+      tagline: "Three-part journey through the false cosmos and the Revealer.",
+      tier: "initiate",
+      state: "active"
+    }
   ],
 
   // 🧭 Cross-Episode Navigation (series map)
@@ -63,6 +72,12 @@ export default {
       title: "Kabbalah",
       desc: "The path of Kabbalah within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
+    }
+  ,
+    {
+      title: "Buddhism",
+      desc: "The path of Buddhism within the Afterlife Series.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
     }
   ],
 

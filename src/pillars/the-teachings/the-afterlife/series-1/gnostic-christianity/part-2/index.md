@@ -18,6 +18,7 @@ imgPrefix: "gnostic-christianity-"
 bodyClass: "gold"
 
 glyph: "✝"
+glyphRow: ["✝", "☥", "✝"]
 pillar: "the-teachings"
 series: "the-afterlife"
 
@@ -154,6 +155,10 @@ seriesNav:
     title: "Kabbalah"
     desc: "The path of Kabbalah within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
+  -
+    title: "Buddhism"
+    desc: "The path of Buddhism within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
 ---
 
 
@@ -491,6 +496,7 @@ seriesNav:
 
   </section>
 </main>
+
 
 
 

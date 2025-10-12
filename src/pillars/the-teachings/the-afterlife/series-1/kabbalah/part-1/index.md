@@ -18,6 +18,7 @@ imgPrefix: "kabbalah-"
 bodyClass: "gold"
 
 glyph: "✡"
+glyphRow: ["✡", "☥", "✡"]
 pillar: "the-teachings"
 series: "the-afterlife"
 
@@ -146,18 +147,18 @@ breadcrumbs:
 
 # 🔗 Auto-injected navigation (v4.0)
 episodeParts:
-  - title: "Part I — The Roots of Kabbalah"
-    desc: "Ein Sof, emanation, and the cosmic architecture of the soul."
+  -
+    title: "Part I"
+    desc: "The Kabbalistic Worldview."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/"
-
-  - title: "Part II — The Tree of Life & the Soul’s Ascent"
-    desc: "Ten Sefirot, the thresholds of light, and the map of return."
+  -
+    title: "Part II"
+    desc: "Ten Thresholds of Light, The Soul&rsquo;s Ascent Through the Tree of Life."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/"
-
-  - title: "Part III — The Soul’s Journey After Death"
-    desc: "The Guf, the soul’s contract, and the final restoration of harmony."
+  -
+    title: "Part III"
+    desc: "The Soul&rsquo;s Journey After Death."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/"
-
 
 seriesNav:
   -
@@ -172,6 +173,10 @@ seriesNav:
     title: "Kabbalah"
     desc: "The path of Kabbalah within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
+  -
+    title: "Buddhism"
+    desc: "The path of Buddhism within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
 ---
 
 
@@ -231,7 +236,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}tree-of-life.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}tree-of-life.png" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}tree-of-life.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">The soul begins its return. The Tree of Life is not myth, it is a map of the divine inside you.</figcaption>
   </figure>
@@ -296,7 +301,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}Sefirot-gates.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}Sefirot-gates.png" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}Sefirot-gates.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">Creation flows downward. The soul returns upward. The Sefirot are the gates of the real.</figcaption>
   </figure>
@@ -381,7 +386,7 @@ seriesNav:
   <figure class="image-block">
   <picture>
     <source srcset="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.png" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+    <img src="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
   </picture>
   <figcaption class="caption-gnostic">Purified in the fire of truth. Bathed in the river of Eden. Every soul returns to the Bundle of Life.</figcaption>
 </figure>
@@ -465,7 +470,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}spiral-of-souls.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}spiral-of-souls.png" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}spiral-of-souls.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">You&rsquo;ve been here before. Each life is a return, a lesson, a spark spiraling toward the Source.</figcaption>
   </figure>
@@ -543,7 +548,7 @@ seriesNav:
   <figure class="image-block">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.png" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <img src="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
     </picture>
     <figcaption class="caption-gnostic">She was scattered in the shards of the world. You are her hands. When you rise, so does she.</figcaption>
   </figure>
@@ -563,3 +568,4 @@ seriesNav:
 
   </section>
 </main>
+
