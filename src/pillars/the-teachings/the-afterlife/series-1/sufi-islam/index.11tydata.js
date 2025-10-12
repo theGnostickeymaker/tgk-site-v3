@@ -24,54 +24,62 @@ export default {
   disclaimerText:
     "<p>Interpretations vary across Gnostic schools and manuscripts within this pillar and series.</p>",
 
-  // 🔹 Episode Parts (for dynamic part navigation)
-  episodeParts: [
+// 🔹 Episode Parts (for dynamic part navigation)
+episodeParts: [
+  {
+    title: "Part I — The Veil Between Worlds",
+    desc: "Barzakh, purification, and the mirror realm where the soul meets its own light and shadow.",
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
+  },
+  {
+    title: "Part II — The Ascent & The Beloved",
+    desc: "Longing, remembrance, and the spiral dance of union with the Divine.",
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
+  },
+  {
+    title: "Part III — Fanā&#8217; and the Eternal Dance",
+    desc: "Annihilation, abiding, and the soul’s return into the endless unfolding of Love.",
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
+  }
+],
+
+  // 🔹 Series Navigation (cross-episode buttons)
+ seriesNav: [
     {
-      title: "Part I",
-      desc: "The false cosmos, Sophia’s fall, and the hidden map of return.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
+      title: "Gnostic Christianity",
+      desc: "The false cosmos, Christ the Revealer, and the soul’s return.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
     },
     {
-      title: "Part II",
-      desc: "The hidden Christ awakens the divine spark within the soul.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-    },
-    {
-      title: "Part III",
-      desc: "Through the toll gates of death, the awakened soul remembers its home.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
+      title: "Sufi Islam",
+      desc: "The seeker’s path through love, annihilation, and return.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
     }
   ],
 
-  // 🔹 Series Navigation (cross-episode buttons)
-    seriesNav: [
-    { title: "{{ Title }}", desc: "Three-part journey through the false cosmos and the Revealer.", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" },
-    { title: "Gnostic Christianity", desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
-  ],
-
-  // 🧭 Scroll Grid Cards (episode landing page)
+// 🧭 Scroll Grid Cards (episode landing page)
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/",
-      title: "Part I — The World Is Not What It Seems",
+      title: "Part I — The Veil Between Worlds",
       glyph: "☪",
-      tagline: "The hidden God ✦ Sophia’s fall ✦ the Demiurge ✦ the spark within.",
+      tagline: "The Hidden Architecture of Illusion & the Divine Spark in Exile.",
       tier: "free",
       state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/",
-      title: "Part II — The Revealer and the Spark",
+      title: "Part II — The Ascent & The Beloved",
       glyph: "☪",
-      tagline: "From the false god to the forgotten light ✦ the Christ of Gnosis.",
+      tagline: "Longing, Remembrance, and the Spiral Dance of Union.",
       tier: "free",
       state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/",
-      title: "Part III — The Soul’s Return",
+      title: "Part III — fanā&lsquo; & The Eternal Dance",
       glyph: "☪",
-      tagline: "The toll gates of the Archons ✦ the deathless spark ✦ the memory that frees the soul.",
+      tagline: "Annihilation, Abiding, and the Final Unveiling.",
       tier: "free",
       state: "default"
     }
@@ -94,3 +102,4 @@ export default {
       [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
   }
 };
+

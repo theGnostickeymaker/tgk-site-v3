@@ -26,7 +26,7 @@ episodeId: "gnostic-christianity"
 partId: "part2"
 quizId: "the-afterlife-s1-gnostic-christianity-part-2"
 quizTitle: "Gnostic Christianity — Part II: The Revealer and the Spark"
-quizIntro: "Can you see through the veil of Part II?"
+quizIntro: "Can you pierce the illusion and recognise the spark within?"
 seriesMeta:
   number: 1
   label: "Series 1"
@@ -55,7 +55,7 @@ discussion:
   footer: "Share your insight using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong> — your remembrance may light another’s path."
 
 glossary:
-  subtitle: "Terms for understanding Christ as the inner Revealer."
+  subtitle: "Decode the hidden language of Christ as the inner Revealer — the mirror of remembrance."
   terms:
     - term: "Christ the Revealer"
       def: "The emanation of the true God who awakens gnosis in souls, not a sacrifice but a mirror of remembrance."
@@ -79,14 +79,22 @@ references:
     - title: "Gospel of Philip"
       desc: "Teaches union and illumination through knowledge of the inner Christ."
   scholarly:
-    - author: "Pagels, E."
+    - author: "Elaine Pagels"
       year: "1979"
       work: "The Gnostic Gospels"
       pub: "Random House"
-    - author: "Meyer, M."
+    - author: "Marvin Meyer"
       year: "2007"
       work: "The Nag Hammadi Scriptures"
       pub: "HarperOne"
+    - author: "Hans Jonas"
+      year: "1958"
+      work: "The Gnostic Religion"
+      pub: "Beacon Press"
+    - author: "Bentley Layton"
+      year: "1987"
+      work: "The Gnostic Scriptures"
+      pub: "Doubleday"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -96,40 +104,39 @@ breadcrumbs:
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "II" }
 
-# 🔗 Auto-injected navigation (v3.6)
+# 🔗 Auto-injected navigation (v4.0)
 episodeParts:
   -
-    title: "Part I"
+    title: "Part I — The World Is Not What It Seems"
     desc: "The false cosmos, Sophia’s fall, and the hidden map of return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
   -
-    title: "Part II"
+    title: "Part II — The Revealer and the Spark"
     desc: "The hidden Christ awakens the divine spark within the soul."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
   -
-    title: "Part III"
+    title: "Part III — The Toll Gates & the Return"
     desc: "Through the toll gates of death, the awakened soul remembers its home."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
 
 seriesNav:
   -
-    title: "\"{{ Title"
-  -
     title: "Gnostic Christianity"
-    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
+    desc: "The false cosmos, Christ the Revealer, and the soul’s return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
+  -
+    title: "Sufi Islam"
+    desc: "The seeker’s path through love, annihilation, and return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+
 lensEnabled: true
-
 crossLinks: []
-
 vaultRefs:
-  - { title: 'Gospel of Thomas', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/' }
-  - { title: 'The Second Treatise of the Great Seth', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/' }
-
-communityThreads:
-  - { id: 'the-afterlife-s1-gnostic-christianity-part2', platform: 'tgk-community' }
-
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+communityThreads: []
 relatedProducts: []
+
 ---
 
 
@@ -398,7 +405,7 @@ relatedProducts: []
 
 <!--🕊️ Chapter 5: Sophia'&rsquo;'s Redemption Through Us-->
 <section class="section-block">
-  <h2 class="section-heading">🕊️ Chapter 6: Sophia&rsquo;s Redemption Through Us</h2>
+  <h2 class="section-heading">🕊️ Chapter 5: Sophia&rsquo;s Redemption Through Us</h2>
 
   <p>At the center of the Gnostic myth is a broken mother.</p>
   <p><strong>Sophia</strong>, divine Wisdom, fell from the <strong>Pleroma</strong>&mdash;not in sin, but in longing. And in falling, she scattered her light through all of creation.</p>
@@ -462,11 +469,16 @@ relatedProducts: []
   {% include "partials/episode-part-nav.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
+    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">✝</span>
   </div>
 
   </section>
 </main>
+
+
+
+
+
 
 
 

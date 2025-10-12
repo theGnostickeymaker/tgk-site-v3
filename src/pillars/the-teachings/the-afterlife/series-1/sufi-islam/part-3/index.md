@@ -1,14 +1,14 @@
 ---
 layout: base.njk
 title: "Sufi Islam"
-description: ""
+description: "Fanāʾ and baqāʾ — the soul’s final dissolution and eternal abiding in the Beloved’s light."
 tier: free
 scrollId: "the-teachings-the-afterlife-series-1-sufi-islam-part-3"
 
 episode: 2
 partNumeral: III
-partTitle: ""
-tagline: ""
+partTitle: "Fanāʾ and the Eternal Dance"
+tagline: "The false self melts away, the soul abides, and Love continues its infinite unfolding."
 slug: "part-3"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/index.html"
@@ -26,7 +26,7 @@ episodeId: "sufi-islam"
 partId: "part3"
 quizId: "the-afterlife-s1-sufi-islam-part-3"
 quizTitle: "Sufi Islam — Part III"
-quizIntro: "Can you see through the veil of III?"
+quizIntro: "Can you see through the veil of Part III?"
 seriesMeta:
   number: 1
   label: "Series 1"
@@ -37,44 +37,79 @@ discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
+lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
+# 🎨 Creative Prompt
 creativePrompt:
-  text: ""
-  sharePrompt: ""
+  text: "Write a short poem or reflection titled <strong>“The Drop and the Ocean.”</strong> Imagine your soul dissolving into the Beloved’s light — what falls away, what radiance remains? What did you fear to lose, and what did you find instead? Let your words be both veil and unveiling."
+  sharePrompt: "Share your piece with <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong> — your drop may ripple across another ocean."
 
 # 🗣 Discussion Prompt
 discussion:
-  promptTitle: "What spark are you reigniting?"
-  intro: "You’ve walked through illusion and shadow — now speak from your own flame."
-  question: "What does liberation mean to a soul that remembers?"
+  promptTitle: "When Longing Becomes a Flame"
+  intro: "You’ve crossed silence and surrender, touched the edges of presence — and now, the ache itself begins to burn. The flame is not your enemy. It is the call."
+  question: "What longing scares you the most — and what if it is the Beloved calling you to surrender today?"
   points:
-    - "What illusions still whisper your name?"
-    - "How does memory become freedom?"
-    - "Can truth survive comfort?"
-  footer: "Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
+    - "What ache has shaped your path more than any answer?"
+    - "Is there a part of you that fears being seen — even by the Divine?"
+    - "What would it mean to surrender not just your mind, but your longing itself?"
+  footer: |
+    Share your reflection using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>.<br>
+    The flame that consumes you may also awaken someone else.
 
 # 📖 Glossary
 glossary:
-  subtitle: "Decode the language of the soul’s exile and return."
+  subtitle: "Terms for Annihilation, Abiding, and the Cosmic Dance."
   terms:
-    - term: "TBC"
-      def: "TBC"
+    - term: "Fanāʼ"
+      def: "The annihilation of the ego-self in Divine Presence, where the false 'I' dissolves completely."
+    - term: "Baqāʼ"
+      def: "Eternal abiding in God — living fully surrendered, as a vessel of Divine will and radiance."
+    - term: "Al-Insān al-Kāmil"
+      def: "The Perfected Human — one who fully embodies Divine qualities, living as a transparent mirror of the Divine."
+    - term: "Eternal Dance"
+      def: "The endless, dynamic unfolding of Divine beauty and creativity; the soul’s participation in God’s ceaseless Glory."
+    - term: "Hadith Qudsi"
+      def: "‘Sacred Sayings’ — statements in which God speaks directly, revealing intimate mystical truths beyond the Qur’anic text."
 
-# 📚 References
 references:
   title: "Sources & Study Path"
-  intro: "For those wishing to go deeper..."
+  intro: "Advanced readings on fanāʾ (ego-annihilation), baqāʾ (eternal abiding), and the perfected human in Sufi metaphysics."
   readings:
-    - title: "TBC"
-      desc: "TBC"
+    - title: "The Bezels of Wisdom (Fuṣūṣ al-Ḥikam) — Ibn ʿArabī"
+      desc: "The masterwork on Divine Names, the Perfected Human (al-insān al-kāmil), and the mystery of union and subsistence."
+    - title: "The Masnavi-ye Maʿnavi — Jalāl al-Dīn Rūmī"
+      desc: "Verses on fanāʾ and baqāʾ, the moth and flame, and the ever-renewing dance of Love."
+    - title: "The Tawāsīn — al-Ḥusayn ibn Manṣūr al-Hallāj"
+      desc: "Mystical prose-poems revealing the inner meaning of 'I am the Truth' and the soul’s dissolution in God."
+    - title: "The Sufi Path of Knowledge — William C. Chittick"
+      desc: "A clear exposition of Ibn ʿArabī’s teachings on annihilation, abiding, and Divine Self-disclosure."
+    - title: "The Unlimited Mercy — Ibn ʿArabī (Selections from al-Futūḥāt al-Makkiyya)"
+      desc: "On the eternal renewal of creation and God’s infinite Self-manifestation in each moment of Being."
   scholarly:
-    - author: "TBC"
-      year: "TBC"
-      work: "TBC"
-      pub: "TBC"
+    - author: "Annemarie Schimmel"
+      year: "1975"
+      work: "Mystical Dimensions of Islam"
+      pub: "University of North Carolina Press"
+    - author: "William C. Chittick"
+      year: "1989"
+      work: "The Sufi Path of Knowledge: Ibn ʿArabī’s Metaphysics of Imagination"
+      pub: "State University of New York Press"
+    - author: "Henry Corbin"
+      year: "1969"
+      work: "Alone with the Alone: Creative Imagination in the Sufism of Ibn ʿArabī"
+      pub: "Princeton University Press"
+    - author: "Reynold A. Nicholson"
+      year: "1926 – 1940"
+      work: "The Mathnawī of Jalāl al-Dīn Rūmī (6 vols.)"
+      pub: "E. J. W. Gibb Memorial Series"
+    - author: "Louis Massignon"
+      year: "1922 / 1994"
+      work: "The Passion of al-Hallāj: Mystic and Martyr of Islam"
+      pub: "Princeton University Press"
+
 
 # 🧭 Breadcrumbs
 breadcrumbs:
@@ -85,39 +120,36 @@ breadcrumbs:
   - { title: "Sufi Islam", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" }
   - { title: "III" }
 
-# 🔗 Auto-injected navigation (v3.6)
+# 🔗 Auto-injected navigation (v4.0)
 episodeParts:
-  -
-    title: "Part I"
-    desc: "The false cosmos, Sophia’s fall, and the hidden map of return."
+  - title: "Part I — The Veil Between Worlds"
+    desc: "Barzakh, purification, and the mirror realm where the soul meets its own light and shadow."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
-  -
-    title: "Part II"
-    desc: "The hidden Christ awakens the divine spark within the soul."
+  - title: "Part II — The Ascent & The Beloved"
+    desc: "Longing, remembrance, and the spiral dance of union with the Divine."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-  -
-    title: "Part III"
-    desc: "Through the toll gates of death, the awakened soul remembers its home."
+  - title: "Part III — Fanāʾ and the Eternal Dance"
+    desc: "Annihilation, abiding, and the soul’s return into the endless unfolding of Love."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
 
 seriesNav:
   -
-    title: "\"{{ Title"
-  -
     title: "Gnostic Christianity"
-    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
+    desc: "The false cosmos, Christ the Revealer, and the soul’s return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
-lensEnabled: true
+  -
+    title: "Sufi Islam"
+    desc: "The seeker’s path through love, annihilation, and return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
 
 crossLinks: []
-
 vaultRefs:
-  []
-
-communityThreads:
-  - { id: 'the-afterlife-s1-sufi-islam-part3', platform: 'tgk-community' }
-
+  - "/pillars/the-vault/codex-reborn/islamic/fusus-al-hikam/"
+  - "/pillars/the-vault/codex-reborn/islamic/the-masnavi-of-rumi/"
+  - "/pillars/the-vault/codex-reborn/islamic/the-tawasin-of-al-hallaj/"
+communityThreads: []
 relatedProducts: []
+
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -125,11 +157,208 @@ relatedProducts: []
 <main class="main-content">
   <section class="content-container">
 
+  <details class="disclaimer-box">
+    <summary>
+      <span class="disclaimer-heading">⚠️ Previously in Part II</span>
+    </summary>
+    <strong>Previously:</strong> The soul has begun its spiral ascent through realms of light and surrender. Now, it dissolves into fanā&lsquo;, only to rise again in the eternal dance of baqā&lsquo;.
+  </p>
+  </details>
+
+<!--☀️ Chapter 1: The Final Surrender -->
   <section class="section-block">
-    <h2 class="section-heading">Section Heading</h2>
-    <p>Write content for III here...</p>
+  <h2 class="section-heading">☀️ Chapter 1: The Final Surrender</h2>
+
+  <blockquote class="blockquote">
+    <span class="arabic">وَإِلَيْهِ يُرْجَعُ الْأَمْرُ كُلُّهُ</span><br>
+    &ldquo;To Him belongs the final outcome of all matters.&rdquo;<br>
+    <cite>
+      <em>Qur&lsquo;an</em> 11:123</cite>
+  </blockquote>
+
+  <p>After longing, remembrance, and unveiling, there is one final gate: the surrender of the &ldquo;I.&rdquo;</p>
+
+  <p>This is <strong>fanā&lsquo;</strong>, the ego&lsquo;s annihilation in Divine presence.</p>
+
+  <p>It is not death of the soul. It is death of separation, of pride, of all the masks that whisper &ldquo;mine&rdquo; and &ldquo;me.&rdquo;</p>
+
+  <p>The mystic passes through this gate not by force, but by melting: like a moth dissolving into flame, like a river surrendering to the sea.</p>
+
+  <blockquote class="blockquote">
+    &ldquo;I am He whom I love, and He whom I love is I. We are two souls dwelling in one body.&rdquo;<br>
+    <cite>
+      Al-Hallāj</cite>
+  </blockquote>
+
+  <p>Here, lover and Beloved are no longer two. Only Love remains.</p>
   </section>
 
+  <section class="section-block">
+  <h2 class="section-heading">⚡ TL;DR The Final Surrender</h2>
+  <ul class="list-emoji">
+    <li><strong>fanā&lsquo; = Annihilation of the Ego</strong> &mdash; The false &ldquo;I&rdquo; dissolves in Divine presence.</li>
+    <li><strong>Not Death, but Melting</strong> &mdash; The soul becomes transparent, surrendered, wholly given.</li>
+    <li><strong>Al-Hallāj&lsquo;s Union</strong> &mdash; Lover and Beloved merge; separation vanishes.</li>
+    <li><strong>The Last Veil Falls</strong> &mdash; The soul awakens to what it always was: only Love, only Light.</li>
+    <li><strong>After fanā&lsquo;, Only baqā&lsquo;</strong> &mdash; What remains is eternal abiding in the Divine.</li>
+  </ul>
+  </section>
+
+  <figure class="image-block">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}final-surrender.webp" type="image/webp">
+      <img src="{{ imgBase }}/{{ imgPrefix }}final-surrender.jpg" alt="A radiant figure dissolving into golden light, arms wide open, becoming one with a vast ocean of shimmering divine light" class="image-gnostic" loading="lazy">
+    </picture>
+    <figcaption class="caption-gnostic">
+      The final surrender, not extinction, but completion. The soul melts into Love, and the last &ldquo;I&rdquo; disappears.
+    </figcaption>
+  </figure>
+
+<!--🌊 Chapter 2: The Eternal Abiding (baqā&lsquo;) -->
+<section class="section-block">
+  <h2 class="section-heading">🌊 Chapter 2: The Eternal Abiding (Baqā&lsquo;)</h2>
+
+  <blockquote class="blockquote">
+    <span class="arabic">وَيَبْقَىٰ وَجْهُ رَبِّكَ ذُو الْجَلَالِ وَالْإِكْرَامِ</span><br>
+    &ldquo;And the Face of your Lord full of Majesty and honour will remain forever.&rdquo;<br>
+    <cite>
+      <em>Qur&lsquo;an</em> 55:27</cite>
+  </blockquote>
+
+  <p>After fanā&lsquo;, after the ego melts, the soul enters <strong>baqā&lsquo;</strong>, eternal abiding in God.</p>
+
+  <p>This is not annihilation. This is <em>life beyond self</em>.</p>
+
+  <p>The soul now exists only as a mirror of the Divine. It loves what God loves, wills what God wills, moves as God moves.</p>
+
+  <p>Sufi masters call this the <strong>Perfected Human (al-insān al-kāmil)</strong>, the one who abides in God, yet walks among creation as a clear vessel.</p>
+
+  <blockquote class="blockquote">
+    &ldquo;I was a hidden treasure, and I longed to be known. So I created creation, that I might be known.&rdquo;<br>
+    <cite>
+      Hadith Qudsi (Sacred Tradition)</cite>
+  </blockquote>
+
+  <p>In baqā&lsquo;, the soul no longer seeks. It <em>is</em>. It dwells in the endless unveiling, dancing forever in the light of the Face it once thought distant.</p>
+</section>
+
+<section class="section-block">
+  <h2 class="section-heading">⚡ TL;DR The Eternal Abiding</h2>
+  <ul class="list-emoji">
+    <li><strong>Baqā&lsquo; = Eternal Abiding</strong> &mdash; After fanā&lsquo;, the soul lives on as a vessel of Divine presence.</li>
+    <li><strong>The Perfected Human</strong> &mdash; Fully surrendered, fully alive, the soul mirrors Divine will.</li>
+    <li><strong>No More Seeking</strong> &mdash; The search ends; the soul abides in ceaseless unveiling.</li>
+    <li><strong>The Treasure Revealed</strong> &mdash; The soul realises it was always part of the Divine longing to be known.</li>
+    <li><strong>This is Paradise</strong> &mdash; Not a place, a state of pure presence, radiance, and union.</li>
+  </ul>
+</section>
+
+  <figure class="image-block">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}eternal-abiding-baqa.webp" type="image/webp">
+      <img src="{{ imgBase }}/{{ imgPrefix }}eternal-abiding-baqa.jpg" alt="A glowing human figure walking peacefully through a luminous garden of light, radiating divine presence, surrounded by swirling cosmic patterns and golden mist" class="image-gnostic" loading="lazy">
+    </picture>
+    <figcaption class="caption-gnostic">
+      Eternal abiding, not disappearance, but perfected presence. The soul lives on, no longer separate, fully woven into the Divine.
+    </figcaption>
+  </figure>
+
+<!-- 🗺️ Visual Map: The Soul&lsquo;s Ascent Through the Realms -->
+<section class="section-block">
+  <h2 class="section-heading">🗺️ Visual Map: The Soul&lsquo;s Ascent Through the Realms</h2>
+
+  <p>In Sufi cosmology, the soul&lsquo;s afterlife journey mirrors the Prophet&lsquo;s <em>Miʿrāj</em>, not through space, but unveiling. Each realm peels back illusion, asking the soul to surrender deeper layers of self.</p>
+
+  <ul class="list-emoji">
+    <li><strong>Barzakh (The Veil)</strong>, The Mirror Realm.<br>
+      You meet your own soul-architecture. What you sowed, you now face.<br>
+      <em>Can you behold yourself without distortion?</em>
+    </li>
+    <li><strong>Malakūt (The Harmonious)</strong>, The Angelic Realm.<br>
+      Ego dissolves in beauty and order. Light sings.<br>
+      <em>Can you release the ego&lsquo;s need to control the song?</em>
+    </li>
+    <li><strong>Jabarūt (The Majestic)</strong>, The Realm of Power.<br>
+      Awe burns through pride. The soul bows before majesty.<br>
+      <em>Can you surrender the illusion of personal power?</em>
+    </li>
+    <li><strong>Lāhūt (The Unveiled)</strong>, Pure Presence.<br>
+      There is no &ldquo;you.&rdquo; Only Light. Only the Face of the Beloved.<br>
+      <em>Can you vanish without fear?</em>
+    </li>
+  </ul>
+
+  <p><strong>Each realm is a veil lifted, a part of the self given back to the Whole.</strong></p>
+</section>
+
+<!--✨ Chapter 3: The Eternal Dance -->
+<section class="section-block">
+  <h2 class="section-heading">✨ Chapter 3: The Eternal Dance</h2>
+
+<blockquote class="blockquote">
+  <span class="arabic">كُلَّ يَوْمٍ هُوَ فِي شَأْنٍ</span><br>
+  &ldquo;Every day He is in a new Glory.&rdquo;<br>
+  <cite>
+    <em>Qur&lsquo;an</em> 55:29</cite>
+</blockquote>
+
+  <p>Abiding in God is not static. It is a <strong>dance</strong>, an endless, unfolding, radiant motion.</p>
+
+  <p>The soul, now dissolved and abiding, becomes part of the Divine&lsquo;s eternal creativity: ever-renewing, ever-revealing, ever-beautiful.</p>
+
+  <p>Sufis call this the <em>eternal dance</em>: the whirling of galaxies, the spinning of atoms, the circling of lovers around the Beloved&lsquo;s Name.</p>
+
+  <blockquote class="blockquote">
+    &ldquo;We come whirling out of nothingness, scattering stars like dust… dancing until we become the dance itself.&rdquo;<br>
+    <cite> Rūmī</cite>
+  </blockquote>
+
+  <p>This is not a one-time merging. This is <strong>ongoing revelation</strong>, an endless deepening into Love, an eternal play of unveiling.</p>
+
+  <p>To abide in God is to join this cosmic rhythm, to dance forever in the music of Being.</p>
+</section>
+
+<section class="section-block">
+  <h2 class="section-heading">⚡ TL;DR The Eternal Dance</h2>
+  <ul class="list-emoji">
+    <li><strong>Baqā&lsquo; Is Dynamic</strong> &mdash; Abiding in God is not stillness, but endless unfolding.</li>
+    <li><strong>The Cosmic Dance</strong> &mdash; The soul joins the whirling of stars, light, and love, the dance of existence.</li>
+    <li><strong>Rūmī&lsquo;s Vision</strong> &mdash; We are the dance, not just the dancer; we dissolve into Divine movement.</li>
+    <li><strong>Ever-Fresh Unveiling</strong> &mdash; Each moment reveals new Glory, new Beauty, new Divine play.</li>
+    <li><strong>Abiding = Dancing</strong> &mdash; To live in God is to dance forever in the music of Being.</li>
+  </ul>
+</section>
+
+<figure class="image-block">
+  <picture>
+    <source srcset="{{ imgBase }}/{{ imgPrefix }}eternal-dance-whirling-stars.webp" type="image/webp">
+    <img src="{{ imgBase }}/{{ imgPrefix }}eternal-dance-whirling-stars.jpg" alt="A luminous figure dancing among swirling stars and galaxies, blending into cosmic patterns, surrounded by golden light and divine calligraphy" class="image-gnostic" loading="lazy">
+  </picture>
+  <figcaption class="caption-gnostic">
+    The eternal dance, the soul becomes part of the cosmic rhythm, dissolving into the Beloved&lsquo;s unfolding Glory.
+  </figcaption>
+</figure>
+
+<!-- 🧘 Practicing Sufi Remembrance Today -->
+<section class="section-block">
+  <h2 class="section-heading">🧘 Practicing Sufi Remembrance Today</h2>
+
+  <p>Sufism is not a theory, it&lsquo;s a living flame. Like gnosis, it must be practiced to be known. Below are three core exercises to bring the Sufi path alive within you, wherever you are.</p>
+
+  <h4 class="section-subheading">1. Dhikr with the Divine Name</h4>
+  <p>Choose a Divine Name, such as <strong>Ar-Rahmān (The Compassionate)</strong> or <strong>Al-Nūr (The Light)</strong>. Sit in silence. Breathe gently. Repeat the Name aloud or inwardly with each breath for 5–10 minutes daily. Let the Name shape your heart into remembrance.</p>
+
+  <h4 class="section-subheading">2. Journaling Longing</h4>
+  <p>Once per week, write freely about a moment of longing, grief, or absence in your life. Ask: <em>&ldquo;What if this ache is the Beloved in disguise?&rdquo;</em> Don't analyze. Let the ink be your mirror.</p>
+
+  <h4 class="section-subheading">3. Inner Spiral Meditation</h4>
+  <p>If you cannot whirl physically, whirl inwardly. Sit comfortably. Visualize yourself spiraling slowly toward the Divine Center. With each breath, drop a layer of ego. Whisper inwardly: <em>&ldquo;You are the center. I remember.&rdquo;</em></p>
+
+  <hr class="divider-sigil" />
+
+  <p><strong>Suggestion:</strong> Start a 21-day "Remembrance Log." Alternate practices daily. Record your insights, dreams, or shifts. At the end, ask: <em>&ldquo;Where is the Beloved now?&rdquo;</em></p>
+</section>
+  
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}
   {% include "partials/quiz-block.njk" %}
@@ -140,9 +369,8 @@ relatedProducts: []
   {% include "partials/episode-part-nav.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
+    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">☪</span>
   </div>
 
   </section>
 </main>
-

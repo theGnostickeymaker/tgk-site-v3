@@ -26,7 +26,7 @@ episodeId: "gnostic-christianity"
 partId: "part1"
 quizId: "the-afterlife-s1-gnostic-christianity-part-1"
 quizTitle: "Gnostic Christianity — Part I: The False Cosmos"
-quizIntro: "Can you see through the veil of Part I?"
+quizIntro: "Can you see through the illusion of the false world?"
 seriesMeta:
   number: 1
   label: "Series 1"
@@ -40,6 +40,15 @@ quizEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 glossaryEnabled: true
+
+lensEnabled: true
+crossLinks: []
+vaultRefs:
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/"
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
+communityThreads: []
+relatedProducts: []
+
 
 # ⚯ Synergist Lens data
 creativePrompt:
@@ -57,7 +66,7 @@ discussion:
   footer: "Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Your words might become the flame that awakens another."
 
 glossary:
-  subtitle: "A rebel’s lexicon for decoding Christ, the spark, and the hidden teachings."
+  subtitle: "Decode the hidden language of rebellion, remembrance, and revelation."
   terms:
     - term: "Gnosis"
       def: "Direct inner knowing of the divine — not belief or doctrine. The spark remembering the Source."
@@ -85,13 +94,21 @@ references:
     - title: "Gospel of Thomas"
       desc: "Sayings of Jesus revealing the spark within."
   scholarly:
-    - author: "Jonas, H."
+    - author: "Hans Jonas"
       year: "1958"
       work: "The Gnostic Religion"
       pub: "Beacon Press"
-    - author: "Pagels, E."
+    - author: "Elaine Pagels"
       year: "1979"
       work: "The Gnostic Gospels"
+      pub: "Random House"
+    - author: "Bentley Layton"
+      year: "1987"
+      work: "The Gnostic Scriptures"
+      pub: "Doubleday"
+    - author: "Elaine Pagels"
+      year: "2003"
+      work: "Beyond Belief: The Secret Gospel of Thomas"
       pub: "Random House"
 
 breadcrumbs:
@@ -102,42 +119,30 @@ breadcrumbs:
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "I" }
 
-# 🔗 Auto-injected navigation (v3.6)
+# 🔗 Auto-injected navigation (v4.0)
 episodeParts:
   -
-    title: "Part I"
+    title: "Part I — The World Is Not What It Seems"
     desc: "The false cosmos, Sophia’s fall, and the hidden map of return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
   -
-    title: "Part II"
+    title: "Part II — The Revealer and the Spark"
     desc: "The hidden Christ awakens the divine spark within the soul."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
   -
-    title: "Part III"
+    title: "Part III — The Toll Gates & the Return"
     desc: "Through the toll gates of death, the awakened soul remembers its home."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
 
 seriesNav:
   -
-    title: "\"{{ Title"
-  -
     title: "Gnostic Christianity"
-    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
+    desc: "The false cosmos, Christ the Revealer, and the soul’s return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
-lensEnabled: true
-
-crossLinks: []
-
-vaultRefs:
-  - { title: 'Apocryphon of John', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/' }
-  - { title: 'Gospel of Thomas', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/' }
-  - { title: 'The Hypostasis of the Archons', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/' }
-  - { title: 'Pistis Sophia', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/' }
-
-communityThreads:
-  - { id: 'the-afterlife-s1-gnostic-christianity-part1', platform: 'tgk-community' }
-
-relatedProducts: []
+  -
+    title: "Sufi Islam"
+    desc: "The seeker’s path through love, annihilation, and return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
 ---
 
 
@@ -453,11 +458,16 @@ relatedProducts: []
   {% include "partials/episode-part-nav.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
+    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">✝</span>
   </div>
 
   </section>
 </main>
+
+
+
+
+
 
 
 

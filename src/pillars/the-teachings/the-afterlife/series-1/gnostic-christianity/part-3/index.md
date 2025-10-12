@@ -25,7 +25,7 @@ seriesId: "the-afterlife-s1"
 episodeId: "gnostic-christianity"
 partId: "part3"
 quizId: "the-afterlife-s1-gnostic-christianity-part-3"
-quizTitle: "Gnostic Christianity — Part II: The Toll Gates & the Return"
+quizTitle: "Gnostic Christianity — Part III: The Toll Gates & the Return"
 quizIntro: "Can you see through the veil of Part III?"
 seriesMeta:
   number: 1
@@ -109,43 +109,40 @@ breadcrumbs:
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "III" }
 
-# 🔗 Auto-injected navigation (v3.6)
+# 🔗 Auto-injected navigation (v4.0)
 episodeParts:
   -
-    title: "Part I"
+    title: "Part I — The World Is Not What It Seems"
     desc: "The false cosmos, Sophia’s fall, and the hidden map of return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
   -
-    title: "Part II"
+    title: "Part II — The Revealer and the Spark"
     desc: "The hidden Christ awakens the divine spark within the soul."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
   -
-    title: "Part III"
+    title: "Part III — The Toll Gates & the Return"
     desc: "Through the toll gates of death, the awakened soul remembers its home."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
 
 seriesNav:
   -
-    title: "\"{{ Title"
-  -
     title: "Gnostic Christianity"
-    desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return."
+    desc: "The false cosmos, Christ the Revealer, and the soul’s return."
     url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
+  -
+    title: "Sufi Islam"
+    desc: "The seeker’s path through love, annihilation, and return."
+    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+
 lensEnabled: true
-
 crossLinks: []
-
 vaultRefs:
-  - { title: 'Gospel of Mary', path: '/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/' }
-  - { title: 'The Apocalypse of Paul', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/' }
-  - { title: 'Gospel of Truth', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/' }
-  - { title: 'Gospel of Philip', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/' }
-  - { title: 'Gospel of Thomas', path: '/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/' }
-
-communityThreads:
-  - { id: 'the-afterlife-s1-gnostic-christianity-part3', platform: 'tgk-community' }
-
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/"
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
+communityThreads: []
 relatedProducts: []
+
 ---
 
 
@@ -643,11 +640,16 @@ relatedProducts: []
   {% include "partials/episode-part-nav.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">⛪︎</span>
+    <span class="divider-symbol pillar-glyph spin" aria-hidden="true">✝</span>
   </div>
 
   </section>
 </main>
+
+
+
+
+
 
 
 

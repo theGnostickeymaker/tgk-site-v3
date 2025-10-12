@@ -34,15 +34,15 @@ export default {
       desc: "A Gnostic discourse spoken in the voice of Christ from the Pleroma — mocking the rulers who believed they crucified him and revealing the triumph of the true Light beyond illusion.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/",
       glyph: "🜃",
-      tier: "adept",
-      state: "default"
+      tier: "free",
+      state: "coming-soon"
     },
     {
       title: "The Three Steles of Seth",
       desc: "A hymn of ascent — the soul’s praise to the Light, uttered in the name of Seth the Perfect One.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/three-steles-of-seth/",
       glyph: "🕯",
-      tier: "adept",
+      tier: "free",
       state: "coming-soon"
     },
     {
@@ -50,7 +50,7 @@ export default {
       desc: "The primordial voice of the Divine Feminine — the Word before the world, speaking creation and redemption into being.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/trimorphic-protennoia/",
       glyph: "🌒",
-      tier: "adept",
+      tier: "free",
       state: "coming-soon"
     }
   ],

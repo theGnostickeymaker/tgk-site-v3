@@ -30,7 +30,7 @@ export default {
       desc: "A dialogue between the risen Christ and Mary revealing the soul’s ascent through the powers.",
       href: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/",
       glyph: "🌸",
-      tier: "initiate",
+      tier: "free",
       state: "default"
     },
     {
@@ -38,7 +38,7 @@ export default {
       desc: "A shorter version of the same revelation text, preserved here as an alternate copy.",
       href: "/pillars/the-vault/codex-reborn/berlin-codex/apocryphon-of-john-fragment/",
       glyph: "📜",
-      tier: "full",
+      tier: "free",
       state: "coming-soon"
     }
   ]

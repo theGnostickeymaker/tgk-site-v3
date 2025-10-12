@@ -23,12 +23,12 @@ pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\update-seriesn
   -SeriesSlug "the-afterlife" `
   -SeriesNo 1
 
-# Retrofit synergistLens
+# Retrofit data
 
-pwsh ./scripts/ps/synergist-lens-retrofit_v3.6.ps1 -Root "C:\TGK\tgk-site-v3"
+pwsh ./scripts/ps/update-seriesnav-auto.ps1 -Root "C:\TGK\tgk-site-v3"
 
 # Crawl the scrolls for front matter updates
 
-pwsh ./scripts/ps/synergist-lens-retrofit_v3.6.ps1 -Root "C:\TGK\tgk-site-v3"
+pwsh ./scripts/ps/synergist-lens-retrofit_v3.9a.ps1 -Root "C:\TGK\tgk-site-v3"
 
 

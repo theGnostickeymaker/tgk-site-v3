@@ -42,31 +42,31 @@ export default {
       desc: "A revelation of the risen Christ to James — teaching fearlessness before the archons and the mystery of redemption.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/first-apocalypse-of-james/",
       glyph: "🕯",
-      tier: "initiate",
-      state: "default"
+      tier: "free",
+      state: "coming-soon"
     },
     {
       title: "Second Apocalypse of James",
       desc: "James receives hidden instructions for the soul’s ascent beyond the rulers of the world — the secret passwords of deliverance.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/second-apocalypse-of-james/",
       glyph: "📜",
-      tier: "adept",
-      state: "default"
+      tier: "free",
+      state: "coming-soon"
     },
     {
       title: "Apocalypse of Adam",
       desc: "The primeval testament of Adam — a revelation of the coming flood and the knowledge of the true Light.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-adam/",
       glyph: "💧",
-      tier: "adept",
-      state: "default"
+      tier: "free",
+      state: "coming-soon"
     },
     {
       title: "Fragment on the Origin of the World (Codex V Variant)",
       desc: "A fragmentary retelling of the cosmic myth paralleling Codex II — differing in tone and theological nuance.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/origin-fragment/",
       glyph: "🜁",
-      tier: "initiate",
+      tier: "free",
       state: "coming-soon"
     }
   ]

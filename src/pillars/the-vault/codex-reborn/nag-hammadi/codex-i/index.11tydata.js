@@ -40,7 +40,7 @@ export default {
       desc: "A grand cosmological narrative describing emanation, fall, and restoration within the divine Fullness.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/tripartite-tractate/",
       glyph: "🕯",
-      tier: "initiate",
+      tier: "free",
       state: "coming-soon"
     },
     {
@@ -48,7 +48,7 @@ export default {
       desc: "A letter on spiritual rebirth and the awakening of the inner man, attributed to Rheginos.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/treatise-on-the-resurrection/",
       glyph: "🜂",
-      tier: "initiate",
+      tier: "free",
       state: "coming-soon"
     },
     {
@@ -64,7 +64,7 @@ export default {
       desc: "Secret teachings of Jesus to James the Just, exploring the mystery of suffering and salvation.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/apocryphon-of-james/",
       glyph: "🌿",
-      tier: "initiate",
+      tier: "free",
       state: "coming-soon"
     }
   ]

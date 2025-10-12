@@ -32,7 +32,7 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
-# 🔗 Auto-injected navigation (v3.6)
+# 🔗 Auto-injected navigation (v3.9a)
 
 
 seriesNav:
@@ -1429,6 +1429,7 @@ Until the present day.]<br></p>
 
 </section>
 </main>
+
 
 
 

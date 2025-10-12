@@ -24,32 +24,40 @@ export default {
   disclaimerText:
     "<p>Interpretations vary across Gnostic schools and manuscripts within this pillar and series.</p>",
 
-  // 🔹 Episode Parts (for dynamic part navigation)
-  episodeParts: [
+// 🔹 Episode Parts (for dynamic part navigation)
+episodeParts: [
+  {
+    title: "Part I — The World Is Not What It Seems",
+    desc: "The false cosmos, Sophia’s fall, and the hidden map of return.",
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
+  },
+  {
+    title: "Part II — The Revealer and the Spark",
+    desc: "The hidden Christ awakens the divine spark within the soul.",
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
+  },
+  {
+    title: "Part III — The Toll Gates & the Return",
+    desc: "Through the toll gates of death, the awakened soul remembers its home.",
+    url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
+  }
+],
+
+  // 🔹 Series Navigation (cross-episode buttons)
+ seriesNav: [
     {
-      title: "Part I",
-      desc: "The false cosmos, Sophia’s fall, and the hidden map of return.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/"
+      title: "Gnostic Christianity",
+      desc: "The false cosmos, Christ the Revealer, and the soul’s return.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
     },
     {
-      title: "Part II",
-      desc: "The hidden Christ awakens the divine spark within the soul.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/"
-    },
-    {
-      title: "Part III",
-      desc: "Through the toll gates of death, the awakened soul remembers its home.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-3/"
+      title: "Sufi Islam",
+      desc: "The seeker’s path through love, annihilation, and return.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
     }
   ],
 
-  // 🔹 Series Navigation (cross-episode buttons)
-      seriesNav: [
-    { title: "{{ Title }}", desc: "Three-part journey through the false cosmos and the Revealer.", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" },
-    { title: "Gnostic Christianity", desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
-  ],
-
-  // 🧭 Scroll Grid Cards (episode landing page)
+// 🧭 Scroll Grid Cards (episode landing page)
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-1/",
@@ -76,7 +84,7 @@ export default {
       state: "default"
     }
   ],
-
+  
   // 🧭 Computed properties for flexible page rendering
   eleventyComputed: {
     slug: (data) => data.slug || data.page.fileSlug,
@@ -99,5 +107,10 @@ export default {
       [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
   }
 };
+
+
+
+
+
 
 

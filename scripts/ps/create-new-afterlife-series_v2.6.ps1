@@ -224,6 +224,7 @@ export default {
 # =========================================================================
 Ensure-Dir $SERIES_DIR
 $seriesIndexPath = Join-Path $SERIES_DIR "index.11tydata.js"
+
 if (-not (Test-Path $seriesIndexPath)) {
     $seriesIndex = @"
 export default {
@@ -265,17 +266,17 @@ export default {
     }
   ],
 
-  // 🧭 Cross-Episode Navigation (series map)
+  // 🧭 Cross-Episode Navigation (used in episode pages)
   seriesNav: [
     {
-      title: "Gnostic Christianity",
-      desc: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/"
+      title: "Part I — Gnostic Christianity",
+      desc: "The false cosmos and the Revealer’s descent.",
+      url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/gnostic-christianity/"
     },
     {
-      title: "Sufi Islam",
-      desc: "The seeker’s path through love, annihilation, and return.",
-      url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+      title: "Part II — Sufi Islam",
+      desc: "The seeker’s path through divine love and self-annihilation.",
+      url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/sufi-islam/"
     }
   ],
 
@@ -290,9 +291,18 @@ export default {
   }
 };
 "@
-    Write-FileSafely -Path $seriesIndexPath -Content $seriesIndex -ConfirmOverwrite:$ConfirmOverwrite -Force:$Force -WhatIf:$WhatIf | Out-Null
+
+    Write-FileSafely -Path $seriesIndexPath `
+        -Content $seriesIndex `
+        -ConfirmOverwrite:$ConfirmOverwrite `
+        -Force:$Force `
+        -WhatIf:$WhatIf | Out-Null
+
     Done "Series index.11tydata.js created"
-} else { Info "Series index.11tydata.js exists" }
+}
+else {
+    Info "Series index.11tydata.js exists"
+}
 
 # =========================================================================
 # 4) EPISODE — src/pillars/<pillar>/<series>/series-<n>/<episode>/index.11tydata.js
@@ -406,46 +416,51 @@ export default {
 # 5) EPISODE LANDING — src/pillars/.../<episode>/index.njk
 # =========================================================================
 $episodeIndexNjkPath = Join-Path $EPISODE_DIR "index.njk"
+
 if (-not (Test-Path $episodeIndexNjkPath)) {
-    $episodeIndexNjk = @'
+
+    $episodeIndexNjk = @"
 ---
 layout: base.njk
-title: "{{ Title }}"
+title: "$Title"
 description: "Three-part journey."
-tier: "{{ Tier }}"
-glyph: "{{ Glyph }}"
-permalink: "/pillars/{{ PillarSlug }}/{{ SeriesSlug }}/series-{{ SeriesNo }}/{{ Slug }}/index.html"
+tier: "$Tier"
+glyph: "$Glyph"
+permalink: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/index.html"
 ---
 
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/{{ PillarSlug }}/{{ SeriesSlug }}/{{ Slug }}.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug.jpg" %}
   {% include "partials/head-meta.njk" %}
   {% set items = pillarGrid %}
-  {% set headline = "{{ Title }} — Series {{ SeriesNo }}" %}
-  {% set base = "/pillars/{{ PillarSlug }}/{{ SeriesSlug }}/series-{{ SeriesNo }}/{{ Slug }}/" %}
+  {% set headline = "$Title — Series $SeriesNo" %}
+  {% set base = "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
-    <h2 class="section-heading">{{ Title }} — Series {{ SeriesNo }}</h2>
+    <h2 class="section-heading">$Title — Series $SeriesNo</h2>
     <p class="section-subtitle">Explore each part of this journey:</p>
 
     {% include "partials/pillar-grid.njk" %}
 
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">`{{ glyph or pillarGlyph }}`</span>
     </div>
   </section>
 </main>
-'@
-    # Closing '@ must be on its own line, no spaces before it
+"@
+
+    # Write file safely with overwrite options
     Write-FileSafely -Path $episodeIndexNjkPath `
         -Content $episodeIndexNjk `
         -ConfirmOverwrite:$ConfirmOverwrite `
         -Force:$Force `
         -WhatIf:$WhatIf | Out-Null
+
     Done "Episode index.njk created"
+
 } else {
     Info "Episode index.njk exists"
 }
@@ -565,9 +580,43 @@ breadcrumbs:
 <main class="main-content">
   <section class="content-container">
 
+<details class="disclaimer-box">
+  <summary>
+    <span class="disclaimer-heading">⚠️ Previously in Part I/II/etc</span>
+  </summary>
+  <p>TBD</p>
+</details>
+
   <section class="section-block">
     <h2 class="section-heading">Section Heading</h2>
     <p>Write content for $(To-Roman $n) here...</p>
+  </section>
+
+  <blockquote class="blockquote">
+    <em>EXAMPLE in English: “I am God, and there is no other beside me.”</em><br>
+    <cite>
+      Yaldabaoth, <em>Apocryphon of John</em>.
+      <a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" target="_blank" rel="noopener noreferrer">Source</a>
+    </cite>
+  </blockquote>
+
+  <figure class="image-block">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}placeholder.webp" type="image/webp">
+      <img src="{{ imgBase }}/{{ imgPrefix }}placeholder.jpg" alt="Placeholder image" class="image-gnostic" loading="lazy">
+    </picture>
+    <figcaption class="caption-gnostic">Caption for image placeholder.</figcaption>
+  </figure>
+
+  <section class="section-block">
+    <h2 class="section-heading">⚡ TL;DR</h2>
+    <ul class="list-emoji">
+      <li>Key insight 1</li>
+      <li>Key insight 2</li>
+      <li>Key insight 3</li>
+      <li>Key insight 4</li>
+      <li>Key insight 5</li>
+    </ul>
   </section>
 
   {% include "partials/creative-prompt.njk" %}
@@ -611,25 +660,35 @@ breadcrumbs:
         Info "Media folder ready: $mediaDir"
     }
 
-    # Quiz stubs (optional)
+        # Quiz stubs (optional)
     if ($WithQuizzes.IsPresent) {
+        # ---------------------------------------------------------------------
+        # 🧠 QUIZ STUB GENERATION — FIXED FOR NESTED STRUCTURE
+        # ---------------------------------------------------------------------
         Ensure-Dir $QUIZ_SERIES
         Ensure-Dir (Split-Path -Parent $QUIZ_INDEX)
 
+        # Create quiz index if missing
         if (!(Test-Path $QUIZ_INDEX)) {
             $init = @"
-// Auto-generated by TGK Afterlife Generator 2.6
+// Auto-generated by TGK Afterlife Generator 2.7
 export default {};
 "@
             Write-Utf8File -Path $QUIZ_INDEX -Content $init
             Info "Initialized quiz index → $QUIZ_INDEX"
         }
 
+        # Build IDs and paths
         $quizId = "$($seriesId)-$($episodeId)-$($partSlug)"
         $quizFile = Join-Path $QUIZ_SERIES "$quizId.js"
-        $importName = ($quizId -replace '[^\w]','_')
-        $relPath = "./$PillarSlug/$SeriesSlug/series-$SeriesNo/$quizId.js"
+        $importName = ($quizId -replace '[^\w]', '_')
 
+        # ✅ Use explicit nested structure for TGK quizzes
+        $relPath = "./the-teachings/the-afterlife/series-$SeriesNo/$quizId.js"
+
+        # ---------------------------------------------------------------------
+        # ✏️ Create quiz stub
+        # ---------------------------------------------------------------------
         $quizStub = @"
 export default {
   meta: {
@@ -659,29 +718,42 @@ export default {
         Write-FileSafely -Path $quizFile -Content $quizStub -ConfirmOverwrite:$ConfirmOverwrite -Force:$Force -WhatIf:$WhatIf | Out-Null
         Done "Quiz stub created: $quizFile"
 
-        # Wire into global quiz index
+        # ---------------------------------------------------------------------
+        # ⚙️ REGISTER QUIZ IN GLOBAL INDEX (safe append version)
+        # ---------------------------------------------------------------------
         $indexSource = Get-Content $QUIZ_INDEX -Raw -ErrorAction SilentlyContinue
-        if ($indexSource -notmatch [regex]::Escape($relPath)) {
-            if ($indexSource -notmatch 'export\s+default') {
-                $indexSource = "// Auto-generated by TGK Afterlife Generator 2.6`nexport default {};"
-            }
-            $importLine = "import $importName from '$relPath';"
+
+        # Build import line
+        $importLine = "import $importName from '$relPath';"
+
+        # Add import if missing
+        if ($indexSource -notmatch [regex]::Escape($importLine)) {
             if ($indexSource -notmatch '^\s*import') {
                 $indexSource = "$importLine`n`n$indexSource"
             } else {
                 $indexSource = $indexSource -replace '^(import[^\n]*\n)*', ("$&$importLine`n")
             }
-            if ($indexSource -notmatch 'export\s+default\s*\{') {
-                $indexSource = $indexSource.TrimEnd() + "`n`nexport default {`n};`n"
-            }
-            $indexSource = $indexSource -replace 'export\s+default\s*\{', "export default {`n  [$importName.meta.quizId]: $importName,"
-            Write-Utf8File -Path $QUIZ_INDEX -Content $indexSource
-            Done "Registered in quiz index: $quizId"
+            Info "Added import → $relPath"
         } else {
-            Info "Quiz already present in index: $quizId"
+            Info "Import already present → $relPath"
         }
+
+        # Ensure export default block exists
+        if ($indexSource -notmatch 'export\s+default\s*\{') {
+            $indexSource += "`nexport default {`n};`n"
+        }
+
+        # Safe append to export map (no overwrite)
+        if ($indexSource -notmatch [regex]::Escape("[$importName.meta.quizId]: $importName")) {
+            $indexSource = $indexSource -replace 'export\s+default\s*\{', "export default {`n  [$importName.meta.quizId]: $importName,"
+            Info "Registered in quiz index → $quizId"
+        } else {
+            Info "Quiz already registered in index → $quizId"
+        }
+
+        # Write back updated index
+        Write-Utf8File -Path $QUIZ_INDEX -Content $indexSource
     }
-}
 
 # =========================================================================
 # 7) (Optional) Synergy Map Builder — kept as a HOOK, OFF by default

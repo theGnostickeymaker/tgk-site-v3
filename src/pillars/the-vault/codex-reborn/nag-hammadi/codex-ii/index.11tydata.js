@@ -49,7 +49,7 @@ export default {
       desc: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and self-knowledge.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/",
       glyph: "🕯",
-      tier: "initiate",
+      tier: "free",
       state: "default"
     },
     {
@@ -57,7 +57,7 @@ export default {
       desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/",
       glyph: "💀",
-      tier: "initiate",
+      tier: "free",
       state: "default"
     },
     {
@@ -65,7 +65,7 @@ export default {
       desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the light that redeems it.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/",
       glyph: "🜁",
-      tier: "initiate",
+      tier: "free",
       state: "coming-soon"
     },
     {
@@ -73,7 +73,7 @@ export default {
       desc: "An allegory of the fallen and redeemed soul, ending Codex II with the mystery of spiritual marriage.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/exegesis-on-the-soul/",
       glyph: "🕊",
-      tier: "initiate",
+      tier: "free",
       state: "coming-soon"
     }
   ]

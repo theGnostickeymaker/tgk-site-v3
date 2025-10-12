@@ -1,30 +1,66 @@
 ---
 layout: base.njk
-title: "{{ Title }}"
-description: "Three-part journey."
-tier: "{{ Tier }}"
-glyph: "{{ Glyph }}"
-permalink: "/pillars/{{ PillarSlug }}/{{ SeriesSlug }}/series-{{ SeriesNo }}/{{ Slug }}/index.html"
+title: "Sufi Islam"
+description: "The journey of the soul through divine love, annihilation of self, and union with the Beloved."
+tier: free
+
+glyph: "☪"
+
+series_version: 1
+permalink: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/index.html"
+tagline: "Divine love ✦ annihilation of self ✦ union with the Beloved."
+seriesMeta:
+  number: 1
+  label: "Series 1"
+  series_version: 1
+episode: 2
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Teachings", url: "/pillars/the-teachings/" }
+  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
+  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
 ---
 
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/{{ PillarSlug }}/{{ SeriesSlug }}/{{ Slug }}.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam.jpg" %}
   {% include "partials/head-meta.njk" %}
   {% set items = pillarGrid %}
-  {% set headline = "{{ Title }} — Series {{ SeriesNo }}" %}
-  {% set base = "/pillars/{{ PillarSlug }}/{{ SeriesSlug }}/series-{{ SeriesNo }}/{{ Slug }}/" %}
+  {% set headline = "Sufi Islam — Series 1" %}
+  {% set base = "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
-    <h2 class="section-heading">{{ Title }} — Series {{ SeriesNo }}</h2>
-    <p class="section-subtitle">Explore each part of this journey:</p>
 
+    <!-- 🜂 Intro -->
+    <h4 class="index-heading">
+      Sufi Islam — the journey of the soul through divine love, annihilation of self, and union with the Beloved.
+    </h4>
+
+    <!-- ☪️ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">☪ About Sufi Islam</span></summary>
+      <p>
+        <strong>Sufi Islam</strong> reveals the mystical heart of the Islamic tradition — the
+        path of the lover and the Beloved, where remembrance (<em>dhikr</em>) dissolves illusion
+        and unveils the unity of all being.
+      </p>
+      <p>
+        This scroll explores the stations of the soul, the purification of the heart,
+        and the mysteries of <em>fanā’</em> (annihilation in God) and <em>baqā’</em>
+        (abiding in divine presence).
+      </p>
+    </details>
+
+    <!-- ✦ Series Grid -->
     {% include "partials/pillar-grid.njk" %}
 
+    <!-- ✦ Divider -->
     <div class="gnostic-divider">
       <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
     </div>
+
   </section>
 </main>

@@ -1,3 +1,6 @@
+// 📿 The Afterlife — Sufi Islam Part II
+// TGK Quiz Module
+
 export default {
   meta: {
     seriesId: "the-afterlife-s1",
@@ -6,19 +9,65 @@ export default {
     quizId: "the-afterlife-s1-sufi-islam-part-2",
     title: "Sufi Islam — II"
   },
-  intro: "How well do you see through the illusion? Test your memory of the hidden cosmology.",
+  intro:
+    "How deep is your remembrance? Test your insight into the Sufi path of love, longing, and Divine nearness.",
   questions: [
     {
       id: "q1",
-      prompt: "Placeholder question for Sufi Islam — II.",
+      prompt: "What is dhikr in Sufi practice?",
       options: [
-        { key: "A", label: "Option A" },
-        { key: "B", label: "Option B" },
-        { key: "C", label: "Option C" },
-        { key: "D", label: "Option D" }
+        { key: "A", label: "Formal prayer recited once daily" },
+        {
+          key: "B",
+          label: "The repeated remembrance of God’s Names"
+        },
+        {
+          key: "C",
+          label: "Silent meditation only allowed for advanced Sufis"
+        },
+        { key: "D", label: "Pilgrimage to Mecca" }
+      ],
+      answer: "B",
+      explanation:
+        "✅ Dhikr is the rhythmic remembrance of God’s Names — the heartbeat of the path, awakening the soul to the Beloved."
+    },
+    {
+      id: "q2",
+      prompt: "What does the Sufi spiral dance symbolize?",
+      options: [
+        { key: "A", label: "A ritual for rain" },
+        {
+          key: "B",
+          label: "The soul’s journey around the Divine Center"
+        },
+        { key: "C", label: "A tradition for marking weddings" },
+        {
+          key: "D",
+          label: "A literal reenactment of planetary orbits"
+        }
+      ],
+      answer: "B",
+      explanation:
+        "✅ The whirling dance mirrors the soul’s orbit around the Beloved — every circle a return, every turn a surrender."
+    },
+    {
+      id: "q3",
+      prompt: "What paradox do Sufis express about the Beloved?",
+      options: [
+        {
+          key: "A",
+          label: "The Beloved is both near and far, hidden within separation"
+        },
+        { key: "B", label: "The Beloved only appears in dreams" },
+        {
+          key: "C",
+          label: "The Beloved can be reached through wealth and power"
+        },
+        { key: "D", label: "The Beloved rejects all who long for Him" }
       ],
       answer: "A",
-      explanation: "Replace with real explanation."
+      explanation:
+        "✅ In Sufi wisdom, the Beloved is both near and far — the ache of separation reveals that union was never lost."
     }
   ]
 };
