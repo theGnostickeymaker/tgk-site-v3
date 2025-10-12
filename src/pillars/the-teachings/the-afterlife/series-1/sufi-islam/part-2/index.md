@@ -76,18 +76,22 @@ glossary:
 # 📚 References
 references:
   title: "Sources & Study Path"
-  intro: "Primary texts and commentaries that illuminate the Sufi path of longing, remembrance, and union."
+  intro: "Primary Sufi works tracing the path of longing, remembrance, and divine union — from classical poetry to metaphysical treatises."
+
   readings:
-    - title: "The Mathnawī of Jalāl al-Dīn Rūmī"
-      desc: "Poetic teaching on love, longing, and divine remembrance — especially Books I & II."
+    - title: "Masnavi-ye Maʿnavi — Jalāl al-Dīn Rūmī"
+      desc: "Books I–III chart the lover’s spiral ascent — from longing to remembrance to union — through allegory and parable."
     - title: "The Conference of the Birds — Farīd al-Dīn ʿAṭṭār"
-      desc: "A mystical allegory of the soul’s ascent through longing toward annihilation in the Beloved."
-    - title: "The Sufi Path of Love — William C. Chittick"
-      desc: "Scholarly exposition of Rūmī’s metaphysics of love and the dynamics of dhikr and union."
-    - title: "Journey to the Lord of Power — Ibn ʿArabī"
-      desc: "A short treatise mapping the ascent of the seeker through stations of remembrance and unveiling."
-    - title: "Al-Hallāj: I Am the Truth — Louis Massignon (ed.)"
-      desc: "Texts and studies on the martyr-mystic whose ecstatic union language shaped later Sufi devotion."
+      desc: "A timeless allegory of thirty birds journeying through valleys of trial to discover the Beloved within themselves."
+    - title: "Journey to the Lord of Power (Kitāb al-Isfār) — Ibn ʿArabī"
+      desc: "Concise manual of inner ascension, mapping the soul’s flight through stations of remembrance, awe, and unveiling."
+    - title: "Kitāb al-Tawāsīn — al-Ḥusayn ibn Manṣūr al-Hallāj"
+      desc: "Mystical prose and ecstatic theology on divine love, unity, and martyrdom — source of the cry *Ana al-Ḥaqq* (I am the Truth)."
+    - title: "Diwān-i Shams-i Tabrīzī — Jalāl al-Dīn Rūmī"
+      desc: "Rūmī’s ecstatic lyric poems, the purest expression of shawq (longing) and the annihilation of self in the Beloved."
+    - title: "Risāla (ʿTreatise on Sufismʾ) — al-Qushayrī"
+      desc: "A foundational Sufi manual explaining the etiquette and inner states of remembrance, love, and proximity."
+
   scholarly:
     - author: "Annemarie Schimmel"
       year: "1975"
@@ -95,16 +99,20 @@ references:
       pub: "University of North Carolina Press"
     - author: "William C. Chittick"
       year: "1983"
-      work: "The Sufi Path of Love: The Spiritual Teachings of Rūmī"
+      work: "The Sufi Path of Love — The Spiritual Teachings of Rūmī"
       pub: "State University of New York Press"
     - author: "Henry Corbin"
       year: "1969"
-      work: "Creative Imagination in the Sufism of Ibn ʿArabī"
+      work: "Creative Imagination in the Sūfism of Ibn ʿArabī"
       pub: "Princeton University Press"
     - author: "Reynold A. Nicholson (trans.)"
       year: "1926 – 1940"
       work: "The Mathnawī of Jalāl al-Dīn Rūmī"
       pub: "E. J. W. Gibb Memorial Series"
+    - author: "Michael A. Sells"
+      year: "1996"
+      work: "Early Islamic Mysticism: Sufi, Qurʾānic, and Theological Writings"
+      pub: "Paulist Press"
 
 # 🧭 Breadcrumbs
 breadcrumbs:
@@ -120,12 +128,15 @@ episodeParts:
   - title: "Part I — The Veil Between Worlds"
     desc: "Barzakh, purification, and the mirror realm where the soul meets its own light and shadow."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
-  - title: "Part II — The Ascent & The Beloved"
+
+  - title: "Part II — The Ascent & the Beloved"
     desc: "Longing, remembrance, and the spiral dance of union with the Divine."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-  - title: "Part III — Fanāʾ and the Eternal Dance"
+
+  - title: "Part III — Fanā’ and the Eternal Dance"
     desc: "Annihilation, abiding, and the soul’s return into the endless unfolding of Love."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
+
 
 seriesNav:
   -
@@ -136,14 +147,10 @@ seriesNav:
     title: "Sufi Islam"
     desc: "The seeker’s path through love, annihilation, and return."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-
-crossLinks: []
-vaultRefs:
-  - "/pillars/the-vault/codex-reborn/islamic/the-masnavi-of-rumi/"
-  - "/pillars/the-vault/codex-reborn/islamic/futuhat-al-makkiyya/"
-communityThreads: []
-relatedProducts: []
-
+  -
+    title: "Kabbalah"
+    desc: "The path of Kabbalah within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -155,7 +162,7 @@ relatedProducts: []
     <summary>
       <span class="disclaimer-heading">⚠️ Previously in Part I</span>
     </summary>
-    <strong>Previously:</strong> Having crossed the veil of Barzakh, the soul now begins its ascent, led by longing, remembrance, and love. This scroll follows the mystic&lsquo;s return to the Beloved.
+    Having crossed the veil of Barzakh, the soul now begins its ascent, led by longing, remembrance, and love. This scroll follows the mystic&lsquo;s return to the Beloved.
   </p>
   </details>
 
@@ -393,3 +400,4 @@ relatedProducts: []
 
   </section>
 </main>
+

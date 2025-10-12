@@ -72,29 +72,41 @@ glossary:
 
 references:
   title: "Sources & Study Path"
-  intro: "Texts exploring Christ as the Revealer and the spark of Gnosis."
+  intro: "Core Gnostic texts and modern studies illuminating Christ as Revealer, the inner spark, and the soul’s remembrance of its divine origin."
+
   readings:
-    - title: "Gospel of Truth"
-      desc: "Christ reveals that ignorance and forgetfulness are the true sin."
-    - title: "Gospel of Philip"
-      desc: "Teaches union and illumination through knowledge of the inner Christ."
+    - title: "Gospel of Truth (NHC I,3)"
+      desc: "Christ reveals ignorance as the true sin and remembrance as salvation — a meditation on the soul’s return to the Father."
+    - title: "Gospel of Philip (NHC II,3)"
+      desc: "Mystical reflections on union, light, and the bridal chamber — symbols of reunion between soul and Spirit."
+    - title: "Gospel of Mary (Berlin Codex BG 8502,1)"
+      desc: "Mary’s dialogue with the disciples, revealing the soul’s ascent and the primacy of inner vision over external law."
+    - title: "Second Treatise of the Great Seth (NHC VII,2)"
+      desc: "Christ speaks beyond the crucifixion illusion, laughing at the Archons and affirming the sovereignty of the awakened."
+    - title: "Pistis Sophia"
+      desc: "The cosmic dialogue of Sophia’s repentance and redemption through the Christic light — the drama of return completed in humanity."
+
   scholarly:
     - author: "Elaine Pagels"
       year: "1979"
       work: "The Gnostic Gospels"
       pub: "Random House"
-    - author: "Marvin Meyer"
+    - author: "Marvin Meyer (ed.)"
       year: "2007"
-      work: "The Nag Hammadi Scriptures"
+      work: "The Nag Hammadi Scriptures: The Revised and Updated Translation"
       pub: "HarperOne"
-    - author: "Hans Jonas"
-      year: "1958"
-      work: "The Gnostic Religion"
-      pub: "Beacon Press"
     - author: "Bentley Layton"
       year: "1987"
-      work: "The Gnostic Scriptures"
+      work: "The Gnostic Scriptures: A New Translation with Introductions and Notes"
       pub: "Doubleday"
+    - author: "Hans Jonas"
+      year: "1958"
+      work: "The Gnostic Religion: The Message of the Alien God and the Beginnings of Christianity"
+      pub: "Beacon Press"
+    - author: "Kurt Rudolph"
+      year: "1983"
+      work: "Gnosis: The Nature and History of Gnosticism"
+      pub: "Harper & Row"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -103,6 +115,16 @@ breadcrumbs:
   - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "II" }
+
+
+
+lensEnabled: true
+crossLinks: []
+vaultRefs:
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+communityThreads: []
+relatedProducts: []
 
 # 🔗 Auto-injected navigation (v4.0)
 episodeParts:
@@ -128,15 +150,10 @@ seriesNav:
     title: "Sufi Islam"
     desc: "The seeker’s path through love, annihilation, and return."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-
-lensEnabled: true
-crossLinks: []
-vaultRefs:
-  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
-  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
-communityThreads: []
-relatedProducts: []
-
+  -
+    title: "Kabbalah"
+    desc: "The path of Kabbalah within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
 ---
 
 
@@ -474,6 +491,7 @@ relatedProducts: []
 
   </section>
 </main>
+
 
 
 

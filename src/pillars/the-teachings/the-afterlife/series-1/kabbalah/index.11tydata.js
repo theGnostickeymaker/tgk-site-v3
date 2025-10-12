@@ -2,8 +2,8 @@ export default {
   // 📖 Series + Pillar Metadata
   seriesLabel: "The Afterlife Series",
   pillarLabel: "The Teachings",
-  glyphRow: ["☪", "☥", "☪"],
-  seriesHome: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/",
+  glyphRow: ["✡", "☥", "✡"],
+  seriesHome: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/",
   pillarHome: "/pillars/the-teachings/",
   tagline: "Three-part journey through the false cosmos and the Revealer.",
   layout: "base.njk",
@@ -11,7 +11,7 @@ export default {
   // 🔹 Series Hierarchy
   pillar: "the-teachings",
   series: "the-afterlife",
-  episode: 2,
+  episode: 3,
   seriesMeta: {
     number: 1,
     label: "Series 1",
@@ -23,24 +23,25 @@ export default {
   disclaimerTitle: "⚠️ Diversity of Sources",
   disclaimerText:
     "<p>Interpretations vary across Gnostic schools and manuscripts within this pillar and series.</p>",
-// 🔹 Episode Parts (for dynamic part navigation)
-episodeParts: [
-  {
-    title: "Part I — The Veil Between Worlds",
-    desc: "Barzakh, purification, and the mirror realm where the soul meets its own light and shadow.",
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
-  },
-  {
-    title: "Part II — The Ascent & the Beloved",
-    desc: "Longing, remembrance, and the spiral dance of union with the Divine.",
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-  },
-  {
-    title: "Part III — Fanā’ and the Eternal Dance",
-    desc: "Annihilation, abiding, and the soul’s return into the endless unfolding of Love.",
-    url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
-  }
-],
+
+  // 🔹 Episode Parts (for dynamic part navigation)
+  episodeParts: [
+    {
+      title: "Part I",
+      desc: "The Kabbalistic Worldview.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/"
+    },
+    {
+      title: "Part II",
+      desc: "Ten Thresholds of Light, The Soul&rsquo;s Ascent Through the Tree of Life.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/"
+    },
+    {
+      title: "Part III",
+      desc: "The Soul&rsquo;s Journey After Death.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/"
+    }
+  ],
 
   // 🧭 Cross-Episode Navigation (series map)
   seriesNav: [
@@ -61,30 +62,29 @@ episodeParts: [
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
     }
   ],
-
 // 🧭 Scroll Grid Cards (episode landing page)
   pillarGrid: [
     {
-      href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/",
-      title: "Part I — The Veil Between Worlds",
-      glyph: "☪",
-      tagline: "The Hidden Architecture of Illusion & the Divine Spark in Exile.",
+      href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/",
+      title: "Part I — The World Is Not What It Seems",
+      glyph: "✡",
+      tagline: "The hidden God ✦ Sophia’s fall ✦ the Demiurge ✦ the spark within.",
       tier: "free",
       state: "default"
     },
     {
-      href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/",
-      title: "Part II — The Ascent & The Beloved",
-      glyph: "☪",
-      tagline: "Longing, Remembrance, and the Spiral Dance of Union.",
+      href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/",
+      title: "Part II — The Revealer and the Spark",
+      glyph: "✡",
+      tagline: "From the false god to the forgotten light ✦ the Christ of Gnosis.",
       tier: "free",
       state: "default"
     },
     {
-      href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/",
-      title: "Part III — fanā&lsquo; & The Eternal Dance",
-      glyph: "☪",
-      tagline: "Annihilation, Abiding, and the Final Unveiling.",
+      href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/",
+      title: "Part III — The Soul’s Return",
+      glyph: "✡",
+      tagline: "The toll gates of the Archons ✦ the deathless spark ✦ the memory that frees the soul.",
       tier: "free",
       state: "default"
     }
@@ -94,9 +94,9 @@ episodeParts: [
   eleventyComputed: {
     slug: (data) => data.slug || data.page.fileSlug,
     permalink: (data) => data.permalink || data.page.url,
-    imgBase: (data) => data.imgBase || "/media/the-teachings/the-afterlife/series-1/sufi-islam",
-    imgPrefix: (data) => data.imgPrefix || "sufi-islam-",
-    socialImage: (data) => data.socialImage || "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam.jpg",
+    imgBase: (data) => data.imgBase || "/media/the-teachings/the-afterlife/series-1/kabbalah",
+    imgPrefix: (data) => data.imgPrefix || "kabbalah-",
+    socialImage: (data) => data.socialImage || "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah.jpg",
     breadcrumbsBase: () => [
       { title: "The Gnostic Key", url: "/" },
       { title: "The Teachings", url: "/pillars/the-teachings/" },
@@ -107,5 +107,3 @@ episodeParts: [
       [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
   }
 };
-
-

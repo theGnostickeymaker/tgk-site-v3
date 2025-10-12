@@ -43,8 +43,8 @@ episodeParts: [
   }
 ],
 
-  // 🔹 Series Navigation (cross-episode buttons)
- seriesNav: [
+  // 🧭 Cross-Episode Navigation (series map)
+  seriesNav: [
     {
       title: "Gnostic Christianity",
       desc: "The false cosmos, Christ the Revealer, and the soul’s return.",
@@ -54,6 +54,12 @@ episodeParts: [
       title: "Sufi Islam",
       desc: "The seeker’s path through love, annihilation, and return.",
       url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+    }
+  ,
+    {
+      title: "Kabbalah",
+      desc: "The path of Kabbalah within the Afterlife Series.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
     }
   ],
 
@@ -107,6 +113,7 @@ episodeParts: [
       [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
   }
 };
+
 
 
 

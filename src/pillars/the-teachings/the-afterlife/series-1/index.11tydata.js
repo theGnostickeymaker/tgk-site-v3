@@ -35,6 +35,15 @@ export default {
       tier: "free",
       state: "active"
     }
+  ,
+    {
+      href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/",
+      title: "Kabbalah",
+      glyph: "✡",
+      tagline: "Three-part journey through the false cosmos and the Revealer.",
+      tier: "free",
+      state: "active"
+    }
   ],
 
   // 🧭 Cross-Episode Navigation (series map)
@@ -48,6 +57,12 @@ export default {
       title: "Sufi Islam",
       desc: "The seeker’s path through love, annihilation, and return.",
       url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+    }
+  ,
+    {
+      title: "Kabbalah",
+      desc: "The path of Kabbalah within the Afterlife Series.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
     }
   ],
 

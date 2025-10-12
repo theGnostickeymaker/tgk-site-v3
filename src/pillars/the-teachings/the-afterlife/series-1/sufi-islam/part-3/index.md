@@ -74,20 +74,25 @@ glossary:
     - term: "Hadith Qudsi"
       def: "‘Sacred Sayings’ — statements in which God speaks directly, revealing intimate mystical truths beyond the Qur’anic text."
 
+# 📚 References
 references:
   title: "Sources & Study Path"
-  intro: "Advanced readings on fanāʾ (ego-annihilation), baqāʾ (eternal abiding), and the perfected human in Sufi metaphysics."
+  intro: "Advanced sources on fanāʾ (ego-annihilation), baqāʾ (eternal abiding), and the Perfected Human — where separation ends and Divine creativity begins."
+
   readings:
-    - title: "The Bezels of Wisdom (Fuṣūṣ al-Ḥikam) — Ibn ʿArabī"
-      desc: "The masterwork on Divine Names, the Perfected Human (al-insān al-kāmil), and the mystery of union and subsistence."
-    - title: "The Masnavi-ye Maʿnavi — Jalāl al-Dīn Rūmī"
-      desc: "Verses on fanāʾ and baqāʾ, the moth and flame, and the ever-renewing dance of Love."
-    - title: "The Tawāsīn — al-Ḥusayn ibn Manṣūr al-Hallāj"
-      desc: "Mystical prose-poems revealing the inner meaning of 'I am the Truth' and the soul’s dissolution in God."
-    - title: "The Sufi Path of Knowledge — William C. Chittick"
-      desc: "A clear exposition of Ibn ʿArabī’s teachings on annihilation, abiding, and Divine Self-disclosure."
-    - title: "The Unlimited Mercy — Ibn ʿArabī (Selections from al-Futūḥāt al-Makkiyya)"
-      desc: "On the eternal renewal of creation and God’s infinite Self-manifestation in each moment of Being."
+    - title: "Fuṣūṣ al-Ḥikam (The Bezels of Wisdom) — Muḥyī al-Dīn Ibn ʿArabī"
+      desc: "Ibn ʿArabī’s summation of prophetic wisdom — revealing the mystery of annihilation, subsistence, and the Perfected Human (al-insān al-kāmil)."
+    - title: "Al-Futūḥāt al-Makkiyya (The Meccan Revelations) — Ibn ʿArabī"
+      desc: "Expansive vision of the soul’s dissolution and abiding in God — including the ‘Unlimited Mercy’ discourses on ceaseless divine renewal."
+    - title: "Tawāsīn — al-Ḥusayn ibn Manṣūr al-Hallāj"
+      desc: "Mystical prose-poems proclaiming the secret of unity: ‘I am the Truth.’ The flame that consumed the lover became his testimony."
+    - title: "Masnavī-ye Maʿnavī — Jalāl al-Dīn Rūmī"
+      desc: "Books V–VI unveil the moth-and-flame imagery of fanāʾ and baqāʾ — love’s endless dying into divine life."
+    - title: "Kitāb al-Isfār (Journey to the Lord of Power) — Ibn ʿArabī"
+      desc: "A concise manual mapping the soul’s ascent beyond self into abiding illumination."
+    - title: "Hadith Qudsi — ‘I was a hidden treasure…’"
+      desc: "Core mystical saying expressing creation as God’s desire to be known — the root of Sufi cosmology of revelation and return."
+
   scholarly:
     - author: "Annemarie Schimmel"
       year: "1975"
@@ -95,11 +100,11 @@ references:
       pub: "University of North Carolina Press"
     - author: "William C. Chittick"
       year: "1989"
-      work: "The Sufi Path of Knowledge: Ibn ʿArabī’s Metaphysics of Imagination"
+      work: "The Sufi Path of Knowledge — Ibn ʿArabī’s Metaphysics of Imagination"
       pub: "State University of New York Press"
     - author: "Henry Corbin"
       year: "1969"
-      work: "Alone with the Alone: Creative Imagination in the Sufism of Ibn ʿArabī"
+      work: "Alone with the Alone — Creative Imagination in the Sūfism of Ibn ʿArabī"
       pub: "Princeton University Press"
     - author: "Reynold A. Nicholson"
       year: "1926 – 1940"
@@ -107,9 +112,12 @@ references:
       pub: "E. J. W. Gibb Memorial Series"
     - author: "Louis Massignon"
       year: "1922 / 1994"
-      work: "The Passion of al-Hallāj: Mystic and Martyr of Islam"
+      work: "The Passion of al-Hallāj — Mystic and Martyr of Islam"
       pub: "Princeton University Press"
-
+    - author: "Michel Chodkiewicz"
+      year: "1993"
+      work: "Seal of the Saints — Prophethood and Sainthood in the Doctrine of Ibn ʿArabī"
+      pub: "Islamic Text Society"
 
 # 🧭 Breadcrumbs
 breadcrumbs:
@@ -125,12 +133,15 @@ episodeParts:
   - title: "Part I — The Veil Between Worlds"
     desc: "Barzakh, purification, and the mirror realm where the soul meets its own light and shadow."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
-  - title: "Part II — The Ascent & The Beloved"
+
+  - title: "Part II — The Ascent & the Beloved"
     desc: "Longing, remembrance, and the spiral dance of union with the Divine."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-  - title: "Part III — Fanāʾ and the Eternal Dance"
+
+  - title: "Part III — Fanā’ and the Eternal Dance"
     desc: "Annihilation, abiding, and the soul’s return into the endless unfolding of Love."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
+
 
 seriesNav:
   -
@@ -141,15 +152,10 @@ seriesNav:
     title: "Sufi Islam"
     desc: "The seeker’s path through love, annihilation, and return."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-
-crossLinks: []
-vaultRefs:
-  - "/pillars/the-vault/codex-reborn/islamic/fusus-al-hikam/"
-  - "/pillars/the-vault/codex-reborn/islamic/the-masnavi-of-rumi/"
-  - "/pillars/the-vault/codex-reborn/islamic/the-tawasin-of-al-hallaj/"
-communityThreads: []
-relatedProducts: []
-
+  -
+    title: "Kabbalah"
+    desc: "The path of Kabbalah within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -161,7 +167,7 @@ relatedProducts: []
     <summary>
       <span class="disclaimer-heading">⚠️ Previously in Part II</span>
     </summary>
-    <strong>Previously:</strong> The soul has begun its spiral ascent through realms of light and surrender. Now, it dissolves into fanā&lsquo;, only to rise again in the eternal dance of baqā&lsquo;.
+    The soul has begun its spiral ascent through realms of light and surrender. Now, it dissolves into fanā&lsquo;, only to rise again in the eternal dance of baqā&lsquo;.
   </p>
   </details>
 
@@ -374,3 +380,4 @@ relatedProducts: []
 
   </section>
 </main>
+

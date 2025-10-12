@@ -79,27 +79,43 @@ glossary:
 
 references:
   title: "Sources & Study Path"
-  intro: "For those wishing to go deeper into the mysteries of death and return."
+  intro: "Primary Gnostic texts and modern studies detailing the soul’s ascent through the toll gates, the Archons, and the return to the Pleroma."
+
   readings:
-    - title: "Apocalypse of Paul"
-      desc: "A map of the soul’s ascent through the toll gates and the guardians of illusion."
+    - title: "Apocalypse of Paul (NHC V,2)"
+      desc: "A revelatory journey of the apostle through the heavens, mapping the Archons, toll gates, and passwords of the soul’s ascent."
     - title: "Pistis Sophia"
-      desc: "Mary receives the seals and passwords for the souls ascending through the seven heavens."
-    - title: "Gospel of Philip"
-      desc: "The mystical union and the cycle of forgetfulness and awakening."
+      desc: "Dialogues between the risen Christ and Mary on the seals, names, and passwords that free souls from the planetary rulers."
+    - title: "Gospel of Philip (NHC II,3)"
+      desc: "Explores forgetfulness, rebirth, and the mystery of reunion through knowledge — a theology of liberation from the cycle."
+    - title: "Gospel of Mary (Berlin Codex BG 8502,1)"
+      desc: "Reveals the soul’s passage beyond the material spheres and the triumph of memory over fear and authority."
+    - title: "Gospel of Truth (NHC I,3)"
+      desc: "Teaches that remembrance of origin dissolves death itself — the soul returns by recognising the Source as itself."
+    - title: "Second Treatise of the Great Seth (NHC VII,2)"
+      desc: "The Revealer speaks from beyond crucifixion, mocking the Archons and affirming the soul’s immunity through gnosis."
+
   scholarly:
-    - author: "Jonas, H."
+    - author: "Hans Jonas"
       year: "1958"
-      work: "The Gnostic Religion"
+      work: "The Gnostic Religion: The Message of the Alien God and the Beginnings of Christianity"
       pub: "Beacon Press"
-    - author: "Pagels, E."
+    - author: "Elaine Pagels"
       year: "1979"
       work: "The Gnostic Gospels"
       pub: "Random House"
-    - author: "Meyer, M."
+    - author: "Marvin Meyer (ed.)"
       year: "2007"
-      work: "The Nag Hammadi Scriptures"
+      work: "The Nag Hammadi Scriptures: The Revised and Updated Translation"
       pub: "HarperOne"
+    - author: "Bentley Layton"
+      year: "1987"
+      work: "The Gnostic Scriptures: A New Translation with Introductions and Notes"
+      pub: "Doubleday"
+    - author: "Kurt Rudolph"
+      year: "1983"
+      work: "Gnosis: The Nature and History of Gnosticism"
+      pub: "Harper & Row"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -108,6 +124,17 @@ breadcrumbs:
   - { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "III" }
+
+
+
+lensEnabled: true
+crossLinks: []
+vaultRefs:
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/"
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
+communityThreads: []
+relatedProducts: []
 
 # 🔗 Auto-injected navigation (v4.0)
 episodeParts:
@@ -133,16 +160,10 @@ seriesNav:
     title: "Sufi Islam"
     desc: "The seeker’s path through love, annihilation, and return."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-
-lensEnabled: true
-crossLinks: []
-vaultRefs:
-  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/"
-  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
-  - "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
-communityThreads: []
-relatedProducts: []
-
+  -
+    title: "Kabbalah"
+    desc: "The path of Kabbalah within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
 ---
 
 
@@ -645,6 +666,7 @@ relatedProducts: []
 
   </section>
 </main>
+
 
 
 

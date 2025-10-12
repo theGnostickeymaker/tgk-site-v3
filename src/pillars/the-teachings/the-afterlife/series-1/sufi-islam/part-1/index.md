@@ -75,18 +75,21 @@ glossary:
     - term: "Tazkiyah"
       def: "The purification of the soul, cleansing ego and illusion to prepare for divine proximity."
 
+# 📚 References
 references:
   title: "Sources & Study Path"
-  intro: "Texts and commentaries illuminating Barzakh, purification, and ascent in Sufi cosmology."
+  intro: "Foundational Sufi works on Barzakh, purification, annihilation, and the imaginal ascent — from the early masters to modern scholars."
   readings:
     - title: "Iḥyāʾ ʿUlūm al-Dīn — Abū Ḥāmid al-Ghazālī"
-      desc: "Chapters on death, the soul, and purification through remembrance."
-    - title: "The Futūḥāt al-Makkiyya — Ibn ʿArabī"
-      desc: "Detailed mapping of Barzakh, the imaginal realm, and the stations of ascent."
+      desc: "Classical manual of the inner sciences of the soul; includes the Book of Death and the Afterlife on purification and remembrance."
+    - title: "The Futūḥāt al-Makkiyya (The Meccan Revelations) — Muḥyī al-Dīn Ibn ʿArabī"
+      desc: "Vast cosmology detailing Barzakh, the imaginal realm, and the soul’s ascent through stations of proximity."
+    - title: "Rūḥ al-Quds (The Spirit of Sanctity) — Ibn ʿArabī"
+      desc: "Reflections on the perfected human as divine mirror, articulating fanāʾ and baqāʾ as states of realisation."
     - title: "Masnavi-ye Maʿnavi — Jalāl al-Dīn Rūmī"
-      desc: "Verses on the soul’s metamorphosis through love and fire."
-    - title: "Rūḥ al-Quds — Ibn ʿArabī"
-      desc: "On spiritual transformation and the perfecting of the human mirror."
+      desc: "Poetic teaching on transformation through love and surrender; metaphors of fire, polishing, and divine reflection."
+    - title: "Kashf al-Maḥjūb — ʿAlī Hujwīrī"
+      desc: "Earliest comprehensive Persian treatise on Sufism, describing stages of unveiling and the Barzakh of the heart."
   scholarly:
     - author: "Annemarie Schimmel"
       year: "1975"
@@ -96,7 +99,14 @@ references:
       year: "1989"
       work: "The Sufi Path of Knowledge — Ibn ʿArabī’s Metaphysics of Imagination"
       pub: "State University of New York Press"
-
+    - author: "Henry Corbin"
+      year: "1969"
+      work: "Creative Imagination in the Sūfism of Ibn ʿArabī"
+      pub: "Princeton University Press"
+    - author: "Sachiko Murata"
+      year: "1992"
+      work: "The Tao of Islam — A Sourcebook on Gender Relationships in Islamic Thought"
+      pub: "State University of New York Press"
 
 # 🧭 Breadcrumbs
 breadcrumbs:
@@ -112,12 +122,15 @@ episodeParts:
   - title: "Part I — The Veil Between Worlds"
     desc: "Barzakh, purification, and the mirror realm where the soul meets its own light and shadow."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-1/"
-  - title: "Part II — The Ascent & The Beloved"
+
+  - title: "Part II — The Ascent & the Beloved"
     desc: "Longing, remembrance, and the spiral dance of union with the Divine."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-2/"
-  - title: "Part III — Fanāʾ and the Eternal Dance"
+
+  - title: "Part III — Fanā’ and the Eternal Dance"
     desc: "Annihilation, abiding, and the soul’s return into the endless unfolding of Love."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/"
+
 
 seriesNav:
   -
@@ -128,14 +141,10 @@ seriesNav:
     title: "Sufi Islam"
     desc: "The seeker’s path through love, annihilation, and return."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-
-crossLinks: []
-vaultRefs:
-  - "/pillars/the-vault/codex-reborn/sufi-texts/mystical-dimensions-of-islam/"
-  - "/pillars/the-vault/codex-reborn/islamic/esoteric/barzakh-and-the-imaginal-realm/"
-communityThreads: []
-relatedProducts: []
-
+  -
+    title: "Kabbalah"
+    desc: "The path of Kabbalah within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -442,3 +451,4 @@ relatedProducts: []
 
   </section>
 </main>
+

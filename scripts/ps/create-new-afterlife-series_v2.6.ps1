@@ -225,7 +225,28 @@ export default {
 Ensure-Dir $SERIES_DIR
 $seriesIndexPath = Join-Path $SERIES_DIR "index.11tydata.js"
 
+# define new episode card and nav entries
+$newCard = @"
+    {
+      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/",
+      title: "$Title",
+      glyph: "$Glyph",
+      tagline: "Three-part journey through the false cosmos and the Revealer.",
+      tier: "$Tier",
+      state: "active"
+    }
+"@
+
+$newNav = @"
+    {
+      title: "Part $Episode — $Title",
+      desc: "The path of $Title within the Afterlife Series.",
+      url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/"
+    }
+"@
+
 if (-not (Test-Path $seriesIndexPath)) {
+    # create fresh file if missing
     $seriesIndex = @"
 export default {
   // 🌌 Series Overview
@@ -248,36 +269,12 @@ export default {
 
   // 🜂 Episode Grid (visible cards)
   pillarGrid: [
-    {
-      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/gnostic-christianity/",
-      title: "Gnostic Christianity",
-      glyph: "✝",
-      tagline: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.",
-      tier: "free",
-      state: "active"
-    },
-    {
-      href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/sufi-islam/",
-      title: "Sufi Islam",
-      glyph: "☪",
-      tagline: "The seeker’s path through love, annihilation, and return.",
-      tier: "free",
-      state: "active"
-    }
+$newCard
   ],
 
   // 🧭 Cross-Episode Navigation (used in episode pages)
   seriesNav: [
-    {
-      title: "Part I — Gnostic Christianity",
-      desc: "The false cosmos and the Revealer’s descent.",
-      url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/gnostic-christianity/"
-    },
-    {
-      title: "Part II — Sufi Islam",
-      desc: "The seeker’s path through divine love and self-annihilation.",
-      url: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/sufi-islam/"
-    }
+$newNav
   ],
 
   // 🧭 Breadcrumbs (computed)
@@ -291,18 +288,31 @@ export default {
   }
 };
 "@
-
-    Write-FileSafely -Path $seriesIndexPath `
-        -Content $seriesIndex `
-        -ConfirmOverwrite:$ConfirmOverwrite `
-        -Force:$Force `
-        -WhatIf:$WhatIf | Out-Null
-
-    Done "Series index.11tydata.js created"
+    Write-FileSafely -Path $seriesIndexPath -Content $seriesIndex `
+      -ConfirmOverwrite:$ConfirmOverwrite -Force:$Force -WhatIf:$WhatIf | Out-Null
+    Done "Series index.11tydata.js created (new)"
 }
 else {
-    Info "Series index.11tydata.js exists"
+    # update existing file
+    $content = Get-Content $seriesIndexPath -Raw
+
+    if ($content -notmatch [regex]::Escape("/$Slug/")) {
+        # inject new episode into pillarGrid
+        $content = $content -replace 'pillarGrid:\s*\[([^\]]*)\]',
+            ("pillarGrid: [`$1,`n$newCard`n  ]")
+
+        # inject new episode into seriesNav
+        $content = $content -replace 'seriesNav:\s*\[([^\]]*)\]',
+            ("seriesNav: [`$1,`n$newNav`n  ]")
+
+        Write-Utf8File -Path $seriesIndexPath -Content $content
+        Done "Series index.11tydata.js updated → added $Title"
+    }
+    else {
+        Info "Series already contains entry for $Slug → no update needed."
+    }
 }
+
 
 # =========================================================================
 # 4) EPISODE — src/pillars/<pillar>/<series>/series-<n>/<episode>/index.11tydata.js
@@ -754,7 +764,7 @@ export default {
         # Write back updated index
         Write-Utf8File -Path $QUIZ_INDEX -Content $indexSource
     }
-
+}
 # =========================================================================
 # 7) (Optional) Synergy Map Builder — kept as a HOOK, OFF by default
 # =========================================================================

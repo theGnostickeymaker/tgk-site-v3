@@ -87,16 +87,24 @@ glossary:
 
 references:
   title: "Sources & Study Path"
-  intro: "Primary texts for understanding the false cosmos and Sophia’s redemption."
+  intro: "Primary Gnostic texts and key modern studies revealing Sophia’s fall, the Demiurge’s false cosmos, and the divine spark’s return."
+
   readings:
-    - title: "Apocryphon of John"
-      desc: "Sophia’s creation of the Demiurge and the structure of the false world."
+    - title: "Apocryphon of John (The Secret Book of John)"
+      desc: "Sophia’s solitary creation of Yaldabaoth, the birth of the Archons, and the structure of the false world."
+    - title: "Hypostasis of the Archons"
+      desc: "A parallel cosmology explaining the rulers’ deception and the divine spark hidden in humanity."
     - title: "Gospel of Thomas"
-      desc: "Sayings of Jesus revealing the spark within."
+      desc: "Sayings of the Revealer — Jesus as awakener of the inner light, emphasising remembrance over belief."
+    - title: "Gospel of Truth"
+      desc: "Meditation on ignorance and remembrance; the soul’s homecoming to the Father through Gnosis."
+    - title: "Pistis Sophia"
+      desc: "Sophia’s descent, repentance, and redemption through the Christic Light — a cosmic drama of return."
+
   scholarly:
     - author: "Hans Jonas"
       year: "1958"
-      work: "The Gnostic Religion"
+      work: "The Gnostic Religion: The Message of the Alien God and the Beginnings of Christianity"
       pub: "Beacon Press"
     - author: "Elaine Pagels"
       year: "1979"
@@ -104,12 +112,16 @@ references:
       pub: "Random House"
     - author: "Bentley Layton"
       year: "1987"
-      work: "The Gnostic Scriptures"
+      work: "The Gnostic Scriptures: A New Translation with Introductions and Notes"
       pub: "Doubleday"
     - author: "Elaine Pagels"
       year: "2003"
       work: "Beyond Belief: The Secret Gospel of Thomas"
       pub: "Random House"
+    - author: "Kurt Rudolph"
+      year: "1983"
+      work: "Gnosis: The Nature and History of Gnosticism"
+      pub: "Harper & Row"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -143,6 +155,10 @@ seriesNav:
     title: "Sufi Islam"
     desc: "The seeker’s path through love, annihilation, and return."
     url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
+  -
+    title: "Kabbalah"
+    desc: "The path of Kabbalah within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
 ---
 
 
@@ -463,6 +479,7 @@ seriesNav:
 
   </section>
 </main>
+
 
 
 
