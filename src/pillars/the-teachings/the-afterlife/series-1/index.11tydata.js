@@ -18,42 +18,48 @@ export default {
   },
 
   // 🜂 Episode Grid (visible cards)
-  pillarGrid: [
-    {
-      href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/",
-      title: "Gnostic Christianity",
-      glyph: "✝",
-      tagline: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.",
-      tier: "free",
-      state: "active"
-    },
-    {
-      href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/",
-      title: "Sufi Islam",
-      glyph: "☪",
-      tagline: "The seeker’s path through love, annihilation, and return.",
-      tier: "free",
-      state: "active"
-    }
-  ,
-    {
-      href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/",
-      title: "Kabbalah",
-      glyph: "✡",
-      tagline: "Three-part journey through the false cosmos and the Revealer.",
-      tier: "free",
-      state: "active"
-    }
-  ,
-    {
-      href: "/pillars/the-teachings/the-afterlife/series-1/buddhism/",
-      title: "Buddhism",
-      glyph: "☸",
-      tagline: "Three-part journey through the false cosmos and the Revealer.",
-      tier: "initiate",
-      state: "active"
-    }
-  ],
+pillarGrid: [
+  {
+    href: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/",
+    title: "Gnostic Christianity",
+    glyph: "✝",
+    tagline: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.",
+    tier: "free",
+    state: "active"
+  },
+  {
+    href: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/",
+    title: "Sufi Islam",
+    glyph: "☪",
+    tagline: "The seeker’s path through love, annihilation, and divine return.",
+    tier: "free",
+    state: "active"
+  },
+  {
+    href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/",
+    title: "Kabbalah",
+    glyph: "✡",
+    tagline: "The Tree of Life ✦ the soul’s descent ✦ the light of restoration.",
+    tier: "free",
+    state: "active"
+  },
+  {
+    href: "/pillars/the-teachings/the-afterlife/series-1/buddhism/",
+    title: "Buddhism",
+    glyph: "☸",
+    tagline: "The Wheel ✦ The Heart ✦ The Clear Light of Compassion.",
+    tier: "initiate",
+    state: "active"
+  },
+  {
+    href: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/",
+    title: "Ancient Egypt",
+    glyph: "𓂀",
+    tagline: "The Weighing of the Heart ✦ The Duat ✦ The Book of Coming Forth by Day.",
+    tier: "initiate",
+    state: "active"
+  }
+],
 
   // 🧭 Cross-Episode Navigation (series map)
   seriesNav: [
@@ -78,6 +84,12 @@ export default {
       title: "Buddhism",
       desc: "The path of Buddhism within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
+    }
+  ,
+    {
+      title: "Ancient Egypt",
+      desc: "The path of Ancient Egypt within the Afterlife Series.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
     }
   ],
 
