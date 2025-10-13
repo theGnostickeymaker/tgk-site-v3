@@ -129,7 +129,7 @@ breadcrumbs:
   - { title: "Sufi Islam", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" }
   - { title: "III" }
 
-# 🔗 Auto-injected navigation (v4.0)
+# 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
     title: "Part I — The Veil Between Worlds"
@@ -165,6 +165,10 @@ seriesNav:
     title: "Ancient Egypt"
     desc: "The path of Ancient Egypt within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
+  -
+    title: "Mesoamerica"
+    desc: "The path of Mesoamerica within the Afterlife Series."
+    url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -389,6 +393,7 @@ seriesNav:
 
   </section>
 </main>
+
 
 
 

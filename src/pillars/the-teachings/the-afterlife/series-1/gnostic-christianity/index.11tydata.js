@@ -73,6 +73,12 @@ episodeParts: [
       desc: "The path of Ancient Egypt within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
     }
+  ,
+    {
+      title: "Mesoamerica",
+      desc: "The path of Mesoamerica within the Afterlife Series.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+    }
   ],
 
 // 🧭 Scroll Grid Cards (episode landing page)
@@ -125,6 +131,7 @@ episodeParts: [
       [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
   }
 };
+
 
 
 

@@ -1,0 +1,42 @@
+[INFO] Pillar index.11tydata.js exists
+[INFO] Group index.11tydata.js exists
+[DONE] Series index.11tydata.js updated → added Mesoamerica
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\index.11tydata.js
+[DONE] Episode index.11tydata.js created
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\index.njk
+[DONE] Episode index.njk created
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\part-1\index.md
+[DONE] Part I: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\part-1\index.md
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-1\mesoamerica-placeholder-1.jpg
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-1\mesoamerica-placeholder-1.webp
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-1\mesoamerica-placeholder-2.jpg
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-1\mesoamerica-placeholder-2.webp
+[INFO] Media folder ready: C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-1
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\_data\quiz\the-teachings\the-afterlife\series-1\the-afterlife-s1-mesoamerica-part-1.js
+[DONE] Quiz stub created: C:\TGK\tgk-site-v3\src\_data\quiz\the-teachings\the-afterlife\series-1\the-afterlife-s1-mesoamerica-part-1.js
+[INFO] Added import → ./the-teachings/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-1.js
+[INFO] Registered in quiz index → the-afterlife-s1-mesoamerica-part-1
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\part-2\index.md
+[DONE] Part II: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\part-2\index.md
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-2\mesoamerica-placeholder-1.jpg
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-2\mesoamerica-placeholder-1.webp
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-2\mesoamerica-placeholder-2.jpg
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-2\mesoamerica-placeholder-2.webp
+[INFO] Media folder ready: C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-2
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\_data\quiz\the-teachings\the-afterlife\series-1\the-afterlife-s1-mesoamerica-part-2.js
+[DONE] Quiz stub created: C:\TGK\tgk-site-v3\src\_data\quiz\the-teachings\the-afterlife\series-1\the-afterlife-s1-mesoamerica-part-2.js
+[INFO] Added import → ./the-teachings/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-2.js
+[INFO] Registered in quiz index → the-afterlife-s1-mesoamerica-part-2
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\part-3\index.md
+[DONE] Part III: C:\TGK\tgk-site-v3\src\pillars\the-teachings\the-afterlife\series-1\mesoamerica\part-3\index.md
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-3\mesoamerica-placeholder-1.jpg
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-3\mesoamerica-placeholder-1.webp
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-3\mesoamerica-placeholder-2.jpg
+[INFO] Media placeholder → C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-3\mesoamerica-placeholder-2.webp
+[INFO] Media folder ready: C:\TGK\tgk-site-v3\src\media\the-teachings\the-afterlife\series-1\mesoamerica\part-3
+[INFO] Wrote: C:\TGK\tgk-site-v3\src\_data\quiz\the-teachings\the-afterlife\series-1\the-afterlife-s1-mesoamerica-part-3.js
+[DONE] Quiz stub created: C:\TGK\tgk-site-v3\src\_data\quiz\the-teachings\the-afterlife\series-1\the-afterlife-s1-mesoamerica-part-3.js
+[INFO] Added import → ./the-teachings/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-3.js
+[INFO] Registered in quiz index → the-afterlife-s1-mesoamerica-part-3
+[INFO] Synergy build skipped (use -BuildSynergy to enable).
+[DONE] All tasks complete.

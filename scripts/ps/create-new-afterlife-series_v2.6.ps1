@@ -509,7 +509,6 @@ imgPrefix: "$imgPrefix"
 bodyClass: "$(Yaml-Escape $BodyClass)"
 glyph: "$(Yaml-Escape $Glyph)"
 glyphRow: ["$(Yaml-Escape $Glyph)", "☥", "$(Yaml-Escape $Glyph)"]
-glyph: "$(Yaml-Escape $Glyph)"
 
 pillar: "$PillarSlug"
 series: "$SeriesSlug"
@@ -586,6 +585,8 @@ breadcrumbs:
   - { title: "$(To-Roman $n)" }
 
 ---
+
+{{ imgBase }}/{{ imgPrefix }}
 
 {% include "partials/scroll-tabs.njk" %}
 

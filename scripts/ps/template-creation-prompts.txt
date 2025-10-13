@@ -5,11 +5,11 @@ pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\create-new-aft
   -PillarSlug "the-teachings" `
   -SeriesSlug "the-afterlife" `
   -SeriesNo 1 `
-  -Slug "buddhism" `
-  -Title "Buddhism" `
-  -Episode 4 `
+  -Slug "mesoamerica" `
+  -Title "Mesoamerica" `
+  -Episode 6 `
   -Tier "initiate" `
-  -Glyph "☸" `
+  -Glyph "🌽" `
   -BodyClass "gold" `
   -WithQuizzes `
   -WithImages `

@@ -59,7 +59,16 @@ pillarGrid: [
     tier: "initiate",
     state: "active"
   }
-],
+,
+    {
+      href: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/",
+      title: "Mesoamerica",
+      glyph: "🌽",
+      tagline: "Three-part journey through the false cosmos and the Revealer.",
+      tier: "initiate",
+      state: "active"
+    }
+  ],
 
   // 🧭 Cross-Episode Navigation (series map)
   seriesNav: [
@@ -90,6 +99,12 @@ pillarGrid: [
       title: "Ancient Egypt",
       desc: "The path of Ancient Egypt within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
+    }
+  ,
+    {
+      title: "Mesoamerica",
+      desc: "The path of Mesoamerica within the Afterlife Series.",
+      url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
     }
   ],
 
