@@ -1,9 +1,14 @@
-// eleventy.config.js  (ESM)
-import "dotenv/config";
-import fs from "node:fs";
+// ==========================================================
+// 🧠 The Gnostic Key — Eleventy Config (Full v3.2 CJS)
+// ==========================================================
 
-/** @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig */
-export default function(eleventyConfig) {
+require("dotenv").config();
+const fs = require("fs");
+const { DateTime } = require("luxon");
+const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
+
+module.exports = function (eleventyConfig) {
+
   /* =========================
      0) Core
   ========================= */
@@ -16,19 +21,20 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ "src/media": "media" });
 
-  // Keep tgk-assets mapping consistent (pages use /tgk-assets/…)
   if (fs.existsSync("src/media/tgk-assets")) {
     eleventyConfig.addPassthroughCopy({ "src/media/tgk-assets": "tgk-assets" });
   }
 
-  // Favicons / robots (optional)
-  if (fs.existsSync("src/favicon.ico")) eleventyConfig.addPassthroughCopy("src/favicon.ico");
-  if (fs.existsSync("src/robots.txt"))  eleventyConfig.addPassthroughCopy("src/robots.txt");
+  eleventyConfig.addPassthroughCopy({ "src/tgk-assets/favicon": "tgk-assets/favicon" });
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+
+  if (fs.existsSync("src/robots.txt")) {
+    eleventyConfig.addPassthroughCopy("src/robots.txt");
+  }
 
   /* =========================
      2) Collections & Filters
   ========================= */
-  // Content collection (markdown scrolls)
   eleventyConfig.addCollection("content", coll =>
     coll.getFilteredByGlob("src/pillars/**/*.md")
   );
@@ -70,47 +76,62 @@ export default function(eleventyConfig) {
     if (!v) return "";
     const d = v instanceof Date ? v : new Date(v);
     if (isNaN(d)) return "";
-    // Simple ISO yyyy-mm-dd; Eleventy’s Luxon filter can replace this later if you prefer
-    return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, 10);
   });
 
   eleventyConfig.addFilter("bySeriesVersion", (items = [], version = 1) =>
     items.filter(i => {
-      const v = (i.data.seriesMeta && i.data.seriesMeta.series_version) || i.data.series_version || 1;
+      const v = (i.data.seriesMeta && i.data.seriesMeta.series_version) ||
+                i.data.series_version || 1;
       return parseInt(v) === parseInt(version);
     })
   );
 
-    // Roman numeral filter
-    eleventyConfig.addFilter("roman", function (num) {
-      if (!num || isNaN(num)) return "";
-      const map = [
-        [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
-        [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
-        [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]
-      ];
-      let result = "";
-      for (const [value, numeral] of map) {
-        while (num >= value) {
-          result += numeral;
-          num -= value;
-        }
+  eleventyConfig.addFilter("roman", function (num) {
+    if (!num || isNaN(num)) return "";
+    const map = [
+      [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
+      [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
+      [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]
+    ];
+    let result = "";
+    for (const [value, numeral] of map) {
+      while (num >= value) {
+        result += numeral;
+        num -= value;
       }
-      return result;
-    });
+    }
+    return result;
+  });
 
-    //--------------------------------------------------------------
-    // 🧩 Add fromJson filter (for retrofit YAML literal blocks)
-    //--------------------------------------------------------------
-    eleventyConfig.addFilter("fromJson", function(value) {
-      try {
-        return JSON.parse(value);
-      } catch (err) {
-        console.warn("⚠️ fromJson filter could not parse:", value);
-        return [];
+  eleventyConfig.addFilter("fromJson", function(value) {
+    try {
+      return JSON.parse(value);
+    } catch (err) {
+      console.warn("⚠️ fromJson filter could not parse:", value);
+      return [];
+    }
+  });
+
+  // 🕯 TGK custom ordinal date filter
+  eleventyConfig.addFilter("tgkDate", (value) => {
+    if (!value) return "";
+    const dt = DateTime.fromISO(value);
+    const d = dt.day;
+    const suffix = (n) => {
+      const v = n % 100;
+      if (v >= 11 && v <= 13) return "th";
+      switch (n % 10) {
+        case 1: return "st";
+        case 2: return "nd";
+        case 3: return "rd";
+        default: return "th";
       }
-    });
-
+    };
+    return `${d}${suffix(d)} ${dt.toFormat("MMM yyyy")}`;
+  });
 
   /* =========================
      3) Shortcodes
@@ -143,23 +164,40 @@ export default function(eleventyConfig) {
   eleventyConfig.addWatchTarget("src/pillars");
 
   /* =========================
-     5) Layout alias (optional)
-     Use `layout: base` if you want; otherwise keep using `layout: base.njk`.
+     5) Layout alias
   ========================= */
   eleventyConfig.addLayoutAlias("base", "base.njk");
 
   /* =========================
-     6) Return
+     6) Plugins
+  ========================= */
+  eleventyConfig.addPlugin(pluginSitemap, {
+    sitemap: {
+      hostname: "https://thegnostickey.com",
+      changefreq: "weekly",
+      priority(page) {
+        const tier = page.data.tier || "free";
+        if (tier === "free") return 1.0;
+        if (tier === "initiate") return 0.8;
+        if (tier === "full") return 0.6;
+        return 0.7;
+      },
+      lastmodDateExtractor: (page) => page.data.published || page.date,
+    },
+  });
+
+  /* =========================
+     7) Return
   ========================= */
   return {
     dir: {
-      input:  "src",
+      input: "src",
       includes: "_includes",
-      data:   "_data",
+      data: "_data",
       output: "_site"
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "md", "11ty.js"]
   };
-}
+};

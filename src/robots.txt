@@ -1,0 +1,18 @@
+# =========================================================
+# 🤖 The Gnostic Key — Robots Directives
+# Purpose: control indexing and crawling behaviour for TGK.
+# =========================================================
+
+User-agent: *
+Allow: /
+
+# Disallow draft or gated content
+Disallow: /netlify/
+Disallow: /admin/
+Disallow: /functions/
+Disallow: /pillars/*/coming-soon/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap link (auto-generated)
+Sitemap: https://thegnostickey.com/sitemap.xml
