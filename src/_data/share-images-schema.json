@@ -1,0 +1,113 @@
+{
+  "version": "1.0",
+  "description": "TGK Share Image Specification — multi-platform consistency map for all pillars and series.",
+  "author": "The Keymaker",
+  "lastUpdated": "2025-10-14",
+  "defaults": {
+    "aspectRatios": {
+      "og_default": { "size": [1200, 630], "ratio": "1.91:1", "purpose": "Open Graph (default for all pillars)" },
+      "x_twitter": { "size": [1200, 675], "ratio": "16:9", "purpose": "Twitter/X preview" },
+      "square": { "size": [1080, 1080], "ratio": "1:1", "purpose": "Instagram feed / Threads" },
+      "portrait": { "size": [1080, 1350], "ratio": "4:5", "purpose": "Instagram portrait / Pinterest" },
+      "story": { "size": [1080, 1920], "ratio": "9:16", "purpose": "Stories / Reels / Shorts" },
+      "hero": { "size": [1600, 900], "ratio": "16:9", "purpose": "Site hero / internal display" },
+      "archive": { "size": [2400, 1260], "ratio": "1.9:1", "purpose": "High-resolution master for print" }
+    },
+    "namingConvention": "episodeId@variant.jpg",
+    "basePath": "/tgk-assets/images/share/{pillar}/{series}/",
+    "fontPrimary": "Libre Baskerville",
+    "fontAccent": "Cinzel",
+    "textColor": "#d2a53e",
+    "footerText": "The Teachings | thegnostickey.com",
+    "gradient": {
+      "from": "#2a1f0c",
+      "mid": "#3c2b0d",
+      "to": "#6e4c1a"
+    },
+    "glow": "rgba(251, 215, 120, 0.25)",
+    "glyphOpacity": 0.1
+  },
+  "pillarThemes": {
+    "the-teachings": {
+      "accent": "gold",
+      "glyphColor": "#ffcc66",
+      "gradient": ["#2a1f0c", "#3c2b0d", "#6e4c1a"]
+    },
+    "the-obsidian-key": {
+      "accent": "obsidian",
+      "glyphColor": "#b32c2c",
+      "gradient": ["#0a0a0a", "#1b0f0f", "#3a0f0f"]
+    },
+    "the-gnostic-eye": {
+      "accent": "indigo",
+      "glyphColor": "#9ba8ff",
+      "gradient": ["#0a0c1f", "#1a1e3b", "#2e3f6e"]
+    },
+    "the-vault": {
+      "accent": "vault",
+      "glyphColor": "#e1dccc",
+      "gradient": ["#22211f", "#3a3937", "#5c5955"]
+    }
+  },
+  "series": {
+    "the-afterlife-s1": {
+      "pillar": "the-teachings",
+      "accent": "gold",
+      "episodes": [
+        {
+          "episodeId": "gnostic-christianity",
+          "title": "Gnostic Christianity",
+          "subtitle": "Unveiling Hidden Wisdom",
+          "glyph": "✝",
+          "palette": "gold"
+        },
+        {
+          "episodeId": "sufi-islam",
+          "title": "Sufi Islam",
+          "subtitle": "Longing, Remembrance & Union",
+          "glyph": "☪",
+          "palette": "gold"
+        },
+        {
+          "episodeId": "kabbalah",
+          "title": "Kabbalah",
+          "subtitle": "Journey Through the Sefirot",
+          "glyph": "✡",
+          "palette": "gold"
+        },
+        {
+          "episodeId": "buddhism",
+          "title": "Buddhism",
+          "subtitle": "The Path of Compassion",
+          "glyph": "☸",
+          "palette": "gold"
+        },
+        {
+          "episodeId": "ancient-egypt",
+          "title": "Ancient Egypt",
+          "subtitle": "The Soul’s Journey thru the Du’at & Resurrection as Akh",
+          "glyph": "𓂀",
+          "palette": "gold"
+        },
+        {
+          "episodeId": "mesoamerica",
+          "title": "Mesoamerica",
+          "subtitle": "The Soul Beyond the Sun",
+          "glyph": "🜂",
+          "palette": "gold"
+        }
+      ]
+    }
+  },
+  "fileStructureExample": {
+    "folder": "/tgk-assets/images/share/the-teachings/the-afterlife/",
+    "files": [
+      "gnostic-christianity.jpg",
+      "gnostic-christianity@x.jpg",
+      "gnostic-christianity@square.jpg",
+      "gnostic-christianity@portrait.jpg",
+      "gnostic-christianity@story.jpg",
+      "gnostic-christianity@2x.jpg"
+    ]
+  }
+}

@@ -94,11 +94,21 @@
 
           {# --- Tier badge logic --- #}
           {% set badgeTxt = c.badge %}
-          {% if not badgeTxt and c.tier == "full" %}{% set badgeTxt = "Full Access" %}{% endif %}
-          {% if not badgeTxt and c.tier == "initiate" %}{% set badgeTxt = "Initiate" %}{% endif %}
-          {% if not badgeTxt and c.tier == "free" %}{% set badgeTxt = "Free" %}{% endif %}
+          {% if not badgeTxt %}
+            {% if c.tier == "full" %}
+              {% set badgeTxt = "Full Access" %}
+            {% elif c.tier == "initiate" %}
+              {% set badgeTxt = "Initiate" %}
+            {% elif c.tier == "adept" %}
+              {% set badgeTxt = "Adept" %}
+            {% elif c.tier == "initiate-trial" %}
+              {% set badgeTxt = "Free Intro" %}
+            {% elif c.tier == "free" %}
+              {% set badgeTxt = "Free" %}
+            {% endif %}
+          {% endif %}
           {% if badgeTxt %}
-            <div class="card-badge">{{ badgeTxt }}</div>
+            <div class="card-badge tier-{{ c.tier | default('none') }}">{{ badgeTxt }}</div>
           {% endif %}
         </a>
       </article>

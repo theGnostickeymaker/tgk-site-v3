@@ -52,6 +52,7 @@ $Slug = Sanitize-Slug $Slug
 if ($SeriesNo -lt 1) { Write-Error "SeriesNo must be a positive integer."; exit 1 }
 if ($Episode -lt 1) { Write-Error "Episode must be a positive integer."; exit 1 }
 if (-not (Test-Path -LiteralPath $Root)) { Write-Error "Root path '$Root' does not exist."; exit 1 }
+if (-not $PillarLabel) { $PillarLabel = "The Teachings" }
 
 # ----------------------------- Style -----------------------------------
 if (-not $PSStyle) { $PSStyle = [PSCustomObject]@{ Foreground = @{}; Reset = "" } }
@@ -113,6 +114,50 @@ function Yaml-Escape([string]$s) {
 function To-Roman([int]$n) { switch ($n) { 1{'I'} 2{'II'} 3{'III'} 4{'IV'} 5{'V'} 6{'VI'} default { $n.ToString() } } }
 function Part-Slug([int]$n) { "part-$n" }
 function Part-Id([int]$n) { "part$n" }
+
+# ------------------------------------------
+# 🧠 Smart excerpt extraction (HTML-aware, refined)
+function Get-ExcerptFromFile([string]$FilePath) {
+    if (-not (Test-Path $FilePath)) {
+        return "TBC — short summary for previews, feeds, and SEO snippets."
+    }
+
+    try {
+        $raw = Get-Content -Raw -Path $FilePath
+
+        # Remove YAML front matter
+        if ($raw -match '(?s)^---(.*?)---') {
+            $raw = $raw -replace '(?s)^---(.*?)---', ''
+        }
+
+        # Strip Nunjucks includes, HTML comments, blockquotes, and headings
+        $clean = $raw `
+            -replace '(?s){%.*?%}', '' `
+            -replace '(?s)<!--.*?-->', '' `
+            -replace '(?s)<blockquote.*?</blockquote>', '' `
+            -replace '(?s)<h[1-6].*?</h[1-6]>', ''
+
+        # Find the first paragraph <p>…</p>
+        $para = [regex]::Match($clean, '(?s)<p>(.*?)</p>')
+        if (-not $para.Success) { 
+            return "TBC — short summary for previews, feeds, and SEO snippets."
+        }
+
+        # Extract and clean
+        $text = $para.Groups[1].Value
+        $text = $text -replace '<[^>]+>', ''
+        $text = [System.Net.WebUtility]::HtmlDecode($text)
+        $text = $text.Trim()
+
+        if ($text.Length -gt 200) { $text = $text.Substring(0,200) + '…' }
+
+        Write-Verbose "Excerpt generated: $text"
+        return $text
+    }
+    catch {
+        return "TBC — short summary for previews, feeds, and SEO snippets."
+    }
+}
 
 # ------------------------- Paths & IDs ----------------------------------
 $logFile = "afterlife-generator-$(Get-Date -Format 'yyyyMMdd-HHmmss').log"
@@ -434,6 +479,7 @@ if (-not (Test-Path $episodeIndexNjkPath)) {
 layout: base.njk
 title: "$Title"
 description: "Three-part journey."
+tagline: "TBC"
 tier: "$Tier"
 glyph: "$Glyph"
 permalink: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/index.html"
@@ -488,23 +534,50 @@ foreach ($n in $parts) {
     $imgBase = "/media/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/$partSlug"
     $imgPrefix = "$Slug-"
 
+  # Try to get the body text if present (optional later)
+  $Body = ""
+  if (Test-Path (Join-Path $partDir "body.md")) {
+      $Body = Get-Content (Join-Path $partDir "body.md") -Raw
+  }
+
+  $partMdPath = Join-Path $partDir "index.md"
+  $excerpt = Get-ExcerptFromFile $partMdPath
+
     $frontMatter = @"
 ---
 layout: base.njk
 title: "$(Yaml-Escape $Title)"
-description: ""
+description: "$(Yaml-Escape $Description)"
+excerpt: "$(Yaml-Escape $excerpt)"
 tier: $(Yaml-Escape $Tier)
 scrollId: "$PillarSlug-$SeriesSlug-series-$SeriesNo-$Slug-$partSlug"
 
 episode: $Episode
 partNumeral: $(To-Roman $n)
-partTitle: ""
-tagline: ""
+partTitle: "$(Yaml-Escape $PartTitle)"
+tagline: "$(Yaml-Escape $Tagline)"
 slug: "$partSlug"
 
 permalink: "$permalink"
+
+permalink: "$permalink"
+
+# 🖼 Social Share Images
 socialImage: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-$partSlug.jpg"
-imgBase: "$imgBase"
+socialImages:
+  x: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-$partSlug@x.jpg"
+  square: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-$partSlug@square.jpg"
+  portrait: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-$partSlug@portrait.jpg"
+  story: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-$partSlug@story.jpg"
+  hero: "/tgk-assets/images/share/$PillarSlug/$SeriesSlug/$Slug-$partSlug@2x.jpg"
+
+imgBase: "/media/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/$partSlug"
+imgPrefix: "$imgPrefix"
+bodyClass: "$(Yaml-Escape $BodyClass)"
+glyph: "$(Yaml-Escape $Glyph)"
+glyphRow: ["$(Yaml-Escape $Glyph)", "☥", "$(Yaml-Escape $Glyph)"]
+
+imgBase: "/media/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/$partSlug"
 imgPrefix: "$imgPrefix"
 bodyClass: "$(Yaml-Escape $BodyClass)"
 glyph: "$(Yaml-Escape $Glyph)"
@@ -524,7 +597,14 @@ seriesMeta:
   label: "Series $SeriesNo"
   series_version: $SeriesVersion
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "$(Get-Date -Format 'yyyy-MM-dd')"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "$(Yaml-Escape $Title)", "Series I", "The Teachings"]
+
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
@@ -533,22 +613,22 @@ lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
+# ⚯ Synergist Lens hooks
 crossLinks: []
 vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
-# 🎨 Creative Prompt (optional; section hidden if empty)
+# 🎨 Creative Prompt
 creativePrompt:
   text: ""
   sharePrompt: ""
 
 # 🗣 Discussion Prompt
 discussion:
-  promptTitle: "What spark are you reigniting?"
-  intro: "You’ve walked through illusion and shadow — now speak from your own flame."
-  question: "What does liberation mean to a soul that remembers?"
+  promptTitle: "$(Yaml-Escape $DiscussionTitle)"
+  intro: "$(Yaml-Escape $DiscussionIntro)"
+  question: "$(Yaml-Escape $DiscussionQuestion)"
   points:
     - "What illusions still whisper your name?"
     - "How does memory become freedom?"
@@ -583,7 +663,6 @@ breadcrumbs:
   - { title: "Series $SeriesNo", url: "/pillars/the-teachings/the-afterlife/series-$SeriesNo/" }
   - { title: "$(Yaml-Escape $Title)", url: "/pillars/the-teachings/the-afterlife/series-$SeriesNo/$Slug/" }
   - { title: "$(To-Roman $n)" }
-
 ---
 
 {{ imgBase }}/{{ imgPrefix }}
@@ -671,6 +750,27 @@ breadcrumbs:
             }
         }
         Info "Media folder ready: $mediaDir"
+    }
+
+    # =========================================================================
+    # 🖼 SHARE IMAGE FOLDER STRUCTURE  (series / episode hierarchy)
+    # =========================================================================
+    $SHARE_ROOT = Join-Path $SRC "tgk-assets/images/share/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug"
+    Ensure-Dir $SHARE_ROOT
+
+    # Optional: create subfolders for each part if you want per-part share cards
+    foreach ($n in 1..3) {
+        $partSlug = Part-Slug $n
+        $sharePartDir = Join-Path $SHARE_ROOT $partSlug
+        Ensure-Dir $sharePartDir
+        Info "Share-image folder ready: $sharePartDir"
+    }
+
+    # Placeholder base image for OG if you like
+    $ogPlaceholder = Join-Path $SHARE_ROOT "$Slug-part-1.jpg"
+    if (-not (Test-Path $ogPlaceholder)) {
+        if ($WhatIf) { Info "[WhatIf] Would create share placeholder: $ogPlaceholder" }
+        else { [System.IO.File]::WriteAllBytes($ogPlaceholder, [byte[]]@()); Info "Created placeholder → $ogPlaceholder" }
     }
 
         # Quiz stubs (optional)

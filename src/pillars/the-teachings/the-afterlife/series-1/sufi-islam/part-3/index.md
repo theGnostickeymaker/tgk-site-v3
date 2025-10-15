@@ -1,7 +1,12 @@
 ---
+
+
+
+
 layout: base.njk
 title: "Sufi Islam"
 description: "Fanāʾ and baqāʾ — the soul’s final dissolution and eternal abiding in the Beloved’s light."
+excerpt: "After longing, remembrance, and unveiling, there is one final gate: the surrender of the “I.”"
 tier: free
 scrollId: "the-teachings-the-afterlife-series-1-sufi-islam-part-3"
 
@@ -12,7 +17,7 @@ tagline: "The false self melts away, the soul abides, and Love continues its inf
 slug: "part-3"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/part-3/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam-part-3.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/sufi-islam/part-3/sufi-islam-part-3.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/sufi-islam/part-3"
 imgPrefix: "sufi-islam-"
 bodyClass: "gold"
@@ -33,7 +38,15 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Sufi Islam", "Series 1", "The Teachings"]
+
+
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
@@ -169,6 +182,16 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-3/sufi-islam-part-3@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-3/sufi-islam-part-3@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-3/sufi-islam-part-3@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-3/sufi-islam-part-3@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-3/sufi-islam-part-3@2x.jpg"
+
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -393,6 +416,8 @@ seriesNav:
 
   </section>
 </main>
+
+
 
 
 

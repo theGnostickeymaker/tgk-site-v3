@@ -72,7 +72,22 @@
     {% if tagline %}
       <p class="page-tagline">{{ tagline }}</p>
     {% endif %}
-  </div>
+
+    {# --- Publication Metadata --- #}
+    {% if author or published %}
+      <div class="scroll-meta header-inline">
+        {% if author %}
+          <span class="scroll-author">{{ author }}</span>
+        {% endif %}
+        {% if author and published %}
+          <span class="meta-sep">•</span>
+        {% endif %}
+        {% if published %}
+          <span class="scroll-date">{{ published | tgkDate }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+
 </header>
 
 {# ===========================================================

@@ -1,7 +1,12 @@
 ---
+
+
+
+
 layout: base.njk
 title: "Ancient Egypt"
 description: "Through the twelve gates of night — spells, tombs, and soul-technologies of the Duat."
+excerpt: "You entered the Du”st, faced the weighing of your heart, and discovered that the soul is not one thing, but many. Now we descend deeper, through tomb texts, resurrection spells, and ciphered maps of r…"
 tier: initiate
 scrollId: "the-teachings-the-afterlife-series-1-ancient-egypt-part-2"
 
@@ -12,7 +17,7 @@ tagline: "Twelve Hours ✦ Twelve Gates ✦ One Soul"
 slug: "part-2"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/part-2/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt-part-2.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/ancient-egypt/part-2/ancient-egypt-part-2.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/ancient-egypt/part-2"
 imgPrefix: "egyptian-afterlife-"
 bodyClass: "gold"
@@ -33,7 +38,14 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Ancient Egypt", "Series I", "The Teachings"]
+
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
@@ -176,6 +188,16 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-2/ancient-egypt-part-2@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-2/ancient-egypt-part-2@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-2/ancient-egypt-part-2@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-2/ancient-egypt-part-2@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-2/ancient-egypt-part-2@2x.jpg"
+
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -737,4 +759,6 @@ seriesNav:
 
   </section>
 </main>
+
+
 

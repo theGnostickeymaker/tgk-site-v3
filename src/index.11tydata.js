@@ -21,7 +21,7 @@ export default {
       title: "The Teachings",       
       glyph: "✶", 
       desc: "Accessible scrolls, glossaries, and guides for seekers of all paths.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "default"
     },
     {  
@@ -29,7 +29,7 @@ export default {
       title: "The Obsidian Key",    
       glyph: "🜂", 
       desc: "Deep-dive investigations into power, law, and empire.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "default"
     },
     { 
@@ -37,7 +37,7 @@ export default {
       title: "The Gnostic Eye",     
       glyph: "☿", 
       desc: "Symbolic and archetypal analysis of modern and mythic events.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "default"
     },
     { 
@@ -45,7 +45,7 @@ export default {
       title: "The Vault",           
       glyph: "🗄️", 
       desc: "Preserved forbidden and sacred texts — the erased memory of humanity.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "default"
     },
     { 
@@ -53,7 +53,7 @@ export default {
       title: "The Resonant Key",    
       glyph: "🎧", 
       desc: "Audiobooks, sound rituals, and immersive journeys.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "coming-soon"
     },
     { 
@@ -61,7 +61,7 @@ export default {
       title: "Children’s Corner",   
       glyph: "🧸", 
       desc: "Gentle stories and parables for young seekers.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "coming-soon"
     },
     { 
@@ -69,7 +69,7 @@ export default {
       title: "TGK Community",       
       glyph: "💬", 
       desc: "Forums, study circles, and live sessions.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "coming-soon"
     },
     { 
@@ -77,7 +77,7 @@ export default {
       title: "TGK Shop",            
       glyph: "🛍️", 
       desc: "Artefacts, decks, prints, and collector editions.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "coming-soon"
     },
     { 
@@ -85,7 +85,7 @@ export default {
       title: "The Keymaker’s Dream", 
       glyph: "🗝️", 
       desc: "A personal Gnostic memoir — the dream that made the lock.", 
-      tier: "free", 
+      tier: "initiate-trial", 
       state: "coming-soon"
     }
   ],

@@ -1,7 +1,12 @@
 ---
+
+
+
+
 layout: base.njk
 title: "Kabbalah"
 description: "Journey through the middle gates of the Kabbalistic Tree — from Malkhut’s exile to Keter’s crown — the climb of remembrance and return."
+excerpt: "You walked the soul’s journey from Gehinnom to Gan Eden, through sparks and tikkun, catching glimpses of the divine hidden in the descent."
 tier: free
 scrollId: "the-teachings-the-afterlife-series-1-kabbalah-part-2"
 
@@ -13,7 +18,7 @@ tagline: "Through the ten luminous gates, the soul learns to remember itself."
 slug: "part-2"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah-part-2.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/kabbalah/part-2/kabbalah-part-2.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/kabbalah/part-2"
 imgPrefix: "kabbalah-"
 bodyClass: "gold"
@@ -34,6 +39,12 @@ seriesMeta:
   number: 1
   label: "Series 1"
   series_version: 1
+
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Kabbalah", "Series 1", "The Teachings"]
 
 # 🧭 Visibility Controls
 discussEnabled: true
@@ -189,6 +200,16 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-2/kabbalah-part-2@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-2/kabbalah-part-2@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-2/kabbalah-part-2@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-2/kabbalah-part-2@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-2/kabbalah-part-2@2x.jpg"
+
 ---
 
 
@@ -645,6 +666,8 @@ seriesNav:
 
   </section>
 </main>
+
+
 
 
 

@@ -17,7 +17,7 @@ export default {
       title: "The Afterlife — Series 1",
       glyph: "☥",
       tagline: "The false cosmos, Christ the Revealer, and the soul’s return.",
-      tier: "free",
+      tier: "initiate-trial",
       state: "active"
     },
     {
@@ -25,7 +25,7 @@ export default {
       title: "Series 2",
       glyph: "☥",
       tagline: "Mystical maps of the soul across the East and the Beyond.",
-      tier: "initiate",
+      tier: "adept",
       state: "coming-soon"
     }
   ],

@@ -1,7 +1,12 @@
 ---
+
+
+
+
 layout: base.njk
 title: "Buddhism"
 description: "The Path of Compassion — from the Bodhisattva’s vow to the clear light of emptiness."
+excerpt: "You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. Now the flame ignites, this scroll descends into compassion’s fire, the bodhisattva vow, and the fierce path of a…"
 tier: initiate
 scrollId: "the-teachings-the-afterlife-series-1-buddhism-part-2"
 
@@ -12,7 +17,7 @@ tagline: "The Bodhisattva ✦ The Heart ✦ The Clear Light"
 slug: "part-2"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/buddhism/part-2/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/buddhism-part-2.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/buddhism/part-2/buddhism-part-2.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/buddhism/part-2"
 imgPrefix: "buddhism-"
 bodyClass: "gold"
@@ -33,7 +38,14 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Buddhism", "Series 1", "The Teachings"]
+
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
@@ -187,6 +199,16 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/buddhism/part-2/buddhism-part-2@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/buddhism/part-2/buddhism-part-2@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/buddhism/part-2/buddhism-part-2@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/buddhism/part-2/buddhism-part-2@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/buddhism/part-2/buddhism-part-2@2x.jpg"
+
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -880,5 +902,7 @@ seriesNav:
 
   </section>
 </main>
+
+
 
 

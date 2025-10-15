@@ -1,7 +1,13 @@
 ---
+
+
+
+
+
 layout: base.njk
 title: "Gnostic Christianity"
 description: "Part II of the Afterlife Series — The Christ of Gnosis and the spark that remembers beyond death."
+excerpt: "Previously: You heard the voice behind the veil—not a god of wrath, but a Revealer of the spark. Christ came not to be worshipped, but to reflect what you truly are. His mirror shattered the illusion.…"
 tier: free
 scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-2"
 
@@ -12,7 +18,7 @@ tagline: "The Hidden Christ ✦ The Light Within ✦ The Return Begins"
 slug: "part-2"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity-part-2.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/gnostic-christianity-part-2.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2"
 imgPrefix: "gnostic-christianity-"
 bodyClass: "gold"
@@ -33,7 +39,14 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Gnostic Christianity", "Series 1", "The Teachings"]
+
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
@@ -167,6 +180,17 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@2x.jpg"
+
+
 ---
 
 
@@ -504,6 +528,9 @@ seriesNav:
 
   </section>
 </main>
+
+
+
 
 
 

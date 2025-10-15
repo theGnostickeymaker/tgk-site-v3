@@ -1,7 +1,12 @@
 ---
+
+
+
+
 layout: base.njk
 title: "Mesoamerica"
 description: "Time as a serpent, calendars as temples, and death as alignment — the Mesoamerican revelation of cyclical immortality."
+excerpt: "The modern world sees time as a straight line. Climax. Decline. Death. A story with one direction and an end."
 tier: initiate
 scrollId: "the-teachings-the-afterlife-series-1-mesoamerica-part-1"
 
@@ -12,7 +17,7 @@ tagline: "The Serpent of Time ✦ The Calendar of Stone ✦ The Architecture of 
 slug: "part-1"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/part-1/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica-part-1.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/mesoamerica/part-1/mesoamerica-part-1.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/mesoamerica/part-1"
 imgPrefix: "mesoamerica-"
 bodyClass: "gold"
@@ -33,7 +38,14 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
+
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
@@ -170,6 +182,16 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-1/mesoamerica-part-1@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-1/mesoamerica-part-1@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-1/mesoamerica-part-1@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-1/mesoamerica-part-1@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-1/mesoamerica-part-1@2x.jpg"
+
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -438,3 +460,5 @@ seriesNav:
 
   </section>
 </main>
+
+

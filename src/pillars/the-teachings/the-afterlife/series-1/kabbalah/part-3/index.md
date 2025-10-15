@@ -1,7 +1,12 @@
 ---
+
+
+
+
 layout: base.njk
 title: "Kabbalah"
 description: "The soul’s return to the Source — the remembrance of its vow, the healing of the fracture, and the ascent beyond the gates of life and death."
+excerpt: "You climbed the Tree, from Malkhut’s dust to Keter’s crown, and tasted the soul’s ascent through divine light and shadow."
 tier: free
 scrollId: "the-teachings-the-afterlife-series-1-kabbalah-part-3"
 
@@ -12,7 +17,7 @@ tagline: "Tikkun Olam — the soul’s repair, remembrance, and reunion with the
 slug: "part-3"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah-part-3.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/kabbalah/part-3/kabbalah-part-3.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/kabbalah/part-3"
 imgPrefix: "kabbalah-"
 bodyClass: "gold"
@@ -33,7 +38,14 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Kabbalah", "Series 1", "The Teachings"]
+
 # Visibility
+sitemap: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -179,6 +191,16 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@2x.jpg"
+
 ---
 
 
@@ -372,6 +394,8 @@ seriesNav:
 
   </section>
 </main>
+
+
 
 
 

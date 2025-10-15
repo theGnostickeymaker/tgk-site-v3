@@ -13,7 +13,7 @@ export default {
       title: "The Afterlife Series",
       glyph: "☥",
       desc: "Maps of death, rebirth, and remembrance across traditions.",
-      tier: "free",
+      tier: "initiate-trial",
       state: "active"
     },
     {

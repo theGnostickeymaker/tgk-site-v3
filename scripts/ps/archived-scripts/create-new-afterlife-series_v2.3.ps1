@@ -413,6 +413,7 @@ seriesMeta:
   series_version: $SeriesVersion
 
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true

@@ -1,7 +1,13 @@
 ---
+
+
+
+
 layout: base.njk
 title: "Mesoamerica — Part III"
 description: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death."
+excerpt: "You descended into Mictlán, outwitted the Lords of Xibalba, and faced the games of death.  
+    Now begins the spiral upward — through sacrifice, memory, and the soul’s return to the celestial maize f…"
 tier: "initiate"
 scrollId: "the-teachings-the-afterlife-series-1-mesoamerica-part-3"
 
@@ -12,7 +18,7 @@ tagline: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death.
 slug: "part-3"
 
 permalink: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/part-3/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica-part-3.jpg"
+socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/mesoamerica/part-3/mesoamerica-part-3.jpg"
 imgBase: "/media/the-teachings/the-afterlife/series-1/mesoamerica/part-3"
 imgPrefix: "mesoamerica-"
 bodyClass: "gold"
@@ -33,7 +39,14 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
+author: "The Keymaker"
+published: "2025-10-14"
+publishedBy: "The Gnostic Key"
+tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
+
 # Visibility
+sitemap: true
 discussEnabled: true
 resourcesEnabled: true
 seriesNavEnabled: true
@@ -174,6 +187,16 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
+
+
+
+socialImages:
+  x: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-3/mesoamerica-part-3@x.jpg"
+  square: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-3/mesoamerica-part-3@square.jpg"
+  portrait: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-3/mesoamerica-part-3@portrait.jpg"
+  story: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-3/mesoamerica-part-3@story.jpg"
+  hero: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-3/mesoamerica-part-3@2x.jpg"
+
 ---
 
 {% include "partials/scroll-tabs.njk" %}
@@ -454,3 +477,5 @@ seriesNav:
 
   </section>
 </main>
+
+

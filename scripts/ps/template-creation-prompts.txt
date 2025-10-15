@@ -19,4 +19,7 @@ pwsh -ExecutionPolicy Bypass -File "C:\TGK\tgk-site-v3\scripts\ps\create-new-aft
 
 pwsh ./scripts/ps/synergist-lens-retrofit_v3.9a.ps1 -Root "C:\TGK\tgk-site-v3"
 
+# Retrofit excerpts
+pwsh ./scripts/ps/retrofit-excerpts.ps1 -Series "the-afterlife" -Episode "ancient-egypt" -Root "C:\TGK\tgk-site-v3"
 
+pwsh ./scripts/ps/retrofit-excerpts.ps1 -Series "the-afterlife" -Episode "gnostic-christianity"

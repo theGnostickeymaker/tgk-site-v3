@@ -274,6 +274,48 @@
   .page-title + .index.heading {
     margin-top: 0;
   }
+  
+  .scroll-meta.inline{
+  margin-top: var(--space-xs);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-sm, .95rem);
+  letter-spacing: .02em;
+  text-align: center;
+  color: var(--text-accent);
+  opacity: .9;
+  }
+  .scroll-meta.inline .a{ font-weight: 600; }
+  .scroll-meta.inline .d{ font-style: italic; opacity: .85; }
+  .scroll-meta.inline .sep{ margin: 0 var(--space-2xs); opacity: .6; }
+
+  .scroll-meta.header-inline {
+  margin-top: var(--space-xs);
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.02em;
+  color: var(--text-accent);
+  opacity: 0.9;
+  }
+
+  .scroll-meta.header-inline span {
+    margin-top: calc(var(--space-xs) * 0.75);
+    line-height: 1.5;
+  }
+
+  .scroll-meta.header-inline .scroll-author {
+    font-weight: 600;
+    color: var(--text-accent);
+  }
+
+  .scroll-meta.header-inline .meta-sep {
+    opacity: 0.6;
+  }
+
+  .scroll-meta.header-inline .scroll-date {
+    font-style: italic;
+    color: var(--text-muted);
+  }
 
   /* optional: small-screen tweak for tighter stacking */
   @media (max-width: 768px) {

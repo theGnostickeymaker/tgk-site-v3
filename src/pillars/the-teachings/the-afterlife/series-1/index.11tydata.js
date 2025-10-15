@@ -49,7 +49,7 @@ pillarGrid: [
     glyph: "☸",
     tagline: "The Wheel ✦ The Heart ✦ The Clear Light of Compassion.",
     tier: "initiate",
-    state: "active"
+    state: "coming-soon"
   },
   {
     href: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/",
@@ -57,7 +57,7 @@ pillarGrid: [
     glyph: "𓂀",
     tagline: "The Weighing of the Heart ✦ The Duat ✦ The Book of Coming Forth by Day.",
     tier: "initiate",
-    state: "active"
+    state: "coming-soon"
   }
 ,
     {
@@ -66,7 +66,7 @@ pillarGrid: [
       glyph: "🌽",
       tagline: "Three-part journey through the false cosmos and the Revealer.",
       tier: "initiate",
-      state: "active"
+        state: "coming-soon"
     }
   ],
 

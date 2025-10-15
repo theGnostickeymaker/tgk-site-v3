@@ -1,40 +1,47 @@
 {# =========================================================
-   🧠 TGK — Head Meta Partial (v2.3)
+   🧠 TGK — Head Meta Partial (v2.5)
    Purpose:
    Defines essential SEO and social metadata for TGK pages.
-   Ensures consistent sharing appearance across platforms.
+   Ensures consistent appearance across all platforms.
 
-   ✅ Accepts Front Matter or Computed Data:
-   - title:         Page title (defaults to “The Gnostic Key”)
-   - description:   SEO description (defaults to TGK mission line)
-   - socialImage:   Absolute or relative OG/Twitter image path
+   ✅ Accepts:
+   - title, description, author, published
+   - socialImage: single image (string)
+   - socialImages: object with keys { x, square, portrait, story, hero }
 
    🧭 Behaviour:
-   • Provides fallbacks for all key fields
-   • Automatically fills OG and Twitter metadata
-   • Used globally in <head> via base.njk
-   • Supports Eleventy computed data inheritance
-
-   ✨ Styling / Assets:
-   • OG and Twitter image → /tgk-assets/images/share/
-   • Use 1200×630px minimum for best preview quality
+   • Fallback chain for image priority:
+     socialImages.hero → socialImages.x → socialImage → default
+   • Auto-generates OG, Twitter, and JSON-LD meta
    ========================================================= #}
 
 {% set _title = title or "The Gnostic Key" %}
 {% set _desc  = description or "A sacred digital library of forbidden history, esoteric wisdom, and spiritual rebellion." %}
-{% set _img   = socialImage or "/tgk-assets/images/share/tgk-index-main.jpg" %}
+{% set _author = author or "The Keymaker" %}
+{% set _date = published or false %}
+{% set _url = site.url | default('https://thegnostickey.com') ~ (page.url or '/') %}
+
+{# 🖼️ Image resolution fallback chain #}
+{% set _img =
+    (socialImages and (socialImages.hero or socialImages.x or socialImages.square or socialImages.portrait)) or
+    socialImage or
+    "/tgk-assets/images/share/tgk-index-main.jpg"
+%}
 
 <!-- 🔹 Basic SEO -->
 <meta name="description" content="{{ _desc }}">
-<meta name="author" content="The Gnostic Key Limited">
+<meta name="author" content="{{ _author }}">
 
 <!-- 🔹 Open Graph -->
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="The Gnostic Key">
 <meta property="og:title" content="{{ _title }}">
 <meta property="og:description" content="{{ _desc }}">
 <meta property="og:image" content="{{ _img }}">
-<meta property="og:url" content="{{ site.url | default('https://thegnostickey.com') ~ (page.url or '/') }}">
+<meta property="og:image:alt" content="{{ _title }} — The Gnostic Key">
+<meta property="og:url" content="{{ _url }}">
+{% if _date %}<meta property="article:published_time" content="{{ _date }}">{% endif %}
+<meta property="article:author" content="{{ _author }}">
 
 <!-- 🔹 Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
@@ -44,4 +51,31 @@
 <meta name="twitter:image" content="{{ _img }}">
 
 <!-- 🔹 Canonical -->
-<link rel="canonical" href="{{ site.url | default('https://thegnostickey.com') ~ (page.url or '/') }}">
+<link rel="canonical" href="{{ _url }}">
+
+{% if _date %}
+<!-- 🔹 Structured Data (JSON-LD for Articles) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ _title | escape }}",
+  "description": "{{ _desc | escape }}",
+  "image": "{{ _img }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ _author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Gnostic Key",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thegnostickey.com/tgk-assets/images/tgk-logo-meta.png"
+    }
+  },
+  "datePublished": "{{ _date }}",
+  "url": "{{ _url }}"
+}
+</script>
+{% endif %}
