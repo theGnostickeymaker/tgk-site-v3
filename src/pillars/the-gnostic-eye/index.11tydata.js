@@ -22,7 +22,7 @@ export default {
       glyph: "🜏",
       tagline:
         "Synthetic spirituality ✦ Machine prophecy ✦ The AI Antichrist ✦ The human spark reborn.",
-      tier: "free",
+      tier: "initiate-trial",
       state: "active"
     },
     {

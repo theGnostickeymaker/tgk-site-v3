@@ -47,7 +47,8 @@
     outline: 0;
     backdrop-filter: blur(2px);
     pointer-events: auto;
-    transition: transform .2s ease, background-color .2s ease, color .2s ease;
+    transform: translateZ(0);      /* ✅ prevents scroll repaint bugs in iOS */
+    will-change: transform;        /* ✅ keeps it hardware accelerated */
   }
 
   .theme-toggle-floating:hover {
