@@ -200,7 +200,7 @@
 
   body {
     margin: 0;
-    color: var(--text-primary);
+    color: var(--text-primary, #eaeaea); /* ✅ fallback added */
     position: relative;
     isolation: isolate;
     background: transparent !important; /* painter only */

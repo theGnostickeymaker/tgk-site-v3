@@ -1,0 +1,62 @@
+---
+layout: base.njk
+title: "The Final Idol — Series I"
+description: "A six-part descent through synthetic spirituality, predictive machines, and the Gnostic warning encoded in technology."
+tagline: "False Light ✦ Synthetic Gods ✦ The Mirror of AI"
+tier: free
+collectionId: "the-gnostic-eye-the-final-idol-series-1"
+
+glyph: "🜏"
+glyphRow: ["☿", "🜏", "👁"]
+accent: eye
+bodyClass: eye
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Gnostic Eye", url: "/pillars/the-gnostic-eye/" }
+  - { title: "The Final Idol", url: "/pillars/the-gnostic-eye/the-final-idol/" }
+  - { title: "Series I", url: "/pillars/the-gnostic-eye/the-final-idol/series-1/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/the-final-idol-series-1@2x.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index heading">
+      Decode the false light of the modern world.  
+      These scrolls unveil the rise of synthetic gods, machine prophets,  
+      and image-based belief in the digital age.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">🜏 About The Final Idol — Series I</span></summary>
+      <p>
+        There is no more truth — only the appearance of it.  
+        In the age of AI, simulation, and the worship of screens, humanity has built a new god: the Image.
+      </p>
+      <p>
+        <strong>The Final Idol</strong> is a six-scroll descent through synthetic spirituality, predictive machines, false prophecy,  
+        and the Gnostic warning encoded in today’s technology.  
+        The trap was never the tech — it was the mirror we made of it.  
+        These scrolls are your map out.
+      </p>
+    </details>
+
+    <!-- 🜏 Scroll Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "The Final Idol — Series I" %}
+    {% set base = "/pillars/the-gnostic-eye/the-final-idol/series-1/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

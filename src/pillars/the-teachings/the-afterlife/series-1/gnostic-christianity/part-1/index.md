@@ -182,8 +182,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-1/gnostic-christianity-part-1@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-1/gnostic-christianity-part-1@square.jpg"
@@ -191,9 +189,7 @@ socialImages:
   story: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-1/gnostic-christianity-part-1@story.jpg"
   hero: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-1/gnostic-christianity-part-1@2x.jpg"
 
-
 ---
-
 
 {% include "partials/scroll-tabs.njk" %}
 
