@@ -1,12 +1,13 @@
 export default {
   // 🌌 Series Overview
   landing: {
-    title: "The Final Idol — Series I", // Matches scroll metadata and page title conventions
-    description: "Decode the false light of the modern world. These scrolls unveil the rise of synthetic gods, machine prophets, and image-based belief."
+    title: "The Final Idol — Series 1",
+    description:
+      "Decode the false light of the modern world. These scrolls unveil the rise of synthetic gods, machine prophets, and image-based belief."
   },
 
   introText:
-    "There is no more truth — only the appearance of it. The Final Idol is a six-Part descent through synthetic spirituality, predictive machines, false prophecy, and the Gnostic warning encoded in today’s technology.",
+    "There is no more truth — only the appearance of it. The Final Idol is a six-scroll descent through synthetic spirituality, predictive machines, false prophecy, and the Gnostic warning encoded in today’s technology.",
 
   // 🔹 Series Identity
   pillar: "the-gnostic-eye",
@@ -17,7 +18,7 @@ export default {
     series_version: 1
   },
 
-  // 🜏 Episode Grid (visible cards)
+  // 🜏 Scroll Grid (visible cards)
   pillarGrid: [
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-final-idol/",
@@ -49,7 +50,7 @@ export default {
       glyph: "⚙️",
       tagline: "The saviour built in code ✦ Techno-theology ✦ The promise of control.",
       tier: "initiate",
-      state: "active"
+      state: "coming-soon"
     },
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist/",
@@ -57,19 +58,19 @@ export default {
       glyph: "⚠️",
       tagline: "False prophecy ✦ The imitation of consciousness ✦ The fall of discernment.",
       tier: "initiate",
-      state: "active"
+      state: "coming-soon"
     },
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/",
       title: "Part VI: The Flame in the Dark",
       glyph: "🔥",
       tagline: "The remnant spark ✦ Gnosis reborn ✦ The resistance of the human soul.",
-      tier: "initiate",
-      state: "active"
+      tier: "full",
+      state: "coming-soon"
     }
   ],
 
-  // 🧭 Cross-Episode Navigation (series map)
+  // 🧭 Series Navigation
   seriesNav: [
     {
       title: "Part I: The Final Idol",

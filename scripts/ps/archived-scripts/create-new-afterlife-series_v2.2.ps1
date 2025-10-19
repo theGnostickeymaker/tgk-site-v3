@@ -425,7 +425,7 @@ seriesMeta:
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true

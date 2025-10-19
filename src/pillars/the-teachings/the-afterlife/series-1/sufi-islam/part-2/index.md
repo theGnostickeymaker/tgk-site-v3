@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Sufi Islam"
 description: "The seeker ascends through longing and remembrance, spiralling ever closer to the Beloved whose face was never far."
@@ -47,7 +44,7 @@ tags: ["Afterlife", "Sufi Islam", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -177,8 +174,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-2/sufi-islam-part-2@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-2/sufi-islam-part-2@square.jpg"
@@ -241,15 +236,26 @@ socialImages:
     </ul>
   </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}ladder-of-longing -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}ladder-of-longing.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}ladder-of-longing.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}ladder-of-longing.jpg" alt="A radiant ladder of light stretching from earth to heaven, a soul ascending with arms open, drawn upward by invisible pull" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}ladder-of-longing.jpg"
+        alt="A radiant ladder of light stretching from earth to heaven — a soul ascending with arms open, drawn upward by the invisible gravity of love, rising through the ache of remembrance."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The ladder of longing: the soul rises by the gravity of love, drawn upward not by force, but by ache.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The ladder of longing —<br>
+    the soul rises by the gravity of love,<br>
+    drawn upward not by force,<br>
+    but by ache.
+  </figcaption>
+</figure>
 
   <!--🌀 Chapter 2: Dhikr and the Spiral Dance -->
   <section class="section-block">
@@ -299,15 +305,20 @@ socialImages:
     </ul>
   </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}whirling-dhikr-spiral -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}whirling-dhikr-spiral.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}whirling-dhikr-spiral.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}whirling-dhikr-spiral.jpg" alt="A whirling dervish in luminous robes spins in a golden spiral, surrounded by soft calligraphy and cosmic patterns" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}whirling-dhikr-spiral.jpg"
+        alt="A whirling dervish in luminous robes spins within a golden spiral of remembrance — surrounded by flowing calligraphy and cosmic light, embodying the dhikr that draws the soul toward the Beloved."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The spiral of dhikr: the soul circles, turns, remembers. Each Name called is a step closer to the Beloved.
-    </figcaption>
-  </figure>
+  </a>
+  <figcapti
 
   <!--🌸 Chapter 3: The Beloved&lsquo;s Face Behind the Veil -->
   <section class="section-block">
@@ -356,15 +367,26 @@ socialImages:
     </ul>
   </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}beloved-behind-veil -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}beloved-behind-veil.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}beloved-behind-veil.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}beloved-behind-veil.jpg" alt="A luminous figure standing before a radiant veil, light streaming through, with the reflection of the seeker&lsquo;s own face merging into the divine light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}beloved-behind-veil.jpg"
+        alt="A luminous figure standing before a radiant veil, light streaming through, the reflection of the seeker’s own face merging into the divine light — the revelation of the Beloved within the self."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Beloved&lsquo;s Face: not beyond the veil, but within it. The seeker meets the gaze that was always already their own.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Beloved’s Face — not beyond the veil, but within it.<br>
+    The seeker meets the gaze<br>
+    that was always already their own.
+  </figcaption>
+</figure>
+
 
   <!--🌿 Chapter 4: The Union Hidden in Separation -->
   <section class="section-block">
@@ -411,15 +433,26 @@ socialImages:
     </ul>
   </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}union-hidden-separation -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}union-hidden-separation.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}union-hidden-separation.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}union-hidden-separation.jpg" alt="Two figures reaching toward each other across a luminous divide, their hands almost touching, with divine light connecting them through the separation" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}union-hidden-separation.jpg"
+        alt="Two luminous figures reaching toward one another across a radiant divide — hands almost touching, the current of divine light flowing through the space between them, revealing the secret of union within separation."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Union hidden in separation, the distance sharpens longing, the longing refines the soul, and the Beloved waits within both.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Union hidden in separation —<br>
+    the distance sharpens longing,<br>
+    the longing refines the soul,<br>
+    and the Beloved waits within both.
+  </figcaption>
+</figure>
 
   {% include "partials/discussion-prompt.njk" %}
   {% include "partials/quiz-block.njk" %}

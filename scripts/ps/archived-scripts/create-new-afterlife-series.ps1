@@ -527,7 +527,7 @@ seriesMeta:
 
 # 🔮 Section Visibility Controls
 discussEnabled: true         # if false, hides "Discussion" tab + section
-resourcesEnabled: true       # optional override for “Resources” tab
+referencesEnabled: true       # optional override for “Resources” tab
 seriesNavEnabled: true       # optional override for “Series Map” tab
 quizEnabled: true
 

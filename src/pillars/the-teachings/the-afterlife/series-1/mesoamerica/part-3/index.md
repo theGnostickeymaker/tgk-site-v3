@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Mesoamerica — Part III"
 description: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death."
@@ -48,7 +45,7 @@ tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -161,7 +158,6 @@ episodeParts:
     desc: "Resurrection, sacred calendars, and the Feathered Spark — remembrance as the bridge between death and divinity."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/part-3/"
 
-
 seriesNav:
   -
     title: "Gnostic Christianity"
@@ -187,8 +183,6 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
-
-
 
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-3/mesoamerica-part-3@x.jpg"
@@ -250,21 +244,34 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}new-fire-ceremony -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}new-fire-ceremony.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}new-fire-ceremony.png" alt="Mesoamerican fire ritual during the 52-year renewal cycle with priests, stars, and glyphs" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}new-fire-ceremony.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}new-fire-ceremony.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}new-fire-ceremony.jpg"
+        alt="The Mesoamerican New Fire Ceremony — priests beneath the night sky awaiting celestial alignment, stars reflecting in obsidian mirrors, as the sacred flame is kindled from human offering to renew the world for another 52 years."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    In the darkness, all fires were extinguished. The gods would decide. Only when the stars aligned and the fire lit from flesh did the world begin again.
+    In the darkness, all fires were extinguished.<br>
+    The gods would decide.<br>
+    Only when the stars aligned<br>
+    and the fire lit from flesh<br>
+    did the world begin again.
   </figcaption>
 </figure>
 
+
 <!--🐍 Chapter 2: Serpent of Cycles-->
 <section class="section-block">
-<h2 class="section-heading">🐍 Chapter 2: Serpent of Cycles</h2>
+  <h2 class="section-heading">🐍 Chapter 2: Serpent of Cycles</h2>
 
-<p><strong>Quetzalcoatl, Time, and the Spiral of Return.</strong></p>
+  <p><strong>Quetzalcoatl, Time, and the Spiral of Return.</strong></p>
 
 <blockquote class="blockquote">
   <span>&ldquo;Time does not march forward. It coils. It remembers.&rdquo;</span>
@@ -296,22 +303,33 @@ socialImages:
 <!-- TL;DR -->
 <section class="section-block">
   <h2 class="section-heading">⚡ TL;DR:</h2>
-  <ul class="list-emoji">
-    <li>Time in Mesoamerica is cyclical &mdash; a spiral of descent, sacrifice, and return</li>
-    <li>The serpent represents renewal, not evil &mdash; it sheds, moves, transforms</li>
-    <li>Quetzalcoatl (Feathered Serpent) is a god of wind, wisdom, and resurrection</li>
-    <li>He descended to the underworld, broke the bones of humanity, and bled life back into them</li>
-    <li>His descent and rise reflect the soul&rsquo;s Gnostic path: fall, forget, remember, return</li>
-  </ul>
+    <ul class="list-emoji">
+      <li>Time in Mesoamerica is cyclical &mdash; a spiral of descent, sacrifice, and return</li>
+      <li>The serpent represents renewal, not evil &mdash; it sheds, moves, transforms</li>
+      <li>Quetzalcoatl (Feathered Serpent) is a god of wind, wisdom, and resurrection</li>
+      <li>He descended to the underworld, broke the bones of humanity, and bled life back into them</li>
+      <li>His descent and rise reflect the soul&rsquo;s Gnostic path: fall, forget, remember, return</li>
+    </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}quetzalcoatl-spiral-cycle -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}quetzalcoatl-spiral-cycle.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}quetzalcoatl-spiral-cycle.png" alt="Quetzalcoatl, the Feathered Serpent, spiralling through underworld, sky, and pyramid in Mesoamerican glyph style" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}quetzalcoatl-spiral-cycle.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}quetzalcoatl-spiral-cycle.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}quetzalcoatl-spiral-cycle.jpg"
+        alt="Quetzalcoatl — the Feathered Serpent — spiralling through underworld, sky, and temple in sacred cycle. The god who falls, bleeds, and rises eternally through the memory of creation."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    He fell. He bled. He rose. Not once, but again and again &mdash; as time coiled, and the soul remembered the shape of its return.
+    He fell. He bled. He rose.<br>
+    Not once, but again and again —<br>
+    as time coiled,<br>
+    and the soul remembered the shape of its return.
   </figcaption>
 </figure>
 
@@ -348,22 +366,33 @@ socialImages:
 
 <section class="section-block">
 <h2 class="section-heading">⚡ TL;DR:</h2>
-<ul class="list-emoji">   
-  <li><strong>Quetzalcoatl</strong> retrieved the bones of humanity from the underworld, but they shattered in the process</li>
-  <li>He <strong>bled upon the bones</strong>, mixing sacrifice and memory to bring life anew</li>
-  <li>In Mesoamerican myth, bones hold the memory of the soul&rsquo;s origin</li>
-  <li>Ritual burial items like jade, dogs, and orientation were <em>anchors for remembrance</em></li>
-  <li>The soul must reassemble itself after death &mdash; not as it was, but as it was meant to become</li>
-</ul>
+  <ul class="list-emoji">   
+    <li><strong>Quetzalcoatl</strong> retrieved the bones of humanity from the underworld, but they shattered in the process</li>
+    <li>He <strong>bled upon the bones</strong>, mixing sacrifice and memory to bring life anew</li>
+    <li>In Mesoamerican myth, bones hold the memory of the soul&rsquo;s origin</li>
+    <li>Ritual burial items like jade, dogs, and orientation were <em>anchors for remembrance</em></li>
+    <li>The soul must reassemble itself after death &mdash; not as it was, but as it was meant to become</li>
+  </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}rebuilding-bones -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}rebuilding-bones.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}rebuilding-bones.png" alt="Quetzalcoatl bleeding onto broken bones in the underworld, with symbols of jade, memory, and rebirth" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}rebuilding-bones.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}rebuilding-bones.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}rebuilding-bones.jpg"
+        alt="Quetzalcoatl descends into the underworld and gathers the bones of the forgotten — bleeding upon them to awaken memory, weaving jade, blood, and spirit into the rebirth of humankind."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    He gathered the bones of the forgotten. He bled, not to suffer &mdash; but to remember. And from the fragments, something new took form.
+    He gathered the bones of the forgotten.<br>
+    He bled, not to suffer — but to remember.<br>
+    And from the fragments,<br>
+    something new took form.
   </figcaption>
 </figure>
 
@@ -404,13 +433,24 @@ socialImages:
 </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}soul-calendar-glyphs -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-calendar-glyphs.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}soul-calendar-glyphs.png" alt="Mesoamerican glyph wheel and sacred calendar with soul energy markings" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-calendar-glyphs.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-calendar-glyphs.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-calendar-glyphs.jpg"
+        alt="A Mesoamerican sacred calendar wheel inscribed with soul glyphs — recording the breath, destiny, and spiral memory of each being born beneath its sign."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    You were not born on a blank day. The glyph marked your breath. The calendar remembered your shape. And the soul still follows its spiral.
+    You were not born on a blank day.<br>
+    The glyph marked your breath.<br>
+    The calendar remembered your shape.<br>
+    And the soul still follows its spiral.
   </figcaption>
 </figure>
 
@@ -443,23 +483,33 @@ socialImages:
 
 <section class="section-block">
 <h2 class="section-heading">⚡ TL;DR:</h2> 
-<ul class="list-emoji">   
-  <li>The ultimate goal of the Mesoamerican afterlife is not return, but transformation</li>
-  <li>The &ldquo;Feathered Spark&rdquo; is a symbol of spiritual resurrection &mdash; a soul awakened</li>
-  <li>Beings who complete the journey may enter the Flower World, a state of divine beauty and consciousness</li>
-  <li>Quetzalcoatl, the Feathered Serpent, is a returning pattern &mdash; a symbol of rebirth through remembrance</li>
-  <li>When the soul remembers itself through death, it becomes radiant and unbound by cycles</li>
+  <ul class="list-emoji">   
+    <li>The ultimate goal of the Mesoamerican afterlife is not return, but transformation</li>
+    <li>The &ldquo;Feathered Spark&rdquo; is a symbol of spiritual resurrection &mdash; a soul awakened</li>
+    <li>Beings who complete the journey may enter the Flower World, a state of divine beauty and consciousness</li>
+    <li>Quetzalcoatl, the Feathered Serpent, is a returning pattern &mdash; a symbol of rebirth through remembrance</li>
+    <li>When the soul remembers itself through death, it becomes radiant and unbound by cycles</li>
 </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}feathered-spark-ascension -->
 <figure class="image-block">
-<picture>
-  <source srcset="{{ imgBase }}/{{ imgPrefix }}feathered-spark-ascension.webp" type="image/webp">
-  <img src="{{ imgBase }}/{{ imgPrefix }}feathered-spark-ascension.png" alt="Quetzalcoatl rising as the feathered spark of soul resurrection" class="image-gnostic" loading="lazy">
-</picture>
-<figcaption class="caption-gnostic">
-  The Feathered Spark does not die. It returns through you &mdash; radiant, remembering, and free from the wheel.
-</figcaption>
+  <a href="{{ imgBase }}/{{ imgPrefix }}feathered-spark-ascension.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}feathered-spark-ascension.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}feathered-spark-ascension.jpg"
+        alt="Quetzalcoatl — the Feathered Spark — rising in radiant resurrection, the union of serpent and bird, matter and spirit, ascending beyond the wheel of death and return."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Feathered Spark does not die.<br>
+    It returns through you — radiant,<br>
+    remembering, and free from the wheel.
+  </figcaption>
 </figure>
 
   {% include "partials/creative-prompt.njk" %}

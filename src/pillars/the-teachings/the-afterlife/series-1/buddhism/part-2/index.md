@@ -47,7 +47,7 @@ tags: ["Afterlife", "Buddhism", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -264,15 +264,24 @@ socialImages:
   </ul>
   </section>
 
-  <figure class="image-block">
+<!-- Image: wheel-of-samsara2 -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara2.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara2.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara2.jpg" alt="A vast cosmic wheel turning, with figures of birth, death, and rebirth, surrounded by flames of desire and chains of karma" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara2.jpg"
+        alt="A cosmic wheel blazes through the void, its spokes bound with flames of desire and chains of karma. Within it, luminous beings rise and fall through birth, death, and rebirth — seekers turning through the dream of becoming."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Wheel of Saṃsāra, an endless cycle of becoming, driven by craving and ignorance, until the seeker breaks free.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Wheel turns through birth and forgetting.  
+    Craving builds it — awareness breaks it.
+  </figcaption>
+</figure>
 
 <!--🌊 Chapter 2: Karma, The Seeds We Sow-->
 <section class="section-block">
@@ -312,15 +321,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: karma-seeds-ripening -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}karma-seeds-ripening.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}karma-seeds-ripening.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}karma-seeds-ripening.jpg" alt="A symbolic garden where luminous seeds sprout into karmic flowers, some dark and tangled, others radiant and pure, beneath a sky of turning stars" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}karma-seeds-ripening.jpg"
+        alt="A luminous garden unfurls beneath a night of turning stars. From glowing seeds rise karmic blossoms — some tangled in shadow, others radiant with light — each a living echo of intention unfolding through time."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Karma: the seeds we sow in mind and deed, ripening into the landscapes of future experience.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Karma is the garden of becoming.  
+    Each thought a seed — each act a bloom.
+  </figcaption>
+</figure>
 
 <!--🌠 Chapter 3: Rebirth: The Wheel Turns-->
  <section class="section-block">
@@ -367,17 +385,24 @@ socialImages:
   </ul>
 
   <p>Anattā (no-self) distinguishes Buddhist rebirth: no eternal soul migrates, only a stream of consciousness shaped by karma, like a flame passing from candle to candle.</p>
-
-  <figure class="image-block">
+<!-- Image: rebirth-wheel-turning -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-turning.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-turning.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-turning.jpg" alt="A vast cosmic wheel turning in the night sky, with symbolic beings moving through its six realms, surrounded by glowing threads of karma and light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-turning.jpg"
+        alt="A vast cosmic wheel rotates through the night of eternity. Beings rise and fall through its six luminous realms — gods, humans, beasts, and shadows — all bound by threads of craving, all seeking release. Golden light seeps through the spokes as awareness awakens."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The wheel of rebirth turns, not because of fate, but because of craving and clinging. To see the builder is to end the cycle.
-    </figcaption>
-  </figure>
-</section>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Wheel turns not by fate, but by craving.  
+    To see the builder is to end the cycle.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 4: Karma: The Law of Cause & Effect-->
 <section class="section-block">
@@ -421,15 +446,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: karma-cause-effect -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}karma-cause-effect.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}karma-cause-effect.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}karma-cause-effect.jpg" alt="Rippling circles of light spreading across a cosmic sea, with tiny glowing beings riding the waves of action and consequence, shaped by their own reflections" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}karma-cause-effect.jpg"
+        alt="Concentric ripples of golden light spread across an infinite sea of stars. Within each wave, luminous souls drift — creators and creations of their own motion. Every pulse, a choice; every return, a lesson."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Karma is not fate, it is the ripple of every intentional act, shaping the shorelines of becoming.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Karma is not fate — it is resonance.  
+    Each act a wave, each return a teaching.
+  </figcaption>
+</figure>
 
 <!--🌊 Chapter 5: Samsāra: The Endless Wheel-->
 <section class="section-block">
@@ -467,16 +501,24 @@ socialImages:
     <li>Nirvāṇa is the end of samsāra, the stilling of the wheel.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: samsara-wheel-turning -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}samsara-wheel-turning.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}samsara-wheel-turning.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}samsara-wheel-turning.jpg" alt="A vast, cosmic wheel turning endlessly through starry realms, with beings of many forms riding its spokes, some grasping, some reaching, some fading" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}samsara-wheel-turning.jpg"
+        alt="A vast cosmic wheel turns across a starlit void, its spokes lined with souls of every form — reaching, falling, remembering. The wheel glows with golden fire, its motion both endless and hypnotic, a map of birth, death, and return."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Samsāra: the endless turning, binding beings in cycles of birth and death, until they awaken to the still point beyond.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Samsāra — the wheel that turns all worlds.  
+    Its motion ends only when awareness stands still.
+  </figcaption>
+</figure>
 
 <!--🪷 Chapter 6: Karma: The Seed and the Fruit-->
 <section class="section-block">
@@ -519,13 +561,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: karma-seed-fruit -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}karma-seed-fruit.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}karma-seed-fruit.jpg" alt="A delicate seed falling onto rich soil, with golden light emerging from the sprout, symbolising karmic intention flowering into future experience" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}karma-seed-fruit.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}karma-seed-fruit.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}karma-seed-fruit.jpg"
+        alt="A golden seed descends into rich dark soil, radiant roots spiraling downward as a sprout of light breaks through. The scene glows with subtle mandala patterns, symbolizing intention unfolding into destiny."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Karma: not punishment, but planting. What you sow, you harvest, across lifetimes, across worlds.
+    Karma is not punishment — it is planting.  
+    Every act a seed; every lifetime, its fruit.
   </figcaption>
 </figure>
 
@@ -567,15 +618,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: ocean-of-samsara -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}ocean-of-samsara.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}ocean-of-samsara.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}ocean-of-samsara.jpg" alt="A lone figure adrift on a vast, endless ocean under a starry sky, waves shimmering with faint golden light, symbolising the vast cycle of samsāra" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}ocean-of-samsara.jpg"
+        alt="A solitary soul drifts upon an endless golden-blue ocean beneath the star-strewn sky. Each wave glimmers with faint light — lifetimes, memories, and forgotten selves rising and falling in the vast rhythm of becoming."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Samsāra: an endless ocean of becoming. To cross it is not to flee, but to awaken.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Samsāra — an ocean without shore.  
+    To cross it is not to escape, but to awaken.
+  </figcaption>
+</figure>
 
 <!--🌸 Chapter 8: The Dharma Gate of Liberation-->
 <section class="section-block">
@@ -617,13 +677,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: dharma-gate-liberation -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}dharma-gate-liberation.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}dharma-gate-liberation.jpg" alt="A luminous Dharma gate shimmering in emptiness, surrounded by lotus petals and a radiant pathway" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}dharma-gate-liberation.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}dharma-gate-liberation.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}dharma-gate-liberation.jpg"
+        alt="A radiant Dharma gate stands suspended in the void, woven of light and lotus petals. A glowing path leads toward it, yet its form dissolves the closer one draws — the final threshold of liberation."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The Dharma gate of liberation: ever-opening, ever-shifting. To pass through, you must let go of even the gate itself.
+    The Dharma Gate of Liberation — ever-opening, ever-dissolving.  
+    To pass through, one must release even the gate itself.
   </figcaption>
 </figure>
 
@@ -667,15 +736,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: mirror-of-karma -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}mirror-of-karma.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}mirror-of-karma.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}mirror-of-karma.jpg" alt="A luminous mirror floating in a vast void, reflecting shifting images of past deeds, with lotus flowers and shadows dancing around" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}mirror-of-karma.jpg"
+        alt="A radiant mirror suspended in the cosmic void, reflecting shifting scenes of the soul’s past — acts of kindness, moments of shadow, all dancing in ripples of light and lotus petals. The reflection shimmers, asking to be seen through, not believed."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The mirror of karma reflects the soul&rsquo;s own making, not as punishment, but as resonance. To pass, see through the reflection.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Mirror of Karma reveals the soul’s own resonance — not to punish, but to awaken.  
+    To pass, see through the reflection.
+  </figcaption>
+</figure>
 
 <!--🌊 Chapter 10: The Gate of Rebirth-->
 <section class="section-block">
@@ -719,13 +797,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: gate-of-rebirth -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}gate-of-rebirth.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}gate-of-rebirth.jpg" alt="A shimmering gateway in a cosmic landscape, with swirling patterns of light pulling souls toward it, surrounded by lotus symbols and mandala wheels" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}gate-of-rebirth.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}gate-of-rebirth.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gate-of-rebirth.jpg"
+        alt="A radiant cosmic gateway surrounded by swirling mandala light and drifting lotus symbols. Streams of souls spiral toward its luminous center — the cycle of rebirth unfolding through desire and release."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The gate of rebirth beckons, not as punishment, but as the natural pull of craving. To cross without returning, one must let go.
+    The Gate of Rebirth beckons — not as punishment, but as craving’s pull.  
+    To cross and not return, one must let go.
   </figcaption>
 </figure>
 
@@ -771,13 +858,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: nirvana-lotus-glow -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}nirvana-lotus-glow.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}nirvana-lotus-glow.jpg" alt="A luminous lotus floating in empty space, glowing softly, with delicate tendrils of mist dissolving into light, evoking peace, release, and the unbound" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}nirvana-lotus-glow.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}nirvana-lotus-glow.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}nirvana-lotus-glow.jpg"
+        alt="A single luminous lotus floating in infinite space, its petals dissolving into light. Mist and radiance merge until all form fades — the visual silence of release, the stillness of Nirvāṇa."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Nirvāṇa: not a place, but the unbinding. Where becoming ceases, and only peace remains.
+    Nirvāṇa is not a place, but the unbinding.  
+    Where becoming ends, and peace alone remains.
   </figcaption>
 </figure>
 
@@ -824,13 +920,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: bodhisattva-lotus-path -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}bodhisattva-lotus-path.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}bodhisattva-lotus-path.jpg" alt="A radiant bodhisattva figure standing on a lotus in a misty world, surrounded by countless glowing souls, extending a hand of compassion, evoking the endless vow to save all beings" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}bodhisattva-lotus-path.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}bodhisattva-lotus-path.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}bodhisattva-lotus-path.jpg"
+        alt="A radiant bodhisattva stands upon a lotus blooming in mist, surrounded by countless luminous souls. One hand extends in compassion, the other holds the vow — to walk the lotus path until all beings awaken."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The bodhisattva stands on the lotus, in the world, yet unstained, vowing to walk the path until all are free.
+    The bodhisattva stands upon the lotus — in the world, yet unstained.  
+    Their vow: to walk until every soul is free.
   </figcaption>
 </figure>
 
@@ -877,13 +982,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: emptiness-clear-light -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}emptiness-clear-light.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}emptiness-clear-light.jpg" alt="A luminous field of clear light with dissolving patterns, floating lotus petals, and a meditating figure dissolving into the radiant glow, symbolising emptiness and awareness" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}emptiness-clear-light.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}emptiness-clear-light.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}emptiness-clear-light.jpg"
+        alt="A boundless luminous field of clear light, patterns dissolving like mist. Lotus petals drift through radiant space as a meditating figure merges with the glow — the moment where form and awareness become one."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Emptiness, not void, but infinite openness. The clear light shines when all clinging falls away.
+    Emptiness is not void, but infinite openness.  
+    The Clear Light appears when all clinging dissolves.
   </figcaption>
 </figure>
 

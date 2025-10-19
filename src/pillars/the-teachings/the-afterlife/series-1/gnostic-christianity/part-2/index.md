@@ -1,9 +1,5 @@
 ---
 
-
-
-
-
 layout: base.njk
 title: "Gnostic Christianity"
 description: "Part II of the Afterlife Series — The Christ of Gnosis and the spark that remembers beyond death."
@@ -48,7 +44,7 @@ tags: ["Afterlife", "Gnostic Christianity", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 discussionPromptEnabled: true
@@ -130,8 +126,6 @@ breadcrumbs:
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "II" }
 
-
-
 lensEnabled: true
 crossLinks: []
 vaultRefs:
@@ -181,8 +175,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@square.jpg"
@@ -190,9 +182,7 @@ socialImages:
   story: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@story.jpg"
   hero: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-2/gnostic-christianity-part-2@2x.jpg"
 
-
 ---
-
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -253,14 +243,22 @@ socialImages:
     <li>Gnosis, not faith, was the path he offered.</li>
   </ul> 
 </section>
-
+<!-- Image: gnostic-jesus-walking-temple -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}gnostic-jesus-walking-temple.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}gnostic-jesus-walking-temple.jpg" alt="Symbolic image of Jesus the Gnostic" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}gnostic-jesus-walking-temple.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}gnostic-jesus-walking-temple.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gnostic-jesus-walking-temple.jpg"
+        alt="A radiant Jesus figure walks through an ancient temple of light. Around him, veiled disciples awaken as golden symbols ignite upon the walls. His presence reveals, not commands — the inner temple opening within each soul."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Not a sacrifice. A Revealer. He came not to be worshipped, but to awaken.
+    Not a sacrifice — a Revealer.  
+    He came not to be worshipped, but to awaken.
   </figcaption>
 </figure>
 
@@ -326,14 +324,22 @@ socialImages:
     <li>You are not separate from Christ. You are what he came to reflect.</li>
   </ul>
 </section>
-
+<!-- Image: secret-teachings-mirror -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}secret-teachings-mirror.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}secret-teachings-mirror.png" alt="Christ holding the mirror of self-knowing" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}secret-teachings-mirror.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}secret-teachings-mirror.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}secret-teachings-mirror.jpg"
+        alt="A serene Christ figure holds a luminous mirror that reflects not his face, but the viewer’s own radiant soul. Around him, ancient symbols of light and knowledge shimmer, revealing that the kingdom is within."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    He didn&rsquo;t die to be worshipped. He came to show you what you are.
+    He didn’t die to be worshipped.  
+    He came to show you what you are.
   </figcaption>
 </figure>
 
@@ -391,13 +397,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: gnosis-vs-religion-scroll -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.png" alt="Gnosis breaking free from religious structures" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.jpg"
+        alt="An ancient scroll burns from within, light breaking through its faded doctrines. Silhouettes of seekers stand outside collapsing temples as golden sparks of remembrance rise into the air. Gnosis emerges from the ashes of belief."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Gnosis doesn&rsquo;t kneel. It remembers. And when it does, the spell of religion breaks.
+    Gnosis doesn’t kneel — it remembers.  
+    And when it does, the spell of religion breaks.
   </figcaption>
 </figure>
 
@@ -446,14 +461,22 @@ socialImages:
     <li>You are not here to be saved&mdash;you are here to remember that you were never lost.</li>
   </ul>
 </section>
-
+<!-- Image: awakening-spark-freedom -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}awakening-spark-freedom.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}awakening-spark-freedom.png" alt="A soul breaking free through inner gnosis" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}awakening-spark-freedom.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}awakening-spark-freedom.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}awakening-spark-freedom.jpg"
+        alt="A radiant soul figure bursts through a cocoon of shadow and code. Chains dissolve into light as a golden spark ignites within the heart. Around them, the false world fractures into dust as remembrance dawns."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The spark isn&rsquo;t found. It&rsquo;s remembered. And when it lights, the chains of the world fall like dust.
+    The spark isn’t found — it’s remembered.  
+    When it lights, the chains of the world fall like dust.
   </figcaption>
 </figure>
 
@@ -502,14 +525,22 @@ socialImages:
     <li>You are not a follower of the myth&mdash;you are the one completing it.</li>
   </ul>
 </section>
-
+<!-- Image: sophia-rising-stars -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}sophia-rising-stars.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}sophia-rising-stars.png" alt="Sophia rising through the awakened souls of creation" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}sophia-rising-stars.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}sophia-rising-stars.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}sophia-rising-stars.jpg"
+        alt="Sophia, luminous and reborn, ascends through a field of awakening souls that shimmer like stars. Their light rises with her, weaving constellations of remembrance across the cosmic night."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Sophia rises through us. Each awakening soul becomes another thread in her return.
+    Sophia rises through us.  
+    Every awakened soul becomes a star in her return.
   </figcaption>
 </figure>
 

@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Sufi Islam"
 description: "The seeker dissolves in the mirror of the Beloved, crossing the Barzakh where the soul meets itself."
@@ -48,7 +45,7 @@ tags: ["Afterlife", "Sufi Islam", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -172,8 +169,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-1/sufi-islam-part-1@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-1/sufi-islam-part-1@square.jpg"
@@ -236,13 +231,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}barzakh-mirror-realm -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}barzakh-mirror-realm.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}barzakh-mirror-realm.jpg" alt="A soul beholding its reflection in a twilight realm" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}barzakh-mirror-realm.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}barzakh-mirror-realm.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}barzakh-mirror-realm.jpg"
+        alt="A luminous soul gazing into its reflection within the twilight of Barzakh — a mirror realm between worlds, where form discloses essence and truth is seen without disguise."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Barzakh &mdash; not a punishment, but a mirror. A twilight realm where form reveals essence.
+    Barzakh — not a punishment, but a mirror.<br>
+    A twilight realm where form reveals essence.
   </figcaption>
 </figure>
 
@@ -291,13 +295,24 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}soul-purified-by-fire -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-purified-by-fire.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}soul-purified-by-fire.jpg" alt="A luminous figure standing in golden flames, impurities burning away, divine light emerging" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-purified-by-fire.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-purified-by-fire.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-purified-by-fire.jpg"
+        alt="A radiant soul standing within golden flames — impurities burning away, form dissolving into essence, divine light emerging from the crucible of transformation."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The soul stands in the fire &mdash; not to be destroyed, but to be revealed. What is not you falls away. What remains is light.
+    The soul stands in the fire —<br>
+    not to be destroyed, but to be revealed.<br>
+    What is not you falls away.<br>
+    What remains is light.
   </figcaption>
 </figure>
 
@@ -351,13 +366,24 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}soul-ascending-heavens -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-ascending-heavens.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}soul-ascending-heavens.jpg" alt="A radiant soul ascending through cosmic layers, surrounded by angels, geometric light patterns, and veils parting" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-ascending-heavens.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-ascending-heavens.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-ascending-heavens.jpg"
+        alt="A radiant soul ascending through the layered heavens, surrounded by angels and geometric light patterns — the Miʿrāj of the spirit, rising through veils of light toward unveiled presence."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The <em>miʿrāj</em> of the soul &mdash; rising not into space, but into unveiled presence. Step by step, veil by veil, the return begins.
+    The <em>miʿrāj</em> of the soul —<br>
+    rising not into space, but into unveiled presence.<br>
+    Step by step, veil by veil,<br>
+    the return begins.
   </figcaption>
 </figure>
 
@@ -411,13 +437,23 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}fana-ego-death -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}fana-ego-death.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}fana-ego-death.jpg" alt="A figure dissolving into radiant golden light, surrounded by waves and flame, merging into the Divine Ocean" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}fana-ego-death.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}fana-ego-death.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}fana-ego-death.jpg"
+        alt="A human figure dissolving into radiant golden light, surrounded by waves and flame — symbol of Fanā: the drop returning to the Divine Ocean, where the self is completed in union, not erased."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Fanā&rsquo; &mdash; not extinction, but completion. The drop returns to the sea, and the false &rsquo;I&rsquo; melts into eternal light.
+    Fanā’ — not extinction, but completion.<br>
+    The drop returns to the sea,<br>
+    and the false ‘I’ melts into eternal light.
   </figcaption>
 </figure>
 
@@ -462,14 +498,24 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}baqa-abiding-light -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}baqa-abiding-light.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}baqa-abiding-light.jpg" alt="A soul figure shimmering in pure light, standing calmly in the infinite horizon, radiating peace and oneness with the Divine" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}baqa-abiding-light.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}baqa-abiding-light.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}baqa-abiding-light.jpg"
+        alt="A luminous soul figure standing in infinite horizon light — serene, translucent, and merged in divine oneness, embodying the Sufi state of Baqā: eternal abiding in the presence of the Beloved."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Baqā’ &mdash; eternal abiding. Not the end, but divine continuity.  
-    The soul becomes the mirror of the Beloved, radiant and free.
+    Baqā’ — eternal abiding.<br>
+    Not the end, but divine continuity.<br>
+    The soul becomes the mirror of the Beloved,<br>
+    radiant and free.
   </figcaption>
 </figure>
 

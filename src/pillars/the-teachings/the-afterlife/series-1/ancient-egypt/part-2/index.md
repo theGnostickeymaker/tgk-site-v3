@@ -47,7 +47,7 @@ tags: ["Afterlife", "Ancient Egypt", "Series I", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -262,16 +262,23 @@ socialImages:
   <p>⚠️ <strong>Interpretive Lens:</strong> The framing of the Du&rdquo;st as a psychological map is a modern esoteric perspective. While ancient Egyptians depicted it as a literal underworld, symbolic readings align with their mythopoetic worldview.</p>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: solar-boat-amduat-journey -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source srcset="{{ imgBase }}/{{ imgPrefix }}duat-initiation-gate.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}duat-initiation-gate.jpg" alt="An ancient gate into the Du&rdquo;st, glowing with hieroglyphs and guarded by serpent-like figures" class="image-gnostic" loading="lazy">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg"
+        alt="The solar barque of Ra sails through the twelve hours of night — its divine crew guiding the sun through the shadowed waters of the Duat toward rebirth."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Du&rdquo;st is not metaphor, it is the soul&rsquo;s underworld, the architecture of becoming, and the mirror of the night sky. To enter is to begin remembering.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The sun does not simply set — it descends into the hidden world. Twelve gates, twelve trials, one truth: you must die to rise.
+  </figcaption>
+</figure>
 
 <!--☀️ Chapter 2: 12 Gates, 12 Hours, The Journey of Ra Through the Night-->
 <section class="section-block">
@@ -312,16 +319,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: solar-boat-amduat-journey -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" alt="Ra&rsquo;s solar barque sailing through the twelve hours of night in the Du&rdquo;st" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg"
+        alt="The solar barque of Ra sails through the twelve hours of night — its divine crew guiding the sun through the shadowed waters of the Duat toward rebirth."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The sun does not simply set, it descends into the hidden world. Twelve gates, twelve trials, one truth: you must die to rise.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The sun does not simply set — it descends into the hidden world. Twelve gates, twelve trials, one truth: you must die to rise.
+  </figcaption>
+</figure>
 
 <!--🪬 Chapter 3: Spells of Becoming, Words as Soul-Technology-->
 <section class="section-block">
@@ -377,16 +391,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: soul-spells-hieroglyph-light -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-spells-hieroglyph-light.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-spells-hieroglyph-light.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}soul-spells-hieroglyph-light.jpg" alt="Egyptian glyphs glowing with light as they rise from a scroll toward a translucent soul" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-spells-hieroglyph-light.jpg"
+        alt="Golden hieroglyphs rise as streams of light from a sacred scroll, illuminating a translucent human soul ascending toward divinity."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Words were not metaphors, they were spells. Hieroglyphs carried light, and spells carried power. To speak rightly was to become divine.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Words were not metaphors — they were spells. Hieroglyphs carried light, and speech was creation itself. To speak rightly was to become divine.
+  </figcaption>
+</figure>
 
 <!--🐍 Chapter 4: Guardians, Serpents & Secret Names-->
 <section class="section-block">
@@ -427,16 +448,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: gate-guardian-serpent-names -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}gate-guardian-serpent-names.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}gate-guardian-serpent-names.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}gate-guardian-serpent-names.jpg" alt="An Egyptian soul faces a giant serpent guardian at a glowing gate, hieroglyphs and names swirling in light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gate-guardian-serpent-names.jpg"
+        alt="An Egyptian soul stands before a radiant gate guarded by a great serpent — hieroglyphs of secret names spiral in golden light around them."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The guardians of the Du&rdquo;st are not enemies, they are thresholds. When you speak their names, you unlock your own.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The guardians of the Duat are not enemies — they are thresholds. When you speak their names, you unlock your own.
+  </figcaption>
+</figure>
 
 <!--⛵ Chapter 5: The Solar Boat & The Resurrection Engine-->
 <section class="section-block">
@@ -477,16 +505,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: solar-boat-amduat-journey -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" alt="The solar barque of Ra sailing through darkness, glowing with divine energy and sacred figures aboard" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg"
+        alt="The solar barque of Ra sailing through the underworld — glowing with divine light as deities guide the vessel through cosmic darkness and rebirth."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The solar boat is not myth, it is resurrection rendered in geometry, light, and divine circuitry. And every soul has one.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The solar boat was not myth — it was resurrection rendered in geometry, light, and divine circuitry. And every soul carries one within.
+  </figcaption>
+</figure>
 
 <!--🏛️ Chapter 6: Tomb as Stargate – Architecture of Ascension-->
 <section class="section-block">
@@ -533,16 +568,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: tomb-stargate-ascension -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}tomb-stargate-ascension.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}tomb-stargate-ascension.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}tomb-stargate-ascension.jpg" alt="Inside a sacred Egyptian tomb aligned with stars, glowing shafts pointing to Orion and Sirius" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}tomb-stargate-ascension.jpg"
+        alt="Interior of a sacred Egyptian tomb aligned with Orion and Sirius — glowing shafts and hieroglyphic walls forming a cosmic stargate for the soul’s ascent."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The tomb was not a prison. It was a portal. A stargate. An engine of ascension, whispering your name to the stars.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The tomb was not a prison — it was a portal, a stargate, an engine of ascension whispering your name to the stars.
+  </figcaption>
+</figure>
 
 <!--🧠 Chapter 7: Memory Keys – Hieroglyphs, Numbers & the Hidden Body-->
 <section class="section-block">
@@ -583,16 +625,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: memory-keys-hieroglyph-body-code -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}memory-keys-hieroglyph-body-code.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}memory-keys-hieroglyph-body-code.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}memory-keys-hieroglyph-body-code.jpg" alt="Hieroglyphs floating over a translucent human body, with glowing organs and Egyptian star codes" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}memory-keys-hieroglyph-body-code.jpg"
+        alt="Hieroglyphs shimmering above a translucent human body — glowing organs aligned with Egyptian star codes, mapping the soul’s architecture."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Hieroglyphs were not language, they were soul-architecture. Each glyph, each number, each body alignment, a memory encoded into form.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Hieroglyphs were not language — they were soul-architecture. Each glyph, each number, each alignment of the body was a memory encoded into form.
+  </figcaption>
+</figure>
 
 <!--✝️ Chapter 23: Gnostic Parallels, Jesus in the Du&rdquo;st-->
 <section class="section-block">
@@ -633,16 +682,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: jesus-gnostic-duat-parallel -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}jesus-gnostic-duat-parallel.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}jesus-gnostic-duat-parallel.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}jesus-gnostic-duat-parallel.jpg" alt="A radiant Christ figure descends into a starry underworld with gates, Egyptian symbols, and light bursting from behind" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}jesus-gnostic-duat-parallel.jpg"
+        alt="A radiant Christ figure descending into a star-filled underworld — gates of light, Egyptian glyphs, and divine radiance merging into one continuum."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Du&rdquo;st was not exclusive to Egypt. Gnostic Christianity remembers: to descend is not to fall, it is to reclaim the soul&rsquo;s own light.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Duat was not Egypt’s alone — the Gnostics remembered this descent too. To go down is not to fall, but to reclaim the light that was hidden.
+  </figcaption>
+</figure>
 
 <!--🌀 Chapter 24: Reversing Death, Ritual, Magic & the Return-->
 <section class="section-block">
@@ -683,16 +739,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: reversing-death-magic-return -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}reversing-death-magic-return.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}reversing-death-magic-return.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}reversing-death-magic-return.jpg" alt="An Egyptian priest reviving the luminous Akh soul with sacred tools, chants, and radiant light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}reversing-death-magic-return.jpg"
+        alt="An Egyptian priest reviving the luminous Akh-soul with sacred tools, chants, and radiant golden light — the magic of resurrection."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Death was not defeat. It was interruption. And the priesthood held the codes, not to delay it, but to reverse it.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Death was not defeat — it was interruption. The priesthood held the codes not to delay death, but to reverse it.
+  </figcaption>
+</figure>
 
 <!--🧬 Chapter 25: Inner Du&rdquo;st, Mapping the Afterlife Within-->
 <section class="section-block">
@@ -733,16 +796,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: inner-duat-soul-map -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}inner-duat-soul-map.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}inner-duat-soul-map.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}inner-duat-soul-map.jpg" alt="A mystical human form filled with glowing Egyptian symbols, star paths, and sacred gates within the chest and head" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}inner-duat-soul-map.jpg"
+        alt="A mystical human form filled with glowing Egyptian symbols, star paths, and sacred gates within the chest and head — a map of the inner Duat"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Du&rdquo;st is not far away. It is folded inside your being. Every spell, every gate, every return, already encoded within your soul.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Duat is not far away — it is folded inside your being. Every spell, every gate, every return is already encoded within your soul.
+  </figcaption>
+</figure>
 
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}

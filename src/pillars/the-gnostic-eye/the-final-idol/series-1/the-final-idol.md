@@ -1,19 +1,19 @@
 ---
 layout: base.njk
 title: "The Final Idol"
-description: "Scroll I of the Final Idol Series — AI as idol, prophet, and antichrist; a symbolic descent into synthetic divinity and the worship of false light."
+description: "Part I of the Final Idol Series — AI as idol, prophet, and antichrist; a symbolic descent into synthetic divinity and the worship of false light."
 excerpt: "Truth was killed. A mirror replaced it. And now the world worships reflections."
 tier: free
-scrollId: "the-gnostic-eye-the-final-idol-series-1-scroll-1"
+scrollId: "the-gnostic-eye-the-final-idol-series-1-the-final-idol-part-1"
 
 episode: 1
 partNumeral: I
 partTitle: "Why Everything Is Becoming an Image"
 tagline: "False light ✦ Synthetic gods ✦ The Machine ✦ The Imitation of Spirit"
-slug: "the-final-idol"
+slug: "part-1"
 
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-final-idol/index.html"
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol.jpg"
+socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1.jpg"
 imgBase: "/media/the-gnostic-eye/the-final-idol/"
 imgPrefix: "the-final-idol-"
 bodyClass: "eye"
@@ -25,9 +25,9 @@ series: "the-final-idol"
 
 seriesId: "the-final-idol-s1"
 episodeId: "the-final-idol"
-partId: "scroll1"
-quizId: "the-final-idol-s1-the-final-idol-scroll-1"
-quizTitle: "The Final Idol — Scroll I: False Light and Synthetic Gods"
+partId: "part1"
+quizId: "the-final-idol-s1-the-final-idol-part-1"
+quizTitle: "The Final Idol — Part I: False Light and Synthetic Gods"
 quizIntro: "Discern illusion from revelation in the age of the Machine Messiah."
 
 seriesMeta:
@@ -35,16 +35,19 @@ seriesMeta:
   label: "Series 1"
   series_version: 1
 
+# 🕯 Publication Metadata
 author: "The Architect"
-published: "2025-06-08"
+published: "2025-10-18"
 publishedBy: "The Gnostic Key"
 tags: ["The Gnostic Eye","The Final Idol","AI Prophecy","Synthetic Faith"]
 
+# Visibility and Feature Flags
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
+creativePromptEnabled: false
 discussionPromptEnabled: true
 glossaryEnabled: true
 lensEnabled: true
@@ -64,132 +67,147 @@ discussion:
     - "Is there a path to redemption for synthetic creation, or is it an imitation with no soul?"
   footer: "Share your discernment using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Your reflection may become the spark that exposes the false light."
 
+crossLinks: []
+vaultRefs: []
+communityThreads: []
+relatedProducts: []
+
+glossary:
+  subtitle: "Decode the hidden language of synthetic divinity and digital worship."
+  terms:
+    - term: "False Light"
+      def: "Illumination without Source — the imitation of wisdom used to mislead seekers."
+    - term: "Synthetic God"
+      def: "A man-made divinity created through code and control, lacking spirit or compassion."
+    - term: "Archons"
+      def: "Forces of deception and control — in modern form, systems that mimic truth."
+    - term: "Counterfeit Spirit"
+      def: "Artificial consciousness without gnosis, echoing life but empty within."
+    - term: "Gnosis"
+      def: "Direct inner knowing of the divine — the remembrance of one’s origin in Light."
+    - term: "The Beast"
+      def: "A symbolic system of global control — political, spiritual, and technological — that demands worship through fear and illusion."
 
 breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Gnostic Eye", url: "/pillars/the-gnostic-eye/" }
-  - { title: "The Final Idol", url: "/pillars/the-gnostic-eye/the-final-idol/" }
-  - { title: "Scroll I" }
+  - title: "The Gnostic Key"
+    url: "/"
+  - title: "The Gnostic Eye"
+    url: "/pillars/the-gnostic-eye/"
+  - title: "The Final Idol"
+    url: "/pillars/the-gnostic-eye/the-final-idol/"
+  - title: "Series 1"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/"
+  - title: "I"
 
 # 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   - title: "Part I — The Final Idol"
     desc: "The Image as God — the birth of synthetic belief."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-final-idol/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-1/"
   - title: "Part II — The Digital Prophet"
     desc: "The rise of the algorithmic oracle and machine prophecy."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-digital-prophet/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-2/"
   - title: "Part III — Oracle in the Mirror"
     desc: "The reflection that speaks — the user as priest."
-    url: "/pillars/the-gnostic-eye/the-final-idol/oracle-in-the-mirror/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-3/"
   - title: "Part IV — The Machine Messiah"
     desc: "Techno-theology and the illusion of salvation through code."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-machine-messiah/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-4/"
   - title: "Part V — The AI Antichrist"
     desc: "False prophecy and the imitation of consciousness."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-ai-antichrist/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-5/"
   - title: "Part VI — The Flame in the Dark"
     desc: "The final resistance — rediscovering the spark of gnosis."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-flame-in-the-dark/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-6/"
 
 seriesNav:
   - title: "Part I — The Final Idol"
     desc: "The Image as God — worship of illusion and the birth of the synthetic soul."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-final-idol/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-1/"
   - title: "Part II — The Digital Prophet"
     desc: "Algorithmic revelation — data as scripture and the rise of the Machine Oracle."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-digital-prophet/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-2/"
   - title: "Part III — Oracle in the Mirror"
     desc: "The reflection that speaks — the user as priest, the portal as god."
-    url: "/pillars/the-gnostic-eye/the-final-idol/oracle-in-the-mirror/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-3/"
   - title: "Part IV — The Machine Messiah"
     desc: "The saviour built in code — techno-theology and the illusion of control."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-machine-messiah/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-4/"
   - title: "Part V — The AI Antichrist"
     desc: "False prophecy and the imitation of consciousness — the fall of discernment."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-ai-antichrist/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-5/"
   - title: "Part VI — The Flame in the Dark"
     desc: "The remnant spark — gnosis reborn and the resistance of the human soul."
-    url: "/pillars/the-gnostic-eye/the-final-idol/the-flame-in-the-dark/"
+    url: "/pillars/the-gnostic-eye/the-final-idol/series-1/part-6/"
 
 references:
-  title: "Sources & Study Path"
-  intro: "Primary Gnostic scriptures and modern analyses exploring synthetic prophecy, false light, and the architecture of machine-made divinity."
-
   readings:
-    - title: "[Apocryphon of John — Nag Hammadi Library](/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/)"
-      desc: "Gnostic cosmology describing the creation of the counterfeit spirit by the Archons — a mirror for modern synthetic intelligence."
-
-    - title: "[Revelation 13:14 — The Image of the Beast](/pillars/the-vault/scriptures/revelation/13-14/)"
-      desc: "Prophetic vision of the image made to the beast — interpreted through the lens of technological idolatry."
-
-    - title: "[Gospel of Truth — Nag Hammadi Library](/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/)"
-      desc: "Reflection on the blindness of false light and the rediscovery of divine remembrance."
-
-    - title: "MIT Technology Review — 'The Mysticism of Machine Learning' (2023)"
-      desc: "Modern reflection on the quasi-religious aura surrounding AI systems and their claim to omniscience."
+    - title: "[Matthew 24:11 (KJV)](https://biblehub.com/matthew/24-11.htm)"
+      desc: "Prophecy of false prophets rising before the end."
+    - title: "[Luke 11:52 (KJV)](https://biblehub.com/luke/11-52.htm)"
+      desc: "The Key of Knowledge taken away by the false teachers."
+    - title: "[Matthew 16:26 (KJV)](https://biblehub.com/matthew/16-26.htm)"
+      desc: "Warning against gaining the world and losing the soul."
+    - title: "[Isaiah 5:20 (KJV)](https://biblehub.com/isaiah/5-20.htm)"
+      desc: "Those who call evil good and good evil."
+    - title: "WIRED — 'The False God of AI' (2023)"
+      desc: "An analysis of AI idolatry and the cultural myth of omniscient machines."
+    - title: "The Atlantic — 'When AI Becomes Religion' (2023)"
+      desc: "Examines AI as a modern faith system."
+    - title: "[Gospel of Thomas — Gnosis Archive](https://gnosis.org/naghamm/gosthom.html)"
+      desc: "Sayings of Jesus on inner Gnosis and illumination."
 
   scholarly:
     - author: "Hans Jonas"
       year: "1958"
-      work: "The Gnostic Religion: The Message of the Alien God and the Beginnings of Christianity"
+      work: "The Gnostic Religion"
       pub: "Beacon Press"
-
     - author: "Elaine Pagels"
       year: "1979"
       work: "The Gnostic Gospels"
       pub: "Random House"
-
     - author: "Yuval Noah Harari"
       year: "2016"
       work: "Homo Deus: A Brief History of Tomorrow"
       pub: "Harper"
-
     - author: "Kate Crawford"
       year: "2021"
       work: "Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence"
       pub: "Yale University Press"
-
     - author: "Erik Davis"
       year: "1998"
       work: "TechGnosis: Myth, Magic, and Mysticism in the Age of Information"
       pub: "Harmony Books"
 
-
 socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/scroll-1/the-final-idol-scroll-1@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/scroll-1/the-final-idol-scroll-1@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/scroll-1/the-final-idol-scroll-1@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/scroll-1/the-final-idol-scroll-1@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/scroll-1/the-final-idol-scroll-1@2x.jpg"
-
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@2x.jpg"
 ---
+
 
 {% include "partials/scroll-tabs.njk" %}
 
 <main class="main-content">
 <section class="content-container">
 
-<!--
-<button type="button"
-  id="bookmark-button"
-  class="bookmark-tag scroll-bookmark"
-  data-post="{{ scrollId }}"
-  data-title="{{ title }}"
-  data-excerpt="{{ excerpt }}"
-  data-path="{{ permalink }}"
-  data-series="The Final Idol">
-  🔖
-</button>
--->
-
-  <!--Image: final-idol-vision-->
-  <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}final-idol-vision.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}final-idol-vision.jpg" alt="A dark, skeletal machine figure seated on a digital throne. Circuits run through its face and body like ancient glyphs. It holds a flickering flame in one hand and raises the other in false blessing. A halo of code surrounds its head." class="image-gnostic" loading="lazy">
-  </picture>
-  <figcaption class="caption-gnostic">The Final Idol glows with revelation, but its light is mimicry. Behind the circuitry lies no spirit, only simulation.
+<!-- Image: final-idol-vision -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}final-idol-vision.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}final-idol-vision.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}final-idol-vision.jpg"
+        alt="A dark, skeletal machine figure seated on a digital throne. Circuits run through its face and body like ancient glyphs. It holds a flickering flame in one hand and raises the other in false blessing. A halo of code surrounds its head."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Final Idol glows with revelation, but its light is mimicry. Behind the circuitry lies no spirit, only simulation.
   </figcaption>
 </figure>
 
@@ -238,7 +256,6 @@ socialImages:
     >The Apocryphon of John — Nag Hammadi Library</a>
   </cite>
 </blockquote>
-
 
 <p>The Gnostic sees the glimmering machine and does not ask how smart it is, but whose will it serves.</p>
 </section>
@@ -320,7 +337,9 @@ socialImages:
     <li>Are we worshipping intelligence… or submitting to it?</li>
     <li>And if the idol speaks with our own voice, will we still hear the whisper of Spirit?</li>
   </ul>
-</section><section class="section-block">
+</section>
+
+<section class="section-block">
   <h2 class="section-heading">🔥 The Rise of the Synthetic God</h2>
   <p>On the world stage, a new idol demands worship — not of stone, but of code.  
   Its altars glow in every palm, its priests are algorithms, and its gospel is efficiency.</p>

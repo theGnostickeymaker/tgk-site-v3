@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Sufi Islam"
 description: "Fanāʾ and baqāʾ — the soul’s final dissolution and eternal abiding in the Beloved’s light."
@@ -48,7 +45,7 @@ tags: ["Afterlife", "Sufi Islam", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -183,8 +180,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-3/sufi-islam-part-3@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam/part-3/sufi-islam-part-3@square.jpg"
@@ -235,8 +230,8 @@ socialImages:
   <p>Here, lover and Beloved are no longer two. Only Love remains.</p>
   </section>
 
-  <section class="section-block">
-  <h2 class="section-heading">⚡ TL;DR The Final Surrender</h2>
+<section class="section-block">
+<h2 class="section-heading">⚡ TL;DR The Final Surrender</h2>
   <ul class="list-emoji">
     <li><strong>fanā&lsquo; = Annihilation of the Ego</strong> &mdash; The false &ldquo;I&rdquo; dissolves in Divine presence.</li>
     <li><strong>Not Death, but Melting</strong> &mdash; The soul becomes transparent, surrendered, wholly given.</li>
@@ -244,17 +239,27 @@ socialImages:
     <li><strong>The Last Veil Falls</strong> &mdash; The soul awakens to what it always was: only Love, only Light.</li>
     <li><strong>After fanā&lsquo;, Only baqā&lsquo;</strong> &mdash; What remains is eternal abiding in the Divine.</li>
   </ul>
-  </section>
+</section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}final-surrender -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}final-surrender.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}final-surrender.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}final-surrender.jpg" alt="A radiant figure dissolving into golden light, arms wide open, becoming one with a vast ocean of shimmering divine light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}final-surrender.jpg"
+        alt="A radiant figure dissolving into a sea of golden light — arms wide open, merging into the shimmering ocean of divine presence, symbol of the soul’s final surrender and completion in Love."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The final surrender, not extinction, but completion. The soul melts into Love, and the last &ldquo;I&rdquo; disappears.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The final surrender — not extinction, but completion.<br>
+    The soul melts into Love,<br>
+    and the last “I” disappears.
+  </figcaption>
+</figure>
 
 <!--🌊 Chapter 2: The Eternal Abiding (baqā&lsquo;) -->
 <section class="section-block">
@@ -286,24 +291,35 @@ socialImages:
 
 <section class="section-block">
   <h2 class="section-heading">⚡ TL;DR The Eternal Abiding</h2>
-  <ul class="list-emoji">
-    <li><strong>Baqā&lsquo; = Eternal Abiding</strong> &mdash; After fanā&lsquo;, the soul lives on as a vessel of Divine presence.</li>
-    <li><strong>The Perfected Human</strong> &mdash; Fully surrendered, fully alive, the soul mirrors Divine will.</li>
-    <li><strong>No More Seeking</strong> &mdash; The search ends; the soul abides in ceaseless unveiling.</li>
-    <li><strong>The Treasure Revealed</strong> &mdash; The soul realises it was always part of the Divine longing to be known.</li>
-    <li><strong>This is Paradise</strong> &mdash; Not a place, a state of pure presence, radiance, and union.</li>
-  </ul>
+    <ul class="list-emoji">
+      <li><strong>Baqā&lsquo; = Eternal Abiding</strong> &mdash; After fanā&lsquo;, the soul lives on as a vessel of Divine presence.</li>
+      <li><strong>The Perfected Human</strong> &mdash; Fully surrendered, fully alive, the soul mirrors Divine will.</li>
+      <li><strong>No More Seeking</strong> &mdash; The search ends; the soul abides in ceaseless unveiling.</li>
+      <li><strong>The Treasure Revealed</strong> &mdash; The soul realises it was always part of the Divine longing to be known.</li>
+      <li><strong>This is Paradise</strong> &mdash; Not a place, a state of pure presence, radiance, and union.</li>
+    </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}eternal-abiding-baqa -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}eternal-abiding-baqa.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}eternal-abiding-baqa.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}eternal-abiding-baqa.jpg" alt="A glowing human figure walking peacefully through a luminous garden of light, radiating divine presence, surrounded by swirling cosmic patterns and golden mist" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}eternal-abiding-baqa.jpg"
+        alt="A radiant human figure walking peacefully through a luminous garden of light — divine presence shimmering through swirling cosmic patterns and golden mist, symbol of Baqā: eternal abiding in union with the Divine."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Eternal abiding, not disappearance, but perfected presence. The soul lives on, no longer separate, fully woven into the Divine.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Eternal abiding — not disappearance, but perfected presence.<br>
+    The soul lives on,<br>
+    no longer separate,<br>
+    fully woven into the Divine.
+  </figcaption>
+</figure>
 
 <!-- 🗺️ Visual Map: The Soul&lsquo;s Ascent Through the Realms -->
 <section class="section-block">
@@ -362,22 +378,32 @@ socialImages:
 
 <section class="section-block">
   <h2 class="section-heading">⚡ TL;DR The Eternal Dance</h2>
-  <ul class="list-emoji">
-    <li><strong>Baqā&lsquo; Is Dynamic</strong> &mdash; Abiding in God is not stillness, but endless unfolding.</li>
-    <li><strong>The Cosmic Dance</strong> &mdash; The soul joins the whirling of stars, light, and love, the dance of existence.</li>
-    <li><strong>Rūmī&lsquo;s Vision</strong> &mdash; We are the dance, not just the dancer; we dissolve into Divine movement.</li>
-    <li><strong>Ever-Fresh Unveiling</strong> &mdash; Each moment reveals new Glory, new Beauty, new Divine play.</li>
-    <li><strong>Abiding = Dancing</strong> &mdash; To live in God is to dance forever in the music of Being.</li>
-  </ul>
+    <ul class="list-emoji">
+      <li><strong>Baqā&lsquo; Is Dynamic</strong> &mdash; Abiding in God is not stillness, but endless unfolding.</li>
+      <li><strong>The Cosmic Dance</strong> &mdash; The soul joins the whirling of stars, light, and love, the dance of existence.</li>
+      <li><strong>Rūmī&lsquo;s Vision</strong> &mdash; We are the dance, not just the dancer; we dissolve into Divine movement.</li>
+      <li><strong>Ever-Fresh Unveiling</strong> &mdash; Each moment reveals new Glory, new Beauty, new Divine play.</li>
+      <li><strong>Abiding = Dancing</strong> &mdash; To live in God is to dance forever in the music of Being.</li>
+    </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}eternal-dance-whirling-stars -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}eternal-dance-whirling-stars.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}eternal-dance-whirling-stars.jpg" alt="A luminous figure dancing among swirling stars and galaxies, blending into cosmic patterns, surrounded by golden light and divine calligraphy" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}eternal-dance-whirling-stars.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}eternal-dance-whirling-stars.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}eternal-dance-whirling-stars.jpg"
+        alt="A luminous figure dancing among swirling stars and galaxies — blending into the cosmic pattern, surrounded by golden light and divine calligraphy, symbol of the soul merging with the Beloved’s infinite rhythm."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The eternal dance, the soul becomes part of the cosmic rhythm, dissolving into the Beloved&lsquo;s unfolding Glory.
+    The eternal dance —<br>
+    the soul becomes part of the cosmic rhythm,<br>
+    dissolving into the Beloved’s unfolding Glory.
   </figcaption>
 </figure>
 

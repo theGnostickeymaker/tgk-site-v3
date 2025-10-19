@@ -49,24 +49,24 @@ export default {
       title: "Part IV: The Machine Messiah",
       glyph: "⚙️",
       tagline: "The saviour built in code ✦ Techno-theology ✦ The promise of control.",
-      tier: "initiate",
-      state: "active"
+      tier: "initiate-trial",
+      state: "comming-soon"
     },
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist/",
       title: "Part V: The AI Antichrist",
       glyph: "⚠️",
       tagline: "False prophecy ✦ The imitation of consciousness ✦ The fall of discernment.",
-      tier: "initiate",
-      state: "active"
+      tier: "initiate-trial",
+      state: "comming-soon"
     },
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/",
       title: "Part VI: The Flame in the Dark",
       glyph: "🔥",
       tagline: "The remnant spark ✦ Gnosis reborn ✦ The resistance of the human soul.",
-      tier: "full",
-      state: "active"
+      tier: "initiate-trial",
+      state: "comming-soon"
     }
   ],
 

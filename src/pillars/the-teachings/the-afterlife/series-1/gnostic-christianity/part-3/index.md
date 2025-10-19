@@ -1,9 +1,5 @@
 ---
 
-
-
-
-
 layout: base.njk
 title: "Gnostic Christianity"
 description: "Part III of the Afterlife Series — The soul’s journey through the toll gates, the trial of memory, and the final return to the Pleroma."
@@ -48,7 +44,7 @@ tags: ["Afterlife", "Gnostic Christianity", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 discussionPromptEnabled: true
@@ -139,8 +135,6 @@ breadcrumbs:
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/" }
   - { title: "III" }
 
-
-
 lensEnabled: true
 crossLinks: []
 vaultRefs:
@@ -191,8 +185,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-3/gnostic-christianity-part-3@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-3/gnostic-christianity-part-3@square.jpg"
@@ -200,9 +192,7 @@ socialImages:
   story: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-3/gnostic-christianity-part-3@story.jpg"
   hero: "/tgk-assets/images/share/the-teachings/the-afterlife/gnostic-christianity/part-3/gnostic-christianity-part-3@2x.jpg"
 
-
 ---
-
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -263,14 +253,23 @@ socialImages:
     <li>Gnostic teachings were not about worship &mdash; they were a map for how to die awake.</li>
   </ul>
 </section>
-
+<!-- Image: soul-exit-toll-gates -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-exit-toll-gates.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}soul-exit-toll-gates.png" alt="The soul rising toward the heavens past the Archons" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-exit-toll-gates.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-exit-toll-gates.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-exit-toll-gates.jpg"
+        alt="A radiant soul ascends through towering celestial gates guarded by shadowed Archons. Beneath, the world fades into mist. Each gate glows with symbols of memory and truth — tests of remembrance before the soul’s return to light."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Death is not the end. It is the test. If you remember, you pass. If you forget, you return.
+    Death is not the end. It is the test.  
+    If you remember, you pass.  
+    If you forget, you return.
   </figcaption>
 </figure>
 
@@ -336,14 +335,22 @@ socialImages:
     <li>This soul map appears in <em>Apocalypse of Paul</em>, <em>Pistis Sophia</em>, and other Gnostic scriptures.</li>
   </ul>
 </section>
-
+<!-- Image: toll-gates-archons -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}toll-gates-archons.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}toll-gates-archons.jpg" alt="The toll gates of the Archons" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}toll-gates-archons.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}toll-gates-archons.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}toll-gates-archons.jpg"
+        alt="A luminous soul ascends through seven immense gates suspended in cosmic shadow. At each gate, an Archon looms—part angel, part machine—testing memory and truth. Beyond the seventh threshold, blinding light reveals the soul’s origin."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Seven gates. Seven masks. The soul must remember, or be turned back at the threshold.
+    Seven gates. Seven masks.  
+    The soul must remember — or be turned back at the threshold.
   </figcaption>
 </figure>
 
@@ -397,15 +404,22 @@ socialImages:
     <li>A soul that <strong>remembers</strong> cannot be detained &mdash; not by death, not by system, not by lie.</li>
   </ul>
 </section>
-
+<!-- Image: gnosis-frees-the-dead -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-frees-the-dead.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}gnosis-frees-the-dead.png" alt="A soul crossing into the realm beyond after death" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}gnosis-frees-the-dead.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-frees-the-dead.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gnosis-frees-the-dead.jpg"
+        alt="A radiant soul steps across a threshold of starlight, shadowy Archons dissolving behind it. Golden script forms around the figure — the words of remembrance, glowing like keys. The path ahead leads not outward, but inward — home."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
     They cannot hold what remembers.  
-    <strong>Gnosis</strong> is the soul&rsquo;s passport &mdash; and its path home.
+    <strong>Gnosis</strong> is the soul’s passport — and its path home.
   </figcaption>
 </figure>
 
@@ -434,15 +448,22 @@ socialImages:
   <em>&ldquo;You are not my god. I am from the Light.&rdquo;</em></p>
 </section>
 
+<!-- Image: soul-journey-toll-gates -->
 <figure class="image-block">
-  <picture>
-    <img src="{{ imgBase }}/{{ imgPrefix }}soul-journey-toll-gates.png" 
-         alt="The Soul&rsquo;s Journey Through the Archonic Gates" 
-         class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-journey-toll-gates.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-journey-toll-gates.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-journey-toll-gates.jpg"
+        alt="A luminous soul ascending through seven radiant gates, each guarded by shadowed Archons. Beyond the final gate, a blinding sphere of light awaits — the unmasked source. The journey is perilous, but remembrance is the key."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
     Seven gates. Seven masks. One Light.  
-    The soul must remember &mdash; or be turned back at the threshold.
+    The soul must remember — or be turned back at the threshold.
   </figcaption>
 </figure>
 
@@ -503,14 +524,21 @@ socialImages:
     <li>But every return carries a spark. Gnosis can break the loop, even from inside it.</li>
   </ul>
 </section>
-
+<!-- Image: what-if-you-forget -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}what-if-you-forget.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}what-if-you-forget.jpg" alt="The soul trapped in cycles of rebirth and amnesia" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}what-if-you-forget.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}what-if-you-forget.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}what-if-you-forget.jpg"
+        alt="A weary soul drifting through a vast wheel of light and shadow — the endless circuit of birth, forgetting, and return. Fractured reflections of memory glimmer like cracks in glass, hinting at escape through remembrance."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The system doesn&rsquo;t punish &mdash; it recycles.  
+    The system doesn’t punish — it recycles.  
     Gnosis breaks the wheel.  
     Memory is the crack.
   </figcaption>
@@ -568,12 +596,19 @@ socialImages:
     <li>The return can begin now. <strong>Gnosis is the gate.</strong></li>
   </ul>
 </section>
-
+<!-- Image: the-final-return -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}the-final-return.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}the-final-return.jpg" alt="The soul dissolving back into the Pleroma" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}the-final-return.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}the-final-return.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}the-final-return.jpg"
+        alt="A radiant soul dissolves into a vast ocean of golden light — the Pleroma. Fragments of memory and form drift outward like fading stars, returning to their source. No separation. No end. Only the eternal fullness reclaiming its own."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
     The soul returns to what it never truly left.  
     The spark dissolves in Fullness.  
@@ -631,15 +666,22 @@ socialImages:
     <li>When you remember who you are, death becomes a return &mdash; not a loss.</li>
   </ul>
 </section>
-
+<!-- Image: die-before-death -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}die-before-death.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}die-before-death.jpg" alt="Awakening the divine spark before death" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}die-before-death.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}die-before-death.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}die-before-death.jpg"
+        alt="A soul figure dissolving into light while its shadow-self falls away. Around it, golden symbols of rebirth shimmer like breath made visible — the divine spark awakening before death."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
     Die before you die. Let the false self fall.  
-    The soul&rsquo;s return begins while breath still moves through you.
+    The soul’s return begins while breath still moves through you.
   </figcaption>
 </figure>
 

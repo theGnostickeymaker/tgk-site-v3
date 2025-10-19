@@ -45,7 +45,7 @@ status: "coming-soon" # or "live" once published
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -255,16 +255,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: eternal-nile-threshold -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}eternal-nile-threshold.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}eternal-nile-threshold.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}eternal-nile-threshold.jpg" alt="Soul rising from the tomb as Ba-bird at sunrise along the Nile" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}eternal-nile-threshold.jpg"
+        alt="A soul rising from the tomb as a Ba-bird at sunrise along the eternal Nile, the river glowing with divine memory"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The soul&rsquo;s journey begins not in darkness, but in memory. The Nile below. Eternity ahead.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The soul’s journey begins not in darkness, but in memory — the Nile below, eternity ahead.
+  </figcaption>
+</figure>
 
   <!--🐍 Chapter 2: The Osiris Code, Death, Resurrection & the First Judged Soul-->
 <section class="section-block">
@@ -308,16 +315,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: osiris-resurrection-judgement -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}osiris-resurrection-judgement.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}osiris-resurrection-judgement.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}osiris-resurrection-judgement.jpg" alt="Osiris enthroned in the Hall of Ma&rsquo;at, green-skinned and radiant" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}osiris-resurrection-judgement.jpg"
+        alt="Osiris enthroned in the Hall of Ma’at, green-skinned and radiant"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Osiris: the first to die, the first to rise. Every soul walks his path, and stands before his throne.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Osiris — the first to die, the first to rise. Every soul walks his path and stands before his throne.
+  </figcaption>
+</figure>
 
   <!--🦅 Chapter 3: The Ba, the Ka, and the Akh, Soul Anatomy of the Immortals-->
   <section class="section-block">
@@ -342,12 +356,22 @@ socialImages:
   <p>This wasn&rsquo;t automatic. It had to be earned, by living in Ma&rsquo;at, by remembering the rituals, by preserving the body through mummification. The Akh was not just the dead made divine. It was the <strong>initiated</strong> made eternal.</p>
   </section>
 
+<!-- Image: soul-anatomy -->
 <figure class="image-block">
-  <picture>
-    <img src="{{ imgBase }}/{{ imgPrefix }}soul-anatomy.jpg" alt="Diagram showing the four Egyptian soul components: Ka, Ba, Ren, and Akh, representing vitality, personality, name, and divine self" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-anatomy.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-anatomy.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-anatomy.jpg"
+        alt="Diagram showing the four Egyptian soul components: Ka, Ba, Ren, and Akh — representing vitality, personality, name, and divine self"
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The Egyptian soul was not one thing but a constellation: <strong>Ka</strong> (life-force), <strong>Ba</strong> (personality), <strong>Ren</strong> (name), and <strong>Akh</strong> (divine self). Only when all were aligned could immortality be achieved.
+    The Egyptian soul was not one thing but a constellation — <strong>Ka</strong> (life-force), <strong>Ba</strong> (personality), <strong>Ren</strong> (name), and <strong>Akh</strong> (divine self).  
+    Only when all were aligned could immortality be achieved.
   </figcaption>
 </figure>
 
@@ -373,15 +397,23 @@ socialImages:
   </ul>
   </section>
 
-  <figure class="image-block">
+<!-- Image: ba-ka-akh-soul-anatomy -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}ba-ka-akh-soul-anatomy.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}ba-ka-akh-soul-anatomy.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}ba-ka-akh-soul-anatomy.jpg" alt="Three-part Egyptian soul: Ba bird, Ka double, Akh radiant star-form" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}ba-ka-akh-soul-anatomy.jpg"
+        alt="Three-part Egyptian soul: Ba bird, Ka double, Akh radiant star-form"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The soul was not singular. To become immortal, one had to unify the Ka, the Ba, and awaken as Akh, the radiant one.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The soul was not singular. To become immortal, one had to unify the Ka, the Ba, and awaken as Akh — the radiant one.
+  </figcaption>
+</figure>
 
 <!--⚖️ Chapter 4: Living in Ma&rsquo;at, The Feather of Truth-->
 <section class="section-block">
@@ -423,16 +455,24 @@ socialImages:
   </ul>
   </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: maat-feather-balance -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}maat-feather-balance.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}maat-feather-balance.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}maat-feather-balance.jpg" alt="Ma&rsquo;at holding the feather of truth beside the scales of judgement" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}maat-feather-balance.jpg"
+        alt="Ma’at holding the feather of truth beside the scales of judgement"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Ma&rsquo;at was not just law, she was balance incarnate. In her feather, the weight of truth. In her presence, the path to eternity.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Ma’at was not just law — she was balance incarnate. In her feather, the weight of truth. In her presence, the path to eternity.
+  </figcaption>
+</figure>
+
 
   <!--🏺 Chapter 5: Tombs, Mummification & the Resurrection Machine-->
   <section class="section-block">
@@ -478,16 +518,23 @@ socialImages:
   </ul>
   </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: mummification-resurrection-machine -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}mummification-resurrection-machine.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}mummification-resurrection-machine.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}mummification-resurrection-machine.jpg" alt="Ancient Egyptian burial chamber with mummification and ritual objects" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}mummification-resurrection-machine.jpg"
+        alt="Ancient Egyptian burial chamber with mummification and ritual objects"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The tomb was not a place of endings. It was a machine for eternal return, sacred, sealed, and written in stars.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The tomb was not a place of endings — it was a machine for eternal return, sacred, sealed, and written in stars.
+  </figcaption>
+</figure>
 
   <!--🌒 Chapter 6: Into the Du&rdquo;st, The Map of the Hidden World-->
   <section class="section-block">
@@ -532,18 +579,23 @@ socialImages:
   </ul>
   </section>
 
-  <!-- Image -->
-  <figure class="image-block">
-    <h2 class="section-heading">Visual Map: The Du&rdquo;st as the Soul&rsquo;s Trial</h2>
-    <p>Below the world lies a mirror, filled with fire, stars, guardians, and remembrance. The Du&rdquo;st is where Ra dies to rise again, and where the soul is forged eternal.</p>
+<!-- Image: duat-journey-map -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source srcset="{{ imgBase }}/{{ imgPrefix }}duat-map-diagram.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}duat-map-diagram.jpg" alt="Schematic of the Du&rdquo;st showing 12 gates, guardians, solar barque" class="image-gnostic" loading="lazy">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.jpg"
+        alt="Sacred visual map of the Egyptian afterlife journey through the Duat"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The soul&rsquo;s path is a night-sea journey through transformation. The Du&rdquo;st is not a place, it is what you become.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The ancient Egyptian soul map — from death, through the Duat, to eternity. Not a fantasy, but a cosmic instruction manual for the soul’s return.
+  </figcaption>
+</figure>
 
 <!-- 🗺️ Visual Map: The Journey Through the Du&rdquo;st -->
 <section class="section-block">
@@ -564,14 +616,23 @@ socialImages:
   <p>This is not mythology. It&rsquo;s a mirror. <strong>Each phase is alive within you, now.</strong></p>
 </section>
 
-  <figure class="image-block">
+<!-- Image: duat-journey-map -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <img src="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.jpg" alt="Sacred visual map of the Egyptian afterlife journey through the Du&rdquo;st" class="image-gnostic" loading="lazy">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.jpg"
+        alt="Sacred visual map of the Egyptian afterlife journey through the Duat"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The ancient Egyptian soul map, from death to Du&rdquo;st to eternity. Not a fantasy, but a cosmic instruction manual for the soul&rsquo;s return.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The ancient Egyptian soul map — from death, through the Duat, to eternity. Not a fantasy, but a cosmic instruction manual for the soul’s return.
+  </figcaption>
+</figure>
 
   <!--🚪 Chapter 7: Trials, Gates & the Soul&rsquo;s Passwords-->
   <section class="section-block">
@@ -623,16 +684,23 @@ socialImages:
   </ul>
   </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: gatekeepers-duat-trials -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}gatekeepers-duat-trials.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}gatekeepers-duat-trials.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}gatekeepers-duat-trials.jpg" alt="Egyptian soul standing before a gate in the Du&rdquo;st, challenged by guardian figures" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gatekeepers-duat-trials.jpg"
+        alt="Egyptian soul standing before a gate in the Duat, challenged by guardian figures"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Every gate was a question. Every name a key. The soul that remembered, passed. The one that forgot, fell.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Every gate was a question. Every name a key. The soul that remembered, passed. The one that forgot, fell.
+  </figcaption>
+</figure>
 
 <!--⚖️ Chapter 8: The Weighing of the Heart, Scales of the Invisible Self-->
 <section class="section-block">
@@ -676,16 +744,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: weighing-heart-scales -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}weighing-heart-scales.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}weighing-heart-scales.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}weighing-heart-scales.jpg" alt="Egyptian soul before the scales, heart on one side, feather of Ma&rsquo;at on the other, with Anubis, Thoth, and Ammit" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}weighing-heart-scales.jpg"
+        alt="Egyptian soul before the scales, heart on one side, feather of Ma’at on the other, with Anubis, Thoth, and Ammit"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      In the Hall of Ma&rsquo;at, the heart speaks its weight. There are no lies at the threshold of eternity.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    In the Hall of Ma’at, the heart speaks its weight — there are no lies at the threshold of eternity.
+  </figcaption>
+</figure>
 
   <!--📜 Chapter 9: The 42 Confessions, Soul as Self-Witness-->
 <section class="section-block">
@@ -738,16 +813,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: 42-confessions-scroll -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}42-confessions-scroll.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}42-confessions-scroll.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}42-confessions-scroll.jpg" alt="Ancient scroll with 42 Negative Confessions, flanked by divine judges, in a sacred chamber of judgement" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}42-confessions-scroll.jpg"
+        alt="Ancient scroll with 42 Negative Confessions, flanked by divine judges, in a sacred chamber of judgement"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The 42 Confessions were not pleas. They were affirmations. To speak them truthfully was to align the soul with the cosmic code.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The 42 Confessions were not pleas. They were affirmations — to speak them truthfully was to align the soul with the cosmic code.
+  </figcaption>
+</figure>
 
   <!--🐊 Chapter 10: Ammit the Devourer, The Second Death-->
   <section class="section-block">
@@ -793,16 +875,23 @@ socialImages:
   </ul>
   </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: ammit-devourer-second-death -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}ammit-devourer-second-death.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}ammit-devourer-second-death.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}ammit-devourer-second-death.jpg" alt="Ammit crouching beside the scale in the Hall of Ma&rsquo;at, jaws open beneath a starry ceiling" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}ammit-devourer-second-death.jpg"
+        alt="Ammit crouching beside the scale in the Hall of Ma’at, jaws open beneath a starry ceiling"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      She does not chase. She does not judge. She waits. For those who forget Ma&rsquo;at, Ammit opens her jaws, and the soul is no more.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    She does not chase. She does not judge. She waits. For those who forget Ma’at, Ammit opens her jaws, and the soul is no more.
+  </figcaption>
+</figure>
 
   <!--🌾 Chapter 11: The Field of Reeds , Paradise as Remembrance-->
 <section class="section-block">
@@ -847,16 +936,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: field-of-reeds-paradise -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-paradise.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-paradise.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-paradise.jpg" alt="A shining field of golden reeds, glowing souls walking among lotuses and divine light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-paradise.jpg"
+        alt="A shining field of golden reeds, glowing souls walking among lotuses and divine light"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Paradise was not escape, it was remembrance. The Field of Reeds was Egypt, perfected. Memory, joy, and light, forever.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Paradise was not escape, it was remembrance. The Field of Reeds was Egypt, perfected — memory, joy, and light, forever.
+  </figcaption>
+</figure>
 
   <!--✨ Chapter 12: The Akh Ascends, Star-Soul of the Immortals-->
  <section class="section-block">
@@ -901,16 +997,23 @@ socialImages:
   </ul>
  </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: akh-star-soul-ascent -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}akh-star-soul-ascent.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}akh-star-soul-ascent.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}akh-star-soul-ascent.jpg" alt="A shining bird-soul ascends into a star-filled sky over the Nile, radiating light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}akh-star-soul-ascent.jpg"
+        alt="A shining bird-soul ascends into a star-filled sky over the Nile, radiating light"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      To become Akh is to awaken as light. No longer bound by form,  the soul becomes a star, shining forever in the fields of heaven.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    To become Akh is to awaken as light. No longer bound by form, the soul becomes a star, shining forever in the fields of heaven.
+  </figcaption>
+</figure>
 
 <!--📖 Chapter 13: The Book of the Dead, Operating Manual for the Soul-->
 <section class="section-block">
@@ -953,16 +1056,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: book-of-the-dead-scroll -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-scroll.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-scroll.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-scroll.jpg" alt="A sacred papyrus scroll of the Book of the Dead, with vivid spells and hieroglyphs glowing in golden light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-scroll.jpg"
+        alt="A sacred papyrus scroll of the Book of the Dead, with vivid spells and hieroglyphs glowing in golden light"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Not myth. Not metaphor. The Book of the Dead was a soul-manual, coded instructions for navigating death and rebirth into eternity.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Not myth. Not metaphor. The Book of the Dead was a soul-manual, coded instructions for navigating death and rebirth into eternity.
+  </figcaption>
+</figure>
 
 <!--🕯️ Chapter 14: Living to Die Well, Preparing the Soul for Eternity-->
 <section class="section-block">
@@ -1007,16 +1117,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: living-die-well-maat -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}living-die-well-maat.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}living-die-well-maat.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}living-die-well-maat.jpg" alt="An Egyptian elder prepares for death with calm reverence, surrounded by scrolls, symbols of Ma&rsquo;at, and family offering rites" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}living-die-well-maat.jpg"
+        alt="An Egyptian elder prepares for death with calm reverence, surrounded by scrolls, symbols of Ma’at, and family offering rites"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The wise did not fear death. They prepared for it, with memory, ritual, and truth. To live rightly was to die ready.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The wise did not fear death. They prepared for it, with memory, ritual, and truth. To live rightly was to die ready.
+  </figcaption>
+</figure>
 
 <!--♻️ Chapter 15: The Return of the Soul, Rebirth, Memory & the Cosmic Cycle-->
 <section class="section-block">
@@ -1061,17 +1178,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: soul-rebirth-scarab-cycle -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-rebirth-scarab-cycle.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-rebirth-scarab-cycle.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}soul-rebirth-scarab-cycle.jpg" alt="A radiant scarab rolling a golden sun across the horizon, a soul emerging from light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-rebirth-scarab-cycle.jpg"
+        alt="A radiant scarab rolling a golden sun across the horizon, a soul emerging from light"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The soul returns not to suffer, but to awaken, again and again, remembering more each time.
-    </figcaption>
-  </figure>
-
+  </a>
+  <figcaption class="caption-gnostic">
+    The soul returns not to suffer, but to awaken, again and again, remembering more each time.
+  </figcaption>
+</figure>
 
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}

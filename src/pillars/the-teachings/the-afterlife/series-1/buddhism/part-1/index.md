@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Buddhism"
 description: "Through the Six Realms, the Bardos, and the mind’s last illusions — the soul learns how to die before death."
@@ -47,7 +44,7 @@ tags: ["Afterlife", "Buddhism", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -253,15 +250,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: wheel-of-samsara -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara.jpg" alt="A cosmic wheel turning through six realms, gods, humans, animals, hungry ghosts, and hell-beings, with glowing karmic threads binding souls across lifetimes" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}wheel-of-samsara.jpg"
+        alt="A vast cosmic wheel revolving through six realms — gods, humans, animals, hungry ghosts, and hell-beings — all bound by luminous karmic threads weaving through eternity. At its hub, a spark of awareness waits still."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Wheel of Samsāra turns through realms of mind and cosmos alike. Its engine is craving. Its exit is awakening.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Wheel of Samsāra turns through realms of mind and cosmos alike.  
+    Its engine is craving — its exit, awakening.
+  </figcaption>
+</figure>
 
 <!--🔥 Chapter 2: The Karma Machine-->
 <section class="section-block">
@@ -295,15 +301,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: karma-machine-cogs -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}karma-machine-cogs.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}karma-machine-cogs.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}karma-machine-cogs.jpg" alt="A cosmic machine of glowing gears powered by human intentions, with threads of light and shadow connecting lifetimes in a spiraling karmic web" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}karma-machine-cogs.jpg"
+        alt="A vast cosmic mechanism of radiant gears turning through space, each cog driven by threads of human intention. Streams of light and shadow weave across lifetimes, forming the great karmic web of becoming."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Karma is the engine of becoming, each intention a gear, each act a thread. The machine spins until awareness unplugs it.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Karma is the engine of becoming — each intention a gear, each act a thread.  
+    The machine spins until awareness unplugs it.
+  </figcaption>
+</figure>
 
 <!--🌫️ Chapter 3: The Realm-Mirror-->
 <section class="section-block">
@@ -343,16 +358,24 @@ socialImages:
     <li>Every moment is a shift, awareness reveals your current realm</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: six-realms-mirror -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror.jpg" alt="A cosmic mirror reflecting six realms, gods, demigods, humans, animals, hungry ghosts, and hell-beings, each emerging from shifting light and shadow across a spiraling path" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror.jpg"
+        alt="A vast cosmic mirror reflects six luminous and shadowed realms — gods, demigods, humans, animals, hungry ghosts, and hell-beings — all spiraling around a central axis of awareness."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Six Realms are not distant worlds, they are mirrors of the self. To walk between them consciously is the beginning of liberation.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Six Realms are not distant worlds but mirrors of the self.  
+    To walk between them consciously is the first movement of liberation.
+  </figcaption>
+</figure>
 
 <!--🔗 Chapter 4: The Breaking of the Chain-->
 <section class="section-block">
@@ -405,16 +428,25 @@ socialImages:
     <li>Gnostics mirror this with the soul&rsquo;s descent into illusion and ascent through memory</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: dependent-origination-chain -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}dependent-origination-chain.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}dependent-origination-chain.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}dependent-origination-chain.jpg" alt="A golden karmic chain with 12 symbolic links spiraling through space, each link glowing with a distinct symbol, ignorance, craving, death, and rebirth, with a figure reaching to break the chain" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}dependent-origination-chain.jpg"
+        alt="A radiant golden chain spirals through cosmic space, each of its twelve links etched with symbols of ignorance, craving, birth, and death. A luminous figure reaches toward one link — poised to break the cycle of becoming."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The chain of Dependent Origination, a cosmic engine of becoming. But each link is a chance. Break the chain, and you break the wheel.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Chain of Dependent Origination — twelve links, twelve turns of illusion.  
+    Each link is a lesson, not a prison.  
+    Break the chain, and you break the wheel.
+  </figcaption>
+</figure>
 
 <!--🌑 Chapter 5: The Great Forgetting-->
 <section class="section-block">
@@ -452,15 +484,25 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: great-forgetting -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}great-forgetting.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}great-forgetting.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}great-forgetting.jpg" alt="A soul figure drifting through cosmic mists, with threads of memory dissolving into shadow. A veil descends across a golden doorway in the distance, symbolizing spiritual amnesia." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}great-forgetting.jpg"
+        alt="A luminous soul drifts through cosmic mists as threads of memory unravel into darkness. In the distance, a golden doorway fades beneath a descending veil — the moment of divine forgetting before rebirth."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Great Forgetting, the soul is born into illusion, forgetting its origin. To remember is to awaken.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Great Forgetting — the soul’s descent into illusion,  
+    where memory fades and matter whispers, “I am all.”  
+    To remember is to awaken.
+  </figcaption>
+</figure>
 
 <!--🪞 Chapter 6: The Mirror of the Realms-->
 <section class="section-block">
@@ -504,15 +546,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: six-realms-mirror-2 -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror-2.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror-2.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror-2.jpg" alt="A cosmic wheel with six radiant and shadowy sections, each reflecting a different realm: god, demigod, human, animal, ghost, and hell. A figure stands at the center, seeing all realms as reflections." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}six-realms-mirror-2.jpg"
+        alt="A cosmic wheel divided into six luminous and shadowed sections — the realms of gods, demigods, humans, animals, ghosts, and hell-beings. At its center stands a figure gazing into each as reflections of one mind."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The six realms are not distant worlds, but mirrors of the soul&rsquo;s state. To see them clearly is to begin transcending them.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The six realms are not distant worlds but mirrors of consciousness.  
+    To see them clearly is to begin transcending them.
+  </figcaption>
+</figure>
 
 <!--🗺️ Visual Map: The Cycle of Samsāra-->
 <section class="section-block">
@@ -532,14 +583,26 @@ socialImages:
   <p>This map mirrors your mind&rsquo;s states, choose awareness to step off the wheel.</p>
 </section>
 
+<!-- Image: the-wheel-of-samsara -->
 <figure class="image-block">
-  <picture>
-  <img src="{{ imgBase }}/{{ imgPrefix }}the-wheel-of-samsara.jpg" alt="The Wheel Of Samsāra" class="image-gnostic" loading="lazy">
-  </picture>
-<figcaption class="caption-gnostic">
-  The Wheel of Samsāra, six realms, six states of becoming. This ancient Buddhist map mirrors not only cosmic rebirth but the daily fluctuations of mind. From godly pride to ghostly craving, each slice is a mirror. Awareness is the key to step beyond the spin.
-</figcaption>
-</figure>  
+  <a href="{{ imgBase }}/{{ imgPrefix }}the-wheel-of-samsara.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}the-wheel-of-samsara.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}the-wheel-of-samsara.jpg"
+        alt="A detailed mandala of the Wheel of Samsāra — six realms encircling a blazing hub of desire and fear, each realm depicting gods, humans, animals, spirits, and demons in cycles of birth, death, and return."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Wheel of Samsāra — six realms, six states of becoming.  
+    This ancient Buddhist map reflects both cosmic rebirth and the mind’s daily cycles.  
+    From godly pride to ghostly craving, every realm is a mirror.  
+    <strong>Awareness</strong> is the key that steps beyond the spin.
+  </figcaption>
+</figure>
 
 <!--🔥 Chapter 7: The Middle Way is Fire-->
 <section class="section-block">
@@ -575,15 +638,23 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: middle-way-fire -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}middle-way-fire.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}middle-way-fire.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}middle-way-fire.jpg" alt="A solitary monk walks a radiant narrow path of fire between two vast chasms, one of indulgent shadows, the other of skeletal denial. Above him, golden light breaks through indigo storm clouds." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}middle-way-fire.jpg"
+        alt="A solitary monk walks a radiant, narrow path of fire suspended between two chasms — one filled with indulgent shadows, the other with skeletal denial. Above, golden light breaks through indigo storm clouds, illuminating the way."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Middle Way is fire, walked not in comfort or torment, but in clarity. The soul awakens by walking the razor&rsquo;s edge with calm strength.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Middle Way is fire — neither comfort nor torment, but clarity. The soul awakens by walking the razor’s edge with calm strength.
+  </figcaption>
+</figure>
 
 <!--💨 Chapter 8: The Gate of Death-->
 <section class="section-block">
@@ -621,15 +692,23 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: gate-of-death -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}gate-of-death.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}gate-of-death.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}gate-of-death.jpg" alt="A radiant threshold of shimmering light between two worlds, one fading into shadow, the other into glowing mist. A soul-form drifts upward, leaving behind a dissolving body. Symbols of karma and memory swirl around." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gate-of-death.jpg"
+        alt="A luminous threshold of shifting light between two worlds — one dissolving into shadow, the other into radiant mist. A soul rises upward, body fading below, as symbols of memory and karma swirl through the air."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Gate of Death, not an end, but a mirror. Here the soul steps beyond form and meets the imprint of its becoming.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Gate of Death is not an ending but a mirror — where the soul steps beyond form and meets the imprint of its own becoming.
+  </figcaption>
+</figure>
 
 <!--🪞 Chapter 9: The Mirror of the Mind-->
 <section class="section-block">
@@ -668,15 +747,23 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: mirror-of-the-mind -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}mirror-of-the-mind.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}mirror-of-the-mind.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}mirror-of-the-mind.jpg" alt="A luminous mirror floats in a dark void, reflecting shifting visions, a storm, a loved one, a shadowy figure, a golden light. A soul-form hovers before it, calm but uncertain. The atmosphere glows with violet, blue, and gold." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}mirror-of-the-mind.jpg"
+        alt="A radiant mirror suspended in darkness reflects shifting visions — storm, loved one, shadow, golden light. A translucent soul stands before it, calm yet uncertain, bathed in violet and gold."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Bardo reveals the mind&rsquo;s hidden faces. Not punishment, projection. See clearly, and the mirror becomes a doorway.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Bardo reveals the mind’s hidden faces — not punishment, but projection. See clearly, and the mirror becomes a doorway.
+  </figcaption>
+</figure>
 
 <!--🌑 Chapter 10: The Lords of Light and Shadow-->
 <section class="section-block">
@@ -709,16 +796,23 @@ socialImages:
     <li><strong>All forms are illusory, </strong> to see clearly is to step through the veil</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: lords-light-shadow -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}lords-light-shadow.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}lords-light-shadow.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}lords-light-shadow.jpg" alt="A radiant, multi-armed peaceful deity and a wrathful, flame-covered figure stand on either side of a glowing soul-form. Gold and crimson light floods the scene, with swirling shadows behind. The atmosphere is charged with awe, fear, and transcendence." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}lords-light-shadow.jpg"
+        alt="A glowing soul-form stands between two vast presences — one serene and golden, the other wrathful and blazing red. Light and flame entwine in a cosmic balance as shadows ripple through eternity."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Lords of Light and Shadow, projections of mind, mirrors of karma. To worship or fear is to fall. To see clearly is to pass through.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Lords of Light and Shadow are not gods, but mirrors of mind. To worship or to fear is to fall — to see clearly is to pass through.
+  </figcaption>
+</figure>
 
 <!--🌘 Chapter 11: The judgement Is You-->
 <section class="section-block">
@@ -760,15 +854,23 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: judgment-mirror-soul -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}judgment-mirror-soul.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}judgment-mirror-soul.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}judgment-mirror-soul.jpg" alt="A luminous soul figure gazes into a radiant, ethereal mirror suspended in darkness. Inside the mirror swirl scenes of past actions, glowing threads of karma, and shadowy impressions. The space is silent and vast, lit by soft light in gold and sapphire." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}judgment-mirror-soul.jpg"
+        alt="A radiant soul stands before a vast, luminous mirror suspended in darkness. Within its depths swirl golden threads of karma and echoes of past lives. The light is soft, sapphire and gold — infinite, silent, and revealing."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The final judgement is not divine, it is the soul meeting the truth of its own vibration. What cannot be accepted returns. What is seen clearly dissolves.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The final judgement is not divine — it is the soul meeting the truth of its own vibration. What cannot be accepted returns. What is seen clearly dissolves.
+  </figcaption>
+</figure>
 
 <!--🌕 Chapter 12: The Clear Light-->
 <section class="section-block">
@@ -806,15 +908,23 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: clear-light-bardo -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}clear-light-bardo.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}clear-light-bardo.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}clear-light-bardo.jpg" alt="A radiant white-gold field of light with no boundaries, a small transparent soul-form dissolving into the luminous void. Lotus shapes ripple faintly through the glow. The atmosphere is still, silent, and infinite." class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}clear-light-bardo.jpg"
+        alt="A radiant field of white-gold light with no horizon, where a transparent soul-form dissolves into infinite luminosity. Lotus patterns shimmer faintly through the stillness — the pure awareness of the Clear Light."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Clear Light, not a place, not a deity, but the radiant origin of awareness itself. Few recognise it. Fewer remain.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Clear Light is not a place, nor a god — it is the radiant origin of awareness itself. Few recognise it. Fewer remain.
+  </figcaption>
+</figure>
 
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}

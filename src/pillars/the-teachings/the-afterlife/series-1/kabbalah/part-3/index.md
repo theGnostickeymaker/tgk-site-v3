@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Kabbalah"
 description: "The soul’s return to the Source — the remembrance of its vow, the healing of the fracture, and the ascent beyond the gates of life and death."
@@ -49,7 +46,7 @@ sitemap: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 discussEnabled: true
 creativePromptEnabled: true
 discussionPromptEnabled: true
@@ -192,8 +189,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@square.jpg"
@@ -202,7 +197,6 @@ socialImages:
   hero: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-3/kabbalah-part-3@2x.jpg"
 
 ---
-
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -256,15 +250,25 @@ socialImages:
   </ul>
   </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}tree-of-souls -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}tree-of-souls.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}tree-of-souls.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}tree-of-souls.jpg" alt="Celestial Tree of Souls and the Guf" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}tree-of-souls.jpg"
+        alt="The Celestial Tree of Souls — radiant roots and branches connecting heaven and earth, symbol of the Guf, the treasury of souls awaiting incarnation and return."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      You were chosen before the world began. The Guf holds your origin, and your return awaits.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    You were chosen before the world began.<br>
+    The Guf holds your origin,<br>
+    and your return awaits.
+  </figcaption>
+</figure>
 
 <!--Chapter 2: The Soul Contract-->
 <section class="section-block">
@@ -306,15 +310,25 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}soul-contract-oath -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-contract-oath.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-contract-oath.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}soul-contract-oath.jpg" alt="Radiant soul making pre-birth oath with angel" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-contract-oath.jpg"
+        alt="A radiant soul stands before a celestial being of light, making a sacred pre-birth oath — a promise to enter the world and remember the divine purpose within."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      You saw your life before you lived it, and still you came. That is not weakness. That is a warrior&rsquo;s oath.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    You saw your life before you lived it,<br>
+    and still you came.<br>
+    That is not weakness — that is a warrior’s oath.
+  </figcaption>
+</figure>
 
 <!--Chapter 3: Death, The Great Transition-->
 <section class="section-block">
@@ -357,15 +371,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}death-soul-transition -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}death-soul-transition.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}death-soul-transition.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}death-soul-transition.jpg" alt="Soul rising peacefully from body" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}death-soul-transition.jpg"
+        alt="A luminous soul peacefully rising from its body, ascending toward the light — serene, weightless, and whole."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      You are not your body. You never were. Death is not the end of you, it&rsquo;s the return of what&rsquo;s true.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    You are not your body. You never were.<br>
+    Death is not the end of you — it’s the return of what’s true.
+  </figcaption>
+</figure>
 
 <!--Practicing Kabbalistic Awareness Today<-->
 <section class="section-block">

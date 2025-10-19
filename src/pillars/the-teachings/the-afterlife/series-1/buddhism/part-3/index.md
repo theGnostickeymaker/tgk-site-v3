@@ -47,7 +47,7 @@ tags: ["Afterlife", "Buddhism", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -278,16 +278,24 @@ socialImages:
     <li><strong>Preparation is Key</strong><br>Familiarity with the bardos prepares the soul for a conscious death.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: bardo-states-luminous -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}bardo-states-luminous.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}bardo-states-luminous.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}bardo-states-luminous.png" alt="A radiant landscape of flowing light, peaceful and wrathful deities emerging from the mist, with a translucent soul figure crossing a glowing threshold, symbolising the bardo journey" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}bardo-states-luminous.jpg"
+        alt="A radiant expanse of shifting light reveals both peaceful and wrathful deities arising from mist. A translucent soul crosses a glowing threshold between worlds, symbolising the luminous bardos — the intervals where mind and karma weave the next becoming."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The bardos, the in-between spaces where light, mind, and karma shape the soul&rsquo;s next becoming.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Between worlds, the bardos unfold —  
+    mirrors of mind, gateways of becoming.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 2: The Clear Light of Death-->
 <section class="section-block">
@@ -326,16 +334,24 @@ socialImages:
     <li><strong>Not Just at Death</strong><br>The clear light is always present, awakening is available now.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: clear-light-of-death -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}clear-light-of-death.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}clear-light-of-death.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}clear-light-of-death.png" alt="A glowing golden radiance filling an infinite space, with a translucent soul figure dissolving peacefully into the light, surrounded by subtle Tibetan symbols, evoking the clear light of death" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}clear-light-of-death.jpg"
+        alt="An infinite expanse of golden radiance fills the void. A soul dissolves into luminous awareness, surrounded by faint Tibetan mantras flowing through light. There is no boundary — only the still brilliance of the Clear Light of Death, where being and knowing are one."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The clear light, the radiant ground of being, where form dissolves, and only pure awareness remains.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Clear Light is not seen — it is remembered.  
+    When all forms fade, awareness alone remains.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 3: The Bardo of Becoming-->
 <section class="section-block">
@@ -371,16 +387,24 @@ socialImages:
     <li><strong>Key Practice</strong><br>Stay aware, stay unattached, remember your true nature.</li>
   </ul>
 </section>
-
+<!-- Image: bardo-of-becoming -->
 <figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}bardo-of-becoming.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}bardo-of-becoming.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}bardo-of-becoming.png" alt="A translucent soul figure drifting through a surreal dreamscape of vivid, shifting shapes and lights, both beautiful and terrifying, evoking the bardo of becoming in Tibetan Buddhist imagery" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}bardo-of-becoming.jpg"
+        alt="A translucent soul drifts through a kaleidoscopic dreamscape of radiant forms and shadows — visions woven from desire, fear, and memory. The atmosphere shifts between beauty and terror, symbolising the Bardo of Becoming, where mind manifests reality."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The bardo of becoming, a realm where mind shapes vision, and desire shapes destiny. The path of rebirth or liberation turns on remembrance.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    In the Bardo of Becoming, thought becomes world, and vision becomes fate.  
+    To awaken here is to choose creation, not captivity.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 4: Karmic Threads and the Wheel of Rebirth-->
 <section class="section-block">
@@ -418,16 +442,24 @@ socialImages:
     <li><strong>Exit Path</strong><br>To step off the wheel, the soul must cut the threads: craving, clinging, aversion, illusion.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: karmic-threads-rebirth -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}karmic-threads-rebirth.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}karmic-threads-rebirth.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}karmic-threads-rebirth.png" alt="An intricate cosmic tapestry of luminous threads stretching through space, connecting a soul figure to multiple forms and worlds, symbolising karmic ties and the wheel of rebirth" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}karmic-threads-rebirth.jpg"
+        alt="A luminous tapestry of golden and silver threads stretches across cosmic space, connecting a radiant soul to countless forms, realms, and beings. Each thread glows with karmic resonance — choice, memory, and attachment shaping the weave of rebirth."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Karmic threads weave the soul&rsquo;s next life. But awareness cuts the cords. Rebirth is not forced, it is followed.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The threads of karma bind through memory and desire.  
+    Awareness does not tear them — it unweaves them.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 5: The Moment of Choice at the Threshold-->
 <section class="section-block">
@@ -467,16 +499,24 @@ socialImages:
     <li><strong>Mastery</strong><br>Great practitioners navigate this space with lucidity, choosing liberation over cycle.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: threshold-choice-bardo -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}threshold-choice-bardo.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}threshold-choice-bardo.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}threshold-choice-bardo.png" alt="A luminous soul figure standing at a cosmic gateway, surrounded by swirling visions of parents, realms, and forms, with one path leading to rebirth and another to radiant liberation" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}threshold-choice-bardo.jpg"
+        alt="A radiant soul stands before a cosmic threshold, surrounded by swirling visions of possible births, realms, and destinies. One path glows with the pull of rebirth, the other opens into boundless clear light — the silent invitation of liberation."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      At the threshold, the soul stands between craving and clarity. One leap returns to the wheel; the other crosses into freedom.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The threshold is choice itself.  
+    To turn back is craving. To step through is awakening.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 6: The Liberation Path-->
 <section class="section-block">
@@ -516,16 +556,24 @@ socialImages:
     <li><strong>This Is Nirvāṇa</strong><br>The cessation of craving, becoming, and illusion; abiding in luminous truth.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: liberation-clear-light -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}liberation-clear-light.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}liberation-clear-light.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}liberation-clear-light.png" alt="A radiant soul dissolving into a field of luminous clear light, merging with the infinite void, surrounded by shimmering patterns of peace and stillness" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}liberation-clear-light.jpg"
+        alt="A luminous soul dissolving into the radiant expanse of clear light — an infinite field of stillness and peace. Subtle waves of golden energy shimmer through the void, symbolising the recognition of true nature beyond form."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The clear light of the void, the soul&rsquo;s own nature unveiled. To recognise it is to be free.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Clear Light is not found — it is remembered.  
+    To see it once is awakening; to remain is liberation.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 7: Returning to the Wheel-->
 <section class="section-block">
@@ -567,16 +615,24 @@ socialImages:
     <li><strong>Next Opportunity</strong><br>Each life carries another chance to awaken and prepare for liberation.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: rebirth-wheel-karma -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-karma.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-karma.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-karma.png" alt="A luminous soul figure drifting through swirling karmic winds, drawn toward symbolic womb portals, surrounded by cosmic patterns representing the wheel of saṃsāra" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}rebirth-wheel-karma.jpg"
+        alt="A radiant soul drawn through spiraling karmic currents toward the luminous gates of rebirth. Cosmic winds swirl with symbols of cause and consequence, forming the eternal wheel of Saṃsāra across the void."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Drawn by karmic winds, the soul approaches rebirth. The wheel turns, until awakening breaks the chain.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The winds of karma pull the soul toward form again.  
+    Only awakening stills the wheel.
+  </figcaption>
+</figure>
 
 <!--🌺 Chapter 8: Preparing Now-->
 <section class="section-block">
@@ -626,16 +682,24 @@ socialImages:
     <li><strong>Fear Transforms</strong><br>With practice, death becomes part of the path, not the enemy.</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: meditation-death-preparation -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}meditation-death-preparation.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}meditation-death-preparation.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}meditation-death-preparation.png" alt="A peaceful meditating figure surrounded by soft golden light, dissolving attachments, preparing for the Bardo with calm awareness, with delicate Tibetan script symbols floating around" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}meditation-death-preparation.jpg"
+        alt="A serene monk seated in meditation, surrounded by golden stillness. Their form dissolves softly at the edges, symbols of Tibetan script drifting like breath. The atmosphere is calm, luminous — the art of dying before death."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      To prepare for the Bardo, practice now. Meditation, presence, and letting go are the soul&rsquo;s provisions for the journey.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    To prepare for death is to awaken in life.  
+    Every exhale a rehearsal for release.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 9: Beyond the Wheel, Nirvāṇa & Liberation-->
 <section class="section-block">
@@ -673,15 +737,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: nirvana-liberation-bardo -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}nirvana-liberation-bardo.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}nirvana-liberation-bardo.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}nirvana-liberation-bardo.png" alt="A luminous, dissolving human figure merging into pure light, beyond the wheel of samsara, surrounded by radiating golden emptiness and subtle Tibetan calligraphy of Nirvāṇa" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}nirvana-liberation-bardo.jpg"
+        alt="A luminous human form dissolving into golden light beyond the Wheel of Saṃsāra. The figure merges with radiant emptiness, surrounded by faint Tibetan calligraphy — the stillness of Nirvāṇa rendered as pure awareness."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Beyond the wheel of rebirth lies Nirvāṇa, not a destination, but the extinguishing of becoming itself.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Nirvāṇa is not reached — it is revealed,  
+    when all becoming burns to stillness.
+  </figcaption>
+</figure>
 
 <!--🌟 Chapter 10: The Dance of Return, Bodhisattva & Compassion-->
 <section class="section-block">
@@ -720,15 +793,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: bodhisattva-dance-return -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}bodhisattva-dance-return.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}bodhisattva-dance-return.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}bodhisattva-dance-return.png" alt="A radiant Bodhisattva figure standing at the edge of the cosmic wheel, one hand reaching back into the world, the other hand lifted toward Nirvāṇa, surrounded by swirling light and gentle Tibetan motifs of compassion" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}bodhisattva-dance-return.jpg"
+        alt="A radiant Bodhisattva poised at the edge of the cosmic wheel. One hand reaches back toward the world in compassion, the other extends toward Nirvāṇa. Swirls of golden light and soft Tibetan motifs encircle them — the eternal vow made visible."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Bodhisattva stands at the threshold, choosing return, carrying compassion like a lamp into the darkest realms.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    At the threshold of freedom, the Bodhisattva turns.  
+    Choosing return, they light the path for all who still wander.
+  </figcaption>
+</figure>
 
 <!--Practicing-->
 <section class="section-block">

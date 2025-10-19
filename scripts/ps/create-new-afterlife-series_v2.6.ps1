@@ -606,7 +606,7 @@ tags: ["Afterlife", "$(Yaml-Escape $Title)", "Series I", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -692,13 +692,23 @@ breadcrumbs:
     </cite>
   </blockquote>
 
-  <figure class="image-block">
+<!-- Image: placeholder -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}placeholder.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}placeholder.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}placeholder.jpg" alt="Placeholder image" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}placeholder.jpg"
+        alt="Placeholder image"
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Caption for image placeholder.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Caption for image placeholder.
+  </figcaption>
+</figure>
 
   <section class="section-block">
     <h2 class="section-heading">⚡ TL;DR</h2>

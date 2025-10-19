@@ -44,7 +44,7 @@ tags: ["Afterlife", "Gnostic Christianity", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 creativePromptEnabled: false
@@ -303,14 +303,22 @@ socialImages:
     <li>These sparks, hidden in humanity, are fragments of her original light.</li>
   </ul>
 </section>
-
+<!-- Image: sophia-fall-creation-shadow -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}sophia-fall-creation-shadow.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}sophia-fall-creation-shadow.jpg" alt="Sophia descending from the Pleroma" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}sophia-fall-creation-shadow.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}sophia-fall-creation-shadow.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}sophia-fall-creation-shadow.jpg"
+        alt="Sophia, radiant with divine light, descends from the Pleroma into the shadowed void. Fragments of her essence scatter into creation, forming stars and worlds beneath a fading golden sky."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    In her longing, Wisdom fell. In her fall, the world was born&mdash;and so was the lie.
+    In her longing, Wisdom fell.  
+    In her fall, the world was born — and so was the lie.
   </figcaption>
 </figure>
 
@@ -367,14 +375,22 @@ socialImages:
     <li>Gnosis is not belief&mdash;it is the remembering of who and what you truly are.</li>
   </ul>
 </section>
-
+<!-- Image: divine-spark-inside-human -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}divine-spark-inside-human.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}divine-spark-inside-human.jpg" alt="Illustration of the divine spark within" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}divine-spark-inside-human.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}divine-spark-inside-human.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}divine-spark-inside-human.jpg"
+        alt="A translucent human form stands in shadow, a radiant golden flame burning within the heart. Around it, veils of illusion and false light shimmer and dissolve. The divine spark glows—eternal, remembering what the world has made us forget."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Hidden beneath flesh and forgetfulness&mdash;the spark remembers. You are older than this world.
+    Hidden beneath flesh and forgetfulness, the spark remembers.  
+    You are older than the world that veils you.
   </figcaption>
 </figure>
 
@@ -424,13 +440,22 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: archons-shadowy-rulers -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}archons-shadowy-rulers.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}archons-shadowy-rulers.jpg" alt="Symbolic image of Archons as rulers of illusion" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}archons-shadowy-rulers.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}archons-shadowy-rulers.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}archons-shadowy-rulers.jpg"
+        alt="A dark celestial hierarchy of towering shadow-figures presides over a fractured cosmos. Their metallic halos flicker with false light as luminous human sparks struggle below. The Archons—architects of illusion—mimic divine order yet tremble before true gnosis."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The Archons mimic order&mdash;but they fear light. They rule only while the spark forgets.
+    The Archons imitate creation but cannot sustain it.  
+    Their dominion ends the moment the spark remembers.
   </figcaption>
 </figure>
 
@@ -482,14 +507,22 @@ socialImages:
     <li>The exile from Eden was not a fall from grace&mdash;it was the beginning of awakening.</li>
   </ul>
 </section>
-
+<!-- Image: eden-serpent-gnosis -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}eden-serpent-gnosis.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}eden-serpent-gnosis.jpg" alt="Gnostic vision of the Eden awakening" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}eden-serpent-gnosis.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}eden-serpent-gnosis.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}eden-serpent-gnosis.jpg"
+        alt="A luminous garden veiled in golden mist. At its center, a radiant serpent coils around the Tree of Knowledge, its eyes reflecting cosmic awareness. Adam and Eve stand awakened beneath the branches, realising the world is a construct — the first matrix of illusion."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The serpent didn&rsquo;t tempt&mdash;it freed. Eden wasn&rsquo;t heaven. It was the first matrix.
+    The serpent did not tempt — it revealed.  
+    Eden was not paradise, but the first awakening from illusion.
   </figcaption>
 </figure>
 

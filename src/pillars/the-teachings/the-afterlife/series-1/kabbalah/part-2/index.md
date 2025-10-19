@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Kabbalah"
 description: "Journey through the middle gates of the Kabbalistic Tree — from Malkhut’s exile to Keter’s crown — the climb of remembrance and return."
@@ -48,7 +45,7 @@ tags: ["Afterlife", "Kabbalah", "Series 1", "The Teachings"]
 
 # 🧭 Visibility Controls
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -212,7 +209,6 @@ socialImages:
 
 ---
 
-
 {% include "partials/scroll-tabs.njk" %}
 
 <main class="main-content">
@@ -225,24 +221,24 @@ socialImages:
   <p>You walked the soul&rsquo;s journey from Gehinnom to Gan Eden, through sparks and tikkun, catching glimpses of the divine hidden in the descent.</p>
 </details>
 
-  <!--🌑 Chapter 1: Malkhut – The Gate of the World<-->
-  <section class="section-block">
-    <h2 class="section-heading">🌑 Chapter 1: Malkhut, The Gate of the World</h2>
+<!--🌑 Chapter 1: Malkhut – The Gate of the World<-->
+<section class="section-block">
+  <h2 class="section-heading">🌑 Chapter 1: Malkhut, The Gate of the World</h2>
 
-    <blockquote class="blockquote">
-      <span class="hebrew">מַלְכוּת דָּוִיד עוֹלָה מִן הָאֲפָר</span><br>
-      <span>&ldquo;The Kingdom of David rises from the dust.&rdquo;</span>
-      <cite> Zohar</cite>
-    </blockquote>
+  <blockquote class="blockquote">
+    <span class="hebrew">מַלְכוּת דָּוִיד עוֹלָה מִן הָאֲפָר</span><br>
+    <span>&ldquo;The Kingdom of David rises from the dust.&rdquo;</span>
+    <cite> Zohar</cite>
+  </blockquote>
 
-    <h2 class="section-heading">The Exiled Throne. The Womb of the Return.</h2>
+  <h2 class="section-heading">The Exiled Throne. The Womb of the Return.</h2>
 
-    <p>Welcome to the bottom.</p>
-    <p>This is <strong>Malkhut</strong>, the Kingdom, not of power, but of concealment. It is the lowest gate on the Tree of Life, the vessel where divine light hardens into matter. This is where the soul lands after its descent, into flesh, into form, into the illusion of separation.</p>
-    <p>Here, we are blind. Here, the spark forgets. But <strong>Malkhut</strong> is not a curse, it is the <strong>starting point of redemption</strong>. It is ruled by the <strong>Shekhinah</strong>, the Divine Feminine Presence exiled into the world, scattered across every moment of joy, grief, pain, and ritual. She lives in the hidden. She burns in the broken.</p>
-    <p>To ascend, the soul must master this realm, not by escaping it, but by <em>seeing through it</em>. The mundane must be sanctified. The body must become temple. The job, the lover, the rage, the dishes, it&rsquo;s all part of the liturgy. When you begin to bless the dust, you awaken the sparks of the Shekhinah. You begin the climb.</p>
-    <p><strong>Malkhut</strong> teaches the first great secret of Kabbalah: <strong>there is no above without below</strong>. The gates only open when we stop searching for heaven in the sky and start finding it in the grind.</p>
-  </section>
+  <p>Welcome to the bottom.</p>
+  <p>This is <strong>Malkhut</strong>, the Kingdom, not of power, but of concealment. It is the lowest gate on the Tree of Life, the vessel where divine light hardens into matter. This is where the soul lands after its descent, into flesh, into form, into the illusion of separation.</p>
+  <p>Here, we are blind. Here, the spark forgets. But <strong>Malkhut</strong> is not a curse, it is the <strong>starting point of redemption</strong>. It is ruled by the <strong>Shekhinah</strong>, the Divine Feminine Presence exiled into the world, scattered across every moment of joy, grief, pain, and ritual. She lives in the hidden. She burns in the broken.</p>
+  <p>To ascend, the soul must master this realm, not by escaping it, but by <em>seeing through it</em>. The mundane must be sanctified. The body must become temple. The job, the lover, the rage, the dishes, it&rsquo;s all part of the liturgy. When you begin to bless the dust, you awaken the sparks of the Shekhinah. You begin the climb.</p>
+  <p><strong>Malkhut</strong> teaches the first great secret of Kabbalah: <strong>there is no above without below</strong>. The gates only open when we stop searching for heaven in the sky and start finding it in the grind.</p>
+</section>
 
   <section class="section-block">
     <h2 class="section-heading">⚡ TL;DR:</h2>
@@ -254,15 +250,26 @@ socialImages:
       <li>Redemption means <em>lifting the sparks</em> buried in the dirt</li>
     </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: malkhut-gate-sparks -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}malkhut-gate-sparks.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}malkhut-gate-sparks.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}malkhut-gate-sparks.jpg" alt="Mystical roots glowing with divine sparks" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}malkhut-gate-sparks.jpg"
+        alt="Mystical roots glowing with divine sparks, descending into the dark earth, as if the divine is planting itself within the material world. A faint golden crown glows beneath the soil."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Malkhut is where heaven hides in the dirt. To rise, you must kneel, not in submission, but in revelation.</figcaption>
-  </figure>
-    
+  </a>
+  <figcaption class="caption-gnostic">
+    Malkhut is where heaven hides in the dirt.  
+    To rise, you must kneel—  
+    not in submission, but in revelation.
+  </figcaption>
+</figure>
+
   <!--Chapter 2: Yesod – The Gate of Flow-->
   <section class="section-block">
     <h2 class="section-heading">🌊 Chapter 2: Yesod &mdash; The Gate of Flow</h2>
@@ -293,14 +300,25 @@ socialImages:
         <li>Energetic purity and intention are key to ascending this gate</li>
       </ul>
   </section>
-  
-  <figure class="image-block">
+<!-- Image: yesod-mirror-moon -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}yesod-mirror-moon.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}yesod-mirror-moon.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}yesod-mirror-moon.jpg" alt="Moonlight reflecting over a cosmic lake" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}yesod-mirror-moon.jpg"
+        alt="A mystical moon reflected over a luminous lake of shifting patterns and soft glow. A translucent soul-form watches from the shoreline, feeling its hidden future stir beneath the ripples."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Yesod is the secret engine behind the veil. What you dream, feel, and desire flows here, and shapes what comes next.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Yesod is the secret engine behind the veil.  
+    What you dream, feel, and desire flows here—  
+    and shapes what comes next.
+  </figcaption>
+</figure>
 
   <!--Chapter 3: Hod – The Gate of Reverberation-->
   <section class="section-block">
@@ -335,14 +353,25 @@ socialImages:
       <li>This is the sacred code that shapes spiritual reality</li>
     </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: hod-sacred-mirror -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}hod-sacred-mirror.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}hod-sacred-mirror.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}hod-sacred-mirror.jpg" alt="Sacred mirrored hall with symbols" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}hod-sacred-mirror.jpg"
+        alt="A sacred mirrored chamber with radiant glyphs and divine echoes. Reflections multiply through space, yet a single true signal pulses at the centre. The soul listens."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Hod is the echo of the Word, a mirror of divine speech. But the soul must learn to hear the signal, not the noise.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Hod is the echo of the Word,  
+    a mirror of divine speech.  
+    But the soul must learn to hear the signal, not the noise.
+  </figcaption>
+</figure>
 
   <!--Chapter 4: Netzach – The Gate of Force-->
   <section class="section-block">
@@ -377,14 +406,24 @@ socialImages:
       <li>This is divine force, fire in motion</li>
     </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: netzach-flame-will -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}netzach-flame-will.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}netzach-flame-will.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}netzach-flame-will.jpg" alt="Figure climbing through golden flame" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}netzach-flame-will.jpg"
+        alt="A luminous figure climbing upward through a spiralling flame of gold, surrounded by celestial patterns of persistence, resilience, and motion. The fire flows but does not consume. The will ascends."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Netzach is the fire that climbs. Victory is not a moment, it&rsquo;s a flame that refuses to die.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Netzach is the fire that climbs.  
+    Victory is not a moment, it&rsquo;s a flame that refuses to die.
+  </figcaption>
+</figure>
 
   <!--Chapter 5: Tiferet – The Gate of Beauty-->
   <section class="section-block">
@@ -416,14 +455,24 @@ socialImages:
       <li>The soul becomes whole not by division, but by integration</li>
     </ul>
   </section>
-  
-  <figure class="image-block">
+<!-- Image: tiferet-sun-heart -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}tiferet-sun-heart.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}tiferet-sun-heart.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}tiferet-sun-heart.jpg" alt="Golden sun at center of Tree of Life" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}tiferet-sun-heart.jpg"
+        alt="A radiant golden sun positioned at the heart of the Tree of Life, glowing with sacred geometry and gentle waves of light. A soul-form stands before it, arms open in remembrance. The light merges sorrow and joy, shadow and spirit into radiant harmony."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Tiferet is the sacred heart. The gate of remembrance. Beauty is not perfection, it is the fusion of everything you are.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Tiferet is the sacred heart. The gate of remembrance.  
+    Beauty is not perfection, it is the fusion of everything you are.
+  </figcaption>
+</figure>
 
   <!--Chapter 6: Geburah – The Gate of Severity-->
   <section class="section-block">
@@ -456,14 +505,24 @@ socialImages:
       <li>The soul must face what is false to recover what is real</li>
     </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: geburah-sword-flame -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}geburah-sword-flame.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}geburah-sword-flame.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}geburah-sword-flame.jpg" alt="Figure inside sacred fire with sword" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}geburah-sword-flame.jpg"
+        alt="A luminous figure stands within a sacred fire, wielding a flaming sword that cuts through illusion. The surrounding blaze reveals shadowy forms dissolving in the light. Above, divine symbols shimmer, representing justice, discernment, and power."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Geburah is the blade of truth. It burns not to destroy you, but to reveal what was never you to begin with.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Geburah is the blade of truth.  
+    It burns not to destroy you, but to reveal what was never you to begin with.
+  </figcaption>
+</figure>
 
   <!--Chapter 7: Chesed – The Gate of Mercy-->
   <section class="section-block">
@@ -500,14 +559,24 @@ socialImages:
       <li>Mercy is the builder of worlds, and the healer of wounds</li>
     </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: chesed-divine-mercy -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}chesed-divine-mercy.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}chesed-divine-mercy.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}chesed-divine-mercy.jpg" alt="Radiant river of light from divine hand" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}chesed-divine-mercy.jpg"
+        alt="A radiant river of golden light pours from an open celestial hand into the world below. Countless souls drink from its current, their forms illuminated by compassion. The flow glimmers with the pulse of divine generosity — endless, effortless, alive."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Chesed is the hand that gives without condition. Mercy is not weakness, it is the strength of the Divine overflowing through you.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Chesed is the hand that gives without condition.  
+    Mercy is not weakness — it is the strength of the Divine overflowing through you.
+  </figcaption>
+</figure>
 
   <!--Chapter 8: Binah, The Gate of Understanding-->
   <section class="section-block">
@@ -540,14 +609,24 @@ socialImages:
       <li>To pass this gate is to become a vessel that can hold complexity and love</li>
     </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: binah-divine-mother -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}binah-divine-mother.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}binah-divine-mother.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}binah-divine-mother.jpg" alt="Divine Mother holding cosmic light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}binah-divine-mother.jpg"
+        alt="A radiant Divine Mother figure cradles a sphere of cosmic light within a vast indigo void. Streams of gold and silver energy spiral outward, forming the sacred architecture of creation. Her gaze is calm — infinite compassion and structure intertwined."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Binah is the Womb of the Divine. To understand is not to explain, it is to hold the world without breaking.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Binah is the Womb of the Divine.  
+    To understand is not to explain — it is to hold the world without breaking.
+  </figcaption>
+</figure>
 
   <!--Chapter 9: Chokhmah, The Gate of Wisdom-->
   <section class="section-block">
@@ -582,14 +661,24 @@ socialImages:
       <li>Wisdom is not learned. It is received in fire.</li>
     </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: chokhmah-divine-flash -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}chokhmah-divine-flash.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}chokhmah-divine-flash.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}chokhmah-divine-flash.jpg" alt="Lightning spark of divine wisdom" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}chokhmah-divine-flash.jpg"
+        alt="A burst of radiant lightning arcs through a vast cosmic void, forming patterns of sacred geometry. The flash illuminates the silhouette of a human form — Wisdom revealed as instantaneous divine knowing, not learned but remembered."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Chokhmah is the divine flash. Wisdom is not what you learn, it&rsquo;s what strikes you, blinds you, and changes everything forever.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Chokhmah is the divine flash.  
+    Wisdom is not what you learn — it’s what strikes you, blinds you, and changes everything forever.
+  </figcaption>
+</figure>
 
 <!--Chapter 10: Keter, The Gate of the Crown-->
 <section class="section-block">
@@ -625,13 +714,24 @@ socialImages:
   </ul>
 </section>
 
-  <figure class="image-block">
+<!-- Image: keter-crown-light -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}keter-crown-light.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}keter-crown-light.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}keter-crown-light.jpg" alt="Crown of radiant light in cosmic void" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}keter-crown-light.jpg"
+        alt="A radiant crown of pure white-gold light suspended in a vast cosmic void. Threads of illumination descend through darkness, forming the first spark of creation — the unseen source from which all emanates."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Keter is the light before light. You don&rsquo;t reach it. You disappear into it.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Keter is the light before light.  
+    You don’t reach it — you disappear into it.
+  </figcaption>
+</figure>
 
 <section class="section-block">
   <h2 class="section-heading">🗺️ Visual Map: The Soul&rsquo;s Ascent Through the Sefirot</h2>

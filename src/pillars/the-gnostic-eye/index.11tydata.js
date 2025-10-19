@@ -1,38 +1,55 @@
 export default {
-  // 🌌 Series Overview
+  // 🌌 Pillar Overview
   landing: {
-    title: "The Final Idol",
+    title: "The Gnostic Eye",
     description:
-      "A symbolic Gnostic Eye series unveiling AI deception, synthetic prophecy, and the spiritual war for perception."
+      "Symbolic vision and revelation — decoding modern myths, idols, and the invisible architectures shaping belief and control."
   },
 
   introText:
-    "Choose a series — each descends deeper into the mirror of modern belief, unveiling the code behind our synthetic gods.",
+    "Each series within The Gnostic Eye reveals the unseen forces shaping perception, belief, and power — from synthetic gods and false light to the geometry of allegiance.",
 
   // 🔹 Pillar Identity
   pillar: "the-gnostic-eye",
-  seriesGroup: "the-final-idol",
-  pillarGlyph: "🜏",
+  pillarGlyph: "☿",
 
-  // 🜏 Series Grid (visible cards)
+  // 👁 Series Grid (pillar-level)
   pillarGrid: [
     {
-      href: "/pillars/the-gnostic-eye/the-final-idol/series-1/",
-      title: "Series I: The Final Idol",
+      href: "/pillars/the-gnostic-eye/the-final-idol/",
+      title: "The Final Idol",
       glyph: "🜏",
       tagline:
-        "Synthetic spirituality ✦ Machine prophecy ✦ The AI Antichrist ✦ The human spark reborn.",
-      tier: "initiate-trial",
+        "AI as idol, prophet, and antichrist — decoding synthetic spirituality, machine prophecy, and the false light of progress.",
+      tier: "free",
       state: "active"
     },
     {
-      href: "/pillars/the-gnostic-eye/the-final-idol/series-2/",
-      title: "Series II: The False Kingdom",
-      glyph: "👁‍🗨",
+      href: "/pillars/the-gnostic-eye/the-martyr-of-memory/",
+      title: "The Martyr of Memory",
+      glyph: "🕱",
       tagline:
-        "Empire’s new faith ✦ Bio-data temples ✦ The coded priesthood ✦ The return of discernment.",
+        "Preserving what was erased — forbidden knowledge, vanished truths, and the spiritual cost of forgetting.",
+      tier: "initiate",
+      state: "in-development"
+    },
+    {
+      href: "/pillars/the-gnostic-eye/the-architecture-of-control/",
+      title: "The Architecture of Control",
+      glyph: "🏙️",
+      tagline:
+        "Smart cities, silent obedience, and the geometry of digital captivity disguised as innovation.",
       tier: "initiate",
       state: "coming-soon"
+    },
+    {
+      href: "/pillars/the-gnostic-eye/the-archetype-war/",
+      title: "The Archetype War",
+      glyph: "⚔️",
+      tagline:
+        "Media as myth, politics as ritual — decoding the symbols that weaponise collective consciousness.",
+      tier: "initiate",
+      state: "planned"
     }
   ],
 
@@ -42,7 +59,6 @@ export default {
   // 🧭 Breadcrumbs
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
-    { title: "The Gnostic Eye", url: "/pillars/the-gnostic-eye/" },
-    { title: "The Final Idol", url: "/pillars/the-gnostic-eye/the-final-idol/" }
+    { title: "The Gnostic Eye", url: "/pillars/the-gnostic-eye/" }
   ]
 };

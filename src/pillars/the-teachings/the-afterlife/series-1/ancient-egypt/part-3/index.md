@@ -49,7 +49,7 @@ tags: ["Afterlife", "Ancient Egypt", "Series I", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -255,14 +255,21 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: field-of-reeds-mirror-soul -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-mirror-soul.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-mirror-soul.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-mirror-soul.jpg" alt="A soul walks through glowing green reeds, birds flying, with their reflection forming in the sky above" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-mirror-soul.jpg"
+        alt="A luminous soul walks through the golden-green Field of Reeds beneath a radiant sky. Their reflection appears above them, walking in light."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Field of Reeds is not a fantasy, it is the afterimage of your life. You walk the world your soul built in secret.
+  </a>
+  <figcaption class="caption-gnostic">
+    The Field of Reeds is not a fantasy — it is the afterimage of your life. You walk the world your soul built in secret.
   </figcaption>
 </figure>
 
@@ -327,16 +334,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: weighing-of-the-heart-truth-balance -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}weighing-of-the-heart-truth-balance.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}weighing-of-the-heart-truth-balance.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}weighing-of-the-heart-truth-balance.jpg" alt="A soul stands before a massive golden scale, their heart glowing on one side, a feather floating on the other" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}weighing-of-the-heart-truth-balance.jpg"
+        alt="A luminous soul stands before the golden scales of Ma’at — on one side the glowing heart, on the other the feather of truth — as divine light fills the chamber."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The scale does not punish. It reveals. Truth is not declared, it is weighed. And only the light may pass.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The scale does not punish — it reveals. Truth is not declared; it is weighed. And only the light may pass.
+  </figcaption>
+</figure>
 
 <!--🗣️ Chapter 28: 42 Judges, 42 Confessions, The Trial of Memory-->
 <section class="section-block">
@@ -377,16 +391,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: 42-judges-negative-confession-trial -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}42-judges-negative-confession-trial.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}42-judges-negative-confession-trial.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}42-judges-negative-confession-trial.jpg" alt="A radiant soul stands in a cosmic courtroom before 42 glowing divine beings, speaking a truth that echoes as light" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}42-judges-negative-confession-trial.jpg"
+        alt="A radiant soul stands in a cosmic hall before forty-two luminous judges, each a facet of divine truth. The soul’s words manifest as beams of light."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The gods do not judge you. They reflect you. And your confession is not for them, it is for you to remember who you are.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The gods do not judge you — they reflect you. Your confession is not for them; it is for you to remember who you are.
+  </figcaption>
+</figure>
 
 <!--🪶 Chapter 29: The Feather of Ma&rsquo;at, Balancing Truth and Self-->
 <section class="section-block">
@@ -425,16 +446,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: feather-of-maat-resonance-truth -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}feather-of-maat-resonance-truth.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}feather-of-maat-resonance-truth.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}feather-of-maat-resonance-truth.jpg" alt="A glowing white feather levitates above a golden heart, surrounded by radiating light, while the soul hovers in peaceful alignment" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}feather-of-maat-resonance-truth.jpg"
+        alt="A radiant white feather of Ma’at levitates above a golden heart, haloed by waves of light as the soul stands in perfect stillness."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Feather doesn&rsquo;t ask for obedience. It asks for resonance. You don&rsquo;t carry it, you become it.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Feather doesn’t ask for obedience — it asks for resonance. You don’t carry it; you become it.
+  </figcaption>
+</figure>
 
 <!--🐊 Chapter 30: The Devourer, What Happens When You Fail-->
 <section class="section-block">
@@ -474,16 +502,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: devourer-ammit-erasure-of-soul -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}devourer-ammit-erasure-of-soul.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}devourer-ammit-erasure-of-soul.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}devourer-ammit-erasure-of-soul.jpg" alt="A shadowy figure stands before the crocodile-lion Ammit, as the light around them flickers and fades" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}devourer-ammit-erasure-of-soul.jpg"
+        alt="A trembling soul stands before Ammit, the crocodile-lion devourer, as divine light withdraws and shadow consumes the chamber."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Ammit does not judge. She deletes. She ensures that only souls of coherence continue. To survive, you must resonate.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Ammit does not judge — she deletes. Only souls of coherence continue. To survive, you must resonate.
+  </figcaption>
+</figure>
 
 <!--🌟 Chapter 31: Becoming the Akh, The Soul Transfigured-->
 <section class="section-block">
@@ -526,16 +561,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: becoming-the-akh-soul-transfigured -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}becoming-the-akh-soul-transfigured.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}becoming-the-akh-soul-transfigured.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}becoming-the-akh-soul-transfigured.jpg" alt="A radiant soul-form with wings and starlight rises into the horizon, glowing with golden glyphs and cosmic fire" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}becoming-the-akh-soul-transfigured.jpg"
+        alt="A radiant Akh soul with wings of light ascends through a golden dawn, inscribed with living glyphs and surrounded by starlit fire."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Akh is not a soul fragment. It is the whole, lit, named, awake. You don&rsquo;t escape death. You outshine it.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Akh is not a fragment — it is the whole, lit, named, awake. You do not escape death; you outshine it.
+  </figcaption>
+</figure>
 
 <!--🌌 Chapter 32: The Star Map, Returning to the Constellations-->
 <section class="section-block">
@@ -585,16 +627,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: star-map-return-to-constellations -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}star-map-return-to-constellations.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}star-map-return-to-constellations.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}star-map-return-to-constellations.jpg" alt="A soul rises along a glowing golden path toward the Orion and Sirius star cluster, with pyramids aligned below" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}star-map-return-to-constellations.jpg"
+        alt="A radiant soul ascends a golden pathway toward the stars of Orion and Sirius, the pyramids below aligned in eternal harmony."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The stars are not far. They are home. And every glyph, every ritual, was a map back to where the fire began.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The stars are not far — they are home. Every glyph, every ritual, was a map back to where the fire began.
+  </figcaption>
+</figure>
 
 <!--🔥 Chapter 33: The Role of the Ka, Fuel, Offering, Flame-->
 <section class="section-block">
@@ -633,16 +682,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: ka-energy-offering-flame -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}ka-energy-offering-flame.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}ka-energy-offering-flame.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}ka-energy-offering-flame.jpg" alt="A glowing double of a human soul stands beside them in ritual, receiving incense and food as golden energy flows" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}ka-energy-offering-flame.jpg"
+        alt="A luminous Ka double stands beside its living self in ritual, receiving incense and offerings as golden energy flows between them."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      You are not one being. You are layered. The Ka is your vital engine, and every act of presence feeds its flame.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    You are not one being — you are layered. The Ka is your vital engine, and every act of presence feeds its flame.
+  </figcaption>
+</figure>
 
 <!--🗝️ Chapter 34: Final Resurrection, When the Name Is Eternal-->
 <section class="section-block">
@@ -683,16 +739,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: final-resurrection-eternal-name -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}final-resurrection-eternal-name.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}final-resurrection-eternal-name.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}final-resurrection-eternal-name.jpg" alt="A radiant scroll inscribed with glowing hieroglyphs floats above a luminous soul, rising into a starlit sky" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}final-resurrection-eternal-name.jpg"
+        alt="A radiant papyrus scroll inscribed with luminous hieroglyphs hovers above a glowing soul ascending into a starlit Egyptian sky — the resurrection of name and light."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Your name is not a sound. It is a frequency. When you live in truth, your name lives forever, and resurrection is complete.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Your name is not a sound — it is a frequency. When you live in truth, your name endures forever, and resurrection is complete.
+  </figcaption>
+</figure>
 
 <!--🌀 Chapter 35: Gnostic Reflections, Memory, Light & the Divine Self-->
 <section class="section-block">
@@ -738,16 +801,23 @@ socialImages:
   </ul>
 </section>
 
-  <!-- Image -->
-  <figure class="image-block">
+<!-- Image: gnostic-reflection-akhet-spark -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}gnostic-reflection-akhet-spark.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}gnostic-reflection-akhet-spark.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}gnostic-reflection-akhet-spark.jpg" alt="A radiant soul gazes into a cosmic mirror, seeing itself as both Akh and Divine Spark, surrounded by sacred geometry" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gnostic-reflection-akhet-spark.jpg"
+        alt="A radiant soul gazes into a cosmic mirror, beholding itself as both Akh and Divine Spark — surrounded by sacred geometry and eternal light."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      The Gnostic knows. The Egyptian remembers. The one who becomes Akh does not ascend alone, they light the path behind them.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The Gnostic knows. The Egyptian remembers. The one who becomes Akh does not ascend alone — they light the path behind them.
+  </figcaption>
+</figure>
 
 <!-- 🛠️ Practicing the Egyptian Mysteries -->
 <section class="section-block">

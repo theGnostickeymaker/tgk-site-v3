@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Kabbalah"
 description: "The Kabbalistic map of the afterlife — tracing the descent of souls through the Sefirot, the cosmic tree, and the pathways of return."
@@ -46,7 +43,7 @@ tags: ["Afterlife", "Kabbalah", "Series 1", "The Teachings"]
 
 # 🔮 Visibility Toggles
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -146,7 +143,6 @@ references:
       work: "A River Flows from Eden: The Language of Mystical Experience in the Zohar"
       pub: "Stanford University Press"
 
-
 # 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -197,8 +193,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-1/kabbalah-part-1@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-1/kabbalah-part-1@square.jpg"
@@ -207,7 +201,6 @@ socialImages:
   hero: "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah/part-1/kabbalah-part-1@2x.jpg"
 
 ---
-
 
 {% include "partials/scroll-tabs.njk" %}
 
@@ -261,79 +254,102 @@ socialImages:
   </ul>
   <p>Let&rsquo;s walk the Tree. One gate at a time.</p>
   </section>
-
-  <figure class="image-block">
+<!-- Image: tree-of-life -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}tree-of-life.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}tree-of-life.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}tree-of-life.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}tree-of-life.jpg"
+        alt="A radiant Tree of Life formed of ten luminous spheres connected by golden paths, flowing with light from the Crown to the Kingdom. Within its branches, a human silhouette ascends, tracing the soul’s return through the divine architecture."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">The soul begins its return. The Tree of Life is not myth, it is a map of the divine inside you.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    The soul begins its return.  
+    The Tree of Life is not myth — it is a map of the divine inside you.
+  </figcaption>
+</figure>
 
-  <!--Chapter 2: The Zohar and the Secret Architecture of Reality-->
-  <section class="section-block">
-      <h2 class="section-heading">🌟 Chapter 2: The Zohar and the Secret Architecture of Reality</h2>
+<!--Chapter 2: The Zohar and the Secret Architecture of Reality-->
+<section class="section-block">
+    <h2 class="section-heading">🌟 Chapter 2: The Zohar and the Secret Architecture of Reality</h2>
 
-      <blockquote class="blockquote">
-          <span class="hebrew">הנשמה מתגעגעת לשוב לשורשה באינסוף, עולית דרך עשר הספירות העליונות</span><br>
-          <span>&ldquo;The soul yearns to return to its root in the Infinite, ascending through the ten upper Sefirot.&rdquo;</span>
-          <cite> Zohar, I:20a (paraphrased)</cite>
-      </blockquote>
-      <p>The <strong>Zohar</strong> (or <em>Book of Splendour</em>) is not a book in the usual sense. It is a <em>code</em>, a living text filled with allegory, visions, and symbolic fire. Attributed to Rabbi Shimon bar Yochai but likely composed in 13th-century Spain, it became the <strong>core scripture of Kabbalah</strong>.</p>
-      <p>What the Zohar does is rewire how we see reality. The world is not just matter and time, it is a reflection of divine light, fractured through ten emanations called <strong>Sefirot</strong>. These are not &ldquo;parts of God&rdquo; but <em>modalities</em>, ten faces of divine flow that shape everything from galaxies to your inner world.</p>
-      <p>Together they form the <strong>Etz Chaim</strong>, the Tree of Life. And here is the mystery: the same Tree that flows down to create the cosmos becomes the <strong>ladder back upward for the soul after death</strong>.</p>
-      <p>From <strong>Malkhut</strong> (Kingdom, the world of matter) to <strong>Keter</strong> (Crown, the divine beyond thought), the soul ascends the Sefirot like Jacob&rsquo;s ladder, shedding illusion, integrating light, and returning home to <strong>Ein Sof</strong>, the Infinite.</p>
-  </section>
+  <blockquote class="blockquote">
+      <span class="hebrew">הנשמה מתגעגעת לשוב לשורשה באינסוף, עולית דרך עשר הספירות העליונות</span><br>
+      <span>&ldquo;The soul yearns to return to its root in the Infinite, ascending through the ten upper Sefirot.&rdquo;</span>
+      <cite> Zohar, I:20a (paraphrased)</cite>
+  </blockquote>
 
-  <section class="section-block">
-      <h2 class="section-heading">🔟 The Sefirot &mdash; Divine Emanations & Soul Stages</h2>
+  <p>The <strong>Zohar</strong> (or <em>Book of Splendour</em>) is not a book in the usual sense. It is a <em>code</em>, a living text filled with allegory, visions, and symbolic fire. Attributed to Rabbi Shimon bar Yochai but likely composed in 13th-century Spain, it became the <strong>core scripture of Kabbalah</strong>.</p>
+  <p>What the Zohar does is rewire how we see reality. The world is not just matter and time, it is a reflection of divine light, fractured through ten emanations called <strong>Sefirot</strong>. These are not &ldquo;parts of God&rdquo; but <em>modalities</em>, ten faces of divine flow that shape everything from galaxies to your inner world.</p>
+  <p>Together they form the <strong>Etz Chaim</strong>, the Tree of Life. And here is the mystery: the same Tree that flows down to create the cosmos becomes the <strong>ladder back upward for the soul after death</strong>.</p>
+  <p>From <strong>Malkhut</strong> (Kingdom, the world of matter) to <strong>Keter</strong> (Crown, the divine beyond thought), the soul ascends the Sefirot like Jacob&rsquo;s ladder, shedding illusion, integrating light, and returning home to <strong>Ein Sof</strong>, the Infinite.</p>
+</section>
 
-      <ul class="list-emoji">
-        <li><strong>Keter (כתר), Crown</strong> &mdash; The highest, most transcendent sefirah. Represents divine will, pure potential, and the unknowable source beyond thought.</li>
-        <li><strong>Chokhmah (חכמה), Wisdom</strong> &mdash; The first flash of intuitive insight; the unbounded creative seed from which all thought emerges.</li>
-        <li><strong>Binah (בינה), Understanding</strong> &mdash; Discernment and structure; the divine womb that shapes Chokhmah&rsquo;s spark into form.</li>
-        <li><strong>Chesed (חסד), Lovingkindness</strong> &mdash; Boundless love, mercy, and expansive grace; the divine impulse to give unconditionally.</li>
-        <li><strong>Gevurah (גבורה), Severity</strong> &mdash; Discipline, strength, and divine judgement; the power to contain and establish boundaries.</li>
-        <li><strong>Tiferet (תפארת), Beauty</strong> &mdash; Balance, harmony, and compassion; the spiritual heart that integrates love and judgement.</li>
-        <li><strong>Netzach (נצח), Eternity</strong> &mdash; Divine endurance and victorious persistence; ambition aligned with spiritual truth.</li>
-        <li><strong>Hod (הוד), Splendor</strong> &mdash; Humility, sincerity, and sacred submission; the glory that shines through reverence.</li>
-        <li><strong>Yesod (יסוד), Foundation</strong> &mdash; The channel through which divine flow reaches creation; connector, vessel, and generative force.</li>
-        <li><strong>Malkhut (מלכות), Kingdom</strong> &mdash; Manifestation, embodiment, and divine receptivity; the world of action and the dwelling of the Shekhinah.</li>
-      </ul>
+<section class="section-block">
+<h2 class="section-heading">🔟 The Sefirot &mdash; Divine Emanations & Soul Stages</h2>
 
-      <p>Each Sefirah is a <em>gate</em> the soul must realign with. The more attuned your soul is in life, the more seamless its return journey after death.</p>
-      <p>The Zohar teaches that righteous souls are clothed in &ldquo;garments of light&rdquo; made from <strong>their deeds, prayers, and inner intentions</strong>. These garments determine how far the soul can ascend and what light it can withstand.</p>
+  <ul class="list-emoji">
+    <li><strong>Keter (כתר), Crown</strong> &mdash; The highest, most transcendent sefirah. Represents divine will, pure potential, and the unknowable source beyond thought.</li>
+    <li><strong>Chokhmah (חכמה), Wisdom</strong> &mdash; The first flash of intuitive insight; the unbounded creative seed from which all thought emerges.</li>
+    <li><strong>Binah (בינה), Understanding</strong> &mdash; Discernment and structure; the divine womb that shapes Chokhmah&rsquo;s spark into form.</li>
+    <li><strong>Chesed (חסד), Lovingkindness</strong> &mdash; Boundless love, mercy, and expansive grace; the divine impulse to give unconditionally.</li>
+    <li><strong>Gevurah (גבורה), Severity</strong> &mdash; Discipline, strength, and divine judgement; the power to contain and establish boundaries.</li>
+    <li><strong>Tiferet (תפארת), Beauty</strong> &mdash; Balance, harmony, and compassion; the spiritual heart that integrates love and judgement.</li>
+    <li><strong>Netzach (נצח), Eternity</strong> &mdash; Divine endurance and victorious persistence; ambition aligned with spiritual truth.</li>
+    <li><strong>Hod (הוד), Splendor</strong> &mdash; Humility, sincerity, and sacred submission; the glory that shines through reverence.</li>
+    <li><strong>Yesod (יסוד), Foundation</strong> &mdash; The channel through which divine flow reaches creation; connector, vessel, and generative force.</li>
+    <li><strong>Malkhut (מלכות), Kingdom</strong> &mdash; Manifestation, embodiment, and divine receptivity; the world of action and the dwelling of the Shekhinah.</li>
+  </ul>
 
-    <blockquote class="blockquote">
-      <span class="hebrew">כאשר הנשמה עולה, היא מתעטפת בזוהר שזכתה בו בעולם התחתון</span><br>
-      &ldquo;When the soul ascends, it is clothed in the radiance it has drawn upon itself in the world below.&rdquo;<br>
-      <cite>
-        <em>Zohar</em> (paraphrased)
-      </cite>
-    </blockquote>
+  <p>Each Sefirah is a <em>gate</em> the soul must realign with. The more attuned your soul is in life, the more seamless its return journey after death.</p>
+  <p>The Zohar teaches that righteous souls are clothed in &ldquo;garments of light&rdquo; made from <strong>their deeds, prayers, and inner intentions</strong>. These garments determine how far the soul can ascend and what light it can withstand.</p>
 
-      <p>This is not reward or punishment. This is resonance.</p>
-      <p>You don&rsquo;t &ldquo;go&rdquo; to heaven. You <em>match</em> it.</p>
-  </section>
+<blockquote class="blockquote">
+  <span class="hebrew">כאשר הנשמה עולה, היא מתעטפת בזוהר שזכתה בו בעולם התחתון</span><br>
+  &ldquo;When the soul ascends, it is clothed in the radiance it has drawn upon itself in the world below.&rdquo;<br>
+  <cite>
+    <em>Zohar</em> (paraphrased)
+  </cite>
+</blockquote>
 
-  <section class="section-block">
-      <h2 class="section-heading">⚡ TL;DR:</h2>
-      <ul class="list-emoji">
-          <li>The <strong>Zohar</strong> is the mystical heart of Kabbalah, revealing hidden structures beneath reality.</li>
-          <li>It introduces the <strong>Ten Sefirot</strong> as both the blueprint of creation and the path of the soul&rsquo;s return.</li>
-          <li>Death is not an end, but a <strong>climb through the Sefirot</strong>, back to the Source.</li>
-          <li>The soul&rsquo;s spiritual &ldquo;garments&rdquo; determine its ability to rise in the next world.</li>
-          <li>This is a cosmology of <em>resonance</em>, you ascend to the level you&rsquo;ve aligned with.</li>
-      </ul>
-  </section>
+  <p>This is not reward or punishment. This is resonance.</p>
+  <p>You don&rsquo;t &ldquo;go&rdquo; to heaven. You <em>match</em> it.</p>
+</section>
 
-  <figure class="image-block">
+<section class="section-block">
+    <h2 class="section-heading">⚡ TL;DR:</h2>
+    <ul class="list-emoji">
+        <li>The <strong>Zohar</strong> is the mystical heart of Kabbalah, revealing hidden structures beneath reality.</li>
+        <li>It introduces the <strong>Ten Sefirot</strong> as both the blueprint of creation and the path of the soul&rsquo;s return.</li>
+        <li>Death is not an end, but a <strong>climb through the Sefirot</strong>, back to the Source.</li>
+        <li>The soul&rsquo;s spiritual &ldquo;garments&rdquo; determine its ability to rise in the next world.</li>
+        <li>This is a cosmology of <em>resonance</em>, you ascend to the level you&rsquo;ve aligned with.</li>
+    </ul>
+</section>
+
+<!-- Image: sefirot-gates -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}Sefirot-gates.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}Sefirot-gates.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}Sefirot-gates.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}Sefirot-gates.jpg"
+        alt="A radiant tree of light descending through ten luminous spheres — the Sefirot — each gate shimmering with Hebrew letters and sacred geometry. From the Crown above to the Kingdom below, streams of divine light flow downward, while a single soul ascends the path of return."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">Creation flows downward. The soul returns upward. The Sefirot are the gates of the real.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Creation flows downward.  
+    The soul returns upward.  
+    The Sefirot are the gates of the real.
+  </figcaption>
+</figure>
 
 <!--Chapter 3: Gehinnom, Gan Eden & The Bundled Light-->
 <section class="section-block">
@@ -411,13 +427,24 @@ socialImages:
       <li>Afterlife in Kabbalah is not about judgement, it&rsquo;s about <em>resonance and return</em></li>
   </ul>
 </section>
-
-  <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
-  </picture>
-  <figcaption class="caption-gnostic">Purified in the fire of truth. Bathed in the river of Eden. Every soul returns to the Bundle of Life.</figcaption>
+<!-- Image: fire-of-truth -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}fire-of-truth.jpg"
+        alt="A luminous soul stands in a river of golden light as flames of pure truth rise around it. Above, symbols of Eden shimmer in the mist, while divine hands weave threads of rebirth into the waters of life."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
+  <figcaption class="caption-gnostic">
+    Purified in the fire of truth.  
+    Bathed in the river of Eden.  
+    Every soul returns to the Bundle of Life.
+  </figcaption>
 </figure>
 
 <!--Chapter 4: Reincarnation and the Infinite Return – Gilgul Neshamot-->
@@ -495,14 +522,25 @@ socialImages:
       <li>You are not starting over, you are continuing the work</li>
   </ul>
   </section>
-
-  <figure class="image-block">
+<!-- Image: cosmic-marriage -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source srcset="{{ imgBase }}/{{ imgPrefix }}spiral-of-souls.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}spiral-of-souls.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.jpg"
+        alt="A radiant depiction of the soul’s reunion with its divine counterpart. Fragments of light spiral through the cosmos, forming Sophia emerging from starlit dust as the human soul ascends, hands outstretched, restoring the wholeness of creation."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">You&rsquo;ve been here before. Each life is a return, a lesson, a spark spiraling toward the Source.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    She was scattered in the shards of the world.  
+    You are her hands.  
+    When you rise, so does she.
+  </figcaption>
+</figure>
 
 <!--Chapter 5: The Shekhinah, Tikkun, and the Divine Reunion-->
 <section class="section-block">
@@ -573,14 +611,25 @@ socialImages:
       <li>In the end, She returns. We return. And the illusion of separation dissolves</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: cosmic-marriage -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.jpg" alt="Illustration of the soul&rsquo;s descent" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}cosmic-marrige.jpg"
+        alt="A radiant vision of the soul reuniting with its divine counterpart. Fragments of light spiral through the cosmos, forming the figure of Sophia emerging from starlit dust. The human ascends, hands outstretched, as the broken becomes whole again."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">She was scattered in the shards of the world. You are her hands. When you rise, so does she.</figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    She was scattered in the shards of the world.  
+    You are her hands.  
+    When you rise, so does she.
+  </figcaption>
+</figure>
 
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}

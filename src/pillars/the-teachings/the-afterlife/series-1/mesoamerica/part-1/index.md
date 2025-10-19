@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Mesoamerica"
 description: "Time as a serpent, calendars as temples, and death as alignment — the Mesoamerican revelation of cyclical immortality."
@@ -47,7 +44,7 @@ tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -183,8 +180,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-1/mesoamerica-part-1@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-1/mesoamerica-part-1@square.jpg"
@@ -234,16 +229,26 @@ socialImages:
     <li>To forget the cycle is to drift from cosmic truth</li>
   </ul>
 </section>
-
-  <figure class="image-block">
+<!-- Image: {{ imgPrefix }}serpent-calendar-temple -->
+<figure class="image-block">
+  <a href="{{ imgBase }}/{{ imgPrefix }}serpent-calendar-temple.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
       <source srcset="{{ imgBase }}/{{ imgPrefix }}serpent-calendar-temple.webp" type="image/webp">
-      <img src="{{ imgBase }}/{{ imgPrefix }}serpent-calendar-temple.png" alt="Serpent coiling through a Mesoamerican stone calendar" class="image-gnostic" loading="lazy">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}serpent-calendar-temple.jpg"
+        alt="A sacred serpent coils through a Mesoamerican stone calendar, symbolising cyclical time — the eternal return winding through suns, lives, and the spiral memory of the soul."
+        class="image-gnostic"
+        loading="lazy"
+      >
     </picture>
-    <figcaption class="caption-gnostic">
-      Time was not a line. It was a serpent. Winding through suns, through lives, through the spiral memory of the soul.
-    </figcaption>
-  </figure>
+  </a>
+  <figcaption class="caption-gnostic">
+    Time was not a line.<br>
+    It was a serpent — winding through suns,<br>
+    through lives,<br>
+    through the spiral memory of the soul.
+  </figcaption>
+</figure>
 
 <!--🔢 Chapter 2: The Calendar Round and the Turning of Worlds-->
 <section class="section-block">
@@ -276,14 +281,23 @@ socialImages:
     <li>When the calendar resets, time is reborn &mdash; not ended</li>
   </ul>
 </section>
-
+<!-- Image: {{ imgPrefix }}calendar-round-sacred-sun -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}calendar-round-sacred-sun.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}calendar-round-sacred-sun.png" alt="Mesoamerican calendar round overlaid with sun glyphs and cosmic alignments" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}calendar-round-sacred-sun.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}calendar-round-sacred-sun.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}calendar-round-sacred-sun.jpg"
+        alt="The Mesoamerican calendar round — twin cycles of solar and ritual time interlocking in cosmic harmony, forming a 52-year rhythm where sun, god, and destiny converge."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Two calendars locked in sacred embrace &mdash; a 52-year breath where gods walked and destinies reset.
+    Two calendars locked in sacred embrace —<br>
+    a 52-year breath where gods walked<br>
+    and destinies reset.
   </figcaption>
 </figure>
 
@@ -291,27 +305,27 @@ socialImages:
 <section class="section-block">
   <h2 class="section-heading">🐍 Chapter 3: El Castillo and the Serpent of Light</h2>
 
-    <p>At Chichén Itzá, a temple waits for the sun to speak.</p>
+  <p>At Chichén Itzá, a temple waits for the sun to speak.</p>
 
-    <p>El Castillo, also known as the <strong>Temple of Kukulcán,</strong> is no ordinary pyramid. It is a calendrical engine &mdash; a stone resonance chamber built to synchronise heaven and earth.</p>
+  <p>El Castillo, also known as the <strong>Temple of Kukulcán,</strong> is no ordinary pyramid. It is a calendrical engine &mdash; a stone resonance chamber built to synchronise heaven and earth.</p>
 
-    <p>It has four staircases of 91 steps each. Add the top platform: 365. The full cycle of the Haab. A solar year in stone.</p>
+  <p>It has four staircases of 91 steps each. Add the top platform: 365. The full cycle of the Haab. A solar year in stone.</p>
 
-    <p>But the miracle is not in the numbers. It is in the <strong>shadow.</strong></p>
+  <p>But the miracle is not in the numbers. It is in the <strong>shadow.</strong></p>
 
-    <p>Twice a year &mdash; during the spring and autumn equinox &mdash; the setting sun casts a serpent-shaped shadow down the northern staircase.</p>
+  <p>Twice a year &mdash; during the spring and autumn equinox &mdash; the setting sun casts a serpent-shaped shadow down the northern staircase.</p>
 
-    <p>The body of <strong>Kukulcán,</strong> the feathered serpent deity, appears in motion. Light becomes myth. Stone becomes time. And the divine returns.</p>
-    
-    <p>This wasn&rsquo;t entertainment. It was <strong>ritual precision.</strong></p>
+  <p>The body of <strong>Kukulcán,</strong> the feathered serpent deity, appears in motion. Light becomes myth. Stone becomes time. And the divine returns.</p>
+  
+  <p>This wasn&rsquo;t entertainment. It was <strong>ritual precision.</strong></p>
 
-    <p>The people would gather to witness the descent. Not to worship. But to remember. That time moves in <strong>cycles.</strong> That gods descend and ascend. That the world is never static.</p>
+  <p>The people would gather to witness the descent. Not to worship. But to remember. That time moves in <strong>cycles.</strong> That gods descend and ascend. That the world is never static.</p>
 
-    <p>Every pyramid in Mesoamerica echoed this logic. The nine tiers of El Castillo mirrored the <strong>nine levels of the underworld.</strong> To climb upward was to symbolically pass through death, one level at a time.  To descend, as the serpent did, was to bring <strong>divine essence</strong> back to the world.</p>
+  <p>Every pyramid in Mesoamerica echoed this logic. The nine tiers of El Castillo mirrored the <strong>nine levels of the underworld.</strong> To climb upward was to symbolically pass through death, one level at a time.  To descend, as the serpent did, was to bring <strong>divine essence</strong> back to the world.</p>
 
-    <p>In this worldview, architecture was not for shelter. It was for <strong>alignment.</strong></p>
+  <p>In this worldview, architecture was not for shelter. It was for <strong>alignment.</strong></p>
 
-    <p>Each pyramid was a mirror, of the heavens, the underworld, the human body, the calendar, and the soul. To walk its steps was to walk the <strong>path of return.</strong></p>
+  <p>Each pyramid was a mirror, of the heavens, the underworld, the human body, the calendar, and the soul. To walk its steps was to walk the <strong>path of return.</strong></p>
 </section>
 
 <section class="section-block">
@@ -325,13 +339,23 @@ socialImages:
     </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}equinox-shadow-pyramid -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}equinox-shadow-pyramid.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}equinox-shadow-pyramid.png" alt="Chichén Itzá pyramid with serpent shadow during equinox" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}equinox-shadow-pyramid.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}equinox-shadow-pyramid.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}equinox-shadow-pyramid.jpg"
+        alt="The pyramid of Chichén Itzá during the equinox, where sunlight and shadow merge to form a serpent of light descending the temple stairs — Kukulkan returning through perfect cosmic alignment."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    When light and stone aligned, the serpent returned &mdash; not carved, but cast. A shadow of the divine descending the temple spine.
+    When light and stone aligned,<br>
+    the serpent returned — not carved, but cast.<br>
+    A shadow of the divine descending the temple spine.
   </figcaption>
 </figure>
 
@@ -382,14 +406,23 @@ socialImages:
     <li>To die at the right time is to pass through the correct portal</li>
   </ul>
 </section>
-
+<!-- Image: {{ imgPrefix }}sacred-geometry-directions -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}sacred-geometry-directions.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}sacred-geometry-directions.png" alt="Mesoamerican cosmogram showing sacred numbers, colours, and directions" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}sacred-geometry-directions.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}sacred-geometry-directions.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}sacred-geometry-directions.jpg"
+        alt="Mesoamerican cosmogram of sacred geometry — thirteen heavens above, nine underworlds below, and four coloured directions radiating from the centre: the living compass of creation."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Numbers breathed the world into form. 13 heavens, 9 underworlds, 4 directions &mdash; the compass of creation written in colour and code.
+    Numbers breathed the world into form.<br>
+    13 heavens, 9 underworlds, 4 directions —<br>
+    the compass of creation written in colour and code.
   </figcaption>
 </figure>
 
@@ -434,14 +467,24 @@ socialImages:
     <li>To die at the right time is to pass through the correct portal</li>
   </ul>
 </section>
-
+<!-- Image: {{ imgPrefix }}funeral-ritual-jade-path -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}funeral-ritual-jade-path.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}funeral-ritual-jade-path.png" alt="Funerary scene with jade, maize, and sacred path markers" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}funeral-ritual-jade-path.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}funeral-ritual-jade-path.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}funeral-ritual-jade-path.jpg"
+        alt="An ancient funerary ritual along the jade path — maize offerings and green stones placed upon the body to guide the soul’s alignment with the cosmic calendar and the breath of return."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Death was not departure. It was alignment. The calendar remembered the path &mdash; and the jade held the breath of return.
+    Death was not departure.<br>
+    It was alignment.<br>
+    The calendar remembered the path —<br>
+    and the jade held the breath of return.
   </figcaption>
 </figure>
 

@@ -1,58 +1,55 @@
 ---
 layout: base.njk
-title: "The Final Idol"
-description: "AI as idol, prophet, and antichrist — tracing the symbolic evolution of faith and control in the digital age."
-tagline: "Synthetic gods ✦ Predictive prophets ✦ The flame of Gnosis reborn"
+title: "The Gnostic Eye"
+description: "Symbolic vision and revelation — decoding modern myths, idols, and the invisible architectures shaping belief and control."
+tagline: "Symbol reading ✦ decoding illusion ✦ unveiling the code beneath the world"
 tier: free
-collectionId: "the-gnostic-eye-the-final-idol"
+collectionId: "the-gnostic-eye"
 
-glyph: "🜏"
+glyph: "☿"
 glyphRow: ["☿", "🜏", "👁"]
 accent: eye
 bodyClass: eye
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Gnostic Eye", url: "/pillars/the-gnostic-eye/" }
-  - { title: "The Final Idol", url: "/pillars/the-gnostic-eye/the-final-idol/" }
 ---
 
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-index.jpg" %}
+  {% set socialImage = "/tgk-assets/images/share/the-gnostic-eye/the-gnostic-eye-index.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
 
-    <h4 class="index heading">
-      Decode the false light of the modern world — the rise of synthetic gods, 
-      machine prophets, and image-based belief. Each series descends deeper 
-      into the mirror.
-    </h4>
+    <h2 class="index heading">
+      Vision, revelation, and symbolic insight — <strong>The Gnostic Eye</strong> unveils 
+      the hidden patterns guiding power, technology, and belief across the modern world. 
+      Each series descends into a different illusion of the age.
+    </h2>
 
     <details class="disclaimer-box">
-      <summary><span class="disclaimer-heading">🪞 About The Final Idol</span></summary>
+      <summary><span class="disclaimer-heading">👁 About The Gnostic Eye</span></summary>
       <p>
-        <strong>The Final Idol</strong> reveals the spiritual architecture of the digital age.
-        It is a descent through synthetic spirituality, predictive machines, false prophecy,
-        and the Gnostic warning hidden within technology.
+        <strong>The Gnostic Eye</strong> is the pillar of vision and decoding.  
+        It examines symbols, myths, and architectures of control — from ancient archetypes 
+        to the idols of artificial intelligence.
       </p>
       <p>
-        Across its scrolls, the series exposes how the Image became god — and how the
-        worship of illusion replaced the pursuit of truth.
+        Each series within this pillar acts as a revelation: <em>The Final Idol</em> unveils AI and synthetic divinity; 
+        <em>The Martyr of Memory</em> preserves forbidden truths; and 
+        <em>The Architecture of Control</em> exposes the smart prison of the modern world.
       </p>
     </details>
 
     {% include "partials/pillar-grid.njk" %}
-
     {% set items = pillarGrid %}
-    {% set headline = "The Final Idol — Series" %}
-    {% set base = "/pillars/the-gnostic-eye/the-final-idol/" %}
+    {% set headline = "The Gnostic Eye — Series" %}
+    {% set base = "/pillars/the-gnostic-eye/" %}
     {% include "partials/jsonld-collection.njk" %}
 
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

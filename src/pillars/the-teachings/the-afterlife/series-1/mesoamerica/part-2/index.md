@@ -46,7 +46,7 @@ tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
 # Visibility
 sitemap: true
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
@@ -161,7 +161,6 @@ episodeParts:
     desc: "Resurrection, sacred calendars, and the Feathered Spark — remembrance as the bridge between death and divinity."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/part-3/"
 
-
 seriesNav:
   -
     title: "Gnostic Christianity"
@@ -187,8 +186,6 @@ seriesNav:
     title: "Mesoamerica"
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
-
-
 
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica/part-2/mesoamerica-part-2@x.jpg"
@@ -258,13 +255,23 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}gates-open-at-death -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.png" alt="Symbolic Mesoamerican illustration of the soul beginning its journey into Mictlán, with offerings, dog, jade, obsidian mirror, and skull path" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.jpg"
+        alt="A symbolic Mesoamerican scene of the soul beginning its journey into Mictlán — offerings laid beside a dog, jade, obsidian mirror, and skull path guiding the first steps of remembrance."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Death was not a door to nowhere. It was a path marked by offering, memory, and trials. The soul could walk only if it remembered the way.
+    Death was not a door to nowhere.<br>
+    It was a path marked by offering, memory, and trials.<br>
+    The soul could walk only if it remembered the way.
   </figcaption>
 </figure>
 
@@ -333,13 +340,25 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}mictlan-nine-levels -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}mictlan-nine-levels.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}mictlan-nine-levels.png" alt="Symbolic Mesoamerican underworld with layered levels, obsidian winds, jaguars, rivers, and a soul journeying downward" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}mictlan-nine-levels.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}mictlan-nine-levels.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}mictlan-nine-levels.jpg"
+        alt="The nine levels of Mictlan, the Mesoamerican underworld — a layered descent through obsidian winds, jaguars, rivers, and mountains, where the soul is stripped and remade before rebirth."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    The soul passed through nine realms &mdash; not to be judged, but to be unmade. Only what endured the obsidian wind, the jaguar&rsquo;s mouth, and the mountain&rsquo;s crush could rise again.
+    The soul passed through nine realms —<br>
+    not to be judged, but to be unmade.<br>
+    Only what endured the obsidian wind,<br>
+    the jaguar’s mouth, and the mountain’s crush<br>
+    could rise again.
   </figcaption>
 </figure>
 
@@ -408,13 +427,24 @@ socialImages:
   </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}xibalba-lords-hero-twins -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}xibalba-lords-hero-twins.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}xibalba-lords-hero-twins.png" alt="Maya underworld Xibalba with Hero Twins facing death lords and trials" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}xibalba-lords-hero-twins.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}xibalba-lords-hero-twins.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}xibalba-lords-hero-twins.jpg"
+        alt="The Maya underworld Xibalba, where the Hero Twins face twelve death lords and their trials — a descent through darkness that ends in rebirth as the sun and the moon."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    Twelve death lords ruled the Place of Fright. But two boys remembered &mdash; and played the game of death until it broke. They rose as the sun and the moon.
+    Twelve death lords ruled the Place of Fright.<br>
+    But two boys remembered — and played<br>
+    the game of death until it broke.<br>
+    They rose as the sun and the moon.
   </figcaption>
 </figure>
 
@@ -462,23 +492,34 @@ And with it &mdash; if the soul is strong enough &mdash; the spark of <em>rememb
 
 <section class="section-block">
 <h2 class="section-heading">⚡ TL;DR:</h2>
-<ul class="list-emoji">
-<li>In Mesoamerican afterlife, the soul undergoes dismemberment &mdash; a stripping of identity, memory, and form.</li>
-<li>This symbolic death dissolves ego and illusion, preparing the essence for return.</li>
-<li>Each level or trial removes another false layer of the self &mdash; until only the spark remains.</li>
-<li>Bones were sacred: they held ancestral memory and were used to recreate life (as in the Quetzalcoatl myth).</li>
-<li>The path back requires remembering &mdash; piecing yourself together through offerings, symbols, and soul-memory.</li>
-</ul>
+  <ul class="list-emoji">
+    <li>In Mesoamerican afterlife, the soul undergoes dismemberment &mdash; a stripping of identity, memory, and form.</li>
+    <li>This symbolic death dissolves ego and illusion, preparing the essence for return.</li>
+    <li>Each level or trial removes another false layer of the self &mdash; until only the spark remains.</li>
+    <li>Bones were sacred: they held ancestral memory and were used to recreate life (as in the Quetzalcoatl myth).</li>
+    <li>The path back requires remembering &mdash; piecing yourself together through offerings, symbols, and soul-memory.</li>
+  </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}soul-dismemberment-memory -->
 <figure class="image-block">
-<picture>
-  <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-dismemberment-memory.webp" type="image/webp">
-  <img src="{{ imgBase }}/{{ imgPrefix }}soul-dismemberment-memory.png" alt="Mesoamerican soul dismembered and reassembled through underworld trials, bones, and spiritual memory" class="image-gnostic" loading="lazy">
-</picture>
-<figcaption class="caption-gnostic">
-  In the underworld, the soul is taken apart. Bones are scattered. Names are lost. Only those who remember their essence can return whole.
-</figcaption>
+  <a href="{{ imgBase }}/{{ imgPrefix }}soul-dismemberment-memory.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-dismemberment-memory.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}soul-dismemberment-memory.jpg"
+        alt="The Mesoamerican soul undergoing dismemberment and reassembly through the trials of the underworld — bones scattered, memories tested, spirit reforged through remembrance."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
+  <figcaption class="caption-gnostic">
+    In the underworld, the soul is taken apart.<br>
+    Bones are scattered. Names are lost.<br>
+    Only those who remember their essence<br>
+    can return whole.
+  </figcaption>
 </figure>
 
 <!--🐕 Chapter 5: The Dog Who Guides You Home-->
@@ -525,13 +566,24 @@ And with it &mdash; if the soul is strong enough &mdash; the spark of <em>rememb
 </ul>
 </section>
 
+<!-- Image: {{ imgPrefix }}dog-soul-crossing -->
 <figure class="image-block">
-  <picture>
-    <source srcset="{{ imgBase }}/{{ imgPrefix }}dog-soul-crossing.webp" type="image/webp">
-    <img src="{{ imgBase }}/{{ imgPrefix }}dog-soul-crossing.png" alt="A soul at the underworld river with a Xoloitzcuintli dog guide, stylised in Mesoamerican codex art" class="image-gnostic" loading="lazy">
-  </picture>
+  <a href="{{ imgBase }}/{{ imgPrefix }}dog-soul-crossing.jpg" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}dog-soul-crossing.webp" type="image/webp">
+      <img
+        src="{{ imgBase }}/{{ imgPrefix }}dog-soul-crossing.jpg"
+        alt="A soul stands beside the underworld river, guided by a Xoloitzcuintli — the sacred dog who remembers every master and leads them safely across the waters of death."
+        class="image-gnostic"
+        loading="lazy"
+      >
+    </picture>
+  </a>
   <figcaption class="caption-gnostic">
-    At the edge of the underworld river, no priest could help you. Only the dog remembered. Only the dog could lead you home.
+    At the edge of the underworld river,<br>
+    no priest could help you.<br>
+    Only the dog remembered.<br>
+    Only the dog could lead you home.
   </figcaption>
 </figure>
 

@@ -178,7 +178,7 @@ seriesMeta:
 
 # 🔮 Section Visibility Controls
 discussEnabled: true
-resourcesEnabled: true
+referencesEnabled: true
 seriesNavEnabled: true
 quizEnabled: true
 lensEnabled: true
