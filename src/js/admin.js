@@ -141,7 +141,7 @@
   populateSelect(tierSel, collectDistinct("data-tier"));
 
   // persistence
-  const FILTER_KEY = 'tgk_admin_filters_v1';
+  const FILTER_KEY = "tgk_admin_filters_v1";
   function saveFilters(){
     const data = {
       q: invSearch?.value || "",
@@ -188,10 +188,10 @@
   }
 
   [invSearch, pillarSel, tierSel, gateSel].forEach(el =>
-    el?.addEventListener('input', ()=>{ saveFilters(); applyInventoryFilters(); })
+    el?.addEventListener("input", ()=>{ saveFilters(); applyInventoryFilters(); })
   );
   [pillarSel, tierSel, gateSel].forEach(el =>
-    el?.addEventListener('change', ()=>{ saveFilters(); applyInventoryFilters(); })
+    el?.addEventListener("change", ()=>{ saveFilters(); applyInventoryFilters(); })
   );
   applyInventoryFilters();
 
@@ -199,20 +199,27 @@
      4) Exports
   ========================= */
   function download(name, obj){
-    const url = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 2)], {type:'application/json'}));
-    const a = Object.assign(document.createElement('a'), {href:url, download:name});
+    const url = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 2)], {type:"application/json"}));
+    const a = Object.assign(document.createElement("a"), {href:url, download:name});
     document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
   }
-  $('#export-tasks')?.addEventListener('click', ()=> download('tgk-tasks.json', state));
-  $('#export-notes')?.addEventListener('click', ()=> download('tgk-taskmeta.json', meta));
+  $("#export-tasks")?.addEventListener("click", ()=> download("tgk-tasks.json", state));
+  $("#export-notes")?.addEventListener("click", ()=> download("tgk-taskmeta.json", meta));
+  $("#export-all")?.addEventListener("click", ()=>{
+    const backup = {
+      tasks: state,
+      meta,
+      filters: JSON.parse(localStorage.getItem(FILTER_KEY)||"{}")
+    };
+    download("tgk-admin-backup.json", backup);
+  });
 
   /* =========================
      5) Add “View” link next to VS Code
   ========================= */
   $$("#inv-body tr").forEach(tr => {
-    const editsCell = tr.querySelector("td:nth-last-child(2)"); // the Edit column
+    const editsCell = tr.querySelector("td:nth-last-child(2)");
     if (!editsCell || editsCell.querySelector(".view-link")) return;
-
     const url = tr.getAttribute("data-url") || "";
     if (url && url.startsWith("/")) {
       const a = document.createElement("a");
@@ -225,4 +232,61 @@
       editsCell.appendChild(a);
     }
   });
+
+  /* =========================
+     6) Bookmark sync (localStorage stub)
+  ========================= */
+  const BOOKMARK_KEY = "tgk_bookmarks_v1";
+  const bookmarks = new Set(JSON.parse(localStorage.getItem(BOOKMARK_KEY) || "[]"));
+  function saveBookmarks() {
+    localStorage.setItem(BOOKMARK_KEY, JSON.stringify(Array.from(bookmarks)));
+  }
+  $$(".bookmark-tag").forEach(btn => {
+    const id = btn.dataset.bookmarkId;
+    if (bookmarks.has(id)) btn.classList.add("bookmarked");
+    btn.addEventListener("click", () => {
+      if (bookmarks.has(id)) {
+        bookmarks.delete(id);
+        btn.classList.remove("bookmarked");
+      } else {
+        bookmarks.add(id);
+        btn.classList.add("bookmarked");
+      }
+      saveBookmarks();
+    });
+  });
+
+  /* =========================
+     7) Safe guard for non-admin pages
+  ========================= */
+  if (!document.querySelector("#admin-panel")) {
+    console.info("TGK Admin: No admin panel detected — accent and inventory features skipped.");
+  }
+
+  /* =========================
+     8) Event delegation for tag/note buttons (optional enhancement)
+  ========================= */
+  document.body.addEventListener("click", e => {
+    if (e.target.matches(".tag-btn")) {
+      const li = e.target.closest(".task");
+      const id = li?.dataset.id;
+      const curr = (meta[id]?.tags || []).join(", ");
+      const val = prompt("Tags (comma separated):", curr);
+      if (val === null) return;
+      meta[id] = meta[id] || {};
+      meta[id].tags = val.split(",").map(s=>s.trim()).filter(Boolean);
+      saveMeta(); location.reload();
+    }
+    if (e.target.matches(".note-btn")) {
+      const li = e.target.closest(".task");
+      const id = li?.dataset.id;
+      const curr = meta[id]?.note || "";
+      const val = prompt("Note:", curr);
+      if (val === null) return;
+      meta[id] = meta[id] || {};
+      meta[id].note = val.trim();
+      saveMeta(); location.reload();
+    }
+  });
+
 })();

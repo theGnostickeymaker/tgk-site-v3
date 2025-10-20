@@ -182,7 +182,6 @@
     padding: 0.25rem;
     transition: color 0.2s ease, transform 0.2s ease;
   }
-
   .bookmark-tag.bookmarked { color: var(--highlight); }
   .bookmark-tag:hover { color: var(--text-secondary); transform: scale(1.1); }
   .bookmark-tag.scroll-bookmark {

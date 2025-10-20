@@ -144,7 +144,8 @@ socialImages:
   hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-4/the-machine-messiah-part-4@2x.jpg"
 ---
 
-{% include "partials/scroll-tabs.njk" %}
+{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
 
 <main class="main-content">
 <section class="content-container">

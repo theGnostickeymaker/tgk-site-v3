@@ -151,7 +151,8 @@ socialImages:
 ---
 
 
-{% include "partials/scroll-tabs.njk" %}
+{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
 
 <!-- Image: flame-in-the-dark -->
 <figure class="image-block">

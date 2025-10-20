@@ -211,7 +211,8 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %}
+{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
 
 <main class="main-content">
   <section class="content-container">

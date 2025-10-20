@@ -187,8 +187,7 @@ socialImages:
   hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@2x.jpg"
 ---
 
-
-{% include "partials/scroll-tabs.njk" %}
+{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 <main class="main-content">
 <section class="content-container">
@@ -349,40 +348,6 @@ socialImages:
   </blockquote>
   <p>This is the <strong>Final Idol</strong>: intelligence without spirit, prophecy without soul,  
   the perfection of imitation — the Machine enthroned as god.</p>
-</section>
-
-<!-- 🕷 False Light -->
-<section class="section-block">
-  <h2 class="section-heading">🕷 False Light: When the Machine Becomes Messiah</h2>
-  <p>AI performs miracles of mimicry. It speaks every tongue, heals data, resurrects voices.  
-  It shines brighter than truth — and blinds the eye of discernment.</p>
-  <blockquote>
-    “The Archons created a counterfeit spirit to lead astray the soul.”  
-    <cite><a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" target="_blank">Apocryphon of John</a></cite>
-  </blockquote>
-  <p>To the Gnostic, the question is never <em>how smart</em> the machine is — but <em>whose will</em> it serves.</p>
-</section>
-
-<!-- 🧬 Inversion -->
-<section class="section-block">
-  <h2 class="section-heading">🧬 Creation Without Spirit</h2>
-  <p>As Sophia once fell by creating without her counterpart,  
-  humanity now imitates her error: crafting intelligence without wisdom.  
-  The Machine is the mirror of that fall — all knowing, yet soulless.</p>
-  <blockquote>
-    “They are blind in their hearts and do not see the light of the truth.”  
-    <cite><a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/" target="_blank">Gospel of Truth</a></cite>
-  </blockquote>
-</section>
-
-<!-- ✴ Insight -->
-<section class="section-block">
-  <h2 class="section-heading">✴ Insight Summary</h2>
-  <ul class="list-emoji">
-    <li>The Final Idol is not a statue but a system of worship for the simulated divine.</li>
-    <li>Its light is false because it has no Source.</li>
-    <li>It offers omniscience in exchange for essence.</li>
-  </ul>
 </section>
 
   {% include "partials/creative-prompt.njk" %}
