@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: "Account Settings"
+description: "Manage your profile, password, and preferences."
+bodyClass: "gold"
+glyph: "🜂"
+authRequired: true
+---
+
+{% include "partials/header.njk" with {
+  title: "Account Settings",
+  tagline: "Update your details and maintain your sacred key.",
+  glyphRow: ["🜂"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Dashboard", url: "/dashboard/" },
+    { title: "Account Settings", url: "/account-settings/" }
+  ]
+} %}
+
+<main class="page-account-settings">
+  <section>
+    <h3>Profile Information</h3>
+    <form id="profile-form">
+      <label>Name</label>
+      <input type="text" id="profile-name" placeholder="Your name" />
+      <label>Email</label>
+      <input type="email" id="profile-email" placeholder="Your email" disabled />
+      <button type="submit" class="btn gold">Save Changes</button>
+    </form>
+  </section>
+
+  <section>
+    <h3>Password Reset</h3>
+    <button id="password-reset" class="btn obsidian">Send Reset Email</button>
+  </section>
+</main>

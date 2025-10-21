@@ -1,0 +1,45 @@
+---
+layout: base.njk
+title: "Join The Gnostic Key"
+description: "Choose your tier of access — support sacred knowledge preservation and unlock the deeper scrolls of The Gnostic Key."
+bodyClass: "gold"
+glyph: "🜂"
+---
+
+{% include "partials/header.njk" with {
+  title: "Join The Gnostic Key",
+  tagline: "Awaken. Support. Access the hidden scrolls.",
+  glyphRow: ["🜂"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Membership", url: "/membership/" }
+  ]
+} %}
+
+<main class="page-membership">
+  <section class="hero-center">
+    <h2>Choose Your Path</h2>
+    <p class="lead">
+      The Gnostic Key is sustained by seekers like you. Choose your tier of membership to unlock deeper archives, support future scrolls, and join our growing circle of initiates.
+    </p>
+  </section>
+
+  {% include "partials/paige-tier-selector.njk" %}
+
+  <section class="faq-block">
+    <h3>Frequently Asked Questions</h3>
+    <details>
+      <summary>Can I change my tier later?</summary>
+      <p>Yes — you can upgrade, downgrade, or cancel anytime through your Dashboard.</p>
+    </details>
+    <details>
+      <summary>Do I need an account to access free scrolls?</summary>
+      <p>No — free-tier scrolls are open to all visitors, but an account allows you to save bookmarks and join discussions.</p>
+    </details>
+  </section>
+
+  <section class="cta">
+    <p>Already a member?</p>
+    <a href="/signin/" class="btn gold">Sign In</a>
+  </section>
+</main>

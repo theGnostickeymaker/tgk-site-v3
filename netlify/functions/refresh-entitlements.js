@@ -19,7 +19,7 @@ exports.handler = async (event) => {
 
     let tier = "free";
     if (INITIATE_IDS.includes(priceId)) tier = "initiate";
-    if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) tier = "full";
+    if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) tier = "adept";
 
     const cookie = makeCookie({ tier, exp: Math.floor(Date.now()/1000) + 60*60*24*30 });
     return { statusCode: 200, headers: { "Set-Cookie": cookie, "Content-Type": "application/json" }, body: JSON.stringify({ tier }) };

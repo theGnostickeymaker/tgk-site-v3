@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: "Legal Library"
+description: "Central repository for TGK’s policies and terms."
+bodyClass: "obsidian"
+glyph: "⚖"
+---
+
+{% include "partials/header.njk" with {
+  title: "Legal Library",
+  tagline: "Our covenant with seekers and supporters.",
+  glyphRow: ["⚖"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Legal", url: "/legal/" }
+  ]
+} %}
+
+<main class="page-legal">
+  <section>
+    <ul class="legal-links">
+      <li><a href="/privacy-policy/">Privacy Policy</a></li>
+      <li><a href="/terms-of-service/">Terms of Service</a></li>
+      <li><a href="/refund-policy/">Refund & Cancellation</a></li>
+      <li><a href="/cookies/">Cookie Notice</a></li>
+    </ul>
+  </section>
+</main>

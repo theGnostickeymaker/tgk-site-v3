@@ -10,7 +10,7 @@ theme: null
 
 <div class="plans">
   <button id="initiate">Start Initiate</button>
-  <button id="full">Start Full Access</button>
+  <button id="adept">Start Adept Access</button>
   <button id="lifetime">Lifetime / Founder</button>
 </div>
 
@@ -25,6 +25,6 @@ async function go(priceId){
   if(d.url) location = d.url; else alert(d.error || "Error starting checkout");
 }
 document.getElementById("initiate").onclick = () => go("{{ env.PRICE_INITIATE_IDS[0] | default('') }}");
-document.getElementById("full").onclick = () => go("{{ env.PRICE_FULL_IDS[0] | default('') }}");
+document.getElementById("adept").onclick = () => go("{{ env.PRICE_FULL_IDS[0] | default('') }}");
 document.getElementById("lifetime").onclick = () => go("{{ env.PRICE_FULL_LIFETIME_IDS[0] | default('') }}");
 </script>

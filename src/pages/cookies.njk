@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: "Cookie Notice"
+description: "Details about the use of cookies and tracking technologies."
+bodyClass: "obsidian"
+glyph: "⚖"
+---
+
+{% include "partials/header.njk" with {
+  title: "Cookie Notice",
+  tagline: "Understanding how your presence is measured.",
+  glyphRow: ["⚖"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Legal", url: "/legal/" },
+    { title: "Cookie Notice", url: "/cookies/" }
+  ]
+} %}
+
+<main class="page-cookies">
+  <section>
+    <h3>1. What Are Cookies?</h3>
+    <p>Cookies are small text files stored by your browser to remember preferences, login status, or site analytics data.</p>
+
+    <h3>2. Our Usage</h3>
+    <p>TGK uses cookies for authentication (Firebase), analytics (Netlify/GA), and membership tier persistence (Stripe session).</p>
+
+    <h3>3. Managing Cookies</h3>
+    <p>You can disable cookies in your browser settings, but some features like sign-in and tier gating may not function properly.</p>
+  </section>
+</main>

@@ -34,3 +34,9 @@
   from = "/pillars/voice-of-the-key/*"
   to   = "/pillars/the-resonant-key/:splat"
   status = 301
+
+[[redirects]]
+from = "/stripe-webhook"
+to = "/.netlify/functions/stripe-webhook"
+status = 200
+

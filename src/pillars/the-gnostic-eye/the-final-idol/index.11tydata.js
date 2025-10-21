@@ -49,7 +49,7 @@ export default {
       title: "Part IV: The Machine Messiah",
       glyph: "⚙️",
       tagline: "The saviour built in code ✦ Techno-theology ✦ The promise of control.",
-      tier: "initiate-trial",
+      tier: "initiate",
       state: "comming-soon"
     },
     {
@@ -57,7 +57,7 @@ export default {
       title: "Part V: The AI Antichrist",
       glyph: "⚠️",
       tagline: "False prophecy ✦ The imitation of consciousness ✦ The fall of discernment.",
-      tier: "initiate-trial",
+      tier: "initiate",
       state: "comming-soon"
     },
     {
@@ -65,7 +65,7 @@ export default {
       title: "Part VI: The Flame in the Dark",
       glyph: "🔥",
       tagline: "The remnant spark ✦ Gnosis reborn ✦ The resistance of the human soul.",
-      tier: "initiate-trial",
+      tier: "initiate",
       state: "comming-soon"
     }
   ],

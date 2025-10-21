@@ -43,7 +43,7 @@ async function verifyToken(token, secret) {
 }
 
 function hasAccess(userTier, requiredTier) {
-  const rank = { free: 0, initiate: 1, full: 2 };
+  const rank = { free: 0, initiate: 1, adept: 2 };
   return (rank[userTier] ?? -1) >= (rank[requiredTier] ?? 99);
 }
 

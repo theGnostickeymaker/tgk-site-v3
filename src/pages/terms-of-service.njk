@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: "Terms of Service"
+description: "Your agreement for using The Gnostic Key."
+bodyClass: "obsidian"
+glyph: "⚖"
+---
+
+{% include "partials/header.njk" with {
+  title: "Terms of Service",
+  tagline: "By entering, you agree to honour truth and fair use.",
+  glyphRow: ["⚖"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Legal", url: "/legal/" },
+    { title: "Terms of Service", url: "/terms-of-service/" }
+  ]
+} %}
+
+<main class="page-terms">
+  <section>
+    <h3>1. Acceptance of Terms</h3>
+    <p>By using The Gnostic Key, you agree to these terms and any updates posted here.</p>
+
+    <h3>2. Membership & Access</h3>
+    <p>Access tiers are defined through Stripe subscriptions. Misuse or redistribution of gated content is prohibited.</p>
+
+    <h3>3. Intellectual Property</h3>
+    <p>All TGK materials, imagery, and texts are original works protected under copyright and spiritual law.</p>
+  </section>
+</main>

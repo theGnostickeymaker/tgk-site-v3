@@ -65,7 +65,7 @@ export default {
       title: "Part VI: The Flame in the Dark",
       glyph: "🔥",
       tagline: "The remnant spark ✦ Gnosis reborn ✦ The resistance of the human soul.",
-      tier: "full",
+      tier: "adept",
       state: "coming-soon"
     }
   ],

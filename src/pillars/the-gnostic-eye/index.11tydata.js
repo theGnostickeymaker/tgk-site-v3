@@ -21,7 +21,7 @@ export default {
       glyph: "🜏",
       tagline:
         "AI as idol, prophet, and antichrist — decoding synthetic spirituality, machine prophecy, and the false light of progress.",
-      tier: "free",
+      tier: "initiate-trial",
       state: "active"
     },
     {
@@ -31,7 +31,7 @@ export default {
       tagline:
         "Preserving what was erased — forbidden knowledge, vanished truths, and the spiritual cost of forgetting.",
       tier: "initiate",
-      state: "in-development"
+      state: "coming-soon"
     },
     {
       href: "/pillars/the-gnostic-eye/the-architecture-of-control/",
@@ -49,7 +49,7 @@ export default {
       tagline:
         "Media as myth, politics as ritual — decoding the symbols that weaponise collective consciousness.",
       tier: "initiate",
-      state: "planned"
+      state: "coming-soon"
     }
   ],
 

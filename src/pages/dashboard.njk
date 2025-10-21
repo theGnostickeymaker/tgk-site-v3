@@ -1,0 +1,36 @@
+---
+layout: base.njk
+title: "Your TGK Dashboard"
+description: "Manage your profile, tier, and sacred bookmarks."
+bodyClass: "gold"
+glyph: "🜂"
+authRequired: true
+---
+
+{% include "partials/header.njk" with {
+  title: "Your Dashboard",
+  tagline: "Profile ✦ Bookmarks ✦ Membership Tier",
+  glyphRow: ["🜂"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Dashboard", url: "/dashboard/" }
+  ]
+} %}
+
+<main class="page-dashboard">
+  <section class="user-summary" id="paige-dashboard">
+    <h2>Welcome, <span id="user-name">Seeker</span></h2>
+    <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
+    <div class="btn-wrap">
+      <button id="manage-tier" class="btn gold">Manage Membership</button>
+      <button id="logout-btn" class="btn obsidian">Logout</button>
+    </div>
+  </section>
+
+  <section class="bookmarks">
+    <h3>Your Bookmarks</h3>
+    <ul id="bookmark-list">
+      <li>Loading bookmarks…</li>
+    </ul>
+  </section>
+</main>

@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: "Privacy Policy"
+description: "How The Gnostic Key collects, uses, and protects your information."
+bodyClass: "obsidian"
+glyph: "⚖"
+---
+
+{% include "partials/header.njk" with {
+  title: "Privacy Policy",
+  tagline: "Respecting your data as sacred trust.",
+  glyphRow: ["⚖"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Legal", url: "/legal/" },
+    { title: "Privacy Policy", url: "/privacy-policy/" }
+  ]
+} %}
+
+<main class="page-privacy">
+  <section>
+    <h3>1. Information We Collect</h3>
+    <p>We collect only what is necessary to provide access, payment processing (via Stripe), and communication (via Firebase and email).</p>
+
+    <h3>2. How We Use Your Data</h3>
+    <p>Your data is used solely for membership management, access control, and updates about The Gnostic Key.</p>
+
+    <h3>3. Data Protection</h3>
+    <p>All data is encrypted in transit and stored securely using Firebase and Netlify servers located in GDPR-compliant regions.</p>
+  </section>
+</main>

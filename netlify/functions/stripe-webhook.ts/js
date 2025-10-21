@@ -1,0 +1,82 @@
+// netlify/functions/stripe-webhook.js
+import Stripe from "stripe";
+import crypto from "crypto";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+/**
+ * Handles real-time subscription events from Stripe.
+ * Keeps TGK entitlements in sync when payments succeed, renew, or cancel.
+ */
+export async function handler(event) {
+  const sig = event.headers["stripe-signature"];
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!webhookSecret) return json(500, { error: "Missing STRIPE_WEBHOOK_SECRET" });
+
+  let stripeEvent;
+  try {
+    stripeEvent = stripe.webhooks.constructEvent(event.body, sig, webhookSecret);
+  } catch (err) {
+    console.error("[TGK] Stripe webhook signature failed:", err.message);
+    return json(400, { error: `Webhook Error: ${err.message}` });
+  }
+
+  try {
+    switch (stripeEvent.type) {
+      // 🔔 Subscription created or renewed
+      case "customer.subscription.created":
+      case "customer.subscription.updated":
+      case "invoice.payment_succeeded":
+        await updateEntitlements(stripeEvent.data.object.customer);
+        break;
+
+      // 🛑 Subscription cancelled or expired
+      case "customer.subscription.deleted":
+      case "invoice.payment_failed":
+        await clearEntitlements(stripeEvent.data.object.customer);
+        break;
+
+      default:
+        console.log(`[TGK] Ignored Stripe event: ${stripeEvent.type}`);
+    }
+
+    return json(200, { received: true });
+  } catch (err) {
+    console.error("[TGK] Webhook processing error:", err);
+    return json(500, { error: "Webhook handler error" });
+  }
+}
+
+/* ======================================================
+   Internal Helpers
+====================================================== */
+
+async function updateEntitlements(customerId) {
+  if (!customerId) return;
+  const subs = await stripe.subscriptions.list({ customer: customerId, status: "active", limit: 1 });
+  const sub = subs.data[0];
+  const priceId = sub?.items?.data?.[0]?.price?.id;
+
+  const INITIATE_IDS = (process.env.PRICE_INITIATE_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
+  const ADEPT_IDS     = (process.env.PRICE_FULL_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
+  const ADEPT_LIFEIDS = (process.env.PRICE_FULL_LIFETIME_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
+
+  let tier = "free";
+  if (INITIATE_IDS.includes(priceId)) tier = "initiate";
+  if (ADEPT_IDS.includes(priceId) || ADEPT_LIFEIDS.includes(priceId)) tier = "adept";
+
+  console.log(`[TGK] Updated entitlements: ${customerId} → ${tier}`);
+
+  // (Optional) store this in Firestore or Netlify KV if you want a persistent server-side record.
+  // For cookie-based access, nothing else required; the user refresh will renew tgk_ent.
+}
+
+async function clearEntitlements(customerId) {
+  console.log(`[TGK] Clearing entitlements for ${customerId}`);
+  // If you use Firestore/Netlify KV, mark this user as "free".
+}
+
+function json(statusCode, body) {
+  return { statusCode, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
+}

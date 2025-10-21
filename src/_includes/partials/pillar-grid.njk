@@ -10,7 +10,7 @@
    - pillarGrid = [
        {
          href, title, glyph, desc/tagline,
-         tier (free/initiate/full),
+         tier (free/initiate/adept),
          state (default, coming-soon, premium, locked, archived, draft),
          image (optional thumbnail),
          badge (optional override)
@@ -20,7 +20,7 @@
    🧭 Behaviour:
    • Automatically applies classes and overlays per state
    • Shows a glyph and title prominently
-   • Adds tier badge (“Free”, “Initiate”, “Full Access”)
+   • Adds tier badge (“Free”, “Initiate”, Adept Access”)
    • Clean fallback handling for missing fields
 
    ✨ State Guide:
@@ -95,8 +95,8 @@
           {# --- Tier badge logic --- #}
           {% set badgeTxt = c.badge %}
           {% if not badgeTxt %}
-            {% if c.tier == "full" %}
-              {% set badgeTxt = "Full Access" %}
+            {% if c.tier == "adept" %}
+              {% set badgeTxt = "Adept Access" %}
             {% elif c.tier == "initiate" %}
               {% set badgeTxt = "Initiate" %}
             {% elif c.tier == "adept" %}
