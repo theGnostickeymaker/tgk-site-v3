@@ -1,0 +1,41 @@
+---
+layout: base.njk
+title: "Create Your TGK Account"
+description: "Join The Gnostic Key — unlock sacred archives and preserve forbidden memory."
+bodyClass: "lightgold"
+glyph: "🜂"
+---
+
+{% set headerData = {
+  title: "Create Your Account",
+  tagline: "Begin your journey into hidden knowledge.",
+  glyphRow: ["🜂"],
+  breadcrumbs: [
+    { title: "Home", url: "/" },
+    { title: "Signup", url: "/signup/" }
+  ]
+} %}
+
+{% include "partials/header.njk" %}
+
+<main class="auth-page">
+  <section class="auth-form">
+    <h2>Create Your TGK Account</h2>
+    <form id="signup-form">
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" required>
+
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" required>
+
+      <button type="submit" class="btn gold">Sign Up</button>
+    </form>
+
+    <p class="auth-switch">
+      Already have an account?
+      <a href="/signin/">Sign in</a>
+    </p>
+  </section>
+</main>
+
+<script type="module" defer src="/js/page.js"></script>

@@ -1,37 +1,52 @@
 ---
 layout: base.njk
 title: "Account Settings"
-description: "Manage your profile, password, and preferences."
-bodyClass: "gold"
+description: "Manage your TGK profile, password, and membership preferences."
+tier: free
 glyph: "🜂"
-authRequired: true
+glyphRow: ["🜂","☥","🜂"]
+bodyClass: "lightgold"
+permalink: "/account-settings/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Dashboard", url: "/dashboard/" }
+  - { title: "Account Settings" }
 ---
 
-{% include "partials/header.njk" with {
-  title: "Account Settings",
-  tagline: "Update your details and maintain your sacred key.",
-  glyphRow: ["🜂"],
-  breadcrumbs: [
-    { title: "Home", url: "/" },
-    { title: "Dashboard", url: "/dashboard/" },
-    { title: "Account Settings", url: "/account-settings/" }
-  ]
-} %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/account-settings.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Account Settings — The Gnostic Key" %}
+  {% set base = "/account-settings/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
 
-<main class="page-account-settings">
-  <section>
-    <h3>Profile Information</h3>
-    <form id="profile-form">
-      <label>Name</label>
+<main class="main-content">
+  <section class="content-container">
+  
+    <section class="section-block">
+    <h2 class="section-heading">Profile Information</h2>
+
+    <form id="profile-form" class="form-block">
+      <label for="profile-name">Name</label>
       <input type="text" id="profile-name" placeholder="Your name" />
-      <label>Email</label>
+
+      <label for="profile-email">Email</label>
       <input type="email" id="profile-email" placeholder="Your email" disabled />
-      <button type="submit" class="btn gold">Save Changes</button>
+
+      <button type="submit" class="btn outline">Save Changes</button>
     </form>
   </section>
 
-  <section>
-    <h3>Password Reset</h3>
-    <button id="password-reset" class="btn obsidian">Send Reset Email</button>
+  <section class="section-block">
+    <h2 class="section-heading">Password Reset</h2>
+    <button id="password-reset" class="btn outline">Send Reset Email</button>
   </section>
+
+  <!-- ✦ Divider -->
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+  </div>
+
 </main>

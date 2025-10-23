@@ -1,5 +1,5 @@
 // ==========================================================
-// 🧠 The Gnostic Key — Eleventy Config (Full v3.2 ESM)
+// 🧠 The Gnostic Key — Eleventy Config (Unified v3.3 ESM)
 // ==========================================================
 
 import "dotenv/config";
@@ -8,7 +8,7 @@ import { DateTime } from "luxon";
 import pluginSitemap from "@quasibit/eleventy-plugin-sitemap";
 
 /** @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig */
-export default function(eleventyConfig) {
+export default function (eleventyConfig) {
 
   /* =========================
      0) Core
@@ -36,12 +36,12 @@ export default function(eleventyConfig) {
   /* =========================
      2) Collections & Filters
   ========================= */
+  const read = (obj, path) =>
+    path.split(".").reduce((v, k) => (v && v[k] !== undefined ? v[k] : undefined), obj);
+
   eleventyConfig.addCollection("content", coll =>
     coll.getFilteredByGlob("src/pillars/**/*.md")
   );
-
-  const read = (obj, path) =>
-    path.split(".").reduce((v, k) => (v && v[k] !== undefined ? v[k] : undefined), obj);
 
   eleventyConfig.addFilter("bySeries", (items = [], series = "") =>
     items.filter(i => {
@@ -107,16 +107,15 @@ export default function(eleventyConfig) {
     return result;
   });
 
-  eleventyConfig.addFilter("fromJson", function(value) {
+  eleventyConfig.addFilter("fromJson", function (value) {
     try {
       return JSON.parse(value);
-    } catch (err) {
+    } catch {
       console.warn("⚠️ fromJson filter could not parse:", value);
       return [];
     }
   });
 
-  // 🕯 TGK custom ordinal date filter
   eleventyConfig.addFilter("tgkDate", (value) => {
     if (!value) return "";
     const dt = DateTime.fromISO(value);
@@ -188,7 +187,12 @@ export default function(eleventyConfig) {
   });
 
   /* =========================
-     7) Return
+     7) Directory-style URLs
+  ========================= */
+  eleventyConfig.setBrowserSyncConfig({ ghostMode: false });
+
+  /* =========================
+     8) Return
   ========================= */
   return {
     dir: {
@@ -197,8 +201,12 @@ export default function(eleventyConfig) {
       data: "_data",
       output: "_site"
     },
+    pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "11ty.js"]
+    templateFormats: ["njk", "md", "html"],
+    passthroughFileCopy: true,
+    // ✅ This line ensures all pages build as /folder/index.html
+    dirOutput: "dir"
   };
 }

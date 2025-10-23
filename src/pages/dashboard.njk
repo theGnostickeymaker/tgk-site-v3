@@ -2,35 +2,52 @@
 layout: base.njk
 title: "Your TGK Dashboard"
 description: "Manage your profile, tier, and sacred bookmarks."
-bodyClass: "gold"
+tier: free
 glyph: "🜂"
+glyphRow: ["🜂", "☥", "🜂"]
+bodyClass: "lightgold"
 authRequired: true
+permalink: "/dashboard/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Dashboard" }
 ---
 
-{% include "partials/header.njk" with {
-  title: "Your Dashboard",
-  tagline: "Profile ✦ Bookmarks ✦ Membership Tier",
-  glyphRow: ["🜂"],
-  breadcrumbs: [
-    { title: "Home", url: "/" },
-    { title: "Dashboard", url: "/dashboard/" }
-  ]
-} %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/dashboard.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Dashboard — The Gnostic Key" %}
+  {% set base = "/dashboard/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
 
-<main class="page-dashboard">
-  <section class="user-summary" id="paige-dashboard">
-    <h2>Welcome, <span id="user-name">Seeker</span></h2>
+<main class="main-content">
+  <section class="content-container" id="page-dashboard">
+
+    <section class="section-block">
+    <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
     <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
+
     <div class="btn-wrap">
-      <button id="manage-tier" class="btn gold">Manage Membership</button>
-      <button id="logout-btn" class="btn obsidian">Logout</button>
+      <button id="manage-tier" class="btn outline">Manage Membership</button>
+      <button id="logout-btn" class="btn outline">Logout</button>
     </div>
   </section>
+</section>
 
-  <section class="bookmarks">
-    <h3>Your Bookmarks</h3>
+  <section class="section-block">
+    <h2 class="section-heading">Your Bookmarks</h2>
     <ul id="bookmark-list">
       <li>Loading bookmarks…</li>
     </ul>
   </section>
+</section>
+
+  <!-- ✦ Divider -->
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
+
+  <script type="module" defer src="/js/page.js"></script>
 </main>

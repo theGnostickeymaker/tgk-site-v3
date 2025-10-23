@@ -2,30 +2,64 @@
 layout: base.njk
 title: "Privacy Policy"
 description: "How The Gnostic Key collects, uses, and protects your information."
-bodyClass: "obsidian"
+tier: free
 glyph: "⚖"
+glyphRow: ["🜂", "⚖", "🜂"]
+bodyClass: "lightgold"
+permalink: "/privacy-policy/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Legal", url: "/legal/" }
+  - { title: "Privacy Policy" }
 ---
 
-{% include "partials/header.njk" with {
-  title: "Privacy Policy",
-  tagline: "Respecting your data as sacred trust.",
-  glyphRow: ["⚖"],
-  breadcrumbs: [
-    { title: "Home", url: "/" },
-    { title: "Legal", url: "/legal/" },
-    { title: "Privacy Policy", url: "/privacy-policy/" }
-  ]
-} %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/privacy-policy.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Privacy Policy — The Gnostic Key" %}
+  {% set base = "/privacy-policy/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
 
-<main class="page-privacy">
-  <section>
-    <h3>1. Information We Collect</h3>
-    <p>We collect only what is necessary to provide access, payment processing (via Stripe), and communication (via Firebase and email).</p>
+<main class="main-content">
+  <section class="content-container">
 
-    <h3>2. How We Use Your Data</h3>
-    <p>Your data is used solely for membership management, access control, and updates about The Gnostic Key.</p>
+    <section class="section-block">
+      <h2 class="section-heading">Privacy Policy</h2>
+      <p class="lead">
+        At <strong>The Gnostic Key</strong>, we treat your personal information as a sacred trust.  
+        This policy explains what we collect, how we use it, and the protections we maintain.
+      </p>
 
-    <h3>3. Data Protection</h3>
-    <p>All data is encrypted in transit and stored securely using Firebase and Netlify servers located in GDPR-compliant regions.</p>
+      <h3>1. Information We Collect</h3>
+      <p>
+        We collect only what is necessary to provide secure access, process payments (via Stripe),
+        and manage communication (via Firebase and email). No unnecessary tracking or profiling occurs.
+      </p>
+
+      <h3>2. How We Use Your Data</h3>
+      <p>
+        Your data is used solely for membership management, tier access control, and
+        important updates related to <em>The Gnostic Key</em>. We never sell or share your information
+        with third parties for marketing purposes.
+      </p>
+
+      <h3>3. Data Protection</h3>
+      <p>
+        All data is encrypted in transit and securely stored using Firebase Authentication,
+        Firestore, and Netlify infrastructure. Our servers operate in GDPR-compliant regions.
+      </p>
+
+      <h3>4. Your Rights</h3>
+      <p>
+        You may request deletion or export of your data at any time by contacting  
+        <a href="mailto:support@thegnostickey.com">support@thegnostickey.com</a>.
+      </p>
+    </section>
   </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
 </main>

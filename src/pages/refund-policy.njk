@@ -1,28 +1,68 @@
 ---
 layout: base.njk
 title: "Refund & Cancellation Policy"
-description: "Guidelines for refunds, cancellations, and billing disputes."
-bodyClass: "obsidian"
+description: "Information on refunds, cancellations, and membership adjustments for The Gnostic Key."
+tier: free
 glyph: "⚖"
+glyphRow: ["🜂", "⚖", "🜂"]
+bodyClass: "lightgold"
+permalink: "/refund-policy/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Legal", url: "/legal/" }
+  - { title: "Refund & Cancellation Policy" }
 ---
 
-{% include "partials/header.njk" with {
-  title: "Refund & Cancellation Policy",
-  tagline: "Fairness and clarity in all exchanges.",
-  glyphRow: ["⚖"],
-  breadcrumbs: [
-    { title: "Home", url: "/" },
-    { title: "Legal", url: "/legal/" },
-    { title: "Refund Policy", url: "/refund-policy/" }
-  ]
-} %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/refund-policy.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Refund & Cancellation Policy — The Gnostic Key" %}
+  {% set base = "/refund-policy/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
 
-<main class="page-refund">
-  <section>
-    <h3>1. Subscription Cancellations</h3>
-    <p>You may cancel at any time through your dashboard. Your access continues until the end of the billing cycle.</p>
+<main class="main-content">
+  <section class="content-container">
 
-    <h3>2. Refunds</h3>
-    <p>Refunds are offered in exceptional cases such as duplicate payments or technical errors. Please contact support@thegnostickey.com.</p>
+    <section class="section-block">
+      <h2 class="section-heading">Refund & Cancellation Policy</h2>
+      <p class="lead">
+        We aim to maintain fairness and clarity for every seeker.  
+        Below you’ll find how refunds, cancellations, and failed payments are handled at <strong>The Gnostic Key</strong>.
+      </p>
+
+      <h3>1. Subscription Refunds</h3>
+      <p>
+        All TGK memberships are processed securely through <strong>Stripe</strong>.
+        You may cancel your subscription at any time from your account dashboard.
+        Refunds are available within <strong>14 days</strong> of the initial purchase
+        for annual or lifetime plans.
+      </p>
+
+      <h3>2. Cancellations</h3>
+      <p>
+        Monthly subscriptions can be cancelled anytime and will remain active until the
+        end of the current paid period. No further charges will be applied after cancellation.
+      </p>
+
+      <h3>3. Failed Payments</h3>
+      <p>
+        If a payment fails, your account automatically reverts to the
+        <em>Free</em> tier until the issue is resolved.
+        Once payment is successful, access to your original tier is restored instantly.
+      </p>
+
+      <h3>4. Contact</h3>
+      <p>
+        For refund requests or billing assistance, contact our support team at  
+        <a href="mailto:support@thegnostickey.com">support@thegnostickey.com</a>.
+      </p>
+    </section>
+
   </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
 </main>

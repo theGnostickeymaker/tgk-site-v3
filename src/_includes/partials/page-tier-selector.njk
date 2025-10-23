@@ -1,0 +1,74 @@
+{# ===========================================================
+   🜂 TGK — Page Tier Selector Partial
+   Displays membership tiers and creates Stripe checkout sessions.
+   =========================================================== #}
+
+<section class="tier-selector">
+  <div class="tier-grid">
+
+    <!-- Free Tier -->
+    <article class="tier-card free">
+      <h3>Free Seeker</h3>
+      <p>Access the first three scrolls of every series, explore public Vault texts, and join the TGK community at no cost.</p>
+      <div class="tier-price">£0 / forever</div>
+      <a href="/signup/" class="btn gold">Create Free Account</a>
+    </article>
+
+    <!-- Initiate Tier -->
+    <article class="tier-card initiate">
+      <h3>Initiate</h3>
+      <p>Full access to the first series of every pillar, comment and forum access, and invitations to member events.</p>
+      <div class="tier-price">£5 / month</div>
+      <button 
+        class="btn obsidian checkout-btn" 
+        data-price="price_initiate_monthly">
+        Become an Initiate
+      </button>
+    </article>
+
+    <!-- Adept Tier -->
+    <article class="tier-card adept">
+      <h3>Adept</h3>
+      <p>Unlock all scrolls, premium Vault archives, Resonant Key media, and receive shop discounts and early access.</p>
+      <div class="tier-price">£12 / month</div>
+      <button 
+        class="btn gold checkout-btn" 
+        data-price="price_adept_monthly">
+        Enter the Adept Circle
+      </button>
+    </article>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".checkout-btn");
+  buttons.forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const priceId = btn.dataset.price;
+      btn.disabled = true;
+      btn.textContent = "Redirecting...";
+      try {
+        const res = await fetch("/.netlify/functions/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ priceId })
+        });
+        const data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert("Checkout failed: " + (data.error || "Unknown error"));
+        }
+      } catch (err) {
+        console.error("[TGK] Stripe checkout error:", err);
+        alert("Error creating checkout session. Please try again.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = btn.dataset.label || "Continue";
+      }
+    });
+  });
+});
+</script>

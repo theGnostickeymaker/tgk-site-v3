@@ -1,28 +1,46 @@
 ---
 layout: base.njk
 title: "Legal Library"
-description: "Central repository for TGK’s policies and terms."
-bodyClass: "obsidian"
+description: "Central repository for The Gnostic Key’s policies, terms, and covenants."
+tier: free
 glyph: "⚖"
+glyphRow: ["🜂", "⚖", "🜂"]
+bodyClass: "lightgold"
+permalink: "/legal/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Legal Library" }
 ---
 
-{% include "partials/header.njk" with {
-  title: "Legal Library",
-  tagline: "Our covenant with seekers and supporters.",
-  glyphRow: ["⚖"],
-  breadcrumbs: [
-    { title: "Home", url: "/" },
-    { title: "Legal", url: "/legal/" }
-  ]
-} %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/legal-library.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Legal Library — The Gnostic Key" %}
+  {% set base = "/legal/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
 
-<main class="page-legal">
-  <section>
+<main class="main-content">
+  <section class="content-container">
+
+  <section class="section-block">
+    <h2 class="section-heading">The Legal Library</h2>
+    <p class="lead">
+      This archive preserves the covenant between <strong>The Gnostic Key</strong> and its seekers — 
+      outlining our commitments to privacy, fair exchange, transparency, and accountability.
+    </p>
+
     <ul class="legal-links">
-      <li><a href="/privacy-policy/">Privacy Policy</a></li>
-      <li><a href="/terms-of-service/">Terms of Service</a></li>
-      <li><a href="/refund-policy/">Refund & Cancellation</a></li>
-      <li><a href="/cookies/">Cookie Notice</a></li>
+      <li><a href="/privacy-policy/">Privacy Policy</a> — how we handle and protect your data.</li>
+      <li><a href="/terms-of-service/">Terms of Service</a> — your agreement when using TGK.</li>
+      <li><a href="/refund-policy/">Refund & Cancellation Policy</a> — our fair use and refund terms.</li>
+      <li><a href="/cookies/">Cookie Notice</a> — details about cookies and analytics.</li>
     </ul>
   </section>
+</section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
 </main>
