@@ -1,0 +1,84 @@
+{# =========================================================
+   🜂 TGK — Membership Tier Grid (v1.2)
+   Purpose:
+   Unified grid for TGK membership tiers, aligned with portal layout.
+   Stripe-ready via data-price attributes for checkout integration.
+   ========================================================= #}
+
+<section class="membership-grid">
+  <div class="portal-grid">
+
+    {# ✦ Free Tier #}
+    <article class="gnostic-card tier-free">
+      <div class="card-body">
+        <div class="card-glyph" aria-hidden="true">✦</div>
+        <h3 class="card-title">Free Seeker</h3>
+        <p class="card-desc">
+          Begin your path at no cost — access the first three scrolls of every series,
+          explore open Vault texts, and join the TGK community as a silent observer.
+        </p>
+
+        <ul class="card-list">
+          <li>First three scrolls unlocked</li>
+          <li>Public Vault access</li>
+          <li>Community (read-only)</li>
+        </ul>
+
+        <button class="btn outline full-width" disabled aria-disabled="true">
+          Already Unlocked
+        </button>
+      </div>
+    </article>
+
+    {# ☥ Initiate Tier #}
+    <article class="gnostic-card tier-initiate">
+      <div class="card-body">
+        <div class="card-glyph" aria-hidden="true">☥</div>
+        <h3 class="card-title">Initiate</h3>
+        <p class="card-desc">
+          Deepen your initiation and open the full first series of every pillar —
+          with access to member discussions, rituals, and community gatherings.
+        </p>
+
+        <ul class="card-list">
+          <li>Full Series I access (all pillars)</li>
+          <li>Forum participation</li>
+          <li>Community events</li>
+        </ul>
+
+        <button
+          class="btn gold full-width checkout-btn"
+          data-price="price_initiate_monthly">
+          Join — £5 / month
+        </button>
+      </div>
+    </article>
+
+    {# 🜏 Adept Tier #}
+    <article class="gnostic-card tier-adept">
+      <div class="card-body">
+        <div class="card-glyph" aria-hidden="true">🜏</div>
+        <h3 class="card-title">Adept</h3>
+        <p class="card-desc">
+          Enter the inner circle — every scroll unlocked, premium Vault archives,
+          Resonant Key media, early shop access, and exclusive Adept gatherings.
+        </p>
+
+        <ul class="card-list">
+          <li>All scrolls unlocked</li>
+          <li>Premium Vault archives</li>
+          <li>Event priority & shop discounts</li>
+        </ul>
+
+        <button
+          class="btn obsidian full-width checkout-btn"
+          data-price="price_adept_monthly">
+          Ascend — £12 / month
+        </button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<script defer src="/js/membership.js"></script>

@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: "Join The Gnostic Key"
+description: "Create your TGK account and begin your Initiation."
+tier: free
+glyph: "🜂"
+glyphRow: ["🜂", "☥", "🜂"]
+bodyClass: "lightgold"
+permalink: "/signup/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Membership", url: "/membership/" }
+  - { title: "Sign Up" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/signup.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Join The Gnostic Key — Create Account" %}
+  {% set base = "/signup/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content page-auth gold">
+  <section class="content-container">
+
+    <section class="section-block auth-form">
+      <h2 class="section-heading">Join The Gnostic Key</h2>
+      <p class="lead">
+        Create a free account to access your dashboard, save bookmarks,  
+        and begin your Initiation into the hidden scrolls.
+      </p>
+
+      <form id="signup-form" class="tgk-form">
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" required>
+
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" placeholder="Enter a secure password" required>
+
+        <button type="submit" class="btn gold full-width">Create Account</button>
+      </form>
+
+      <p class="auth-note">
+        Already have an account? <a href="/signin/">Sign in here</a>.
+      </p>
+
+      <div id="auth-feedback" class="auth-feedback" hidden></div>
+    </section>
+
+  </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
+</main>
+
+<script type="module" defer src="/js/page.js"></script>

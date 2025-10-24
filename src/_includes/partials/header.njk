@@ -1,26 +1,46 @@
-{# =========================================================
-   ⚠️ TGK — Header Partial (Deprecated v2.0)
+{# ===========================================================
+   🜂 TGK — Unified Header Partial (v3.0)
    Purpose:
-   This file is intentionally blank.
+   Handles breadcrumb, glyph, title, and tagline display.
+   Works automatically with or without a headerData block.
+   =========================================================== #}
 
-   🧭 Historical Context:
-   Previously handled both site navigation and hero section.
-   As of TGK Rebuild v3.0 (2025), the header has been modularised:
-     • partials/topbar.njk  → Primary navigation + theme toggles
-     • partials/hero.njk    → Pillar-specific branding / glyph hero
+{% set data = headerData or {
+  title: title,
+  tagline: tagline or description or "",
+  glyphRow: glyphRow or [glyph or ""],
+  breadcrumbs: breadcrumbs or []
+} %}
 
-   ✅ Reason for Deprecation:
-   • Prevents duplication of header markup
-   • Improves performance and readability
-   • Allows pillar-based dynamic theming
+<header class="page-header">
+  <div class="header-inner">
+    <div class="glyph-row">
+      {% for g in data.glyphRow %}
+        <span class="glyph">{{ g }}</span>
+      {% endfor %}
+    </div>
 
-   ⚙️ Current Behaviour:
-   This placeholder remains to satisfy legacy includes until all
-   templates have migrated to the modular system.
+    <div class="title-wrap">
+      <h1 class="page-title">{{ data.title }}</h1>
+      {% if data.tagline %}
+        <p class="page-tagline">{{ data.tagline }}</p>
+      {% endif %}
+    </div>
 
-   🧩 Safe to remove once:
-   • All layouts reference topbar.njk + hero.njk directly
-   • No remaining `{% include "partials/header.njk" %}` calls exist
-   ========================================================= #}
-
-{# intentionally blank #}
+    {% if data.breadcrumbs and data.breadcrumbs | length > 0 %}
+      <nav class="breadcrumbs">
+        <ul>
+          {% for crumb in data.breadcrumbs %}
+            <li>
+              {% if crumb.url %}
+                <a href="{{ crumb.url }}">{{ crumb.title }}</a>
+              {% else %}
+                <span>{{ crumb.title }}</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</header>

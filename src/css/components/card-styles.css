@@ -145,3 +145,39 @@
     font-size: 1.25rem;
   }
 }
+.membership-grid .portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.membership-grid .gnostic-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius-xl);
+  background: var(--card-gradient);
+  box-shadow: var(--glow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.membership-grid .gnostic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glow-strong);
+}
+
+.membership-grid .card-glyph {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+}
+
+.membership-grid .card-badge {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}

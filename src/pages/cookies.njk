@@ -1,31 +1,59 @@
 ---
 layout: base.njk
-title: "Cookie Notice"
-description: "Details about the use of cookies and tracking technologies."
-bodyClass: "obsidian"
-glyph: "⚖"
+title: "Cookies Policy"
+description: "Information on how The Gnostic Key uses cookies, sessions, and analytics to enhance your experience."
+tier: free
+glyph: "🜂"
+glyphRow: ["🜂", "☥", "🜂"]
+bodyClass: "lightgold"
+permalink: "/cookies/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Legal", url: "/legal/" }
+  - { title: "Cookies Policy" }
 ---
 
-{% include "partials/header.njk" with {
-  title: "Cookie Notice",
-  tagline: "Understanding how your presence is measured.",
-  glyphRow: ["⚖"],
-  breadcrumbs: [
-    { title: "Home", url: "/" },
-    { title: "Legal", url: "/legal/" },
-    { title: "Cookie Notice", url: "/cookies/" }
-  ]
-} %}
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/cookies.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Cookies Policy — The Gnostic Key" %}
+  {% set base = "/cookies/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
 
-<main class="page-cookies">
-  <section>
-    <h3>1. What Are Cookies?</h3>
-    <p>Cookies are small text files stored by your browser to remember preferences, login status, or site analytics data.</p>
+<main class="main-content">
+  <section class="content-container">
 
-    <h3>2. Our Usage</h3>
-    <p>TGK uses cookies for authentication (Firebase), analytics (Netlify/GA), and membership tier persistence (Stripe session).</p>
+    <section class="section-block">
+    <h2 class="section-heading">Cookies Policy</h2>
+    <p>
+      The Gnostic Key uses cookies to maintain secure access to your account,
+      remember preferences, and improve performance across the site. We value
+      your privacy and use these tools only to enhance your experience.
+    </p>
 
-    <h3>3. Managing Cookies</h3>
-    <p>You can disable cookies in your browser settings, but some features like sign-in and tier gating may not function properly.</p>
+    <h3>Essential Cookies</h3>
+    <p>
+      These cookies are required for login sessions, account authentication,
+      and secure browsing. Without them, core functionality would be impaired.
+    </p>
+
+    <h3>Analytics</h3>
+    <p>
+      Optional analytics cookies help us understand how visitors engage with
+      our scrolls and archives. These are anonymised and never shared.
+    </p>
+
+    <h3>Your Choices</h3>
+    <p>
+      You can manage or delete cookies at any time via your browser settings.
+      Continuing to use The Gnostic Key signifies your consent to this policy.
+    </p>
   </section>
+</section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
 </main>

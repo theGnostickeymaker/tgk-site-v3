@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: "Sign In"
+description: "Access your TGK dashboard, bookmarks, and member archives."
+tier: free
+glyph: "🜂"
+glyphRow: ["🜂", "☥", "🜂"]
+bodyClass: "lightgold"
+permalink: "/signin/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Membership", url: "/membership/" }
+  - { title: "Sign In" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/signin.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Sign In — The Gnostic Key" %}
+  {% set base = "/signin/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+  
+    <h4 class="index-heading">Sign In to The Gnostic Key</h4>
+    <form id="signin-form" class="form-block">
+      <label for="signin-email">Email</label>
+      <input type="email" id="signin-email" required />
+
+      <label for="signin-password">Password</label>
+      <input type="password" id="signin-password" required />
+
+      <button type="submit" class="btn outline">Sign In</button>
+    </form>
+
+    <p><a href="#" id="reset-link">Forgot Password?</a></p>
+    <p>New here? <a href="/signup/">Create an account</a></p>
+  </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
+
+  <script type="module" defer src="/js/page.js"></script>
+</main>
