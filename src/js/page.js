@@ -1,6 +1,5 @@
 /* ===========================================================
-   🜂 TGK — PAGE.js (Auth + Stripe)
-   Handles signup, signin, logout, and tier sync.
+   🜂 TGK — PAGE.js (Auth + Stripe + Entitlement Sync)
    =========================================================== */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
@@ -28,16 +27,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// === 🧙 Signup ===
+/* 🧙 SIGNUP — Create user → Stripe Customer → Firestore Entitlement */
 async function pageSignup(email, password) {
   try {
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
     const token = await userCred.user.getIdToken();
 
-    await fetch("/.netlify/functions/create-stripe-customer", {
+    // 🔹 Link Firebase → Stripe → Firestore
+    const res = await fetch("/.netlify/functions/create-stripe-customer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, token })
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Stripe customer creation failed");
+
+    // 🔹 Generate and set entitlement cookie (tgk_ent)
+    await fetch("/.netlify/functions/set-entitlements", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ customerId: data.customerId, email })
     });
 
     alert("Welcome to The Gnostic Key ✦ Account created.");
@@ -48,10 +58,20 @@ async function pageSignup(email, password) {
   }
 }
 
-// === 🔐 Sign In ===
+/* 🔐 SIGNIN — Firebase Auth + Entitlement refresh */
 async function pageSignin(email, password) {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    const token = await cred.user.getIdToken();
+
+    // Refresh entitlement cookie
+    const entRef = await fetch("/.netlify/functions/refresh-entitlements", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token })
+    });
+    if (!entRef.ok) console.warn("[PAGE] Entitlement refresh failed");
+
     window.location.href = "/dashboard/";
   } catch (err) {
     console.error("[PAGE] Signin error:", err);
@@ -59,21 +79,25 @@ async function pageSignin(email, password) {
   }
 }
 
-// === 🕊️ Password Reset ===
+/* 🕊️ PASSWORD RESET */
 function pageReset(email) {
   sendPasswordResetEmail(auth, email)
     .then(() => alert("Reset link sent to your email."))
     .catch((e) => alert("Error: " + e.message));
 }
 
-// === 🚪 Logout ===
+/* 🚪 LOGOUT */
 function pageLogout() {
   signOut(auth)
-    .then(() => (window.location.href = "/"))
+    .then(() => {
+      // Remove session cookie manually (client side only)
+      document.cookie = "tgk_ent=; Path=/; Max-Age=0;";
+      window.location.href = "/";
+    })
     .catch((e) => console.error("[PAGE] Logout error:", e));
 }
 
-// === 🜂 Watch Auth ===
+/* 🜂 WATCH AUTH STATE */
 onAuthStateChanged(auth, (user) => {
   const userInfo = document.getElementById("user-info");
   if (user) {
@@ -88,7 +112,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// === 🪶 Auto-bind forms ===
+/* 🪶 AUTO-BIND FORMS */
 document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signup-form");
   const signinForm = document.getElementById("signin-form");
