@@ -1,4 +1,4 @@
-exports.handler = async (event) => {
+export const handler = async (event) => {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return json(500, { error: "STRIPE_SECRET_KEY missing" });
   const stripe = require("stripe")(key);

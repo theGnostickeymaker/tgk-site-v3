@@ -4,7 +4,7 @@ const INITIATE_IDS = (process.env.PRICE_INITIATE_IDS || "").split(",").map(s=>s.
 const FULL_IDS     = (process.env.PRICE_FULL_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
 const FULL_LIFEIDS = (process.env.PRICE_FULL_LIFETIME_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return json(500, { error: "STRIPE_SECRET_KEY missing" });
   const stripe = require("stripe")(key);
