@@ -1,10 +1,9 @@
 /* ===========================================================
-   🔥 TGK — Firebase Init (Shared)
+   🔥 TGK — Firebase Init (Shared Singleton)
    =========================================================== */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 
-/* === 🔑 Live Firebase Config === */
 const firebaseConfig = {
   apiKey: "AIzaSyDYrFIw9I3hManf1TqvP6FARZTC-MlMuz0",
   authDomain: "the-gnostic-key.firebaseapp.com",
@@ -15,5 +14,5 @@ const firebaseConfig = {
   measurementId: "G-KD96SXX3JY"
 };
 
-/* ✦ Export initialized app */
-export const app = initializeApp(firebaseConfig);
+// ✅ Prevent duplicate initialization
+export const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);

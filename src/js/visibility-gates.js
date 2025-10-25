@@ -3,18 +3,14 @@
    Works alongside cookie-based gate.js
    =========================================================== */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, getIdTokenResult } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { app } from "/js/firebase-init.js"; // ✅ use shared instance
+import {
+  getAuth,
+  onAuthStateChanged,
+  getIdTokenResult
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDYrFIw9I3hManf1TqvP6FARZTC-MlMuz0",
-  authDomain: "the-gnostic-key.firebaseapp.com",
-  projectId: "the-gnostic-key"
-};
-
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 const tierRank = { free: 0, initiate: 1, adept: 2, admin: 3 };
 
 document.addEventListener("DOMContentLoaded", () => {

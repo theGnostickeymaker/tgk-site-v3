@@ -1,10 +1,8 @@
 /* ===========================================================
-   🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard + Profile)
+   🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard)
    =========================================================== */
 
-// ✅ Use the shared initialized app
-import { app } from "/js/firebase-init.js";
-
+import { app } from "./firebase-init.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -13,7 +11,6 @@ import {
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-
 import {
   getFirestore,
   doc,
@@ -21,25 +18,9 @@ import {
   setDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-/* 🔥 Shared Firebase instance */
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/* === 🔑 Live Firebase Config === */
-const firebaseConfig = {
-  apiKey: "AIzaSyDYrFIw9I3hManf1TqvP6FARZTC-MlMuz0",
-  authDomain: "the-gnostic-key.firebaseapp.com",
-  projectId: "the-gnostic-key",
-  storageBucket: "the-gnostic-key.appspot.com",
-  messagingSenderId: "903609435224",
-  appId: "1:903609435224:web:3031fc94c9fbbe78f8762d",
-  measurementId: "G-KD96SXX3JY"
-};
-
-// === 🜂 Init ===
-export const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
 
 /* 🧙 SIGNUP — Create user → Stripe Customer → Firestore Entitlement */
 async function pageSignup(email, password) {
