@@ -2,12 +2,12 @@ export default {
   layout: "base.njk",
   pillar: "childrens-corner",
   title: "Children’s Corner",
+  tier: "free", 
   description:
     "A soft and shining space for young seekers — stories, parables, and gentle guides to light and kindness.",
   glyph: "🧸",
   bodyClass: "children",
   accent: "children",
-  tier: "free",
 
   // === Tagging ===
   tags: ["pillar", "childrens-corner"],

@@ -8,6 +8,7 @@ export default {
   accent: "vault",
   bodyClass: "vault",
   tags: ["pillar", "the-vault", "codex-reborn"],
+  tier: "free", 
 
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },

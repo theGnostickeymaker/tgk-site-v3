@@ -10,7 +10,7 @@ export default {
   glyph: "📜",
   bodyClass: "vault",
   accent: "vault",
-  tier: "adept",
+  tier: "free",
 
   // === Tagging ===
   tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi", "codex-vii"],

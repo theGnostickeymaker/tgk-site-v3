@@ -8,6 +8,7 @@ export default {
   glyphRow: ["𓂀", "✦", "𓂀"],
   bodyClass: "home",
   accent: "lightgold",
+  tier: "free", 
 
   // === Breadcrumb Trail ===
   breadcrumbs: [

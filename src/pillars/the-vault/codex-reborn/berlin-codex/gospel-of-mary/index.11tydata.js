@@ -8,7 +8,7 @@ export default {
   glyph: "🌹",
   bodyClass: "vault",
   accent: "vault",
-  tier: "initiate",
+  tier: "free", 
 
   // === Labels & Metadata ===
   tags: ["pillar", "the-vault", "codex-reborn", "berlin-codex", "gospel-of-mary"],

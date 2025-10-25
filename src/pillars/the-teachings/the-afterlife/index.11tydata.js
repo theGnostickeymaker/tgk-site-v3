@@ -9,6 +9,7 @@ export default {
   pillarUrl: "/pillars/the-teachings/the-afterlife/",
   pillarGlyph: "✝",
   accent: "gold",
+  tier: "free", 
 
   // 🧩 Series Grid
   pillarGrid: [

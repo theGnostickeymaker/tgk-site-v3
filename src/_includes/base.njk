@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title or "The Gnostic Key" }}</title>
   {% if description %}<meta name="description" content="{{ description | safe }}">{% endif %}
-  {% set bust = collections.all | length %}
+  {% set bust = collections.all | length %}/
 
   {# Accent autodetect BEFORE CSS loads #}
   {% set __ac = accent %}
@@ -117,14 +117,25 @@
     {% endif %}
   {% endblock %}
 
-  <main id="content" class="site-main" role="main" data-tier="{{ tier | default('free') }}">
+  <main id="content"
+        class="site-main"
+        role="main"
+        data-tier="{{ tier | default(site.defaultTier) }}">
+
+    {# 🜂 GATED SCROLL WRAPPER
+      If a scroll defines tier: initiate / adept / admin,
+      it will render a locked placeholder and gated content.
+      All other pages (index, dashboard, membership, etc.)
+      inherit site.defaultTier = free and show normally.
+    #}
     {% if tier and tier != "free" %}
       <div class="locked-scroll" data-required-tier="{{ tier }}">
         <div class="locked-placeholder">
           <h2>Locked Scroll</h2>
           <p>This scroll is for <strong>{{ tier | capitalize }}</strong> members.</p>
           <p>
-            <a href="/signin/?next={{ permalink }}" class="btn">Sign in</a> or 
+            <a href="/signin/?next={{ permalink }}" class="btn">Sign in</a>
+            or
             <a href="/membership/" class="btn">Upgrade</a>
           </p>
         </div>
@@ -160,13 +171,15 @@
 
   <script defer src="/js/toggles.js?v={{ bust }}"></script>
 
-  <!-- QUIZ SYSTEM -->
-  <script type="module">
-    import quizzes from "/_data/quiz/index.js";
-    window.quizzes = quizzes;
-    console.log("[TGK QUIZ] ✅ Loaded quizzes:", Object.keys(quizzes));
-  </script>
-  <script defer src="/js/quiz-engine.js?v={{ bust }}"></script>
+  {% if quizId %}
+    <!-- QUIZ SYSTEM -->
+    <script type="module">
+      import quizzes from "/_data/quiz/index.js";
+      window.quizzes = quizzes;
+      console.log("[TGK QUIZ] ✅ Loaded quizzes:", Object.keys(quizzes));
+    </script>
+    <script defer src="/js/quiz-engine.js?v={{ bust }}"></script>
+  {% endif %}
 
 </body>
 </html>

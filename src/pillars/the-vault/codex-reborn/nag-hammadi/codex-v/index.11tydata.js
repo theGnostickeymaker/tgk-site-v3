@@ -10,6 +10,7 @@ export default {
   glyph: "📜",
   bodyClass: "vault",
   accent: "vault",
+  tier: "free", 
 
   // === Tier & Tagging ===
   tier: "initiate",

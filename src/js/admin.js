@@ -17,7 +17,7 @@
   }
   const savedAccent = localStorage.getItem(ACCENT_KEY);
   const currentAccent = ACCENTS.find(a => body.classList.contains(a));
-  const initialAccent = savedAccent || currentAccent || "gold";
+  const initialAccent = savedAccent || currentAccent || "lightgold";
   applyAccent(initialAccent);
   if (accentSel) accentSel.value = initialAccent;
 

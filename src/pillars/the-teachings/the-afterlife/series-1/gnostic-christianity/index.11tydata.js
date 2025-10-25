@@ -7,6 +7,7 @@ export default {
   pillarHome: "/pillars/the-teachings/",
   tagline: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.",
   layout: "base.njk",
+  tier: "free", 
 
   // 🔹 Series Hierarchy
   pillar: "the-teachings",

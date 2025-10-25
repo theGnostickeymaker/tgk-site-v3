@@ -7,6 +7,7 @@ export default {
   pillarHome: "/pillars/the-teachings/",
   tagline: "Three-part journey through the false cosmos and the Revealer.",
   layout: "base.njk",
+  tier: "free", 
 
   // 🔹 Series Hierarchy
   pillar: "the-teachings",

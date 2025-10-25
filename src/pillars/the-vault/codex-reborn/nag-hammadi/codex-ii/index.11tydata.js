@@ -9,6 +9,7 @@ export default {
     "The most renowned of the Nag Hammadi volumes, containing the Gospel of Thomas, Apocryphon of John, and other foundational Gnostic revelations.",
   glyph: "📜",
   bodyClass: "vault",
+  tier: "free", 
 
   // === Accent & Tagging ===
   accent: "vault",

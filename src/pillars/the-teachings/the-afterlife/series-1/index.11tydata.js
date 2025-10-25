@@ -14,7 +14,8 @@ export default {
   seriesMeta: {
     number: 1,
     label: "Series 1",
-    series_version: 1
+    series_version: 1,
+  tier: "free", 
   },
 
   // 🜂 Episode Grid (visible cards)

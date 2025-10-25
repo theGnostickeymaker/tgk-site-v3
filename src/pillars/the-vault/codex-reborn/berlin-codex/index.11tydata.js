@@ -7,6 +7,7 @@ export default {
   description: "Preserving the Gospel of Mary and other Gnostic texts once erased by orthodoxy.",
   glyph: "💮",
   bodyClass: "vault",
+  tier: "free", 
 
   // === Accent & Tagging ===
   accent: "vault",

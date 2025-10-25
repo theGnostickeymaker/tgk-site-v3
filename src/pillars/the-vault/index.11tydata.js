@@ -9,6 +9,7 @@ export default {
   // === Accent and Tagging ===
   accent: "vault",
   tags: ["pillar", "the-vault"],
+  tier: "free", 
 
   // === Breadcrumbs ===
   breadcrumbs: [

@@ -2,6 +2,7 @@ export default {
   layout: "base.njk",
   pillar: "tgk-community",
   title: "TGK Community",
+
   description:
     "A gathering place for seekers of The Gnostic Key — a living circle of discussion, study, and shared insight.",
   glyph: "💬",

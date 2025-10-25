@@ -12,6 +12,7 @@ export default {
   // 🔹 Pillar Identity
   pillar: "the-gnostic-eye",
   pillarGlyph: "☿",
+  tier: "free",
 
   // 👁 Series Grid (pillar-level)
   pillarGrid: [

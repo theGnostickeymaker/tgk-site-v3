@@ -5,6 +5,7 @@ export default {
   pillarUrl: "/pillars/the-teachings/",
   pillarGlyph: "⛪︎",
   accent: "gold",
+  tier: "free", 
 
   // 🌍 Pillar Overview Grid
   pillarGrid: [

@@ -8,6 +8,7 @@ export default {
   description: "Contains key Gnostic writings such as the Gospel of Truth — the revelation of self-knowledge and return to the Father.",
   glyph: "📜",
   bodyClass: "vault",
+  tier: "free", 
 
   // === Accent & Tagging ===
   accent: "vault",
