@@ -104,14 +104,13 @@ function pageLogout() {
 }
 
 /* 🜂 LOAD DASHBOARD TIER */
+/* 🜂 LOAD DASHBOARD TIER (Admin Safe) */
 async function loadDashboardData(user) {
   const nameEl = document.getElementById("user-name");
   const tierEl = document.getElementById("user-tier");
-
-  // fallback placeholders
   if (!nameEl || !tierEl) return;
 
-  nameEl.textContent = user ? user.email.split("@")[0] : "Guest";
+  nameEl.textContent = user.email.split("@")[0];
   tierEl.textContent = "Loading…";
 
   try {
@@ -119,14 +118,27 @@ async function loadDashboardData(user) {
     const snap = await getDoc(docRef);
 
     let tier = "free";
-    if (snap.exists()) {
+
+    // 🛡️ Auto-assign admin tier if email matches
+    const ADMIN_EMAILS = ["the.keymaker@thegnostickey.com"];
+    if (ADMIN_EMAILS.includes(user.email)) {
+      tier = "admin";
+    } else if (snap.exists()) {
       const data = snap.data();
-      tier = data.tier || "free";
+      tier = data?.tier || "free";
+    } else {
+      console.warn(`[TGK Dashboard] No entitlement doc found for ${user.email}, creating default.`);
+      // Optional: create a fallback record for visibility
+      await fetch("/.netlify/functions/set-entitlements", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ customerId: "none", email: user.email })
+      });
     }
 
     tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
     localStorage.setItem("tgk-tier", tier);
-    console.log(`[TGK Dashboard] Tier loaded for ${user.email}: ${tier}`);
+    console.log(`[TGK Dashboard] Tier resolved for ${user.email}: ${tier}`);
   } catch (err) {
     console.error("[TGK Dashboard] Error loading tier:", err);
     tierEl.textContent = "Error";
