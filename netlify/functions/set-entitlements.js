@@ -4,27 +4,18 @@
 import admin from "firebase-admin";
 import Stripe from "stripe";
 
-// 🜂 Initialize Firebase Admin (once per function)
+// 🜂 Firebase Admin Init (3-var secure method)
 if (!admin.apps.length) {
-  // ✅ Supports both Base64-encoded and raw JSON keys
-  let raw = process.env.FIREBASE_ADMIN_KEY_B64 || process.env.FIREBASE_ADMIN_KEY;
-  if (!raw) throw new Error("FIREBASE_ADMIN_KEY missing");
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
-  // Decode base64 if needed
-  if (!raw.trim().startsWith("{")) {
-    raw = Buffer.from(raw, "base64").toString("utf8");
-  }
-
-  let credentials;
-  try {
-    credentials = JSON.parse(raw);
-  } catch (err) {
-    console.error("[TGK] ❌ FIREBASE_ADMIN_KEY parse failed:", err.message);
-    throw new Error("Invalid FIREBASE_ADMIN_KEY JSON in environment");
+  if (!projectId || !clientEmail || !privateKey) {
+    throw new Error("Missing Firebase credentials in environment");
   }
 
   admin.initializeApp({
-    credential: admin.credential.cert(credentials)
+    credential: admin.credential.cert({ projectId, clientEmail, privateKey }),
   });
 }
 
@@ -37,7 +28,7 @@ const INITIATE_IDS = parseList(process.env.PRICE_INITIATE_IDS);
 const FULL_IDS = parseList(process.env.PRICE_FULL_IDS);
 const FULL_LIFEIDS = parseList(process.env.PRICE_FULL_LIFETIME_IDS);
 
-// 🜂 Main Function
+// 🜂 Main Handler
 export const handler = async (event) => {
   try {
     if (event.httpMethod !== "POST")
@@ -46,21 +37,21 @@ export const handler = async (event) => {
     const { customerId, email } = JSON.parse(event.body || "{}");
     if (!customerId) return json(400, { error: "Missing customerId" });
 
-    // 🔹 Retrieve Stripe Subscription
+    // 🔹 Retrieve Stripe subscription
     const subs = await stripe.subscriptions.list({
       customer: customerId,
       status: "active",
-      limit: 1
+      limit: 1,
     });
     const sub = subs.data[0];
     const priceId = sub?.items?.data?.[0]?.price?.id;
 
-    // 🔹 Determine Tier
+    // 🔹 Determine tier
     let tier = "free";
     if (INITIATE_IDS.includes(priceId)) tier = "initiate";
     if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) tier = "adept";
 
-    // 🔹 Safely get Stripe Customer Email
+    // 🔹 Safely get Stripe customer email
     let customerEmail = "unknown";
     try {
       const customer = await stripe.customers.retrieve(customerId);
@@ -71,12 +62,12 @@ export const handler = async (event) => {
       console.warn(`[TGK] ⚠ Could not fetch Stripe customer email for ${customerId}: ${err.message}`);
     }
 
-    // 🔹 Prepare Firestore record
+    // 🔹 Write entitlement record
     const data = {
       email: email || customerEmail,
       stripeCustomerId: customerId,
       tier,
-      lastChecked: admin.firestore.Timestamp.now()
+      lastChecked: admin.firestore.Timestamp.now(),
     };
 
     await firestore.collection("entitlements").doc(customerId).set(data, { merge: true });
@@ -94,6 +85,6 @@ function json(status, body) {
   return {
     statusCode: status,
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   };
 }

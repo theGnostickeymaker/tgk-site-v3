@@ -1,14 +1,22 @@
 // 🜂 TGK — Netlify Function: Create Stripe Customer
-// Creates a Stripe customer for every Firebase user signup.
-// Links Firebase Auth → Stripe Customer → Firestore Entitlement.
+// Creates a Stripe customer for every Firebase user signup
+// and links them to Firestore entitlements.
 
 import Stripe from "stripe";
 import admin from "firebase-admin";
 
-// 🜂 Ensure Firebase Admin initialized once
+// 🜂 Firebase Admin Init (3-var secure method)
 if (!admin.apps.length) {
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+
+  if (!projectId || !clientEmail || !privateKey) {
+    throw new Error("Missing Firebase credentials in environment");
+  }
+
   admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_KEY))
+    credential: admin.credential.cert({ projectId, clientEmail, privateKey }),
   });
 }
 
@@ -17,18 +25,18 @@ const firestore = admin.firestore();
 
 export const handler = async (event) => {
   try {
-    if (event.httpMethod !== "POST") {
-      return json(405, { error: "Method not allowed" });
-    }
+    if (event.httpMethod !== "POST")
+      return json(405, { error: "Method Not Allowed" });
 
     const { email, token } = JSON.parse(event.body || "{}");
-    if (!email || !token) return json(400, { error: "Missing email or token" });
+    if (!email || !token)
+      return json(400, { error: "Missing email or token" });
 
-    // 🧩 Verify Firebase token to get UID
+    // 🔹 Verify Firebase token → get UID
     const decoded = await admin.auth().verifyIdToken(token);
     const uid = decoded.uid;
 
-    // 🜂 Check if customer already exists in Firestore
+    // 🔹 Check if entitlement already exists
     const entRef = firestore.collection("entitlements").doc(uid);
     const entSnap = await entRef.get();
     if (entSnap.exists) {
@@ -36,7 +44,7 @@ export const handler = async (event) => {
       return json(200, { message: "Customer already exists" });
     }
 
-    // 🜂 Create or retrieve Stripe Customer
+    // 🔹 Create or fetch Stripe customer
     let customer;
     const existing = await stripe.customers.list({ email, limit: 1 });
     if (existing.data.length > 0) {
@@ -45,19 +53,19 @@ export const handler = async (event) => {
     } else {
       customer = await stripe.customers.create({
         email,
-        metadata: { firebaseUID: uid, tier: "free" }
+        metadata: { firebaseUID: uid, tier: "free" },
       });
       console.log(`[TGK] 🆕 Stripe customer created: ${customer.id}`);
     }
 
-    // 🜂 Create Firestore entitlement entry
+    // 🔹 Write entitlement record
     const entitlement = {
       uid,
       email,
       stripeCustomerId: customer.id,
       tier: "free",
       created: admin.firestore.FieldValue.serverTimestamp(),
-      lastChecked: admin.firestore.FieldValue.serverTimestamp()
+      lastChecked: admin.firestore.FieldValue.serverTimestamp(),
     };
 
     await entRef.set(entitlement, { merge: true });
@@ -70,11 +78,11 @@ export const handler = async (event) => {
   }
 };
 
-// 🜂 Helper
+// 🜂 JSON Helper
 function json(statusCode, body) {
   return {
     statusCode,
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   };
 }
