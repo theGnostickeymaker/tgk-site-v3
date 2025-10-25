@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Ancient Egypt"
 description: "The resurrection of light — from the weighing of the heart to the ascent among the Imperishables."

@@ -5,7 +5,7 @@ title: "Mesoamerica — Part III"
 description: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death."
 excerpt: "You descended into Mictlán, outwitted the Lords of Xibalba, and faced the games of death.  
     Now begins the spiral upward — through sacrifice, memory, and the soul’s return to the celestial maize f…"
-tier: "initiate"
+tier: initiate
 scrollId: "the-teachings-the-afterlife-series-1-mesoamerica-part-3"
 
 episode: 6

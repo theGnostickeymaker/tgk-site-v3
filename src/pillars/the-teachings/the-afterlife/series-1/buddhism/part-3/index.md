@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Buddhism"
 description: "The Diamond Path — through the bardos and the clear light to final liberation."
