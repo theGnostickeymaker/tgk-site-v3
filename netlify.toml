@@ -10,6 +10,11 @@
   targetPort = 8080
   publish = "_site"
 
+# 🜂 Ensure Firebase + Stripe functions bundle correctly
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["netlify/functions/**"]
+
 [[edge_functions]]
   function = "gate"
   path = "/gated/*"
@@ -36,7 +41,6 @@
   status = 301
 
 [[redirects]]
-from = "/stripe-webhook"
-to = "/.netlify/functions/stripe-webhook"
-status = 200
-
+  from = "/stripe-webhook"
+  to   = "/.netlify/functions/stripe-webhook"
+  status = 200
