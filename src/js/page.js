@@ -13,13 +13,12 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
-/* === 🔑 Live Firebase Config ===
-   (from Firebase Console → Project Settings → SDK snippet) */
+/* === 🔑 Live Firebase Config === */
 const firebaseConfig = {
   apiKey: "AIzaSyDYrFIw9I3hManf1TqvP6FARZTC-MlMuz0",
   authDomain: "the-gnostic-key.firebaseapp.com",
   projectId: "the-gnostic-key",
-  storageBucket: "the-gnostic-key.firebasestorage.app",
+  storageBucket: "the-gnostic-key.appspot.com",
   messagingSenderId: "903609435224",
   appId: "1:903609435224:web:3031fc94c9fbbe78f8762d",
   measurementId: "G-KD96SXX3JY"
@@ -35,7 +34,6 @@ async function pageSignup(email, password) {
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
     const token = await userCred.user.getIdToken();
 
-    // link Firebase user → Stripe customer
     await fetch("/.netlify/functions/create-stripe-customer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
