@@ -118,7 +118,6 @@
   {% endblock %}
 
   <main id="content" class="site-main" role="main" data-tier="{{ tier | default('free') }}">
-    {# If scroll requires a membership tier, wrap it in a visibility gate #}
     {% if tier and tier != "free" %}
       <div class="locked-scroll" data-required-tier="{{ tier }}">
         <div class="locked-placeholder">
@@ -138,9 +137,12 @@
     {% endif %}
   </main>
 
-  <!-- 🔐 Visibility Gates -->
-  <script type="module" src="/js/visibility-gates.js?v={{ bust }}"></script>
-  
+  <!-- 🗝 Cookie-based gate (Netlify / Stripe session) -->
+  <script defer src="/js/gate.js?v={{ bust }}"></script>
+
+  <!-- 🔐 Firebase hybrid unlock (auth + claims) -->
+  <script type="module" defer src="/js/visibility-gates.js?v={{ bust }}"></script>
+
   {% include "partials/footer.njk" %}
 
   <!-- JS -->

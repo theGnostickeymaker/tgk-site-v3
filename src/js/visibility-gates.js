@@ -1,29 +1,27 @@
 /* ===========================================================
    🜂 TGK — Visibility Gates (Hybrid Auth + Claim Unlock)
+   Works alongside cookie-based gate.js
    =========================================================== */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, getIdTokenResult } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
-/* === 🔑 Live Firebase Config === */
 const firebaseConfig = {
   apiKey: "AIzaSyDYrFIw9I3hManf1TqvP6FARZTC-MlMuz0",
   authDomain: "the-gnostic-key.firebaseapp.com",
-  projectId: "the-gnostic-key",
+  projectId: "the-gnostic-key"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-/* === 🜂 Gate Map === */
 const tierRank = { free: 0, initiate: 1, adept: 2, admin: 3 };
 
-/* === 🜂 Main === */
 document.addEventListener("DOMContentLoaded", () => {
   const lockedBlocks = document.querySelectorAll(".locked-scroll");
 
   onAuthStateChanged(auth, async (user) => {
-    if (!user) return; // still locked for anonymous
+    if (!user) return; // anonymous stays locked
 
     try {
       const token = await getIdTokenResult(user);
@@ -38,13 +36,44 @@ document.addEventListener("DOMContentLoaded", () => {
         const reqRank = tierRank[requiredTier] || 1;
 
         if (rank >= reqRank) {
-          block.classList.remove("locked-scroll");
+          // 🔓 Unlock visually
           block.classList.add("unlocked-scroll");
-          console.log(
-            `[TGK Gate] ✅ Unlocked: ${userTier} >= ${requiredTier}`
-          );
+
+          const placeholder = block.querySelector(".locked-placeholder");
+          const content = block.querySelector(".scroll-content");
+
+          if (placeholder) placeholder.style.display = "none";
+          if (content) {
+            content.style.display = "block";
+            content.style.opacity = "1";
+            content.style.filter = "none";
+          }
+
+          console.log(`[TGK Gate] ✅ Unlocked: ${userTier} >= ${requiredTier}`);
+
+          // 👁 Optional toast notification
+          const toast = document.createElement("div");
+          toast.textContent = `🔓 Unlocked: ${userTier} access`;
+          Object.assign(toast.style, {
+            position: "fixed",
+            bottom: "1rem",
+            right: "1rem",
+            padding: "0.6rem 1rem",
+            background: "var(--accent)",
+            color: "#000",
+            borderRadius: "8px",
+            fontWeight: "600",
+            zIndex: "9999",
+            boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+            transition: "opacity 0.4s ease"
+          });
+          document.body.appendChild(toast);
+          setTimeout(() => (toast.style.opacity = "0"), 1500);
+          setTimeout(() => toast.remove(), 2000);
         } else {
-          console.log(`[TGK Gate] 🔒 Still locked: ${userTier} < ${requiredTier}`);
+          console.log(
+            `[TGK Gate] 🔒 Still locked: ${userTier} < ${requiredTier}`
+          );
         }
       });
     } catch (err) {
