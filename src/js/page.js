@@ -64,13 +64,14 @@ async function pageSignup(email, password) {
   }
 }
 
-/* 🔐 SIGNIN — Firebase Auth + Entitlement + Custom Claims Sync */
+/* 🔐 SIGNIN — Firebase Auth + Entitlement Refresh + Custom Claims Sync */
 async function pageSignin(email, password) {
   try {
     const cred = await signInWithEmailAndPassword(auth, email, password);
-    const token = await cred.user.getIdToken();
+    const user = cred.user;
+    const token = await user.getIdToken();
 
-    // 🔹 Step 1: Refresh entitlement cookie
+    // 🔹 Refresh entitlement cookie (from Firestore/Stripe)
     const entRef = await fetch("/.netlify/functions/refresh-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -78,26 +79,25 @@ async function pageSignin(email, password) {
     });
     if (!entRef.ok) console.warn("[PAGE] Entitlement refresh failed");
 
-    // 🔹 Step 2: Sync Firebase custom claims for tier + role
-    const syncRes = await fetch("/.netlify/functions/sync-custom-claims", {
+    // 🔹 Sync Firebase Custom Claims (tier + role)
+    const sync = await fetch("/.netlify/functions/sync-custom-claims", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        uid: cred.user.uid,
-        email: cred.user.email
+        uid: user.uid,
+        email: user.email,
+        // optional: if you stored Stripe customer ID in localStorage/session
+        customerId: localStorage.getItem("tgk-customer-id") || null
       })
     });
-
-    if (!syncRes.ok) {
-      const err = await syncRes.text();
-      console.warn("[PAGE] Custom claims sync failed:", err);
+    if (sync.ok) {
+      const data = await sync.json();
+      console.log(`[TGK] 🔄 Synced custom claims: ${data.tier}/${data.role}`);
     } else {
-      console.log("[PAGE] ✅ Custom claims synced for", cred.user.email);
-      // optional: force-refresh the token to load new claims immediately
-      await cred.user.getIdToken(true);
+      console.warn("[PAGE] Sync custom claims failed");
     }
 
-    // 🔹 Step 3: Redirect to Dashboard
+    // Redirect to dashboard
     window.location.href = "/dashboard/";
   } catch (err) {
     console.error("[PAGE] Signin error:", err);
