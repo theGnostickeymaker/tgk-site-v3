@@ -1,3 +1,5 @@
+// 🜂 TGK — Global Site Defaults
 export default {
-  url: "https://thegnostickey.com"
-}
+  defaultTier: "free",
+  defaultLayout: "base.njk"
+};
