@@ -207,33 +207,54 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-/* 🪶 AUTO-BIND FORMS */
-document.addEventListener("DOMContentLoaded", () => {
+/* 🪶 AUTO-BIND FORMS (Resilient) */
+function bindTGKForms() {
   const signupForm = document.getElementById("signup-form");
   const signinForm = document.getElementById("signin-form");
   const resetBtn = document.getElementById("password-reset");
   const logoutBtn = document.getElementById("logout-btn");
   const profileForm = document.getElementById("profile-form");
 
-  signupForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = e.target.querySelector("#signup-email").value.trim();
-    const pw = e.target.querySelector("#signup-password").value.trim();
-    pageSignup(email, pw);
-  });
+  if (signupForm) {
+    signupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = e.target.querySelector("#signup-email").value.trim();
+      const pw = e.target.querySelector("#signup-password").value.trim();
+      pageSignup(email, pw);
+    });
+  }
 
-  signinForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = e.target.querySelector("#signin-email").value.trim();
-    const pw = e.target.querySelector("#signin-password").value.trim();
-    pageSignin(email, pw);
-  });
+  if (signinForm) {
+    signinForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = e.target.querySelector("#signin-email").value.trim();
+      const pw = e.target.querySelector("#signin-password").value.trim();
+      pageSignin(email, pw);
+    });
+  }
 
-  resetBtn?.addEventListener("click", () => {
-    const email = prompt("Enter your email to reset password:");
-    if (email) pageReset(email);
-  });
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      const email = prompt("Enter your email to reset password:");
+      if (email) pageReset(email);
+    });
+  }
 
-  logoutBtn?.addEventListener("click", pageLogout);
-  profileForm?.addEventListener("submit", saveProfile);
-});
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      console.log("[TGK] Logging out...");
+      pageLogout();
+    });
+  }
+
+  if (profileForm) {
+    profileForm.addEventListener("submit", saveProfile);
+  }
+}
+
+// 🜂 Bind immediately if DOM is ready; otherwise, wait
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bindTGKForms);
+} else {
+  bindTGKForms();
+}
