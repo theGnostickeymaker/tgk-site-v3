@@ -97,15 +97,24 @@ function pageReset(email) {
     .catch((e) => alert("Error: " + e.message));
 }
 
-/* 🚪 LOGOUT */
+/* 🚪 LOGOUT (Safe + Verbose) */
 function pageLogout() {
-  signOut(auth)
+  console.log("[TGK] Logout button clicked.");
+  const authInstance = getAuth(app);
+
+  signOut(authInstance)
     .then(() => {
+      console.log("[TGK] Firebase signOut success");
+      // Clear local storage + cookies
+      localStorage.clear();
       document.cookie = "tgk_ent=; Path=/; Max-Age=0;";
-      localStorage.removeItem("tgk-tier");
+      console.log("[TGK] Cleared local data, redirecting home...");
       window.location.href = "/";
     })
-    .catch((e) => console.error("[PAGE] Logout error:", e));
+    .catch((err) => {
+      console.error("[TGK] Logout error:", err);
+      alert("Logout failed: " + err.message);
+    });
 }
 
 /* 🜂 LOAD DASHBOARD TIER (Admin Safe) */
@@ -241,11 +250,12 @@ function bindTGKForms() {
   }
 
   if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      console.log("[TGK] Logging out...");
-      pageLogout();
-    });
-  }
+  console.log("[TGK] Logout button detected and bound");
+  logoutBtn.addEventListener("click", () => {
+    console.log("[TGK] Logout button event fired");
+    pageLogout();
+  });
+}
 
   if (profileForm) {
     profileForm.addEventListener("submit", saveProfile);
