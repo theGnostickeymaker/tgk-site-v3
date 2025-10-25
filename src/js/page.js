@@ -64,13 +64,13 @@ async function pageSignup(email, password) {
   }
 }
 
-/* 🔐 SIGNIN — Firebase Auth + Entitlement refresh */
+/* 🔐 SIGNIN — Firebase Auth + Entitlement + Custom Claims Sync */
 async function pageSignin(email, password) {
   try {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     const token = await cred.user.getIdToken();
 
-    // 🔹 Refresh entitlement cookie
+    // 🔹 Step 1: Refresh entitlement cookie
     const entRef = await fetch("/.netlify/functions/refresh-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -78,6 +78,26 @@ async function pageSignin(email, password) {
     });
     if (!entRef.ok) console.warn("[PAGE] Entitlement refresh failed");
 
+    // 🔹 Step 2: Sync Firebase custom claims for tier + role
+    const syncRes = await fetch("/.netlify/functions/sync-custom-claims", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        uid: cred.user.uid,
+        email: cred.user.email
+      })
+    });
+
+    if (!syncRes.ok) {
+      const err = await syncRes.text();
+      console.warn("[PAGE] Custom claims sync failed:", err);
+    } else {
+      console.log("[PAGE] ✅ Custom claims synced for", cred.user.email);
+      // optional: force-refresh the token to load new claims immediately
+      await cred.user.getIdToken(true);
+    }
+
+    // 🔹 Step 3: Redirect to Dashboard
     window.location.href = "/dashboard/";
   } catch (err) {
     console.error("[PAGE] Signin error:", err);

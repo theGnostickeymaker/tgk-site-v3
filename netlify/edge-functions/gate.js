@@ -1,6 +1,6 @@
 // 🜂 TGK — Netlify Edge Gate (v2)
-// Purpose: protect gated pages & verify membership tier
-// Runs at the CDN edge before serving scroll content.
+// Purpose: Protect gated pages and verify membership tier
+// Runs at CDN edge before scroll delivery
 
 import { jwtVerify } from "https://deno.land/x/jose@v4.14.4/index.ts";
 
@@ -8,17 +8,15 @@ export default async function gate(request, context) {
   const url = new URL(request.url);
   const pathname = url.pathname;
 
-  // ✅ Only protect /gated/ routes (expand later if needed)
+  // Only protect gated routes
   if (!pathname.startsWith("/gated/")) {
     return context.next();
   }
 
-  // 🔹 Try header first, then cookie
+  // Retrieve token (from cookie or header)
   const authHeader = request.headers.get("Authorization");
-  const token =
-    authHeader?.replace("Bearer ", "") ||
-    getCookie(request, "tgk_ent") ||
-    null;
+  const token = authHeader?.replace("Bearer ", "") ||
+    getCookie(request, "tgk_ent");
 
   if (!token) {
     console.log("[TGK Edge] ❌ No token found — redirecting to /signin/");
@@ -29,39 +27,32 @@ export default async function gate(request, context) {
     const secret = Deno.env.get("APP_SECRET") || "";
     const { payload } = await jwtVerify(token, new TextEncoder().encode(secret));
 
-    console.log(`[TGK Edge] ✅ Authenticated as ${payload.email || "unknown"}`);
+    const tier = payload.tier || "free";
+    console.log(`[TGK Edge] ✅ Authenticated as ${payload.email || "unknown"} (${tier})`);
 
-    // 🔹 Basic tier check
-    if (payload.tier && payload.tier !== "free") {
-      console.log(`[TGK Edge] ✅ Tier access granted: ${payload.tier}`);
+    // === 🜂 Access Logic ===
+    const allowedTiers = ["initiate", "adept", "admin"];
+    if (allowedTiers.includes(tier)) {
+      console.log(`[TGK Edge] ✅ Tier access granted: ${tier}`);
       return context.next();
     }
 
-    console.log("[TGK Edge] ⚠ Free user — redirecting to membership page.");
+    console.log(`[TGK Edge] ⚠ Free user (${tier}) — redirecting to upgrade.`);
     return Response.redirect(`${url.origin}/membership/`, 302);
   } catch (err) {
-    console.error("[TGK Edge] ❌ Invalid or expired token:", err.message);
+    console.error("[TGK Edge] ❌ Invalid token:", err.message);
     return Response.redirect(`${url.origin}/signin/`, 302);
   }
 }
 
-/**
- * 🧩 Cookie parser for Edge Runtime (no document.cookie in Deno)
- * Reads cookies from the incoming request headers.
- */
+/* 🔹 Helper: Get cookie by name */
 function getCookie(request, name) {
-  const cookieHeader = request.headers.get("cookie");
-  if (!cookieHeader) return null;
-
-  const cookies = cookieHeader.split(";").map((c) => c.trim());
-  for (const cookie of cookies) {
-    if (cookie.startsWith(`${name}=`)) {
-      try {
-        return decodeURIComponent(cookie.split("=")[1]);
-      } catch {
-        return null;
-      }
-    }
-  }
-  return null;
+  const cookieHeader = request.headers.get("cookie") || "";
+  const cookies = Object.fromEntries(
+    cookieHeader.split(";").map((c) => {
+      const [k, v] = c.trim().split("=");
+      return [k, v];
+    })
+  );
+  return cookies[name];
 }
