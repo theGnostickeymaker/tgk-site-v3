@@ -2,7 +2,9 @@
    🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard + Profile)
    =========================================================== */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+// ✅ Use the shared initialized app
+import { app } from "/js/firebase-init.js";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -11,12 +13,17 @@ import {
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
 import {
   getFirestore,
   doc,
   getDoc,
   setDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
+/* 🔥 Shared Firebase instance */
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 /* === 🔑 Live Firebase Config === */
 const firebaseConfig = {

@@ -69,9 +69,22 @@ breadcrumbs:
      🜂 Dashboard Script — Tier + Bookmarks + Stripe Portal
    ========================================================= -->
 <script type="module">
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  getIdTokenResult
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 import { app } from "/js/page.js";
+import { toggleBookmark } from "/js/bookmarks.js";
+
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -79,31 +92,67 @@ const bookmarkList = document.getElementById("bookmark-list");
 const noBookmarks = document.getElementById("no-bookmarks");
 const upgradeCTA = document.getElementById("upgrade-cta");
 
+/* ===========================================================
+   🜂 Resolve User Tier Hierarchy
+   =========================================================== */
+async function resolveUserTier(user) {
+  let tier = "free";
+
+  try {
+    // 1️⃣ Firebase Custom Claims (preferred)
+    const token = await getIdTokenResult(user);
+    if (token?.claims?.tier) tier = token.claims.tier;
+
+    // 2️⃣ Firestore backup (users/{uid}.tier)
+    else {
+      const ref = doc(db, "users", user.uid);
+      const snap = await getDoc(ref);
+      if (snap.exists() && snap.data().tier) tier = snap.data().tier;
+    }
+
+    // 3️⃣ LocalStorage fallback
+    if (localStorage.getItem("tgk-tier"))
+      tier = localStorage.getItem("tgk-tier");
+
+    localStorage.setItem("tgk-tier", tier);
+  } catch (err) {
+    console.warn("[TGK] Tier resolve error:", err);
+  }
+
+  return tier;
+}
+
+/* ===========================================================
+   🜂 Main Dashboard Loader
+   =========================================================== */
 onAuthStateChanged(auth, async (user) => {
   if (!user) return;
 
-  // ✦ Name & tier
   document.getElementById("user-name").textContent =
     user.displayName || user.email.split("@")[0];
-  const tier = localStorage.getItem("tgk-tier") || "free";
+
+  // 🔹 Resolve tier + update UI
+  const tier = await resolveUserTier(user);
   document.getElementById("user-tier").textContent = tier.toUpperCase();
 
-  // ✦ Upgrade CTA
+  // 🔹 Upgrade CTA toggle
   if (["free", "initiate"].includes(tier)) upgradeCTA.hidden = false;
 
-  // ✦ Load bookmarks
+  // 🔹 Load bookmarks
   try {
     const snap = await getDocs(collection(db, "bookmarks", user.uid, "scrolls"));
     bookmarkList.innerHTML = "";
+
     if (snap.empty) {
       noBookmarks.hidden = false;
       return;
     }
 
-    snap.forEach(docSnap => {
+    snap.forEach((docSnap) => {
       const scrollId = docSnap.id;
       const item = document.createElement("li");
       item.className = "dashboard-card";
+      item.dataset.id = scrollId;
       item.innerHTML = `
         <div class="card-body">
           <a href="${scrollId}" class="card-link">
@@ -114,31 +163,30 @@ onAuthStateChanged(auth, async (user) => {
       bookmarkList.appendChild(item);
     });
 
-    // ✦ Bind remove buttons (TGK unified handler)
-    import { toggleBookmark } from "/js/bookmarks.js";
-
+    // Bind remove buttons (shared TGK Firestore logic)
     bookmarkList.querySelectorAll(".btn-mini").forEach((btn) => {
       btn.addEventListener("click", async (e) => {
         const id = e.target.dataset.id;
         if (!confirm("Remove bookmark?")) return;
 
         const card = e.target.closest(".dashboard-card");
-        if (card) card.classList.add("removing"); // play fade-out
-        await toggleBookmark(id, null); // uses shared Firestore + local logic
-        await new Promise((res) => setTimeout(res, 400)); // match CSS duration
+        if (card) card.classList.add("removing");
+        await toggleBookmark(id, null);
+        await new Promise((res) => setTimeout(res, 400));
         card?.remove();
 
         if (!bookmarkList.children.length) noBookmarks.hidden = false;
       });
     });
-
   } catch (err) {
     console.error("[Dashboard] Bookmark load error:", err);
     noBookmarks.hidden = false;
   }
 });
 
-/* ✦ Stripe Portal */
+/* ===========================================================
+   🜂 Stripe Portal Access
+   =========================================================== */
 document.getElementById("manage-tier").onclick = async () => {
   const user = auth.currentUser;
   const email = user?.email || prompt("Enter your Stripe email:");
@@ -151,6 +199,4 @@ document.getElementById("manage-tier").onclick = async () => {
   if (data.url) window.location = data.url;
   else alert(data.error || "Portal error");
 };
-
-/* ✦ Logout handled by page.js */
 </script>

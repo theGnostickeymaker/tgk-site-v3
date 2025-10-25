@@ -1,5 +1,5 @@
 // ==========================================================
-// 🧠 The Gnostic Key — Eleventy Config (Unified v3.3 ESM)
+// 🧠 The Gnostic Key — Eleventy Config (Unified v3.3 Stable)
 // ==========================================================
 
 import "dotenv/config";
@@ -16,17 +16,20 @@ export default function (eleventyConfig) {
   eleventyConfig.setDataDeepMerge(true);
 
   /* =========================
-     1) Passthrough
+     1) Passthrough (Safe cross-platform)
   ========================= */
-  eleventyConfig.addPassthroughCopy({ "src/css": "css" });
-  eleventyConfig.addPassthroughCopy({ "src/js": "js" });
-  eleventyConfig.addPassthroughCopy({ "src/media": "media" });
+  console.log("🜂 TGK Passthrough copy setup");
+  console.log("📁 Checking src/js →", fs.existsSync("src/js"));
+
+  eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/media");
 
   if (fs.existsSync("src/media/tgk-assets")) {
-    eleventyConfig.addPassthroughCopy({ "src/media/tgk-assets": "tgk-assets" });
+    eleventyConfig.addPassthroughCopy("src/media/tgk-assets");
   }
 
-  eleventyConfig.addPassthroughCopy({ "src/tgk-assets/favicon": "tgk-assets/favicon" });
+  eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
   eleventyConfig.addPassthroughCopy("favicon.ico");
 
   if (fs.existsSync("src/robots.txt")) {
@@ -36,8 +39,8 @@ export default function (eleventyConfig) {
   /* =========================
      2) Collections & Filters
   ========================= */
-  const read = (obj, path) =>
-    path.split(".").reduce((v, k) => (v && v[k] !== undefined ? v[k] : undefined), obj);
+  const read = (obj, pathStr) =>
+    pathStr.split(".").reduce((v, k) => (v && v[k] !== undefined ? v[k] : undefined), obj);
 
   eleventyConfig.addCollection("content", coll =>
     coll.getFilteredByGlob("src/pillars/**/*.md")
@@ -81,14 +84,6 @@ export default function (eleventyConfig) {
       .toISOString()
       .slice(0, 10);
   });
-
-  eleventyConfig.addFilter("bySeriesVersion", (items = [], version = 1) =>
-    items.filter(i => {
-      const v = (i.data.seriesMeta && i.data.seriesMeta.series_version) ||
-                i.data.series_version || 1;
-      return parseInt(v) === parseInt(version);
-    })
-  );
 
   eleventyConfig.addFilter("roman", function (num) {
     if (!num || isNaN(num)) return "";
@@ -191,6 +186,17 @@ export default function (eleventyConfig) {
   ========================= */
   eleventyConfig.setBrowserSyncConfig({ ghostMode: false });
 
+  /* ✅ Build Verification */
+  eleventyConfig.on("afterBuild", () => {
+    const file = "_site/js/bookmarks.js";
+    if (fs.existsSync(file)) {
+      console.log(`✅ TGK Build: Found ${file}`);
+    } else {
+      console.error(`❌ TGK Build Error: ${file} missing! Check passthrough copy.`);
+      process.exit(1);
+    }
+  });
+
   /* =========================
      8) Return
   ========================= */
@@ -199,14 +205,12 @@ export default function (eleventyConfig) {
       input: "src",
       includes: "_includes",
       data: "_data",
-      output: "_site"
+      output: "_site",
     },
     pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "md", "html"],
     passthroughFileCopy: true,
-    // ✅ This line ensures all pages build as /folder/index.html
-    dirOutput: "dir"
   };
 }

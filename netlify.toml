@@ -24,6 +24,10 @@
   from = "/:path*/index.htm"
   to = "/:path*/"
   status = 301
+  /js/*      /js/:splat      200
+  /css/*     /css/:splat     200
+  /media/*   /media/:splat   200
+  /tgk-assets/* /tgk-assets/:splat 200
 
 # (Optional) If you have any direct .htm files/links elsewhere
 [[redirects]]

@@ -1,9 +1,10 @@
+
 /* ===========================================================
    🔖 TGK — Bookmarks.js (v2.4)
    Hybrid Local + Firestore + Visual Feedback + Animations + Toasts
    =========================================================== */
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {
   getFirestore,
   doc,
@@ -12,8 +13,9 @@ import {
   deleteDoc,
   getDocs,
   collection
-} from "firebase/firestore";
-import { app } from "./firebase-init.js";
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+import { app } from "/js/firebase-init.js";
+
 
 const db = getFirestore(app);
 const auth = getAuth(app);
