@@ -1,12 +1,11 @@
-/* ===========================================================
-   🜂 TGK — Netlify Function: Create Stripe Customer
-   Links new Firebase user to a Stripe customer and sets tier.
-   =========================================================== */
+// 🜂 TGK — Netlify Function: Create Stripe Customer
+// Creates a Stripe customer for every Firebase user signup.
+// Links Firebase Auth → Stripe Customer → Firestore Entitlement.
 
 import Stripe from "stripe";
 import admin from "firebase-admin";
 
-// 🜂 Ensure admin SDK initialized once
+// 🜂 Ensure Firebase Admin initialized once
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_KEY))
@@ -14,51 +13,68 @@ if (!admin.apps.length) {
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const firestore = admin.firestore();
 
-export async function handler(event) {
+export const handler = async (event) => {
   try {
     if (event.httpMethod !== "POST") {
-      return { statusCode: 405, body: "Method Not Allowed" };
+      return json(405, { error: "Method not allowed" });
     }
 
-    const { email, token, tier } = JSON.parse(event.body || "{}");
-    if (!email) return { statusCode: 400, body: "Missing email" };
+    const { email, token } = JSON.parse(event.body || "{}");
+    if (!email || !token) return json(400, { error: "Missing email or token" });
 
-    // 🜂 Verify Firebase ID token
+    // 🧩 Verify Firebase token to get UID
     const decoded = await admin.auth().verifyIdToken(token);
     const uid = decoded.uid;
 
-    // 🜂 Skip Stripe for Free users
-    if (!tier || tier === "free") {
-      console.log(`[TGK] Free tier detected for ${email}`);
-      await admin.firestore().collection("entitlements").doc(uid).set({
-        uid,
-        email,
-        tier: "free",
-        created: admin.firestore.FieldValue.serverTimestamp()
-      });
-      return { statusCode: 200, body: JSON.stringify({ message: "Free user registered" }) };
+    // 🜂 Check if customer already exists in Firestore
+    const entRef = firestore.collection("entitlements").doc(uid);
+    const entSnap = await entRef.get();
+    if (entSnap.exists) {
+      console.log(`[TGK] 🔄 Customer already exists for ${email}`);
+      return json(200, { message: "Customer already exists" });
     }
 
-    // 🜂 Create Stripe Customer for paying tiers
-    const customer = await stripe.customers.create({
-      email,
-      metadata: { firebaseUID: uid, tier: tier || "initiate" }
-    });
+    // 🜂 Create or retrieve Stripe Customer
+    let customer;
+    const existing = await stripe.customers.list({ email, limit: 1 });
+    if (existing.data.length > 0) {
+      customer = existing.data[0];
+      console.log(`[TGK] ♻️ Existing Stripe customer found: ${customer.id}`);
+    } else {
+      customer = await stripe.customers.create({
+        email,
+        metadata: { firebaseUID: uid, tier: "free" }
+      });
+      console.log(`[TGK] 🆕 Stripe customer created: ${customer.id}`);
+    }
 
-    // 🜂 Store in Firestore
-    await admin.firestore().collection("entitlements").doc(uid).set({
+    // 🜂 Create Firestore entitlement entry
+    const entitlement = {
       uid,
       email,
-      tier: tier || "initiate",
       stripeCustomerId: customer.id,
-      created: admin.firestore.FieldValue.serverTimestamp()
-    });
+      tier: "free",
+      created: admin.firestore.FieldValue.serverTimestamp(),
+      lastChecked: admin.firestore.FieldValue.serverTimestamp()
+    };
 
-    console.log(`[TGK] Stripe customer created for ${email}`);
-    return { statusCode: 200, body: JSON.stringify({ customerId: customer.id }) };
+    await entRef.set(entitlement, { merge: true });
+
+    console.log(`[TGK] ✅ Firestore entitlement created for ${email}`);
+    return json(200, { message: "Customer created", customerId: customer.id });
   } catch (err) {
-    console.error("[TGK] Error creating Stripe customer:", err);
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    console.error("[TGK] ❌ create-stripe-customer error:", err);
+    return json(500, { error: err.message });
   }
+};
+
+// 🜂 Helper
+function json(statusCode, body) {
+  return {
+    statusCode,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
 }
