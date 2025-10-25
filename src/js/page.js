@@ -1,7 +1,6 @@
 /* ===========================================================
    🜂 TGK — PAGE.js (Auth + Stripe)
    Handles signup, signin, logout, and tier sync.
-   No bundler, no .env — just put your Firebase config below.
    =========================================================== */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
@@ -14,15 +13,16 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
-// === 🔑 Firebase Config ===
-// Replace with your live keys (from Firebase console > Project Settings)
+/* === 🔑 Live Firebase Config ===
+   (from Firebase Console → Project Settings → SDK snippet) */
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_FIREBASE_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_FIREBASE_PROJECT_ID",
-  storageBucket: "YOUR_FIREBASE_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDYrFIw9I3hManf1TqvP6FARZTC-MlMuz0",
+  authDomain: "the-gnostic-key.firebaseapp.com",
+  projectId: "the-gnostic-key",
+  storageBucket: "the-gnostic-key.firebasestorage.app",
+  messagingSenderId: "903609435224",
+  appId: "1:903609435224:web:3031fc94c9fbbe78f8762d",
+  measurementId: "G-KD96SXX3JY"
 };
 
 // === 🜂 Init ===
@@ -80,7 +80,7 @@ onAuthStateChanged(auth, (user) => {
   const userInfo = document.getElementById("user-info");
   if (user) {
     console.info("[PAGE] Logged in:", user.email);
-    userInfo && (userInfo.textContent = `Signed in as ${user.email}`);
+    if (userInfo) userInfo.textContent = `Signed in as ${user.email}`;
     document.body.classList.add("is-auth");
   } else {
     document.body.classList.remove("is-auth");
@@ -97,27 +97,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.getElementById("password-reset");
   const logoutBtn = document.getElementById("logout-btn");
 
-  signupForm &&
-    signupForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = e.target.querySelector("#signup-email").value.trim();
-      const pw = e.target.querySelector("#signup-password").value.trim();
-      pageSignup(email, pw);
-    });
+  signupForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector("#signup-email").value.trim();
+    const pw = e.target.querySelector("#signup-password").value.trim();
+    pageSignup(email, pw);
+  });
 
-  signinForm &&
-    signinForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = e.target.querySelector("#signin-email").value.trim();
-      const pw = e.target.querySelector("#signin-password").value.trim();
-      pageSignin(email, pw);
-    });
+  signinForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector("#signin-email").value.trim();
+    const pw = e.target.querySelector("#signin-password").value.trim();
+    pageSignin(email, pw);
+  });
 
-  resetBtn &&
-    resetBtn.addEventListener("click", () => {
-      const email = prompt("Enter your email to reset password:");
-      if (email) pageReset(email);
-    });
+  resetBtn?.addEventListener("click", () => {
+    const email = prompt("Enter your email to reset password:");
+    if (email) pageReset(email);
+  });
 
-  logoutBtn && logoutBtn.addEventListener("click", pageLogout);
+  logoutBtn?.addEventListener("click", pageLogout);
 });
