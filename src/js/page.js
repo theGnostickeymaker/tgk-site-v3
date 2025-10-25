@@ -1,5 +1,5 @@
 /* ===========================================================
-   🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard)
+   🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard + Profile)
    =========================================================== */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
@@ -14,7 +14,8 @@ import {
 import {
   getFirestore,
   doc,
-  getDoc
+  getDoc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 /* === 🔑 Live Firebase Config === */
@@ -29,7 +30,7 @@ const firebaseConfig = {
 };
 
 // === 🜂 Init ===
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -86,18 +87,14 @@ async function pageSignin(email, password) {
       body: JSON.stringify({
         uid: user.uid,
         email: user.email,
-        // optional: if you stored Stripe customer ID in localStorage/session
         customerId: localStorage.getItem("tgk-customer-id") || null
       })
     });
     if (sync.ok) {
       const data = await sync.json();
       console.log(`[TGK] 🔄 Synced custom claims: ${data.tier}/${data.role}`);
-    } else {
-      console.warn("[PAGE] Sync custom claims failed");
     }
 
-    // Redirect to dashboard
     window.location.href = "/dashboard/";
   } catch (err) {
     console.error("[PAGE] Signin error:", err);
@@ -116,14 +113,13 @@ function pageReset(email) {
 function pageLogout() {
   signOut(auth)
     .then(() => {
-      document.cookie = "tgk_ent=; Path=/; Max-Age=0;"; // clear cookie
+      document.cookie = "tgk_ent=; Path=/; Max-Age=0;";
       localStorage.removeItem("tgk-tier");
       window.location.href = "/";
     })
     .catch((e) => console.error("[PAGE] Logout error:", e));
 }
 
-/* 🜂 LOAD DASHBOARD TIER */
 /* 🜂 LOAD DASHBOARD TIER (Admin Safe) */
 async function loadDashboardData(user) {
   const nameEl = document.getElementById("user-name");
@@ -138,17 +134,12 @@ async function loadDashboardData(user) {
     const snap = await getDoc(docRef);
 
     let tier = "free";
-
-    // 🛡️ Auto-assign admin tier if email matches
     const ADMIN_EMAILS = ["the.keymaker@thegnostickey.com"];
     if (ADMIN_EMAILS.includes(user.email)) {
       tier = "admin";
     } else if (snap.exists()) {
-      const data = snap.data();
-      tier = data?.tier || "free";
+      tier = snap.data()?.tier || "free";
     } else {
-      console.warn(`[TGK Dashboard] No entitlement doc found for ${user.email}, creating default.`);
-      // Optional: create a fallback record for visibility
       await fetch("/.netlify/functions/set-entitlements", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -165,6 +156,43 @@ async function loadDashboardData(user) {
   }
 }
 
+/* ✦ PROFILE SAVE + PREFILL */
+async function loadUserProfile(user) {
+  const nameInput = document.getElementById("profile-name");
+  const emailInput = document.getElementById("profile-email");
+  if (!nameInput || !emailInput) return;
+
+  emailInput.value = user.email;
+
+  try {
+    const docRef = doc(db, "users", user.uid);
+    const snap = await getDoc(docRef);
+    if (snap.exists()) {
+      const data = snap.data();
+      if (data.displayName) nameInput.value = data.displayName;
+    }
+  } catch (err) {
+    console.warn("[PAGE] No user profile found:", err.message);
+  }
+}
+
+async function saveProfile(e) {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) return alert("Please sign in first.");
+  const name = document.getElementById("profile-name").value.trim();
+  try {
+    await setDoc(
+      doc(db, "users", user.uid),
+      { displayName: name, email: user.email, updated: Date.now() },
+      { merge: true }
+    );
+    alert("Profile saved.");
+  } catch (err) {
+    alert("Error saving profile: " + err.message);
+  }
+}
+
 /* 🜂 WATCH AUTH STATE */
 onAuthStateChanged(auth, (user) => {
   const userInfo = document.getElementById("user-info");
@@ -173,12 +201,18 @@ onAuthStateChanged(auth, (user) => {
     if (userInfo) userInfo.textContent = `Signed in as ${user.email}`;
     document.body.classList.add("is-auth");
 
-    // Load dashboard data if user is on that page
-    if (window.location.pathname.includes("/dashboard")) {
-      loadDashboardData(user);
-    }
+    // Populate tier and profile where relevant
+    if (window.location.pathname.includes("/dashboard")) loadDashboardData(user);
+    if (window.location.pathname.includes("/account")) loadUserProfile(user);
+
+    // Auth-aware navigation
+    document.querySelectorAll('[data-auth="true"]').forEach(el => (el.hidden = false));
+    document.querySelectorAll('[data-auth="false"]').forEach(el => (el.hidden = true));
   } else {
     document.body.classList.remove("is-auth");
+    document.querySelectorAll('[data-auth="true"]').forEach(el => (el.hidden = true));
+    document.querySelectorAll('[data-auth="false"]').forEach(el => (el.hidden = false));
+
     if (document.body.classList.contains("requires-auth")) {
       window.location.href = "/signin/";
     }
@@ -191,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const signinForm = document.getElementById("signin-form");
   const resetBtn = document.getElementById("password-reset");
   const logoutBtn = document.getElementById("logout-btn");
+  const profileForm = document.getElementById("profile-form");
 
   signupForm?.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -212,4 +247,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   logoutBtn?.addEventListener("click", pageLogout);
+  profileForm?.addEventListener("submit", saveProfile);
 });

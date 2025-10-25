@@ -170,28 +170,6 @@
     box-sizing: border-box;
   }
 
-  /* 🔖 Bookmarks */
-  .bookmark-floating { text-align: right; margin-bottom: var(--space-sm); }
-
-  .bookmark-tag {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-accent);
-    font-size: var(--font-size-base);
-    padding: 0.25rem;
-    transition: color 0.2s ease, transform 0.2s ease;
-  }
-  .bookmark-tag.bookmarked { color: var(--highlight); }
-  .bookmark-tag:hover { color: var(--text-secondary); transform: scale(1.1); }
-  .bookmark-tag.scroll-bookmark {
-    position: absolute;
-    top: var(--space-sm);
-    right: var(--space-sm);
-    font-size: 1.3rem;
-    z-index: 5;
-  }
-
   /* Global scrolling */
   html { scroll-behavior: auto; scroll-padding-top: var(--space-lg); }
   html, body { min-height: 100%; }

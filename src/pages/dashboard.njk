@@ -4,8 +4,7 @@ title: "Your TGK Dashboard"
 description: "Manage your profile, tier, and sacred bookmarks."
 glyph: "🜂"
 glyphRow: ["🜂", "☥", "🜂"]
-bodyClass: "lightgold"
-authRequired: true
+bodyClass: "lightgold requires-auth"
 permalink: "/dashboard/index.html"
 
 breadcrumbs:
@@ -21,32 +20,137 @@ breadcrumbs:
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
-<main class="main-content">
+<main class="main-content page-dashboard">
   <section class="content-container" id="page-dashboard">
 
+    <!-- ✦ Profile + Tier -->
     <section class="section-block">
-    <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
-    <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
+      <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
+      <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
 
-    <div class="btn-wrap">
-      <button id="manage-tier" class="btn outline">Manage Membership</button>
-      <button id="logout-btn" class="btn outline">Logout</button>
-    </div>
-  </section>
-</section>
+      <div class="btn-wrap">
+        <button id="manage-tier" class="btn outline">Manage Membership</button>
+        <button id="logout-btn" class="btn outline">Logout</button>
+      </div>
+    </section>
 
-  <section class="section-block">
-    <h2 class="section-heading">Your Bookmarks</h2>
-    <ul id="bookmark-list">
-      <li>Loading bookmarks…</li>
-    </ul>
+    <!-- ✦ Upgrade CTA -->
+    <section id="upgrade-cta" class="section-block dashboard-upgrade" hidden>
+      <h3>Unlock Deeper Scrolls</h3>
+      <p>Upgrade your access to reveal all Vault texts and advanced series.</p>
+      <a href="/membership/" class="btn gold">Upgrade Membership</a>
+    </section>
+
+    <!-- ✦ Bookmarks -->
+    <section class="section-block">
+      <h2 class="section-heading">Your Bookmarks</h2>
+
+      <ul id="bookmark-list" class="dashboard-bookmarks">
+        <li class="dashboard-card">
+          <div class="card-body muted">Loading bookmarks…</div>
+        </li>
+      </ul>
+
+      <p id="no-bookmarks" class="muted small" hidden>
+        No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
+        the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
+      </p>
+    </section>
+
   </section>
-</section>
 
   <!-- ✦ Divider -->
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
   </div>
-
-  <script type="module" defer src="/js/page.js"></script>
 </main>
+
+<!-- =========================================================
+     🜂 Dashboard Script — Tier + Bookmarks + Stripe Portal
+   ========================================================= -->
+<script type="module">
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+import { app } from "/js/page.js";
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const bookmarkList = document.getElementById("bookmark-list");
+const noBookmarks = document.getElementById("no-bookmarks");
+const upgradeCTA = document.getElementById("upgrade-cta");
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) return;
+
+  // ✦ Name & tier
+  document.getElementById("user-name").textContent =
+    user.displayName || user.email.split("@")[0];
+  const tier = localStorage.getItem("tgk-tier") || "free";
+  document.getElementById("user-tier").textContent = tier.toUpperCase();
+
+  // ✦ Upgrade CTA
+  if (["free", "initiate"].includes(tier)) upgradeCTA.hidden = false;
+
+  // ✦ Load bookmarks
+  try {
+    const snap = await getDocs(collection(db, "bookmarks", user.uid, "scrolls"));
+    bookmarkList.innerHTML = "";
+    if (snap.empty) {
+      noBookmarks.hidden = false;
+      return;
+    }
+
+    snap.forEach(docSnap => {
+      const scrollId = docSnap.id;
+      const item = document.createElement("li");
+      item.className = "dashboard-card";
+      item.innerHTML = `
+        <div class="card-body">
+          <a href="${scrollId}" class="card-link">
+            <h3 class="card-title">${scrollId.replace(/-/g, " ")}</h3>
+          </a>
+          <button class="btn-mini" data-id="${scrollId}">Remove</button>
+        </div>`;
+      bookmarkList.appendChild(item);
+    });
+
+    // ✦ Bind remove buttons (TGK unified handler)
+    import { toggleBookmark } from "/js/bookmarks.js";
+
+    bookmarkList.querySelectorAll(".btn-mini").forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        const id = e.target.dataset.id;
+        if (!confirm("Remove bookmark?")) return;
+
+        const card = e.target.closest(".dashboard-card");
+        if (card) card.classList.add("removing"); // play fade-out
+        await toggleBookmark(id, null); // uses shared Firestore + local logic
+        await new Promise((res) => setTimeout(res, 400)); // match CSS duration
+        card?.remove();
+
+        if (!bookmarkList.children.length) noBookmarks.hidden = false;
+      });
+    });
+
+  } catch (err) {
+    console.error("[Dashboard] Bookmark load error:", err);
+    noBookmarks.hidden = false;
+  }
+});
+
+/* ✦ Stripe Portal */
+document.getElementById("manage-tier").onclick = async () => {
+  const user = auth.currentUser;
+  const email = user?.email || prompt("Enter your Stripe email:");
+  const res = await fetch("/.netlify/functions/create-portal-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email })
+  });
+  const data = await res.json();
+  if (data.url) window.location = data.url;
+  else alert(data.error || "Portal error");
+};
+
+/* ✦ Logout handled by page.js */
+</script>

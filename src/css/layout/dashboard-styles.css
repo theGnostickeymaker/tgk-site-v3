@@ -1,18 +1,18 @@
 @layer layout {
   /* ===================================================
-     📖 User Tier + Dashboard Bookmarks
-     Version: 1.3 – Tokenised & Responsive
+     📖 TGK Dashboard & Bookmarks
+     Version: 1.6 – Add / Remove Animations
      =================================================== */
 
-  /* User tier highlight */
+  /* ✦ Tier highlight */
   #user-tier {
-    font-weight: bold;
+    font-weight: 700;
     color: var(--gold-tone, #c9aa71);
     padding-left: 0.5rem;
   }
 
   /* ===================================================
-     📚 Dashboard Bookmark Grid
+     📚 Bookmark Grid
      =================================================== */
   #bookmark-list {
     display: grid;
@@ -21,16 +21,17 @@
     max-width: var(--grid-max-width);
     margin: var(--space-lg) auto;
     padding: var(--space-xl) var(--space-md);
-    position: relative;
-    overflow-x: hidden;
   }
 
+  /* ===================================================
+     🜂 Dashboard Bookmark Card
+     =================================================== */
   .dashboard-bookmark-card {
     position: relative;
     background: var(--card-gradient, var(--bg-primary));
-    border: 2px solid var(--text-accent);
+    border: 1px solid var(--text-accent);
     border-radius: var(--border-radius-base);
-    box-shadow: 0 0 0 transparent;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
     padding: var(--space-md);
     display: flex;
     flex-direction: column;
@@ -41,29 +42,48 @@
     max-width: 360px;
     min-height: 200px;
     margin: var(--space-md) auto;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
     overflow: hidden;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: bookmarkPop 0.6s ease forwards;
+  }
+
+  /* 🎬 Pop-in (added) */
+  @keyframes bookmarkPop {
+    0%   { opacity: 0; transform: scale(0.95) translateY(10px); }
+    70%  { opacity: 1; transform: scale(1.03) translateY(0); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* 🎬 Fade-out (removed) */
+  @keyframes bookmarkFadeOut {
+    0%   { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.9) translateY(10px); }
+  }
+
+  .dashboard-bookmark-card.removing {
+    animation: bookmarkFadeOut 0.4s ease forwards;
   }
 
   .dashboard-bookmark-card:hover {
-    transform: translateY(-5px) scale(1.05);
+    transform: translateY(-4px);
     box-shadow: 0 0 20px var(--shadow-glow), 0 0 5px var(--text-accent);
-    background-color: var(--bg-secondary, #f3efe6);
   }
 
   /* ===================================================
      ✦ Card Content
      =================================================== */
   .dashboard-bookmark-card .bookmark-glyph {
-    font-size: clamp(2rem, 2.8vw, 2.8rem);
+    font-size: clamp(2rem, 2.6vw, 2.6rem);
     color: var(--glyph-color, var(--text-accent));
     text-shadow: 0 0 8px var(--shadow-glow);
     margin-bottom: 0.75rem;
   }
 
   .dashboard-bookmark-card .bookmark-title {
-    font-family: var(--font-display, 'Cinzel', serif);
-    font-size: var(--font-size-md, 1.25rem);
+    font-family: var(--font-display, "Cinzel", serif);
+    font-size: 1.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-accent);
@@ -71,15 +91,15 @@
   }
 
   .dashboard-bookmark-card .bookmark-description {
-    font-family: var(--font-serif, 'Libre Baskerville', serif);
-    font-size: var(--font-size-sm, 1rem);
+    font-family: var(--font-serif, "Libre Baskerville", serif);
+    font-size: 1rem;
     color: var(--text-primary);
-    line-height: var(--font-base-line, 1.85);
+    line-height: 1.8;
     margin-bottom: var(--space-md);
   }
 
   .dashboard-bookmark-card .bookmark-meta {
-    font-size: var(--font-size-vs, 0.9rem);
+    font-size: 0.9rem;
     font-style: italic;
     margin-top: var(--space-sm);
     color: var(--text-secondary);
@@ -97,21 +117,21 @@
   }
 
   .dashboard-bookmark-card .card-actions .btn {
-    background-color: var(--card-action-bg, var(--text-accent));
-    color: var(--card-action-text, var(--bg-primary));
+    background-color: var(--text-accent);
+    color: var(--bg-primary);
     border: none;
     border-radius: var(--border-radius-base);
     padding: 0.5rem 1.2rem;
     cursor: pointer;
-    font-size: var(--font-size-base, 1rem);
+    font-size: 1rem;
     font-weight: 600;
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: var(--font-display, "Cinzel", serif);
     text-transform: uppercase;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .dashboard-bookmark-card .card-actions .btn:hover {
-    background-color: var(--card-action-hover, var(--highlight));
+    background-color: var(--highlight);
     box-shadow: 0 0 10px var(--shadow-glow);
   }
 
@@ -130,6 +150,43 @@
   }
 
   /* ===================================================
+     🔖 Scroll Bookmark Feedback
+     =================================================== */
+  .bookmark-floating { text-align: right; margin-bottom: var(--space-sm); }
+
+  .scroll-bookmark,
+  .bookmark-tag {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-accent);
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+  }
+
+  .scroll-bookmark:hover,
+  .bookmark-tag:hover {
+    transform: scale(1.1);
+    color: var(--text-secondary);
+  }
+
+  .scroll-bookmark.bookmarked,
+  .bookmark-tag.bookmarked {
+    color: #38a169;
+    text-shadow: 0 0 10px rgba(56,161,105,0.5);
+    transform: scale(1.15);
+  }
+
+  .bookmark-tag.scroll-bookmark {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    font-size: 1.3rem;
+    z-index: 5;
+  }
+
+  /* ===================================================
      📱 Responsive
      =================================================== */
   @media (max-width: 768px) {
@@ -141,15 +198,130 @@
 
     .dashboard-bookmark-card {
       padding: var(--space-sm);
-      font-size: var(--font-size-vs, 0.9rem);
+      font-size: 0.9rem;
     }
 
-    .dashboard-bookmark-card .bookmark-title {
-      font-size: var(--font-size-base, 1rem);
-    }
-
-    .dashboard-bookmark-card .bookmark-description {
-      font-size: var(--font-size-vs, 0.9rem);
-    }
+    .dashboard-bookmark-card .bookmark-title { font-size: 1rem; }
+    .dashboard-bookmark-card .bookmark-description { font-size: 0.9rem; }
   }
+
+  /* ===========================================================
+   🩸 Dashboard Bookmark Removal Pulse
+   =========================================================== */
+
+/* Pulse colour + fade-out combo */
+.dashboard-card.removing {
+  animation:
+    bookmarkRemovePulse 0.25s ease-in forwards,
+    bookmarkFadeOut 0.45s 0.25s ease-in forwards;
+  transform-origin: center;
+}
+
+/* Flash red pulse */
+@keyframes bookmarkRemovePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0);
+  }
+  40% {
+    transform: scale(1.05);
+    background-color: rgba(220, 38, 38, 0.08); /* red-600 tint */
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+/* Gentle fade-out after pulse */
+@keyframes bookmarkFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Optional: make the “Remove” button itself flash red when clicked */
+.btn-mini:active {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease;
+}
+
+/* ===========================================================
+   🔖 Scroll Bookmark Remove Pulse (inline icon feedback)
+   =========================================================== */
+
+.scroll-bookmark.removing {
+  animation:
+    scrollBookmarkPulse 0.25s ease-in forwards,
+    scrollBookmarkFade 0.35s 0.25s ease-in forwards;
+  transform-origin: center;
+}
+
+@keyframes scrollBookmarkPulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(239, 68, 68, 0);
+  }
+  40% {
+    transform: scale(1.4);
+    color: #ef4444; /* red-500 */
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes scrollBookmarkFade {
+  from { opacity: 1; }
+  to { opacity: 0.4; color: var(--text-secondary); }
+}
+
+/* ===========================================================
+   🕯️ TGK Toast Notifications
+   =========================================================== */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.tgk-toast {
+  background: var(--card-gradient, #fff);
+  color: var(--text-primary, #222);
+  border: 1px solid var(--text-accent, #c9aa71);
+  border-radius: var(--border-radius-base, 12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 0.65rem 1rem;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.95rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: toastFadeIn 0.25s forwards, toastFadeOut 0.4s 3.5s forwards;
+}
+
+.tgk-toast.success { border-color: #38a169; color: #38a169; }
+.tgk-toast.remove  { border-color: #ef4444; color: #ef4444; }
+
+@keyframes toastFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes toastFadeOut {
+  to { opacity: 0; transform: translateY(10px); }
+}
+
+
 }

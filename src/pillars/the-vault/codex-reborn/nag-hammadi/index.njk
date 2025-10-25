@@ -1,0 +1,65 @@
+---
+layout: base.njk
+title: "Nag Hammadi Library"
+description: "Thirteen Coptic codices uncovered in 1945 — the foundation of modern Gnostic scripture."
+tagline: "Hidden texts ✦ Sophia’s wisdom ✦ Gnostic origins"
+seriesId: "the-vault-codex-reborn-nag-hammadi"
+tier: free
+
+glyph: "📜"
+glyphRow: ["🜂","🕯","🜂"]
+accent: vault
+bodyClass: vault
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index heading">
+      The Nag Hammadi Library — the sacred sands of Egypt yield the hidden Gospels.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📚 About the Nag Hammadi Library</span></summary>
+      <p>
+        In December 1945, near the town of <strong>Nag Hammadi</strong> in Upper Egypt, thirteen papyrus codices were unearthed.
+        These manuscripts, sealed in clay jars, contained the most complete collection of <em>Gnostic texts</em> ever discovered —
+        over fifty treatises that illuminate the secret teachings of Christ, Sophia, and the Divine Mind.
+      </p>
+
+      <p>
+        The writings include <strong>The Gospel of Thomas</strong>, <strong>The Apocryphon of John</strong>,
+        <strong>The Gospel of Truth</strong>, and <strong>Pistis Sophia</strong>.
+        Together, they form the heart of the <em>Gnostic revelation</em> — a spiritual map of the soul’s fall and redemption.
+      </p>
+
+      <p>
+        Each codex has been restored and formatted within <strong>The Vault</strong> for study and preservation.
+        Follow the links below to explore the texts by codex.
+      </p>
+    </details>
+  </section>
+
+  {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "Nag Hammadi — Codex Index" %}
+  {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/" %}
+  {% include "partials/jsonld-collection.njk" %}
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  </div>
+</main>

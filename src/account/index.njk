@@ -1,49 +1,136 @@
 ---
 layout: base.njk
 title: "Account"
-description: "Manage subscription"
+description: "Manage your TGK profile, password, and membership subscription."
+glyph: "🜂"
+glyphRow: ["🜂","☥","🜂"]
+bodyClass: "lightgold"
+permalink: "/account/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Dashboard", url: "/dashboard/" }
+  - { title: "Account" }
 ---
 
-<h1>Account</h1>
-<p id="tier">Checking access�</p>
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/account-settings.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Account — The Gnostic Key" %}
+  {% set base = "/account/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
 
-<script>
+<main class="main-content page-account">
+  <section class="content-container">
+
+    <!-- ✦ Account Tier & Subscription -->
+    <section class="section-block">
+      <h2 class="section-heading">Membership Tier</h2>
+      <p id="tier">Checking access…</p>
+      <button id="manage" class="btn outline">Manage Subscription</button>
+      <p class="small">
+        Manage your billing details, upgrade, or cancel anytime via Stripe’s secure portal.
+      </p>
+    </section>
+
+    <!-- ✦ Profile Info -->
+    <section class="section-block">
+      <h2 class="section-heading">Profile Information</h2>
+      <form id="profile-form" class="form-block">
+        <label for="profile-name">Display Name</label>
+        <input type="text" id="profile-name" placeholder="Your name" />
+
+        <label for="profile-email">Email</label>
+        <input type="email" id="profile-email" placeholder="Your email" disabled />
+
+        <button type="submit" class="btn outline">Save Changes</button>
+      </form>
+    </section>
+
+    <!-- ✦ Password Reset -->
+    <section class="section-block">
+      <h2 class="section-heading">Password Reset</h2>
+      <p>Need to change your password? You can send yourself a reset link here:</p>
+      <button id="password-reset" class="btn outline">Send Reset Email</button>
+      <p class="small">
+        Or use the <a href="/password-reset/">dedicated reset page</a>.
+      </p>
+    </section>
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>
+
+<!-- =========================================================
+     🜂 Account Page Logic
+     - Syncs entitlements cookie
+     - Displays tier
+     - Opens Stripe billing portal
+     - Hooks password reset
+   ========================================================= -->
+<script type="module">
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { app } from "/js/page.js"; // Reuse initialized Firebase app
+const auth = getAuth(app);
+
 const params = new URLSearchParams(location.search);
-const sessionId = params.get('session_id');
+const sessionId = params.get("session_id");
 
 async function setEntitlements(){
   if(!sessionId) return;
-  await fetch('/.netlify/functions/set-entitlements', {
-    method:'POST', headers:{'Content-Type':'application/json'},
+  await fetch("/.netlify/functions/set-entitlements", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify({ session_id: sessionId })
   });
-  history.replaceState({}, '', location.pathname);
+  history.replaceState({}, "", location.pathname);
 }
+
 function readTier(){
   const m = document.cookie.match(/(?:^|; )tgk_ent=([^;]+)/);
-  if(!m) return 'free';
-  try{
-    const [payload] = decodeURIComponent(m[1]).split('.');
-    const json = JSON.parse(atob(payload.replace(/-/g,'+').replace(/_/g,'/')));
-    return json.tier || 'free';
-  }catch(e){ return 'free'; }
+  if(!m) return "free";
+  try {
+    const [payload] = decodeURIComponent(m[1]).split(".");
+    const json = JSON.parse(atob(payload.replace(/-/g,"+").replace(/_/g,"/")));
+    return json.tier || "free";
+  } catch { return "free"; }
 }
-(async ()=>{
-  if(sessionId) await setEntitlements();
-  document.getElementById('tier').textContent = 'Your access: ' + readTier().toUpperCase();
-})();
-</script>
 
-<button id="manage">Manage Subscription</button>
-<script>
+(async () => {
+  if(sessionId) await setEntitlements();
+  document.getElementById("tier").textContent = "Your access: " + readTier().toUpperCase();
+})();
+
+/* 🜂 Stripe Portal */
 document.getElementById("manage").onclick = async () => {
-  const email = prompt("Enter your Stripe email (test):");
+  const user = auth.currentUser;
+  const email = user?.email || prompt("Enter your Stripe email:");
   if (!email) return;
   const r = await fetch("/.netlify/functions/create-portal-session", {
-    method:"POST", headers:{"Content-Type":"application/json"},
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify({ email })
   });
   const d = await r.json();
-  if (d.url) location = d.url; else alert(d.error || "Portal error");
+  if (d.url) location = d.url;
+  else alert(d.error || "Portal error");
+};
+
+/* 🕊 Password Reset */
+document.getElementById("password-reset").onclick = async () => {
+  const user = auth.currentUser;
+  const email = user?.email || prompt("Enter your account email:");
+  if (!email) return;
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert("Password reset link sent to " + email);
+  } catch (err) {
+    alert("Error: " + err.message);
+  }
 };
 </script>

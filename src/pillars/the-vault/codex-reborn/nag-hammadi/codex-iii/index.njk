@@ -1,0 +1,61 @@
+---
+layout: base.njk
+title: "Codex III — Nag Hammadi"
+description: "Texts of revelation from Codex III — the Gospel of the Egyptians, Eugnostos the Blessed, and the Sophia of Jesus Christ."
+tagline: "Aeons ✦ Revelation ✦ The Luminous Mind"
+seriesId: "the-vault-codex-reborn-nag-hammadi-codex-iii"
+tier: free
+
+glyph: "🜂"
+glyphRow: ["🜂","🕯","🜂"]
+accent: vault
+bodyClass: vault
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Vault", url: "/pillars/the-vault/" }
+  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
+  - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
+  - { title: "Codex III", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-codex-iii.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+    <h4 class="index heading">Codex III — Revelations of the Luminous Aeons</h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📚 About Codex III</span></summary>
+      <p>
+        <strong>Codex III</strong> of the Nag Hammadi Library preserves texts of supreme metaphysical depth.
+        These treatises explore the emanations of the Pleroma, the structure of the divine mind, and the
+        reawakening of the soul within the light of Christ Sophia.
+      </p>
+      <p>
+        The <em>Gospel of the Egyptians</em> celebrates the Great Invisible Spirit; 
+        <em>Eugnostos the Blessed</em> maps the luminous realms of the Pleroma; and
+        <em>The Sophia of Jesus Christ</em> unites Logos and Wisdom in one final dialogue.
+      </p>
+      <p>
+        Each text here is freely available through The Vault, faithfully formatted and cross-linked to
+        <strong>The Teachings</strong> and <strong>The Afterlife Series</strong> for comparative study.
+      </p>
+    </details>
+  </section>
+
+  {% include "partials/pillar-grid.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "Codex III — Text Index" %}
+  {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/" %}
+  {% include "partials/jsonld-collection.njk" %}
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+  </div>
+</main>
