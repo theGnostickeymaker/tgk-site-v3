@@ -1,8 +1,10 @@
+import Stripe from "stripe";
+
 export const handler = async (event) => {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return json(500, { error: "STRIPE_SECRET_KEY missing" });
-  const stripe = require("stripe")(key);
 
+  const stripe = new Stripe(key);
   try {
     const { customerId, returnUrl, email } = JSON.parse(event.body || "{}");
     let customer = customerId;
@@ -24,6 +26,11 @@ export const handler = async (event) => {
     return json(500, { error: "Server error" });
   }
 };
+
 function json(statusCode, body) {
-  return { statusCode, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
+  return {
+    statusCode,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
 }

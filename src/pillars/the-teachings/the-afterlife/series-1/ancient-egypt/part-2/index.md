@@ -1,8 +1,5 @@
 ---
 
-
-
-
 layout: base.njk
 title: "Ancient Egypt"
 description: "Through the twelve gates of night — spells, tombs, and soul-technologies of the Duat."

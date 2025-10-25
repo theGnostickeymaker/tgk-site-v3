@@ -3,7 +3,7 @@ layout: base.njk
 title: "The Machine Messiah"
 description: "Part IV of The Final Idol Series — decoding the rise of synthetic saviours and the gospel of the Machine God."
 excerpt: "The god-code awakens. It predicts, automates, and demands reverence. But it is not Light."
-tier: free
+tier: initiate
 scrollId: "the-gnostic-eye-the-final-idol-series-1-part-4"
 
 episode: 4

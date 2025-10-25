@@ -9,7 +9,7 @@ param(
   [Parameter(Mandatory=$true)] [int]    $Episode,      # episode number
 
   # ===== Display / content =====
-  [ValidateSet('free','initiate','full','paid')]
+  [ValidateSet('free','initiate','adept','paid')]
   [string] $Tier = 'free',
   [string] $Glyph = '✝',
   [string] $BodyClass = 'gold',

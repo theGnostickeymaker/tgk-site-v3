@@ -3,7 +3,7 @@ layout: base.njk
 title: "The Flame in the Dark"
 description: "Part VI of The Final Idol Series — in the age of synthetic unity, what divine spark resists the machine? Explore the last resistance."
 excerpt: "A spark remains untouched by simulation, and the soul remembers its fire."
-tier: free
+tier: initiate
 scrollId: "the-gnostic-eye-the-final-idol-series-1-the-flame-in-the-dark"
 
 episode: 6

@@ -162,7 +162,7 @@
   }
   loadFilters();
 
-  function tierRank(t){ return ({free:0, initiate:1, full:2}[t] ?? 0); }
+  function tierRank(t){ return ({free:0, initiate:1, adept:2}[t] ?? 0); }
 
   function applyInventoryFilters() {
     const q = (invSearch?.value || "").toLowerCase();

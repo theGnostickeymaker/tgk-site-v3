@@ -179,7 +179,7 @@ export default function (eleventyConfig) {
         const tier = page.data.tier || "free";
         if (tier === "free") return 1.0;
         if (tier === "initiate") return 0.8;
-        if (tier === "full") return 0.6;
+        if (tier === "adept") return 0.6;
         return 0.7;
       },
       lastmodDateExtractor: (page) => page.data.published || page.date,

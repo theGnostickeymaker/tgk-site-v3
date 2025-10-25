@@ -50,7 +50,7 @@ export default {
       glyph: "⚙️",
       tagline: "The saviour built in code ✦ Techno-theology ✦ The promise of control.",
       tier: "initiate",
-      state: "coming-soon"
+      state: "active"
     },
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist/",
@@ -58,7 +58,7 @@ export default {
       glyph: "⚠️",
       tagline: "False prophecy ✦ The imitation of consciousness ✦ The fall of discernment.",
       tier: "initiate",
-      state: "coming-soon"
+      state: "active"
     },
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/",
@@ -66,7 +66,7 @@ export default {
       glyph: "🔥",
       tagline: "The remnant spark ✦ Gnosis reborn ✦ The resistance of the human soul.",
       tier: "adept",
-      state: "coming-soon"
+      state: "active"
     }
   ],
 

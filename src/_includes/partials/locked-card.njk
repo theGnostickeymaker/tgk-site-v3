@@ -1,0 +1,15 @@
+{# =============================================
+   🔒 TGK Locked Card Partial
+   Usage: {% include "partials/locked-card.njk" with { title, glyph, tagline, tier, href } %}
+   ============================================= #}
+<div class="card locked" data-tier="{{ tier }}">
+  <div class="card-body">
+    <div class="card-glyph">{{ glyph }}</div>
+    <h3>{{ title }}</h3>
+    <p>{{ tagline }}</p>
+    <div class="card-lock-overlay">
+      <span>Locked — {{ tier | capitalize }} members only</span>
+      <a href="/signin/?next={{ href }}" class="btn-upgrade">Sign in / Upgrade</a>
+    </div>
+  </div>
+</div>

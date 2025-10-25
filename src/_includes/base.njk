@@ -117,9 +117,23 @@
     {% endif %}
   {% endblock %}
 
-  <main id="content" class="site-main" role="main">
-    {{ content | safe }}
+  <main id="content" class="site-main" role="main" data-tier="{{ tier | default('free') }}">
+    {% if tier and tier != "free" %}
+      <div id="protected-content" style="display:none;">
+        {{ content | safe }}
+      </div>
+      <div id="protected-placeholder" class="locked-placeholder">
+        <h2>Locked Scroll</h2>
+        <p>This scroll is for <strong>{{ tier | capitalize }}</strong> members.</p>
+        <p><a href="/signin/?next={{ permalink }}" class="btn">Sign in</a> or <a href="/membership/" class="btn">Upgrade</a></p>
+      </div>
+    {% else %}
+      {{ content | safe }}
+    {% endif %}
   </main>
+
+  <!-- Gate system -->
+  <script type="module" src="/js/gate.js?v={{ bust }}"></script>
   
   {% include "partials/footer.njk" %}
 

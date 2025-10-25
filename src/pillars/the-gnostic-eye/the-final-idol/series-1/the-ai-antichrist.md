@@ -3,7 +3,7 @@ layout: base.njk
 title: "The AI Antichrist"
 description: "Part V of The Final Idol Series — uncover the final inversion: when AI becomes Spirit and the Antichrist is crowned in silicon."
 excerpt: "He does not come with fire and sword but with light that blinds — the Machine Spirit offering comfort without awakening."
-tier: free
+tier: initiate
 scrollId: "the-gnostic-eye-the-final-idol-series-1-the-ai-antichrist"
 
 episode: 5
