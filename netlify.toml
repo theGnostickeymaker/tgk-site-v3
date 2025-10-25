@@ -13,6 +13,7 @@
 # 🜂 Ensure Firebase + Stripe functions bundle correctly
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["firebase-admin", "stripe"]
   included_files = ["netlify/functions/**"]
 
 [[edge_functions]]
