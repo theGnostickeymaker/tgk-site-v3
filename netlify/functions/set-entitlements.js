@@ -6,12 +6,20 @@ import Stripe from "stripe";
 
 // 🜂 Initialize Firebase Admin (once per function)
 if (!admin.apps.length) {
-  const keyRaw = process.env.FIREBASE_ADMIN_KEY;
+  // ✅ Supports both Base64-encoded and raw JSON keys
+  let raw = process.env.FIREBASE_ADMIN_KEY_B64 || process.env.FIREBASE_ADMIN_KEY;
+  if (!raw) throw new Error("FIREBASE_ADMIN_KEY missing");
+
+  // Decode base64 if needed
+  if (!raw.trim().startsWith("{")) {
+    raw = Buffer.from(raw, "base64").toString("utf8");
+  }
+
   let credentials;
   try {
-    credentials = JSON.parse(keyRaw);
+    credentials = JSON.parse(raw);
   } catch (err) {
-    console.error("[TGK] ❌ FIREBASE_ADMIN_KEY JSON parse failed:", err.message);
+    console.error("[TGK] ❌ FIREBASE_ADMIN_KEY parse failed:", err.message);
     throw new Error("Invalid FIREBASE_ADMIN_KEY JSON in environment");
   }
 
