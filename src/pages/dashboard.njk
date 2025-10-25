@@ -85,7 +85,6 @@ import {
 import { app } from "/js/firebase-init.js";
 import { toggleBookmark } from "/js/bookmarks.js";
 
-
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -112,8 +111,8 @@ async function resolveUserTier(user) {
     }
 
     // 3️⃣ LocalStorage fallback
-    if (localStorage.getItem("tgk-tier"))
-      tier = localStorage.getItem("tgk-tier");
+    const cached = localStorage.getItem("tgk-tier");
+    if (cached) tier = cached;
 
     localStorage.setItem("tgk-tier", tier);
   } catch (err) {
@@ -133,7 +132,15 @@ onAuthStateChanged(auth, async (user) => {
     user.displayName || user.email.split("@")[0];
 
   // 🔹 Resolve tier + update UI
-  const tier = await resolveUserTier(user);
+  let tier = await resolveUserTier(user);
+
+  // 🜂 Force-admin fallback for The Keymaker
+  if (user.email === "the.keymaker@thegnostickey.com") {
+    tier = "admin";
+    localStorage.setItem("tgk-tier", "admin");
+    console.log("[TGK Dashboard] 🜂 Forced admin tier for Keymaker account");
+  }
+
   document.getElementById("user-tier").textContent = tier.toUpperCase();
 
   // 🔹 Upgrade CTA toggle
