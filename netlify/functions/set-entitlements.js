@@ -4,54 +4,55 @@
 import admin from "firebase-admin";
 import Stripe from "stripe";
 
-// 🜂 Ensure Firebase Admin initialized once
+// 🜂 Initialize Firebase Admin (once per function)
 if (!admin.apps.length) {
+  const keyRaw = process.env.FIREBASE_ADMIN_KEY;
+  let credentials;
+  try {
+    credentials = JSON.parse(keyRaw);
+  } catch (err) {
+    console.error("[TGK] ❌ FIREBASE_ADMIN_KEY JSON parse failed:", err.message);
+    throw new Error("Invalid FIREBASE_ADMIN_KEY JSON in environment");
+  }
+
   admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN_KEY))
+    credential: admin.credential.cert(credentials)
   });
 }
 
 const firestore = admin.firestore();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// 🜂 Price ID Lists
-const INITIATE_IDS = (process.env.PRICE_INITIATE_IDS || "")
-  .split(",")
-  .map((s) => s.trim())
-  .filter(Boolean);
+// 🜂 Price ID Groups
+const parseList = (s) => (s || "").split(",").map(v => v.trim()).filter(Boolean);
+const INITIATE_IDS = parseList(process.env.PRICE_INITIATE_IDS);
+const FULL_IDS = parseList(process.env.PRICE_FULL_IDS);
+const FULL_LIFEIDS = parseList(process.env.PRICE_FULL_LIFETIME_IDS);
 
-const FULL_IDS = (process.env.PRICE_FULL_IDS || "")
-  .split(",")
-  .map((s) => s.trim())
-  .filter(Boolean);
-
-const FULL_LIFEIDS = (process.env.PRICE_FULL_LIFETIME_IDS || "")
-  .split(",")
-  .map((s) => s.trim())
-  .filter(Boolean);
-
-// 🜂 Main Handler
+// 🜂 Main Function
 export const handler = async (event) => {
   try {
-    const { customerId, email } = JSON.parse(event.body || "{}");
-    if (!customerId) return json(400, { error: "missing customerId" });
+    if (event.httpMethod !== "POST")
+      return json(405, { error: "Method Not Allowed" });
 
-    // 🔹 Get active subscription
+    const { customerId, email } = JSON.parse(event.body || "{}");
+    if (!customerId) return json(400, { error: "Missing customerId" });
+
+    // 🔹 Retrieve Stripe Subscription
     const subs = await stripe.subscriptions.list({
       customer: customerId,
       status: "active",
       limit: 1
     });
-
     const sub = subs.data[0];
-    const priceId = sub?.items?.data?.[0]?.price?.id || null;
+    const priceId = sub?.items?.data?.[0]?.price?.id;
 
-    // 🔹 Determine tier from price ID
+    // 🔹 Determine Tier
     let tier = "free";
     if (INITIATE_IDS.includes(priceId)) tier = "initiate";
     if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) tier = "adept";
 
-    // 🔹 Fetch customer safely (email not always present)
+    // 🔹 Safely get Stripe Customer Email
     let customerEmail = "unknown";
     try {
       const customer = await stripe.customers.retrieve(customerId);
@@ -59,31 +60,31 @@ export const handler = async (event) => {
         customerEmail = customer.email ?? "unknown";
       }
     } catch (err) {
-      console.warn(`[TGK] ⚠ Could not fetch Stripe customer email for ${customerId}:`, err.message);
+      console.warn(`[TGK] ⚠ Could not fetch Stripe customer email for ${customerId}: ${err.message}`);
     }
 
-    // 🔹 Prepare Firestore data
+    // 🔹 Prepare Firestore record
     const data = {
       email: email || customerEmail,
       stripeCustomerId: customerId,
       tier,
-      lastChecked: new Date()
+      lastChecked: admin.firestore.Timestamp.now()
     };
 
     await firestore.collection("entitlements").doc(customerId).set(data, { merge: true });
 
     console.log(`[TGK] ✅ Entitlement updated for ${data.email} (${customerId}): ${tier}`);
     return json(200, { tier, message: "Entitlement updated" });
-  } catch (e) {
-    console.error("[TGK] ❌ set-entitlements error:", e);
-    return json(500, { error: e.message || "server" });
+  } catch (err) {
+    console.error("[TGK] ❌ set-entitlements error:", err);
+    return json(500, { error: err.message || "Server Error" });
   }
 };
 
-// 🜂 Helper: JSON Response Wrapper
-function json(statusCode, body) {
+// 🜂 JSON Helper
+function json(status, body) {
   return {
-    statusCode,
+    statusCode: status,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   };
