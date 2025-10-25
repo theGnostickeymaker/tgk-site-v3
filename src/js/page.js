@@ -1,5 +1,5 @@
 /* ===========================================================
-   🜂 TGK — PAGE.js (Auth + Stripe + Entitlement Sync)
+   🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard)
    =========================================================== */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
@@ -11,6 +11,11 @@ import {
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 /* === 🔑 Live Firebase Config === */
 const firebaseConfig = {
@@ -26,6 +31,7 @@ const firebaseConfig = {
 // === 🜂 Init ===
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 /* 🧙 SIGNUP — Create user → Stripe Customer → Firestore Entitlement */
 async function pageSignup(email, password) {
@@ -43,7 +49,7 @@ async function pageSignup(email, password) {
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Stripe customer creation failed");
 
-    // 🔹 Generate and set entitlement cookie (tgk_ent)
+    // 🔹 Generate entitlement record
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -64,7 +70,7 @@ async function pageSignin(email, password) {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     const token = await cred.user.getIdToken();
 
-    // Refresh entitlement cookie
+    // 🔹 Refresh entitlement cookie
     const entRef = await fetch("/.netlify/functions/refresh-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -90,11 +96,41 @@ function pageReset(email) {
 function pageLogout() {
   signOut(auth)
     .then(() => {
-      // Remove session cookie manually (client side only)
-      document.cookie = "tgk_ent=; Path=/; Max-Age=0;";
+      document.cookie = "tgk_ent=; Path=/; Max-Age=0;"; // clear cookie
+      localStorage.removeItem("tgk-tier");
       window.location.href = "/";
     })
     .catch((e) => console.error("[PAGE] Logout error:", e));
+}
+
+/* 🜂 LOAD DASHBOARD TIER */
+async function loadDashboardData(user) {
+  const nameEl = document.getElementById("user-name");
+  const tierEl = document.getElementById("user-tier");
+
+  // fallback placeholders
+  if (!nameEl || !tierEl) return;
+
+  nameEl.textContent = user ? user.email.split("@")[0] : "Guest";
+  tierEl.textContent = "Loading…";
+
+  try {
+    const docRef = doc(db, "entitlements", user.uid);
+    const snap = await getDoc(docRef);
+
+    let tier = "free";
+    if (snap.exists()) {
+      const data = snap.data();
+      tier = data.tier || "free";
+    }
+
+    tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
+    localStorage.setItem("tgk-tier", tier);
+    console.log(`[TGK Dashboard] Tier loaded for ${user.email}: ${tier}`);
+  } catch (err) {
+    console.error("[TGK Dashboard] Error loading tier:", err);
+    tierEl.textContent = "Error";
+  }
 }
 
 /* 🜂 WATCH AUTH STATE */
@@ -104,6 +140,11 @@ onAuthStateChanged(auth, (user) => {
     console.info("[PAGE] Logged in:", user.email);
     if (userInfo) userInfo.textContent = `Signed in as ${user.email}`;
     document.body.classList.add("is-auth");
+
+    // Load dashboard data if user is on that page
+    if (window.location.pathname.includes("/dashboard")) {
+      loadDashboardData(user);
+    }
   } else {
     document.body.classList.remove("is-auth");
     if (document.body.classList.contains("requires-auth")) {
