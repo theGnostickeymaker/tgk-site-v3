@@ -207,4 +207,33 @@ document.getElementById("manage-tier").onclick = async () => {
   if (data.url) window.location = data.url;
   else alert(data.error || "Portal error");
 };
+/* ===========================================================
+   🚪 TGK — Forced Logout Binding (Dashboard Fallback)
+   =========================================================== */
+import { signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logout-btn");
+  if (!logoutBtn) {
+    console.warn("[TGK Dashboard] Logout button not found.");
+    return;
+  }
+
+  console.log("[TGK Dashboard] Logout button ready — binding event.");
+
+  logoutBtn.addEventListener("click", async () => {
+    console.log("[TGK Dashboard] Logout clicked.");
+    try {
+      await signOut(auth);
+      console.log("[TGK Dashboard] Sign-out success. Clearing local data…");
+      localStorage.clear();
+      document.cookie = "tgk_ent=; Path=/; Max-Age=0;";
+      window.location.href = "/";
+    } catch (err) {
+      console.error("[TGK Dashboard] Logout failed:", err);
+      alert("Logout failed: " + err.message);
+    }
+  });
+});
+
 </script>
