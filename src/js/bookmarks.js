@@ -1,6 +1,6 @@
 /* ===========================================================
-   🔖 TGK — Bookmarks System v3.9.4
-   Works across Pages + Dashboard (Firestore + Local)
+   🔖 TGK — Bookmarks System v4.0
+   Unified metadata-aware bookmarks for Pages + Dashboard
    =========================================================== */
 
 import {
@@ -61,7 +61,7 @@ async function resolveUserTier(user) {
 }
 
 /* ===========================================================
-   ✦ PAGE Bookmark Toggle
+   ✦ PAGE Bookmark Toggle (metadata-aware)
    =========================================================== */
 async function toggleBookmark(btn) {
   const user = auth.currentUser;
@@ -71,24 +71,31 @@ async function toggleBookmark(btn) {
   }
 
   const pageId = btn.dataset.bookmarkId || window.location.pathname;
-  const title = document.title;
   const permalink = window.location.pathname;
   const ref = doc(db, "bookmarks", user.uid, "pages", pageId);
   const snap = await getDoc(ref);
+
+  // 🜂 Pull metadata from embedded <script id="tgk-page-meta">
+  let meta = {};
+  try {
+    const metaEl = document.getElementById("tgk-page-meta");
+    if (metaEl) meta = JSON.parse(metaEl.textContent);
+  } catch (e) {
+    console.warn("[TGK] Metadata parse error:", e);
+  }
 
   try {
     if (snap.exists()) {
       await deleteDoc(ref);
       btn.classList.remove("bookmarked");
-      btn.classList.add("removing");
       showToast("🩸 Removed from bookmarks", "remove");
     } else {
       await setDoc(ref, {
         id: pageId,
-        title,
         permalink,
         type: "page",
-        created: Date.now()
+        created: Date.now(),
+        ...meta // inject all front-matter fields here
       });
       btn.classList.add("bookmarked");
       showToast("💾 Saved to bookmarks", "success");
@@ -109,58 +116,118 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ===========================================================
-   ✦ Dashboard Rendering
+   ✦ Glyph + Text helpers
    =========================================================== */
-function renderGroups(groups) {
-  const wrapper = document.getElementById("bookmark-groups");
-  if (!wrapper) return; // skip on non-dashboard pages
-  wrapper.innerHTML = "";
+function inferGlyph(permalink = "") {
+  if (permalink.includes("/pillars/the-gnostic-eye/")) return "👁️";
+  if (permalink.includes("/pillars/the-obsidian-key/")) return "🗝️";
+  if (permalink.includes("/pillars/the-vault/")) return "🔒";
+  if (permalink.includes("/pillars/the-resonant-key/")) return "🎼";
+  if (permalink.includes("/pillars/the-keymakers-dream/")) return "🜂";
+  if (permalink.includes("/pillars/childrens-corner/")) return "🧒";
+  if (permalink.includes("/pillars/tgk-shop/")) return "🛍️";
+  if (permalink.includes("/pillars/tgk-community/")) return "🗣️";
+  if (permalink.includes("/pillars/the-teachings/")) return "☥";
+  return "🔖";
+}
 
-  const titles = { series: "📚 Series", page: "📄 Pages", part: "🔹 Parts" };
+function beautify(str = "") {
+  return str
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .trim();
+}
 
-  Object.entries(groups).forEach(([type, arr]) => {
-    if (!arr?.length) return;
-    const section = document.createElement("section");
-    section.className = "bookmark-group";
-    section.innerHTML = `
-      <h3 class="group-heading">${titles[type]} <span class="count">(${arr.length})</span></h3>
-      <ul class="bookmark-grid"></ul>`;
-    const ul = section.querySelector("ul");
-    arr
-      .sort((a, b) => b.created - a.created)
-      .forEach((it) => {
-        const card = document.createElement("li");
-        card.className = "dashboard-bookmark-card";
-        card.dataset.id = it.id;
-        card.innerHTML = `
-          <div class="bookmark-glyph">🔖</div>
-          <h3 class="bookmark-title">${it.title}</h3>
-          <p class="bookmark-meta">${it.type || "page"}</p>
-          <div class="card-actions">
-            <a href="${it.permalink}" class="btn">Open</a>
-            <button class="btn-mini" data-id="${it.id}">Remove</button>
-          </div>`;
-        ul.appendChild(card);
-      });
-    wrapper.appendChild(section);
+/* ===========================================================
+   ✦ Dashboard Renderer — PillarGrid style
+   =========================================================== */
+function renderPillarGrid(bookmarks) {
+  const mount = document.getElementById("bookmark-grid-mount");
+  if (!mount) return;
+
+  const section = document.createElement("section");
+  section.className = "pillar-grid";
+
+  const grid = document.createElement("div");
+  grid.className = "portal-grid";
+
+  bookmarks.sort((a, b) => (b.created || 0) - (a.created || 0));
+
+  bookmarks.forEach((it) => {
+    const title = it.title || "Untitled";
+    const href = it.permalink || "#";
+
+    const article = document.createElement("article");
+    article.className = "gnostic-card";
+    article.dataset.id = it.id;
+
+    article.innerHTML = `
+      <a class="card-link" href="${href}">
+        <div class="card-body">
+          <div class="card-glyph" aria-hidden="true">${it.glyph || inferGlyph(it.permalink)}</div>
+          <h3 class="card-title">${title}</h3>
+          ${
+            it.series || it.episodeNum || it.partNum
+              ? `<p class="card-desc small">
+                  ${[
+                    it.series ? beautify(it.series) : "",
+                    it.episodeNum ? `Ep. ${it.episodeNum}` : "",
+                    it.partNum ? `Part ${it.partNum}` : ""
+                  ]
+                    .filter(Boolean)
+                    .join(" — ")}
+                 </p>`
+              : ""
+          }
+        </div>
+      </a>
+      <button class="remove-bookmark-icon" title="Remove Bookmark">
+  ✕
+</button>
+    `;
+
+    grid.appendChild(article);
   });
 
-  wrapper.querySelectorAll(".btn-mini").forEach((btn) => {
+  section.appendChild(grid);
+  mount.innerHTML = "";
+  mount.appendChild(section);
+
+   // ✦ Bind remove (fixed selector for ✕ icon)
+  mount.querySelectorAll(".remove-bookmark-icon").forEach((btn) => {
     btn.addEventListener("click", async (e) => {
-      const id = e.target.dataset.id;
-      const card = e.target.closest(".dashboard-bookmark-card");
-      card.classList.add("removing");
+      e.preventDefault();
+      e.stopPropagation();
+      const card = e.currentTarget.closest(".gnostic-card");
+      const id = card?.dataset.id;
+      if (!id) return;
+
       try {
         await deleteDoc(doc(db, "bookmarks", auth.currentUser.uid, "pages", id));
+        card.style.transition = "opacity .25s ease, transform .25s ease";
+        card.style.opacity = "0";
+        card.style.transform = "scale(.97) translateY(4px)";
+        setTimeout(() => card.remove(), 250);
         showToast("🩸 Removed from Dashboard", "remove");
-        await sleep(400);
-        card.remove();
+
+        // Show fallback if no bookmarks remain
+        if (!mount.querySelectorAll(".gnostic-card").length)
+          document.getElementById("no-bookmarks")?.removeAttribute("hidden");
       } catch (err) {
         console.error("[TGK] Remove error:", err);
       }
     });
+
+    // ✦ Keyboard accessibility (Enter/Space)
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        btn.click();
+      }
+    });
   });
-}
+} // ✅ closes renderPillarGrid()
+
 
 /* ===========================================================
    ✦ Auth State + Dashboard Loader
@@ -174,26 +241,8 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  const nameEl = document.getElementById("user-name");
-  const tierEl = document.getElementById("user-tier");
-  const upgradeCTA = document.getElementById("upgrade-cta");
-
-  if (nameEl) nameEl.textContent = user.displayName || user.email.split("@")[0];
-  let tier = await resolveUserTier(user);
-  if (user.email === "the.keymaker@thegnostickey.com") tier = "admin";
-
-  if (tierEl) {
-    tierEl.textContent = tier.toUpperCase();
-    if (["adept", "admin"].includes(tier))
-      tierEl.classList.add("glow-tier");
-  }
-
-  if (upgradeCTA && ["free", "initiate"].includes(tier))
-    upgradeCTA.hidden = false;
-
-  // 🜂 Load bookmarks only on dashboard
-  const wrapper = document.getElementById("bookmark-groups");
-  if (!wrapper) return;
+  const mount = document.getElementById("bookmark-grid-mount");
+  if (!mount) return;
 
   try {
     const snap = await getDocs(collection(db, "bookmarks", user.uid, "pages"));
@@ -204,12 +253,9 @@ onAuthStateChanged(auth, async (user) => {
       return;
     }
 
-    const groups = { series: [], page: [], part: [] };
-    snap.forEach((d) => {
-      const data = d.data();
-      groups[data.type || "page"].push({ id: d.id, ...data });
-    });
-    renderGroups(groups);
+    const items = [];
+    snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
+    renderPillarGrid(items);
   } catch (err) {
     console.error("[Dashboard] Bookmark load error:", err);
     if (loading) loading.textContent = "Error loading bookmarks.";
