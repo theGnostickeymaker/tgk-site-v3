@@ -1,39 +1,19 @@
----
-layout: base.njk
-title: "The Vault"
-description: "Preservation of forbidden and sacred texts — codices, scrolls, and erased histories."
-tagline: "Codices ✦ scrolls ✦ erased histories"
-pillarId: "the-vault"
-tier: free
-
-bodyClass: "vault"
-glyph: "⛪︎"
-glyphRow: ["🜂","🕯","🜂"]
-accent: vault
-
-permalink: "/pillars/the-vault/index.html"
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Vault", url: "/pillars/the-vault/" }
----
-
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-vault/vault-index.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
 
-    <h4 class="index heading">
-      Preserving forbidden and sacred texts — codices, scrolls, and erased histories kept safe in the Vault.
+    <h4 class="index-heading">
+      Preserving forbidden and sacred texts — codices, pages, and erased histories kept safe in the Vault.
     </h4>
 
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">🔑 About The Vault</span></summary>
       <p>
         <strong>The Vault</strong> is the library of <em>The Gnostic Key</em> — a pillar devoted to
-        preserving forbidden and sacred writings. Here you’ll find codices, scrolls, and
+        preserving forbidden and sacred writings. Here you’ll find codices, pages, and
         erased histories: the texts others tried to burn, banish, or forget.
       </p>
       <p>
@@ -52,7 +32,7 @@ breadcrumbs:
     {% include "partials/jsonld-collection.njk" %}
 
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
     </div>
 
   </section>

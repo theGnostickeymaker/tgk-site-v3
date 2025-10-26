@@ -6,7 +6,7 @@ tier: free
 glyph: "📜"
 accent: vault
 bodyClass: vault
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/gospel-of-the-egyptians/index.html"
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/gospel-of-the-egyptians/text/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }

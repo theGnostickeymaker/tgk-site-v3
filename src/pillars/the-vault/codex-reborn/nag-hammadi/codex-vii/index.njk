@@ -1,0 +1,39 @@
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-codex-vii.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+    <h4 class="index-heading">
+      Codex VII — Hymns and Revelations of the Sethian Tradition
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 About Codex VII</span></summary>
+      <p>
+        <strong>Codex VII</strong> preserves a series of Gnostic hymns and revelations
+        expressing the laughter of the true Christ, the ascent of Seth, and the primordial
+        voice of the Divine Mind.  These writings belong to the mature Sethian tradition,
+        where irony and illumination intertwine.
+      </p>
+      <p>
+        Within <em>The Vault</em>, Codex VII continues the story of awakening — from
+        mockery of the false rulers to the remembrance of the First Thought
+        (<em>Protennoia</em>), who speaks all things into being.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "Codex VII — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ pillarGlyph }}
+      </span>
+    </div>
+  </section>
+</main>

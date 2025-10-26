@@ -1,17 +1,18 @@
 ---
 layout: base.njk
 title: "The Apocalypse of Paul"
-description: "Paul’s visionary ascent through the heavens — confronting the toll gates, interrogators, and cosmic rulers, revealing the soul’s liberation through divine knowledge."
-tagline: "A Gnostic ascent through the heavens ✦ toll gates ✦ the sign of freedom"
-scrollId: "the-vault-codex-reborn-nag-hammadi-codex-v-apocalypse-of-paul"
+description: "Paul’s vision of ascent through the heavens — the Gnostic revelation of the soul’s journey beyond judgment to the freedom of light."
+tagline: "The ascent ✦ the interrogation ✦ the release"
+tier: free
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-v-apocalypse-of-paul-text"
 
 glyph: "🕯"
 glyphRow: ["🜂", "🕯", "🜂"]
-accent: "vault"
 bodyClass: "vault"
-tier: initiate
+accent: "vault"
 
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/index.html"
+permalink:
+  "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/text/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -25,48 +26,28 @@ vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex V"
   origin: "Discovered 1945, Upper Egypt"
-  translator: "George W. MacRae & William R. Murdock"
+  translator: "George W. MacRae &amp; William R. Murdock"
   source: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/"
   external: "https://www.gnosis.org/naghamm/apo-paul.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 3rd–4th century CE"
 
-# 🔗 Auto-injected navigation (v3.9a)
-
-
-seriesNav:
-  -
-    title: "First Apocalypse of James"
-    desc: "A revelation of the risen Christ to James — teaching fearlessness before the Archons and the mysteries of deliverance."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/first-apocalypse-of-james/"
-  -
-    title: "Second Apocalypse of James"
-    desc: "James receives hidden instructions for the soul’s ascent beyond the rulers of the world — the secret passwords of deliverance."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/second-apocalypse-of-james/"
-  -
-    title: "Apocalypse of Adam"
-    desc: "The primeval testament of Adam — revealing the fall of light and prophecy of redemption."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-adam/"
-  -
-    title: "Fragment on the Origin of the World (Codex V Variant)"
-    desc: "A parallel cosmological vision — differing in tone from Codex II yet sharing the same divine drama."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/origin-fragment/"
-lensEnabled: true
-
+seriesNav: []
+lensEnabled: false
 crossLinks: []
-
 vaultRefs:
-  []
-
+  - { title: "Apocalypse of Paul — Firebase Vault",
+      href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fapocalypse-of-paul.pdf?alt=media",
+      type: "pdf" }
 communityThreads:
-  - { id: '--', platform: 'tgk-community' }
-
+  - { id: "--", platform: "tgk-community" }
 relatedProducts: []
 ---
 
-
 <main class="main-content">
   <section class="content-container">
+
+  {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
   <details class="disclaimer-box">
   <summary><span class="disclaimer-heading">📖 Preservation Note</span></summary>
@@ -81,7 +62,7 @@ relatedProducts: []
   <section class="section-block">
 
   <p>
-    Below is a scroll-rendered edition formatted for <strong>The Vault</strong>.
+    Below is a page-rendered edition formatted for <strong>The Vault</strong>.
   </p>
   </section>
 

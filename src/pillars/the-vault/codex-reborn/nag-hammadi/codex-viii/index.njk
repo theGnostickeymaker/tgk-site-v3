@@ -1,0 +1,35 @@
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-codex-viii.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+    <h4 class="index-heading">Codex VIII — The Continuation of Revelation</h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 About Codex VIII</span></summary>
+      <p>
+        <strong>Codex VIII</strong> continues the sequence of Nag Hammadi texts, preserving
+        fragments and philosophical reflections that extend the Sethian, Valentinian, and Hermetic
+        traditions. Though fragmentary, these writings carry the same spirit of revelation —
+        tracing the movement of the soul between ignorance and divine remembrance.
+      </p>
+      <p>
+        Each surviving treatise here is rendered in <strong>The Vault</strong> format for spiritual
+        and scholarly study, with cross-references to related scrolls in <strong>The Teachings</strong>
+        and <strong>The Gnostic Eye</strong>.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+    {% set items = pillarGrid %}
+    {% set headline = "Codex VIII — Text Index" %}
+    {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/codex-viii/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+  </section>
+</main>

@@ -3,7 +3,7 @@ layout: base.njk
 title: "The Gospel of Mary (Magdalene)"
 description: "A dialogue between the risen Christ and Mary Magdalene — revealing the soul’s ascent, the illusion of sin, and the liberation through inner knowledge."
 tagline: "Mary’s vision of the soul’s flight ✦ the true apostolic gnosis ✦ beyond sin and fear"
-scrollId: "the-vault-codex-reborn-berlin-codex-gospel-of-mary"
+pageId: "the-vault-codex-reborn-berlin-codex-gospel-of-mary-text"
 
 glyph: "🌹"
 glyphRow: ["🜂", "🌹", "🜂"]
@@ -12,7 +12,7 @@ bodyClass: vault
 tier: free
 
 # ✅ Corrected permalink — under Berlin Codex
-permalink: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/index.html"
+permalink: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/text/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -33,10 +33,8 @@ vaultMeta:
 
 # 🔗 Auto-injected navigation (v3.9a)
 
-
 seriesNav:
-  -
-    title: "Apocryphon of John (Fragment)"
+  - title: "Apocryphon of John (Fragment)"
     desc: "A shorter variant of the revelation text, preserved alongside Mary’s gospel in the same codex."
     url: "/pillars/the-vault/codex-reborn/berlin-codex/apocryphon-of-john-fragment/"
 lensEnabled: true
@@ -54,6 +52,8 @@ relatedProducts: []
 
 <main class="main-content">
   <section class="content-container">
+
+  {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
   <details class="disclaimer-box">
     <summary><span class="disclaimer-heading">📖 Preservation Note</span></summary>

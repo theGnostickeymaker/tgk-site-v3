@@ -1,24 +1,33 @@
+// /src/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/index.11tydata.js
 export default {
   layout: "base.njk",
+
+  // === Core Identity ===
+  pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-apocryphon-of-john",
+  permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/index.html",
   pillar: "the-vault",
   series: "codex-reborn",
   collection: "nag-hammadi",
   codex: "codex-ii",
-  title: "Apocryphon of John",
+  title: "The Apocryphon of John",
   description:
     "The Secret Book of John — Sophia’s fall and the birth of Yaldabaoth. A revelation of the false cosmos and the soul’s hidden origin.",
+  tagline: "Sophia’s Descent ✦ Yaldabaoth’s Birth ✦ The Hidden Christ",
   glyph: "🜂",
-  bodyClass: "vault",
-  accent: "vault",
-  tier: "free",
-
-  // === Tagging ===
-  tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi", "codex-ii", "apocryphon-of-john"],
-
-  // === Header Glyph Row ===
   glyphRow: ["🜂", "🕯", "🜂"],
+  accent: "vault",
+  bodyClass: "vault",
+  tier: "free",
+  tags: [
+    "pillar",
+    "the-vault",
+    "codex-reborn",
+    "nag-hammadi",
+    "codex-ii",
+    "apocryphon-of-john"
+  ],
 
-  // === Breadcrumb Trail ===
+  // === Breadcrumbs ===
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
@@ -33,22 +42,22 @@ export default {
     {
       title: "Gospel of Thomas",
       desc: "Sayings of the living Jesus revealed to Thomas — the hidden wisdom of inner sight.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/"
     },
     {
       title: "Gospel of Philip",
       desc: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and self-knowledge.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/"
     },
     {
       title: "Hypostasis of the Archons",
       desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/"
     },
     {
       title: "On the Origin of the World",
       desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the light that redeems it.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/"
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
     }
   ],
 
@@ -61,8 +70,8 @@ export default {
         desc: "Explores Sophia’s descent and the Gnostic vision of the soul’s return through the Archons’ gates."
       },
       {
-        title: "The Gnostic Eye – The Final Idol (Scroll II: The Digital Prophet)",
-        path: "/pillars/the-gnostic-eye/the-final-idol/scroll-2/",
+        title: "The Gnostic Eye – The Final Idol (Part II: The Digital Prophet)",
+        path: "/pillars/the-gnostic-eye/the-final-idol/part-2/",
         desc: "Parallels between ancient revelation and modern AI prophecy — the machine as new Demiurge."
       }
     ]
@@ -78,6 +87,10 @@ export default {
     access: "public"
   },
 
+  // === Social Meta ===
+  socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi/apocryphon-of-john.jpg",
+
+  // === Behaviour Flags ===
   showLens: true,
   showSeriesNav: true
 };

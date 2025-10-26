@@ -1,0 +1,31 @@
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/three-steles-of-seth.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
+    <h2>The Three Steles of Seth</h2>
+
+    <p>
+      <em>The Three Steles of Seth</em> (Nag Hammadi Codex VII, 5) is a Gnostic hymn of ascent —
+      the soul’s praise to the ineffable Father, uttered in the name of <strong>Seth the Perfect One</strong>.
+      It expresses the stages of return from the world of matter into the fullness of divine light.
+    </p>
+
+    <p>
+      This poetic work functions as both invocation and initiation, closing the Codex VII collection with
+      the soul’s final thanksgiving — an ascent through remembrance, silence, and praise.
+    </p>
+
+    <p>
+      Text coming soon — preserved within <strong>The Vault</strong> for future translation and study.
+    </p>
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+  </section>
+</main>

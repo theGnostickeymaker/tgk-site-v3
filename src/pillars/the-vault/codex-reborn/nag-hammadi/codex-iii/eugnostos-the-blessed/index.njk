@@ -1,15 +1,3 @@
----
-layout: base.njk
-title: "Eugnostos the Blessed"
-description: "A Gnostic revelation describing the divine hierarchy and emanations of the Pleroma."
-tier: free
-glyph: "🜂"
-glyphRow: ["🜂","🕯","🜂"]
-accent: vault
-bodyClass: vault
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/eugnostos-the-blessed/text/index.html"
----
-
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-eugnostos-the-blessed.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -17,19 +5,35 @@ permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/eugnostos-the-
 
 <main class="main-content">
   <section class="content-container">
+
     <h2>Eugnostos the Blessed</h2>
+
+    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
     <p>
-      <strong>Eugnostos the Blessed</strong> is a metaphysical treatise describing the divine structure of the universe.
-      It reveals how the ineffable God emanates aeons of light and consciousness — self-replicating patterns of being.
+      <strong>Eugnostos the Blessed</strong> is a metaphysical treatise describing the
+      divine hierarchy and emanations of the <em>Pleroma</em> — the boundless fullness of
+      Godhead. It reveals how the ineffable Source emanates aeons of light and
+      consciousness, forming the architecture of divine reality.
     </p>
+
     <p>
-      The text inspired the <em>Sophia of Jesus Christ</em>, reshaping its cosmology through direct revelation.
-      Within it, we find the first systematic Gnostic cosmology — a theology of light, mind, and restoration.
+      This text directly inspired <em>The Sophia of Jesus Christ</em>, recasting its
+      cosmology through the lens of revelation and mind. Within its luminous geometry
+      lies the first systematic Gnostic cosmology — a theology of light, order, and
+      restoration.
     </p>
+
     <p>
-      The preserved text is accessible through <a href="{{ vaultRefs[0].href }}">Firebase Vault</a>.
+      The preserved translation is accessible through
+      <a href="{{ vaultRefs[0].href }}" target="_blank" rel="noopener noreferrer">
+        the Firebase Vault
+      </a>
+      for personal and educational study.
     </p>
+
   </section>
+
   <section class="content-container">
     {% include "partials/vault-refs.njk" %}
   </section>

@@ -1,31 +1,41 @@
+// /src/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/index.11tydata.js
 export default {
   layout: "base.njk",
+
+  // === Core Identity ===
+  pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-gospel-of-truth",
+  permalink:
+    "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/index.html",
   pillar: "the-vault",
   series: "codex-reborn",
   collection: "nag-hammadi",
   codex: "codex-i",
-  title: "Gospel of Truth",
+  title: "The Gospel of Truth",
   description:
-    "A meditation on ignorance, revelation, and the joy of return — attributed to Valentinus, revealing the mystery of remembrance and reunion with the Source.",
+    "A poetic meditation on ignorance, revelation, and the joy of return — attributed to Valentinus, revealing the mystery of remembrance and reunion with the Source.",
+  tagline: "Mystic reflection ✦ divine remembrance ✦ the return to fullness",
   glyph: "📜",
-  bodyClass: "vault",
+  glyphRow: ["🜂", "📜", "🜂"],
   accent: "vault",
+  bodyClass: "vault",
   tier: "free",
+  tags: [
+    "pillar",
+    "the-vault",
+    "codex-reborn",
+    "nag-hammadi",
+    "codex-i",
+    "gospel-of-truth"
+  ],
 
-  // === Tagging ===
-  tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi", "codex-i", "gospel-of-truth"],
-
-  // === Header Glyph Row ===
-  glyphRow: ["🜂", "🕯", "🜂"],
-
-  // === Breadcrumb Trail ===
+  // === Breadcrumbs ===
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" },
     { title: "Codex I", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/" },
-    { title: "Gospel of Truth", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/" }
+    { title: "The Gospel of Truth", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/" }
   ],
 
   // === Local Series Navigation (within Codex I) ===
@@ -42,7 +52,7 @@ export default {
     }
   ],
 
-  // === Synergist Lens (Cross-Pillar Connections) ===
+  // === Synergist Lens (Cross-Pillar Links) ===
   synergistLens: {
     crossLinks: [
       {
@@ -63,6 +73,10 @@ export default {
     access: "public"
   },
 
+  // === Social Meta ===
+  socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi/gospel-of-truth.jpg",
+
+  // === Behaviour Flags ===
   showLens: true,
   showSeriesNav: true
 };

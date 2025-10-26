@@ -4,14 +4,14 @@ title: "The Gospel of Thomas"
 description: "114 sayings of the Living Jesus — the hidden gospel of self-knowledge and remembrance of the Light within."
 tagline: "Hidden sayings ✦ inner revelation ✦ the kingdom within"
 tier: free
-scrollId: "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-thomas"
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-thomas-text"
 
 glyph: "📜"
 glyphRow: ["🜂", "📜", "🜂"]
 bodyClass: "vault"
 accent: "vault"
 
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/index.html"
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -31,42 +31,36 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
-# 🔗 Auto-injected navigation (v3.9a)
-
-
 seriesNav:
-  -
-    title: "Apocryphon of John"
+  - title: "Apocryphon of John"
     desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark within humanity."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/"
-  -
-    title: "Gospel of Philip"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/"
+  - title: "Gospel of Philip"
     desc: "Teachings on unity, illusion, and the bridal chamber — the mystical reunion of the soul with the Light."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
-  -
-    title: "Hypostasis of the Archons"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/"
+  - title: "Hypostasis of the Archons"
     desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
-  -
-    title: "On the Origin of the World"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/"
+  - title: "On the Origin of the World"
     desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the Light that redeems it."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
+
 lensEnabled: true
-
 crossLinks: []
-
-vaultRefs:
-  []
+vaultRefs: []
 
 communityThreads:
-  - { id: '--', platform: 'tgk-community' }
+  - { id: "--", platform: "tgk-community" }
 
 relatedProducts: []
 ---
 
 
+
 <main class="main-content">
 <section class="content-container">
+
+{% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
   <details class="disclaimer-box">
     <summary><span class="disclaimer-heading">📖 Preservation Note</span></summary>

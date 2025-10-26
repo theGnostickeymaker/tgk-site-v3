@@ -1,15 +1,18 @@
 export default {
   layout: "base.njk",
-  pillar: "the-vault",
-  title: "The Vault",
-  description: "Preserving erased, sacred, and forbidden texts — the memory of what was meant to be lost.",
-  glyph: "🗄️",
-  bodyClass: "vault",
 
-  // === Accent and Tagging ===
+  // === Core Identity ===
+  pageId: "the-vault",
+  permalink: "/pillars/the-vault/index.html",
+  title: "The Vault",
+  description:
+    "Preservation of forbidden and sacred texts — codices, pages, and erased histories.",
+  tagline: "Codices ✦ pages ✦ erased histories",
+  glyph: "⛪︎",
+  glyphRow: ["🜂", "🕯", "🜂"],
   accent: "vault",
-  tags: ["pillar", "the-vault"],
-  tier: "free", 
+  bodyClass: "vault",
+  tier: "free",
 
   // === Breadcrumbs ===
   breadcrumbs: [
@@ -17,31 +20,46 @@ export default {
     { title: "The Vault", url: "/pillars/the-vault/" }
   ],
 
-  // === Vault Category Grid ===
+  // === Subcollection Grid ===
   pillarGrid: [
     {
-      title: "Codex Reborn",
-      desc: "Recovered Gnostic gospels and apocrypha — the hidden voice of Christ and Sophia.",
       href: "/pillars/the-vault/codex-reborn/",
+      title: "Codex Reborn",
       glyph: "📜",
-      tier: "free",
-      state: "default"
+      desc: "Recovered Gnostic texts — from Nag Hammadi to Berlin Codex.",
+      state: "default",
+      tier: "free"
     },
     {
-      title: "Mystical Traditions Archive",
-      desc: "Sufi, Buddhist, Kabbalistic, and Egyptian spiritual writings.",
-      href: "/pillars/the-vault/mystical-traditions/",
-      glyph: "🕉️",
-      tier: "initiate",
-      state: "coming-soon"
-    },
-    {
-      title: "Forbidden Documents",
-      desc: "Erased histories, banned books, and censored knowledge preserved for study and remembrance.",
       href: "/pillars/the-vault/forbidden-documents/",
+      title: "Forbidden Documents",
       glyph: "🚫",
-      tier: "initiate",
-      state: "coming-soon"
+      desc: "Erased, banned, or classified texts preserved for study.",
+      state: "default",
+      tier: "initiate"
+    },
+    {
+      href: "/pillars/the-vault/mystical-traditions/",
+      title: "Mystical Traditions",
+      glyph: "✨",
+      desc: "Sacred writings from Egypt, Kabbalah, Sufi Islam, and more.",
+      state: "default",
+      tier: "initiate"
+    },
+    {
+      href: "/pillars/the-vault/paradise-papers/",
+      title: "Paradise Papers",
+      glyph: "💰",
+      desc: "Leaked archives on the hidden wealth and hypocrisy of empire.",
+      state: "coming-soon",
+      tier: "adept"
     }
-  ]
+  ],
+
+  // === Social Meta ===
+  socialImage: "/tgk-assets/images/share/the-vault/vault-index.jpg",
+
+  // === Behaviour Flags ===
+  showLens: false,
+  showSeriesNav: false
 };

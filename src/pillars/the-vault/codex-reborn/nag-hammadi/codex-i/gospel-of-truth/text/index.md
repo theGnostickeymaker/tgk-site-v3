@@ -4,23 +4,26 @@ title: "The Gospel of Truth"
 description: "A meditation on ignorance, revelation, and the joy of return — the text of awakening attributed to Valentinus."
 tagline: "A reflection on the forgetfulness of the soul and the grace of remembrance — the Gospel of Truth reveals the mystery of the return to the Source."
 tier: free
-scrollId: "the-vault-codex-reborn-nag-hammadi-codex-i-gospel-of-truth"
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-gospel-of-truth-text"
 
 glyph: "📜"
 glyphRow: ["🜂", "📜", "🜂"]
 bodyClass: "vault"
 accent: "vault"
 
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/index.html"
+# ✅ Correct permalink for text file
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/text/index.html"
 
+# === Breadcrumb Hierarchy ===
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Vault", url: "/pillars/the-vault/" }
   - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
   - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
   - { title: "Codex I", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/" }
-  - { title: "Gospel of Truth" }
+  - { title: "The Gospel of Truth" }
 
+# === Vault Metadata ===
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex I"
@@ -31,27 +34,22 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
-# 🔗 Auto-injected navigation (v3.9a)
-
-
+# === Auto-injected Navigation ===
 seriesNav:
-  -
-    title: "Tripartite Tractate"
+  - title: "Tripartite Tractate"
     desc: "A grand cosmological narrative describing emanation, fall, and restoration within the divine Fullness."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/tripartite-tractate/"
-  -
-    title: "Treatise on the Resurrection"
+  - title: "Treatise on the Resurrection"
     desc: "A letter on spiritual rebirth and the awakening of the inner man, attributed to Rheginos."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/treatise-on-the-resurrection/"
+
 lensEnabled: true
 
 crossLinks: []
-
-vaultRefs:
-  []
+vaultRefs: []
 
 communityThreads:
-  - { id: '--', platform: 'tgk-community' }
+  - { id: "--", platform: "tgk-community" }
 
 relatedProducts: []
 ---
@@ -59,9 +57,11 @@ relatedProducts: []
 <main class="main-content">
 <section class="content-container">
 
+{% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
   <details class="disclaimer-box">
     <summary><span class="disclaimer-heading">📖 Preservation Note</span></summary>
-    <p>This sacred text, known as the <em>Gospel of Truth</em>, was discovered among the <strong>Nag Hammadi codices</strong> in 1945. Attributed to Valentinian Gnosticism, it presents Christ not as judge, but as revealer of gnosis &mdash; guiding lost souls out of forgetfulness into divine remembrance. What follows is a scroll-based rendering preserved in <strong>The Gnostic Vault</strong> &mdash; encoded for awakening, protected beyond deletion.</p>
+    <p>This sacred text, known as the <em>Gospel of Truth</em>, was discovered among the <strong>Nag Hammadi codices</strong> in 1945. Attributed to Valentinian Gnosticism, it presents Christ not as judge, but as revealer of gnosis &mdash; guiding lost souls out of forgetfulness into divine remembrance. What follows is a page-based rendering preserved in <strong>The Gnostic Vault</strong> &mdash; encoded for awakening, protected beyond deletion.</p>
   </details>
 
   <section class="section-block">

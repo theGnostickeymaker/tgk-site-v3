@@ -4,15 +4,15 @@ title: "The Apocryphon of John (The Secret Book of John)"
 description: "The Secret Book of John — Sophia’s fall and the birth of Yaldabaoth. A revelation of the false cosmos and the soul’s hidden origin."
 tagline: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark hidden within humanity."
 tier: free
-scrollId: "the-vault-codex-reborn-nag-hammadi-codex-ii-apocryphon-of-john"
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-apocryphon-of-john-text"
 
 glyph: "🜂"
-glyphRow: ["🜂","🕯","🜂"]
+glyphRow: ["🜂", "🕯", "🜂"]
 bodyClass: "vault"
-accent: vault
+accent: "vault"
 
-# ✅ Corrected path to Codex II placement
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/index.html"
+# ✅ Correct text path consistency
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -24,43 +24,35 @@ breadcrumbs:
 
 vaultMeta:
   collection: "Codex Reborn"
-  codex: "Nag Hammadi Codex II"
-  origin: "Nag Hammadi Library"
+  subset: "Nag Hammadi Library – Codex II"
+  origin: "Discovered 1945, Upper Egypt"
   translator: "Stevan Davies"
   source: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/"
   external: "https://www.gnosis.org/naghamm/apocjn-davies.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
-# 🔗 Auto-injected navigation (v3.9a)
-
-
+# === Auto-injected navigation (v3.9a) ===
 seriesNav:
-  -
-    title: "Gospel of Thomas"
+  - title: "Gospel of Thomas"
     desc: "Sayings of the living Jesus revealed to Thomas — the hidden wisdom of inner sight."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
-  -
-    title: "Gospel of Philip"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/"
+  - title: "Gospel of Philip"
     desc: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and self-knowledge."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
-  -
-    title: "Hypostasis of the Archons"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/"
+  - title: "Hypostasis of the Archons"
     desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
-  -
-    title: "On the Origin of the World"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/"
+  - title: "On the Origin of the World"
     desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the light that redeems it."
-    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/"
+    url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
+
 lensEnabled: true
-
 crossLinks: []
-
-vaultRefs:
-  []
+vaultRefs: []
 
 communityThreads:
-  - { id: '--', platform: 'tgk-community' }
+  - { id: "--", platform: "tgk-community" }
 
 relatedProducts: []
 ---
@@ -75,7 +67,7 @@ relatedProducts: []
       <strong>Nag Hammadi codices</strong> in 1945. It is a profound revelatory dialogue between the risen 
       Christ and his disciple John, describing the origin of the divine realms, the creation of the demiurge 
       <strong>Yaldabaoth</strong>, and the imprisonment of humanity in ignorance. 
-      What follows is a sacred rendering of this vision in the scroll format of 
+      What follows is a sacred rendering of this vision in the page format of 
       <strong>The Gnostic Key</strong> — encoded for gnosis, preserved in the Vault.
     </p>
     <p>

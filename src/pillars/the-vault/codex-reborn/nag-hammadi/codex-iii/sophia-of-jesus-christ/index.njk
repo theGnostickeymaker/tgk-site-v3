@@ -1,15 +1,3 @@
----
-layout: base.njk
-title: "The Sophia of Jesus Christ"
-description: "A dialogue of wisdom between Christ and his disciples after the resurrection."
-tier: free
-glyph: "🜂"
-glyphRow: ["🜂","🕯","🜂"]
-accent: vault
-bodyClass: vault
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/sophia-of-jesus-christ/text/index.html"
----
-
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-sophia-of-jesus-christ.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -17,19 +5,30 @@ permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/sophia-of-jesu
 
 <main class="main-content">
   <section class="content-container">
+
     <h2>The Sophia of Jesus Christ</h2>
+
+    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
     <p>
-      <strong>The Sophia of Jesus Christ</strong> presents a post-resurrection dialogue between the Savior and
-      his disciples, revealing the origin of creation, the hierarchy of aeons, and the fall of Sophia.
+      <strong>The Sophia of Jesus Christ</strong> presents a post-resurrection dialogue between the
+      Savior and his disciples, unveiling the origin of creation, the hierarchy of the aeons,
+      and the redemptive descent of <em>Sophia</em> — the divine Wisdom.
     </p>
+
     <p>
-      This text unites the themes of <em>Eugnostos the Blessed</em> with the revelatory teachings of
-      Christ as divine mind — restoring the cosmic order and awakening hidden light in humanity.
+      This revelation expands upon <em>Eugnostos the Blessed</em>, integrating its cosmic vision
+      with Christ’s voice as the Logos of Light. It portrays Wisdom and Word restoring the
+      harmony of the Pleroma and awakening the spark of divine remembrance within humanity.
     </p>
+
+    <h4>Text Access</h4>
     <p>
-      Explore the preserved text through the <a href="{{ vaultRefs[0].href }}">Firebase Vault</a>.
+      The preserved text is available through the
+      <a href="{{ vaultRefs[0].href }}" target="_blank" rel="noopener noreferrer">Firebase Vault</a>.
     </p>
   </section>
+
   <section class="content-container">
     {% include "partials/vault-refs.njk" %}
   </section>

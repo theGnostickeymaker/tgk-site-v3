@@ -1,17 +1,17 @@
 ---
 layout: base.njk
 title: "The Second Treatise of the Great Seth"
-description: "A revelation from the voice of Christ in the fullness — proclaiming the illusion of worldly powers and the triumph of the true Light beyond crucifixion and deception."
+description: "A revelation from the voice of Christ in the Pleroma — proclaiming the illusion of worldly powers and the triumph of the true Light beyond crucifixion and deception."
 tagline: "Christ speaks from the realm of truth ✦ mocking the rulers who believed they had power over him."
 tier: free
-scrollId: "the-vault-codex-reborn-nag-hammadi-codex-vii-second-treatise-of-the-great-seth"
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-vii-second-treatise-of-the-great-seth"
 
 glyph: "🜃"
 glyphRow: ["🜃", "☀", "🜃"]
 bodyClass: "vault"
 accent: "vault"
 
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/index.html"
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/text/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -23,8 +23,8 @@ breadcrumbs:
 
 vaultMeta:
   collection: "Codex Reborn"
-  codex: "Nag Hammadi Codex VII"
-  origin: "Nag Hammadi Library"
+  subset: "Nag Hammadi Library – Codex VII"
+  origin: "Discovered 1945, Upper Egypt"
   translator: "Roger A. Bullard"
   source: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/"
   external: "https://www.gnosis.org/naghamm/2seth.html"
@@ -35,19 +35,18 @@ lensEnabled: true
 
 crossLinks: []
 
-vaultRefs:
-  []
+vaultRefs: []
 
 communityThreads:
-  - { id: '--', platform: 'tgk-community' }
+  - { id: "--", platform: "tgk-community" }
 
 relatedProducts: []
 ---
 
-
-
 <main class="main-content">
 <section class="content-container">
+
+{% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 <details class="disclaimer-box">
   <summary><span class="disclaimer-heading">📖 Preservation Note</span></summary>

@@ -1,0 +1,29 @@
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/trimorphic-protennoia.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
+    <h2>Trimorphic Protennoia</h2>
+
+    <p>
+      <em>Trimorphic Protennoia</em> (Nag Hammadi Codex VII, 1) is the proclamation of the 
+      <strong>Divine Voice before Creation</strong> — the Word (Logos) that speaks the universe into being.  
+      It unfolds the threefold manifestation of the Protennoia: as <em>Voice, Speech, and Word</em>, 
+      revealing the feminine current that shapes all reality.
+    </p>
+
+    <p>
+      This text closes the Nag Hammadi Library’s revelation cycle — the descent of divine sound into form, 
+      and its remembrance within the human soul.  
+      Text coming soon — preserved within <strong>The Vault</strong> for study and translation.
+    </p>
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+  </section>
+</main>

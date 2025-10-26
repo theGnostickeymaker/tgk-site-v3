@@ -1,0 +1,45 @@
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/nag-hammadi-letter-of-peter-to-philip.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    {% include "partials/bookmark.njk" %}
+
+    <h2>The Letter of Peter to Philip</h2>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">📜 Authorship & Preservation</span></summary>
+      <p>
+        This text survives in <strong>Codex VIII</strong> of the Nag Hammadi Library and forms
+        part of the apostolic correspondence preserved by the early Gnostics.
+        Translation adapted from <em>The Nag Hammadi Library in English</em> (James M. Robinson, ed.).
+      </p>
+      <p>
+        Source:&nbsp;
+        <a href="https://www.gnosis.org/naghamm/letpet.html" target="_blank" rel="noopener noreferrer">
+          gnosis.org – The Letter of Peter to Philip
+        </a>
+      </p>
+    </details>
+
+    <p>
+      The <strong>Letter of Peter to Philip</strong> (Codex VIII, 2) describes a secret apostolic dialogue
+      on persecution, knowledge, and strength through the Light.  Peter writes to Philip, who
+      joins the disciples on a mountain where the risen Christ appears in radiant form,
+      instructing them on liberation from the powers of darkness.
+    </p>
+
+    <p>
+      The work blends epistolary form and revelation dialogue — a bridge between scripture and vision,
+      closing the cycle of Gnostic apostolic teachings preserved in the <strong>Nag Hammadi Library</strong>.
+    </p>
+
+    <h4>Text Access</h4>
+    <p>Preserved in the <a href="{{ vaultRefs[0].href }}">Firebase Vault</a> for reference and study.</p>
+
+  </section>
+</main>
