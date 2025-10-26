@@ -2,6 +2,7 @@
    🔖 TGK — Bookmarks System v4.0
    Unified metadata-aware bookmarks for Pages + Dashboard
    =========================================================== */
+console.log("[TGK] Bookmarks v4.0 loaded successfully");
 
 import {
   getAuth,
