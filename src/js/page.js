@@ -21,7 +21,6 @@ import {
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-
 /* 🧙 SIGNUP — Create user → Stripe Customer → Firestore Entitlement */
 async function pageSignup(email, password) {
   try {
@@ -60,7 +59,7 @@ async function pageSignin(email, password) {
     const user = cred.user;
     const token = await user.getIdToken();
 
-    // 🔹 Refresh entitlement cookie (from Firestore/Stripe)
+    // 🔹 Refresh entitlement cookie
     const entRef = await fetch("/.netlify/functions/refresh-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -68,7 +67,7 @@ async function pageSignin(email, password) {
     });
     if (!entRef.ok) console.warn("[PAGE] Entitlement refresh failed");
 
-    // 🔹 Sync Firebase Custom Claims (tier + role)
+    // 🔹 Sync Firebase Custom Claims
     const sync = await fetch("/.netlify/functions/sync-custom-claims", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -100,7 +99,6 @@ function pageReset(email) {
 /* 🚪 LOGOUT — Unified Redirect to /logout/ */
 function pageLogout() {
   console.log("[TGK] Redirecting to logout page…");
-  // Delegate the actual signOut to the logout page itself
   window.location.href = "/logout/";
 }
 
@@ -185,17 +183,15 @@ onAuthStateChanged(auth, (user) => {
     if (userInfo) userInfo.textContent = `Signed in as ${user.email}`;
     document.body.classList.add("is-auth");
 
-    // Populate tier and profile where relevant
     if (window.location.pathname.includes("/dashboard")) loadDashboardData(user);
     if (window.location.pathname.includes("/account")) loadUserProfile(user);
 
-    // Auth-aware navigation
-    document.querySelectorAll('[data-auth="true"]').forEach(el => (el.hidden = false));
-    document.querySelectorAll('[data-auth="false"]').forEach(el => (el.hidden = true));
+    document.querySelectorAll('[data-auth="true"]').forEach((el) => (el.hidden = false));
+    document.querySelectorAll('[data-auth="false"]').forEach((el) => (el.hidden = true));
   } else {
     document.body.classList.remove("is-auth");
-    document.querySelectorAll('[data-auth="true"]').forEach(el => (el.hidden = true));
-    document.querySelectorAll('[data-auth="false"]').forEach(el => (el.hidden = false));
+    document.querySelectorAll('[data-auth="true"]').forEach((el) => (el.hidden = true));
+    document.querySelectorAll('[data-auth="false"]').forEach((el) => (el.hidden = false));
 
     if (document.body.classList.contains("requires-auth")) {
       window.location.href = "/signin/";
@@ -237,14 +233,14 @@ function bindTGKForms() {
   }
 
   if (logoutBtn) {
-  console.log("[TGK] 🔘 Logout button bound");
-  logoutBtn.addEventListener("click", pageLogout);
-  };
-}
+    console.log("[TGK] 🔘 Logout button bound");
+    logoutBtn.addEventListener("click", pageLogout);
+  }
 
   if (profileForm) {
     profileForm.addEventListener("submit", saveProfile);
   }
+}
 
 // 🜂 Bind immediately if DOM is ready; otherwise, wait
 if (document.readyState === "loading") {
