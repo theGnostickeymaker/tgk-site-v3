@@ -16,7 +16,7 @@ import {
   doc,
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-import { app } from "/src/js/firebase-init.js";
+import { app } from "/js/firebase-init.js";
 
 const db = getFirestore(app);
 const auth = getAuth(app);
