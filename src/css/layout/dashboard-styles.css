@@ -1,7 +1,7 @@
 @layer layout {
   /* ===================================================
      📖 TGK Dashboard & Bookmarks
-     Version: 1.6 – Add / Remove Animations
+     Version: 4.3 – Animated Accordion + Sticky Controls
      =================================================== */
 
   /* ✦ Tier highlight */
@@ -31,7 +31,7 @@
     background: var(--card-gradient, var(--bg-primary));
     border: 1px solid var(--text-accent);
     border-radius: var(--border-radius-base);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
     padding: var(--space-md);
     display: flex;
     flex-direction: column;
@@ -49,14 +49,12 @@
     animation: bookmarkPop 0.6s ease forwards;
   }
 
-  /* 🎬 Pop-in (added) */
   @keyframes bookmarkPop {
     0%   { opacity: 0; transform: scale(0.95) translateY(10px); }
     70%  { opacity: 1; transform: scale(1.03) translateY(0); }
     100% { opacity: 1; transform: scale(1); }
   }
 
-  /* 🎬 Fade-out (removed) */
   @keyframes bookmarkFadeOut {
     0%   { opacity: 1; transform: scale(1); }
     100% { opacity: 0; transform: scale(0.9) translateY(10px); }
@@ -150,7 +148,7 @@
   }
 
   /* ===================================================
-     🔖 page Bookmark Feedback
+     🔖 Page Bookmark Feedback
      =================================================== */
   .bookmark-floating { text-align: right; margin-bottom: var(--space-sm); }
 
@@ -195,99 +193,37 @@
 
   @media (max-width: 480px) {
     #bookmark-list { grid-template-columns: 1fr; }
-
     .dashboard-bookmark-card {
       padding: var(--space-sm);
       font-size: 0.9rem;
     }
-
     .dashboard-bookmark-card .bookmark-title { font-size: 1rem; }
     .dashboard-bookmark-card .bookmark-description { font-size: 0.9rem; }
   }
 
   /* ===========================================================
-   🩸 Dashboard Bookmark Removal Pulse
-   =========================================================== */
-
-/* Pulse colour + fade-out combo */
-.dashboard-card.removing {
-  animation:
-    bookmarkRemovePulse 0.25s ease-in forwards,
-    bookmarkFadeOut 0.45s 0.25s ease-in forwards;
-  transform-origin: center;
-}
-
-/* Flash red pulse */
-@keyframes bookmarkRemovePulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(255, 0, 0, 0);
+     🩸 Dashboard Bookmark Removal Pulse
+     =========================================================== */
+  .dashboard-card.removing {
+    animation:
+      bookmarkRemovePulse 0.25s ease-in forwards,
+      bookmarkFadeOut 0.45s 0.25s ease-in forwards;
+    transform-origin: center;
   }
-  40% {
-    transform: scale(1.05);
-    background-color: rgba(220, 38, 38, 0.08); /* red-600 tint */
-    box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(255, 0, 0, 0);
-  }
-}
 
-/* Gentle fade-out after pulse */
-@keyframes bookmarkFadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
+  @keyframes bookmarkRemovePulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 0, 0, 0); }
+    40% {
+      transform: scale(1.05);
+      background-color: rgba(220, 38, 38, 0.08);
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
+    }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 0, 0, 0); }
   }
-  to {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-}
-
-/* Optional: make the “Remove” button itself flash red when clicked */
-.btn-mini:active {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: var(--text-primary);
-  transition: background-color 0.2s ease;
-}
-
-/* ===========================================================
-   🔖 Page Bookmark Remove Pulse (inline icon feedback)
-   =========================================================== */
-
-.page-bookmark.removing {
-  animation:
-    pageBookmarkPulse 0.25s ease-in forwards,
-    pageBookmarkFade 0.35s 0.25s ease-in forwards;
-  transform-origin: center;
-}
-
-@keyframes pageBookmarkPulse {
-  0% {
-    transform: scale(1);
-    text-shadow: 0 0 0 rgba(239, 68, 68, 0);
-  }
-  40% {
-    transform: scale(1.4);
-    color: #ef4444; /* red-500 */
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
-  }
-  100% {
-    transform: scale(1);
-    text-shadow: 0 0 0 rgba(239, 68, 68, 0);
-  }
-}
-
-@keyframes pageBookmarkFade {
-  from { opacity: 1; }
-  to { opacity: 0.4; color: var(--text-secondary); }
-}
 
   /* ===========================================================
-   🕯️ TGK Toast Notifications
-   =========================================================== */
+     🕯️ TGK Toast Notifications
+     =========================================================== */
   #toast-container {
     position: fixed;
     bottom: 2rem;
@@ -307,9 +243,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
 
-  .tgk-toast.success { background-color: #22c55e; } /* ✅ Green success */
-  .tgk-toast.remove  { background-color: #dc2626; } /* ❌ Red remove */
-  .tgk-toast.info    { background-color: #52525b; } /* Neutral */
+  .tgk-toast.success { background-color: #22c55e; }
+  .tgk-toast.remove  { background-color: #dc2626; }
+  .tgk-toast.info    { background-color: #52525b; }
 
   @keyframes fadeinout {
     0%   { opacity: 0; transform: translateY(10px); }
@@ -318,4 +254,51 @@
     100% { opacity: 0; transform: translateY(-10px); }
   }
 
+  /* ===========================================================
+     🜂 Animated Accordion Behavior
+     =========================================================== */
+  .bookmark-grid {
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+  }
+
+  .bookmark-group.collapsed .bookmark-grid { opacity: 0; }
+
+  .group-heading {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .group-heading .toggle-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .bookmark-group.open .toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  /* ===========================================================
+     🧭 Expand / Collapse All Controls (Sticky)
+     =========================================================== */
+  .bookmark-controls {
+    position: sticky;
+    top: 4.5rem; /* adjust if header overlaps */
+    z-index: 50;
+    background: var(--bg-primary);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  }
+
+  .bookmark-controls .btn.small {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+  }
 }

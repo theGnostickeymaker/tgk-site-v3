@@ -1,12 +1,15 @@
 {# ===========================================================
-   🔖 Bookmark Partial
-   Persistent page-level bookmark toggle, powered by admin.js
+   🔖 TGK — Bookmark Partial (v2.5)
+   Persistent page-level bookmark toggle
+   Includes permalink for Firestore + dashboard linkage
    =========================================================== #}
 
 <button
   class="bookmark-tag page-bookmark"
   type="button"
   aria-label="Bookmark this Page"
-  data-bookmark-id="{{ pageId or page.url }}">
+  data-bookmark-id="{{ pageId or page.url }}"
+  data-permalink="{{ permalink or page.url }}">
   🔖
 </button>
+

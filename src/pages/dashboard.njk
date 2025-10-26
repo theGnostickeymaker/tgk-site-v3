@@ -36,7 +36,7 @@ breadcrumbs:
 
     <!-- ✦ Upgrade CTA -->
     <section id="upgrade-cta" class="section-block dashboard-upgrade" hidden>
-      <h3>Unlock Deeper pages</h3>
+      <h3>Unlock Deeper Pages</h3>
       <p>Upgrade your access to reveal all Vault texts and advanced series.</p>
       <a href="/membership/" class="btn gold">Upgrade Membership</a>
     </section>
@@ -45,16 +45,14 @@ breadcrumbs:
     <section class="section-block">
       <h2 class="section-heading">Your Bookmarks</h2>
 
-      <ul id="bookmark-list" class="dashboard-bookmarks">
-        <li class="dashboard-card">
-          <div class="card-body muted">Loading bookmarks…</div>
-        </li>
-      </ul>
-
-      <p id="no-bookmarks" class="muted small" hidden>
-        No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
-        the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
-      </p>
+      <div id="bookmark-dashboard">
+        <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
+        <div id="bookmark-groups"></div>
+        <p id="no-bookmarks" class="muted small" hidden>
+          No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
+          the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
+        </p>
+      </div>
     </section>
 
   </section>
@@ -68,180 +66,4 @@ breadcrumbs:
 <!-- =========================================================
      🜂 Dashboard Script — Tier + Bookmarks + Stripe Portal
    ========================================================= -->
-<script type="module">
-import {
-  getAuth,
-  onAuthStateChanged,
-  getIdTokenResult,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-import { app } from "/js/firebase-init.js";
-import { toggleBookmark } from "/js/bookmarks.js";
-
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const bookmarkList = document.getElementById("bookmark-list");
-const noBookmarks = document.getElementById("no-bookmarks");
-const upgradeCTA = document.getElementById("upgrade-cta");
-
-/* ===========================================================
-   🜂 Resolve User Tier Hierarchy
-   =========================================================== */
-async function resolveUserTier(user) {
-  let tier = "free";
-  try {
-    const token = await getIdTokenResult(user);
-    if (token?.claims?.tier) tier = token.claims.tier;
-    else {
-      const ref = doc(db, "users", user.uid);
-      const snap = await getDoc(ref);
-      if (snap.exists() && snap.data().tier) tier = snap.data().tier;
-    }
-    const cached = localStorage.getItem("tgk-tier");
-    if (cached) tier = cached;
-    localStorage.setItem("tgk-tier", tier);
-  } catch (err) {
-    console.warn("[TGK] Tier resolve error:", err);
-  }
-  return tier;
-}
-
-/* ===========================================================
-   🜂 Helper — Build Clean Title
-   =========================================================== */
-function formatTitleFromId(pageId) {
-  return pageId
-    .split("-")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
-}
-
-/* ===========================================================
-   🜂 Helper — Build Href from page ID
-   =========================================================== */
-function buildHrefFromId(pageId) {
-  // Detect multi-part pages
-  if (pageId.includes("part-")) {
-    const parts = pageId.split("-");
-    const idx = parts.indexOf("part");
-    const prefix = parts.slice(0, idx).join("/");
-    const suffix = parts.slice(idx, idx + 2).join("-");
-    return `/pillars/${prefix}/${suffix}/`;
-  }
-
-  // Normal page
-  return `/pillars/${pageId.replace(/-/g, "/")}/`;
-}
-
-/* ===========================================================
-   🜂 Main Dashboard Loader
-   =========================================================== */
-onAuthStateChanged(auth, async (user) => {
-  if (!user) return;
-
-  document.getElementById("user-name").textContent =
-    user.displayName || user.email.split("@")[0];
-
-  let tier = await resolveUserTier(user);
-
-  // 🜂 Force-admin fallback for The Keymaker
-  if (user.email === "the.keymaker@thegnostickey.com") {
-    tier = "admin";
-    localStorage.setItem("tgk-tier", "admin");
-    console.log("[TGK Dashboard] 🜂 Forced admin tier for Keymaker account");
-  }
-
-  document.getElementById("user-tier").textContent = tier.toUpperCase();
-
-  if (["free", "initiate"].includes(tier)) upgradeCTA.hidden = false;
-
-  /* ===========================================================
-     🔖 Load Bookmarks with Smart Hrefs
-     =========================================================== */
-  try {
-    const snap = await getDocs(collection(db, "bookmarks", user.uid, "pages"));
-    bookmarkList.innerHTML = "";
-
-    if (snap.empty) {
-      noBookmarks.hidden = false;
-      return;
-    }
-
-    snap.forEach((docSnap) => {
-      const pageId = docSnap.id;
-      const href = buildHrefFromId(pageId);
-      const title = formatTitleFromId(pageId);
-
-      const item = document.createElement("li");
-      item.className = "dashboard-card";
-      item.dataset.id = pageId;
-      item.innerHTML = `
-        <div class="card-body">
-          <a href="${href}" class="card-link">
-            <h3 class="card-title">${title}</h3>
-          </a>
-          <button class="btn-mini" data-id="${pageId}">Remove</button>
-        </div>`;
-      bookmarkList.appendChild(item);
-    });
-
-    // 🔹 Bind remove buttons
-    bookmarkList.querySelectorAll(".btn-mini").forEach((btn) => {
-      btn.addEventListener("click", async (e) => {
-        const id = e.target.dataset.id;
-        if (!confirm("Remove bookmark?")) return;
-
-        const card = e.target.closest(".dashboard-card");
-        if (card) card.classList.add("removing");
-        await toggleBookmark(id, null);
-        await new Promise((res) => setTimeout(res, 400));
-        card?.remove();
-
-        if (!bookmarkList.children.length) noBookmarks.hidden = false;
-      });
-    });
-  } catch (err) {
-    console.error("[Dashboard] Bookmark load error:", err);
-    noBookmarks.hidden = false;
-  }
-});
-
-/* ===========================================================
-   🜂 Stripe Portal Access
-   =========================================================== */
-document.getElementById("manage-tier").onclick = async () => {
-  const user = auth.currentUser;
-  const email = user?.email || prompt("Enter your Stripe email:");
-  const res = await fetch("/.netlify/functions/create-portal-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email })
-  });
-  const data = await res.json();
-  if (data.url) window.location = data.url;
-  else alert(data.error || "Portal error");
-};
-
-/* ===========================================================
-   🚪 TGK — Unified Logout Redirect
-   =========================================================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const logoutBtn = document.getElementById("logout-btn");
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log("[TGK Dashboard] Redirecting to /logout/");
-      window.location.href = "/logout/";
-    });
-  }
-});
-
-</script>
+<script type="module" src="/src/js/bookmarks.js"></script>
