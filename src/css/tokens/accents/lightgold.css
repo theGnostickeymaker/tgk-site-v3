@@ -21,9 +21,9 @@
     --shadow-glow: rgba(238, 209, 145, 0.14) !important;
     --glyph-color: #c6a968 !important;
     --strong-text: #b39558 !important;
-    --scroll-box-shadow: 0 0 18px rgba(238, 209, 145, 0.12) !important;
+    --page-box-shadow: 0 0 18px rgba(238, 209, 145, 0.12) !important;
     --cite-color: #b39558 !important;
-    --accent-scroll: #a08040 !important;
+    --accent-page: #a08040 !important;
     --section-border: #fdf3c2 !important;
 
     /* Gradients */
@@ -64,12 +64,6 @@
     background: linear-gradient(to bottom, #fffaf0, #f9f0dc) !important;
     color: var(--text-accent) !important;
     border-bottom: 1px solid var(--highlight) !important;
-  }
-
-  html[data-theme="light"] body.lightgold .scroll-title {
-    background: linear-gradient(to right, #fdf3c2 0%, #e8d5a8 60%, #bfa268 100%) !important;
-    color: var(--text-accent) !important;
-    text-shadow: 0 1px 4px rgba(238, 209, 145, 0.2) !important;
   }
 
   html[data-theme="light"] body.lightgold .section-block {
@@ -133,9 +127,9 @@
     --shadow-glow: rgba(210, 190, 120, 0.18) !important;
     --glyph-color: #d4bc85 !important;
     --strong-text: #e8ce98 !important;
-    --scroll-box-shadow: 0 0 22px rgba(240, 210, 140, 0.15) !important;
+    --page-box-shadow: 0 0 22px rgba(240, 210, 140, 0.15) !important;
     --cite-color: #e8ce98 !important;
-    --accent-scroll: #bfa865 !important;
+    --accent-page: #bfa865 !important;
     --section-border: #e3d2a2 !important;
 
     /* Gradients */
@@ -177,12 +171,6 @@
     background: linear-gradient(to bottom, #1a140a, #2a1f0c) !important;
     color: var(--text-accent) !important;
     border-bottom: 1px solid var(--highlight) !important;
-  }
-
-  html[data-theme="dark"] body.lightgold .scroll-title {
-    background: linear-gradient(to right, #3a2e14 0%, #5b4722 60%, #bfa865 100%) !important;
-    color: var(--text-accent) !important;
-    text-shadow: 0 1px 5px rgba(240, 210, 140, 0.15) !important;
   }
 
   html[data-theme="dark"] body.lightgold .section-block {

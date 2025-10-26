@@ -23,7 +23,7 @@
     --glyph-color: #c06b9b !important;
     --strong-text: #6c2e52 !important;
     --cite-color: #a25d85 !important;
-    --accent-scroll: #b56b97 !important;
+    --accent-page: #b56b97 !important;
     --section-border: #f3d4e6 !important;
 
     /* Gradients */
@@ -68,12 +68,6 @@
     border-bottom: 1px solid var(--highlight) !important;
   }
 
-  html[data-theme="light"] body.dream .scroll-title {
-    background: linear-gradient(to right, #fdeff6 0%, #eec4dc 100%) !important;
-    color: var(--glyph-color) !important;
-    text-shadow: 0 1px 4px rgba(192, 107, 155, 0.12) !important;
-  }
-
   html[data-theme="light"] body.dream .section-block {
     background: linear-gradient(145deg, #fdeff6 0%, #f7ddeb 60%, #eec4dc 100%) !important;
     border-color: var(--section-border) !important;
@@ -94,7 +88,7 @@
   html[data-theme="light"] body.dream .quiz-prompt {
     background: linear-gradient(to right, #fdeff6, #f7ddeb) !important;
     color: var(--strong-text) !important;
-    border-left: 4px solid var(--accent-scroll) !important;
+    border-left: 4px solid var(--accent-page) !important;
     box-shadow: 0 0 10px rgba(192, 107, 155, 0.18) !important;
   }
 
@@ -107,7 +101,7 @@
   html[data-theme="light"] body.dream .quiz-button {
     background: #fffafd !important;
     color: var(--text-accent) !important;
-    border: 2px solid var(--accent-scroll) !important;
+    border: 2px solid var(--accent-page) !important;
     box-shadow: 0 0 6px rgba(192, 107, 155, 0.1) inset !important;
   }
 
@@ -136,7 +130,7 @@
     --glyph-color: #ffd8ec !important;
     --strong-text: #f4c9dc !important;
     --cite-color: #e4a5c4 !important;
-    --accent-scroll: #d08fb3 !important;
+    --accent-page: #d08fb3 !important;
     --section-border: #f1c6dd !important;
 
     /* Gradients */
@@ -181,12 +175,6 @@
     border-bottom: 1px solid var(--highlight) !important;
   }
 
-  html[data-theme="dark"] body.dream .scroll-title {
-    background: linear-gradient(to right, #221626 0%, #6a3a6f 100%) !important;
-    color: var(--glyph-color) !important;
-    text-shadow: 0 1px 6px rgba(240, 160, 200, 0.3) !important;
-  }
-
   html[data-theme="dark"] body.dream .section-block {
     background: linear-gradient(145deg, #221626 0%, #3a2340 60%, #6a3a6f 100%) !important;
     border-color: var(--section-border) !important;
@@ -207,7 +195,7 @@
   html[data-theme="dark"] body.dream .quiz-prompt {
     background: linear-gradient(to right, #221626, #3a2340) !important;
     color: var(--glyph-color) !important;
-    border-left: 4px solid var(--accent-scroll) !important;
+    border-left: 4px solid var(--accent-page) !important;
     box-shadow: 0 0 12px rgba(240, 160, 200, 0.2) !important;
   }
 
@@ -220,7 +208,7 @@
   html[data-theme="dark"] body.dream .quiz-button {
     background: #140e14 !important;
     color: var(--strong-text) !important;
-    border: 2px solid var(--accent-scroll) !important;
+    border: 2px solid var(--accent-page) !important;
     box-shadow: 0 0 6px rgba(240, 160, 200, 0.15) inset !important;
   }
 

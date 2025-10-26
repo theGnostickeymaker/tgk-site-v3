@@ -14,7 +14,7 @@ const auth = getAuth(app);
 const tierRank = { free: 0, initiate: 1, adept: 2, admin: 3 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const lockedBlocks = document.querySelectorAll(".locked-scroll");
+  const lockedBlocks = document.querySelectorAll(".locked-page");
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) return; // anonymous stays locked
@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (rank >= reqRank) {
           // 🔓 Unlock visually
-          block.classList.add("unlocked-scroll");
+          block.classList.add("unlocked-page");
 
           const placeholder = block.querySelector(".locked-placeholder");
-          const content = block.querySelector(".scroll-content");
+          const content = block.querySelector(".page-content");
 
           if (placeholder) placeholder.style.display = "none";
           if (content) {

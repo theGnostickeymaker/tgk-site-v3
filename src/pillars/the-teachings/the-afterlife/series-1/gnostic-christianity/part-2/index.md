@@ -5,7 +5,7 @@ title: "Gnostic Christianity"
 description: "Part II of the Afterlife Series — The Christ of Gnosis and the spark that remembers beyond death."
 excerpt: "Previously: You heard the voice behind the veil—not a god of wrath, but a Revealer of the spark. Christ came not to be worshipped, but to reflect what you truly are. His mirror shattered the illusion.…"
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-2"
+pageId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-2"
 
 episode: 1
 partNumeral: II
@@ -33,7 +33,7 @@ quizIntro: "Can you pierce the illusion and recognise the spark within?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -184,7 +184,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -398,14 +398,14 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: gnosis-vs-religion-scroll -->
+<!-- Image: gnosis-vs-religion-page -->
 <figure class="image-block">
-  <a href="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.jpg" target="_blank" rel="noopener noreferrer">
+  <a href="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-page.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.webp" type="image/webp">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-page.webp" type="image/webp">
       <img
-        src="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.jpg"
-        alt="An ancient scroll burns from within, light breaking through its faded doctrines. Silhouettes of seekers stand outside collapsing temples as golden sparks of remembrance rise into the air. Gnosis emerges from the ashes of belief."
+        src="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-page.jpg"
+        alt="An ancient page burns from within, light breaking through its faded doctrines. Silhouettes of seekers stand outside collapsing temples as golden sparks of remembrance rise into the air. Gnosis emerges from the ashes of belief."
         class="image-gnostic"
         loading="lazy"
       >

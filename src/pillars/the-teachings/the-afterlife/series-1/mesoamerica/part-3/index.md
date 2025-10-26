@@ -6,7 +6,7 @@ description: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of De
 excerpt: "You descended into Mictlán, outwitted the Lords of Xibalba, and faced the games of death.  
     Now begins the spiral upward — through sacrifice, memory, and the soul’s return to the celestial maize f…"
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-mesoamerica-part-3"
+pageId: "the-teachings-the-afterlife-series-1-mesoamerica-part-3"
 
 episode: 6
 partNumeral: "III"
@@ -34,7 +34,7 @@ quizIntro: "Can you see through the veil of III?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -61,7 +61,7 @@ relatedProducts: []
 # 🗣 Discussion Prompt
 discussion:
   promptTitle: "What Did You Leave in the Underworld?"
-  intro: "&ldquo;If your bones could speak, what would they confess before they turn to stars?&rdquo; This scroll wasn&rsquo;t a story — it was a descent, a rite, a remembering of the path walked by every soul."
+  intro: "&ldquo;If your bones could speak, what would they confess before they turn to stars?&rdquo; This page wasn&rsquo;t a story — it was a descent, a rite, a remembering of the path walked by every soul."
   question: "What truth remains when everything else is stripped away?"
   points:
     - "Which of the Nine Houses do you fear the most, and why?"
@@ -70,7 +70,7 @@ discussion:
     - "Do you believe death is the end, or the final test of memory?"
   footer: "Share your reflections with <strong>#TheGnosticKey</strong> or join the <strong>Telegram Temple</strong> to add your voice to the echo of the descent."
 
-# 📖 The Gnostic Key Glossary — Scroll III Edition
+# 📖 The Gnostic Key Glossary — page III Edition
 glossary:
   subtitle: "Terms of remembrance, resurrection, and spiral return."
   terms:
@@ -193,7 +193,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -361,7 +361,7 @@ socialImages:
 
   <p>They are not magic charms. They are <strong>anchors</strong> for memory. Fragments of the self waiting to be recovered.</p>
 
-  <p>In this scroll, you've died. You've descended. You've forgotten.</p>
+  <p>In this page, you've died. You've descended. You've forgotten.</p>
   <p>Now, you remember. And in remembrance, the bones knit again. Not as they were, but as they were meant to become.</p>
 </section>
 

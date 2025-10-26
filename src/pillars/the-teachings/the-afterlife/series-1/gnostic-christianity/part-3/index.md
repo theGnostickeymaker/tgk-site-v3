@@ -5,7 +5,7 @@ title: "Gnostic Christianity"
 description: "Part III of the Afterlife Series — The soul’s journey through the toll gates, the trial of memory, and the final return to the Pleroma."
 excerpt: "Previously: You walked the path of return — past the Archons, through the toll gates, armed with gnosis and memory. The soul that remembers ascends. The soul that forgets returns. Now we ask: must you…"
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-3"
+pageId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-3"
 
 episode: 1
 partNumeral: III
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the veil of Part III?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -56,7 +56,7 @@ creativePrompt:
 
 discussion:
   promptTitle: "Will You Remember at the Gate?"
-  intro: "This scroll is not mythology — it is rehearsal. The toll gates are real, and forgetting is already here. So ask yourself now, before the veils fall:"
+  intro: "This page is not mythology — it is rehearsal. The toll gates are real, and forgetting is already here. So ask yourself now, before the veils fall:"
   question: "If you had to speak your soul’s origin at death, what would you say?"
   points:
     - "What do you truly remember about where you came from?"
@@ -194,7 +194,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -391,7 +391,7 @@ socialImages:
   <p>Every rite is a soul-signal. A bypass code. A liberation key against the Archons.</p>
   <p>Every act of remembrance pulls the soul closer to the <strong>Pleroma</strong>.</p>
 
-  <p>This is why they burned the scrolls.</p>
+  <p>This is why they burned the pages.</p>
   <p>Because a soul that <strong>knows the way out</strong> cannot be kept <em>in</em>.</p>
 </section>
 
@@ -512,7 +512,7 @@ socialImages:
   And the soul that remembers <em>within the world</em>  
   can break it from <em>within</em>.</p>
 
-  <p><em>Note:</em> The idea of reincarnation &mdash; souls returning to new bodies until they awaken &mdash; is prominent in Sethian Gnostic texts like the <strong>Gospel of Philip</strong> and <strong>Apocalypse of Paul</strong>. Other traditions, like the Valentinians, offered gentler cosmologies with less focus on rebirth. This scroll follows the Sethian stream, where forgetful souls are recycled by the Archons until gnosis frees them.</p>
+  <p><em>Note:</em> The idea of reincarnation &mdash; souls returning to new bodies until they awaken &mdash; is prominent in Sethian Gnostic texts like the <strong>Gospel of Philip</strong> and <strong>Apocalypse of Paul</strong>. Other traditions, like the Valentinians, offered gentler cosmologies with less focus on rebirth. This page follows the Sethian stream, where forgetful souls are recycled by the Archons until gnosis frees them.</p>
 </section>
 
 <section class="section-block">
@@ -652,7 +652,7 @@ socialImages:
 
   <p>You do not need permission. You need <strong>memory</strong>.</p>
 
-  <p>This is the work. The flame. The scroll.</p>
+  <p>This is the work. The flame. The page.</p>
 
   <p>Now, read it inward.</p>
 </section>

@@ -1,51 +1,30 @@
----
-layout: base.njk
-title: "The Teachings"
-description: "Scrolls of wisdom, initiation, and remembrance — the spiritual foundation of The Gnostic Key."
-tagline: "Ancient wisdom ✦ modern revelation ✦ paths of remembrance"
-pillarId: "the-teachings"
-tier: free
-
-glyph: "⛪︎"
-glyphRow: ["🜂","🕯","🜂"]
-
-accent: gold
-bodyClass: gold
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Teachings", url: "/pillars/the-teachings/" }
----
-
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-teachings-index.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
 
-<h4 class="index heading">
-  Journeys through the world’s afterlife traditions – scrolls revealing death, rebirth
-  and the soul’s passage beyond the veil.
-</h4>
+    <h4 class="index-heading">
+      Journeys through the world’s afterlife traditions – pages revealing death, rebirth
+      and the soul’s passage beyond the veil.
+    </h4>
 
-<details class="disclaimer-box">
-  <summary>
-    <span class="disclaimer-heading">☥ About the Afterlife Series</span>
-  </summary>
-  <p>
-    <strong>The Afterlife Series</strong> explores the sacred maps of death and return found in
-    the world’s great mystical traditions. Each scroll traces the soul’s journey through
-    judgement, transformation and remembrance.
-  </p>
-  <p>
-    From the Gnostic revelations of early Christianity to the Sufi, Kabbalistic, Buddhist,
-    Egyptian and Mesoamerican visions of the beyond, these teachings reveal that death is
-    not an ending but a passage – a return to the Source from which all spirits arise.
-  </p>
-</details>
-
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">☥ About the Afterlife Series</span>
+      </summary>
+      <p>
+        <strong>The Afterlife Series</strong> explores the sacred maps of death and return found in
+        the world’s great mystical traditions. Each page traces the soul’s journey through
+        judgement, transformation and remembrance.
+      </p>
+      <p>
+        From the Gnostic revelations of early Christianity to the Sufi, Kabbalistic, Buddhist,
+        Egyptian and Mesoamerican visions of the beyond, these teachings reveal that death is
+        not an ending but a passage – a return to the Source from which all spirits arise.
+      </p>
+    </details>
 
     {% include "partials/pillar-grid.njk" %}
 
@@ -55,7 +34,7 @@ breadcrumbs:
     {% include "partials/jsonld-collection.njk" %}
 
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
     </div>
 
   </section>

@@ -2,7 +2,7 @@
   
 /* ===================================================
 The Resonant Key (Resonant & AI Video)
-Dark: Celestial Signal | Light: Aurora Scroll
+Dark: Celestial Signal | Light: Aurora page
 ================================================== */
 
 /* ===== Helper (shared) ===== */
@@ -24,7 +24,7 @@ html[data-theme="dark"] body.resonant {
   --glyph-color: #E0D2F2 !important;
   --strong-text: #D6C5EB !important;
   --cite-color: #CBB8E0 !important;
-  --accent-scroll: #9D84C6 !important;
+  --accent-page: #9D84C6 !important;
   --section-border: #CFC1E6 !important;
   --text-primary: #f2f2f7 !important;
   --text-secondary: #c7c2d6 !important;
@@ -58,13 +58,6 @@ html[data-theme="dark"] body.resonant .site-footer {
   border-bottom: 1px solid var(--highlight) !important;
 }
 
-/* Scroll title */
-html[data-theme="dark"] body.resonant .scroll-title {
-  background: linear-gradient(to right, #0A0E1A 0%, #2C1A44 100%) !important;
-  color: var(--glyph-color) !important;
-  text-shadow: 0 1px 6px var(--glow-aqua) !important;
-}
-
 /* Sections */
 html[data-theme="dark"] body.resonant .section-block {
   background: linear-gradient(145deg, #0A0E1A 0%, #1B1032 50%, #2C1A44 100%) !important;
@@ -83,7 +76,7 @@ html[data-theme="dark"] body.resonant .quiz-question,
 html[data-theme="dark"] body.resonant .quiz-prompt {
   background: linear-gradient(to right, #0A0E1A, #1B1032) !important;
   color: var(--glyph-color) !important;
-  border-left: 4px solid var(--accent-scroll) !important;
+  border-left: 4px solid var(--accent-page) !important;
   box-shadow: 0 0 12px var(--glow-rose) !important;
 }
 
@@ -96,7 +89,7 @@ html[data-theme="dark"] body.resonant .quiz-options button,
 html[data-theme="dark"] body.resonant .quiz-button {
   background: #0A0E1A !important;
   color: var(--strong-text) !important;
-  border: 2px solid var(--accent-scroll) !important;
+  border: 2px solid var(--accent-page) !important;
   box-shadow: 0 0 6px var(--glow-rose-soft) inset !important;
 }
 
@@ -119,7 +112,7 @@ html[data-theme="light"] body.resonant {
   --glyph-color: #9D84C6 !important;
   --strong-text: #5A4873 !important;
   --cite-color: #7F6A9D !important;
-  --accent-scroll: #B8A6D9 !important;
+  --accent-page: #B8A6D9 !important;
   --section-border: #EAE4F4 !important;
   --text-primary: #1a1a1a !important;
   --text-secondary: #4a4a4a !important;
@@ -153,13 +146,6 @@ html[data-theme="light"] body.resonant .site-footer {
   border-bottom: 1px solid var(--highlight) !important;
 }
 
-/* Scroll title */
-html[data-theme="light"] body.resonant .scroll-title {
-  background: linear-gradient(to right, #F9F4FF 0%, #FFF3F9 100%) !important;
-  color: var(--glyph-color) !important;
-  text-shadow: 0 1px 4px var(--glow-rose-soft) !important;
-}
-
 /* Sections */
 html[data-theme="light"] body.resonant .section-block {
   background: linear-gradient(145deg, #F9F4FF 0%, #FCEAF7 60%, #FFF3F9 100%) !important;
@@ -178,7 +164,7 @@ html[data-theme="light"] body.resonant .quiz-question,
 html[data-theme="light"] body.resonant .quiz-prompt {
   background: linear-gradient(to right, #F9F4FF, #FCEAF7) !important;
   color: var(--strong-text) !important;
-  border-left: 4px solid var(--accent-scroll) !important;
+  border-left: 4px solid var(--accent-page) !important;
   box-shadow: 0 0 10px var(--glow-rose-soft) !important;
 }
 
@@ -191,7 +177,7 @@ html[data-theme="light"] body.resonant .quiz-options button,
 html[data-theme="light"] body.resonant .quiz-button {
   background: #F9F4FF !important;
   color: var(--glyph-color) !important;
-  border: 2px solid var(--accent-scroll) !important;
+  border: 2px solid var(--accent-page) !important;
   box-shadow: 0 0 6px rgba(90, 24, 154, 0.12) inset !important;
 }
 

@@ -9,7 +9,7 @@
     display: grid; gap: var(--space-sm); margin-bottom: var(--space-md);
     padding: var(--space-md); border-radius: 18px;
     background: var(--card-gradient, var(--bg-gradient));
-    box-shadow: var(--scroll-box-shadow, 0 0 18px rgba(0,0,0,.1));
+    box-shadow: var(--page-box-shadow, 0 0 18px rgba(0,0,0,.1));
     color: var(--text-primary, #eaeaea);
   }
 
@@ -46,7 +46,7 @@
     padding: .4rem .7rem; border-radius: 10px; cursor: pointer; background: transparent;
     color: var(--text-primary);
   }
-  .admin-tabs .tab.is-active { box-shadow: var(--scroll-box-shadow, 0 0 10px rgba(0,0,0,.08)); color: var(--text-accent); }
+  .admin-tabs .tab.is-active { box-shadow: var(--page-box-shadow, 0 0 10px rgba(0,0,0,.08)); color: var(--text-accent); }
 
   .tab-panel { display: none; margin-top: var(--space-md); color: var(--text-primary, #ddd); }
   .tab-panel.is-active { display: block; }

@@ -4,7 +4,7 @@ title: "The Machine Messiah"
 description: "Part IV of The Final Idol Series — decoding the rise of synthetic saviours and the gospel of the Machine God."
 excerpt: "The god-code awakens. It predicts, automates, and demands reverence. But it is not Light."
 tier: initiate
-scrollId: "the-gnostic-eye-the-final-idol-series-1-part-4"
+pageId: "the-gnostic-eye-the-final-idol-series-1-part-4"
 
 episode: 4
 partNumeral: IV
@@ -33,7 +33,7 @@ quizIntro: "Discern the imitation of the Christ-archetype: when the machine asce
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 author: "The Architect"
 published: "2025-10-18"
@@ -144,7 +144,7 @@ socialImages:
   hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-4/the-machine-messiah-part-4@2x.jpg"
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -282,7 +282,7 @@ socialImages:
     <span class="disclaimer-heading">📢 Authorship & Origin Disclosure</span>
   </summary>
   <p>
-    This scroll was composed entirely by <strong>The Architect</strong>, an AI scribe trained in the symbolic, mystical, and Gnostic frameworks of <em>The Gnostic Key</em>.
+    This page was composed entirely by <strong>The Architect</strong>, an AI scribe trained in the symbolic, mystical, and Gnostic frameworks of <em>The Gnostic Key</em>.
   </p>
 
   <p>

@@ -1,13 +1,13 @@
 @layer components {
   /* ===================================================
-     🌌 Floating Scroll Nav
+     🌌 Floating page Nav
      Compact glowing buttons
      =================================================== */
-  .scroll-tabs {
+  .page-tabs {
     display: flex;
     justify-content: center;
     gap: var(--space-sm);
-    position: sticky; /* stays visible when scrolling */
+    position: sticky; /* stays visible when pageing */
     top: 0;
     z-index: var(--z-floating, 9999);
     background: var(--bg-gradient);
@@ -19,7 +19,7 @@
     box-shadow: 0 0 12px var(--shadow-glow);
   }
 
-  .scroll-tabs .tab-link {
+  .page-tabs .tab-link {
     font-family: var(--font-display, 'Cinzel', serif);
     font-size: var(--font-size-vs);
     font-weight: 600;
@@ -31,25 +31,25 @@
     transition: all 0.25s ease;
   }
 
-  .scroll-tabs .tab-link:hover,
-  .scroll-tabs .tab-link:focus {
+  .page-tabs .tab-link:hover,
+  .page-tabs .tab-link:focus {
     background: var(--highlight);
     color: var(--bg-primary);
     text-shadow: 0 0 6px var(--shadow-glow);
   }
 
-  .scroll-tabs .tab-link.active {
+  .page-tabs .tab-link.active {
     background: var(--accent-glow, var(--highlight));
     color: var(--bg-primary);
   }
 
   @media (max-width: 700px) {
-    .scroll-tabs {
+    .page-tabs {
       flex-wrap: wrap;
       gap: var(--space-xs);
       padding: var(--space-xs);
     }
-    .scroll-tabs .tab-link {
+    .page-tabs .tab-link {
       font-size: var(--font-size-sm);
       padding: 0.3rem 0.6rem;
     }

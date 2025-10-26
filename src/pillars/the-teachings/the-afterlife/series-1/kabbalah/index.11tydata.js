@@ -1,51 +1,64 @@
 export default {
-  // 📖 Series + Pillar Metadata
+  layout: "base.njk",
+
+  // 🌍 Pillar & Series Metadata
+  pageId: "the-teachings-the-afterlife-series-1-kabbalah",
+  permalink:
+    "/pillars/the-teachings/the-afterlife/series-1/kabbalah/index.html",
+  pillarId: "the-teachings",
+  pillarName: "The Teachings",
+  pillarUrl: "/pillars/the-teachings/the-afterlife/",
+  pillarGlyph: "✡",
+  glyphRow: ["✡", "☥", "✡"],
+  accent: "gold",
+  bodyClass: "gold",
+  tier: "free",
+  title: "Kabbalah",
+  tagline: "The Tree of Life ✦ The Soul’s Ascent ✦ The Return to Divine Harmony",
+  description:
+    "The Tree of Life, the ascent of the soul, and the restoration of divine harmony.",
+
+  // 📖 Series Identity
   seriesLabel: "The Afterlife Series",
   pillarLabel: "The Teachings",
-  glyphRow: ["✡", "☥", "✡"],
   seriesHome: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/",
   pillarHome: "/pillars/the-teachings/",
-  tagline: "Three-part journey through the false cosmos and the Revealer.",
-  layout: "base.njk",
-  tier: "free", 
-
-  // 🔹 Series Hierarchy
-  pillar: "the-teachings",
   series: "the-afterlife",
   episode: 3,
   seriesMeta: {
     number: 1,
     label: "Series 1",
-    series_version: 1
+    version: 1
   },
 
   // 🜂 Episode Overview
-  introText: "— a three-part journey through the false cosmos, the Revealer, and the soul’s return.",
+  introText:
+    "— a three-part journey through the Tree of Life, the soul’s ascent, and the restoration of divine harmony.",
   disclaimerTitle: "⚠️ Diversity of Sources",
   disclaimerText:
-    "<p>Interpretations vary across Gnostic schools and manuscripts within this pillar and series.</p>",
+    "<p>Interpretations vary across Kabbalistic schools and traditions — Lurianic, Zoharic, and Hermetic alike. Each offers a distinct map of emanation and return.</p>",
 
-  // 🔹 Episode Parts (for dynamic part navigation)
+  // 🔹 Episode Parts
   episodeParts: [
     {
-      title: "Part I",
-      desc: "The Kabbalistic Worldview.",
+      title: "Part I — The Kabbalistic Worldview",
+      desc: "Creation, emanation, and the hidden structure of the Tree of Life.",
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/"
     },
     {
-      title: "Part II",
-      desc: "Ten Thresholds of Light, The Soul&rsquo;s Ascent Through the Tree of Life.",
+      title: "Part II — Ten Thresholds of Light",
+      desc: "The soul’s ascent through the Sefirot — the luminous thresholds of being.",
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/"
     },
     {
-      title: "Part III",
-      desc: "The Soul&rsquo;s Journey After Death.",
+      title: "Part III — The Soul’s Journey After Death",
+      desc: "Crossing the veils, uniting the lower and higher worlds, and the return to divine harmony.",
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/"
     }
   ],
 
-  // 🧭 Cross-Episode Navigation (series map)
-    seriesNav: [
+  // 🧭 Cross-Episode Navigation
+  seriesNav: [
     {
       title: "Gnostic Christianity",
       desc: "The false cosmos, Christ the Revealer, and the soul’s return.",
@@ -55,26 +68,22 @@ export default {
       title: "Sufi Islam",
       desc: "The seeker’s path through love, annihilation, and return.",
       url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-    }
-  ,
+    },
     {
       title: "Kabbalah",
       desc: "The path of Kabbalah within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
-    }
-  ,
+    },
     {
       title: "Buddhism",
       desc: "The path of Buddhism within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
-    }
-  ,
+    },
     {
       title: "Ancient Egypt",
       desc: "The path of Ancient Egypt within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
-    }
-  ,
+    },
     {
       title: "Mesoamerica",
       desc: "The path of Mesoamerica within the Afterlife Series.",
@@ -82,52 +91,48 @@ export default {
     }
   ],
 
-// 🧭 Scroll Grid Cards (episode landing page)
+  // 🧭 Episode Landing Cards
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/",
-      title: "Part I — The World Is Not What It Seems",
+      title: "Part I — The Kabbalistic Worldview",
       glyph: "✡",
-      tagline: "The hidden God ✦ Sophia’s fall ✦ the Demiurge ✦ the spark within.",
+      tagline: "Creation ✦ emanation ✦ the hidden Tree of Life.",
       tier: "free",
       state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/",
-      title: "Part II — The Revealer and the Spark",
+      title: "Part II — Ten Thresholds of Light",
       glyph: "✡",
-      tagline: "From the false god to the forgotten light ✦ the Christ of Gnosis.",
+      tagline: "Ascent ✦ purification ✦ illumination through the Sefirot.",
       tier: "free",
       state: "default"
     },
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/",
-      title: "Part III — The Soul’s Return",
+      title: "Part III — The Soul’s Journey After Death",
       glyph: "✡",
-      tagline: "The toll gates of the Archons ✦ the deathless spark ✦ the memory that frees the soul.",
+      tagline: "Veils ✦ unity ✦ return to divine harmony.",
       tier: "free",
       state: "default"
     }
   ],
 
-  // 🧭 Computed properties for flexible page rendering
-  eleventyComputed: {
-    slug: (data) => data.slug || data.page.fileSlug,
-    permalink: (data) => data.permalink || data.page.url,
-    imgBase: (data) => data.imgBase || "/media/the-teachings/the-afterlife/series-1/kabbalah",
-    imgPrefix: (data) => data.imgPrefix || "kabbalah-",
-    socialImage: (data) => data.socialImage || "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah.jpg",
-    breadcrumbsBase: () => [
-      { title: "The Gnostic Key", url: "/" },
-      { title: "The Teachings", url: "/pillars/the-teachings/" },
-      { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" },
-      { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
-    ],
-    breadcrumbs: (data) =>
-      [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
-  }
+  // === Social Meta ===
+  socialImage:
+    "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah.jpg",
+
+  // === Breadcrumbs ===
+  breadcrumbs: [
+    { title: "The Gnostic Key", url: "/" },
+    { title: "The Teachings", url: "/pillars/the-teachings/" },
+    { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" },
+    { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" },
+    { title: "Kabbalah", url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/" }
+  ],
+
+  // === Behaviour Flags ===
+  showLens: false,
+  showSeriesNav: true
 };
-
-
-
-

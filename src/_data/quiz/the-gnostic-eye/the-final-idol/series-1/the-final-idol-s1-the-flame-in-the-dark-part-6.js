@@ -1,4 +1,4 @@
-// 🧠 TGK Quiz — The Flame That Survives (Scroll VI)
+// 🧠 TGK Quiz — The Flame That Survives (page VI)
 // Series: The Final Idol — Series I
 // Format: TGK Quiz Schema v2.7
 

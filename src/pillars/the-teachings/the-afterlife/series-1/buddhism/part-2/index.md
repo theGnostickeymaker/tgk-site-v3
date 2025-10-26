@@ -6,9 +6,9 @@
 layout: base.njk
 title: "Buddhism"
 description: "The Path of Compassion — from the Bodhisattva’s vow to the clear light of emptiness."
-excerpt: "You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. Now the flame ignites, this scroll descends into compassion’s fire, the bodhisattva vow, and the fierce path of a…"
+excerpt: "You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. Now the flame ignites, this page descends into compassion’s fire, the bodhisattva vow, and the fierce path of a…"
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-buddhism-part-2"
+pageId: "the-teachings-the-afterlife-series-1-buddhism-part-2"
 
 episode: 4
 partNumeral: II
@@ -36,7 +36,7 @@ quizIntro: "Can you see through the veil of II?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -211,7 +211,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -221,7 +221,7 @@ socialImages:
   <summary>
     <span class="disclaimer-heading">⚠️ Previously in Part I</span>
   </summary>
-  <p>You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. Now the flame ignites, this scroll descends into compassion&rsquo;s fire, the bodhisattva vow, and the fierce path of awakening.</p>
+  <p>You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. Now the flame ignites, this page descends into compassion&rsquo;s fire, the bodhisattva vow, and the fierce path of awakening.</p>
 </details>
 
   <!--🌸 Chapter 1: The Wheel of Birth and Death-->

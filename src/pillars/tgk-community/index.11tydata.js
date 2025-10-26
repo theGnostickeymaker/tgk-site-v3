@@ -36,7 +36,7 @@ export default {
       href: "#", 
       title: "Study Circles", 
       glyph: "📚", 
-      desc: "Small group readings and decodings of scrolls — learning through shared discovery.",
+      desc: "Small group readings and decodings of pages — learning through shared discovery.",
       tier: "free", 
       state: "coming-soon" 
     },

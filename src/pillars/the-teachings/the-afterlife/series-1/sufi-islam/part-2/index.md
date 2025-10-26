@@ -5,7 +5,7 @@ title: "Sufi Islam"
 description: "The seeker ascends through longing and remembrance, spiralling ever closer to the Beloved whose face was never far."
 excerpt: "In the Sufi path, the ascent is not made by effort, it is drawn by longing."
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-sufi-islam-part-2"
+pageId: "the-teachings-the-afterlife-series-1-sufi-islam-part-2"
 
 episode: 2
 partNumeral: II
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the veil of Part II?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -183,7 +183,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -193,7 +193,7 @@ socialImages:
     <summary>
       <span class="disclaimer-heading">⚠️ Previously in Part I</span>
     </summary>
-    Having crossed the veil of Barzakh, the soul now begins its ascent, led by longing, remembrance, and love. This scroll follows the mystic&lsquo;s return to the Beloved.
+    Having crossed the veil of Barzakh, the soul now begins its ascent, led by longing, remembrance, and love. This page follows the mystic&lsquo;s return to the Beloved.
   </p>
   </details>
 

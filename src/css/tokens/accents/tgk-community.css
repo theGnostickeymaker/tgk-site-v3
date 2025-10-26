@@ -20,7 +20,7 @@
       --shadow-glow: rgba(136, 216, 210, 0.25) !important;
       --strong-text: #b3f2ec !important;
       --cite-color: #98e2dc !important;
-      --accent-scroll: #6fcac5 !important;
+      --accent-page: #6fcac5 !important;
       --section-border: #b5ede7 !important;
 
       /* Gradients */
@@ -64,12 +64,6 @@
       border-bottom: 1px solid var(--highlight) !important;
     }
 
-    html[data-theme="dark"] body.community .scroll-title {
-      background: linear-gradient(to right, #0a1111 0%, #296265 100%) !important;
-      color: var(--glyph-color) !important;
-      text-shadow: 0 1px 6px rgba(136, 216, 210, 0.2) !important;
-    }
-
     html[data-theme="dark"] body.community .section-block {
       background: linear-gradient(145deg, #132224 0%, #1c373a 60%, #296265 100%) !important;
       border-color: var(--section-border) !important;
@@ -90,7 +84,7 @@
     html[data-theme="dark"] body.community .quiz-prompt {
       background: linear-gradient(to right, #0a1111, #1c373a) !important;
       color: var(--glyph-color) !important;
-      border-left: 4px solid var(--accent-scroll) !important;
+      border-left: 4px solid var(--accent-page) !important;
       box-shadow: 0 0 12px rgba(136, 216, 210, 0.25) !important;
     }
 
@@ -103,7 +97,7 @@
     html[data-theme="dark"] body.community .quiz-button {
       background: #0a1111 !important;
       color: var(--strong-text) !important;
-      border: 2px solid var(--accent-scroll) !important;
+      border: 2px solid var(--accent-page) !important;
       box-shadow: 0 0 6px rgba(136, 216, 210, 0.15) inset !important;
     }
 
@@ -130,7 +124,7 @@
       --shadow-glow: rgba(107, 210, 204, 0.12) !important;
       --strong-text: #1f4e4a !important;
       --cite-color: #4d9894 !important;
-      --accent-scroll: #57b1ac !important;
+      --accent-page: #57b1ac !important;
       --section-border: #cfeeed !important;
 
       /* Gradients */
@@ -175,12 +169,6 @@
       border-bottom: 1px solid var(--highlight) !important;
     }
 
-    html[data-theme="light"] body.community .scroll-title {
-      background: linear-gradient(to right, #f8fefe 0%, #c4ece9 100%) !important;
-      color: var(--glyph-color) !important;
-      text-shadow: 0 1px 4px rgba(107, 210, 204, 0.15) !important;
-    }
-
     html[data-theme="light"] body.community .section-block {
       background: linear-gradient(145deg, #eaf9f8 0%, #d9f3f1 60%, #c4ece9 100%) !important;
       border-color: var(--section-border) !important;
@@ -201,7 +189,7 @@
     html[data-theme="light"] body.community .quiz-prompt {
       background: linear-gradient(to right, #eaf9f8, #c4ece9) !important;
       color: var(--strong-text) !important;
-      border-left: 4px solid var(--accent-scroll) !important;
+      border-left: 4px solid var(--accent-page) !important;
       box-shadow: 0 0 10px rgba(107, 210, 204, 0.18) !important;
     }
 
@@ -214,7 +202,7 @@
     html[data-theme="light"] body.community .quiz-button {
       background: #f8fefe !important;
       color: var(--text-accent) !important;
-      border: 2px solid var(--accent-scroll) !important;
+      border: 2px solid var(--accent-page) !important;
       box-shadow: 0 0 6px rgba(107, 210, 204, 0.1) inset !important;
     }
 

@@ -21,7 +21,7 @@ export default {
     { title: "The Keymaker’s Dream", url: "/pillars/the-keymakers-dream/" }
   ],
 
-  // === Dream Scrolls Grid ===
+  // === Dream pages Grid ===
   pillarGrid: [
     { 
       href: "/pillars/the-keymakers-dream/prologue/", 

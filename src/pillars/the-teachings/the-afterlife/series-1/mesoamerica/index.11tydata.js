@@ -1,31 +1,44 @@
 export default {
-  // 📖 Series + Pillar Metadata
+  layout: "base.njk",
+
+  // 🌍 Pillar & Series Metadata
+  pageId: "the-teachings-the-afterlife-series-1-mesoamerica",
+  permalink:
+    "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/index.html",
+  pillarId: "the-teachings",
+  pillarName: "The Teachings",
+  pillarUrl: "/pillars/the-teachings/the-afterlife/",
+  pillarGlyph: "🌽",
+  glyphRow: ["🌽", "☥", "🌽"],
+  accent: "gold",
+  bodyClass: "gold",
+  tier: "initiate",
+  title: "Mesoamerica",
+  tagline: "Sacred Time ✦ Calendars of Stone ✦ The Architecture of Death",
+  description:
+    "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death.",
+
+  // 📖 Series Identity
   seriesLabel: "The Afterlife Series",
   pillarLabel: "The Teachings",
-  glyphRow: ["🌽", "☥", "🌽"],
   seriesHome: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/",
   pillarHome: "/pillars/the-teachings/",
-  tagline: "Three-part journey through the false cosmos and the Revealer.",
-  layout: "base.njk",
-  tier: "free", 
-
-  // 🔹 Series Hierarchy
-  pillar: "the-teachings",
   series: "the-afterlife",
   episode: 6,
   seriesMeta: {
     number: 1,
     label: "Series 1",
-    series_version: 1
+    version: 1
   },
 
   // 🜂 Episode Overview
-  introText: "— a three-part journey through the false cosmos, the Revealer, and the soul’s return.",
+  introText:
+    "— a three-part journey through sacred time, cosmic death, and the calendar of souls.",
   disclaimerTitle: "⚠️ Diversity of Sources",
   disclaimerText:
-    "<p>Interpretations vary across Gnostic schools and manuscripts within this pillar and series.</p>",
+    "<p>Interpretations differ across Maya, Mexica, and Zapotec traditions — each encoding unique visions of the afterlife and the cycles of renewal.</p>",
 
-  // 🔹 Episode Parts (for dynamic part navigation)
+  // 🔹 Episode Parts
   episodeParts: [
     {
       title: "Part I — The Map of Time and Sacrifice",
@@ -44,8 +57,7 @@ export default {
     }
   ],
 
-
-  // 🔹 Series Navigation (cross-episode buttons)
+  // 🧭 Cross-Episode Navigation
   seriesNav: [
     {
       title: "Gnostic Christianity",
@@ -56,26 +68,22 @@ export default {
       title: "Sufi Islam",
       desc: "The seeker’s path through love, annihilation, and return.",
       url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/"
-    }
-  ,
+    },
     {
       title: "Kabbalah",
       desc: "The path of Kabbalah within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/"
-    }
-  ,
+    },
     {
       title: "Buddhism",
       desc: "The path of Buddhism within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/buddhism/"
-    }
-  ,
+    },
     {
       title: "Ancient Egypt",
       desc: "The path of Ancient Egypt within the Afterlife Series.",
       url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/"
-    }
-  ,
+    },
     {
       title: "Mesoamerica",
       desc: "The path of Mesoamerica within the Afterlife Series.",
@@ -83,13 +91,14 @@ export default {
     }
   ],
 
-  // 🧭 Scroll Grid Cards (episode landing page)
+  // 🧭 Episode Landing Cards
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/part-1/",
       title: "Part I — The Map of Time and Sacrifice",
       glyph: "🌽",
-      tagline: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death",
+      tagline:
+        "Sacred Time ✦ Calendars of Stone ✦ The cosmic altar of remembrance.",
       tier: "initiate",
       state: "default"
     },
@@ -97,7 +106,8 @@ export default {
       href: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/part-2/",
       title: "Part II — The Descent into Mictlán and Xibalba",
       glyph: "🌽",
-      tagline: "The Rebel Gospel, the Secret Teachings, and the Mirror of the Divine.",
+      tagline:
+        "The journey through darkness ✦ The trials of bone ✦ The Lords of the Underworld.",
       tier: "initiate",
       state: "default"
     },
@@ -105,26 +115,27 @@ export default {
       href: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/part-3/",
       title: "Part III — The Spiral of Return",
       glyph: "🌽",
-      tagline: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death.",
+      tagline:
+        "Resurrection ✦ The Feathered Spark ✦ Time reborn in divine rhythm.",
       tier: "initiate",
       state: "default"
     }
   ],
 
-  // 🧭 Computed properties for flexible page rendering
-  eleventyComputed: {
-    slug: (data) => data.slug || data.page.fileSlug,
-    permalink: (data) => data.permalink || data.page.url,
-    imgBase: (data) => data.imgBase || "/media/the-teachings/the-afterlife/series-1/mesoamerica",
-    imgPrefix: (data) => data.imgPrefix || "mesoamerica-",
-    socialImage: (data) => data.socialImage || "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica.jpg",
-    breadcrumbsBase: () => [
-      { title: "The Gnostic Key", url: "/" },
-      { title: "The Teachings", url: "/pillars/the-teachings/" },
-      { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" },
-      { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" }
-    ],
-    breadcrumbs: (data) =>
-      [...(data.breadcrumbsBase || []), data.title ? { title: data.title } : null].filter(Boolean)
-  }
+  // === Social Meta ===
+  socialImage:
+    "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica.jpg",
+
+  // === Breadcrumbs ===
+  breadcrumbs: [
+    { title: "The Gnostic Key", url: "/" },
+    { title: "The Teachings", url: "/pillars/the-teachings/" },
+    { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" },
+    { title: "Series 1", url: "/pillars/the-teachings/the-afterlife/series-1/" },
+    { title: "Mesoamerica", url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/" }
+  ],
+
+  // === Behaviour Flags ===
+  showLens: false,
+  showSeriesNav: true
 };

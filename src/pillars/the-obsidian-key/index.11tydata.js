@@ -21,7 +21,7 @@ export default {
     { title: "The Obsidian Key", url: "/pillars/the-obsidian-key/" }
   ],
 
-  // === Scroll Series Grid ===
+  // === page Series Grid ===
   pillarGrid: [
     { 
       href: "/pillars/the-obsidian-key/house-of-grift/",  

@@ -4,7 +4,7 @@
 -------------------------------------------------------------------------------
 Purpose:
   1. Copy seriesNav[] from series-level index.11tydata.js → each episode index.11tydata.js
-  2. Copy episodeParts[] + seriesNav[] from episode index.11tydata.js → each scroll’s index.md
+  2. Copy episodeParts[] + seriesNav[] from episode index.11tydata.js → each page’s index.md
   3. Maintain Synergist Lens + vaultRefs consistency.
   4. Prevent duplicate commas or malformed object endings.
 ===============================================================================
@@ -132,13 +132,13 @@ try {
 }
 
 # ---------------------------------------------------------------------
-# STEP 2 — Inject episodeParts + seriesNav into each scroll’s index.md
+# STEP 2 — Inject episodeParts + seriesNav into each page’s index.md
 # ---------------------------------------------------------------------
 try {
-  $scrollPath = Join-Path $Root "src/pillars/the-teachings/the-afterlife"
-  Get-ChildItem -Path $scrollPath -Recurse -Filter "index.md" -ErrorAction Stop | ForEach-Object {
+  $pagePath = Join-Path $Root "src/pillars/the-teachings/the-afterlife"
+  Get-ChildItem -Path $pagePath -Recurse -Filter "index.md" -ErrorAction Stop | ForEach-Object {
     $file = $_.FullName
-    Write-Host "Processing scroll: $file" -ForegroundColor Cyan
+    Write-Host "Processing page: $file" -ForegroundColor Cyan
 
     try {
       $raw = Get-Content $file -Raw -ErrorAction Stop
@@ -180,7 +180,7 @@ try {
       $new = "---`n$updatedFM---$body"
 
       Set-Content -Path $file -Value $new -Encoding UTF8NoBOM -ErrorAction Stop
-      Write-Host "✅ Updated scroll → $file" -ForegroundColor Green
+      Write-Host "✅ Updated page → $file" -ForegroundColor Green
       $navInjected++
 
     } catch {
@@ -188,7 +188,7 @@ try {
     }
   }
 } catch {
-  Write-Host "⚠️ Error accessing scroll files: $_" -ForegroundColor Red
+  Write-Host "⚠️ Error accessing page files: $_" -ForegroundColor Red
 }
 
 # ---------------------------------------------------------------------

@@ -5,7 +5,7 @@ title: "Gnostic Christianity"
 description: "Part I of the Afterlife Series — The false cosmos, Sophia’s fall, and the divine spark hidden within matter."
 excerpt: "Long before the Church became empire—before Eden was named paradise, and before time was broken into hours—there was the Pleroma."
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-1"
+pageId: "the-teachings-the-afterlife-series-1-gnostic-christianity-part-1"
 
 episode: 1
 partNumeral: I
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the illusion of the false world?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -191,7 +191,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">

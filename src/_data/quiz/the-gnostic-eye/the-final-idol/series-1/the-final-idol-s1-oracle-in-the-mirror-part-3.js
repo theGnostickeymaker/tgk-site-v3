@@ -1,4 +1,4 @@
-// 🧠 TGK Quiz — Oracle in the Mirror (Scroll III)
+// 🧠 TGK Quiz — Oracle in the Mirror (page III)
 // Series: The Final Idol — Series I
 // Format: TGK Quiz Schema v2.7
 

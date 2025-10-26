@@ -1,7 +1,7 @@
 {# =========================================================
    🜂 TGK — Episode Part Navigation (v2.3)
    Purpose:
-   Dynamically displays floating navigation between scroll parts.
+   Dynamically displays floating navigation between page parts.
    Compatible with YAML literal blocks injected by retrofit v3.5.
    ========================================================= #}
 
@@ -19,7 +19,7 @@
   {% endfor %}
 
   {% if currentIndex > -1 %}
-  <nav class="scroll-tabs episode-nav" role="navigation" aria-label="Part Navigation">
+  <nav class="page-tabs episode-nav" role="navigation" aria-label="Part Navigation">
     {% if currentIndex > 0 %}
       {% set prevPart = episodeParts[currentIndex - 1] %}
       <a href="{{ prevPart.url }}" class="tab-link episode-prev" aria-label="Previous: {{ prevPart.title }}">

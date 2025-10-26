@@ -5,7 +5,7 @@ title: "Kabbalah"
 description: "The soul’s return to the Source — the remembrance of its vow, the healing of the fracture, and the ascent beyond the gates of life and death."
 excerpt: "You climbed the Tree, from Malkhut’s dust to Keter’s crown, and tasted the soul’s ascent through divine light and shadow."
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-kabbalah-part-3"
+pageId: "the-teachings-the-afterlife-series-1-kabbalah-part-3"
 
 episode: 3
 partNumeral: III
@@ -33,7 +33,7 @@ quizIntro: "Do you remember your soul contract?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -198,7 +198,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">

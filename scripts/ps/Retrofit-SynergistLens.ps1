@@ -4,11 +4,11 @@
 -------------------------------------------------------------------------------
 Purpose:
   Removes all prior Synergist Lens fragments and writes exactly
-  one clean, formatted block into each scroll’s YAML front matter.
-  Now intelligently extracts Vault links from <blockquote>/<cite> HTML in scroll bodies.
+  one clean, formatted block into each page's YAML front matter.
+  Now intelligently extracts Vault links from <blockquote>/<cite> HTML in page bodies.
 
 Main Updates (v3.4):
-  • Parses <a href="/pillars/the-vault/..."> inside scroll bodies.
+  • Parses <a href="/pillars/the-vault/..."> inside page bodies.
   • Extracts <em>Title</em> text from <cite> for human-readable vaultRefs.
   • Drops unused Find-VaultRefs() scan (now body-based, not vault-based).
   • Retains all prior safety and idempotent cleanup logic.
@@ -23,10 +23,10 @@ param(
 [int] $refreshed = 0
 [int] $skipped = 0
 
-Write-Host "🔍 Scanning for scroll files under: $Root/src/pillars" -ForegroundColor Cyan
+Write-Host "🔍 Scanning for page files under: $Root/src/pillars" -ForegroundColor Cyan
 
 # =====================================================================
-# 🧩 PROCESS SCROLLS
+# 🧩 PROCESS Pages
 # =====================================================================
 Get-ChildItem -Path (Join-Path $Root "src/pillars") -Recurse -Filter "index.md" | ForEach-Object {
   $file = $_.FullName

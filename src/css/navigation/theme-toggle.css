@@ -47,7 +47,7 @@
     outline: 0;
     backdrop-filter: blur(2px);
     pointer-events: auto;
-    transform: translateZ(0);      /* ✅ prevents scroll repaint bugs in iOS */
+    transform: translateZ(0);      /* ✅ prevents page repaint bugs in iOS */
     will-change: transform;        /* ✅ keeps it hardware accelerated */
   }
 

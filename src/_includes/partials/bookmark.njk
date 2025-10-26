@@ -1,12 +1,12 @@
 {# ===========================================================
    🔖 Bookmark Partial
-   Persistent scroll-level bookmark toggle, powered by admin.js
+   Persistent page-level bookmark toggle, powered by admin.js
    =========================================================== #}
 
 <button
-  class="bookmark-tag scroll-bookmark"
+  class="bookmark-tag page-bookmark"
   type="button"
-  aria-label="Bookmark this scroll"
-  data-bookmark-id="{{ scrollId or page.url }}">
+  aria-label="Bookmark this Page"
+  data-bookmark-id="{{ pageId or page.url }}">
   🔖
 </button>

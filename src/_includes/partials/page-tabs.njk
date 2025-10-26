@@ -1,8 +1,8 @@
 {# ===========================================================
-   🜂 TGK — Scroll Section Tabs (v2.2)
+   🜂 TGK — page Section Tabs (v2.2)
    Purpose:
    Generates floating navigation links for key content anchors
-   within a scroll (quiz, glossary, creative, discussion, etc.).
+   within a page (quiz, glossary, creative, discussion, etc.).
 
    ✅ Expects data from front matter or .11tydata.js:
      - quizId / quizEnabled
@@ -14,11 +14,11 @@
 
    ⚙️ Behaviour:
    - Each section renders conditionally (only if data exists)
-   - Used by the floating "scroll-tabs" nav component
-   - Styled globally in `/css/components/_scroll-tabs.css`
+   - Used by the floating "page-tabs" nav component
+   - Styled globally in `/css/components/_page-tabs.css`
    =========================================================== #}
 
-<nav class="scroll-tabs" role="navigation" aria-label="Part Map">
+<nav class="page-tabs" role="navigation" aria-label="Part Map">
 
   {# --- Quiz Section --- #}
   {% if quizId or quizEnabled %}

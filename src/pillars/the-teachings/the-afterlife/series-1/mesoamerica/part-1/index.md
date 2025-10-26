@@ -5,7 +5,7 @@ title: "Mesoamerica"
 description: "Time as a serpent, calendars as temples, and death as alignment — the Mesoamerican revelation of cyclical immortality."
 excerpt: "The modern world sees time as a straight line. Climax. Decline. Death. A story with one direction and an end."
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-mesoamerica-part-1"
+pageId: "the-teachings-the-afterlife-series-1-mesoamerica-part-1"
 
 episode: 6
 partNumeral: I
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the veil of I?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -60,7 +60,7 @@ relatedProducts: []
 # 🗣 Discussion Prompt
 discussion:
   promptTitle: "What Spark Are You Reigniting?"
-  intro: "Spread the sacred ripple. Share this scroll and help awaken the memory of cyclical time, soul geometry, and the serpent of return."
+  intro: "Spread the sacred ripple. Share this page and help awaken the memory of cyclical time, soul geometry, and the serpent of return."
   question: "What does liberation mean to a soul that remembers?"
   points:
     - "What illusions still whisper your name?"
@@ -94,7 +94,7 @@ glossary:
 # 📚 References
 references:
   title: "Sources & Study Path"
-  intro: "For those wishing to go deeper into the sacred science of time, death, and return — these works illuminate the Mesoamerican cosmology that inspired this scroll."
+  intro: "For those wishing to go deeper into the sacred science of time, death, and return — these works illuminate the Mesoamerican cosmology that inspired this page."
   readings:
     - title: "Popol Vuh — The Book of the Council"
       desc: "Kʼicheʼ Maya creation text describing Xibalba, the Hero Twins, and the cosmic descent through death."
@@ -189,7 +189,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">

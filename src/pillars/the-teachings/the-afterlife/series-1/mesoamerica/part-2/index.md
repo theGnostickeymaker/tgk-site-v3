@@ -7,7 +7,7 @@ excerpt: "You walked the calendars of stone and remembered the spiral of time.
     Now descend — into the nine levels of Mictlán and the trial chambers of Xibalba.  
     The Lords are watching. The test is re…"
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-mesoamerica-part-2"
+pageId: "the-teachings-the-afterlife-series-1-mesoamerica-part-2"
 
 episode: 6
 partNumeral: II
@@ -35,7 +35,7 @@ quizIntro: "Can you see through the veil of II?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -67,7 +67,7 @@ creativePrompt:
 # 🗣 Discussion Prompt
 discussion:
   promptTitle: "What Spark Are You Reigniting?"
-  intro: "Spread the sacred ripple. Share this scroll and help awaken the memory of cyclical time, soul geometry, and the serpent of return."
+  intro: "Spread the sacred ripple. Share this page and help awaken the memory of cyclical time, soul geometry, and the serpent of return."
   question: "What does liberation mean to a soul that remembers?"
   points:
     - "What illusions still whisper your name?"
@@ -196,7 +196,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">

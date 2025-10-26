@@ -1,26 +1,3 @@
----
-layout: base.njk
-title: "Ancient Egypt"
-description: "The Weighing of the Heart, the Duat, and the Resurrection of Light."
-tier: free
-
-glyph: "𓂀"
-series_version: 1
-permalink: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/index.html"
-tagline: "The Ka ✦ The Duat ✦ The Akh"
-seriesMeta:
-  number: 1
-  label: "Series 1"
-  series_version: 1
-episode: 5
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Teachings", url: "/pillars/the-teachings/" }
-  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
-  - { title: "Ancient Egypt" }
----
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -38,9 +15,11 @@ breadcrumbs:
       Ancient Egypt — The Ka, the Duat, and the Akh: The Resurrection Mysteries of the Nile.
     </h4>
 
-    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
-    <!-- ⚠️ Disclaimer -->
+    <!-- 𓂀 Disclaimer -->
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">𓂀 About Ancient Egypt</span></summary>
       <p>
@@ -61,7 +40,10 @@ breadcrumbs:
 
     <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+      <span 
+        class="divider-symbol pillar-glyph spin glow" 
+        aria-hidden="true">{{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

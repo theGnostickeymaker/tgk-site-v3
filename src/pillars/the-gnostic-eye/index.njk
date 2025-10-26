@@ -1,17 +1,3 @@
----
-layout: base.njk
-title: "The Gnostic Eye"
-description: "Symbolic vision and revelation — decoding modern myths, idols, and the invisible architectures shaping belief and control."
-tagline: "Symbol reading ✦ decoding illusion ✦ unveiling the code beneath the world"
-collectionId: "the-gnostic-eye"
-tier: free
-
-glyph: "☿"
-glyphRow: ["☿", "🜏", "👁"]
-accent: eye
-bodyClass: eye
----
-
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-gnostic-eye/the-gnostic-eye-index.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -20,13 +6,15 @@ bodyClass: eye
 <main class="main-content">
   <section class="content-container">
 
-    <h2 class="index heading">
+    <h2 class="index-heading">
       Vision, revelation, and symbolic insight — <strong>The Gnostic Eye</strong> unveils 
       the hidden patterns guiding power, technology, and belief across the modern world. 
       Each series descends into a different illusion of the age.
     </h2>
 
-    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">👁 About The Gnostic Eye</span></summary>
@@ -36,7 +24,8 @@ bodyClass: eye
         to the idols of artificial intelligence.
       </p>
       <p>
-        Each series within this pillar acts as a revelation: <em>The Final Idol</em> unveils AI and synthetic divinity; 
+        Each series within this pillar acts as a revelation: 
+        <em>The Final Idol</em> unveils AI and synthetic divinity; 
         <em>The Martyr of Memory</em> preserves forbidden truths; and 
         <em>The Architecture of Control</em> exposes the smart prison of the modern world.
       </p>

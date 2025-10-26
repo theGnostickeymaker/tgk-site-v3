@@ -36,7 +36,7 @@ breadcrumbs:
 
     <!-- ✦ Upgrade CTA -->
     <section id="upgrade-cta" class="section-block dashboard-upgrade" hidden>
-      <h3>Unlock Deeper Scrolls</h3>
+      <h3>Unlock Deeper pages</h3>
       <p>Upgrade your access to reveal all Vault texts and advanced series.</p>
       <a href="/membership/" class="btn gold">Upgrade Membership</a>
     </section>
@@ -117,28 +117,28 @@ async function resolveUserTier(user) {
 /* ===========================================================
    🜂 Helper — Build Clean Title
    =========================================================== */
-function formatTitleFromId(scrollId) {
-  return scrollId
+function formatTitleFromId(pageId) {
+  return pageId
     .split("-")
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 }
 
 /* ===========================================================
-   🜂 Helper — Build Href from Scroll ID
+   🜂 Helper — Build Href from page ID
    =========================================================== */
-function buildHrefFromId(scrollId) {
-  // Detect multi-part scrolls
-  if (scrollId.includes("part-")) {
-    const parts = scrollId.split("-");
+function buildHrefFromId(pageId) {
+  // Detect multi-part pages
+  if (pageId.includes("part-")) {
+    const parts = pageId.split("-");
     const idx = parts.indexOf("part");
     const prefix = parts.slice(0, idx).join("/");
     const suffix = parts.slice(idx, idx + 2).join("-");
     return `/pillars/${prefix}/${suffix}/`;
   }
 
-  // Normal scroll
-  return `/pillars/${scrollId.replace(/-/g, "/")}/`;
+  // Normal page
+  return `/pillars/${pageId.replace(/-/g, "/")}/`;
 }
 
 /* ===========================================================
@@ -167,7 +167,7 @@ onAuthStateChanged(auth, async (user) => {
      🔖 Load Bookmarks with Smart Hrefs
      =========================================================== */
   try {
-    const snap = await getDocs(collection(db, "bookmarks", user.uid, "scrolls"));
+    const snap = await getDocs(collection(db, "bookmarks", user.uid, "pages"));
     bookmarkList.innerHTML = "";
 
     if (snap.empty) {
@@ -176,19 +176,19 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     snap.forEach((docSnap) => {
-      const scrollId = docSnap.id;
-      const href = buildHrefFromId(scrollId);
-      const title = formatTitleFromId(scrollId);
+      const pageId = docSnap.id;
+      const href = buildHrefFromId(pageId);
+      const title = formatTitleFromId(pageId);
 
       const item = document.createElement("li");
       item.className = "dashboard-card";
-      item.dataset.id = scrollId;
+      item.dataset.id = pageId;
       item.innerHTML = `
         <div class="card-body">
           <a href="${href}" class="card-link">
             <h3 class="card-title">${title}</h3>
           </a>
-          <button class="btn-mini" data-id="${scrollId}">Remove</button>
+          <button class="btn-mini" data-id="${pageId}">Remove</button>
         </div>`;
       bookmarkList.appendChild(item);
     });
@@ -231,27 +231,17 @@ document.getElementById("manage-tier").onclick = async () => {
 };
 
 /* ===========================================================
-   🚪 TGK — Forced Logout Binding (Dashboard Fallback)
+   🚪 TGK — Unified Logout Redirect
    =========================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logout-btn");
-  if (!logoutBtn) {
-    console.warn("[TGK Dashboard] Logout button not found.");
-    return;
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("[TGK Dashboard] Redirecting to /logout/");
+      window.location.href = "/logout/";
+    });
   }
-
-  logoutBtn.addEventListener("click", async () => {
-    console.log("[TGK Dashboard] Logout clicked.");
-    try {
-      await signOut(auth);
-      console.log("[TGK Dashboard] Sign-out success. Clearing local data…");
-      localStorage.clear();
-      document.cookie = "tgk_ent=; Path=/; Max-Age=0;";
-      window.location.href = "/";
-    } catch (err) {
-      console.error("[TGK Dashboard] Logout failed:", err);
-      alert("Logout failed: " + err.message);
-    }
-  });
 });
+
 </script>

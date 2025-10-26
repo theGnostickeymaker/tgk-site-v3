@@ -1,27 +1,3 @@
----
-layout: base.njk
-title: "Sufi Islam"
-description: "The journey of the soul through divine love, annihilation of self, and union with the Beloved."
-tier: free
-
-glyph: "☪"
-
-series_version: 1
-permalink: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/index.html"
-tagline: "Divine love ✦ annihilation of self ✦ union with the Beloved."
-seriesMeta:
-  number: 1
-  label: "Series 1"
-  series_version: 1
-episode: 2
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Teachings", url: "/pillars/the-teachings/" }
-  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
----
-
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/sufi-islam.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -39,19 +15,23 @@ breadcrumbs:
       Sufi Islam — the journey of the soul through divine love, annihilation of self, and union with the Beloved.
     </h4>
 
-    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
     <!-- ☪️ Disclaimer -->
     <details class="disclaimer-box">
-      <summary><span class="disclaimer-heading">☪ About Sufi Islam</span></summary>
+      <summary>
+        <span class="disclaimer-heading">☪ About Sufi Islam</span>
+      </summary>
       <p>
-        <strong>Sufi Islam</strong> reveals the mystical heart of the Islamic tradition — the
-        path of the lover and the Beloved, where remembrance (<em>dhikr</em>) dissolves illusion
+        <strong>Sufi Islam</strong> reveals the mystical heart of the Islamic tradition — 
+        the path of the lover and the Beloved, where remembrance (<em>dhikr</em>) dissolves illusion 
         and unveils the unity of all being.
       </p>
       <p>
-        This scroll explores the stations of the soul, the purification of the heart,
-        and the mysteries of <em>fanā’</em> (annihilation in God) and <em>baqā’</em>
+        This page explores the stations of the soul, the purification of the heart, 
+        and the mysteries of <em>fanā’</em> (annihilation in God) and <em>baqā’</em> 
         (abiding in divine presence).
       </p>
     </details>
@@ -61,7 +41,10 @@ breadcrumbs:
 
     <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+      <span 
+        class="divider-symbol pillar-glyph spin glow" 
+        aria-hidden="true">{{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

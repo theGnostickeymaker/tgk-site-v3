@@ -1,12 +1,12 @@
 @layer components {
   /* ===========================================
-     Rights Erosion Chart (SYSTEMIC Scrolls)
+     Rights Erosion Chart (SYSTEMIC pages)
      =========================================== */
   #rightsErosionChart {
     background: var(--card-gradient);
     border: 2px solid var(--section-border);
     border-radius: var(--border-radius-base, 6px);
-    box-shadow: var(--scroll-box-shadow);
+    box-shadow: var(--page-box-shadow);
     max-width: 800px;
     margin: var(--space-lg) auto;
     color: var(--strong-text);
@@ -37,14 +37,14 @@
   }
 
   /* ===========================================
-     Soul Journey Diagram (Afterlife Scrolls)
+     Soul Journey Diagram (Afterlife pages)
      =========================================== */
   .soul-journey-diagram {
     padding: var(--space-md);
     border-left: 4px solid var(--text-accent);
     margin: var(--space-md) 0;
     background: var(--bg-soft, rgba(0,0,0,0.02));
-    box-shadow: var(--scroll-shadow-soft);
+    box-shadow: var(--page-shadow-soft);
     border-radius: var(--border-radius-base);
   }
 
@@ -81,7 +81,7 @@
     height: auto;
     border: 2px solid var(--section-border);
     border-radius: var(--border-radius-base);
-    box-shadow: var(--scroll-shadow-soft);
+    box-shadow: var(--page-shadow-soft);
   }
 
   .visual-toll-map figcaption {
@@ -92,9 +92,9 @@
   }
 
   /* ===========================================
-     Active Scroll Indicator
+     Active page Indicator
      =========================================== */
-  .active-scroll {
+  .active-page {
     font-weight: bold;
     color: var(--text-accent);
     text-decoration: underline;

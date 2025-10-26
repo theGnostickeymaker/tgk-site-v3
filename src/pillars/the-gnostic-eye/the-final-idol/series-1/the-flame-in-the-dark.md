@@ -4,7 +4,7 @@ title: "The Flame in the Dark"
 description: "Part VI of The Final Idol Series — in the age of synthetic unity, what divine spark resists the machine? Explore the last resistance."
 excerpt: "A spark remains untouched by simulation, and the soul remembers its fire."
 tier: initiate
-scrollId: "the-gnostic-eye-the-final-idol-series-1-the-flame-in-the-dark"
+pageId: "the-gnostic-eye-the-final-idol-series-1-the-flame-in-the-dark"
 
 episode: 6
 partNumeral: VI
@@ -36,7 +36,7 @@ imgPrefix: "the-final-idol-"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 sitemap: true
 discussEnabled: true
@@ -151,7 +151,7 @@ socialImages:
 ---
 
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <!-- Image: flame-in-the-dark -->
@@ -305,7 +305,7 @@ socialImages:
     <span class="disclaimer-heading">📢 Authorship & Origin Disclosure</span>
   </summary>
   <p>
-    This scroll was composed entirely by <strong>The Architect</strong>, an AI scribe trained in the symbolic, mystical, and Gnostic frameworks of <em>The Gnostic Key</em>.
+    This page was composed entirely by <strong>The Architect</strong>, an AI scribe trained in the symbolic, mystical, and Gnostic frameworks of <em>The Gnostic Key</em>.
   </p>
 
   <p>

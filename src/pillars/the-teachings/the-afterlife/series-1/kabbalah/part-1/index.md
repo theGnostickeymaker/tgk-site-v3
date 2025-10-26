@@ -6,7 +6,7 @@ description: "The Kabbalistic map of the afterlife — tracing the descent of so
 excerpt: "Before there was a Bible… there was a flame."
 tier: free
 
-scrollId: "the-teachings-the-afterlife-series-1-kabbalah-part-1"
+pageId: "the-teachings-the-afterlife-series-1-kabbalah-part-1"
 episode: 3
 partNumeral: I
 partTitle: "The Tree of Emanation"
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the veil of I?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -202,7 +202,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -215,7 +215,7 @@ socialImages:
   <p>Before there was a Bible… there was a flame.</p>
   <p>Before the rabbis tamed it, before the mystics coded it in secrecy, before &ldquo;Kabbalah&rdquo; became a buzzword, there was a wild tradition of soul-knowledge burning through the shadows of ancient Judaism.</p>
 
-  <p>This scroll is not about modern orthodoxy. It&rsquo;s not about red strings, celebrity mysticism, or theological systems. This is about the raw, radiant heart of <strong>Jewish esoteric thought</strong>: the soul&rsquo;s descent into matter, its struggle through the layers of illusion, and its ascent back to the Source.</p>
+  <p>This page is not about modern orthodoxy. It&rsquo;s not about red strings, celebrity mysticism, or theological systems. This is about the raw, radiant heart of <strong>Jewish esoteric thought</strong>: the soul&rsquo;s descent into matter, its struggle through the layers of illusion, and its ascent back to the Source.</p>
 
   <p>Welcome to the Kabbalistic tradition, <em>a hidden map of the afterlife</em>, encoded in the Sefirot, whispered by prophets, encrypted in the Zohar, and exploded into myth by Isaac Luria and the mystics of Safed.</p>
 

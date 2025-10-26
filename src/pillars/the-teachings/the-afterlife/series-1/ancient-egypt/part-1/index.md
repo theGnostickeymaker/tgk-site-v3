@@ -5,7 +5,7 @@ title: "Ancient Egypt"
 description: "The soul’s weighing, the Duat, and the Book of Coming Forth by Day."
 excerpt: "To the ancient Egyptians, death was not an end. It was a continuation, a threshold into a mirrored world, more enduring and perfected than the Nile-fed lands of the living."
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-ancient-egypt-part-1"
+pageId: "the-teachings-the-afterlife-series-1-ancient-egypt-part-1"
 
 episode: 5
 partNumeral: I
@@ -33,7 +33,7 @@ quizIntro: "Can you pass the Judgement of Ma’at?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -203,8 +203,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
-
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 <main class="main-content">
   <section class="content-container">
@@ -231,9 +230,9 @@ socialImages:
 
   <p>This journey was not automatic. It required preparation, memory, and ritual. The dead would pass through the <em>Du&rsquo;at,</em> the underworld, facing guardians, gates, and their own heart&rsquo;s testimony. But if they passed the trials, they would awaken into <strong>Aaru,</strong> the Field of Reeds, a paradise of eternity where crops grew without labor, love was without sorrow, and the sun rose forever.</p>
 
-  <p><strong>The afterlife was not a place of clouds or fire, it was Egypt made divine.</strong> And every tomb, scroll, spell, and amulet was a key to its gates.</p>
+  <p><strong>The afterlife was not a place of clouds or fire, it was Egypt made divine.</strong> And every tomb, page, spell, and amulet was a key to its gates.</p>
 
-  <p>In this scroll, we begin our descent, into the tomb, into the myth, into the soul. To understand death as the Egyptians did, is to understand life as sacred rehearsal.</p>
+  <p>In this page, we begin our descent, into the tomb, into the myth, into the soul. To understand death as the Egyptians did, is to understand life as sacred rehearsal.</p>
 
   <blockquote class="blockquote">
     <span class="egyptian-script">&ldquo;Peret em heru.&rdquo;</span><br>
@@ -814,14 +813,14 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: 42-confessions-scroll -->
+<!-- Image: 42-confessions-page -->
 <figure class="image-block">
-  <a href="{{ imgBase }}/{{ imgPrefix }}42-confessions-scroll.jpg" target="_blank" rel="noopener noreferrer">
+  <a href="{{ imgBase }}/{{ imgPrefix }}42-confessions-page.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source srcset="{{ imgBase }}/{{ imgPrefix }}42-confessions-scroll.webp" type="image/webp">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}42-confessions-page.webp" type="image/webp">
       <img
-        src="{{ imgBase }}/{{ imgPrefix }}42-confessions-scroll.jpg"
-        alt="Ancient scroll with 42 Negative Confessions, flanked by divine judges, in a sacred chamber of judgement"
+        src="{{ imgBase }}/{{ imgPrefix }}42-confessions-page.jpg"
+        alt="Ancient page with 42 Negative Confessions, flanked by divine judges, in a sacred chamber of judgement"
         class="image-gnostic"
         loading="lazy"
       >
@@ -1030,7 +1029,7 @@ socialImages:
 
   <p>The true title was <em>Ra nu peret em heru,</em> <strong>The Book of Coming Forth by Day</strong>. Because the goal was not rest. It was return. Awakening. <strong>Emergence into eternal light</strong>.</p>
 
-  <p>Copied onto papyrus and buried with the deceased, each scroll was a spiritual GPS, charting paths through the Du&rdquo;st, invoking protective deities, listing the 42 Confessions, and providing names of gates and guardians.</p>
+  <p>Copied onto papyrus and buried with the deceased, each page was a spiritual GPS, charting paths through the Du&rdquo;st, invoking protective deities, listing the 42 Confessions, and providing names of gates and guardians.</p>
 
   <p>Spell 125 became the centrepiece, the judgement scene, the weighing of the heart, the soul&rsquo;s declaration of innocence. But other spells addressed every stage of the journey: how to breathe, speak, walk, transform into animals, summon boats, avoid serpents, pass fire-lakes, and <strong>become a star</strong>.</p>
 
@@ -1052,19 +1051,19 @@ socialImages:
     <li>The Book of the Dead was a sacred compilation of spells to guide the soul through the afterlife.</li>
     <li>Its true title was &ldquo;The Book of Coming Forth by Day&rdquo;, a guide to rebirth into the light.</li>
     <li>It included directions, passwords, hymns, transformation spells, and declarations for judgement.</li>
-    <li>Each scroll was customized, buried with the dead, and designed to awaken memory in the Du&rdquo;st.</li>
+    <li>Each page was customized, buried with the dead, and designed to awaken memory in the Du&rdquo;st.</li>
     <li>This was not myth, it was operating code for the soul&rsquo;s return to eternity.</li>
   </ul>
 </section>
 
-<!-- Image: book-of-the-dead-scroll -->
+<!-- Image: book-of-the-dead-page -->
 <figure class="image-block">
-  <a href="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-scroll.jpg" target="_blank" rel="noopener noreferrer">
+  <a href="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-page.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source srcset="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-scroll.webp" type="image/webp">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-page.webp" type="image/webp">
       <img
-        src="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-scroll.jpg"
-        alt="A sacred papyrus scroll of the Book of the Dead, with vivid spells and hieroglyphs glowing in golden light"
+        src="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-page.jpg"
+        alt="A sacred papyrus page of the Book of the Dead, with vivid spells and hieroglyphs glowing in golden light"
         class="image-gnostic"
         loading="lazy"
       >
@@ -1125,7 +1124,7 @@ socialImages:
       <source srcset="{{ imgBase }}/{{ imgPrefix }}living-die-well-maat.webp" type="image/webp">
       <img
         src="{{ imgBase }}/{{ imgPrefix }}living-die-well-maat.jpg"
-        alt="An Egyptian elder prepares for death with calm reverence, surrounded by scrolls, symbols of Ma’at, and family offering rites"
+        alt="An Egyptian elder prepares for death with calm reverence, surrounded by pages, symbols of Ma’at, and family offering rites"
         class="image-gnostic"
         loading="lazy"
       >

@@ -1,27 +1,3 @@
----
-layout: base.njk
-title: "Kabbalah"
-description: "The Tree of Life, the ascent of the soul, and the restoration of divine harmony."
-tier: free
-
-glyph: "✡"
-
-series_version: 1
-permalink: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/index.html"
-tagline: "The Tree of Life ✦ The Soul’s Ascent ✦ The Return to Divine Harmony"
-seriesMeta:
-  number: 1
-  label: "Series 1"
-  series_version: 1
-episode: 3
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Teachings", url: "/pillars/the-teachings/" }
-  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
----
-
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/kabbalah.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -39,19 +15,23 @@ breadcrumbs:
       Kabbalah — the Tree of Life, the ascent of the soul, and the return to divine harmony.
     </h4>
 
-    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
-    <!-- ⚠️ Disclaimer -->
+    <!-- ✡ Disclaimer -->
     <details class="disclaimer-box">
-      <summary><span class="disclaimer-heading">✡ About Kabbalah</span></summary>
+      <summary>
+        <span class="disclaimer-heading">✡ About Kabbalah</span>
+      </summary>
       <p>
-        <strong>Kabbalah</strong> is the ancient mystical framework describing how the Infinite
-        (<em>Ein Sof</em>) flows into creation through ten <strong>Sefirot</strong> — vessels of
+        <strong>Kabbalah</strong> is the ancient mystical framework describing how the Infinite 
+        (<em>Ein Sof</em>) flows into creation through ten <strong>Sefirot</strong> — vessels of 
         divine energy forming the <em>Tree of Life</em>.
       </p>
       <p>
-        This series follows the soul’s descent into form, its purification through light, and its
-        ascent back to <strong>Tiferet</strong>, where harmony between heaven and earth is restored.
+        This series follows the soul’s descent into form, its purification through light, and its 
+        ascent back to <strong>Tiferet</strong>, where harmony between heaven and earth is restored. 
         It is a map of emanation, return, and remembrance — a sacred geometry of the soul’s journey.
       </p>
     </details>
@@ -61,7 +41,10 @@ breadcrumbs:
 
     <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+      <span 
+        class="divider-symbol pillar-glyph spin glow" 
+        aria-hidden="true">{{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

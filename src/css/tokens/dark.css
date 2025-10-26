@@ -26,7 +26,7 @@
     /* ✦ Shadows & Symbols */
     --shadow-glow: rgba(255, 215, 140, 0.25);
     --glyph-color: var(--text-accent);
-    --accent-scroll: var(--text-accent);
+    --accent-page: var(--text-accent);
 
     /* ✦ Card Defaults */
     --card-action-bg: var(--text-accent);

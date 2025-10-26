@@ -5,7 +5,7 @@ title: "Buddhism"
 description: "Through the Six Realms, the Bardos, and the mind’s last illusions — the soul learns how to die before death."
 excerpt: "In Buddhist cosmology, reality is not linear. It spirals."
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-buddhism-part-1"
+pageId: "the-teachings-the-afterlife-series-1-buddhism-part-1"
 
 episode: 4
 partNumeral: I
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the veil of I?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -70,7 +70,7 @@ discussion:
   points:
     - "Have you ever known a moment where the mind was utterly still?"
     - "Do you fear ego dissolution — or do you long for it?"
-    - "What does 'awakening' mean to you now, after this scroll?"
+    - "What does 'awakening' mean to you now, after this page?"
   footer: "Write your reflection in your journal or share it with the temple of seekers using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
 
 # 📖 Glossary
@@ -217,7 +217,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">

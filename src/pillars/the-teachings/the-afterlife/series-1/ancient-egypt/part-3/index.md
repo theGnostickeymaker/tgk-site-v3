@@ -5,7 +5,7 @@ title: "Ancient Egypt"
 description: "The resurrection of light — from the weighing of the heart to the ascent among the Imperishables."
 excerpt: "You deciphered the maps of the afterlife, spells of becoming, trials of identity, and the ciphered rites of return. But resurrection is not mere passage. Now comes the test of transfiguration, when Ka…"
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-ancient-egypt-part-3"
+pageId: "the-teachings-the-afterlife-series-1-ancient-egypt-part-3"
 
 episode: 5
 partNumeral: III
@@ -35,7 +35,7 @@ quizIntro: "Can you see through the veil of III?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -201,7 +201,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -531,7 +531,7 @@ socialImages:
   <p>The trials are passed. The heart is light. The soul remembers.  
   And now, it <strong>transfigures</strong>.</p>
 
-  <p>The <strong>Akh</strong> is not simply a phase of the soul, it is a <em>state of becoming</em>. A fusion of memory, name, truth, and radiance. The Ba and Ka rejoin. The name shines in the scrolls. The soul becomes <strong>starfire</strong>.</p>
+  <p>The <strong>Akh</strong> is not simply a phase of the soul, it is a <em>state of becoming</em>. A fusion of memory, name, truth, and radiance. The Ba and Ka rejoin. The name shines in the pages. The soul becomes <strong>starfire</strong>.</p>
 
   <p>To become Akh is to become <strong>immortal, radiant, effective</strong>. Not just to survive death, but to <em>master it</em>. You rise not as shadow or echo, but as a being of light, who may dwell with the gods, or guide others.</p>
 
@@ -712,7 +712,7 @@ socialImages:
 
   <p>It is not revival of the body. It is the <strong>preservation of memory</strong>, the <em>Name</em> carried through death, trial, and fire. When your <strong>Ren</strong> remains spoken, your light continues.</p>
 
-  <p>Egyptian resurrection is not resuscitation, it is <strong>transformation</strong>. The soul becomes Akh, the Ka is fed, and the Ren, the <em>vibrational signature of the Self</em>, is sealed in the scrolls of the stars.</p>
+  <p>Egyptian resurrection is not resuscitation, it is <strong>transformation</strong>. The soul becomes Akh, the Ka is fed, and the Ren, the <em>vibrational signature of the Self</em>, is sealed in the pages of the stars.</p>
 
   <p>To achieve resurrection is to <strong>write yourself into the structure of reality</strong>. To become known by the gods, not for deeds or titles, but for essence. You become a line in the sky, a note in the eternal chord.</p>
 
@@ -744,7 +744,7 @@ socialImages:
       <source srcset="{{ imgBase }}/{{ imgPrefix }}final-resurrection-eternal-name.webp" type="image/webp">
       <img
         src="{{ imgBase }}/{{ imgPrefix }}final-resurrection-eternal-name.jpg"
-        alt="A radiant papyrus scroll inscribed with luminous hieroglyphs hovers above a glowing soul ascending into a starlit Egyptian sky — the resurrection of name and light."
+        alt="A radiant papyrus page inscribed with luminous hieroglyphs hovers above a glowing soul ascending into a starlit Egyptian sky — the resurrection of name and light."
         class="image-gnostic"
         loading="lazy"
       >

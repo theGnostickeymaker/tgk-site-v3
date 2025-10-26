@@ -43,30 +43,30 @@ function showToast(message, type = "info") {
 }
 
 /* ===========================================================
-   🜂 Detect Bookmark Type (series | part | scroll)
+   🜂 Detect Bookmark Type (series | part | page)
    =========================================================== */
 function detectBookmarkType(path) {
   const clean = path.replace(/^\/|\/$/g, "");
   const segs = clean.split("/");
 
   if (segs.includes("series-1") || segs.includes("series-2")) {
-    // no scroll or part after series — treat as series index
+    // no page or part after series — treat as series index
     if (!segs.find((s) => s.startsWith("part-")) && segs.length <= 5) return "series";
   }
   if (segs.find((s) => s.startsWith("part-"))) return "part";
-  return "scroll";
+  return "page";
 }
 
 /* ===========================================================
    🜂 Toggle Bookmark — Local + Firestore + Animation + Type
    =========================================================== */
-export async function toggleBookmark(scrollId, button = null) {
+export async function toggleBookmark(pageId, button = null) {
   const uid = auth.currentUser?.uid;
   const ls = JSON.parse(localStorage.getItem(localKey) || "[]");
-  const hasLocal = ls.includes(scrollId);
+  const hasLocal = ls.includes(pageId);
 
   // Instant local feedback
-  const updated = hasLocal ? ls.filter((i) => i !== scrollId) : [...ls, scrollId];
+  const updated = hasLocal ? ls.filter((i) => i !== pageId) : [...ls, pageId];
   localStorage.setItem(localKey, JSON.stringify(updated));
 
   // === Visual feedback logic ===
@@ -100,14 +100,14 @@ export async function toggleBookmark(scrollId, button = null) {
 
   // === Firestore sync (if logged in) ===
   if (!uid) return;
-  const ref = doc(db, "bookmarks", uid, "scrolls", scrollId);
+  const ref = doc(db, "bookmarks", uid, "pages", pageId);
 
   try {
     const snap = await getDoc(ref);
     if (snap.exists()) {
       await deleteDoc(ref);
       const dashItem = document.querySelector(
-        `[data-scroll="${scrollId}"], li[data-id="${scrollId}"]`
+        `[data-page="${pageId}"], li[data-id="${pageId}"]`
       );
       if (dashItem) {
         dashItem.classList.add("removing");
@@ -133,13 +133,13 @@ export async function syncBookmarks() {
 
   try {
     const remote = [];
-    const qSnap = await getDocs(collection(db, "bookmarks", uid, "scrolls"));
+    const qSnap = await getDocs(collection(db, "bookmarks", uid, "pages"));
     qSnap.forEach((d) => remote.push(d.id));
     localStorage.setItem(localKey, JSON.stringify(remote));
     console.log(`[TGK] Synced ${remote.length} bookmarks`);
 
     // Update visual state globally
-    document.querySelectorAll(".scroll-bookmark").forEach((btn) => {
+    document.querySelectorAll(".page-bookmark").forEach((btn) => {
       const id = btn.dataset.bookmarkId;
       if (remote.includes(id)) btn.classList.add("bookmarked");
       else btn.classList.remove("bookmarked");
@@ -153,7 +153,7 @@ export async function syncBookmarks() {
    ✦ Initialize buttons on page load
    =========================================================== */
 export function initBookmarks() {
-  const buttons = document.querySelectorAll(".scroll-bookmark");
+  const buttons = document.querySelectorAll(".page-bookmark");
   if (!buttons.length) return;
 
   const ls = JSON.parse(localStorage.getItem(localKey) || "[]");

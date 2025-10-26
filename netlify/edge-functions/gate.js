@@ -1,6 +1,6 @@
 // 🜂 TGK — Netlify Edge Gate (v2)
 // Purpose: Protect gated pages and verify membership tier
-// Runs at CDN edge before scroll delivery
+// Runs at CDN edge before page delivery
 
 import { jwtVerify } from "https://deno.land/x/jose@v4.14.4/index.ts";
 

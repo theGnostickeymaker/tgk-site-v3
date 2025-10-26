@@ -1,4 +1,4 @@
-// 🧠 TGK Quiz — The AI Antichrist (Scroll V)
+// 🧠 TGK Quiz — The AI Antichrist (page V)
 // Series: The Final Idol — Series I
 // Format: TGK Quiz Schema v2.7
 

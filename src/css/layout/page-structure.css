@@ -26,7 +26,7 @@
     border: 0.5px solid var(--section-border);
     border-left: 2px solid var(--section-border);
     border-radius: var(--border-radius-base);
-    box-shadow: var(--scroll-shadow-soft);
+    box-shadow: var(--page-shadow-soft);
     overflow-x: hidden;
   }
 
@@ -140,23 +140,34 @@
   /* ========================================
      Page Title Block
      ======================================== */
-  .page-title-block {
-    text-align: center;
-    margin: var(--space-md) auto;
-    max-width: 960px;
-    padding: 0 var(--space-md);
-  }
+    .page-title-block {
+      text-align: center;
+      margin: var(--space-md) auto;
+      max-width: 960px;
+      padding: 0 var(--space-md);
+    }
 
-  .page-title {
-    text-align: center;
-    font-size: var(--font-size-xl);
-    font-weight: bold;
-    font-family: var(--page-title);
-    color: var(--text-accent);
-    line-height: var(--font-base-line);
-    margin-bottom: var(--space-md);
-  }
+    .page-title {
+      text-align: center;
+      font-size: var(--font-size-xl);
+      font-weight: bold;
+      font-family: var(--page-title);
+      color: var(--text-accent);
+      line-height: var(--font-base-line);
+      margin-bottom: var(--space-md);
+    }
 
+    .page-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--highlight);
+    margin: var(--space-sm) auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--shadow-glow);
+  }
+  
   /* ========================================
      Fullscreen Center Wrapper
      ======================================== */
@@ -170,7 +181,7 @@
     box-sizing: border-box;
   }
 
-  /* Global scrolling */
+  /* Global pageing */
   html { scroll-behavior: auto; scroll-padding-top: var(--space-lg); }
   html, body { min-height: 100%; }
   *, *::before, *::after { box-sizing: border-box; }

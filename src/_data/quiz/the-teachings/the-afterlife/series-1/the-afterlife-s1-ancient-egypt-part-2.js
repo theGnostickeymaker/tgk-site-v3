@@ -78,7 +78,7 @@ export default {
           key: "B",
           label: "Star-aligned stargates for soul ascension"
         },
-        { key: "C", label: "Warehouses of priestly scrolls" },
+        { key: "C", label: "Warehouses of priestly pages" },
         { key: "D", label: "Places of silence and decay" }
       ],
       answer: "B",

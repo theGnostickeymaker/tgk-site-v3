@@ -1,56 +1,45 @@
----
-layout: base.njk
-title: "The Afterlife"
-description: "The false cosmos, Christ the Revealer, and the soul’s return."
-tagline: "Through death’s veil ✦ the soul remembers ✦ the light returns"
-collectionId: "the-teachings-the-afterlife-series-1"
-tier: free
-
-glyph: "✝"
-glyphRow: ["✶","☥","✝"]
-
-seriesMeta:
-  number: 1
-  label: "Series 1"
-  series_version: 1
-permalink: "/pillars/the-teachings/the-afterlife/series-1/index.html"
----
-
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife-series1.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
-<section class="content-container">
+  <section class="content-container">
 
-<h4 class="index heading">
-  Journeys through the world’s afterlife traditions – scrolls revealing death, rebirth
-  and the soul’s passage beyond the veil.
-</h4>
+    <h4 class="index-heading">
+      Journeys through the world’s afterlife traditions – pages revealing death, rebirth
+      and the soul’s passage beyond the veil.
+    </h4>
 
-{% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
-<details class="disclaimer-box">
-  <summary>
-    <span class="disclaimer-heading">☥ About the Afterlife Series</span>
-  </summary>
-  <p>
-    <strong>The Afterlife Series</strong> explores the sacred maps of death and return found in
-    the world’s great mystical traditions. Each scroll traces the soul’s journey through
-    judgement, transformation and remembrance.
-  </p>
-  <p>
-    From the Gnostic revelations of early Christianity to the Sufi, Kabbalistic, Buddhist,
-    Egyptian and Mesoamerican visions of the beyond, these teachings reveal that death is
-    not an ending but a passage – a return to the Source from which all spirits arise.
-  </p>
-</details>
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">☥ About the Afterlife Series</span>
+      </summary>
+      <p>
+        <strong>The Afterlife Series</strong> explores the sacred maps of death and return found in
+        the world’s great mystical traditions. Each page traces the soul’s journey through
+        judgement, transformation and remembrance.
+      </p>
+      <p>
+        From the Gnostic revelations of early Christianity to the Sufi, Kabbalistic, Buddhist,
+        Egyptian and Mesoamerican visions of the beyond, these teachings reveal that death is
+        not an ending but a passage – a return to the Source from which all spirits arise.
+      </p>
+    </details>
 
-{% include "partials/pillar-grid.njk" %}
+    {% include "partials/pillar-grid.njk" %}
 
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-</div>
+    {% set items = pillarGrid %}
+    {% set headline = "The Afterlife — Series 1: Scroll Index" %}
+    {% set base = "/pillars/the-teachings/the-afterlife/series-1/" %}
+    {% include "partials/jsonld-collection.njk" %}
 
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
 </main>

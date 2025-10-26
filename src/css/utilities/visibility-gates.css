@@ -25,11 +25,11 @@
   }
 
   /* Smooth fade-in for unlocked content */
-  .scroll-content {
+  .page-content {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
   }
-  .unlocked-scroll .scroll-content {
+  .unlocked-page .page-content {
     opacity: 1;
   }
 }

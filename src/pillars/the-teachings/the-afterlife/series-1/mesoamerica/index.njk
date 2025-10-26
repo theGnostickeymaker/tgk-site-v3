@@ -1,26 +1,3 @@
----
-layout: base.njk
-title: "Mesoamerica"
-description: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death."
-tier: free
-
-glyph: "🌽"
-series_version: 1
-permalink: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/index.html"
-tagline: "Sacred Time ✦ Calendars of Stone ✦ The Architecture of Death"
-seriesMeta:
-  number: 1
-  label: "Series 1"
-  series_version: 1
-episode: 6
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Teachings", url: "/pillars/the-teachings/" }
-  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
-  - { title: "Series I", url: "/pillars/the-teachings/the-afterlife/series-1/" }
-  - { title: "Mesoamerica" }
----
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife/mesoamerica.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -38,9 +15,11 @@ breadcrumbs:
       Mesoamerica — Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death.
     </h4>
 
-    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
-    <!-- ⚠️ Disclaimer -->
+    <!-- 🌽 Disclaimer -->
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">🌽 About Mesoamerica</span></summary>
       <p>
@@ -67,7 +46,10 @@ breadcrumbs:
 
     <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+      <span 
+        class="divider-symbol pillar-glyph spin glow" 
+        aria-hidden="true">{{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

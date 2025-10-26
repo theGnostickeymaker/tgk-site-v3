@@ -1,20 +1,20 @@
 {# ===========================================================
    🜂 TGK — Social Share Section (v2.2)
    Purpose:
-   Enables readers to share a scroll directly to Telegram, X (Twitter),
+   Enables readers to share a page directly to Telegram, X (Twitter),
    or join The Gnostic Key’s official channel.
 
    ✅ Expected Data:
-     - title        → Scroll title (from front matter)
+     - title        → page title (from front matter)
      - permalink    → Canonical permalink (Eleventy)
      - page.url     → Fallback for current page URL
      - siteBase     → TGK site root (defaults to https://thegnostickey.com)
 
    💡 Behaviour:
-     - Dynamically encodes scroll title and URL
+     - Dynamically encodes page title and URL
      - Adds default hashtag #TheGnosticKey
      - Consistent with TGK’s “btn-row” and “btn-outline” styling
-     - Can be appended at the end of any scroll layout
+     - Can be appended at the end of any page layout
    =========================================================== #}
 
 {% set siteBase = "https://thegnostickey.com" %}
@@ -23,7 +23,7 @@
 {% set shareUrl = siteBase + relativeUrl %}
 
 <section id="share" class="section-block share-section">
-  <h2 class="section-heading">📤 Share This Scroll</h2>
+  <h2 class="section-heading">📤 Share This page</h2>
   <p class="section-subtitle">Spread the light — every share is a spark of remembrance.</p>
 
   <div class="btn-row">
@@ -34,7 +34,7 @@
          target="_blank"
          rel="noopener noreferrer"
          class="btn btn-outline"
-         aria-label="Share this scroll on Telegram">
+         aria-label="Share this page on Telegram">
         🔗 <strong>Share on Telegram</strong>
       </a>
     </div>
@@ -45,7 +45,7 @@
          target="_blank"
          rel="noopener noreferrer"
          class="btn btn-outline"
-         aria-label="Share this scroll on X (formerly Twitter)">
+         aria-label="Share this page on X (formerly Twitter)">
         📤 <strong>Share on X</strong>
       </a>
     </div>

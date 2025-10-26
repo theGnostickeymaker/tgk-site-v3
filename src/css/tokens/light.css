@@ -22,7 +22,7 @@
     --purple-accent: #8b6fc1;
     --vault-accent: #5a4b91;
     --highlight: #6e3fa0;
-    --accent-scroll: var(--text-accent);
+    --accent-page: var(--text-accent);
 
     /* ✦ Shadows & Symbolism */
     --shadow-glow: rgba(181, 139, 15, 0.4);

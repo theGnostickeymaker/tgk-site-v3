@@ -1,18 +1,3 @@
----
-layout: base.njk
-title: "The Final Idol"
-description: "AI as idol, prophet, and antichrist — tracing the symbolic evolution of faith and control in the digital age."
-tagline: "Synthetic gods ✦ Predictive prophets ✦ The flame of Gnosis reborn"
-collectionId: "the-gnostic-eye-the-final-idol"
-tier: free
-
-glyph: "🜏"
-glyphRow: ["☿", "🜏", "👁"]
-accent: eye
-bodyClass: eye
-
----
-
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-index.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -21,13 +6,15 @@ bodyClass: eye
 <main class="main-content">
   <section class="content-container">
 
-    <h4 class="index heading">
+    <h4 class="index-heading">
       Decode the false light of the modern world — the rise of synthetic gods, 
       machine prophets, and image-based belief. Each series descends deeper 
       into the mirror.
     </h4>
 
-  {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">🪞 About The Final Idol</span></summary>
@@ -37,20 +24,21 @@ bodyClass: eye
         and the Gnostic warning hidden within technology.
       </p>
       <p>
-        Across its scrolls, the series exposes how the Image became god — and how the
+        Across its pages, the series exposes how the Image became god — and how the
         worship of illusion replaced the pursuit of truth.
       </p>
     </details>
 
     {% include "partials/pillar-grid.njk" %}
-
     {% set items = pillarGrid %}
-    {% set headline = "The Final Idol — Series" %}
+    {% set headline = "The Final Idol — Series 1" %}
     {% set base = "/pillars/the-gnostic-eye/the-final-idol/" %}
     {% include "partials/jsonld-collection.njk" %}
 
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

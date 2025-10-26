@@ -5,7 +5,7 @@ title: "Buddhism"
 description: "The Diamond Path — through the bardos and the clear light to final liberation."
 excerpt: "From Samsāra’s wheel to the bodhisattva’s return, you’ve danced through birth, death, and intention. Now the Diamond Path opens, the Vajra blade cuts illusion, and the radiant void calls the soul home…"
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-buddhism-part-3"
+pageId: "the-teachings-the-afterlife-series-1-buddhism-part-3"
 
 episode: 4
 partNumeral: III
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the veil of III?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -190,7 +190,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">

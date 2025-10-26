@@ -28,7 +28,7 @@
     --shadow-glow: var(--glow-apricot) !important;
     --strong-text: #f9d8ac !important;
     --cite-color: #dab894 !important;
-    --accent-scroll: #eac39b !important;
+    --accent-page: #eac39b !important;
     --section-border: #f6d8b2 !important;
 
     /* Gradients */
@@ -85,7 +85,7 @@
     --shadow-glow: var(--glow-aqua-soft) !important;
     --strong-text: #ac6839 !important;
     --cite-color: #9c6b4e !important;
-    --accent-scroll: #dc9c61 !important;
+    --accent-page: #dc9c61 !important;
     --section-border: #f5ddc0 !important;
 
     /* Gradients */
@@ -146,19 +146,6 @@
     border-bottom: 1px solid var(--highlight) !important;
   }
 
-  /* Scroll Titles */
-  html[data-theme="dark"] body.shop .scroll-title {
-    background: linear-gradient(to right, #2e2219, #5e4330, #f7e6c4) !important;
-    color: #f9d8ac !important;
-    text-shadow: 0 1px 4px var(--glow-aqua) !important;
-  }
-
-  html[data-theme="light"] body.shop .scroll-title {
-    background: linear-gradient(to right, #fdf3e4, #f5d5a9, #dc9c61) !important;
-    color: #ac6839 !important;
-    text-shadow: 0 1px 3px var(--glow-aqua-soft) !important;
-  }
-
   /* Section Blocks */
   html[data-theme="dark"] body.shop .section-block {
     background: linear-gradient(145deg, #2e2219 0%, #48321f 60%, #5e4330 100%) !important;
@@ -188,7 +175,7 @@
   html[data-theme="dark"] body.shop .quiz-prompt {
     background: linear-gradient(to right, #2e2219, #5e4330) !important;
     color: var(--glyph-color) !important;
-    border-left: 4px solid var(--accent-scroll) !important;
+    border-left: 4px solid var(--accent-page) !important;
     box-shadow: 0 0 12px var(--glow-apricot) !important;
   }
 
@@ -196,7 +183,7 @@
   html[data-theme="light"] body.shop .quiz-prompt {
     background: linear-gradient(to right, #fdf3e4, #f5d5a9) !important;
     color: var(--strong-text) !important;
-    border-left: 4px solid var(--accent-scroll) !important;
+    border-left: 4px solid var(--accent-page) !important;
     box-shadow: 0 0 10px var(--glow-aqua-soft) !important;
   }
 
@@ -210,7 +197,7 @@
   html[data-theme="dark"] body.shop .quiz-button {
     background: #2e2219 !important;
     color: var(--glyph-color) !important;
-    border: 2px solid var(--accent-scroll) !important;
+    border: 2px solid var(--accent-page) !important;
     box-shadow: 0 0 6px var(--glow-apricot) inset !important;
   }
 
@@ -218,7 +205,7 @@
   html[data-theme="light"] body.shop .quiz-button {
     background: #fffdf9 !important;
     color: var(--strong-text) !important;
-    border: 2px solid var(--accent-scroll) !important;
+    border: 2px solid var(--accent-page) !important;
     box-shadow: 0 0 6px var(--glow-aqua-soft) inset !important;
   }
 
@@ -226,7 +213,7 @@
   html[data-theme="dark"] body.shop .quiz-button:hover {
     background: #5e4330 !important;
     color: #fffbe8 !important;
-    border-color: var(--accent-scroll) !important;
+    border-color: var(--accent-page) !important;
     box-shadow: 0 0 14px var(--glow-apricot) !important;
   }
 
@@ -234,7 +221,7 @@
   html[data-theme="light"] body.shop .quiz-button:hover {
     background: var(--highlight) !important;
     color: #3a2c0e !important;
-    border-color: var(--accent-scroll) !important;
+    border-color: var(--accent-page) !important;
     box-shadow: 0 0 12px var(--glow-aqua) !important;
   }
 }

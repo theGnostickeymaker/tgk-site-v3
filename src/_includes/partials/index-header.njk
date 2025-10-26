@@ -1,11 +1,11 @@
 {# =========================================================
-   🜂 TGK — Series / Scroll Header Partial (v2.3)
+   🜂 TGK — Series / page Header Partial (v2.3)
    Purpose:
-   Renders a concise title + description banner for scrolls
+   Renders a concise title + description banner for pages
    (episodes, parts, or standalone teachings).
 
    ✅ Data Sources:
-   • title          → main scroll title (from front matter)
+   • title          → main page title (from front matter)
    • description    → subheading / short summary
    • episode        → episode number (optional)
    • partNumeral    → Roman numeral (I, II, III)
@@ -17,35 +17,35 @@
    • Safely hides missing fields without breaking layout
 
    ✨ Accessibility / SEO:
-   • Uses <h1> for top-level scroll heading
-   • Semantic meta block grouped under <div.scroll-meta>
+   • Uses <h1> for top-level page heading
+   • Semantic meta block grouped under <div.page-meta>
 
    ⚙️ Styling:
    • Themed by pillar accent variables (e.g. --accent-color)
-   • Usually followed by scroll content or tab navigation
+   • Usually followed by page content or tab navigation
    ========================================================= #}
 
 <header class="series-header">
-  <!-- 🪶 Scroll Title -->
-  <h1 class="scroll-title">
-    {{ title or "Untitled Scroll" }}
+  <!-- 🪶 page Title -->
+  <h1 class="page-title">
+    {{ title or "Untitled page" }}
   </h1>
 
   <!-- 🗒️ Optional Description -->
   {% if description %}
-    <p class="scroll-description">
+    <p class="page-description">
       {{ description }}
     </p>
   {% endif %}
 
   <!-- 📜 Episode / Part Metadata -->
-  <div class="scroll-meta">
+  <div class="page-meta">
     {% if episode %}
-      <span class="scroll-episode">Episode {{ episode }}</span>
+      <span class="page-episode">Episode {{ episode }}</span>
     {% endif %}
     {% if episode and partNumeral %} · {% endif %}
     {% if partNumeral %}
-      <span class="scroll-part">Part {{ partNumeral }}</span>
+      <span class="page-part">Part {{ partNumeral }}</span>
     {% endif %}
   </div>
 </header>

@@ -54,10 +54,10 @@
     --section-subtitle-color: var(--text-secondary);
     --welcome-text: var(--text-accent);
     --door-callout-color: var(--text-primary);
-    --scroll-title-margin: 2rem;
-    --scroll-border-radius: 12px;
-    --scroll-box-shadow: 0 0 25px var(--shadow-glow);
-    --scroll-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --page-title-margin: 2rem;
+    --page-border-radius: 12px;
+    --page-box-shadow: 0 0 25px var(--shadow-glow);
+    --page-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.05);
     --cite-color: var(--highlight);
 
     /* Forms */

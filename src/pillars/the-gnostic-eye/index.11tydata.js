@@ -1,20 +1,27 @@
 export default {
+  layout: "base.njk",
+
   // 🌌 Pillar Overview
-  landing: {
-    title: "The Gnostic Eye",
-    description:
-      "Symbolic vision and revelation — decoding modern myths, idols, and the invisible architectures shaping belief and control."
-  },
+  pageId: "the-gnostic-eye",
+  permalink: "/pillars/the-gnostic-eye/index.html",
+  pillarId: "the-gnostic-eye",
+  pillarName: "The Gnostic Eye",
+  pillarUrl: "/pillars/the-gnostic-eye/",
+  pillarGlyph: "☿",
+  glyphRow: ["☿", "🜏", "👁"],
+  accent: "eye",
+  bodyClass: "eye",
+  tier: "free",
+
+  title: "The Gnostic Eye",
+  tagline: "Symbol reading ✦ decoding illusion ✦ unveiling the code beneath the world",
+  description:
+    "Symbolic vision and revelation — decoding modern myths, idols, and the invisible architectures shaping belief and control.",
 
   introText:
     "Each series within The Gnostic Eye reveals the unseen forces shaping perception, belief, and power — from synthetic gods and false light to the geometry of allegiance.",
 
-  // 🔹 Pillar Identity
-  pillar: "the-gnostic-eye",
-  pillarGlyph: "☿",
-  tier: "free",
-
-  // 👁 Series Grid (pillar-level)
+  // 👁 Series Grid
   pillarGrid: [
     {
       href: "/pillars/the-gnostic-eye/the-final-idol/",
@@ -53,9 +60,6 @@ export default {
       state: "coming-soon"
     }
   ],
-
-  // 🧱 Layout + Defaults
-  layout: "base.njk",
 
   // 🧭 Breadcrumbs
   breadcrumbs: [

@@ -19,7 +19,7 @@ html[data-theme="dark"] body.eye {
   --glyph-color: #c5d1ff !important;   /* pale vision glow */
   --strong-text: #9aa7d3 !important;
   --cite-color: #9aa7d3 !important;
-  --accent-scroll: #7581b2 !important;
+  --accent-page: #7581b2 !important;
   --section-border: #a6b4e3 !important;
 
   /* Gradients */
@@ -60,12 +60,6 @@ html[data-theme="dark"] body.eye .site-footer {
   background: linear-gradient(to bottom, #0e111a, #1b2232) !important;
   color: var(--text-accent) !important;
   border-bottom: 1px solid var(--highlight) !important;
-}
-
-html[data-theme="dark"] body.eye .scroll-title {
-  background: linear-gradient(to right, #1b2232 0%, #5b6693 100%) !important;
-  color: #7581b2 !important;
-  text-shadow: 0 1px 6px rgba(117, 129, 178, 0.3) !important;
 }
 
 html[data-theme="dark"] body.eye .section-block {
@@ -123,7 +117,7 @@ html[data-theme="light"] body.eye {
   --glyph-color: #7e90c9 !important;
   --strong-text: #55669b !important;
   --cite-color: #55669b !important;
-  --accent-scroll: #94a3d5 !important;
+  --accent-page: #94a3d5 !important;
   --section-border: #dbe3ff !important;
 
   /* Gradients */
@@ -164,12 +158,6 @@ html[data-theme="light"] body.eye .site-footer {
   background: linear-gradient(to bottom, #f5f7fb, #e4e9f8) !important;
   color: var(--text-accent) !important;
   border-bottom: 1px solid var(--highlight) !important;
-}
-
-html[data-theme="light"] body.eye .scroll-title {
-  background: linear-gradient(to right, #dbe3ff 0%, #94a3d5 100%) !important;
-  color: #4d5e91 !important;
-  text-shadow: 0 1px 4px rgba(210, 220, 255, 0.2) !important;
 }
 
 html[data-theme="light"] body.eye .section-block {

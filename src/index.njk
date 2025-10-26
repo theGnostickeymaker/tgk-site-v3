@@ -1,6 +1,10 @@
+{% block head %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
 <main class="main-content">
 
-  <h4 class="index heading">
+  <h4 class="index-heading">
     A living library — weaving sacred teachings, deep investigations,
     archetypal codes, and forbidden archives into one key.
   </h4>
@@ -11,7 +15,7 @@
       <strong>The Gnostic Key</strong> is a sanctuary for seekers, rebels, and rememberers.
       It weaves together hidden teachings, forbidden truths, and symbolic insight across
       time, tradition, and taboo. Each pillar carries a different aspect of the Mystery:
-      spiritual maps, deep investigations, archetypal codes, and living scrolls.
+      spiritual maps, deep investigations, archetypal codes, and living pages.
     </p>
     <p>
       This site is not a church. It is a <em>vault</em>, a <em>mirror</em>, and a <em>compass</em> —
@@ -19,7 +23,6 @@
     </p>
   </details>
 
-  {# Pillar Grid with overlays (Coming Soon / Premium / Tier) #}
   {% include "partials/pillar-grid.njk" %}
 
   {% set items = pillarGrid %}

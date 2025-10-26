@@ -1,11 +1,11 @@
 {# ===========================================================
    🜂 TGK — Unified Site Header (v3.0)
    Purpose:
-   Renders the global header for all scrolls, vaults, and index pages.
+   Renders the global header for all pages, vaults, and index pages.
    Combines breadcrumb navigation, glyph/title block, and mobile drawer.
 
    ✅ Expected Data:
-     - title           → Scroll / page title
+     - title           → page / page title
      - tagline         → Optional subtitle
      - breadcrumbs     → Array of { title, url }
      - glyphRow        → Array of glyphs for header cluster
@@ -75,15 +75,15 @@
 
     {# --- Publication Metadata --- #}
     {% if author or published %}
-      <div class="scroll-meta header-inline">
+      <div class="page-meta header-inline">
         {% if author %}
-          <span class="scroll-author">{{ author }}</span>
+          <span class="page-author">{{ author }}</span>
         {% endif %}
         {% if author and published %}
           <span class="meta-sep">•</span>
         {% endif %}
         {% if published %}
-          <span class="scroll-date">{{ published | tgkDate }}</span>
+          <span class="page-date">{{ published | tgkDate }}</span>
         {% endif %}
       </div>
     {% endif %}

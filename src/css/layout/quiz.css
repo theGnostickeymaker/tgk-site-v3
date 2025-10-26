@@ -10,7 +10,7 @@
     background: var(--section-bg-bottom);
     border: 1px solid var(--section-border);
     border-radius: var(--border-radius-base);
-    box-shadow: var(--scroll-shadow-soft);
+    box-shadow: var(--page-shadow-soft);
     padding: var(--space-md);
   }
 

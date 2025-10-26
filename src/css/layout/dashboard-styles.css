@@ -150,11 +150,11 @@
   }
 
   /* ===================================================
-     🔖 Scroll Bookmark Feedback
+     🔖 page Bookmark Feedback
      =================================================== */
   .bookmark-floating { text-align: right; margin-bottom: var(--space-sm); }
 
-  .scroll-bookmark,
+  .page-bookmark,
   .bookmark-tag {
     background: none;
     border: none;
@@ -165,20 +165,20 @@
     transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
   }
 
-  .scroll-bookmark:hover,
+  .page-bookmark:hover,
   .bookmark-tag:hover {
     transform: scale(1.1);
     color: var(--text-secondary);
   }
 
-  .scroll-bookmark.bookmarked,
+  .page-bookmark.bookmarked,
   .bookmark-tag.bookmarked {
     color: #38a169;
     text-shadow: 0 0 10px rgba(56,161,105,0.5);
     transform: scale(1.15);
   }
 
-  .bookmark-tag.scroll-bookmark {
+  .bookmark-tag.page-bookmark {
     position: absolute;
     top: var(--space-sm);
     right: var(--space-sm);
@@ -254,17 +254,17 @@
 }
 
 /* ===========================================================
-   🔖 Scroll Bookmark Remove Pulse (inline icon feedback)
+   🔖 Page Bookmark Remove Pulse (inline icon feedback)
    =========================================================== */
 
-.scroll-bookmark.removing {
+.page-bookmark.removing {
   animation:
-    scrollBookmarkPulse 0.25s ease-in forwards,
-    scrollBookmarkFade 0.35s 0.25s ease-in forwards;
+    pageBookmarkPulse 0.25s ease-in forwards,
+    pageBookmarkFade 0.35s 0.25s ease-in forwards;
   transform-origin: center;
 }
 
-@keyframes scrollBookmarkPulse {
+@keyframes pageBookmarkPulse {
   0% {
     transform: scale(1);
     text-shadow: 0 0 0 rgba(239, 68, 68, 0);
@@ -280,7 +280,7 @@
   }
 }
 
-@keyframes scrollBookmarkFade {
+@keyframes pageBookmarkFade {
   from { opacity: 1; }
   to { opacity: 0.4; color: var(--text-secondary); }
 }

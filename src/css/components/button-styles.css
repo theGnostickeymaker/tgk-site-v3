@@ -78,8 +78,8 @@
     padding: 1rem 2rem;
     font-size: 1.1rem;
     border-radius: var(--radius-lg);
-    border: 2px solid var(--accent-scroll);
-    color: var(--accent-scroll);
+    border: 2px solid var(--accent-page);
+    color: var(--accent-page);
     background: transparent;
     box-shadow: 0 0 12px transparent;
     transition: all 0.25s ease;
@@ -87,8 +87,8 @@
 
   .tier-button-group .btn:hover {
     color: var(--bg-primary);
-    background: var(--accent-scroll);
-    box-shadow: 0 0 25px var(--accent-scroll);
+    background: var(--accent-page);
+    box-shadow: 0 0 25px var(--accent-page);
     transform: translateY(-2px);
   }
 

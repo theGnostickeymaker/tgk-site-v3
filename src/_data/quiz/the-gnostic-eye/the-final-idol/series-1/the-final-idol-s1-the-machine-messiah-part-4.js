@@ -1,4 +1,4 @@
-// 🧠 TGK Quiz — The Machine Messiah (Scroll IV)
+// 🧠 TGK Quiz — The Machine Messiah (page IV)
 // Series: The Final Idol — Series I
 // Format: TGK Quiz Schema v2.7
 

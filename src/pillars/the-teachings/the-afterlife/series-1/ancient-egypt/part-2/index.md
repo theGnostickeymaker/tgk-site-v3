@@ -5,7 +5,7 @@ title: "Ancient Egypt"
 description: "Through the twelve gates of night — spells, tombs, and soul-technologies of the Duat."
 excerpt: "You entered the Du”st, faced the weighing of your heart, and discovered that the soul is not one thing, but many. Now we descend deeper, through tomb texts, resurrection spells, and ciphered maps of r…"
 tier: initiate
-scrollId: "the-teachings-the-afterlife-series-1-ancient-egypt-part-2"
+pageId: "the-teachings-the-afterlife-series-1-ancient-egypt-part-2"
 
 episode: 5
 partNumeral: II
@@ -33,7 +33,7 @@ quizIntro: "Can you see through the veil of II?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -197,7 +197,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -396,7 +396,7 @@ socialImages:
       <source srcset="{{ imgBase }}/{{ imgPrefix }}soul-spells-hieroglyph-light.webp" type="image/webp">
       <img
         src="{{ imgBase }}/{{ imgPrefix }}soul-spells-hieroglyph-light.jpg"
-        alt="Golden hieroglyphs rise as streams of light from a sacred scroll, illuminating a translucent human soul ascending toward divinity."
+        alt="Golden hieroglyphs rise as streams of light from a sacred page, illuminating a translucent human soul ascending toward divinity."
         class="image-gnostic"
         loading="lazy"
       >
@@ -596,7 +596,7 @@ socialImages:
 
   <p>The Egyptians were obsessed with memory, not nostalgia, but <strong>immortality through encoded form</strong>.</p>
 
-  <p>Hieroglyphs weren&rsquo;t just letters. Each one was a <strong>living archetype</strong>, a vessel for meaning. Carved into tombs, amulets, and scrolls, they preserved the <em>ba</em>&rsquo;s path, the <em>ka</em>&rsquo;s vitality, and the <em>ren</em>, the name that grants continued existence.</p>
+  <p>Hieroglyphs weren&rsquo;t just letters. Each one was a <strong>living archetype</strong>, a vessel for meaning. Carved into tombs, amulets, and pages, they preserved the <em>ba</em>&rsquo;s path, the <em>ka</em>&rsquo;s vitality, and the <em>ren</em>, the name that grants continued existence.</p>
 
   <p>Numbers, too, held power. The <strong>12 hours</strong> of the night. The <strong>42 assessors</strong> of Ma&rsquo;at. The <strong>7 souls of Ra</strong>. Every figure echoed <strong>metaphysical law</strong>, a sacred count mirroring star maps, organs, or cosmic rhythms.</p>
 

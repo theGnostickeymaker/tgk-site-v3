@@ -17,7 +17,7 @@
     {% for item in seriesNav %}
       <li>
         {% if page.url == item.url %}
-          <span class="active-scroll">{{ item.title }} — {{ item.desc }}</span>
+          <span class="active-page">{{ item.title }} — {{ item.desc }}</span>
         {% else %}
           <a href="{{ item.url }}">{{ item.title }}</a> — {{ item.desc }}
         {% endif %}

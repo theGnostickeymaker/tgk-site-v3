@@ -2,7 +2,7 @@
 ===============================================================================
 🧠 TGK ShareImage + Excerpt Retrofit (v1.3)
 Purpose:
-  • Ensures every scroll front matter has correct socialImage + socialImages block.
+  • Ensures every page front matter has correct socialImage + socialImages block.
   • Creates the expected share-image folder tree under /tgk-assets/images/share/.
   • Optionally injects/updates excerpts as before.
 Usage:

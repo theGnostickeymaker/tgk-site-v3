@@ -19,9 +19,9 @@
     --shadow-glow: rgba(245, 210, 120, 0.18) !important;
     --glyph-color: #d4af37 !important;  /* ceremonial gold */
     --strong-text: #c9a646 !important;
-    --scroll-box-shadow: 0 0 20px rgba(245, 210, 120, 0.15) !important;
+    --page-box-shadow: 0 0 20px rgba(245, 210, 120, 0.15) !important;
     --cite-color: #766535 !important;
-    --accent-scroll: #b88c2a !important;
+    --accent-page: #b88c2a !important;
     --section-border: #fff6cc !important;
 
     /* Gradients */
@@ -64,12 +64,6 @@
     background: linear-gradient(to bottom, #ffffff, #fdf5e6) !important;
     color: var(--text-accent) !important;
     border-bottom: 1px solid var(--highlight) !important;
-  }
-
-  html[data-theme="light"] body.gold .scroll-title {
-    background: linear-gradient(to right, #fff6cc 0%, #e4c98f 60%, #d6b875 100%) !important;
-    color: var(--text-accent) !important;
-    text-shadow: 0 1px 4px rgba(245, 210, 120, 0.2) !important;
   }
 
   html[data-theme="light"] body.gold .section-block {
@@ -146,9 +140,9 @@
     --shadow-glow: rgba(251, 215, 120, 0.25) !important;
     --glyph-color: #ffcc66 !important;
     --strong-text: #f6d87a !important;
-    --scroll-box-shadow: 0 0 25px rgba(255, 222, 133, 0.25) !important;
+    --page-box-shadow: 0 0 25px rgba(255, 222, 133, 0.25) !important;
     --cite-color: #d7c180 !important;
-    --accent-scroll: #d2a53e !important;
+    --accent-page: #d2a53e !important;
     --section-border: #fbe89b !important;
 
     /* Gradients */
@@ -190,12 +184,6 @@
     background: linear-gradient(to bottom, #0e0e0e, #1c1506) !important;
     color: var(--text-accent) !important;
     border-bottom: 1px solid var(--highlight) !important;
-  }
-
-  html[data-theme="dark"] body.gold .scroll-title {
-    background: linear-gradient(to right, #3c2b0d 0%, #6e4c1a 60%, #d2a53e 100%) !important;
-    color: var(--strong-text) !important;
-    text-shadow: 0 1px 6px rgba(251, 215, 120, 0.25) !important;
   }
 
   html[data-theme="dark"] body.gold .section-block {

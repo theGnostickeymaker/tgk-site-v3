@@ -33,7 +33,7 @@
   }
 
   /* ✦ Page / Sacred Titles */
-  h1, .page-title, .scroll-title, .index.heading {
+  h1, .page-title, .page-title, .index.heading {
     font-family: var(--page-title, 'Cormorant Garamond', serif);
     font-weight: 600;
     letter-spacing: 0.02em;

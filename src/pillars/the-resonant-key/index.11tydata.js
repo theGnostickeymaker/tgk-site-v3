@@ -3,7 +3,7 @@ export default {
   pillar: "the-resonant-key",
   title: "The Resonant Key",
   description:
-    "The sound and voice of The Gnostic Key — where scrolls become vibration, ritual, and resonance. Spoken wisdom, sonic rites, and immersive journeys through the unseen.",
+    "The sound and voice of The Gnostic Key — where pages become vibration, ritual, and resonance. Spoken wisdom, sonic rites, and immersive journeys through the unseen.",
   glyph: "🎧",
   bodyClass: "resonant",
   accent: "resonant",
@@ -27,7 +27,7 @@ export default {
       href: "/pillars/the-resonant-key/audiobooks/", 
       title: "Audiobooks", 
       glyph: "📖", 
-      desc: "Spoken scrolls of TGK — the living voice of revelation, story, and remembrance.", 
+      desc: "Spoken pages of TGK — the living voice of revelation, story, and remembrance.", 
       tier: "free", 
       state: "coming-soon" 
     },

@@ -10,7 +10,7 @@
       "episode": "gnostic-christianity",
       "part": "part1",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-teachings-the-afterlife-series-1-gnostic-christianity-part-2",
@@ -21,7 +21,7 @@
       "episode": "gnostic-christianity",
       "part": "part2",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-teachings-the-afterlife-series-1-gnostic-christianity-part-3",
@@ -32,7 +32,7 @@
       "episode": "gnostic-christianity",
       "part": "part3",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-teachings-the-afterlife-series-1-sufi-islam-part-1",
@@ -43,7 +43,7 @@
       "episode": "sufi-islam",
       "part": "part1",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-teachings-the-afterlife-series-1-sufi-islam-part-2",
@@ -54,7 +54,7 @@
       "episode": "sufi-islam",
       "part": "part2",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-teachings-the-afterlife-series-1-sufi-islam-part-3",
@@ -65,7 +65,7 @@
       "episode": "sufi-islam",
       "part": "part3",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-berlin-codex-gospel-of-mary",
@@ -76,7 +76,7 @@
       "episode": "",
       "part": "",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-nag-hammadi-codex-i-gospel-of-truth",
@@ -87,7 +87,7 @@
       "episode": "",
       "part": "",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-apocryphon-of-john",
@@ -98,7 +98,7 @@
       "episode": "",
       "part": "",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-philip",
@@ -109,7 +109,7 @@
       "episode": "",
       "part": "",
       "tier": "initiate",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-thomas",
@@ -120,7 +120,7 @@
       "episode": "",
       "part": "",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-nag-hammadi-codex-ii-hypostasis-of-the-archons",
@@ -131,7 +131,7 @@
       "episode": "",
       "part": "",
       "tier": "initiate",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-nag-hammadi-codex-v-apocalypse-of-paul",
@@ -142,7 +142,7 @@
       "episode": "",
       "part": "",
       "tier": "initiate",
-      "type": "scroll"
+      "type": "page"
     },
     {
       "id": "the-vault-codex-reborn-nag-hammadi-codex-vii-second-treatise-of-the-great-seth",
@@ -153,7 +153,7 @@
       "episode": "",
       "part": "",
       "tier": "free",
-      "type": "scroll"
+      "type": "page"
     }
   ],
   "edges": []

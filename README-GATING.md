@@ -1,12 +1,12 @@
 # TGK Membership Gating System — v1.0
 
 ## Overview
-This system ensures only entitled users (Free / Initiate / Adept) can access certain scrolls or series.  
+This system ensures only entitled users (Free / Initiate / Adept) can access certain pages or series.  
 Authorization is managed through a signed cookie `tgk_ent` issued by Netlify functions.
 
 ## How it works
 1. After checkout or refresh, the Netlify function sets `tgk_ent={"tier":"initiate","exp":...}`.
-2. Each scroll declares its required tier in front-matter:  
+2. Each page declares its required tier in front-matter:  
    `tier: initiate`
 3. `gate.js` compares the cookie tier with the required tier.
 4. If insufficient, the visitor is redirected to `/signin/?next=...`.
@@ -21,7 +21,7 @@ Authorization is managed through a signed cookie `tgk_ent` issued by Netlify fun
 ## Tier Hierarchy
 
 ## Future Server Upgrade
-To fully block static HTML delivery for Adept-only scrolls:
+To fully block static HTML delivery for Adept-only pages:
 - Serve those pages via a Netlify function or dynamic content fetch.
 - Call `verify-entitlement.js` before returning content.
 

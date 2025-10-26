@@ -20,9 +20,9 @@
     --shadow-glow: rgba(255, 180, 140, 0.2) !important;
     --glyph-color: #ff8850 !important;
     --strong-text: #e2785e !important;
-    --scroll-box-shadow: 0 0 25px rgba(255, 180, 140, 0.2) !important;
+    --page-box-shadow: 0 0 25px rgba(255, 180, 140, 0.2) !important;
     --cite-color: #e2785e !important;
-    --accent-scroll: #c3653f !important;
+    --accent-page: #c3653f !important;
     --section-border: #ffc3a1 !important;
 
     /* Gradients */
@@ -63,12 +63,6 @@
     background: linear-gradient(to bottom, #fff5ef, #ffe2d0) !important;
     color: var(--text-accent) !important;
     border-bottom: 1px solid var(--highlight) !important;
-  }
-
-  html[data-theme="light"] body.obsidian .scroll-title {
-    background: linear-gradient(to right, #ffe2d0 0%, #f8a272 100%) !important;
-    color: var(--text-accent) !important;
-    text-shadow: 0 1px 4px rgba(255, 180, 140, 0.2) !important;
   }
 
   html[data-theme="light"] body.obsidian .section-block {
@@ -132,9 +126,9 @@
     --shadow-glow: rgba(255, 120, 80, 0.25) !important;
     --glyph-color: #ffa07a !important;
     --strong-text: #ffb190 !important;
-    --scroll-box-shadow: 0 0 25px rgba(255, 120, 80, 0.25) !important;
+    --page-box-shadow: 0 0 25px rgba(255, 120, 80, 0.25) !important;
     --cite-color: #ffb190 !important;
-    --accent-scroll: #de6433 !important;
+    --accent-page: #de6433 !important;
     --section-border: #f8a272 !important;
 
     /* Gradients */
@@ -177,12 +171,6 @@
     border-bottom: 1px solid var(--highlight) !important;
   }
 
-  html[data-theme="dark"] body.obsidian .scroll-title {
-    background: linear-gradient(to right, #2a100a 0%, #702b1a 60%, #de6433 100%) !important;
-    color: var(--text-accent) !important;
-    text-shadow: 0 1px 6px rgba(255, 120, 80, 0.25) !important;
-  }
-
   html[data-theme="dark"] body.obsidian .section-block {
     background: linear-gradient(145deg, #2a100a 0%, #3e140a 50%, #702b1a 100%) !important;
     border-color: var(--section-border) !important;
@@ -209,7 +197,7 @@
 
   html[data-theme="dark"] body.obsidian .quiz-options {
     background: #2a100a !important;
-    border: 1px solid var(--accent-scroll) !important;
+    border: 1px solid var(--accent-page) !important;
   }
 
   html[data-theme="dark"] body.obsidian .quiz-options button,
@@ -224,7 +212,7 @@
   html[data-theme="dark"] body.obsidian .quiz-button:hover {
     background: #3e140a !important;
     color: #fff1ec !important;
-    border-color: var(--accent-scroll) !important;
+    border-color: var(--accent-page) !important;
     box-shadow: 0 0 14px rgba(255, 120, 80, 0.3) !important;
   }
 }

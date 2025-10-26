@@ -309,7 +309,7 @@ export default {
   seriesMeta: {
     number: $SeriesNo,
     label: "Series $SeriesNo",
-    series_version: $SeriesVersion
+    version: $SeriesVersion
   },
 
   // 🜂 Episode Grid (visible cards)
@@ -383,7 +383,7 @@ export default {
   seriesMeta: {
     number: $SeriesNo,
     label: "Series $SeriesNo",
-    series_version: $SeriesVersion
+    version: $SeriesVersion
   },
 
   // 🜂 Episode Overview
@@ -417,7 +417,7 @@ export default {
     { title: "Sufi Islam", desc: "Three-part journey through the false cosmos and the Revealer.", url: "/pillars/the-teachings/the-afterlife/series-1/sufi-islam/" }
   ],
 
-  // 🧭 Scroll Grid Cards (episode landing page)
+  // 🧭 Page Grid Cards (episode landing page)
   pillarGrid: [
     {
       href: "/pillars/$PillarSlug/$SeriesSlug/series-$SeriesNo/$Slug/part-1/",
@@ -550,7 +550,7 @@ title: "$(Yaml-Escape $Title)"
 description: "$(Yaml-Escape $Description)"
 excerpt: "$(Yaml-Escape $excerpt)"
 tier: $(Yaml-Escape $Tier)
-scrollId: "$PillarSlug-$SeriesSlug-series-$SeriesNo-$Slug-$partSlug"
+pageId: "$PillarSlug-$SeriesSlug-series-$SeriesNo-$Slug-$partSlug"
 
 episode: $Episode
 partNumeral: $(To-Roman $n)
@@ -595,7 +595,7 @@ quizIntro: "Can you see through the veil of $(To-Roman $n)?"
 seriesMeta:
   number: $SeriesNo
   label: "Series $SeriesNo"
-  series_version: $SeriesVersion
+  version: $SeriesVersion
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -667,7 +667,7 @@ breadcrumbs:
 
 {{ imgBase }}/{{ imgPrefix }}
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -921,16 +921,16 @@ function Build-SynergyMap {
             $pillar = (YGet "pillar") -replace '^"|"$',''
             $series = (YGet "series") -replace '^"|"$',''
             $tier = (YGet "tier") -replace '^"|"$',''
-            $scrollId = (YGet "scrollId") -replace '^"|"$',''
+            $pageId = (YGet "pageId") -replace '^"|"$',''
             $episodeIdY = (YGet "episodeId") -replace '^"|"$',''
             $partIdY = (YGet "partId") -replace '^"|"$',''
-            if (-not $scrollId) { $scrollId = $permalink }
+            if (-not $pageId) { $pageId = $permalink }
 
             $node = [SynergyNode]::new()
-            $node.id=$scrollId; $node.title=$title; $node.url=$permalink
+            $node.id=$pageId; $node.title=$title; $node.url=$permalink
             $node.pillar=$pillar; $node.series=$series
             $node.episode=$episodeIdY; $node.part=$partIdY
-            $node.tier=$tier; $node.type="scroll"
+            $node.tier=$tier; $node.type="page"
             $nodes.Add($node) | Out-Null
 
             function Extract-Array([string]$name) {

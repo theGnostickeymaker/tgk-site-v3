@@ -20,7 +20,7 @@
     --shadow-glow: rgba(247, 198, 170, 0.25) !important;
     --strong-text: #fbc8ad !important;
     --cite-color: #f3b497 !important;
-    --accent-scroll: #f2aa8e !important;
+    --accent-page: #f2aa8e !important;
     --section-border: #fddbcc !important;
 
     /* Gradients */
@@ -64,12 +64,6 @@
     border-bottom: 1px solid var(--highlight) !important;
   }
 
-  html[data-theme="dark"] body.children .scroll-title {
-    background: linear-gradient(to right, #2e1a17 0%, #7a4537 100%) !important;
-    color: var(--glyph-color) !important;
-    text-shadow: 0 1px 6px rgba(255, 212, 182, 0.2) !important;
-  }
-
   html[data-theme="dark"] body.children .section-block {
     background: linear-gradient(145deg, #2e1a17 0%, #492b24 60%, #7a4537 100%) !important;
     border-color: var(--section-border) !important;
@@ -85,7 +79,7 @@
   html[data-theme="dark"] body.children .quiz-prompt {
     background: linear-gradient(to right, #1a0f0f, #492b24) !important;
     color: var(--glyph-color) !important;
-    border-left: 4px solid var(--accent-scroll) !important;
+    border-left: 4px solid var(--accent-page) !important;
     box-shadow: 0 0 12px rgba(247, 198, 170, 0.25) !important;
   }
 
@@ -98,7 +92,7 @@
   html[data-theme="dark"] body.children .quiz-button {
     background: #2e1a17 !important;
     color: var(--strong-text) !important;
-    border: 2px solid var(--accent-scroll) !important;
+    border: 2px solid var(--accent-page) !important;
     box-shadow: 0 0 6px rgba(247, 198, 170, 0.15) inset !important;
   }
 
@@ -125,7 +119,7 @@
     --shadow-glow: rgba(247, 198, 170, 0.12) !important;
     --strong-text: #a44e2f !important;
     --cite-color: #d88e70 !important;
-    --accent-scroll: #f2aa8e !important;
+    --accent-page: #f2aa8e !important;
     --section-border: #ffece3 !important;
 
     /* Gradients */
@@ -169,12 +163,6 @@
     border-bottom: 1px solid var(--highlight) !important;
   }
 
-  html[data-theme="light"] body.children .scroll-title {
-    background: linear-gradient(to right, #fffaf8 0%, #f7c6aa 100%) !important;
-    color: var(--glyph-color) !important;
-    text-shadow: 0 1px 4px rgba(242, 170, 142, 0.15) !important;
-  }
-
   html[data-theme="light"] body.children .section-block {
     background: linear-gradient(145deg, #fbeee9 0%, #f7e6c4 60%, #f7c6aa 100%) !important;
     border-color: var(--section-border) !important;
@@ -190,7 +178,7 @@
   html[data-theme="light"] body.children .quiz-prompt {
     background: linear-gradient(to right, #fbeee9, #f7e6c4) !important;
     color: var(--strong-text) !important;
-    border-left: 4px solid var(--accent-scroll) !important;
+    border-left: 4px solid var(--accent-page) !important;
     box-shadow: 0 0 10px rgba(242, 170, 142, 0.18) !important;
   }
 
@@ -203,7 +191,7 @@
   html[data-theme="light"] body.children .quiz-button {
     background: #fffaf8 !important;
     color: var(--text-accent) !important;
-    border: 2px solid var(--accent-scroll) !important;
+    border: 2px solid var(--accent-page) !important;
     box-shadow: 0 0 6px rgba(242, 170, 142, 0.1) inset !important;
   }
 

@@ -5,7 +5,7 @@ title: "Kabbalah"
 description: "Journey through the middle gates of the Kabbalistic Tree — from Malkhut’s exile to Keter’s crown — the climb of remembrance and return."
 excerpt: "You walked the soul’s journey from Gehinnom to Gan Eden, through sparks and tikkun, catching glimpses of the divine hidden in the descent."
 tier: free
-scrollId: "the-teachings-the-afterlife-series-1-kabbalah-part-2"
+pageId: "the-teachings-the-afterlife-series-1-kabbalah-part-2"
 
 # 🔹 Identity & Structure
 episode: 3
@@ -35,7 +35,7 @@ quizIntro: "Can you see through the veil of the middle gates?"
 seriesMeta:
   number: 1
   label: "Series 1"
-  series_version: 1
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"
@@ -209,7 +209,7 @@ socialImages:
 
 ---
 
-{% include "partials/scroll-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+{% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
 
 <main class="main-content">
@@ -339,7 +339,7 @@ socialImages:
 
   <p>It governs the leg that stabilises movement. It turns feeling into form. But the danger is great, for Hod can trap souls in dogma, bureaucracy, or hollow rituals. The mirror can crack. The echo can distort.</p>
 
-  <p>This is the priest&rsquo;s temple, the scribe&rsquo;s scroll, the mystic&rsquo;s math. But here, integrity is everything. To pass this gate, one must purify language, reclaim ritual, and bend the structure back toward Truth.</p>
+  <p>This is the priest&rsquo;s temple, the scribe&rsquo;s page, the mystic&rsquo;s math. But here, integrity is everything. To pass this gate, one must purify language, reclaim ritual, and bend the structure back toward Truth.</p>
 
   <p>Hod is not the Word, it is the reflection of the Word. It must be tuned, not worshipped. The soul must learn to wield the glyphs, not be bound by them.</p>
   </section>

@@ -77,9 +77,9 @@
   <link rel="stylesheet" href="/css/layout/form-styles.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/layout/glyph-styles.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/layout/layout-grid.css?v={{ bust }}">
-  <link rel="stylesheet" href="/css/layout/page-structure.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/layout/quiz.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/layout/header-styles.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/layout/page-structure.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/layout/stylings.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/layout/vault-styles.css?v={{ bust }}">
 
@@ -92,7 +92,7 @@
   <link rel="stylesheet" href="/css/components/glossary.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/image-blocks.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/lists.css?v={{ bust }}">
-  <link rel="stylesheet" href="/css/components/scroll-intro-dropdown.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/page-intro-dropdown.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/sources.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/vault-refs.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/tables.css?v={{ bust }}">
@@ -100,7 +100,7 @@
   <!-- NAVIGATION -->
   <link rel="stylesheet" href="/css/navigation/nav-bar.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/navigation/theme-toggle.css?v={{ bust }}">
-  <link rel="stylesheet" href="/css/navigation/scroll-top-nav.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/navigation/page-top-nav.css?v={{ bust }}">
   
   <!-- UTILITIES / GATING -->
   <link rel="stylesheet" href="/css/utilities/visibility-gates.css?v={{ bust }}">
@@ -122,24 +122,24 @@
         role="main"
         data-tier="{{ tier | default(site.defaultTier) }}">
 
-    {# 🜂 GATED SCROLL WRAPPER
-      If a scroll defines tier: initiate / adept / admin,
+    {# 🜂 GATED page WRAPPER
+      If a page defines tier: initiate / adept / admin,
       it will render a locked placeholder and gated content.
       All other pages (index, dashboard, membership, etc.)
       inherit site.defaultTier = free and show normally.
     #}
     {% if tier and tier != "free" %}
-      <div class="locked-scroll" data-required-tier="{{ tier }}">
+      <div class="locked-page" data-required-tier="{{ tier }}">
         <div class="locked-placeholder">
-          <h2>Locked Scroll</h2>
-          <p>This scroll is for <strong>{{ tier | capitalize }}</strong> members.</p>
+          <h2>Locked page</h2>
+          <p>This page is for <strong>{{ tier | capitalize }}</strong> members.</p>
           <p>
             <a href="/signin/?next={{ permalink }}" class="btn">Sign in</a>
             or
             <a href="/membership/" class="btn">Upgrade</a>
           </p>
         </div>
-        <div class="scroll-content" style="display:none;">
+        <div class="page-content" style="display:none;">
           {{ content | safe }}
         </div>
       </div>
@@ -165,8 +165,8 @@
     <button type="button" id="theme-toggle" class="theme-toggle-floating" aria-label="Toggle Theme">
       <span class="icon" aria-hidden="true">☀️</span>
     </button>
-    <button type="button" id="scrollTopBtn" class="theme-toggle-floating" title="Return to Top">⬆️</button>
-    <button type="button" id="scrollBtmBtn" class="theme-toggle-floating" title="Return to Bottom">⬇️</button>
+    <button type="button" id="pageTopBtn" class="theme-toggle-floating" title="Return to Top">⬆️</button>
+    <button type="button" id="pageBtmBtn" class="theme-toggle-floating" title="Return to Bottom">⬇️</button>
   </div>
 
   <script defer src="/js/toggles.js?v={{ bust }}"></script>

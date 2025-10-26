@@ -1,48 +1,38 @@
----
-layout: base.njk
-title: "The Afterlife"
-description: "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond."
-tagline: "Death remembered ✦ soul awakened ✦ eternity revealed"
-seriesId: "the-teachings-the-afterlife"
-tier: free
-
-glyph: "✝"
-glyphRow: ["✶","☥","✝"]
-
-permalink: "/pillars/the-teachings/the-afterlife/index.html"
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Teachings", url: "/pillars/the-teachings/" }
-  - { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
----
-
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-afterlife.jpg" %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
-<section class="content-container">
+  <section class="content-container">
 
-<h4 class="index heading">
-  Teachings that weave together ancient wisdom and living guidance — afterlife maps, rights scrolls, and paths of remembrance.
-</h4>
+    <h4 class="index-heading">
+      Teachings that weave together ancient wisdom and living guidance —
+      afterlife maps, rights pages, and paths of remembrance.
+    </h4>
 
-{% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
 
-<details class="disclaimer-box">
-  <summary><span class="disclaimer-heading">🔑 About The Afterlife</span></summary>
-  <p>
-    <strong>The Afterlife</strong> gathers scrolls that explain and preserve: afterlife maps,
-    rights of the people, and pathways of remembrance drawn from Gnostic, mystical, and ancient sources.
-  </p>
-</details>
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">🔑 About The Afterlife</span></summary>
+      <p>
+        <strong>The Afterlife</strong> gathers pages that explain and preserve:
+        afterlife maps, rights of the people, and pathways of remembrance drawn from
+        Gnostic, mystical, and ancient sources.
+      </p>
+    </details>
 
-{% include "partials/pillar-grid.njk" %}
+    {% include "partials/pillar-grid.njk" %}
 
-<div class="gnostic-divider">
-  <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-</div>
+    {% set items = pillarGrid %}
+    {% set headline = "The Afterlife — Series Collections" %}
+    {% set base = "/pillars/the-teachings/the-afterlife/" %}
+    {% include "partials/jsonld-collection.njk" %}
 
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
 </main>

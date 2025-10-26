@@ -48,7 +48,7 @@
   }
 
   .source-footer .source-list li {
-    scroll-margin-top: var(--space-xl); /* ensures anchors aren't hidden under header */
+    page-margin-top: var(--space-xl); /* ensures anchors aren't hidden under header */
     margin-bottom: var(--space-xs);
   }
 

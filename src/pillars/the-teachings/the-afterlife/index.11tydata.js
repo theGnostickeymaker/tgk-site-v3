@@ -1,15 +1,25 @@
 export default {
+  layout: "base.njk",
+
   // 🜂 Series Collection Overview
   introText:
     "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond.",
 
   // 🌍 Pillar & Series Metadata
+  pageId: "the-teachings-the-afterlife",
+  permalink: "/pillars/the-teachings/the-afterlife/index.html",
   pillarId: "the-teachings",
   pillarName: "The Teachings",
   pillarUrl: "/pillars/the-teachings/the-afterlife/",
   pillarGlyph: "✝",
+  glyphRow: ["✶", "☥", "✝"],
   accent: "gold",
-  tier: "free", 
+  bodyClass: "gold",
+  tier: "free",
+  title: "The Afterlife",
+  tagline: "Death remembered ✦ soul awakened ✦ eternity revealed",
+  description:
+    "Sacred teachings from Gnostic, mystical, and ancient traditions — maps for life, death, and beyond.",
 
   // 🧩 Series Grid
   pillarGrid: [
@@ -31,6 +41,9 @@ export default {
     }
   ],
 
+  // === Social Meta ===
+  socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife.jpg",
+
   // 🧭 Computed Data
   eleventyComputed: {
     breadcrumbs: () => [
@@ -38,5 +51,9 @@ export default {
       { title: "The Teachings", url: "/pillars/the-teachings/" },
       { title: "The Afterlife", url: "/pillars/the-teachings/the-afterlife/" }
     ]
-  }
+  },
+
+  // === Behaviour Flags ===
+  showLens: false,
+  showSeriesNav: false
 };

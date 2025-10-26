@@ -5,7 +5,7 @@
      =================================================== */
 
   .glyph,
-  .glyph-scroll {
+  .glyph-page {
     font-family: var(--font-display, 'Cinzel', serif);
     font-size: var(--glyph-size-base, 2.25rem);
     line-height: 1;
@@ -21,7 +21,7 @@
   }
 
   .glyph:hover,
-  .glyph-scroll:hover {
+  .glyph-page:hover {
     transform: scale(1.08);
     text-shadow:
       0 0 8px var(--shadow-glow),
@@ -29,13 +29,13 @@
   }
 
   .glyph.centered,
-  .glyph-scroll.centered {
+  .glyph-page.centered {
     display: block;
     margin-inline: auto;
   }
 
   /* ===================================================
-     Gnostic Divider Symbol – Scroll Footer Mark
+     Gnostic Divider Symbol – page Footer Mark
      Version: 1.2 – Gentle Glow & Slow Pulse
      =================================================== */
 

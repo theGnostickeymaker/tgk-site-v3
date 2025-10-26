@@ -5,8 +5,8 @@
   // Element selectors
   const floatBtn = document.getElementById('theme-toggle');
   const navBtn   = document.getElementById('tgkTheme');
-  const topBtn   = document.getElementById('scrollTopBtn');
-  const btmBtn   = document.getElementById('scrollBtmBtn');
+  const topBtn   = document.getElementById('pageTopBtn');
+  const btmBtn   = document.getElementById('pageBtmBtn');
   const tray     = document.querySelector('.floating-toggles');
 
   // --- Theme handling ---
@@ -45,17 +45,17 @@
     applyTheme(next);
   }
 
-  // --- Scroll buttons ---
+  // --- page buttons ---
   if (topBtn) {
     topBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.pageTo({ top: 0, behavior: 'auto' });
     });
   }
 
   if (btmBtn) {
     btmBtn.addEventListener('click', () => {
-      window.scrollTo({ 
-        top: document.documentElement.scrollHeight, 
+      window.pageTo({ 
+        top: document.documentElement.pageHeight, 
         behavior: 'auto' 
       });
     });

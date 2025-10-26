@@ -43,7 +43,7 @@ export default {
       href: "/pillars/tgk-shop/prints-and-sigils/", 
       title: "Prints & Sigils", 
       glyph: "🜚", 
-      desc: "Limited-edition prints, altar sigils, and symbolic artwork inspired by TGK scrolls.",
+      desc: "Limited-edition prints, altar sigils, and symbolic artwork inspired by TGK pages.",
       tier: "free", 
       state: "coming-soon" 
     },
