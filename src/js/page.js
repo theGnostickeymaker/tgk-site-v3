@@ -97,24 +97,11 @@ function pageReset(email) {
     .catch((e) => alert("Error: " + e.message));
 }
 
-/* 🚪 LOGOUT (Safe + Verbose) */
+/* 🚪 LOGOUT — Unified Redirect to /logout/ */
 function pageLogout() {
-  console.log("[TGK] Logout button clicked.");
-  const authInstance = getAuth(app);
-
-  signOut(authInstance)
-    .then(() => {
-      console.log("[TGK] Firebase signOut success");
-      // Clear local storage + cookies
-      localStorage.clear();
-      document.cookie = "tgk_ent=; Path=/; Max-Age=0;";
-      console.log("[TGK] Cleared local data, redirecting home...");
-      window.location.href = "/";
-    })
-    .catch((err) => {
-      console.error("[TGK] Logout error:", err);
-      alert("Logout failed: " + err.message);
-    });
+  console.log("[TGK] Redirecting to logout page…");
+  // Delegate the actual signOut to the logout page itself
+  window.location.href = "/logout/";
 }
 
 /* 🜂 LOAD DASHBOARD TIER (Admin Safe) */
@@ -250,17 +237,14 @@ function bindTGKForms() {
   }
 
   if (logoutBtn) {
-  console.log("[TGK] Logout button detected and bound");
-  logoutBtn.addEventListener("click", () => {
-    console.log("[TGK] Logout button event fired");
-    pageLogout();
-  });
+  console.log("[TGK] 🔘 Logout button bound");
+  logoutBtn.addEventListener("click", pageLogout);
+  };
 }
 
   if (profileForm) {
     profileForm.addEventListener("submit", saveProfile);
   }
-}
 
 // 🜂 Bind immediately if DOM is ready; otherwise, wait
 if (document.readyState === "loading") {

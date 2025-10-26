@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: "Signing Out..."
+description: "Ending your TGK session safely."
+bodyClass: "obsidian"
+permalink: "/logout/index.html"
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/logout.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content center">
+  <section class="content-container">
+    <h2>Signing you out...</h2>
+    <p class="muted">Please wait while we close your session.</p>
+  </section>
+</main>
+
+<script type="module">
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { app } from "/js/firebase-init.js";
+
+const auth = getAuth(app);
+
+(async () => {
+  try {
+    console.log("[TGK] Executing logout script...");
+    await signOut(auth);
+
+    // 🔹 Clear local and session data
+    localStorage.clear();
+    sessionStorage.clear();
+    document.cookie.split(";").forEach(c => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+
+    console.log("[TGK] Sign-out complete. Redirecting home…");
+    window.location.href = "/";
+  } catch (err) {
+    console.error("[TGK] Logout failed:", err);
+    window.location.href = "/";
+  }
+})();
+</script>
