@@ -72,13 +72,13 @@ breadcrumbs:
 import {
   getAuth,
   onAuthStateChanged,
-  getIdTokenResult
+  getIdTokenResult,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {
   getFirestore,
   collection,
   getDocs,
-  deleteDoc,
   doc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
@@ -97,29 +97,48 @@ const upgradeCTA = document.getElementById("upgrade-cta");
    =========================================================== */
 async function resolveUserTier(user) {
   let tier = "free";
-
   try {
-    // 1️⃣ Firebase Custom Claims (preferred)
     const token = await getIdTokenResult(user);
     if (token?.claims?.tier) tier = token.claims.tier;
-
-    // 2️⃣ Firestore backup (users/{uid}.tier)
     else {
       const ref = doc(db, "users", user.uid);
       const snap = await getDoc(ref);
       if (snap.exists() && snap.data().tier) tier = snap.data().tier;
     }
-
-    // 3️⃣ LocalStorage fallback
     const cached = localStorage.getItem("tgk-tier");
     if (cached) tier = cached;
-
     localStorage.setItem("tgk-tier", tier);
   } catch (err) {
     console.warn("[TGK] Tier resolve error:", err);
   }
-
   return tier;
+}
+
+/* ===========================================================
+   🜂 Helper — Build Clean Title
+   =========================================================== */
+function formatTitleFromId(scrollId) {
+  return scrollId
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+/* ===========================================================
+   🜂 Helper — Build Href from Scroll ID
+   =========================================================== */
+function buildHrefFromId(scrollId) {
+  // Detect multi-part scrolls
+  if (scrollId.includes("part-")) {
+    const parts = scrollId.split("-");
+    const idx = parts.indexOf("part");
+    const prefix = parts.slice(0, idx).join("/");
+    const suffix = parts.slice(idx, idx + 2).join("-");
+    return `/pillars/${prefix}/${suffix}/`;
+  }
+
+  // Normal scroll
+  return `/pillars/${scrollId.replace(/-/g, "/")}/`;
 }
 
 /* ===========================================================
@@ -131,7 +150,6 @@ onAuthStateChanged(auth, async (user) => {
   document.getElementById("user-name").textContent =
     user.displayName || user.email.split("@")[0];
 
-  // 🔹 Resolve tier + update UI
   let tier = await resolveUserTier(user);
 
   // 🜂 Force-admin fallback for The Keymaker
@@ -143,10 +161,11 @@ onAuthStateChanged(auth, async (user) => {
 
   document.getElementById("user-tier").textContent = tier.toUpperCase();
 
-  // 🔹 Upgrade CTA toggle
   if (["free", "initiate"].includes(tier)) upgradeCTA.hidden = false;
 
-  // 🔹 Load bookmarks
+  /* ===========================================================
+     🔖 Load Bookmarks with Smart Hrefs
+     =========================================================== */
   try {
     const snap = await getDocs(collection(db, "bookmarks", user.uid, "scrolls"));
     bookmarkList.innerHTML = "";
@@ -158,20 +177,23 @@ onAuthStateChanged(auth, async (user) => {
 
     snap.forEach((docSnap) => {
       const scrollId = docSnap.id;
+      const href = buildHrefFromId(scrollId);
+      const title = formatTitleFromId(scrollId);
+
       const item = document.createElement("li");
       item.className = "dashboard-card";
       item.dataset.id = scrollId;
       item.innerHTML = `
         <div class="card-body">
-          <a href="${scrollId}" class="card-link">
-            <h3 class="card-title">${scrollId.replace(/-/g, " ")}</h3>
+          <a href="${href}" class="card-link">
+            <h3 class="card-title">${title}</h3>
           </a>
           <button class="btn-mini" data-id="${scrollId}">Remove</button>
         </div>`;
       bookmarkList.appendChild(item);
     });
 
-    // Bind remove buttons (shared TGK Firestore logic)
+    // 🔹 Bind remove buttons
     bookmarkList.querySelectorAll(".btn-mini").forEach((btn) => {
       btn.addEventListener("click", async (e) => {
         const id = e.target.dataset.id;
@@ -207,19 +229,16 @@ document.getElementById("manage-tier").onclick = async () => {
   if (data.url) window.location = data.url;
   else alert(data.error || "Portal error");
 };
+
 /* ===========================================================
    🚪 TGK — Forced Logout Binding (Dashboard Fallback)
    =========================================================== */
-import { signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logout-btn");
   if (!logoutBtn) {
     console.warn("[TGK Dashboard] Logout button not found.");
     return;
   }
-
-  console.log("[TGK Dashboard] Logout button ready — binding event.");
 
   logoutBtn.addEventListener("click", async () => {
     console.log("[TGK Dashboard] Logout clicked.");
@@ -235,5 +254,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
 </script>

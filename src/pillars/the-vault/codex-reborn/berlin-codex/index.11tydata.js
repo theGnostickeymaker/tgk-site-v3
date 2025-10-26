@@ -13,17 +13,6 @@ export default {
   accent: "vault",
   tags: ["pillar", "the-vault", "codex-reborn", "berlin-codex"],
 
-  // === Header Glyph Row ===
-  glyphRow: ["💮", "🕯", "💮"],
-
-  // === Breadcrumb Trail ===
-  breadcrumbs: [
-    { title: "The Gnostic Key", url: "/" },
-    { title: "The Vault", url: "/pillars/the-vault/" },
-    { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
-    { title: "Berlin Codex", url: "/pillars/the-vault/codex-reborn/berlin-codex/" }
-  ],
-
   // === Section Cards (Berlin Codex Texts) ===
   pillarGrid: [
     {

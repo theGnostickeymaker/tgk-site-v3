@@ -30,6 +30,8 @@ breadcrumbs:
       Codex Reborn — recovered gospels and apocrypha of the hidden Christ and Sophia.
     </h4>
 
+    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">📚 About Codex Reborn</span></summary>
 
@@ -54,7 +56,6 @@ breadcrumbs:
         <strong>The Gnostic Eye</strong>, forming a unified library of remembrance.
       </p>
     </details>
-
   </section>
 
   {% include "partials/pillar-grid.njk" %}
@@ -67,4 +68,5 @@ breadcrumbs:
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
   </div>
+  </section>
 </main>

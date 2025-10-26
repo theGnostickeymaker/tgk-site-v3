@@ -285,43 +285,37 @@
   to { opacity: 0.4; color: var(--text-secondary); }
 }
 
-/* ===========================================================
+  /* ===========================================================
    🕯️ TGK Toast Notifications
    =========================================================== */
-#toast-container {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  z-index: 9999;
-  pointer-events: none;
-}
+  #toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-.tgk-toast {
-  background: var(--card-gradient, #fff);
-  color: var(--text-primary, #222);
-  border: 1px solid var(--text-accent, #c9aa71);
-  border-radius: var(--border-radius-base, 12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  padding: 0.65rem 1rem;
-  font-family: var(--font-display, 'Cinzel', serif);
-  font-size: 0.95rem;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: toastFadeIn 0.25s forwards, toastFadeOut 0.4s 3.5s forwards;
-}
+  .tgk-toast {
+    padding: 0.75rem 1.2rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-weight: 600;
+    animation: fadeinout 4s ease forwards;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
 
-.tgk-toast.success { border-color: #38a169; color: #38a169; }
-.tgk-toast.remove  { border-color: #ef4444; color: #ef4444; }
+  .tgk-toast.success { background-color: #22c55e; } /* ✅ Green success */
+  .tgk-toast.remove  { background-color: #dc2626; } /* ❌ Red remove */
+  .tgk-toast.info    { background-color: #52525b; } /* Neutral */
 
-@keyframes toastFadeIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes toastFadeOut {
-  to { opacity: 0; transform: translateY(10px); }
-}
-
+  @keyframes fadeinout {
+    0%   { opacity: 0; transform: translateY(10px); }
+    10%  { opacity: 1; transform: translateY(0); }
+    90%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
 
 }

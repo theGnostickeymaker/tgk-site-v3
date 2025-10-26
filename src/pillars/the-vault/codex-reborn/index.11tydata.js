@@ -10,12 +10,6 @@ export default {
   tags: ["pillar", "the-vault", "codex-reborn"],
   tier: "free", 
 
-  breadcrumbs: [
-    { title: "The Gnostic Key", url: "/" },
-    { title: "The Vault", url: "/pillars/the-vault/" },
-    { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
-  ],
-
   seriesIntro:
     "Codex Reborn gathers the rediscovered scriptures of Gnosticism — the Nag Hammadi Library, Berlin Codex, and other forbidden texts preserved within the Vault.",
 

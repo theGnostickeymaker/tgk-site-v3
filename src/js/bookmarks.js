@@ -1,7 +1,6 @@
-
 /* ===========================================================
-   🔖 TGK — Bookmarks.js (v2.4)
-   Hybrid Local + Firestore + Visual Feedback + Animations + Toasts
+   🔖 TGK — Bookmarks.js (v2.5)
+   Hybrid Local + Firestore + Type-Aware + Visual Feedback + Toasts
    =========================================================== */
 
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
@@ -15,7 +14,6 @@ import {
   collection
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 import { app } from "/js/firebase-init.js";
-
 
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -45,9 +43,24 @@ function showToast(message, type = "info") {
 }
 
 /* ===========================================================
-   ✦ Toggle Bookmark — Local + Remote + Animation
+   🜂 Detect Bookmark Type (series | part | scroll)
    =========================================================== */
-export async function toggleBookmark(scrollId, button) {
+function detectBookmarkType(path) {
+  const clean = path.replace(/^\/|\/$/g, "");
+  const segs = clean.split("/");
+
+  if (segs.includes("series-1") || segs.includes("series-2")) {
+    // no scroll or part after series — treat as series index
+    if (!segs.find((s) => s.startsWith("part-")) && segs.length <= 5) return "series";
+  }
+  if (segs.find((s) => s.startsWith("part-"))) return "part";
+  return "scroll";
+}
+
+/* ===========================================================
+   🜂 Toggle Bookmark — Local + Firestore + Animation + Type
+   =========================================================== */
+export async function toggleBookmark(scrollId, button = null) {
   const uid = auth.currentUser?.uid;
   const ls = JSON.parse(localStorage.getItem(localKey) || "[]");
   const hasLocal = ls.includes(scrollId);
@@ -64,17 +77,24 @@ export async function toggleBookmark(scrollId, button) {
       button.classList.remove("bookmarked");
       button.title = "Add to bookmarks";
       showToast("🩸 Removed from Dashboard", "remove");
-      await sleep(450); // allow animation to finish
+      await sleep(450);
       button.classList.remove("removing");
     } else {
-      // ✨ Add pulse (green bounce)
-      button.classList.add("bookmarked");
+      // ✅ Add pulse (green bounce)
+      button.classList.add("bookmarked", "success");
       button.title = "Saved to dashboard";
       button.animate([{ transform: "scale(1.4)" }, { transform: "scale(1)" }], {
         duration: 200,
         easing: "ease-out"
       });
-      showToast("🔖 Saved to Dashboard", "success");
+      showToast("✅ Saved to Dashboard", "success");
+
+      // subtle green pulse effect
+      button.style.transition = "background-color 0.4s ease";
+      button.style.backgroundColor = "#22c55e"; // Tailwind green-500
+      await sleep(600);
+      button.style.backgroundColor = "";
+      button.classList.remove("success");
     }
   }
 
@@ -84,23 +104,20 @@ export async function toggleBookmark(scrollId, button) {
 
   try {
     const snap = await getDoc(ref);
-
     if (snap.exists()) {
-      // 🧹 Remove bookmark from Firestore
       await deleteDoc(ref);
-
-      // ✦ Dashboard fade-out if visible
       const dashItem = document.querySelector(
         `[data-scroll="${scrollId}"], li[data-id="${scrollId}"]`
       );
       if (dashItem) {
         dashItem.classList.add("removing");
-        await sleep(400); // match CSS duration
+        await sleep(400);
         dashItem.remove();
       }
     } else {
-      // ✨ Add new bookmark
-      await setDoc(ref, { created: Date.now() });
+      // ✦ Determine bookmark type dynamically
+      const type = detectBookmarkType(window.location.pathname);
+      await setDoc(ref, { created: Date.now(), type });
     }
   } catch (err) {
     console.error("[TGK] Bookmark Firestore error:", err);
@@ -148,7 +165,6 @@ export function initBookmarks() {
     btn.addEventListener("click", () => toggleBookmark(id, btn));
   });
 
-  // Auto-sync when logged in
   onAuthStateChanged(auth, (user) => {
     if (user) syncBookmarks();
   });
