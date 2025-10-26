@@ -26,7 +26,7 @@ export default {
   // === Subcollection Grid ===
   pillarGrid: [
     {
-      href: "pillars/the-vault/codex-reborn/nag-hammadi/",
+      href: "/pillars/the-vault/codex-reborn/nag-hammadi/",
       title: "Nag Hammadi Library",
       desc: "Thirteen codices uncovered in 1945 — the foundation of Gnostic scripture.",
       glyph: "📜",

@@ -181,7 +181,25 @@
     <script defer src="/js/quiz-engine.js?v={{ bust }}"></script>
   {% endif %}
 
-<script type="module" src="/js/bookmarks.js"></script>
+  <!-- TGK Bookmark Metadata -->
+  <script id="tgk-page-meta" type="application/json">
+    {
+      "pillar": "{{ pillar | default('') }}",
+      "series": "{{ series | default('') }}",
+      "seriesId": "{{ seriesId | default('') }}",
+      "episode": "{{ episodeId | default('') }}",
+      "episodeNum": "{{ episode | default('') }}",
+      "part": "{{ partId | default('') }}",
+      "partNum": "{{ partNumeral | default('') }}",
+      "tier": "{{ tier | default('free') }}",
+      "glyph": "{{ glyph | default('🔖') }}",
+      "title": "{{ title | default('Untitled Page') }}"
+    }
+  </script>
+
+<script type="module" src="/js/bookmarks.js?v={{ bust }}"></script>
+
+<script type="module" src="/js/page.js?v={{ bust }}"></script>
 
 </body>
 </html>

@@ -24,7 +24,7 @@ breadcrumbs:
   <section class="content-container" id="page-dashboard">
 
     <!-- ✦ Profile + Tier -->
-    <section class="section-block">
+
       <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
       <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
 
@@ -32,7 +32,6 @@ breadcrumbs:
         <button id="manage-tier" class="btn outline">Manage Membership</button>
         <button id="logout-btn" class="btn outline">Logout</button>
       </div>
-    </section>
 
     <!-- ✦ Upgrade CTA -->
     <section id="upgrade-cta" class="section-block dashboard-upgrade" hidden>
@@ -41,19 +40,22 @@ breadcrumbs:
       <a href="/membership/" class="btn gold">Upgrade Membership</a>
     </section>
 
-    <!-- ✦ Bookmarks -->
-    <section class="section-block">
+    <!-- ✦ Bookmarks (rendered as Pillar Grid cards) -->
+
       <h2 class="section-heading">Your Bookmarks</h2>
 
       <div id="bookmark-dashboard">
         <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
-        <div id="bookmark-groups"></div>
+
+        {# We’ll inject a full <section class="pillar-grid"><div class="portal-grid">…</div></section> here #}
+        <div id="bookmark-grid-mount"></div>
+
         <p id="no-bookmarks" class="muted small" hidden>
           No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
           the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
         </p>
       </div>
-    </section>
+
 
   </section>
 

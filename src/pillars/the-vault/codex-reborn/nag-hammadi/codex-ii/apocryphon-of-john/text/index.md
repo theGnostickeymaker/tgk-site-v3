@@ -60,6 +60,8 @@ relatedProducts: []
 <main class="main-content">
 <section class="content-container">
 
+{% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+
   <details class="disclaimer-box">
     <summary><span class="disclaimer-heading">📖 Preservation Note</span></summary>
     <p>
