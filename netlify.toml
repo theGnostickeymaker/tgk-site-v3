@@ -1,86 +1,60 @@
-# ===========================================================
-# 🜂 The Gnostic Key — Netlify Configuration
-# Version: 2025.10.27
-# Purpose:
-#   • Build + deploy Eleventy static site
-#   • Serve authenticated API routes via Netlify Functions
-#   • Securely inject Firebase + Stripe environment variables
-# ===========================================================
+# The Gnostic Key — Netlify Configuration
+# v2025.10.27-stable
 
 [build]
-  command = "npx @11ty/eleventy"
-  publish = "_site"
-  functions = "netlify/functions"
+command = "npx @11ty/eleventy"
+publish = "_site"
+functions = "netlify/functions"
 
 [dev]
-  command = "npx @11ty/eleventy --serve"
-  targetPort = 8080
-  port = 8888
+command = "npx @11ty/eleventy --serve"
+targetPort = 8080
+port = 8888
 
-# ===========================================================
-# 🜂 Redirects & Routing
-# ===========================================================
-
-[[redirects]]
-  from = "/logout"
-  to = "/signin/"
-  status = 302
+# -----------------------------------------------------------
+# Redirects
+# -----------------------------------------------------------
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+from = "/logout"
+to = "/signin/"
+status = 302
 
-# ===========================================================
-# 🜂 Function Settings (Execution Environment)
-# ===========================================================
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200
+
+# -----------------------------------------------------------
+# Functions configuration
+# -----------------------------------------------------------
 
 [functions]
-  included_files = [
-    "src/js/**",
-    "src/css/**",
-    "src/media/**"
-  ]
-  node_bundler = "esbuild"
-  external_node_modules = ["stripe", "firebase-admin"]
+node_bundler = "esbuild"
+external_node_modules = ["stripe", "firebase-admin"]
+node_version = "18.19.0"
+included_files = ["src/js/**", "src/css/**", "src/media/**"]
 
-  # Runtime configuration
-  node_version = "18.19.0"
-  included_files_glob = true
+# -----------------------------------------------------------
+# Default environment variables (define in Netlify UI)
+# -----------------------------------------------------------
 
-# ===========================================================
-# 🜂 Environment Variables
-# Set these securely in Netlify → Site Settings → Environment
-# ===========================================================
-
-# 🜂 Firebase
 [build.environment]
-  FIREBASE_PROJECT_ID = "your-project-id"
-  FIREBASE_CLIENT_EMAIL = "firebase-adminsdk@your-project-id.iam.gserviceaccount.com"
-  FIREBASE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\\nYOURKEY\\n-----END PRIVATE KEY-----\\n"
+FIREBASE_PROJECT_ID = "your-project-id"
+FIREBASE_CLIENT_EMAIL = "firebase-adminsdk@your-project-id.iam.gserviceaccount.com"
+FIREBASE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\\nYOURKEY\\n-----END PRIVATE KEY-----\\n"
+STRIPE_SECRET_KEY = "sk_live_..."
+PRICE_INITIATE_IDS = "price_xxx,price_yyy"
+PRICE_FULL_IDS = "price_zzz"
+PRICE_FULL_LIFETIME_IDS = "price_www"
+APP_SECRET = "your_random_secure_string"
+SITE_URL = "https://thegnostickey.com"
 
-# 🜂 Stripe
-  STRIPE_SECRET_KEY = "sk_live_..."
-  PRICE_INITIATE_IDS = "price_xxx,price_yyy"
-  PRICE_FULL_IDS = "price_zzz"
-  PRICE_FULL_LIFETIME_IDS = "price_www"
+# -----------------------------------------------------------
+# Optional archived / experimental functions
+# -----------------------------------------------------------
 
-# 🜂 TGK App
-  APP_SECRET = "your_random_secure_string"
-  SITE_URL = "https://thegnostickey.com"
-
-# ===========================================================
-# 🜂 Optional: Archived / Experimental Functions
-# ===========================================================
-
-[[functions]]
-  name = "sync-custom-claims"
-  included_files = ["netlify/_archive/sync-custom-claims.js"]
-  included = false  # Disabled in production
-
-# ===========================================================
-# 🜂 Notes:
-# - Builds Eleventy static site to `_site`
-# - All Netlify Functions deployed from `/netlify/functions`
-# - Uses Node 18+ runtime (for Stripe & Firebase Admin compatibility)
-# ===========================================================
+# [[functions]]
+# name = "sync-custom-claims"
+# included_files = ["netlify/_archive/sync-custom-claims.js"]
+# included = false
