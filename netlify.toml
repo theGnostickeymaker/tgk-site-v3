@@ -1,66 +1,86 @@
-# ============================================================
-# 🜂 The Gnostic Key — Netlify Config (v3.3 Validated)
-# ============================================================
+# ===========================================================
+# 🜂 The Gnostic Key — Netlify Configuration
+# Version: 2025.10.27
+# Purpose:
+#   • Build + deploy Eleventy static site
+#   • Serve authenticated API routes via Netlify Functions
+#   • Securely inject Firebase + Stripe environment variables
+# ===========================================================
 
 [build]
   command = "npx @11ty/eleventy"
   publish = "_site"
   functions = "netlify/functions"
-  edge_functions = "netlify/edge-functions"
 
 [dev]
-  command = "npx @11ty/eleventy --serve --port=8080"
-  port = 8888
+  command = "npx @11ty/eleventy --serve"
   targetPort = 8080
-  publish = "_site"
+  port = 8888
 
-# 🜂 Ensure Firebase + Stripe functions bundle correctly
+# ===========================================================
+# 🜂 Redirects & Routing
+# ===========================================================
+
+[[redirects]]
+  from = "/logout"
+  to = "/signin/"
+  status = 302
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# ===========================================================
+# 🜂 Function Settings (Execution Environment)
+# ===========================================================
+
 [functions]
+  included_files = [
+    "src/js/**",
+    "src/css/**",
+    "src/media/**"
+  ]
   node_bundler = "esbuild"
-  external_node_modules = ["firebase-admin", "stripe"]
-  included_files = ["netlify/functions/**"]
+  external_node_modules = ["stripe", "firebase-admin"]
 
-[[edge_functions]]
-  function = "gate"
-  path = "/gated/*"
+  # Runtime configuration
+  node_version = "18.19.0"
+  included_files_glob = true
 
-# 🜂 Redirects (each must be its own table)
-[[redirects]]
-  from = "/:path*/index.htm"
-  to = "/:path*/"
-  status = 301
+# ===========================================================
+# 🜂 Environment Variables
+# Set these securely in Netlify → Site Settings → Environment
+# ===========================================================
 
-[[redirects]]
-  from = "/js/*"
-  to = "/js/:splat"
-  status = 200
+# 🜂 Firebase
+[build.environment]
+  FIREBASE_PROJECT_ID = "your-project-id"
+  FIREBASE_CLIENT_EMAIL = "firebase-adminsdk@your-project-id.iam.gserviceaccount.com"
+  FIREBASE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\\nYOURKEY\\n-----END PRIVATE KEY-----\\n"
 
-[[redirects]]
-  from = "/css/*"
-  to = "/css/:splat"
-  status = 200
+# 🜂 Stripe
+  STRIPE_SECRET_KEY = "sk_live_..."
+  PRICE_INITIATE_IDS = "price_xxx,price_yyy"
+  PRICE_FULL_IDS = "price_zzz"
+  PRICE_FULL_LIFETIME_IDS = "price_www"
 
-[[redirects]]
-  from = "/media/*"
-  to = "/media/:splat"
-  status = 200
+# 🜂 TGK App
+  APP_SECRET = "your_random_secure_string"
+  SITE_URL = "https://thegnostickey.com"
 
-[[redirects]]
-  from = "/tgk-assets/*"
-  to = "/tgk-assets/:splat"
-  status = 200
+# ===========================================================
+# 🜂 Optional: Archived / Experimental Functions
+# ===========================================================
 
-[[redirects]]
-  from = "/:path*.htm"
-  to = "/:path*.html"
-  status = 301
+[[functions]]
+  name = "sync-custom-claims"
+  included_files = ["netlify/_archive/sync-custom-claims.js"]
+  included = false  # Disabled in production
 
-[[redirects]]
-  from = "/pillars/voice-of-the-key/*"
-  to   = "/pillars/the-resonant-key/:splat"
-  status = 301
-
-[[redirects]]
-  from = "/stripe-webhook"
-  to   = "/.netlify/functions/stripe-webhook"
-  status = 200
+# ===========================================================
+# 🜂 Notes:
+# - Builds Eleventy static site to `_site`
+# - All Netlify Functions deployed from `/netlify/functions`
+# - Uses Node 18+ runtime (for Stripe & Firebase Admin compatibility)
+# ===========================================================

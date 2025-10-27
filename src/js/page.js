@@ -1,5 +1,6 @@
 /* ===========================================================
    🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard)
+   v2.6 — Stable Auth Lifecycle, Mobile Fixes, UID Alignment
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -9,7 +10,10 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence,
+  sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {
   getFirestore,
@@ -20,89 +24,121 @@ import {
 
 const auth = getAuth(app);
 const db = getFirestore(app);
+await setPersistence(auth, browserLocalPersistence);
 
-/* 🧙 SIGNUP — Create user → Stripe Customer → Firestore Entitlement */
+/* ===========================================================
+   ✦ SIGNUP — Firebase → Stripe → Firestore Entitlement
+   =========================================================== */
 async function pageSignup(email, password) {
   try {
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
-    const token = await userCred.user.getIdToken();
+    const user = userCred.user;
+    const token = await user.getIdToken();
 
-    // 🔹 Link Firebase → Stripe → Firestore
+    // 🔹 Create Stripe customer
     const res = await fetch("/.netlify/functions/create-stripe-customer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, token })
     });
-
+    if (!res.ok) throw new Error("Stripe customer creation failed");
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Stripe customer creation failed");
 
-    // 🔹 Generate entitlement record
+    // 🔹 Write Firestore entitlement keyed by UID
     await fetch("/.netlify/functions/set-entitlements", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ customerId: data.customerId, email })
-    });
-
-    alert("Welcome to The Gnostic Key ✦ Account created.");
-    window.location.href = "/dashboard/";
-  } catch (err) {
-    console.error("[PAGE] Signup error:", err);
-    alert("Signup failed: " + err.message);
-  }
-}
-
-/* 🔐 SIGNIN — Firebase Auth + Entitlement Refresh + Custom Claims Sync */
-async function pageSignin(email, password) {
-  try {
-    const cred = await signInWithEmailAndPassword(auth, email, password);
-    const user = cred.user;
-    const token = await user.getIdToken();
-
-    // 🔹 Refresh entitlement cookie
-    const entRef = await fetch("/.netlify/functions/refresh-entitlements", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token })
-    });
-    if (!entRef.ok) console.warn("[PAGE] Entitlement refresh failed");
-
-    // 🔹 Sync Firebase Custom Claims
-    const sync = await fetch("/.netlify/functions/sync-custom-claims", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         uid: user.uid,
-        email: user.email,
-        customerId: localStorage.getItem("tgk-customer-id") || null
+        customerId: data.customerId,
+        email
       })
     });
-    if (sync.ok) {
-      const data = await sync.json();
-      console.log(`[TGK] 🔄 Synced custom claims: ${data.tier}/${data.role}`);
-    }
 
+    // Optional: email verification
+    // await sendEmailVerification(user);
+
+    alert("Welcome to The Gnostic Key ✦ Account created.");
     window.location.href = "/dashboard/";
   } catch (err) {
-    console.error("[PAGE] Signin error:", err);
-    alert("Login failed: " + err.message);
+    console.error("[TGK] Signup error:", err);
+    alert("Signup failed: " + err.message);
   }
 }
 
-/* 🕊️ PASSWORD RESET */
+/* ===========================================================
+   🔐 SIGNIN — Firebase + Cookie Refresh + Safari Fix
+   =========================================================== */
+async function pageSignin(email, password) {
+  try {
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    const user = cred.user;
+
+    // Handle Safari race conditions
+    await new Promise((res) => setTimeout(res, 300));
+    const token = await user.getIdToken();
+
+    await fetch("/.netlify/functions/refresh-entitlements", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token })
+    });
+
+    console.log(`[TGK] ✅ Logged in as ${user.email}`);
+    window.location.href = "/dashboard/";
+  } catch (err) {
+    console.warn("[TGK] Signin warning:", err.message);
+    setTimeout(async () => {
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        console.log("[TGK] ⚠️ False fail detected, continuing session.");
+        window.location.href = "/dashboard/";
+      } else {
+        alert("Login failed: " + err.message);
+      }
+    }, 800);
+  }
+}
+
+/* ===========================================================
+   🕊️ PASSWORD RESET
+   =========================================================== */
 function pageReset(email) {
   sendPasswordResetEmail(auth, email)
     .then(() => alert("Reset link sent to your email."))
     .catch((e) => alert("Error: " + e.message));
 }
 
-/* 🚪 LOGOUT — Unified Redirect to /logout/ */
-function pageLogout() {
-  console.log("[TGK] Redirecting to logout page…");
-  window.location.href = "/logout/";
+/* ===========================================================
+   🚪 SIGNOUT — Guaranteed Flush + Redirect
+   =========================================================== */
+async function pageSignout() {
+  console.log("[TGK] 🚪 Signing out…");
+
+  try {
+    await signOut(auth);
+    localStorage.clear();
+    sessionStorage.clear();
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+
+    setTimeout(() => {
+      window.location.replace("/signin/");
+    }, 300);
+
+    console.log("[TGK] ✅ Sign-out complete");
+  } catch (err) {
+    console.error("[TGK] Sign-out failed:", err);
+    alert("Error signing out: " + err.message);
+  }
 }
 
-/* 🜂 LOAD DASHBOARD TIER (Admin Safe) */
+/* ===========================================================
+   🜂 LOAD DASHBOARD DATA
+   =========================================================== */
 async function loadDashboardData(user) {
   const nameEl = document.getElementById("user-name");
   const tierEl = document.getElementById("user-tier");
@@ -116,18 +152,7 @@ async function loadDashboardData(user) {
     const snap = await getDoc(docRef);
 
     let tier = "free";
-    const ADMIN_EMAILS = ["the.keymaker@thegnostickey.com"];
-    if (ADMIN_EMAILS.includes(user.email)) {
-      tier = "admin";
-    } else if (snap.exists()) {
-      tier = snap.data()?.tier || "free";
-    } else {
-      await fetch("/.netlify/functions/set-entitlements", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ customerId: "none", email: user.email })
-      });
-    }
+    if (snap.exists()) tier = snap.data()?.tier || "free";
 
     tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
     localStorage.setItem("tgk-tier", tier);
@@ -138,14 +163,15 @@ async function loadDashboardData(user) {
   }
 }
 
-/* ✦ PROFILE SAVE + PREFILL */
+/* ===========================================================
+   ✦ PROFILE PREFILL + SAVE
+   =========================================================== */
 async function loadUserProfile(user) {
   const nameInput = document.getElementById("profile-name");
   const emailInput = document.getElementById("profile-email");
   if (!nameInput || !emailInput) return;
 
   emailInput.value = user.email;
-
   try {
     const docRef = doc(db, "users", user.uid);
     const snap = await getDoc(docRef);
@@ -175,7 +201,9 @@ async function saveProfile(e) {
   }
 }
 
-/* 🜂 WATCH AUTH STATE */
+/* ===========================================================
+   🜂 AUTH WATCHER
+   =========================================================== */
 onAuthStateChanged(auth, (user) => {
   const userInfo = document.getElementById("user-info");
   if (user) {
@@ -199,7 +227,9 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-/* 🪶 AUTO-BIND FORMS (Resilient) */
+/* ===========================================================
+   🪶 FORM BINDINGS
+   =========================================================== */
 function bindTGKForms() {
   const signupForm = document.getElementById("signup-form");
   const signinForm = document.getElementById("signin-form");
@@ -233,8 +263,7 @@ function bindTGKForms() {
   }
 
   if (logoutBtn) {
-    console.log("[TGK] 🔘 Logout button bound");
-    logoutBtn.addEventListener("click", pageLogout);
+    logoutBtn.addEventListener("click", pageSignout);
   }
 
   if (profileForm) {
@@ -242,7 +271,6 @@ function bindTGKForms() {
   }
 }
 
-// 🜂 Bind immediately if DOM is ready; otherwise, wait
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", bindTGKForms);
 } else {

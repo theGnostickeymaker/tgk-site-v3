@@ -1,6 +1,3 @@
-// 🜂 TGK — Refresh Entitlements (Post-Checkout)
-// Called after successful Stripe checkout to set tier cookie and Firestore entry.
-
 import crypto from "crypto";
 import Stripe from "stripe";
 
@@ -14,25 +11,17 @@ export const handler = async (event) => {
 
   const stripe = new Stripe(key);
   try {
-    const { session_id } = JSON.parse(event.body || "{}");
-    if (!session_id) return json(400, { error: "missing session_id" });
+    const { token } = JSON.parse(event.body || "{}");
+    if (!token) return json(400, { error: "missing token" });
 
-    const session = await stripe.checkout.sessions.retrieve(session_id, { expand: ["line_items.data.price"] });
-    const li = session?.line_items?.data?.[0];
-    const priceId = li?.price?.id;
-    if (!priceId) return json(400, { error: "no price id" });
-
+    // Optionally expand session if used post-checkout
     let tier = "free";
-    if (INITIATE_IDS.includes(priceId)) tier = "initiate";
-    if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) tier = "adept";
+    // You can modify here if you attach tier to JWT via Firebase custom claims
 
-    const cookie = makeCookie({ tier, exp: Math.floor(Date.now()/1000) + 60*60*24*30 });
+    const cookie = makeCookie({ tier, exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30 });
     return {
       statusCode: 200,
-      headers: {
-        "Set-Cookie": cookie,
-        "Content-Type": "application/json"
-      },
+      headers: { "Set-Cookie": cookie, "Content-Type": "application/json" },
       body: JSON.stringify({ tier })
     };
   } catch (e) {
@@ -47,7 +36,7 @@ function makeCookie(payload) {
   const sig = crypto.createHmac("sha256", secret).update(payloadB64).digest("base64url");
   const token = `${payloadB64}.${sig}`;
   const secure = (process.env.SITE_URL || "").startsWith("https://") ? "; Secure" : "";
-  return `tgk_ent=${encodeURIComponent(token)}; Path=/; HttpOnly; Max-Age=${60*60*24*30}; SameSite=Lax${secure}`;
+  return `tgk_ent=${encodeURIComponent(token)}; Path=/; HttpOnly; Max-Age=${60 * 60 * 24 * 30}; SameSite=Lax${secure}`;
 }
 
 function json(statusCode, body) {

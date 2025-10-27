@@ -1,11 +1,8 @@
-// verify-entitlement.js
-// Validates the signed tgk_ent cookie and returns tier if valid
-
-const crypto = require("crypto");
+import crypto from "crypto";
 
 export const handler = async (event) => {
   const cookieHeader = event.headers.cookie || "";
-  const match = cookieHeader.split("; ").find(c => c.startsWith("tgk_ent="));
+  const match = cookieHeader.split("; ").find((c) => c.startsWith("tgk_ent="));
   if (!match) return json(401, { error: "no cookie" });
 
   try {
@@ -19,17 +16,13 @@ export const handler = async (event) => {
     if (payload.exp < Math.floor(Date.now() / 1000))
       return json(401, { error: "expired" });
 
-    return json(200, { tier: payload.tier });
+    return json(200, { tier: payload.tier, exp: payload.exp });
   } catch (e) {
-    console.error(e);
+    console.error("[TGK] verify-entitlement error:", e);
     return json(500, { error: "server" });
   }
 };
 
-function json(statusCode, body) {
-  return {
-    statusCode,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
-  };
+function json(status, body) {
+  return { statusCode: status, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
 }
