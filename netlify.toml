@@ -3,28 +3,5 @@
   publish = "_site"
   functions = "netlify/functions"
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/logout"
-  to = "/signin/"
-  status = 302
-
-[functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["stripe", "firebase-admin"]
-  node_version = "18"
-
 [build.environment]
-  FIREBASE_PROJECT_ID = "your-project-id"
-  FIREBASE_CLIENT_EMAIL = "firebase-adminsdk@your-project-id.iam.gserviceaccount.com"
-  FIREBASE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\\nYOURKEY\\n-----END PRIVATE KEY-----\\n"
-  STRIPE_SECRET_KEY = "sk_live_..."
-  PRICE_INITIATE_IDS = "price_xxx"
-  PRICE_FULL_IDS = "price_yyy"
-  PRICE_FULL_LIFETIME_IDS = "price_zzz"
-  APP_SECRET = "your_random_secure_string"
-  SITE_URL = "https://thegnostickey.com"
+  NODE_VERSION = "18"
