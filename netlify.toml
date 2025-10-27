@@ -1,60 +1,30 @@
-# The Gnostic Key — Netlify Configuration
-# v2025.10.27-stable
-
 [build]
-command = "npx @11ty/eleventy"
-publish = "_site"
-functions = "netlify/functions"
-
-[dev]
-command = "npx @11ty/eleventy --serve"
-targetPort = 8080
-port = 8888
-
-# -----------------------------------------------------------
-# Redirects
-# -----------------------------------------------------------
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+  functions = "netlify/functions"
 
 [[redirects]]
-from = "/logout"
-to = "/signin/"
-status = 302
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
 
 [[redirects]]
-from = "/api/*"
-to = "/.netlify/functions/:splat"
-status = 200
-
-# -----------------------------------------------------------
-# Functions configuration
-# -----------------------------------------------------------
+  from = "/logout"
+  to = "/signin/"
+  status = 302
 
 [functions]
-node_bundler = "esbuild"
-external_node_modules = ["stripe", "firebase-admin"]
-node_version = "18.19.0"
-included_files = ["src/js/**", "src/css/**", "src/media/**"]
-
-# -----------------------------------------------------------
-# Default environment variables (define in Netlify UI)
-# -----------------------------------------------------------
+  node_bundler = "esbuild"
+  external_node_modules = ["stripe", "firebase-admin"]
+  node_version = "18"
 
 [build.environment]
-FIREBASE_PROJECT_ID = "your-project-id"
-FIREBASE_CLIENT_EMAIL = "firebase-adminsdk@your-project-id.iam.gserviceaccount.com"
-FIREBASE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\\nYOURKEY\\n-----END PRIVATE KEY-----\\n"
-STRIPE_SECRET_KEY = "sk_live_..."
-PRICE_INITIATE_IDS = "price_xxx,price_yyy"
-PRICE_FULL_IDS = "price_zzz"
-PRICE_FULL_LIFETIME_IDS = "price_www"
-APP_SECRET = "your_random_secure_string"
-SITE_URL = "https://thegnostickey.com"
-
-# -----------------------------------------------------------
-# Optional archived / experimental functions
-# -----------------------------------------------------------
-
-# [[functions]]
-# name = "sync-custom-claims"
-# included_files = ["netlify/_archive/sync-custom-claims.js"]
-# included = false
+  FIREBASE_PROJECT_ID = "your-project-id"
+  FIREBASE_CLIENT_EMAIL = "firebase-adminsdk@your-project-id.iam.gserviceaccount.com"
+  FIREBASE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\\nYOURKEY\\n-----END PRIVATE KEY-----\\n"
+  STRIPE_SECRET_KEY = "sk_live_..."
+  PRICE_INITIATE_IDS = "price_xxx"
+  PRICE_FULL_IDS = "price_yyy"
+  PRICE_FULL_LIFETIME_IDS = "price_zzz"
+  APP_SECRET = "your_random_secure_string"
+  SITE_URL = "https://thegnostickey.com"
