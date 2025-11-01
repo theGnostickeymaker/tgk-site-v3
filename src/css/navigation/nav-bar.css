@@ -111,6 +111,28 @@
     border-bottom: 1px solid var(--section-border);
   }
 
+  /* =========================================================
+   TGK Drawer — Styled Sign-Out Button
+   ========================================================= */
+  .drawer-content .logout-btn.nav-signout {
+    border: none;
+    justify-content: flex-start;
+    color: var(--text-accent);
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-display);
+    background: none;
+    padding: var(--space-xs) 0;
+    width: auto;
+  }
+  .drawer-content .logout-btn.nav-signout:hover {
+    color: var(--highlight);
+    background: none;
+    box-shadow: none;
+  }
+
   /* Drawer links */
   #mobileNav ul { list-style: none; margin: 0; padding: var(--space-sm) 0 0 0; }
   #mobileNav li { padding: var(--space-xs) 0; margin: 0; }

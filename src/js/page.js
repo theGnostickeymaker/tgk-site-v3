@@ -228,33 +228,35 @@ onAuthStateChanged(auth, (user) => {
 });
 
 /* ===========================================================
-   🪶 FORM BINDINGS
+   🪶 FORM BINDINGS — Universal Multi-Form + Logout Support
    =========================================================== */
 function bindTGKForms() {
-  const signupForm = document.getElementById("signup-form");
-  const signinForm = document.getElementById("signin-form");
-  const resetBtn = document.getElementById("password-reset");
-  const logoutBtn = document.getElementById("logout-btn");
+  const signupForm  = document.getElementById("signup-form");
+  const signinForm  = document.getElementById("signin-form");
+  const resetBtn    = document.getElementById("password-reset");
   const profileForm = document.getElementById("profile-form");
 
+  /* ✦ Signup */
   if (signupForm) {
     signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const email = e.target.querySelector("#signup-email").value.trim();
-      const pw = e.target.querySelector("#signup-password").value.trim();
+      const pw    = e.target.querySelector("#signup-password").value.trim();
       pageSignup(email, pw);
     });
   }
 
+  /* ✦ Signin */
   if (signinForm) {
     signinForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const email = e.target.querySelector("#signin-email").value.trim();
-      const pw = e.target.querySelector("#signin-password").value.trim();
+      const pw    = e.target.querySelector("#signin-password").value.trim();
       pageSignin(email, pw);
     });
   }
 
+  /* ✦ Password Reset */
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
       const email = prompt("Enter your email to reset password:");
@@ -262,17 +264,21 @@ function bindTGKForms() {
     });
   }
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", pageSignout);
-  }
+  /* ✦ Logout — bind ALL logout buttons (drawer + dashboard) */
+  document.querySelectorAll(".logout-btn").forEach((btn) => {
+    btn.addEventListener("click", pageSignout);
+  });
 
+  /* ✦ Profile Save */
   if (profileForm) {
     profileForm.addEventListener("submit", saveProfile);
   }
 }
 
+/* Auto-bind after DOM ready */
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", bindTGKForms);
 } else {
   bindTGKForms();
 }
+

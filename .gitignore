@@ -2,6 +2,7 @@ _site
 .cache
 node_modules
 .env
+.env.local
 
 # Local Netlify folder
 .netlify
