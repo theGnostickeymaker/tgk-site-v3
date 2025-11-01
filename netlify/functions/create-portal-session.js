@@ -1,78 +1,75 @@
+// 🜂 TGK — Create Stripe Billing Portal Session
+// Version 3.7 (Basil Standard)
 import Stripe from "stripe";
 import admin from "firebase-admin";
 
+// ✅ Firebase Admin init
 if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-    }),
-  });
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  admin.initializeApp({ credential: admin.credential.cert({ projectId, clientEmail, privateKey }) });
 }
 
-export async function handler(event) {
-  if (event.httpMethod !== "POST") {
-    return json(405, { error: "Method not allowed" });
-  }
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const firestore = admin.firestore();
 
-  const key = process.env.STRIPE_SECRET_KEY;
-  if (!key) return json(500, { error: "STRIPE_SECRET_KEY missing" });
-
-  const stripe = new Stripe(key, { apiVersion: "2025-08-27.basil" });
+export const handler = async (event) => {
+  if (event.httpMethod !== "POST")
+    return json(405, { error: "Method Not Allowed" });
 
   try {
-    const { token, email, returnUrl } = JSON.parse(event.body || "{}");
+    const { email, token } = JSON.parse(event.body || "{}");
+    if (!email && !token)
+      return json(400, { error: "Missing email or token" });
 
-    if (!token && !email) {
-      return json(400, { error: "Missing Firebase token or email" });
-    }
-
-    // 🔐 Verify Firebase token if provided
+    // 🔹 Verify Firebase token to get UID
     let uid = null;
     if (token) {
       try {
         const decoded = await admin.auth().verifyIdToken(token);
         uid = decoded.uid;
       } catch {
-        console.warn("[TGK Portal] Invalid Firebase token");
+        console.warn("[TGK] ⚠ Invalid Firebase token for portal");
       }
     }
 
-    // 🪪 Try Firestore mapping first
+    // 🔹 Resolve Stripe customer ID
     let customerId = null;
+
+    // Check entitlement record first
     if (uid) {
-      const snap = await admin.firestore().collection("entitlements").doc(uid).get();
-      if (snap.exists && snap.data().customerId) {
-        customerId = snap.data().customerId;
-      }
+      const snap = await firestore.collection("entitlements").doc(uid).get();
+      if (snap.exists && snap.data().stripeCustomerId)
+        customerId = snap.data().stripeCustomerId;
     }
 
-    // 🕵️ Otherwise, fallback to email lookup
+    // Fallback by email lookup
     if (!customerId && email) {
-      const customers = await stripe.customers.list({ email, limit: 1 });
-      if (customers.data.length) customerId = customers.data[0].id;
+      const existing = await stripe.customers.list({ email, limit: 1 });
+      if (existing.data.length) customerId = existing.data[0].id;
     }
 
-    if (!customerId) return json(404, { error: "Stripe customer not found" });
+    if (!customerId) return json(404, { error: "No Stripe customer found" });
 
+    // 🔹 Create Stripe Billing Portal session
     const site = process.env.SITE_URL || "http://localhost:8888";
-
     const session = await stripe.billingPortal.sessions.create({
       customer: customerId,
-      return_url: returnUrl || `${site}/account/`,
+      return_url: site + "/account/"
     });
 
+    console.log(`[TGK] ✅ Portal session created for ${email} → ${customerId}`);
     return json(200, { url: session.url });
   } catch (err) {
-    console.error("[TGK Portal] Error:", err);
-    return json(500, { error: err.message || "Server error" });
+    console.error("[TGK] ❌ create-portal-session error:", err);
+    return json(500, { error: err.message });
   }
-}
+};
 
-function json(statusCode, body) {
+function json(status, body) {
   return {
-    statusCode,
+    statusCode: status,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   };
