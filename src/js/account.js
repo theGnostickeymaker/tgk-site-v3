@@ -1,5 +1,5 @@
 /* ===========================================================
-   TGK — account.js (v4.1 — Claims Tier + Profile)
+   TGK — account.js (v4.2 — Claims Tier + Profile + Token Refresh)
    Uses Firebase Auth Claims → tier/role (admin = admin)
    =========================================================== */
 
@@ -11,16 +11,31 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {
-  getFirestore,  // ← ADD THIS
+  getFirestore,
   getDoc,
   doc,
   setDoc,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const auth = getAuth(app);
-const db = getFirestore(app);  // ← NOW WORKS
+const db = getFirestore(app);
 
 console.log("[TGK Account] Ready");
+
+/* ===========================================================
+   Force Token Refresh (Fix Stale Claims)
+   =========================================================== */
+async function forceTokenRefresh() {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  try {
+    await user.getIdToken(true); // true = force refresh
+    console.log("[TGK Account] ID token refreshed — claims updated");
+  } catch (err) {
+    console.warn("[TGK Account] Token refresh failed:", err.message);
+  }
+}
 
 /* ===========================================================
    Load Tier from Firebase Claims
@@ -157,11 +172,12 @@ function setupLogout() {
 }
 
 /* ===========================================================
-   Auth Watcher
+   Auth Watcher — SINGLE CALL
    =========================================================== */
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    await loadTierFromClaims();
+    await forceTokenRefresh();     // ← Refresh FIRST
+    await loadTierFromClaims();    // ← Now shows admin
     await loadProfile(user);
     setupManageButton();
     setupPasswordReset();
