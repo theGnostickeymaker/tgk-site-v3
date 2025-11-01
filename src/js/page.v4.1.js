@@ -142,7 +142,7 @@ async function pageSignin(email, password) {
     await new Promise(res => setTimeout(res, 300));
     const token = await user.getIdToken();
 
-    await fetch("/.netlify/functions/refresh-entitlements", {
+    await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token })

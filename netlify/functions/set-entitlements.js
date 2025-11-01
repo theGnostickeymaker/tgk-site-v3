@@ -1,6 +1,5 @@
-// TGK — Netlify Function: Set Entitlements (Atomic + Duplicate Cleanup)
-// v4.0 — Basil Atomic Cleanup (2025-11-01)
-// Handles: UID fallback, Stripe sync, tier mapping, duplicate merge/delete
+// TGK — Netlify Function: Set Entitlements (Atomic + Claims Sync)
+// v4.1 — Basil Claims Sync (2025-11-01)
 
 import admin from "firebase-admin";
 import Stripe from "stripe";
@@ -44,10 +43,8 @@ export const handler = async (event) => {
 
   const { session_id, token, email, customerId, uid } = body;
 
-  // ADD THIS LINE HERE
   console.log("[TGK] set-entitlements payload:", { uid, customerId, email, token, session_id });
 
-  // EARLY VALIDATION
   if (!uid && !token && !session_id && !customerId && !email) {
     console.warn("[TGK] Missing all identifiers");
     return json(400, { error: "Missing identifiers (uid, token, session_id, customerId, or email required)" });
@@ -58,12 +55,14 @@ export const handler = async (event) => {
        Resolve Firebase UID
        ─────────────────────────────────────────────── */
     let firebaseUid = uid || null;
+    let claims = {};
 
     if (!firebaseUid && token) {
       try {
         const decoded = await admin.auth().verifyIdToken(token);
         firebaseUid = decoded.uid;
-        console.log(`[TGK] UID verified from token: ${firebaseUid}`);
+        claims = decoded; // Save claims
+        console.log(`[TGK] UID + claims verified: ${firebaseUid}`);
       } catch (err) {
         console.warn("[TGK] Invalid Firebase token:", err.message);
       }
@@ -103,7 +102,7 @@ export const handler = async (event) => {
     }
 
     /* ───────────────────────────────────────────────
-       Determine Active Tier
+       Determine Active Tier (Stripe)
        ─────────────────────────────────────────────── */
     let tier = "free";
     try {
@@ -117,26 +116,30 @@ export const handler = async (event) => {
       if (INITIATE_IDS.includes(priceId)) tier = "initiate";
       if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) tier = "adept";
 
-      console.log(`[TGK] Active tier: ${tier} (price: ${priceId || "none"})`);
+      console.log(`[TGK] Stripe tier: ${tier} (price: ${priceId || "none"})`);
     } catch (err) {
       console.warn("[TGK] Subscription lookup failed:", err.message);
     }
 
-   /* ───────────────────────────────────────────────
-       Resolve Email (fallback to Stripe if missing)
+    /* ───────────────────────────────────────────────
+       SYNC CLAIMS → TIER (ADMIN OVERRIDE)
+       ─────────────────────────────────────────────── */
+    if (claims.tier && ["admin", "adept", "initiate", "free"].includes(claims.tier)) {
+      console.log(`[TGK] Claims override: ${claims.tier} > ${tier}`);
+      tier = claims.tier;
+    }
+
+    /* ───────────────────────────────────────────────
+       Resolve Email
        ─────────────────────────────────────────────── */
     let resolvedEmail = email || null;
 
     if (!resolvedEmail) {
       try {
         const customer = await stripe.customers.retrieve(stripeCustomerId);
-
-        // TYPE-GUARD: only a non-deleted customer has the `email` field
         if (!customer.deleted && "email" in customer && typeof customer.email === "string") {
           resolvedEmail = customer.email;
-          console.log(`[TGK] Email resolved from Stripe: ${resolvedEmail}`);
-        } else {
-          console.warn("[TGK] Stripe customer has no email (deleted or missing)");
+          console.log(`[TGK] Email from Stripe: ${resolvedEmail}`);
         }
       } catch (err) {
         console.warn("[TGK] Could not fetch email from Stripe:", err.message);
@@ -144,7 +147,7 @@ export const handler = async (event) => {
     }
 
     /* ───────────────────────────────────────────────
-       DUPLICATE CLEANUP: Delete other UIDs with same email
+       DUPLICATE CLEANUP
        ─────────────────────────────────────────────── */
     if (resolvedEmail) {
       const allEnts = await firestore
@@ -153,39 +156,36 @@ export const handler = async (event) => {
         .get();
 
       if (allEnts.size > 1) {
-        console.warn(`[TGK] Multiple entitlements for ${resolvedEmail} — cleaning up`);
+        console.warn(`[TGK] Cleaning ${allEnts.size - 1} duplicate(s) for ${resolvedEmail}`);
         const batch = firestore.batch();
-        let deleted = 0;
-
         allEnts.forEach((doc) => {
           if (doc.id !== firebaseUid) {
             batch.delete(doc.ref);
-            deleted++;
           }
         });
-
         await batch.commit();
-        console.log(`[TGK] Deleted ${deleted} duplicate entitlement(s)`);
       }
     }
 
     /* ───────────────────────────────────────────────
-       Write Final Entitlement
+       Write Final Entitlement (with claims sync)
        ─────────────────────────────────────────────── */
     const payload = {
       uid: firebaseUid,
       email: resolvedEmail,
       stripeCustomerId,
       tier,
+      role: claims.role || "user",
       lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
     };
 
     await firestore.collection("entitlements").doc(firebaseUid).set(payload, { merge: true });
 
-    console.log(`[TGK] Entitlement set → ${resolvedEmail || firebaseUid} :: ${tier}`);
+    console.log(`[TGK] Entitlement set → ${resolvedEmail || firebaseUid} :: ${tier} (${payload.role})`);
     return json(200, {
       success: true,
       tier,
+      role: payload.role,
       customerId: stripeCustomerId,
       uid: firebaseUid,
     });
@@ -196,9 +196,6 @@ export const handler = async (event) => {
   }
 };
 
-/* ===========================================================
-   JSON Helper
-   =========================================================== */
 function json(status, body) {
   return {
     statusCode: status,
@@ -206,4 +203,3 @@ function json(status, body) {
     body: JSON.stringify(body),
   };
 }
-
