@@ -1,5 +1,5 @@
-// TGK — Netlify Function: Set Entitlements (Atomic + Claims Sync)
-// v4.1 — Basil Claims Sync (2025-11-01)
+// TGK — Netlify Function: Set Entitlements (Atomic + Claims Sync + Idempotent)
+// v4.2 — Eternal Admin Protection (2025-11-01)
 
 import admin from "firebase-admin";
 import Stripe from "stripe";
@@ -45,9 +45,21 @@ export const handler = async (event) => {
 
   console.log("[TGK] set-entitlements payload:", { uid, customerId, email, token, session_id });
 
+  // ————————————————————————————————————————————————
+  // EARLY EXIT: NO TOKEN + NO NEW DATA = DO NOTHING
+  // Prevents accidental overwrites (e.g. page load)
+  // ————————————————————————————————————————————————
+  if (!token && !session_id && !customerId) {
+    console.log("[TGK] No token or new data — skipping update (idempotent)");
+    return json(200, { success: true, tier: "free", message: "No update needed" });
+  }
+
+  // ————————————————————————————————————————————————
+  // VALIDATION: At least one identifier required
+  // ————————————————————————————————————————————————
   if (!uid && !token && !session_id && !customerId && !email) {
     console.warn("[TGK] Missing all identifiers");
-    return json(400, { error: "Missing identifiers (uid, token, session_id, customerId, or email required)" });
+    return json(400, { error: "Missing identifiers" });
   }
 
   try {
@@ -61,7 +73,7 @@ export const handler = async (event) => {
       try {
         const decoded = await admin.auth().verifyIdToken(token);
         firebaseUid = decoded.uid;
-        claims = decoded; // Save claims
+        claims = decoded;
         console.log(`[TGK] UID + claims verified: ${firebaseUid}`);
       } catch (err) {
         console.warn("[TGK] Invalid Firebase token:", err.message);
@@ -168,7 +180,7 @@ export const handler = async (event) => {
     }
 
     /* ───────────────────────────────────────────────
-       Write Final Entitlement (with claims sync)
+       Write Final Entitlement
        ─────────────────────────────────────────────── */
     const payload = {
       uid: firebaseUid,
