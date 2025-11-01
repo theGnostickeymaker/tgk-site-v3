@@ -1,5 +1,5 @@
 /* ===========================================================
-   TGK — account.js (v4.5 — FINAL: Claims + Profile + No 403)
+   TGK — account.js (v4.5 — FINAL: No 403, Claims + Profile)
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -23,15 +23,14 @@ console.log("[TGK Account] Ready");
 
 /* ===========================================================
    Safe Claims Refresh — NO getIdToken(true)
-   Use getIdTokenResult() directly → forces token + claims
+   Uses getIdTokenResult() → forces fresh token + claims
    =========================================================== */
 async function forceClaimsRefresh() {
   const user = auth.currentUser;
   if (!user) return;
 
   try {
-    // This FORCES a fresh token with updated claims
-    await user.getIdTokenResult();
+    await user.getIdTokenResult(); // ← FORCES NEW TOKEN + CLAIMS
     console.log("[TGK Account] Claims refreshed via getIdTokenResult()");
   } catch (err) {
     console.warn("[TGK Account] Claims refresh failed:", err.message);
@@ -173,11 +172,11 @@ function setupLogout() {
 }
 
 /* ===========================================================
-   Auth Watcher — FINAL & CLEAN
+   Auth Watcher — FINAL
    =========================================================== */
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    await forceClaimsRefresh();     // ← NO 403: uses getIdTokenResult()
+    await forceClaimsRefresh();     // ← NO 403
     await loadTierFromClaims();     // ← Shows initiate
     await loadProfile(user);        // ← RESTORED
     setupManageButton();
