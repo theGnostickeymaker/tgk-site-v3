@@ -22,140 +22,57 @@ breadcrumbs:
 {% endblock %}
 
 <main class="main-content page-account">
-  <section class="content-container">
+  <section class="content-container" id="page-account">
+
+    <!-- ✦ Header -->
+    <h2 class="section-heading">Your Account</h2>
+    <p class="muted small">Manage your profile, password, and membership tier.</p>
 
     <!-- ✦ Account Tier & Subscription -->
-    <section class="section-block">
-      <h2 class="section-heading">Membership Tier</h2>
-      <p id="tier">Checking access…</p>
+    <h3 class="section-heading">Membership Tier</h3>
+    <p id="tier">Checking access…</p>
+    <div class="btn-wrap">
       <button id="manage" class="btn outline">Manage Subscription</button>
-      <p class="small">Manage your billing details, upgrade, or cancel anytime via Stripe’s secure portal.</p>
-    </section>
+    </div>
+    <p class="small">
+      Manage your billing details, upgrade, or cancel anytime via Stripe’s secure portal.
+    </p>
 
     <!-- ✦ Profile Info -->
-    <section class="section-block">
-      <h2 class="section-heading">Profile Information</h2>
-      <form id="profile-form" class="form-block">
-        <label for="profile-name">Display Name</label>
-        <input type="text" id="profile-name" placeholder="Your name" />
+    <h3 class="section-heading">Profile Information</h3>
+    <form id="profile-form" class="form-block">
+      <label for="profile-name">Display Name</label>
+      <input type="text" id="profile-name" placeholder="Your name" />
 
-        <label for="profile-email">Email</label>
-        <input type="email" id="profile-email" placeholder="Your email" disabled />
+      <label for="profile-email">Email</label>
+      <input type="email" id="profile-email" placeholder="Your email" disabled />
 
-        <div class="btn-wrap">
-          <button type="submit" class="btn outline">Save Changes</button>
-          <span id="profile-status" class="small muted"></span>
-        </div>
-      </form>
-    </section>
+      <div class="btn-wrap">
+        <button type="submit" class="btn outline">Save Changes</button>
+        <span id="profile-status" class="small muted"></span>
+      </div>
+    </form>
 
     <!-- ✦ Password Reset -->
-    <section class="section-block">
-      <h2 class="section-heading">Password Reset</h2>
-      <p>Need to change your password? You can send yourself a reset link here:</p>
-      <button id="password-reset" class="btn outline">Send Reset Email</button>
-      <p class="small">Or use the <a href="/password-reset/">dedicated reset page</a>.</p>
-    </section>
+    <h3 class="section-heading">Password Reset</h3>
+    <p>Need to change your password? You can send yourself a reset link here:</p>
+    <button id="password-reset" class="btn outline">Send Reset Email</button>
+    <p class="small">
+      Or use the <a href="/password-reset/">dedicated reset page</a>.
+    </p>
 
-    <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
-    </div>
+    <!-- ✦ Logout -->
+    <h3 class="section-heading">Sign Out</h3>
+    <p class="small">You can securely sign out of your TGK account below.</p>
+    <button id="logout-btn" class="btn outline">Sign Out</button>
+
+  </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+  </div>
 
   </section>
 </main>
 
-<!-- =========================================================
-     🜂 Account Page Logic — Firebase / Stripe / Firestore Sync
-   ========================================================= -->
-<script type="module">
-import { app } from "/js/page.js";
-import {
-  getAuth,
-  sendPasswordResetEmail,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-
-const auth = getAuth(app);
-const db = getFirestore(app);
-const statusEl = document.getElementById("profile-status");
-
-/* 🜂 Tier Cookie Reader */
-function readTier() {
-  const m = document.cookie.match(/(?:^|; )tgk_ent=([^;]+)/);
-  if (!m) return "free";
-  try {
-    const [payload] = decodeURIComponent(m[1]).split(".");
-    const json = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/")));
-    return json.tier || "free";
-  } catch { return "free"; }
-}
-
-/* 🜂 Stripe Portal */
-document.getElementById("manage").onclick = async () => {
-  const user = auth.currentUser;
-  const email = user?.email || prompt("Enter your Stripe email:");
-  if (!email) return;
-  const r = await fetch("/.netlify/functions/create-portal-session", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ email })
-  });
-  const d = await r.json();
-  if (d.url) location = d.url;
-  else alert(d.error || "Portal error");
-};
-
-/* 🜂 Password Reset */
-document.getElementById("password-reset").onclick = async () => {
-  const user = auth.currentUser;
-  const email = user?.email || prompt("Enter your account email:");
-  if (!email) return;
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent to " + email);
-  } catch (err) {
-    alert("Error: " + err.message);
-  }
-};
-
-/* 🜂 Profile + Tier Population */
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    location.href = "/signin/";
-    return;
-  }
-
-  document.getElementById("profile-email").value = user.email || "";
-  document.getElementById("tier").textContent =
-    "Your access: " + readTier().toUpperCase();
-
-  const ref = doc(db, "users", user.uid);
-  const snap = await getDoc(ref);
-  if (snap.exists()) {
-    document.getElementById("profile-name").value =
-      snap.data().displayName || user.displayName || "";
-  }
-});
-
-/* 🜂 Profile Save */
-document.getElementById("profile-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return;
-
-  const name = document.getElementById("profile-name").value.trim();
-  try {
-    await setDoc(doc(db, "users", user.uid), { displayName: name }, { merge: true });
-    statusEl.textContent = "Saved successfully.";
-    setTimeout(() => (statusEl.textContent = ""), 3000);
-  } catch (err) {
-    statusEl.textContent = "Error: " + err.message;
-  }
-});
-</script>
+<script type="module" src="/js/account.js"></script>

@@ -1,0 +1,148 @@
+/* ===========================================================
+   🜂 TGK Dashboard Widgets — Style Module (v1.0)
+   Consistent design for modular widget boxes
+   =========================================================== */
+
+.dashboard-widgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.widget-slot {
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===========================================================
+   ✦ Widget Box Base
+   =========================================================== */
+
+.widget-box {
+  background: var(--card-gradient, linear-gradient(180deg, rgba(255,255,240,0.8), rgba(255,255,255,0.9)));
+  border: 1px solid var(--gold-border, rgba(186, 153, 60, 0.4));
+  border-radius: var(--radius-2xl, 16px);
+  box-shadow: 0 0 16px rgba(186, 153, 60, 0.12);
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.widget-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(186, 153, 60, 0.25);
+}
+
+/* ===========================================================
+   ✦ Widget Headings & Text
+   =========================================================== */
+
+.widget-box h3 {
+  font-family: var(--font-display, "Cinzel", serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--text-strong, #3c2f0c);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.widget-box p {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--text-normal, #4a3b18);
+  margin-bottom: 0.4rem;
+}
+
+.widget-box .small {
+  font-size: 0.85rem;
+  color: var(--text-muted, #7a6c40);
+}
+
+/* ===========================================================
+   ✦ Icons & Glyph Accents
+   =========================================================== */
+
+.widget-box h3::before {
+  content: "🜂";
+  font-size: 1.1rem;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 2px rgba(255, 220, 100, 0.5));
+}
+
+/* Specific icons per widget type */
+#widget-quiz-progress h3::before { content: "🧠"; }
+#widget-community-feed h3::before { content: "🗣️"; }
+#widget-key-balance h3::before { content: "🔑"; }
+
+/* ===========================================================
+   ✦ Widget Lists (Community Feed)
+   =========================================================== */
+
+.community-feed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.community-feed-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.community-feed-list a {
+  color: var(--link-color, #6b4e00);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.community-feed-list a:hover {
+  color: var(--link-hover, #9b7b2c);
+}
+
+/* ===========================================================
+   ✦ Responsive Adjustments
+   =========================================================== */
+
+@media (max-width: 768px) {
+  .dashboard-widgets {
+    grid-template-columns: 1fr;
+  }
+  .widget-box {
+    padding: 1rem 1.25rem;
+  }
+  .widget-box h3 {
+    font-size: 1.05rem;
+  }
+}
+
+/* ===========================================================
+   ✦ Dark Mode Support (if using TGK dark-light system)
+   =========================================================== */
+
+body.dark .widget-box {
+  background: linear-gradient(180deg, rgba(25,25,25,0.9), rgba(35,35,35,0.95));
+  border-color: rgba(255,215,128,0.15);
+  box-shadow: 0 0 16px rgba(255,215,128,0.08);
+}
+
+body.dark .widget-box h3,
+body.dark .widget-box p {
+  color: var(--text-light, #f8f5e6);
+}
+
+body.dark .community-feed-list a {
+  color: var(--link-light, #e4c67b);
+}
+body.dark .community-feed-list a:hover {
+  color: var(--link-hover-light, #f3d88d);
+}

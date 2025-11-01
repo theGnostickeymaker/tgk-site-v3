@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "Your TGK Dashboard"
-description: "Manage your profile, tier, and sacred bookmarks."
+description: "Your personal TGK space — access bookmarks, progress, and membership status."
 glyph: "🜂"
 glyphRow: ["🜂", "☥", "🜂"]
 bodyClass: "lightgold requires-auth"
@@ -9,6 +9,7 @@ permalink: "/dashboard/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
+  - { title: "Account", url: "/account/" }
   - { title: "Dashboard" }
 ---
 
@@ -23,49 +24,99 @@ breadcrumbs:
 <main class="main-content page-dashboard">
   <section class="content-container" id="page-dashboard">
 
-    <!-- ✦ Profile + Tier -->
+    <!-- ✦ Welcome + Tier -->
+    <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
+    <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
 
-      <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
-      <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
+    <div class="btn-wrap">
+      <a href="/account/" class="btn outline">Manage Account</a>
+      <button id="logout-btn" class="btn outline">Logout</button>
+    </div>
 
-      <div class="btn-wrap">
-        <button id="manage-tier" class="btn outline">Manage Membership</button>
-        <button id="logout-btn" class="btn outline logout-btn">Logout</button>
-      </div>
+    <!-- ✦ Activity Widgets (temporarily hidden) -->
+    <section hidden>
+      <h2 class="section-heading">Your Activity</h2>
 
-    <!-- ✦ Upgrade CTA -->
-    <section id="upgrade-cta" class="section-block dashboard-upgrade" hidden>
-      <h3>Unlock Deeper Pages</h3>
-      <p>Upgrade your access to reveal all Vault texts and advanced series.</p>
-      <a href="/membership/" class="btn gold">Upgrade Membership</a>
+    <div class="dashboard-widgets">
+      <div id="widget-quiz-progress" class="widget-slot"></div>
+      <div id="widget-community-feed" class="widget-slot"></div>
+      <div id="widget-key-balance" class="widget-slot"></div>
+    </div>
     </section>
 
-    <!-- ✦ Bookmarks (rendered as Pillar Grid cards) -->
-
+    <!-- ✦ Bookmarks -->
       <h2 class="section-heading">Your Bookmarks</h2>
-
       <div id="bookmark-dashboard">
         <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
-
-        {# We’ll inject a full <section class="pillar-grid"><div class="portal-grid">…</div></section> here #}
         <div id="bookmark-grid-mount"></div>
-
         <p id="no-bookmarks" class="muted small" hidden>
           No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
           the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
         </p>
       </div>
 
-
   </section>
 
-  <!-- ✦ Divider -->
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
   </div>
 </main>
 
 <!-- =========================================================
-     🜂 Dashboard Script — Tier + Bookmarks + Stripe Portal
+     🜂 Dashboard Logic (Lite)
+     Displays user + tier summary and bookmarks only.
    ========================================================= -->
+<script type="module">
+import { app } from "/js/page.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+const logoutBtn = document.getElementById("logout-btn");
+
+/* 🜂 Tier Reader */
+function readTier() {
+  const m = document.cookie.match(/(?:^|; )tgk_ent=([^;]+)/);
+  if (!m) return "free";
+  try {
+    const [payload] = decodeURIComponent(m[1]).split(".");
+    const json = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/")));
+    return json.tier || "free";
+  } catch { return "free"; }
+}
+
+/* 🜂 Auth State */
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    location.href = "/signin/";
+    return;
+  }
+
+  document.getElementById("user-name").textContent =
+    user.displayName || "Seeker";
+  document.getElementById("user-tier").textContent =
+    readTier().toUpperCase();
+
+  // Load saved display name (Firestore)
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+  if (snap.exists() && snap.data().displayName) {
+    document.getElementById("user-name").textContent = snap.data().displayName;
+  }
+});
+
+/* 🜂 Logout */
+logoutBtn.addEventListener("click", async () => {
+  await signOut(auth);
+  location.href = "/";
+});
+</script>
+
+<!-- Bookmark engine -->
 <script type="module" src="/js/bookmarks.js"></script>
+<script type="module" src="/js/dashboard.js"></script>

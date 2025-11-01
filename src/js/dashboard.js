@@ -1,8 +1,8 @@
 /* ===========================================================
-   🔖 TGK — Bookmarks System v4.0
-   Unified metadata-aware bookmarks for Pages + Dashboard
+   🔖 TGK — Bookmarks System v4.1
+   Unified metadata-aware bookmarks + TGK Toast integration
    =========================================================== */
-console.log("[TGK] Bookmarks v4.0 loaded successfully");
+console.log("[TGK] Bookmarks v4.1 loaded successfully");
 
 import {
   getAuth,
@@ -25,9 +25,10 @@ const auth = getAuth(app);
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /* ===========================================================
-   ✦ Toast Helper
+   ✦ TGK Toast Helper (Global)
    =========================================================== */
 import { showToast } from "/js/toast.js";
+
 
 /* ===========================================================
    ✦ Resolve Tier
@@ -50,12 +51,12 @@ async function resolveUserTier(user) {
 }
 
 /* ===========================================================
-   ✦ PAGE Bookmark Toggle (metadata-aware)
+   ✦ PAGE Bookmark Toggle
    =========================================================== */
 async function toggleBookmark(btn) {
   const user = auth.currentUser;
   if (!user) {
-    alert("Please sign in to bookmark pages.");
+    showToast("Please sign in to bookmark pages.", "error");
     return;
   }
 
@@ -64,7 +65,6 @@ async function toggleBookmark(btn) {
   const ref = doc(db, "bookmarks", user.uid, "pages", pageId);
   const snap = await getDoc(ref);
 
-  // 🜂 Pull metadata from embedded <script id="tgk-page-meta">
   let meta = {};
   try {
     const metaEl = document.getElementById("tgk-page-meta");
@@ -84,7 +84,7 @@ async function toggleBookmark(btn) {
         permalink,
         type: "page",
         created: Date.now(),
-        ...meta // inject all front-matter fields here
+        ...meta
       });
       btn.classList.add("bookmarked");
       showToast("💾 Saved to bookmarks", "success");
@@ -128,7 +128,7 @@ function beautify(str = "") {
 }
 
 /* ===========================================================
-   ✦ Dashboard Renderer — PillarGrid style
+   ✦ Dashboard Renderer
    =========================================================== */
 function renderPillarGrid(bookmarks) {
   const mount = document.getElementById("bookmark-grid-mount");
@@ -170,9 +170,7 @@ function renderPillarGrid(bookmarks) {
           }
         </div>
       </a>
-      <button class="remove-bookmark-icon" title="Remove Bookmark">
-  ✕
-</button>
+      <button class="remove-bookmark-icon" title="Remove Bookmark">✕</button>
     `;
 
     grid.appendChild(article);
@@ -182,7 +180,7 @@ function renderPillarGrid(bookmarks) {
   mount.innerHTML = "";
   mount.appendChild(section);
 
-   // ✦ Bind remove (fixed selector for ✕ icon)
+  // ✦ Remove handlers
   mount.querySelectorAll(".remove-bookmark-icon").forEach((btn) => {
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
@@ -199,24 +197,15 @@ function renderPillarGrid(bookmarks) {
         setTimeout(() => card.remove(), 250);
         showToast("🩸 Removed from Dashboard", "remove");
 
-        // Show fallback if no bookmarks remain
         if (!mount.querySelectorAll(".gnostic-card").length)
           document.getElementById("no-bookmarks")?.removeAttribute("hidden");
       } catch (err) {
         console.error("[TGK] Remove error:", err);
-      }
-    });
-
-    // ✦ Keyboard accessibility (Enter/Space)
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        btn.click();
+        showToast("⚠️ Failed to remove bookmark", "error");
       }
     });
   });
-} // ✅ closes renderPillarGrid()
-
+}
 
 /* ===========================================================
    ✦ Auth State + Dashboard Loader
@@ -248,5 +237,6 @@ onAuthStateChanged(auth, async (user) => {
   } catch (err) {
     console.error("[Dashboard] Bookmark load error:", err);
     if (loading) loading.textContent = "Error loading bookmarks.";
+    showToast("⚠️ Error loading bookmarks.", "error");
   }
 });
