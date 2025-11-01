@@ -1,5 +1,6 @@
-// TGK — Netlify Function: Set Entitlements (Atomic + Claims Sync + Idempotent)
-// v4.2 — Eternal Admin Protection (2025-11-01)
+// TGK — Netlify Function: Set Entitlements (Atomic + Claims Sync + Read-First)
+// v4.3 — Tier Preservation (2025-11-01)
+// READS existing tier → only writes if changed
 
 import admin from "firebase-admin";
 import Stripe from "stripe";
@@ -45,18 +46,12 @@ export const handler = async (event) => {
 
   console.log("[TGK] set-entitlements payload:", { uid, customerId, email, token, session_id });
 
-  // ————————————————————————————————————————————————
   // EARLY EXIT: NO TOKEN + NO NEW DATA = DO NOTHING
-  // Prevents accidental overwrites (e.g. page load)
-  // ————————————————————————————————————————————————
   if (!token && !session_id && !customerId) {
-    console.log("[TGK] No token or new data — skipping update (idempotent)");
+    console.log("[TGK] No token or new data — skipping (idempotent)");
     return json(200, { success: true, tier: "free", message: "No update needed" });
   }
 
-  // ————————————————————————————————————————————————
-  // VALIDATION: At least one identifier required
-  // ————————————————————————————————————————————————
   if (!uid && !token && !session_id && !customerId && !email) {
     console.warn("[TGK] Missing all identifiers");
     return json(400, { error: "Missing identifiers" });
@@ -86,6 +81,21 @@ export const handler = async (event) => {
     }
 
     /* ───────────────────────────────────────────────
+       LOAD EXISTING ENTITLEMENT (READ FIRST!)
+       ─────────────────────────────────────────────── */
+    const entRef = firestore.collection("entitlements").doc(firebaseUid);
+    const entSnap = await entRef.get();
+
+    if (!entSnap.exists) {
+      console.warn("[TGK] No existing entitlement — creating new");
+    } else {
+      console.log("[TGK] Existing entitlement loaded:", entSnap.data().tier);
+    }
+
+    let existingTier = entSnap.exists ? entSnap.data().tier || "free" : "free";
+    let existingRole = entSnap.exists ? entSnap.data().role || "user" : "user";
+
+    /* ───────────────────────────────────────────────
        Resolve Stripe Customer ID
        ─────────────────────────────────────────────── */
     let stripeCustomerId = customerId || null;
@@ -101,11 +111,8 @@ export const handler = async (event) => {
     }
 
     if (!stripeCustomerId) {
-      const existing = await firestore.collection("entitlements").doc(firebaseUid).get();
-      if (existing.exists && existing.data().stripeCustomerId) {
-        stripeCustomerId = existing.data().stripeCustomerId;
-        console.log(`[TGK] Using existing customer: ${stripeCustomerId}`);
-      }
+      stripeCustomerId = entSnap.exists ? entSnap.data().stripeCustomerId : null;
+      if (stripeCustomerId) console.log(`[TGK] Using existing customer: ${stripeCustomerId}`);
     }
 
     if (!stripeCustomerId) {
@@ -114,9 +121,9 @@ export const handler = async (event) => {
     }
 
     /* ───────────────────────────────────────────────
-       Determine Active Tier (Stripe)
+       Determine Stripe Tier (Only if changed)
        ─────────────────────────────────────────────── */
-    let tier = "free";
+    let newStripeTier = "free";
     try {
       const subs = await stripe.subscriptions.list({
         customer: stripeCustomerId,
@@ -125,10 +132,10 @@ export const handler = async (event) => {
       });
 
       const priceId = subs.data?.[0]?.items?.data?.[0]?.price?.id;
-      if (INITIATE_IDS.includes(priceId)) tier = "initiate";
-      if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) tier = "adept";
+      if (INITIATE_IDS.includes(priceId)) newStripeTier = "initiate";
+      if (FULL_IDS.includes(priceId) || FULL_LIFEIDS.includes(priceId)) newStripeTier = "adept";
 
-      console.log(`[TGK] Stripe tier: ${tier} (price: ${priceId || "none"})`);
+      console.log(`[TGK] Stripe tier: ${newStripeTier} (vs existing: ${existingTier})`);
     } catch (err) {
       console.warn("[TGK] Subscription lookup failed:", err.message);
     }
@@ -136,22 +143,33 @@ export const handler = async (event) => {
     /* ───────────────────────────────────────────────
        SYNC CLAIMS → TIER (ADMIN OVERRIDE)
        ─────────────────────────────────────────────── */
+    let finalTier = existingTier; // Start with existing
+
     if (claims.tier && ["admin", "adept", "initiate", "free"].includes(claims.tier)) {
-      console.log(`[TGK] Claims override: ${claims.tier} > ${tier}`);
-      tier = claims.tier;
+      if (claims.tier !== existingTier) {
+        finalTier = claims.tier;
+        console.log(`[TGK] Claims override: ${claims.tier} > ${existingTier}`);
+      }
+    }
+
+    // Only update if Stripe tier changed (e.g. new subscription)
+    if (newStripeTier !== "free" && newStripeTier !== existingTier && newStripeTier !== claims.tier) {
+      finalTier = newStripeTier;
+      console.log(`[TGK] Stripe upgrade: ${newStripeTier} > ${existingTier}`);
     }
 
     /* ───────────────────────────────────────────────
        Resolve Email
        ─────────────────────────────────────────────── */
     let resolvedEmail = email || null;
+    let existingEmail = entSnap.exists ? entSnap.data().email : null;
 
     if (!resolvedEmail) {
       try {
         const customer = await stripe.customers.retrieve(stripeCustomerId);
         if (!customer.deleted && "email" in customer && typeof customer.email === "string") {
           resolvedEmail = customer.email;
-          console.log(`[TGK] Email from Stripe: ${resolvedEmail}`);
+          if (resolvedEmail !== existingEmail) console.log(`[TGK] Email updated: ${resolvedEmail}`);
         }
       } catch (err) {
         console.warn("[TGK] Could not fetch email from Stripe:", err.message);
@@ -159,9 +177,9 @@ export const handler = async (event) => {
     }
 
     /* ───────────────────────────────────────────────
-       DUPLICATE CLEANUP
+       DUPLICATE CLEANUP (Only if email changed)
        ─────────────────────────────────────────────── */
-    if (resolvedEmail) {
+    if (resolvedEmail && resolvedEmail !== existingEmail) {
       const allEnts = await firestore
         .collection("entitlements")
         .where("email", "==", resolvedEmail)
@@ -180,26 +198,32 @@ export const handler = async (event) => {
     }
 
     /* ───────────────────────────────────────────────
-       Write Final Entitlement
+       BUILD PAYLOAD (Only changed fields)
        ─────────────────────────────────────────────── */
-    const payload = {
-      uid: firebaseUid,
-      email: resolvedEmail,
-      stripeCustomerId,
-      tier,
-      role: claims.role || "user",
-      lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
-    };
+    const payload = {};
 
-    await firestore.collection("entitlements").doc(firebaseUid).set(payload, { merge: true });
+    if (finalTier !== existingTier) payload.tier = finalTier;
+    if (resolvedEmail && resolvedEmail !== existingEmail) payload.email = resolvedEmail;
+    if (claims.role && claims.role !== existingRole) payload.role = claims.role;
+    payload.lastUpdated = admin.firestore.FieldValue.serverTimestamp();
 
-    console.log(`[TGK] Entitlement set → ${resolvedEmail || firebaseUid} :: ${tier} (${payload.role})`);
+    /* ───────────────────────────────────────────────
+       WRITE ONLY IF CHANGES (READ-FIRST!)
+       ─────────────────────────────────────────────── */
+    if (Object.keys(payload).length > 1) { // >1 because lastUpdated is always there
+      await entRef.set(payload, { merge: true });
+      console.log(`[TGK] Updated entitlement: ${finalTier} (${claims.role || existingRole})`);
+    } else {
+      console.log("[TGK] No changes — entitlement unchanged");
+    }
+
     return json(200, {
       success: true,
-      tier,
-      role: payload.role,
+      tier: finalTier,
+      role: claims.role || existingRole,
       customerId: stripeCustomerId,
       uid: firebaseUid,
+      updated: Object.keys(payload).length > 1,
     });
 
   } catch (err) {
