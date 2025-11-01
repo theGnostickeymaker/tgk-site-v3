@@ -1,5 +1,5 @@
 /* ===========================================================
-   TGK — account.js (v4.3 — Safe Claims Refresh)
+   TGK — account.js (v4.4 — Final Claims Fix)
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -22,17 +22,17 @@ const db = getFirestore(app);
 console.log("[TGK Account] Ready");
 
 /* ===========================================================
-   Safe Claims Refresh (via user.reload())
+   Force Claims Refresh — REQUIRED
    =========================================================== */
 async function forceClaimsRefresh() {
   const user = auth.currentUser;
   if (!user) return;
 
   try {
-    await user.reload();
-    console.log("[TGK Account] User reloaded — claims refreshed");
+    await user.getIdToken(true); // ← FORCES NEW TOKEN WITH CLAIMS
+    console.log("[TGK Account] ID token refreshed — claims loaded");
   } catch (err) {
-    console.warn("[TGK Account] Reload failed:", err.message);
+    console.warn("[TGK Account] Token refresh failed:", err.message);
   }
 }
 
@@ -62,121 +62,13 @@ async function loadTierFromClaims() {
 }
 
 /* ===========================================================
-   Load Profile
-   =========================================================== */
-async function loadProfile(user) {
-  const nameInput = document.getElementById("profile-name");
-  const emailInput = document.getElementById("profile-email");
-
-  if (emailInput) emailInput.value = user.email || "";
-
-  try {
-    const snap = await getDoc(doc(db, "users", user.uid));
-    if (snap.exists() && snap.data().displayName) {
-      nameInput.value = snap.data().displayName;
-    }
-  } catch (err) {
-    console.warn("[TGK Account] No profile:", err.message);
-  }
-}
-
-/* ===========================================================
-   Save Profile
-   =========================================================== */
-async function saveProfile(e) {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return;
-
-  const name = document.getElementById("profile-name").value.trim();
-  const status = document.getElementById("profile-status");
-
-  try {
-    await setDoc(doc(db, "users", user.uid), {
-      displayName: name,
-      email: user.email,
-      updated: Date.now()
-    }, { merge: true });
-
-    status.textContent = "Saved!";
-    status.style.color = "var(--gold)";
-    setTimeout(() => { status.textContent = ""; }, 3000);
-  } catch (err) {
-    status.textContent = "Save failed";
-    status.style.color = "var(--red)";
-  }
-}
-
-/* ===========================================================
-   Manage Subscription
-   =========================================================== */
-function setupManageButton() {
-  const btn = document.getElementById("manage");
-  if (!btn) return;
-
-  btn.addEventListener("click", async () => {
-    const user = auth.currentUser;
-    if (!user) return alert("Not signed in");
-
-    try {
-      const token = await user.getIdToken();
-      const res = await fetch("/.netlify/functions/create-portal-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token })
-      });
-
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-      else alert("Could not open portal");
-    } catch (err) {
-      alert("Error: " + err.message);
-    }
-  });
-}
-
-/* ===========================================================
-   Password Reset
-   =========================================================== */
-function setupPasswordReset() {
-  const btn = document.getElementById("password-reset");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    const user = auth.currentUser;
-    if (!user?.email) return alert("No email");
-
-    if (confirm(`Send reset to ${user.email}?`)) {
-      sendPasswordResetEmail(auth, user.email)
-        .then(() => alert("Reset email sent!"))
-        .catch(err => alert("Error: " + err.message));
-    }
-  });
-}
-
-/* ===========================================================
-   Logout
-   =========================================================== */
-function setupLogout() {
-  const btn = document.getElementById("logout-btn");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    if (confirm("Sign out?")) {
-      signOut(auth).then(() => {
-        window.location.href = "/signin/";
-      });
-    }
-  });
-}
-
-/* ===========================================================
-   Auth Watcher — SAFE REFRESH
+   Auth Watcher — FINAL
    =========================================================== */
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    await forceClaimsRefresh();     // ← SAFE: user.reload()
-    await loadTierFromClaims();     // ← Now shows admin
+    await user.reload();           // Optional: user metadata
+    await forceClaimsRefresh();    // ← REQUIRED: claims
+    await loadTierFromClaims();    // ← Now shows initiate
     await loadProfile(user);
     setupManageButton();
     setupPasswordReset();
