@@ -1,7 +1,6 @@
 /* ===========================================================
-   TGK — account.js (v4.1 — Claims-Based Tier + Profile)
+   TGK — account.js (v4.1 — Claims Tier + Profile)
    Uses Firebase Auth Claims → tier/role (admin = admin)
-   No Firestore read needed for tier
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -12,18 +11,19 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {
+  getFirestore,  // ← ADD THIS
   getDoc,
   doc,
   setDoc,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db = getFirestore(app);  // ← NOW WORKS
 
 console.log("[TGK Account] Ready");
 
 /* ===========================================================
-   Load Tier from Firebase Claims (NOT Firestore)
+   Load Tier from Firebase Claims
    =========================================================== */
 async function loadTierFromClaims() {
   const user = auth.currentUser;
@@ -40,20 +40,15 @@ async function loadTierFromClaims() {
       tierEl.style.color = tier === "admin" ? "var(--gold)" : "inherit";
     }
 
-    // Show admin tools if admin
-    document.querySelectorAll("[data-admin]").forEach(el => {
-      el.hidden = role !== "admin";
-    });
-
     console.log(`[TGK Account] Tier from claims: ${tier} (${role})`);
   } catch (err) {
     console.error("[TGK Account] Claims load error:", err);
-    document.getElementById("tier").textContent = "Error loading tier";
+    document.getElementById("tier").textContent = "Error";
   }
 }
 
 /* ===========================================================
-   Load Profile (Firestore)
+   Load Profile
    =========================================================== */
 async function loadProfile(user) {
   const nameInput = document.getElementById("profile-name");
@@ -67,7 +62,7 @@ async function loadProfile(user) {
       nameInput.value = snap.data().displayName;
     }
   } catch (err) {
-    console.warn("[TGK Account] No profile doc:", err.message);
+    console.warn("[TGK Account] No profile:", err.message);
   }
 }
 
@@ -99,7 +94,7 @@ async function saveProfile(e) {
 }
 
 /* ===========================================================
-   Manage Subscription Button
+   Manage Subscription
    =========================================================== */
 function setupManageButton() {
   const btn = document.getElementById("manage");
@@ -118,11 +113,8 @@ function setupManageButton() {
       });
 
       const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert("Could not open billing portal");
-      }
+      if (data.url) window.location.href = data.url;
+      else alert("Could not open portal");
     } catch (err) {
       alert("Error: " + err.message);
     }
@@ -138,9 +130,9 @@ function setupPasswordReset() {
 
   btn.addEventListener("click", () => {
     const user = auth.currentUser;
-    if (!user?.email) return alert("No email found");
+    if (!user?.email) return alert("No email");
 
-    if (confirm(`Send password reset to ${user.email}?`)) {
+    if (confirm(`Send reset to ${user.email}?`)) {
       sendPasswordResetEmail(auth, user.email)
         .then(() => alert("Reset email sent!"))
         .catch(err => alert("Error: " + err.message));
@@ -156,7 +148,7 @@ function setupLogout() {
   if (!btn) return;
 
   btn.addEventListener("click", () => {
-    if (confirm("Sign out of TGK?")) {
+    if (confirm("Sign out?")) {
       signOut(auth).then(() => {
         window.location.href = "/signin/";
       });
