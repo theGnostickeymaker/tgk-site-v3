@@ -1,129 +1,78 @@
 /* ===========================================================
-   🜂 TGK Account — Profile, Entitlements & Stripe Portal
-   Version: 3.7 (Basil Standard)
+   TGK — account.js (v4.1 — Claims-Based Tier + Profile)
+   Uses Firebase Auth Claims → tier/role (admin = admin)
+   No Firestore read needed for tier
    =========================================================== */
 
-import { app } from "/js/firebase-init.js";
-
+import { app } from "./firebase-init.js";
 import {
   getAuth,
   signOut,
   sendPasswordResetEmail,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {
-  getFirestore,
-  doc,
   getDoc,
-  setDoc
+  doc,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-import { showToast } from "/js/toast.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-const statusEl = document.getElementById("profile-status");
+
+console.log("[TGK Account] Ready");
 
 /* ===========================================================
-   ✦ Tier Reader
+   Load Tier from Firebase Claims (NOT Firestore)
    =========================================================== */
-function readTier() {
-  const m = document.cookie.match(/(?:^|; )tgk_ent=([^;]+)/);
-  if (!m) return "free";
-  try {
-    const [payload] = decodeURIComponent(m[1]).split(".");
-    const json = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/")));
-    return json.tier || "free";
-  } catch {
-    return "free";
-  }
-}
-
-/* ===========================================================
-   ✦ Stripe Portal Redirect (Manage Subscription)
-   =========================================================== */
-async function openStripePortal() {
+async function loadTierFromClaims() {
   const user = auth.currentUser;
-  if (!user) {
-    showToast("Please sign in first.", "error");
-    return;
-  }
+  if (!user) return;
 
   try {
-    showToast("Opening secure billing portal…", "info");
-    const token = await user.getIdToken();
-    const res = await fetch("/.netlify/functions/create-portal-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: user.email, token })
+    const idTokenResult = await user.getIdTokenResult();
+    const tier = idTokenResult.claims.tier || "free";
+    const role = idTokenResult.claims.role || "user";
+
+    const tierEl = document.getElementById("tier");
+    if (tierEl) {
+      tierEl.textContent = `Your access: ${tier.toUpperCase()} (${role})`;
+      tierEl.style.color = tier === "admin" ? "var(--gold)" : "inherit";
+    }
+
+    // Show admin tools if admin
+    document.querySelectorAll("[data-admin]").forEach(el => {
+      el.hidden = role !== "admin";
     });
-    const data = await res.json();
-    if (data.url) window.location.href = data.url;
-    else showToast(data.error || "Portal error", "error");
+
+    console.log(`[TGK Account] Tier from claims: ${tier} (${role})`);
   } catch (err) {
-    showToast("⚠️ Stripe portal failed: " + err.message, "error");
+    console.error("[TGK Account] Claims load error:", err);
+    document.getElementById("tier").textContent = "Error loading tier";
   }
 }
 
 /* ===========================================================
-   ✦ Password Reset
-   =========================================================== */
-async function triggerPasswordReset() {
-  const user = auth.currentUser;
-  const email = user?.email || prompt("Enter your account email:");
-  if (!email) return;
-  try {
-    await sendPasswordResetEmail(auth, email);
-    showToast("🔐 Password reset link sent to " + email, "success");
-  } catch (err) {
-    showToast("⚠️ " + err.message, "error");
-  }
-}
-
-/* ===========================================================
-   ✦ Entitlement Refresh (Stripe → TGK Cookie)
-   =========================================================== */
-async function refreshEntitlements() {
-  const params = new URLSearchParams(location.search);
-  const sessionId = params.get("session_id");
-  if (!sessionId) return;
-
-  try {
-    await fetch("/.netlify/functions/set-entitlements", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionId })
-    });
-    history.replaceState({}, "", location.pathname);
-    showToast("🔄 Entitlements updated.", "info");
-  } catch (err) {
-    console.warn("[TGK Account] Entitlement refresh failed:", err);
-  }
-}
-
-/* ===========================================================
-   ✦ Profile Loader
+   Load Profile (Firestore)
    =========================================================== */
 async function loadProfile(user) {
-  const nameEl = document.getElementById("profile-name");
-  const emailEl = document.getElementById("profile-email");
-  const tierEl = document.getElementById("tier");
+  const nameInput = document.getElementById("profile-name");
+  const emailInput = document.getElementById("profile-email");
 
-  if (emailEl) emailEl.value = user.email || "";
-  if (tierEl) tierEl.textContent = "Your access: " + readTier().toUpperCase();
+  if (emailInput) emailInput.value = user.email || "";
 
   try {
-    const ref = doc(db, "users", user.uid);
-    const snap = await getDoc(ref);
-    if (snap.exists() && nameEl) {
-      nameEl.value = snap.data().displayName || user.displayName || "";
+    const snap = await getDoc(doc(db, "users", user.uid));
+    if (snap.exists() && snap.data().displayName) {
+      nameInput.value = snap.data().displayName;
     }
   } catch (err) {
-    console.warn("[TGK Account] Profile load error:", err);
+    console.warn("[TGK Account] No profile doc:", err.message);
   }
 }
 
 /* ===========================================================
-   ✦ Profile Save
+   Save Profile
    =========================================================== */
 async function saveProfile(e) {
   e.preventDefault();
@@ -131,50 +80,101 @@ async function saveProfile(e) {
   if (!user) return;
 
   const name = document.getElementById("profile-name").value.trim();
-  if (!name) {
-    showToast("Please enter a valid name.", "error");
-    return;
-  }
+  const status = document.getElementById("profile-status");
 
   try {
-    await setDoc(doc(db, "users", user.uid), { displayName: name }, { merge: true });
-    statusEl.textContent = "Saved successfully.";
-    showToast("✅ Profile saved.", "success");
-    setTimeout(() => (statusEl.textContent = ""), 3000);
+    await setDoc(doc(db, "users", user.uid), {
+      displayName: name,
+      email: user.email,
+      updated: Date.now()
+    }, { merge: true });
+
+    status.textContent = "Saved!";
+    status.style.color = "var(--gold)";
+    setTimeout(() => { status.textContent = ""; }, 3000);
   } catch (err) {
-    showToast("⚠️ Save failed: " + err.message, "error");
+    status.textContent = "Save failed";
+    status.style.color = "var(--red)";
   }
 }
 
 /* ===========================================================
-   ✦ Auth Lifecycle
+   Manage Subscription Button
    =========================================================== */
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    location.href = "/signin/";
-    return;
-  }
-  await refreshEntitlements();
-  await loadProfile(user);
-});
+function setupManageButton() {
+  const btn = document.getElementById("manage");
+  if (!btn) return;
 
-/* ===========================================================
-   ✦ Bind UI Actions
-   =========================================================== */
-window.addEventListener("DOMContentLoaded", () => {
-  console.log("[TGK Account] Ready");
+  btn.addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (!user) return alert("Not signed in");
 
-  document.getElementById("manage")?.addEventListener("click", openStripePortal);
-  document.getElementById("password-reset")?.addEventListener("click", triggerPasswordReset);
-  document.getElementById("profile-form")?.addEventListener("submit", saveProfile);
-
-  document.getElementById("logout-btn")?.addEventListener("click", async () => {
     try {
-      await signOut(auth);
-      showToast("👋 Signed out successfully.", "info");
-      setTimeout(() => (location.href = "/"), 1500);
+      const token = await user.getIdToken();
+      const res = await fetch("/.netlify/functions/create-portal-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token })
+      });
+
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Could not open billing portal");
+      }
     } catch (err) {
-      showToast("⚠️ Sign out failed: " + err.message, "error");
+      alert("Error: " + err.message);
     }
   });
+}
+
+/* ===========================================================
+   Password Reset
+   =========================================================== */
+function setupPasswordReset() {
+  const btn = document.getElementById("password-reset");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    const user = auth.currentUser;
+    if (!user?.email) return alert("No email found");
+
+    if (confirm(`Send password reset to ${user.email}?`)) {
+      sendPasswordResetEmail(auth, user.email)
+        .then(() => alert("Reset email sent!"))
+        .catch(err => alert("Error: " + err.message));
+    }
+  });
+}
+
+/* ===========================================================
+   Logout
+   =========================================================== */
+function setupLogout() {
+  const btn = document.getElementById("logout-btn");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    if (confirm("Sign out of TGK?")) {
+      signOut(auth).then(() => {
+        window.location.href = "/signin/";
+      });
+    }
+  });
+}
+
+/* ===========================================================
+   Auth Watcher
+   =========================================================== */
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    await loadTierFromClaims();
+    await loadProfile(user);
+    setupManageButton();
+    setupPasswordReset();
+    setupLogout();
+  } else {
+    window.location.href = "/signin/";
+  }
 });
