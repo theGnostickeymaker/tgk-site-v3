@@ -282,3 +282,4 @@ if (document.readyState === "loading") {
   bindTGKForms();
 }
 
+export { app } from "./firebase-init.js";

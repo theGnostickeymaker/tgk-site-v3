@@ -3,7 +3,8 @@
    Version: 3.7 (Basil Standard)
    =========================================================== */
 
-import { app } from "/js/page.js";
+import { app } from "/js/firebase-init.js";
+
 import {
   getAuth,
   signOut,
