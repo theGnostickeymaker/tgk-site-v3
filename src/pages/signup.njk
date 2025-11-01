@@ -2,8 +2,8 @@
 layout: base.njk
 title: "Join The Gnostic Key"
 description: "Create your TGK account and begin your Initiation."
-glyph: "🜂"
-glyphRow: ["🜂", "☥", "🜂"]
+glyph: "TGK"
+glyphRow: ["TGK", "Ankh", "TGK"]
 bodyClass: "lightgold"
 permalink: "/signup/index.html"
 
@@ -27,25 +27,50 @@ breadcrumbs:
     <section class="section-block auth-form">
       <h2 class="section-heading">Join The Gnostic Key</h2>
       <p class="lead">
-        Create a free account to access your dashboard, save bookmarks,  
+        Create a free account to access your dashboard, save bookmarks,<br>
         and begin your Initiation into the hidden pages.
       </p>
 
-      <form id="signup-form" class="tgk-form">
-        <label for="signup-email">Email</label>
-        <input type="email" id="signup-email" placeholder="you@example.com" required>
+      <form id="signup-form" class="tgk-form" novalidate>
+        <div class="form-group">
+          <label for="signup-email">Email Address</label>
+          <input
+            type="email"
+            id="signup-email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+            minlength="5"
+            aria-describedby="email-hint"
+          >
+          <small id="email-hint" class="form-hint">We'll never share your email.</small>
+        </div>
 
-        <label for="signup-password">Password</label>
-        <input type="password" id="signup-password" placeholder="Enter a secure password" required>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input
+            type="password"
+            id="signup-password"
+            placeholder="8+ characters, be wise"
+            autocomplete="new-password"
+            required
+            minlength="8"
+            aria-describedby="password-hint"
+          >
+          <small id="password-hint" class="form-hint">Minimum 8 characters. Choose wisely.</small>
+        </div>
 
-        <button type="submit" class="btn gold full-width">Create Account</button>
+        <button type="submit" class="btn gold full-width" id="signup-submit">
+          <span class="btn-text">Create Account</span>
+          <span class="btn-loading" hidden>Creating...</span>
+        </button>
       </form>
 
       <p class="auth-note">
-        Already have an account? <a href="/signin/">Sign in here</a>.
+        Already initiated? <a href="/signin/">Sign in here</a>.
       </p>
 
-      <div id="auth-feedback" class="auth-feedback" hidden></div>
+      <div id="auth-feedback" class="auth-feedback" role="alert" hidden></div>
     </section>
 
   </section>
@@ -55,5 +80,3 @@ breadcrumbs:
   </div>
 </main>
 
-<script type="module" defer src="/js/page.js"></script>
-<a href="/password-reset/">Forgot Password?</a>
