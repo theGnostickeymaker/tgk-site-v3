@@ -9,36 +9,32 @@ permalink: "/account/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "Account" }
   - { title: "Dashboard", url: "/dashboard/" }
+  - { title: "Account" }
 ---
 
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/system/account-settings.jpg" %}
   {% include "partials/head-meta.njk" %}
   {% set headline = "Account — The Gnostic Key" %}
-  {% set base = "/account/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
 <main class="main-content page-account">
   <section class="content-container" id="page-account">
 
-    <!-- ✦ Header -->
     <h2 class="section-heading">Your Account</h2>
     <p class="muted small">Manage your profile, password, and membership tier.</p>
 
-    <!-- ✦ Account Tier & Subscription -->
+    <!-- ✦ Membership -->
     <h3 class="section-heading">Membership Tier</h3>
     <p id="tier">Checking access…</p>
     <div class="btn-wrap">
       <button id="manage" class="btn outline">Manage Subscription</button>
     </div>
-    <p class="small">
-      Manage your billing details, upgrade, or cancel anytime via Stripe’s secure portal.
-    </p>
+    <p class="small">Manage your billing, upgrade, or cancel anytime via Stripe’s secure portal.</p>
 
-    <!-- ✦ Profile Info -->
+    <!-- ✦ Profile -->
     <h3 class="section-heading">Profile Information</h3>
     <form id="profile-form" class="form-block">
       <label for="profile-name">Display Name</label>
@@ -57,9 +53,7 @@ breadcrumbs:
     <h3 class="section-heading">Password Reset</h3>
     <p>Need to change your password? You can send yourself a reset link here:</p>
     <button id="password-reset" class="btn outline">Send Reset Email</button>
-    <p class="small">
-      Or use the <a href="/password-reset/">dedicated reset page</a>.
-    </p>
+    <p class="small">Or use the <a href="/password-reset/">dedicated reset page</a>.</p>
 
     <!-- ✦ Logout -->
     <h3 class="section-heading">Sign Out</h3>
@@ -71,8 +65,157 @@ breadcrumbs:
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
   </div>
-
-  </section>
 </main>
 
-<script type="module" src="/js/account.js"></script>
+<!-- =========================================================
+     🜂 Account Page Logic — Firebase / Stripe / Firestore Sync
+   ========================================================= -->
+<script type="module">
+import { app } from "/js/page.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+/* 🜂 Toast */
+function showToast(msg, type = "info") {
+  let c = document.getElementById("toast-container");
+  if (!c) {
+    c = document.createElement("div");
+    c.id = "toast-container";
+    document.body.appendChild(c);
+  }
+  const t = document.createElement("div");
+  t.className = \`tgk-toast \${type}\`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+/* 🜂 Tier Reader */
+function readTier() {
+  const m = document.cookie.match(/(?:^|; )tgk_ent=([^;]+)/);
+  if (!m) return "free";
+  try {
+    const [payload] = decodeURIComponent(m[1]).split(".");
+    const json = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/")));
+    return json.tier || "free";
+  } catch {
+    return "free";
+  }
+}
+
+/* 🜂 Stripe Portal */
+async function openStripePortal() {
+  const user = auth.currentUser;
+  const email = user?.email || prompt("Enter your Stripe email:");
+  if (!email) return;
+  try {
+    const res = await fetch("/.netlify/functions/create-portal-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    if (data.url) location.href = data.url;
+    else showToast(data.error || "Portal error", "error");
+  } catch (err) {
+    showToast("⚠️ Stripe error: " + err.message, "error");
+  }
+}
+
+/* 🜂 Password Reset */
+async function triggerPasswordReset() {
+  const user = auth.currentUser;
+  const email = user?.email || prompt("Enter your account email:");
+  if (!email) return;
+  try {
+    await sendPasswordResetEmail(auth, email);
+    showToast("Password reset link sent to " + email, "success");
+  } catch (err) {
+    showToast("⚠️ " + err.message, "error");
+  }
+}
+
+/* 🜂 Profile Loader */
+async function loadProfile(user) {
+  const nameEl = document.getElementById("profile-name");
+  const emailEl = document.getElementById("profile-email");
+  const tierEl = document.getElementById("tier");
+
+  if (emailEl) emailEl.value = user.email || "";
+  if (tierEl) tierEl.textContent = "Your access: " + readTier().toUpperCase();
+
+  try {
+    const ref = doc(db, "users", user.uid);
+    const snap = await getDoc(ref);
+    if (snap.exists() && nameEl) {
+      nameEl.value = snap.data().displayName || user.displayName || "";
+    }
+  } catch (err) {
+    console.warn("[TGK] Profile load error:", err);
+  }
+}
+
+/* 🜂 Profile Save */
+async function saveProfile(e) {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) return;
+  const name = document.getElementById("profile-name").value.trim();
+  try {
+    await setDoc(doc(db, "users", user.uid), { displayName: name }, { merge: true });
+    showToast("✅ Profile saved", "success");
+  } catch (err) {
+    showToast("⚠️ Save failed: " + err.message, "error");
+  }
+}
+
+/* 🜂 Auth Lifecycle */
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    location.href = "/signin/";
+    return;
+  }
+
+  await loadProfile(user);
+
+  // Refresh entitlement if session_id is present
+  const params = new URLSearchParams(location.search);
+  if (params.get("session_id")) {
+    try {
+      await fetch("/.netlify/functions/set-entitlements", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session_id: params.get("session_id"), token: await user.getIdToken() }),
+      });
+      showToast("🔄 Entitlements refreshed", "info");
+      history.replaceState({}, "", location.pathname);
+    } catch (err) {
+      console.warn("[TGK] Entitlement refresh failed:", err);
+    }
+  }
+});
+
+/* 🜂 Bind UI */
+document.getElementById("manage")?.addEventListener("click", openStripePortal);
+document.getElementById("password-reset")?.addEventListener("click", triggerPasswordReset);
+document.getElementById("profile-form")?.addEventListener("submit", saveProfile);
+document.getElementById("logout-btn")?.addEventListener("click", async () => {
+  await signOut(auth);
+  location.href = "/";
+});
+
+console.log("[TGK Account] Ready");
+</script>

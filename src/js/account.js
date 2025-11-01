@@ -1,6 +1,6 @@
 /* ===========================================================
    🜂 TGK Account — Profile, Entitlements & Stripe Portal
-   v3.5 Stable
+   v3.7 Basil Standard (2025-11-01)
    =========================================================== */
 
 import { app } from "/js/page.js";
@@ -8,7 +8,8 @@ import {
   getAuth,
   signOut,
   sendPasswordResetEmail,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import {
   getFirestore,
@@ -17,14 +18,27 @@ import {
   setDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
+/* ─────────────────────────────────────────────── */
 const auth = getAuth(app);
 const db = getFirestore(app);
 const statusEl = document.getElementById("profile-status");
 
 /* ===========================================================
-   ✦ Toast Helper (non-intrusive feedback)
+   ✦ Toast Helper
    =========================================================== */
-import { showToast } from "/js/toast.js";
+function showToast(msg, type = "info") {
+  let c = document.getElementById("toast-container");
+  if (!c) {
+    c = document.createElement("div");
+    c.id = "toast-container";
+    document.body.appendChild(c);
+  }
+  const t = document.createElement("div");
+  t.className = `tgk-toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
 
 /* ===========================================================
    ✦ Tier Reader
@@ -46,16 +60,26 @@ function readTier() {
    =========================================================== */
 async function openStripePortal() {
   const user = auth.currentUser;
-  const email = user?.email || prompt("Enter your Stripe email:");
-  if (!email) return;
+  if (!user) {
+    showToast("Please sign in again.", "error");
+    return;
+  }
+  const token = await user.getIdToken();
+  const email = user.email;
+  const site = window.location.origin;
+
   try {
     const r = await fetch("/.netlify/functions/create-portal-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({
+        email,
+        token,
+        returnUrl: `${site}/account/`
+      })
     });
     const d = await r.json();
-    if (d.url) location = d.url;
+    if (d.url) window.location.href = d.url;
     else showToast(d.error || "Portal error", "error");
   } catch (err) {
     showToast("⚠️ Stripe error: " + err.message, "error");
@@ -84,12 +108,14 @@ async function refreshEntitlements() {
   const params = new URLSearchParams(location.search);
   const sessionId = params.get("session_id");
   if (!sessionId) return;
+  const user = auth.currentUser;
+  const token = user ? await user.getIdToken() : null;
 
   try {
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: sessionId })
+      body: JSON.stringify({ session_id: sessionId, token })
     });
     history.replaceState({}, "", location.pathname);
     showToast("🔄 Entitlements updated.", "info");
@@ -113,7 +139,9 @@ async function loadProfile(user) {
     const ref = doc(db, "users", user.uid);
     const snap = await getDoc(ref);
     if (snap.exists() && nameEl) {
-      nameEl.value = snap.data().displayName || user.displayName || "";
+      const display = snap.data().displayName || user.displayName || "";
+      nameEl.value = display;
+      localStorage.setItem("tgk-display-name", display);
     }
   } catch (err) {
     console.warn("[TGK Account] Profile load error:", err);
@@ -121,13 +149,12 @@ async function loadProfile(user) {
 }
 
 /* ===========================================================
-   ✦ Profile Save
+   ✦ Profile Save (Full Sync)
    =========================================================== */
 async function saveProfile(e) {
   e.preventDefault();
   const user = auth.currentUser;
   if (!user) return;
-
   const name = document.getElementById("profile-name").value.trim();
   if (!name) {
     showToast("Please enter a valid name.", "error");
@@ -135,11 +162,18 @@ async function saveProfile(e) {
   }
 
   try {
+    // 1️⃣ Firestore
     await setDoc(doc(db, "users", user.uid), { displayName: name }, { merge: true });
-    statusEl.textContent = "Saved successfully.";
-    showToast("✅ Profile saved.", "success");
-    setTimeout(() => (statusEl.textContent = ""), 3000);
+    // 2️⃣ Firebase Auth
+    await updateProfile(user, { displayName: name });
+    // 3️⃣ Cache
+    localStorage.setItem("tgk-display-name", name);
+    // 4️⃣ Live reflect on dashboard
+    const dashName = document.getElementById("user-name");
+    if (dashName) dashName.textContent = name;
+    showToast("✅ Profile updated successfully.", "success");
   } catch (err) {
+    console.error("[TGK] Save profile error:", err);
     showToast("⚠️ Save failed: " + err.message, "error");
   }
 }
@@ -161,23 +195,16 @@ onAuthStateChanged(auth, async (user) => {
    =========================================================== */
 window.addEventListener("DOMContentLoaded", () => {
   console.log("[TGK Account] Ready");
-
-  const manageBtn = document.getElementById("manage");
-  const resetBtn = document.getElementById("password-reset");
-  const form = document.getElementById("profile-form");
-
-  if (manageBtn) manageBtn.addEventListener("click", openStripePortal);
-  if (resetBtn) resetBtn.addEventListener("click", triggerPasswordReset);
-  if (form) form.addEventListener("submit", saveProfile);
-});
-
-// ✦ Logout Handler
-document.getElementById("logout-btn")?.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-    showToast("👋 Signed out successfully.", "info");
-    setTimeout(() => (location.href = "/"), 1500);
-  } catch (err) {
-    showToast("⚠️ Sign out failed: " + err.message, "error");
-  }
+  document.getElementById("manage")?.addEventListener("click", openStripePortal);
+  document.getElementById("password-reset")?.addEventListener("click", triggerPasswordReset);
+  document.getElementById("profile-form")?.addEventListener("submit", saveProfile);
+  document.getElementById("logout-btn")?.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+      showToast("👋 Signed out successfully.", "info");
+      setTimeout(() => (location.href = "/"), 1000);
+    } catch (err) {
+      showToast("⚠️ Sign out failed: " + err.message, "error");
+    }
+  });
 });
