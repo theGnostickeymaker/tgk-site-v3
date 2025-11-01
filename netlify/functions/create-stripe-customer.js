@@ -1,11 +1,11 @@
 // 🜂 TGK — Netlify Function: Create Stripe Customer
-// Creates a Stripe customer for every Firebase user signup
-// and links them to Firestore entitlements.
+// Links Firebase users to Stripe + Firestore entitlements
+// Version: 3.6 (Basil-verified, 2025-08-27)
 
 import Stripe from "stripe";
 import admin from "firebase-admin";
 
-// 🜂 Firebase Admin Init (3-var secure method)
+// 🜂 Firebase Admin Init (secure 3-var method)
 if (!admin.apps.length) {
   const projectId = process.env.FIREBASE_PROJECT_ID;
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
@@ -20,7 +20,10 @@ if (!admin.apps.length) {
   });
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripeKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeKey) throw new Error("STRIPE_SECRET_KEY missing");
+
+const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 const firestore = admin.firestore();
 
 export const handler = async (event) => {
@@ -32,33 +35,33 @@ export const handler = async (event) => {
     if (!email || !token)
       return json(400, { error: "Missing email or token" });
 
-    // 🔹 Verify Firebase token → get UID
+    // 🔐 Verify Firebase token
     const decoded = await admin.auth().verifyIdToken(token);
     const uid = decoded.uid;
 
-    // 🔹 Check if entitlement already exists
+    // 🔎 Check Firestore entitlement
     const entRef = firestore.collection("entitlements").doc(uid);
     const entSnap = await entRef.get();
+
     if (entSnap.exists) {
-      console.log(`[TGK] 🔄 Customer already exists for ${email}`);
-      return json(200, { message: "Customer already exists" });
-    }
-
-    // 🔹 Create or fetch Stripe customer
-    let customer;
-    const existing = await stripe.customers.list({ email, limit: 1 });
-    if (existing.data.length > 0) {
-      customer = existing.data[0];
-      console.log(`[TGK] ♻️ Existing Stripe customer found: ${customer.id}`);
-    } else {
-      customer = await stripe.customers.create({
-        email,
-        metadata: { firebaseUID: uid, tier: "free" },
+      const existing = entSnap.data();
+      return json(200, {
+        message: "Customer already exists",
+        customerId: existing.stripeCustomerId || null,
       });
-      console.log(`[TGK] 🆕 Stripe customer created: ${customer.id}`);
     }
 
-    // 🔹 Write entitlement record
+    // 🪪 Create or fetch Stripe customer
+    const lookup = await stripe.customers.list({ email, limit: 1 });
+    const customer =
+      lookup.data.length > 0
+        ? lookup.data[0]
+        : await stripe.customers.create({
+            email,
+            metadata: { firebaseUID: uid, tier: "free" },
+          });
+
+    // 🜂 Write entitlement
     const entitlement = {
       uid,
       email,
@@ -67,18 +70,17 @@ export const handler = async (event) => {
       created: admin.firestore.FieldValue.serverTimestamp(),
       lastChecked: admin.firestore.FieldValue.serverTimestamp(),
     };
-
     await entRef.set(entitlement, { merge: true });
 
-    console.log(`[TGK] ✅ Firestore entitlement created for ${email}`);
-    return json(200, { message: "Customer created", customerId: customer.id });
+    console.log(`[TGK] ✅ Customer linked: ${email} → ${customer.id}`);
+    return json(200, { success: true, customerId: customer.id });
   } catch (err) {
     console.error("[TGK] ❌ create-stripe-customer error:", err);
-    return json(500, { error: err.message });
+    return json(500, { error: err.message || "Server error" });
   }
 };
 
-// 🜂 JSON Helper
+// 🜂 Helper
 function json(statusCode, body) {
   return {
     statusCode,

@@ -1,82 +1,163 @@
-// netlify/functions/stripe-webhook.js
-import Stripe from "stripe";
-import crypto from "crypto";
+// 🜂 TGK — Netlify Function: Stripe Webhook
+// Version: 3.6 (Basil Standard, 2025-11-01)
+// Handles real-time subscription events → updates TGK Firestore entitlements
 
+import Stripe from "stripe";
+import admin from "firebase-admin";
+
+// 🜂 Secure Firebase Admin Init
+if (!admin.apps.length) {
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  admin.initializeApp({
+    credential: admin.credential.cert({ projectId, clientEmail, privateKey }),
+  });
+}
+
+const firestore = admin.firestore();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-/**
- * Handles real-time subscription events from Stripe.
- * Keeps TGK entitlements in sync when payments succeed, renew, or cancel.
- */
+// 🜂 Environment validation
+const INITIATE_IDS = (process.env.PRICE_INITIATE_IDS || "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const ADEPT_IDS = (process.env.PRICE_FULL_IDS || "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const ADEPT_LIFEIDS = (process.env.PRICE_FULL_LIFETIME_IDS || "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+// ======================================================
+// 🜂 Main Handler
+// ======================================================
 export async function handler(event) {
   const sig = event.headers["stripe-signature"];
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-  if (!webhookSecret) return json(500, { error: "Missing STRIPE_WEBHOOK_SECRET" });
+  if (!webhookSecret)
+    return json(500, { error: "Missing STRIPE_WEBHOOK_SECRET" });
 
   let stripeEvent;
   try {
-    stripeEvent = stripe.webhooks.constructEvent(event.body, sig, webhookSecret);
+    stripeEvent = stripe.webhooks.constructEvent(
+      event.body,
+      sig,
+      webhookSecret
+    );
   } catch (err) {
-    console.error("[TGK] Stripe webhook signature failed:", err.message);
+    console.error("[TGK] ❌ Stripe webhook signature failed:", err.message);
     return json(400, { error: `Webhook Error: ${err.message}` });
   }
 
   try {
+    const customerId = stripeEvent.data.object.customer;
+
     switch (stripeEvent.type) {
       // 🔔 Subscription created or renewed
       case "customer.subscription.created":
       case "customer.subscription.updated":
       case "invoice.payment_succeeded":
-        await updateEntitlements(stripeEvent.data.object.customer);
+        await updateEntitlements(customerId);
         break;
 
-      // 🛑 Subscription cancelled or expired
+      // 🛑 Subscription cancelled or payment failed
       case "customer.subscription.deleted":
       case "invoice.payment_failed":
-        await clearEntitlements(stripeEvent.data.object.customer);
+        await clearEntitlements(customerId);
         break;
 
       default:
-        console.log(`[TGK] Ignored Stripe event: ${stripeEvent.type}`);
+        console.log(`[TGK] ℹ Ignored Stripe event: ${stripeEvent.type}`);
     }
 
     return json(200, { received: true });
   } catch (err) {
-    console.error("[TGK] Webhook processing error:", err);
+    console.error("[TGK] ❌ Webhook processing error:", err);
     return json(500, { error: "Webhook handler error" });
   }
 }
 
-/* ======================================================
-   Internal Helpers
-====================================================== */
+// ======================================================
+// 🧩 Internal Helpers
+// ======================================================
 
+// 🔹 Sync entitlement in Firestore
 async function updateEntitlements(customerId) {
   if (!customerId) return;
-  const subs = await stripe.subscriptions.list({ customer: customerId, status: "active", limit: 1 });
+
+  const subs = await stripe.subscriptions.list({
+    customer: customerId,
+    status: "active",
+    limit: 1,
+  });
+
   const sub = subs.data[0];
   const priceId = sub?.items?.data?.[0]?.price?.id;
-
-  const INITIATE_IDS = (process.env.PRICE_INITIATE_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
-  const ADEPT_IDS     = (process.env.PRICE_FULL_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
-  const ADEPT_LIFEIDS = (process.env.PRICE_FULL_LIFETIME_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
-
   let tier = "free";
+
   if (INITIATE_IDS.includes(priceId)) tier = "initiate";
-  if (ADEPT_IDS.includes(priceId) || ADEPT_LIFEIDS.includes(priceId)) tier = "adept";
+  if (ADEPT_IDS.includes(priceId) || ADEPT_LIFEIDS.includes(priceId))
+    tier = "adept";
 
-  console.log(`[TGK] Updated entitlements: ${customerId} → ${tier}`);
+  // Attempt to resolve Firebase UID from Firestore
+  const q = await firestore
+    .collection("entitlements")
+    .where("stripeCustomerId", "==", customerId)
+    .limit(1)
+    .get();
 
-  // (Optional) store this in Firestore or Netlify KV if you want a persistent server-side record.
-  // For cookie-based access, nothing else required; the user refresh will renew tgk_ent.
+  if (q.empty) {
+    console.warn(`[TGK] ⚠ No entitlement record found for ${customerId}`);
+    return;
+  }
+
+  const doc = q.docs[0];
+  await doc.ref.set(
+    {
+      tier,
+      lastChecked: admin.firestore.FieldValue.serverTimestamp(),
+    },
+    { merge: true }
+  );
+
+  console.log(`[TGK] ✅ Entitlements updated: ${customerId} → ${tier}`);
 }
 
+// 🔹 Downgrade to “free” if cancelled
 async function clearEntitlements(customerId) {
-  console.log(`[TGK] Clearing entitlements for ${customerId}`);
-  // If you use Firestore/Netlify KV, mark this user as "free".
+  const q = await firestore
+    .collection("entitlements")
+    .where("stripeCustomerId", "==", customerId)
+    .limit(1)
+    .get();
+
+  if (q.empty) {
+    console.warn(`[TGK] ⚠ No entitlement to clear for ${customerId}`);
+    return;
+  }
+
+  const doc = q.docs[0];
+  await doc.ref.set(
+    {
+      tier: "free",
+      lastChecked: admin.firestore.FieldValue.serverTimestamp(),
+    },
+    { merge: true }
+  );
+
+  console.log(`[TGK] 🩸 Entitlement cleared for ${customerId}`);
 }
 
+// 🔹 Utility: JSON Response
 function json(statusCode, body) {
-  return { statusCode, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
+  return {
+    statusCode,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  };
 }
