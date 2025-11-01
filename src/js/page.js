@@ -1,6 +1,6 @@
 /* ===========================================================
    🜂 TGK — PAGE.js (Auth + Stripe + Entitlement + Dashboard)
-   v2.6 — Stable Auth Lifecycle, Mobile Fixes, UID Alignment
+   v2.7 — Signup Debounce, Stripe Dedupe, Stable Auth Lifecycle
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -29,40 +29,61 @@ await setPersistence(auth, browserLocalPersistence);
 /* ===========================================================
    ✦ SIGNUP — Firebase → Stripe → Firestore Entitlement
    =========================================================== */
+let signupLock = false;
+
 async function pageSignup(email, password) {
+  if (signupLock) return;
+  signupLock = true;
+
   try {
+    const submitBtn = document.querySelector("#signup-form button[type='submit']");
+    if (submitBtn) submitBtn.disabled = true;
+
+    console.log(`[TGK] 🜂 Signup started for ${email}`);
+
+    // 🔹 Create Firebase account
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCred.user;
     const token = await user.getIdToken();
 
-    // 🔹 Create Stripe customer
+    // 🔹 Create or fetch Stripe customer
     const res = await fetch("/.netlify/functions/create-stripe-customer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, token })
     });
+
     if (!res.ok) throw new Error("Stripe customer creation failed");
     const data = await res.json();
+    const customerId = data.customer?.id || data.customerId;
+    console.log(`[TGK] ✅ Stripe customer linked: ${customerId}`);
 
-    // 🔹 Write Firestore entitlement keyed by UID
-    await fetch("/.netlify/functions/set-entitlements", {
+    // 🔹 Write entitlement record (UID + Stripe link)
+    const entRes = await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         uid: user.uid,
-        customerId: data.customerId,
+        customerId,
         email
       })
     });
 
+    if (!entRes.ok) throw new Error("Entitlement write failed");
+
     // Optional: email verification
     // await sendEmailVerification(user);
 
+    console.log("[TGK] ✦ Signup complete — redirecting to dashboard");
     alert("Welcome to The Gnostic Key ✦ Account created.");
     window.location.href = "/dashboard/";
   } catch (err) {
-    console.error("[TGK] Signup error:", err);
+    console.error("[TGK] ❌ Signup error:", err);
     alert("Signup failed: " + err.message);
+  } finally {
+    signupLock = false;
+    const submitBtn = document.querySelector("#signup-form button[type='submit']");
+    if (submitBtn) submitBtn.disabled = false;
   }
 }
 
@@ -74,8 +95,7 @@ async function pageSignin(email, password) {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     const user = cred.user;
 
-    // Handle Safari race conditions
-    await new Promise((res) => setTimeout(res, 300));
+    await new Promise((res) => setTimeout(res, 300)); // Safari race condition guard
     const token = await user.getIdToken();
 
     await fetch("/.netlify/functions/refresh-entitlements", {
@@ -150,7 +170,6 @@ async function loadDashboardData(user) {
   try {
     const docRef = doc(db, "entitlements", user.uid);
     const snap = await getDoc(docRef);
-
     let tier = "free";
     if (snap.exists()) tier = snap.data()?.tier || "free";
 
@@ -282,4 +301,4 @@ if (document.readyState === "loading") {
   bindTGKForms();
 }
 
-export { app } from "./firebase-init.js";
+export { app };
