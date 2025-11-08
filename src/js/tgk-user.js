@@ -207,8 +207,21 @@ export function updateTierUI(tier) {
   console.log(`[TGK] Tier UI updated → ${tierLabel}`);
 }
 
-// Apply cached tier immediately (on load)
+// ===========================================================
+//  Apply cached tier once Firebase has checked auth state
+// ===========================================================
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-  const cachedTier = localStorage.getItem("tgk-tier");
-  if (cachedTier) updateTierUI(cachedTier);
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Logged in — let loadDashboardHeader handle tier
+      const cachedTier = localStorage.getItem("tgk-tier");
+      if (cachedTier) updateTierUI(cachedTier);
+    } else {
+      // Not logged in — show visitor badge
+      updateTierUI("visitor");
+    }
+  });
 });
