@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "Your TGK Dashboard"
-description: "Your personal TGK space — access bookmarks, progress, and membership status."
+description: "Your personal TGK space — access bookmarks, progress, membership, and billing."
 glyph: "🜂"
 glyphRow: ["🜂", "☥", "🜂"]
 bodyClass: "lightgold requires-auth"
@@ -10,9 +10,7 @@ permalink: "/dashboard/index.html"
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "Dashboard" }
-  - { title: "Account", url: "/account/" }
 ---
-
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/system/dashboard.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -30,32 +28,56 @@ breadcrumbs:
     <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
     <span id="tier-badge" class="tier-badge tier-free">Free</span>
 
-    <div class="btn-wrap">
-      <a href="/account/" class="btn outline">Manage Account</a>
-      <button id="logout-btn" class="btn outline">Logout</button>
+    <!-- ✦ Membership Management -->
+    <div class="dashboard-membership">
+      <h3 class="section-heading">Membership & Billing</h3>
+      <div class="btn-wrap">
+        <button id="upgrade-btn" class="btn gold">Upgrade / Join via Stripe</button>
+        <button id="billing-btn" class="btn outline">Manage Billing Portal</button>
+      </div>
+      <p class="small">You can upgrade, downgrade, or cancel your plan at any time.</p>
     </div>
 
-    <!-- ✦ Activity Widgets (temporarily hidden) -->
+    <!-- ✦ Profile Information -->
+    <h3 class="section-heading">Profile Information</h3>
+    <form id="profile-form" class="form-block">
+      <label for="profile-name">Display Name</label>
+      <input type="text" id="profile-name" placeholder="Your name" />
+
+      <label for="profile-email">Email</label>
+      <input type="email" id="profile-email" placeholder="Your email" disabled />
+
+      <div class="btn-wrap">
+        <button type="submit" class="btn outline">Save Changes</button>
+        <span id="profile-status" class="small muted"></span>
+      </div>
+    </form>
+
+    <!-- ✦ Activity Widgets (optional hidden) -->
     <section hidden>
-      <h2 class="section-heading">Your Activity</h2>
-
-    <div class="dashboard-widgets">
-      <div id="widget-quiz-progress" class="widget-slot"></div>
-      <div id="widget-community-feed" class="widget-slot"></div>
-      <div id="widget-key-balance" class="widget-slot"></div>
-    </div>
+      <h3 class="section-heading">Your Activity</h3>
+      <div class="dashboard-widgets">
+        <div id="widget-quiz-progress" class="widget-slot"></div>
+        <div id="widget-community-feed" class="widget-slot"></div>
+        <div id="widget-key-balance" class="widget-slot"></div>
+      </div>
     </section>
 
     <!-- ✦ Bookmarks -->
-      <h2 class="section-heading">Your Bookmarks</h2>
-      <div id="bookmark-dashboard">
-        <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
-        <div id="bookmark-grid-mount"></div>
-        <p id="no-bookmarks" class="muted small" hidden>
-          No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
-          the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
-        </p>
-      </div>
+    <h3 class="section-heading">Your Bookmarks</h3>
+    <div id="bookmark-dashboard">
+      <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
+      <div id="bookmark-grid-mount"></div>
+      <p id="no-bookmarks" class="muted small" hidden>
+        No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
+        the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
+      </p>
+    </div>
+
+    <!-- ✦ Logout -->
+    <h3 class="section-heading">Sign Out</h3>
+    <p class="small">You can securely sign out of your TGK account below.</p>
+    <button id="logout-btn" class="btn outline">Sign Out</button>
 
   </section>
 
@@ -64,31 +86,60 @@ breadcrumbs:
   </div>
 </main>
 
-<!-- 🜂 Dashboard Page Logic -->
-<script type="module" src="/js/dashboard.js?v={{ bust }}"></script>
+<!-- 🜂 Dashboard Logic -->
 <script type="module">
-  import { loadDashboardHeader, pageSignout, updateTierUI } from "/js/tgk-user.js";
+  import {
+    loadDashboardHeader,
+    refreshEntitlementsLive,
+    pageSignout,
+    saveProfile
+  } from "/js/tgk-user.js";
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
   const auth = getAuth();
 
   document.addEventListener("DOMContentLoaded", () => {
-    const cached = localStorage.getItem("tgk-tier");
-    if (cached) updateTierUI(cached);
+    const cachedTier = localStorage.getItem("tgk-tier");
+    if (cachedTier) updateTierUI(cachedTier);
+  });
 
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        await loadDashboardHeader(user);
-        await refreshEntitlementsLive(user);
-        const btn = document.getElementById("logout-btn");
-        if (btn) btn.addEventListener("click", () => window.location.href = "/logout/");
-      } else {
-        updateTierUI("visitor");
-        window.__TGK_GATE__?.saveReturnUrl?.();
-        if (!location.pathname.includes("/signin")) window.location.replace("/signin/");
-      }
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.__TGK_GATE__?.saveReturnUrl?.();
+      return window.location.replace("/signin/");
+    }
+
+    // 🔹 Always refresh live entitlements
+    await refreshEntitlementsLive(user);
+    await loadDashboardHeader(user);
+
+    // 🔹 Bind actions
+    document.getElementById("profile-form").addEventListener("submit", saveProfile);
+    document.getElementById("logout-btn").addEventListener("click", pageSignout);
+    document.getElementById("upgrade-btn").addEventListener("click", async () => {
+      const token = await user.getIdToken();
+      const res = await fetch("/.netlify/functions/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, uid: user.uid, email: user.email })
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+      else alert("Could not start checkout. Please try again.");
+    });
+    document.getElementById("billing-btn").addEventListener("click", async () => {
+      const token = await user.getIdToken();
+      const res = await fetch("/.netlify/functions/create-portal-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, email: user.email })
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+      else alert("Could not open billing portal.");
     });
   });
 </script>
 
+<script type="module" src="/js/bookmarks.js?v={{ bust }}"></script>
 </body>
