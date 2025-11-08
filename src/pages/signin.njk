@@ -17,54 +17,44 @@ breadcrumbs:
   {% set socialImage = "/tgk-assets/images/share/system/signin.jpg" %}
   {% include "partials/head-meta.njk" %}
   {% set headline = "Sign In — The Gnostic Key" %}
-  {% set base = "/signin/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
-<body>
-<main class="main-content">
+<main class="main-content page-auth">
   <section class="content-container">
-  
-    <h4 class="index-heading">Sign In to The Gnostic Key</h4>
-    <form id="signin-form" class="form-block">
-      <label for="signin-email">Email</label>
-      <input type="email" id="signin-email" required />
 
-      <label for="signin-password">Password</label>
-      <input type="password" id="signin-password" required />
+    <div class="auth-glyph-wrap">
+      <div class="auth-glyph glow">☥</div>
+    </div>
 
-      <button type="submit" class="btn outline">Sign In</button>
-    </form>
+    <section class="section-block auth-form">
+      <h2 class="section-heading">Sign In</h2>
+      <p class="lead muted">Enter your sacred credentials to access the hidden archives.</p>
 
-    <p><a href="#" id="reset-link">Forgot Password?</a></p>
-    <p>New here? <a href="/signup/">Create an account</a></p>
+      <form id="signin-form" class="tgk-form" novalidate>
+        <div class="form-group">
+          <label for="signin-email">Email Address</label>
+          <input type="email" id="signin-email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="signin-password">Password</label>
+          <input type="password" id="signin-password" placeholder="Your password" required>
+        </div>
+
+        <button type="submit" class="btn gold full-width">Sign In</button>
+      </form>
+
+      <p class="auth-note">
+        <a href="/password-reset/">Forgot your password?</a><br>
+        New here? <a href="/signup/">Create an account</a>.
+      </p>
+    </section>
   </section>
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+    <span class="divider-symbol pillar-glyph spin glow">{{ glyph }}</span>
   </div>
-
 </main>
-<!-- Inline gate (consumeReturnUrl) -->
-<script type="module">
-  const RETURN_KEY = "tgk-return-url";
-  window.__TGK_GATE__ = window.__TGK_GATE__ || {
-    saveReturnUrl(url = window.location.href) {
-      if (!url.startsWith(window.location.origin)) return;
-      if (url === window.location.origin + "/" || url.includes("/index.html")) return;
-      sessionStorage.setItem(RETURN_KEY, url);
-      localStorage.setItem(RETURN_KEY, url);
-    },
-    consumeReturnUrl() {
-      const url = sessionStorage.getItem(RETURN_KEY) || localStorage.getItem(RETURN_KEY);
-      if (!url || !url.startsWith(window.location.origin)) return false;
-      sessionStorage.removeItem(RETURN_KEY);
-      localStorage.removeItem(RETURN_KEY);
-      window.location.replace(url);
-      return true;
-    }
-  };
-</script>
 
-<!-- TGK AUTH — FORCE RELOAD -->
 <script type="module" src="/js/tgk-auth.js?v={{ bust }}" defer></script>

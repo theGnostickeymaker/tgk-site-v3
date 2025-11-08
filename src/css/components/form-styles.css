@@ -1,0 +1,71 @@
+/* ===========================================================
+   TGK Auth Gateway Styling — Ceremonial Unified Theme
+   =========================================================== */
+
+.auth-glyph-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.auth-glyph {
+  font-size: 3.2rem;
+  opacity: 0.85;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(191,168,101,0.35);
+  animation: pulseGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { text-shadow: 0 0 6px rgba(191,168,101,0.25); opacity: 0.75; }
+  50% { text-shadow: 0 0 20px rgba(191,168,101,0.6); opacity: 1; }
+}
+
+/* Shared form block (already similar to your TGK layout) */
+.tgk-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 420px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-base);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 0 18px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-accent);
+  margin-bottom: 0.25rem;
+}
+
+.form-group input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--section-border);
+  border-radius: var(--border-radius-sm);
+  background: rgba(255,255,255,0.08);
+  color: var(--text-primary);
+}
+
+.form-group input:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(191,168,101,0.35);
+}
+
+.auth-note {
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: 0.9rem;
+}
+
+.auth-feedback {
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: 0.9rem;
+  color: var(--text-accent);
+}

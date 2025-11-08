@@ -2,8 +2,8 @@
 layout: base.njk
 title: "Join The Gnostic Key"
 description: "Create your TGK account and begin your Initiation."
-glyph: "𓂀"
-glyphRow: ["𓂀", "✦", "𓂀"]
+glyph: "☥"
+glyphRow: ["☥", "✶", "☥"]
 bodyClass: "lightgold"
 permalink: "/signup/index.html"
 
@@ -17,90 +17,46 @@ breadcrumbs:
   {% set socialImage = "/tgk-assets/images/share/system/signup.jpg" %}
   {% include "partials/head-meta.njk" %}
   {% set headline = "Join The Gnostic Key — Create Account" %}
-  {% set base = "/signup/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
-<body>
-<main class="main-content page-auth gold">
+<main class="main-content page-auth">
   <section class="content-container">
 
+    <div class="auth-glyph-wrap">
+      <div class="auth-glyph glow">🜂</div>
+    </div>
+
     <section class="section-block auth-form">
-      <h2 class="section-heading">Join The Gnostic Key</h2>
-      <p class="lead">
-        Create a free account to access your dashboard, save bookmarks,<br>
-        and begin your Initiation into the hidden pages.
+      <h2 class="section-heading">Begin Your Initiation</h2>
+      <p class="lead muted">
+        Create a free account to unlock your dashboard, save bookmarks,<br>
+        and begin your path through the hidden pages.
       </p>
 
       <form id="signup-form" class="tgk-form" novalidate>
         <div class="form-group">
           <label for="signup-email">Email Address</label>
-          <input
-            type="email"
-            id="signup-email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            required
-            minlength="5"
-            aria-describedby="email-hint"
-          >
-          <small id="email-hint" class="form-hint">We'll never share your email.</small>
+          <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" required>
         </div>
 
         <div class="form-group">
           <label for="signup-password">Password</label>
-          <input
-            type="password"
-            id="signup-password"
-            placeholder="8+ characters, be wise"
-            autocomplete="new-password"
-            required
-            minlength="8"
-            aria-describedby="password-hint"
-          >
-          <small id="password-hint" class="form-hint">Minimum 8 characters. Choose wisely.</small>
+          <input type="password" id="signup-password" placeholder="8+ characters, be wise" autocomplete="new-password" required>
         </div>
 
-        <button type="submit" class="btn gold full-width" id="signup-submit">
-          <span class="btn-text">Create Account</span>
-          <span class="btn-loading" hidden>Creating...</span>
-        </button>
+        <button type="submit" class="btn gold full-width">Create Account</button>
       </form>
 
       <p class="auth-note">
         Already initiated? <a href="/signin/">Sign in here</a>.
       </p>
-
-      <div id="auth-feedback" class="auth-feedback" role="alert" hidden></div>
     </section>
-
   </section>
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+    <span class="divider-symbol pillar-glyph spin glow">{{ glyph }}</span>
   </div>
 </main>
 
-<!-- Inline gate (consumeReturnUrl) -->
-<script type="module">
-  const RETURN_KEY = "tgk-return-url";
-  window.__TGK_GATE__ = window.__TGK_GATE__ || {
-    saveReturnUrl(url = window.location.href) {
-      if (!url.startsWith(window.location.origin)) return;
-      if (url === window.location.origin + "/" || url.includes("/index.html")) return;
-      sessionStorage.setItem(RETURN_KEY, url);
-      localStorage.setItem(RETURN_KEY, url);
-    },
-    consumeReturnUrl() {
-      const url = sessionStorage.getItem(RETURN_KEY) || localStorage.getItem(RETURN_KEY);
-      if (!url || !url.startsWith(window.location.origin)) return false;
-      sessionStorage.removeItem(RETURN_KEY);
-      localStorage.removeItem(RETURN_KEY);
-      window.location.replace(url);
-      return true;
-    }
-  };
-</script>
-
-<!-- TGK AUTH — FORCE RELOAD -->
 <script type="module" src="/js/tgk-auth.js?v={{ bust }}" defer></script>
