@@ -9,7 +9,7 @@ export default {
     "Where the erased, the forbidden, and the sacred converge — a sanctuary of pages across traditions, investigations, archetypes, and vaults of hidden memory.",
   tagline: "Where the erased, the forbidden, and the sacred converge.",
   glyph: "𓂀",
-  glyphRow: ["𓂀", "✦", "𓂀"],
+  glyphRow: ["☉", "🜂", "☿", "✷"],
   accent: "lightgold",
   bodyClass: "home",
   tier: "free",
