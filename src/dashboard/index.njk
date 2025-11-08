@@ -9,6 +9,7 @@ permalink: "/dashboard/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
+  - { title: "Membership",  url: "/membership/"}
   - { title: "Dashboard" }
 ---
 {% block head %}
@@ -23,22 +24,27 @@ breadcrumbs:
 <main class="main-content page-dashboard">
   <section class="content-container" id="page-dashboard">
 
-    <!-- ✦ Welcome + Tier -->
-    <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
-    <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
-    <span id="tier-badge" class="tier-badge tier-free">Free</span>
-
-    <!-- ✦ Membership Management -->
-    <div class="dashboard-membership">
-      <h3 class="section-heading">Membership & Billing</h3>
-      <div class="btn-wrap">
-        <button id="upgrade-btn" class="btn gold">Upgrade / Join via Stripe</button>
-        <button id="billing-btn" class="btn outline">Manage Billing Portal</button>
-      </div>
-      <p class="small">You can upgrade, downgrade, or cancel your plan at any time.</p>
+    <div class="tier-display inline">
+      <span>Your current tier:</span>
+      <span id="tier-badge" class="tier-badge tier-free">Free</span>
+      <span class="tier-divider"></span>
+      <span class="member-since muted">Member since: <span id="member-since">—</span></span>
     </div>
 
+    <!-- ✦ Membership Management -->
+    <section class="section-block">
+      <h3 class="section-heading">Membership & Billing</h3>
+      <div class="btn-wrap">
+        <a href="/membership/" class="btn gold">View / Manage Membership</a>
+      </div>
+      <p class="small">
+        Upgrade, join, or manage your billing anytime in your membership centre.
+      </p>
+    </div>
+  </section>
+
     <!-- ✦ Profile Information -->
+    <section class="section-block">
     <h3 class="section-heading">Profile Information</h3>
     <form id="profile-form" class="form-block">
       <label for="profile-name">Display Name</label>
@@ -52,6 +58,7 @@ breadcrumbs:
         <span id="profile-status" class="small muted"></span>
       </div>
     </form>
+    </section>
 
     <!-- ✦ Activity Widgets (optional hidden) -->
     <section hidden>
@@ -64,6 +71,7 @@ breadcrumbs:
     </section>
 
     <!-- ✦ Bookmarks -->
+    <section class="section-block">
     <h3 class="section-heading">Your Bookmarks</h3>
     <div id="bookmark-dashboard">
       <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
@@ -73,12 +81,16 @@ breadcrumbs:
         the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
       </p>
     </div>
+  </section>
 
-    <!-- ✦ Logout -->
+  <!-- ✦ Logout -->
+  <section class="section-block">
     <h3 class="section-heading">Sign Out</h3>
     <p class="small">You can securely sign out of your TGK account below.</p>
-    <button id="logout-btn" class="btn outline">Sign Out</button>
 
+    <div class="btn-wrap center">
+      <button id="logout-btn" class="btn outline">Sign Out</button>
+    </div>
   </section>
 
   <div class="gnostic-divider">

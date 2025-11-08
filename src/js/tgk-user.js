@@ -59,6 +59,26 @@ export async function loadDashboardHeader(user) {
   }
 }
 
+// Member since (from Firestore or creation date)
+const memberSinceEl = document.getElementById("member-since");
+if (memberSinceEl) {
+  const joinDate =
+    (user.metadata && user.metadata.creationTime) ||
+    (entSnap.exists() && entSnap.data().created?.toDate?.()) ||
+    null;
+
+  if (joinDate) {
+    const dateObj = new Date(joinDate);
+    const formatted = dateObj.toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long"
+    });
+    memberSinceEl.textContent = formatted;
+  } else {
+    memberSinceEl.textContent = "Unknown";
+  }
+}
+
 /* ===========================================================
    🜂 Save Profile (Display Name)
    =========================================================== */

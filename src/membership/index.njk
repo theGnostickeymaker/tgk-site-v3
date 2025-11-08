@@ -1,14 +1,15 @@
 ---
 layout: base.njk
-title: "Join The Gnostic Key"
-description: "Choose your tier of access — support sacred knowledge preservation and unlock the deeper pages of The Gnostic Key."
+title: "Your TGK Membership"
+description: "Join, manage, or upgrade your access — support sacred knowledge preservation and unlock deeper pages of The Gnostic Key."
 glyph: "🜂"
 glyphRow: ["🜂", "☥", "🜂"]
-bodyClass: "lightgold"
+bodyClass: "lightgold requires-auth"
 permalink: "/membership/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
+  - { title: "Dashboard",  url: "/dashboard/"}
   - { title: "Membership" }
 ---
 
@@ -18,17 +19,42 @@ breadcrumbs:
   {% set headline = "Membership — The Gnostic Key" %}
   {% set base = "/membership/" %}
   {% include "partials/jsonld-collection.njk" %}
-
-  <!-- Firebase + Membership Logic -->
-  <script type="module" src="/js/membership.js?v={{ bust }}"></script>
 {% endblock %}
 
-<body>
 <main class="main-content page-membership">
-  <section class="content-container">
+  <section class="content-container" id="page-membership">
 
+    <!-- ✦ Welcome -->
+    <div class="tier-display inline">
+      <span>Your current tier:</span>
+      <span id="tier-badge" class="tier-badge tier-free">Free</span>
+      <span class="tier-divider"></span>
+      <span class="member-since muted">Member since: <span id="member-since">—</span></span>
+    </div>
+
+    <!-- ✦ Membership & Billing -->
     <section class="section-block">
-      <h2 class="section-heading">Choose Your Path</h2>
+    <h3 class="section-heading">Membership & Billing</h3>
+    <div class="btn-wrap membership-buttons">
+      <button
+        id="upgrade-btn"
+        class="btn outline"
+        data-price="price_INITIATE_ID">
+        Upgrade / Join via Stripe
+      </button>
+
+      <button id="manage-btn" class="btn outline">
+        Manage Billing Portal
+      </button>
+    </div>
+    <p class="small">
+      You can upgrade, downgrade, or cancel your plan at any time through the secure Stripe portal.
+    </p>
+    </section>
+
+    <!-- ✦ Join Section (for visitors or free users) -->
+    <section class="section-block join-options">
+      <h3 class="section-heading">Choose Your Path</h3>
       <p class="lead">
         The Gnostic Key is sustained by seekers like you.<br>
         Choose your tier of membership to unlock deeper archives,<br>
@@ -38,6 +64,7 @@ breadcrumbs:
       {% include "partials/page-membership-grid.njk" %}
     </section>
 
+    <!-- ✦ FAQ -->
     <section class="section-block">
       <h3 class="section-heading">Frequently Asked Questions</h3>
       <details>
@@ -54,9 +81,14 @@ breadcrumbs:
       </details>
     </section>
 
-    <section class="section-block cta">
-      <p>Already a member?</p>
-      <a href="/signin/" class="btn outline">Sign In</a>
+    <!-- ✦ Logout -->
+    <section class="section-block">
+      <h3 class="section-heading">Sign Out</h3>
+      <p class="small">You can securely sign out of your TGK account below.</p>
+
+      <div class="btn-wrap center">
+        <button id="logout-btn" class="btn outline">Sign Out</button>
+      </div>
     </section>
 
   </section>
@@ -66,39 +98,83 @@ breadcrumbs:
   </div>
 </main>
 
-<!-- 🜂 Account Page Logic -->
-<script type="module" src="/js/membership.js?v={{ bust }}"></script>
-
+<!-- 🜂 Unified Membership Logic -->
 <script type="module">
-  import { loadDashboardHeader, pageSignout, updateTierUI } from "/js/tgk-user.js";
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  import { loadDashboardHeader, pageSignout, updateTierUI, refreshEntitlementsLive } from "/js/tgk-user.js";
 
   const auth = getAuth();
 
-  // Wait for Firebase auth to resolve before showing any tier
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      // Logged in → populate header and tier info
-      await loadDashboardHeader(user);
-      await refreshEntitlementsLive(user);
-      document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
-    } else {
-      // Not logged in → show visitor badge then redirect
-      updateTierUI("visitor");
-      window.__TGK_GATE__?.saveReturnUrl?.();
-      if (!location.pathname.includes("/signin")) {
-        window.location.replace("/signin/");
-      }
-    }
-  });
-
-  // Only apply cached tier if Firebase hasn’t loaded yet
   document.addEventListener("DOMContentLoaded", () => {
     const cachedTier = localStorage.getItem("tgk-tier");
     if (cachedTier) updateTierUI(cachedTier);
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await loadDashboardHeader(user);
+        await refreshEntitlementsLive(user);
+        document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
+      } else {
+        updateTierUI("visitor");
+        window.__TGK_GATE__?.saveReturnUrl?.();
+        if (!location.pathname.includes("/signin")) {
+          window.location.replace("/signin/");
+        }
+      }
+    });
   });
+
+  // 🜂 Upgrade Button
+  import { getAuth as getAuth2 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  const auth2 = getAuth2();
+  const upgradeBtn = document.getElementById("upgrade-btn");
+  if (upgradeBtn) {
+    upgradeBtn.addEventListener("click", async () => {
+      const user = auth2.currentUser;
+      if (!user) {
+        alert("Please sign in before upgrading.");
+        window.location.href = "/signin/";
+        return;
+      }
+      try {
+        const token = await user.getIdToken();
+        const priceId = upgradeBtn.dataset.price;
+        const res = await fetch("/.netlify/functions/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            priceId,
+            uid: user.uid,
+            email: user.email,
+            returnUrl: window.location.origin + "/membership/"
+          })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.sessionId) throw new Error(data.error || "Stripe session error");
+        const stripe = Stripe(window.STRIPE_PUBLISHABLE_KEY);
+        await stripe.redirectToCheckout({ sessionId: data.sessionId });
+      } catch (err) {
+        console.error("[TGK] Upgrade error:", err);
+        alert("Could not start checkout: " + err.message);
+      }
+    });
+  }
+
+  // 🜂 Manage Billing Portal
+  const manageBtn = document.getElementById("manage-btn");
+  if (manageBtn) {
+    manageBtn.addEventListener("click", async () => {
+      const user = auth2.currentUser;
+      if (!user) return alert("Please sign in to manage billing.");
+      const token = await user.getIdToken();
+      const res = await fetch("/.netlify/functions/create-portal-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, email: user.email })
+      });
+      const data = await res.json();
+      if (res.ok && data.url) window.location.href = data.url;
+      else alert("Could not open billing portal.");
+    });
+  }
 </script>
-
-</body>
-
-

@@ -567,5 +567,74 @@
   transform: scale(1.1);
 }
 
+.tier-display {
+  margin-bottom: var(--space-lg);
+}
+
+.tier-display p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--text-accent);
+}
+
+.member-since {
+  font-style: italic;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+}
+
+.tier-display.inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes the “member since” span to the right */
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+  gap: 0.75rem;
+}
+
+.tier-display.inline > span {
+  font-size: 1.5rem;
+  color: var(--text-accent);
+}
+
+.tier-display.inline .tier-badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  background: var(--badge-bg, rgba(255,255,255,0.1));
+  color: var(--text-primary);
+  margin-left: 0.5rem;
+}
+
+.tier-display.inline .member-since {
+  font-style: italic;
+  opacity: 0.8;
+  white-space: nowrap;
+  margin-left: auto; /* ensures flush-right alignment */
+}
+.tier-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.tier-info .tier-divider {
+  width: 1px;
+  height: 1rem;
+  background: linear-gradient(to bottom,
+    transparent,
+    var(--text-accent, #bfa865),
+    transparent);
+  opacity: 0.6;
+}
+
 
 }
