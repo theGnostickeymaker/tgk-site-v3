@@ -319,7 +319,10 @@ socialImages:
       >
     </picture>
   </a>
-  <figcapti
+  <figcaption class="caption-gnostic">
+        The spiral of dhikr: the soul circles, turns, remembers. Each Name called is a step closer to the Beloved.
+      </figcaption>
+    </figure>
 
   <!--🌸 Chapter 3: The Beloved&lsquo;s Face Behind the Veil -->
   <section class="section-block">
