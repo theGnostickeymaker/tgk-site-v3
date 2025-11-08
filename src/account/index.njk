@@ -88,6 +88,7 @@ breadcrumbs:
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         await loadDashboardHeader(user);
+        await refreshEntitlementsLive(user);
         const btn = document.getElementById("logout-btn");
         if (btn) btn.addEventListener("click", () => window.location.href = "/logout/");
       } else {

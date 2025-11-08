@@ -80,6 +80,7 @@ breadcrumbs:
     if (user) {
       // Logged in → populate header and tier info
       await loadDashboardHeader(user);
+      await refreshEntitlementsLive(user);
       document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
     } else {
       // Not logged in → show visitor badge then redirect

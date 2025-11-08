@@ -225,3 +225,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* ===========================================================
+   🜂 Force Entitlement Sync (on every page load)
+   =========================================================== */
+export async function refreshEntitlementsLive(user) {
+  if (!user) return;
+
+  try {
+    const token = await user.getIdToken();
+    const res = await fetch("/.netlify/functions/set-entitlements", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, uid: user.uid, email: user.email })
+    });
+
+    const data = await res.json();
+    console.log("[TGK] Live entitlement sync:", data);
+
+    if (res.ok && data.tier) {
+      localStorage.setItem("tgk-tier", data.tier);
+      await user.getIdToken(true); // refresh custom claims
+      updateTierUI(data.tier);
+      return data.tier;
+    }
+  } catch (err) {
+    console.error("[TGK] Live entitlement sync error:", err);
+  }
+  return "free";
+}
+
