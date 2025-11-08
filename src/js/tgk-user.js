@@ -1,6 +1,6 @@
 /* ===========================================================
    TGK — User System (Unified Dashboard Edition)
-   Version 4.0 — Simplified Flow for Single Page Architecture
+   Version 4.1 — Member Since Integration + Live Sync
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -30,6 +30,7 @@ export async function loadDashboardHeader(user) {
   const tierEl = document.getElementById("user-tier");
   const nameInput = document.getElementById("profile-name");
   const emailInput = document.getElementById("profile-email");
+  const memberSinceEl = document.getElementById("member-since");
 
   try {
     const [userSnap, entSnap] = await Promise.all([
@@ -37,45 +38,42 @@ export async function loadDashboardHeader(user) {
       getDoc(doc(db, "entitlements", user.uid))
     ]);
 
+    // Resolve display name
     const displayName =
       user.displayName ||
       (userSnap.exists() && userSnap.data().displayName) ||
       (user.email ? user.email.split("@")[0] : "Seeker");
 
+    // Resolve membership tier
     const tier = entSnap.exists() ? (entSnap.data().tier || "free") : "free";
 
+    // Resolve membership creation date
+    let memberSince = "";
+    if (entSnap.exists() && entSnap.data().created) {
+      const created = entSnap.data().created.toDate
+        ? entSnap.data().created.toDate()
+        : new Date(entSnap.data().created);
+      memberSince = created.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+    } else if (user.metadata?.creationTime) {
+      const fallbackDate = new Date(user.metadata.creationTime);
+      memberSince = fallbackDate.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+    }
+
+    // Update visible UI
     if (nameEl) nameEl.textContent = displayName;
     if (tierEl) tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
+    if (memberSinceEl && memberSince) memberSinceEl.textContent = `Member since: ${memberSince}`;
     if (nameInput) nameInput.value = displayName;
     if (emailInput) emailInput.value = user.email;
 
+    // Cache tier
     localStorage.setItem("tgk-tier", tier);
     updateTierUI(tier);
 
-    console.log(`[TGK] User header loaded → ${displayName} (${tier})`);
+    console.log(`[TGK] User header loaded → ${displayName} (${tier}) | Since ${memberSince || "N/A"}`);
   } catch (err) {
     console.error("[TGK] Header load error:", err);
     if (tierEl) tierEl.textContent = "Error";
-  }
-}
-
-// Member since (from Firestore or creation date)
-const memberSinceEl = document.getElementById("member-since");
-if (memberSinceEl) {
-  const joinDate =
-    (user.metadata && user.metadata.creationTime) ||
-    (entSnap.exists() && entSnap.data().created?.toDate?.()) ||
-    null;
-
-  if (joinDate) {
-    const dateObj = new Date(joinDate);
-    const formatted = dateObj.toLocaleDateString("en-GB", {
-      year: "numeric",
-      month: "long"
-    });
-    memberSinceEl.textContent = formatted;
-  } else {
-    memberSinceEl.textContent = "Unknown";
   }
 }
 
