@@ -347,7 +347,7 @@ socialImages:
 
   <p>The <strong>Ka</strong> was the double, your life-force twin. It lived alongside you, invisible, animated by food, ritual, and offerings. When you died, your Ka remained in the tomb, sustained by prayers and sustenance left by the living.</p>
 
-  <p>The <strong>Ba</strong> was the winged soul, <em>your personality</em>, your unique essence. It could fly between worlds, return to visit loved ones, or journey through the Du&rdquo;st. Often depicted as a bird with a human head, the Ba gave motion to the soul. But at night, it returned to the tomb, to reunite with the Ka.</p>
+  <p>The <strong>Ba</strong> was the winged soul, <em>your personality</em>, your unique essence. It could fly between worlds, return to visit loved ones, or journey through the Du&rsquo;st. Often depicted as a bird with a human head, the Ba gave motion to the soul. But at night, it returned to the tomb, to reunite with the Ka.</p>
 
   <p>When Ba and Ka embraced in harmony, a third form was born: the <strong>Akh</strong>.</p>
 
@@ -536,25 +536,25 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--🌒 Chapter 6: Into the Du&rdquo;st, The Map of the Hidden World-->
+  <!--🌒 Chapter 6: Into the Du&rsquo;st, The Map of the Hidden World-->
   <section class="section-block">
   <h2 class="section-heading">🌒 Chapter 6: Into the Du&ldquo;at, The Map of the Hidden World</h2>
 
   <blockquote class="blockquote">
     <span class="egyptian-script">&ldquo;Sheta Du&ldquo;at n Kheperu.&rdquo;</span><br>
-    <span>&ldquo;The Du&rdquo;st is the mystery of transformations.&rdquo;</span><br>
+    <span>&ldquo;The Du&rsquo;st is the mystery of transformations.&rdquo;</span><br>
     <cite> Book of Gates, Hour 1</cite>
   </blockquote>
 
-  <p>The Du&rdquo;st was not hell. It was not heaven. It was <strong>the invisible world beneath all things,</strong> a night-sea realm of gods, monsters, gates, rivers, stars, and renewal.</p>
+  <p>The Du&rsquo;st was not hell. It was not heaven. It was <strong>the invisible world beneath all things,</strong> a night-sea realm of gods, monsters, gates, rivers, stars, and renewal.</p>
 
   <p>It was where <strong>Ra travelled at night</strong> on his solar barque, facing serpent-lords and shadow beasts before rising anew with the dawn. It was where <strong>the dead journeyed</strong> after the tomb, not to rest, but to remember.</p>
 
-  <p>The Du&rdquo;st was often mapped as <strong>12 hours</strong>, or gates, echoing the sun&rsquo;s descent into night. Each &ldquo;hour&rdquo; was both a region and a trial, guarded by deities and sealed with secret names. Only the prepared could pass.</p>
+  <p>The Du&rsquo;st was often mapped as <strong>12 hours</strong>, or gates, echoing the sun&rsquo;s descent into night. Each &ldquo;hour&rdquo; was both a region and a trial, guarded by deities and sealed with secret names. Only the prepared could pass.</p>
 
   <p>This underworld was both psychological and cosmic, a <strong>mirror of the inner landscape</strong>. Each terrain reflected a soul-state. Lakes of fire. Caverns of knives. Rivers of memory. Fields of stars.</p>
 
-  <p>Those without memory, without Ma&rsquo;at, were devoured by chaos beings. But those with guidance, spells, and heart-lightness could move through the Du&rdquo;st and emerge radiant, like Ra at dawn.</p>
+  <p>Those without memory, without Ma&rsquo;at, were devoured by chaos beings. But those with guidance, spells, and heart-lightness could move through the Du&rsquo;st and emerge radiant, like Ra at dawn.</p>
 
   <blockquote class="blockquote">
     <span class="egyptian-script">&ldquo;Sekhet Aaru neferu, hena Ra em peret.&rdquo;</span><br>
@@ -562,20 +562,20 @@ socialImages:
     <cite> Book of the Dead, Spell 110</cite>
   </blockquote>
 
-  <p>The tomb spells, especially the <strong>Book of Two Ways</strong> and <strong>Amduat, </strong>depicted the Du&rdquo;st in diagrams. These weren&rsquo;t symbolic. They were <strong>functional maps</strong>. Schematics for the soul. Instructions for the afterlife.</p>
+  <p>The tomb spells, especially the <strong>Book of Two Ways</strong> and <strong>Amduat, </strong>depicted the Du&rsquo;st in diagrams. These weren&rsquo;t symbolic. They were <strong>functional maps</strong>. Schematics for the soul. Instructions for the afterlife.</p>
 
-  <p><strong>To know the Du&rdquo;st was to know the self beyond death.</strong></p>
+  <p><strong>To know the Du&rsquo;st was to know the self beyond death.</strong></p>
   </section>
 
   <section class="section-block">
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>The Du&rdquo;st was Egypt&rsquo;s underworld, a realm of transformation, not punishment.</li>
+    <li>The Du&rsquo;st was Egypt&rsquo;s underworld, a realm of transformation, not punishment.</li>
     <li>It contained gates, gods, monsters, and secret trials, mapped in 12 hours or stages.</li>
     <li>Spells from the Book of the Dead, Book of Gates, and Amduat served as navigational tools.</li>
     <li>Souls with memory, Ma&rsquo;at, and proper ritual could pass through safely and rise renewed.</li>
-    <li>The Du&rdquo;st is a spiritual map, of the cosmos, of the dead, and of the inner soul.</li>
+    <li>The Du&rsquo;st is a spiritual map, of the cosmos, of the dead, and of the inner soul.</li>
   </ul>
   </section>
 
@@ -597,13 +597,13 @@ socialImages:
   </figcaption>
 </figure>
 
-<!-- 🗺️ Visual Map: The Journey Through the Du&rdquo;st -->
+<!-- 🗺️ Visual Map: The Journey Through the Du&rsquo;st -->
 <section class="section-block">
-  <h2 class="section-heading">🗺️ Visual Map: The Journey Through the Du&rdquo;st</h2>
+  <h2 class="section-heading">🗺️ Visual Map: The Journey Through the Du&rsquo;st</h2>
   <p>Trace the sacred path of the soul from death to divinity:</p>
   <ul class="list-emoji">
     <li><strong>Death & Tomb</strong>: The gateway opens, are you prepared?</li>
-    <li><strong>The Du&rdquo;st</strong>: A labyrinth of serpents, fire lakes, and divine tests, can you remember the passwords?</li>
+    <li><strong>The Du&rsquo;st</strong>: A labyrinth of serpents, fire lakes, and divine tests, can you remember the passwords?</li>
     <li><strong>Hall of Ma&rsquo;at</strong>: Your heart is weighed, will it balance the feather?</li>
     <li><strong>The Confessions</strong>: You speak before 42 judges, can you stand in truth?</li>
     <li><strong>judgement</strong>: Akh or Ammit, transfiguration or annihilation?</li>
@@ -639,12 +639,12 @@ socialImages:
   <h2 class="section-heading">🚪 Chapter 7: Trials, Gates & the Soul&rsquo;s Passwords</h2>
 
   <blockquote class="blockquote">
-    <span class="egyptian-script">&ldquo;Djed medu, sa khet n Du&rdquo;st.&rdquo;</span><br>
-    <span>&ldquo;Words spoken, protection against the trials of the Du&rdquo;st.&rdquo;</span><br>
+    <span class="egyptian-script">&ldquo;Djed medu, sa khet n Du&rsquo;st.&rdquo;</span><br>
+    <span>&ldquo;Words spoken, protection against the trials of the Du&rsquo;st.&rdquo;</span><br>
     <cite> Book of the Dead, Spell 144</cite>
   </blockquote>
 
-  <p>The Du&rdquo;st was not a free passage. It was guarded. Sealed. Filled with <strong>gatekeepers, riddles, and trials</strong>.</p>
+  <p>The Du&rsquo;st was not a free passage. It was guarded. Sealed. Filled with <strong>gatekeepers, riddles, and trials</strong>.</p>
 
   <p>At each threshold, the soul was met by a guardian, sometimes divine, sometimes monstrous. They demanded <strong>names, passwords, spells,</strong> and above all, remembrance. This was not superstition. It was initiation.</p>
 
@@ -669,14 +669,14 @@ socialImages:
     <cite> Coffin Texts, Spell 335</cite>
   </blockquote>
 
-  <p>To pass through the gates of the Du&rdquo;st was to prove you had remembered, <strong>not belief, but identity</strong>. To forget was to fall. To know was to rise.</p>
+  <p>To pass through the gates of the Du&rsquo;st was to prove you had remembered, <strong>not belief, but identity</strong>. To forget was to fall. To know was to rise.</p>
   </section>
 
   <section class="section-block">
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>The Du&rdquo;st contains gates, each with guardians who demand names, passwords, and purity.</li>
+    <li>The Du&rsquo;st contains gates, each with guardians who demand names, passwords, and purity.</li>
     <li>These passwords were recorded in spells like Spell 144 of the Book of the Dead.</li>
     <li>Knowledge of secret names gave the soul power to pass safely, ignorance meant failure.</li>
     <li>To &ldquo;remember&rdquo; was to align with Ma&rsquo;at and claim one&rsquo;s true divine identity.</li>
@@ -931,7 +931,7 @@ socialImages:
     <li>Sekhet Aaru, the Field of Reeds, was the Egyptian paradise for souls judged worthy.</li>
     <li>It was a perfected mirror of Egypt: fertile, peaceful, joy-filled, luminous.</li>
     <li>The soul received a light body and lived among gods, ancestors, and eternal beauty.</li>
-    <li>To reach it was not a gift, but the fruit of alignment with Ma&rsquo;at and mastery of the Du&rdquo;st.</li>
+    <li>To reach it was not a gift, but the fruit of alignment with Ma&rsquo;at and mastery of the Du&rsquo;st.</li>
     <li>It was the final flowering of the Akh, radiant, free, and eternal.</li>
   </ul>
 </section>
@@ -1029,7 +1029,7 @@ socialImages:
 
   <p>The true title was <em>Ra nu peret em heru,</em> <strong>The Book of Coming Forth by Day</strong>. Because the goal was not rest. It was return. Awakening. <strong>Emergence into eternal light</strong>.</p>
 
-  <p>Copied onto papyrus and buried with the deceased, each page was a spiritual GPS, charting paths through the Du&rdquo;st, invoking protective deities, listing the 42 Confessions, and providing names of gates and guardians.</p>
+  <p>Copied onto papyrus and buried with the deceased, each page was a spiritual GPS, charting paths through the Du&rsquo;st, invoking protective deities, listing the 42 Confessions, and providing names of gates and guardians.</p>
 
   <p>Spell 125 became the centrepiece, the judgement scene, the weighing of the heart, the soul&rsquo;s declaration of innocence. But other spells addressed every stage of the journey: how to breathe, speak, walk, transform into animals, summon boats, avoid serpents, pass fire-lakes, and <strong>become a star</strong>.</p>
 
@@ -1051,7 +1051,7 @@ socialImages:
     <li>The Book of the Dead was a sacred compilation of spells to guide the soul through the afterlife.</li>
     <li>Its true title was &ldquo;The Book of Coming Forth by Day&rdquo;, a guide to rebirth into the light.</li>
     <li>It included directions, passwords, hymns, transformation spells, and declarations for judgement.</li>
-    <li>Each page was customized, buried with the dead, and designed to awaken memory in the Du&rdquo;st.</li>
+    <li>Each page was customized, buried with the dead, and designed to awaken memory in the Du&rsquo;st.</li>
     <li>This was not myth, it was operating code for the soul&rsquo;s return to eternity.</li>
   </ul>
 </section>

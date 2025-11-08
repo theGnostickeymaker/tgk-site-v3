@@ -288,36 +288,5 @@
     .page-title { font-size: var(--font-size-lg, 1.4rem); }
   }
  
-  .page-header .glyph-row {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 1.25rem;
-  font-size: clamp(2.4rem, 4vw, 4.5rem);
-  letter-spacing: 0.08em;
-  color: var(--highlight);
-  text-shadow: 0 0 8px rgba(191,168,101,0.4);
-  animation: glyphRowPulse 12s ease-in-out infinite alternate;
-}
-
-.page-header .glyph {
-  transition: transform 0.4s ease, text-shadow 0.4s ease;
-  animation: glyphPulse 6s ease-in-out infinite;
-}
-
-.page-header .glyph:nth-child(1) { animation-delay: 0s; }
-.page-header .glyph:nth-child(2) { animation-delay: 0.6s; }
-.page-header .glyph:nth-child(3) { animation-delay: 1.2s; }
-.page-header .glyph:nth-child(4) { animation-delay: 1.8s; }
-
-@keyframes glyphPulse {
-  0%, 100% { opacity: 0.75; transform: scale(1); text-shadow: 0 0 4px var(--shadow-glow); }
-  50% { opacity: 1; transform: scale(1.12); text-shadow: 0 0 14px var(--highlight); }
-}
-
-@keyframes glyphRowPulse {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.15); }
-}
-
+  
 }

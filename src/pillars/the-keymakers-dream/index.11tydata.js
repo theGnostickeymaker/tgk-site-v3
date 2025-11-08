@@ -13,7 +13,7 @@ export default {
   tags: ["pillar", "the-keymakers-dream"],
 
   // === Header Glyph Row ===
-  glyphRow: ["🗝️", "🔒", "🪬"],
+  glyphRow: ["🗝", "🜏", "☯"],
 
   // === Breadcrumb Trail ===
   breadcrumbs: [

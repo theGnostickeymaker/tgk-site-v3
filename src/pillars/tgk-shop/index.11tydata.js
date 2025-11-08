@@ -13,7 +13,7 @@ export default {
   tags: ["pillar", "tgk-shop"],
 
   // === Header Glyph Row ===
-  glyphRow: ["✷", "🛍️", "🜚"],
+  glyphRow: ["🜚", "✷", "🜍"],
 
   // === Breadcrumb Trail ===
   breadcrumbs: [

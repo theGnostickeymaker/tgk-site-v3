@@ -207,13 +207,13 @@ socialImages:
   <summary>
     <span class="disclaimer-heading">⚠️ Previously in Part I</span>
   </summary>
-  <p>You entered the Du&rdquo;st, faced the weighing of your heart, and discovered that the soul is not one thing, but many. Now we descend deeper, through tomb texts, resurrection spells, and ciphered maps of return.</p>
+  <p>You entered the Du&rsquo;st, faced the weighing of your heart, and discovered that the soul is not one thing, but many. Now we descend deeper, through tomb texts, resurrection spells, and ciphered maps of return.</p>
   </section>
 </details>
 
-  <!--🌀 Chapter 1: Initiation in the Du&rdquo;st, Why the Hidden World Is Real-->
+  <!--🌀 Chapter 1: Initiation in the Du&rsquo;st, Why the Hidden World Is Real-->
 <section class="section-block">
-  <h2 class="section-heading">🌀 Chapter 1: Initiation in the Du&rdquo;st, Why the Hidden World Is Real</h2>
+  <h2 class="section-heading">🌀 Chapter 1: Initiation in the Du&rsquo;st, Why the Hidden World Is Real</h2>
 
   <blockquote class="blockquote">
     <span class="egyptian-script">&ldquo;Set khet n kkw, her seba n ba.&rdquo;</span><br>
@@ -221,43 +221,43 @@ socialImages:
     <cite> Temple of Dendera, Star Chamber Inscriptions</cite>
   </blockquote>
 
-  <p>Most dismiss the Egyptian Du&rdquo;st as fantasy, a poetic myth of gods, beasts, and glowing rivers.  
+  <p>Most dismiss the Egyptian Du&rsquo;st as fantasy, a poetic myth of gods, beasts, and glowing rivers.  
   But the initiate knows: <strong>myth is the veil for mechanics</strong>.</p>
 
-  <p>The Du&rdquo;st was not a fiction. It was a <strong>real realm of consciousness,</strong> a dimension of trials and mirrors, shaped by <em>symbolic logic</em> and soul resonance.  
+  <p>The Du&rsquo;st was not a fiction. It was a <strong>real realm of consciousness,</strong> a dimension of trials and mirrors, shaped by <em>symbolic logic</em> and soul resonance.  
   What you believe becomes your guide. What you forget becomes your trap.</p>
 
-  <p>Ancient texts depict the Du&rdquo;st as a literal underworld traversed by the sun god and the dead.  
+  <p>Ancient texts depict the Du&rsquo;st as a literal underworld traversed by the sun god and the dead.  
   But many modern mystics and esotericists interpret it as a <strong>map of consciousness,</strong> a symbolic cartography of inner transformation, shadow work, and spiritual passage.</p>
 
   <p>Only the prepared could navigate it. Not by faith, but by <strong>knowledge, memory, and vibration</strong>.  
   This is why the Egyptians trained from life: practicing names of gates, mapping the 12 hours of night, inscribing the tomb, and rehearsing their own death.</p>
 
-  <p>As above, so below. The Du&rdquo;st mirrors both the night sky and the inner soul.  
+  <p>As above, so below. The Du&rsquo;st mirrors both the night sky and the inner soul.  
   It is <strong>an astral code, a psychological terrain, and a sacred machine</strong>.  
   You do not walk it with your feet. You walk it with your <em>ba</em>.</p>
 
   <blockquote class="blockquote">
-    <span class="egyptian-script">&ldquo;Sekhem ba her Du&rdquo;st, ren heka an pet.&rdquo;</span><br>
-    <span>&ldquo;The empowered soul crosses the Du&rdquo;st, the name of magic opens the heavens.&rdquo;</span><br>
+    <span class="egyptian-script">&ldquo;Sekhem ba her Du&rsquo;st, ren heka an pet.&rdquo;</span><br>
+    <span>&ldquo;The empowered soul crosses the Du&rsquo;st, the name of magic opens the heavens.&rdquo;</span><br>
     <cite> Coffin Texts, Spell 142</cite>
   </blockquote>
 
-  <p>This chapter begins your <strong>initiation,</strong> to see the Du&rdquo;st not as dream, but as the true infrastructure behind all transitions, all rebirths, and all realities. You've been there before. You will go again.</p>
+  <p>This chapter begins your <strong>initiation,</strong> to see the Du&rsquo;st not as dream, but as the true infrastructure behind all transitions, all rebirths, and all realities. You've been there before. You will go again.</p>
 </section>
 
 <section class="section-block">
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>The Du&rdquo;st is not fictional, it is an inner and cosmic realm mapped in symbolic form.</li>
+    <li>The Du&rsquo;st is not fictional, it is an inner and cosmic realm mapped in symbolic form.</li>
     <li>It mirrors the night sky, the underworld, and the soul&rsquo;s subconscious terrain.</li>
     <li>Initiates trained for death as a spiritual journey, not an ending.</li>
-    <li>The Du&rdquo;st functions like a symbolic operating system: spells = access codes, names = passwords.</li>
+    <li>The Du&rsquo;st functions like a symbolic operating system: spells = access codes, names = passwords.</li>
     <li>This chapter begins your descent, through symbols, memory, and gnosis.</li>
   </ul>
 
-  <p>⚠️ <strong>Interpretive Lens:</strong> The framing of the Du&rdquo;st as a psychological map is a modern esoteric perspective. While ancient Egyptians depicted it as a literal underworld, symbolic readings align with their mythopoetic worldview.</p>
+  <p>⚠️ <strong>Interpretive Lens:</strong> The framing of the Du&rsquo;st as a psychological map is a modern esoteric perspective. While ancient Egyptians depicted it as a literal underworld, symbolic readings align with their mythopoetic worldview.</p>
 </section>
 
 <!-- Image: solar-boat-amduat-journey -->
@@ -283,12 +283,12 @@ socialImages:
   <h2 class="section-heading">☀️ Chapter 2: 12 Gates, 12 Hours, The Journey of Ra Through the Night</h2>
 
   <blockquote class="blockquote">
-    <span class="egyptian-script">&ldquo;Ra sekher heru sen em Du&rdquo;st m sha.&rdquo;</span><br>
-    <span>&ldquo;Ra sails the hours, passing through Du&rdquo;st by gates.&rdquo;</span><br>
+    <span class="egyptian-script">&ldquo;Ra sekher heru sen em Du&rsquo;st m sha.&rdquo;</span><br>
+    <span>&ldquo;Ra sails the hours, passing through Du&rsquo;st by gates.&rdquo;</span><br>
     <cite> Amduat, 18th Dynasty Tombs</cite>
   </blockquote>
 
-  <p>Every night, the sun god Ra entered the underworld, the <strong>Du&rdquo;st,</strong> aboard his solar boat. For twelve hours, he passed through <strong>twelve gates</strong>, twelve realms, twelve trials. And each hour was both <em>temporal</em> and <em>spiritual,</em> a cipher for the soul&rsquo;s own path through darkness.</p>
+  <p>Every night, the sun god Ra entered the underworld, the <strong>Du&rsquo;st,</strong> aboard his solar boat. For twelve hours, he passed through <strong>twelve gates</strong>, twelve realms, twelve trials. And each hour was both <em>temporal</em> and <em>spiritual,</em> a cipher for the soul&rsquo;s own path through darkness.</p>
 
   <p>In each gate, Ra met <strong>serpents, guardians, trials, and allies</strong>. His light dimmed, then rekindled. At the sixth hour, he merged with Osiris, death and sun joined. At the twelfth, he rose again, renewed. This was the cycle: descent, stillness, return.</p>
 
@@ -309,7 +309,7 @@ socialImages:
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>Ra journeys through the Du&rdquo;st each night, passing 12 gates in 12 hours of darkness.</li>
+    <li>Ra journeys through the Du&rsquo;st each night, passing 12 gates in 12 hours of darkness.</li>
     <li>Each hour represents a spiritual trial and transformation of consciousness.</li>
     <li>The AmDuʺat and Book of Gates were esoteric blueprints for soul navigation after death.</li>
     <li>Initiates memorized names, maps, and spells to pass safely through each realm.</li>
@@ -349,7 +349,7 @@ socialImages:
 
   <p>Every hieroglyph was a being. Every spell a vibration. Every utterance, a doorway. The word wasn&rsquo;t just communication, it was <strong>creation</strong>.  
   To speak the true name of a thing was to <em>unlock its power</em>.  
-  To forget the words was to become lost in the Du&rdquo;st.</p>
+  To forget the words was to become lost in the Du&rsquo;st.</p>
 
   <p>The Book of the Dead is a book of <strong>transformation</strong>. Not prayers, but <em>activation sequences</em>.  
   Spell 2 helps the soul remember its name. Spell 30 protects the heart from betrayal. Spell 125 grants passage through judgement.  
@@ -381,7 +381,7 @@ socialImages:
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>Egyptian &ldquo;spells&rdquo; were soul-commands, vibrational technologies for navigating the Du&rdquo;st.</li>
+    <li>Egyptian &ldquo;spells&rdquo; were soul-commands, vibrational technologies for navigating the Du&rsquo;st.</li>
     <li>Words held creative force; to speak a name or spell was to activate its power.</li>
     <li>The Book of the Dead encoded spells for protection, transformation, and judgement.</li>
     <li>These were not mythic recitations, but metaphysical tools of self-becoming.</li>
@@ -412,12 +412,12 @@ socialImages:
   <h2 class="section-heading">🐍 Chapter 4: Guardians, Serpents & Secret Names</h2>
 
   <blockquote class="blockquote">
-    <span class="egyptian-script">&ldquo;Ren-a em sekhet, irek-a em Du&rdquo;st.&rdquo;</span><br>
-    <span>&ldquo;Know my name in the field, guard your power in the Du&rdquo;st.&rdquo;</span><br>
+    <span class="egyptian-script">&ldquo;Ren-a em sekhet, irek-a em Du&rsquo;st.&rdquo;</span><br>
+    <span>&ldquo;Know my name in the field, guard your power in the Du&rsquo;st.&rdquo;</span><br>
     <cite> Book of Gates, Hour 6</cite>
   </blockquote>
 
-  <p>Names are keys. And in the Du&rdquo;st, <strong>everything is guarded</strong>.</p>
+  <p>Names are keys. And in the Du&rsquo;st, <strong>everything is guarded</strong>.</p>
 
   <p>At each gate, the soul meets a <strong>guardian,</strong> often a deity, a creature, or a serpent. But these are not just monsters or myths. They are <strong>threshold intelligences,</strong> archetypal forces that test memory, alignment, and vibration.</p>
 
@@ -438,7 +438,7 @@ socialImages:
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>The Du&rdquo;st is filled with guardians and serpents, not to punish, but to test the soul&rsquo;s memory and power.</li>
+    <li>The Du&rsquo;st is filled with guardians and serpents, not to punish, but to test the soul&rsquo;s memory and power.</li>
     <li>Each gate requires the true name, a word of vibration, truth, or initiation.</li>
     <li>The guardians reflect inner aspects: fears, karma, unspoken truths.</li>
     <li>To speak the name is to pass through, to forget it is to wander.</li>
@@ -474,7 +474,7 @@ socialImages:
     <cite> Book of the Dead, Spell 15</cite>
   </blockquote>
 
-  <p>To cross the Du&rdquo;st, Ra needed a vessel, a solar barque called the <strong>Mandjet</strong>. But this was no ordinary ship. It was a <strong>resurrection engine,</strong> a metaphysical craft powered by sacred geometry, divine names, and the unity of the crew.</p>
+  <p>To cross the Du&rsquo;st, Ra needed a vessel, a solar barque called the <strong>Mandjet</strong>. But this was no ordinary ship. It was a <strong>resurrection engine,</strong> a metaphysical craft powered by sacred geometry, divine names, and the unity of the crew.</p>
 
   <p>The gods on board weren&rsquo;t just deities, they were functions. <em>Hu</em> (will), <em>Sia</em> (perception), and <em>Heka</em> (magic) rode beside Ra. They weren&rsquo;t passengers. They were <strong>circuitry</strong>.</p>
 
@@ -495,7 +495,7 @@ socialImages:
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>The Mandjet (solar boat) is Ra&rsquo;s nightly vehicle through the Du&rdquo;st, and a symbol of soul resurrection.</li>
+    <li>The Mandjet (solar boat) is Ra&rsquo;s nightly vehicle through the Du&rsquo;st, and a symbol of soul resurrection.</li>
     <li>Its crew represents cosmic forces: will (Hu), perception (Sia), and magic (Heka).</li>
     <li>The journey includes death, battle, and rebirth, a cycle mirrored in every initiate.</li>
     <li>Egyptian tombs and rituals often replicated the solar boat to align the soul with this pattern.</li>
@@ -600,7 +600,7 @@ socialImages:
 
   <p>Numbers, too, held power. The <strong>12 hours</strong> of the night. The <strong>42 assessors</strong> of Ma&rsquo;at. The <strong>7 souls of Ra</strong>. Every figure echoed <strong>metaphysical law</strong>, a sacred count mirroring star maps, organs, or cosmic rhythms.</p>
 
-  <p>And what about the body? The temples were built to mirror it. So was the Du&rdquo;st. The <strong>head was the sacred east</strong>, the feet the realm of death. Veins aligned with Neteru. Bones mapped constellations. You weren&rsquo;t buried <em>in</em> the tomb. You <strong>became</strong> the tomb.</p>
+  <p>And what about the body? The temples were built to mirror it. So was the Du&rsquo;st. The <strong>head was the sacred east</strong>, the feet the realm of death. Veins aligned with Neteru. Bones mapped constellations. You weren&rsquo;t buried <em>in</em> the tomb. You <strong>became</strong> the tomb.</p>
 
   <blockquote class="blockquote">
     <span class="egyptian-script">&ldquo;Pet netjer em sekhet ren, djed ba an kheper.&rdquo;</span><br>
@@ -641,9 +641,9 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--✝️ Chapter 23: Gnostic Parallels, Jesus in the Du&rdquo;st-->
+<!--✝️ Chapter 23: Gnostic Parallels, Jesus in the Du&rsquo;st-->
 <section class="section-block">
-  <h2 class="section-heading">✝️ Chapter 23: Gnostic Parallels, Jesus in the Du&rdquo;st</h2>
+  <h2 class="section-heading">✝️ Chapter 23: Gnostic Parallels, Jesus in the Du&rsquo;st</h2>
 
   <blockquote class="blockquote">
     <span>&ldquo;For just as Jonah was three days and three nights in the belly of the great fish,  
@@ -651,7 +651,7 @@ socialImages:
     <cite> Matthew 12:40</cite>
   </blockquote>
 
-  <p>In Gnostic streams, Jesus was not a passive sacrifice, he was a <strong>navigator of realms</strong>. His death was not the end of the story, but the descent into it. <strong>The Harrowing of Hell</strong> mirrors Ra&rsquo;s journey through the Du&rdquo;st, a descent through trials, confrontation, and triumph.</p>
+  <p>In Gnostic streams, Jesus was not a passive sacrifice, he was a <strong>navigator of realms</strong>. His death was not the end of the story, but the descent into it. <strong>The Harrowing of Hell</strong> mirrors Ra&rsquo;s journey through the Du&rsquo;st, a descent through trials, confrontation, and triumph.</p>
 
   <p>In apocryphal texts like the <em>Gospel of Nicodemus</em>, Christ breaks open the gates of Sheol. He <em>names the demons</em>, frees the righteous dead, and <strong>returns transfigured</strong>. He does not plead, he commands. He does not fear, he remembers. Just like the soul in the Egyptian Book of the Dead.</p>
 
@@ -665,7 +665,7 @@ socialImages:
     <cite> The Gospel of Truth (Nag Hammadi Library)</cite>
   </blockquote>
 
-  <p>Jesus in the Du&rdquo;st is not myth. It is memory. The soul&rsquo;s pattern, <strong>to die consciously, speak truth, and rise beyond the veil</strong>.</p>
+  <p>Jesus in the Du&rsquo;st is not myth. It is memory. The soul&rsquo;s pattern, <strong>to die consciously, speak truth, and rise beyond the veil</strong>.</p>
 </section>
 
 <section class="section-block">
@@ -755,23 +755,23 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🧬 Chapter 25: Inner Du&rdquo;st, Mapping the Afterlife Within-->
+<!--🧬 Chapter 25: Inner Du&rsquo;st, Mapping the Afterlife Within-->
 <section class="section-block">
-  <h2 class="section-heading">🧬 Chapter 25: Inner Du&rdquo;st, Mapping the Afterlife Within</h2>
+  <h2 class="section-heading">🧬 Chapter 25: Inner Du&rsquo;st, Mapping the Afterlife Within</h2>
 
   <blockquote class="blockquote">
-    <span class="egyptian-script">&ldquo;Du&rdquo;st em ib, ren em kheper.&rdquo;</span><br>
+    <span class="egyptian-script">&ldquo;Du&rsquo;st em ib, ren em kheper.&rdquo;</span><br>
     <span>&ldquo;The underworld is within the heart, the name becomes becoming.&rdquo;</span><br>
     <cite> Coffin Texts, Spell 336</cite>
   </blockquote>
 
-  <p>In the end, the greatest mystery was this: the Du&rdquo;st was not out there. It was <strong>in here</strong>.</p>
+  <p>In the end, the greatest mystery was this: the Du&rsquo;st was not out there. It was <strong>in here</strong>.</p>
 
-  <p>Every serpent, gate, and spell, every star and judge, exists within your psychic landscape. The initiates of Egypt didn&rsquo;t just map the afterlife. They mapped <em>consciousness</em>. The Du&rdquo;st is a mirror-realm, a cartography of the soul&rsquo;s shadow and light.</p>
+  <p>Every serpent, gate, and spell, every star and judge, exists within your psychic landscape. The initiates of Egypt didn&rsquo;t just map the afterlife. They mapped <em>consciousness</em>. The Du&rsquo;st is a mirror-realm, a cartography of the soul&rsquo;s shadow and light.</p>
 
   <p>The 12 hours of night reflect 12 inner chambers. The serpent Apophis is your self-doubt. The Feather of Ma&rsquo;at weighs your choices. The solar boat is your breath, rising and falling. The Akh is your highest self, waiting to emerge.</p>
 
-  <p>To walk the Du&rdquo;st is to <strong>walk your memories</strong>. To recite the spells is to <strong>speak your truth</strong>. To name the guardians is to <strong>face your fear</strong>. There is no passage out until you pass within.</p>
+  <p>To walk the Du&rsquo;st is to <strong>walk your memories</strong>. To recite the spells is to <strong>speak your truth</strong>. To name the guardians is to <strong>face your fear</strong>. There is no passage out until you pass within.</p>
 
   <blockquote class="blockquote">
     <span class="egyptian-script">"Neter netjeru em ib-a, djed kheper."</span><br>
@@ -786,7 +786,7 @@ socialImages:
   <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
-    <li>The Du&rdquo;st is not just a cosmic geography, it is an inner map of consciousness and memory.</li>
+    <li>The Du&rsquo;st is not just a cosmic geography, it is an inner map of consciousness and memory.</li>
     <li>All Egyptian symbols can be read as psychological archetypes and spiritual states.</li>
     <li>Initiation is the act of walking these gates <em>within</em>, before death.</li>
     <li>Gnosis is the ability to name, navigate, and transform one&rsquo;s inner underworld.</li>

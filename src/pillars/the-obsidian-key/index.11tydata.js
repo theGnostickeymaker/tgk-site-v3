@@ -13,7 +13,7 @@ export default {
   tags: ["pillar", "the-obsidian-key"],
 
   // === Header Glyph Row ===
-  glyphRow: ["🜂", "⚖", "♛"],
+  glyphRow: ["🜂", "⚖", "🜃"],
 
   // === Breadcrumb Trail ===
   breadcrumbs: [
@@ -29,7 +29,7 @@ export default {
       glyph: "♛", 
       desc: "Royals, throne lice, and legitimacy theatre — decoding the parasitic lineage of empire and illusion of divine right.", 
       tier: "free", 
-      state: "default" 
+      state: "active" 
     },
     { 
       href: "/pillars/the-obsidian-key/systemic/",        
@@ -37,7 +37,7 @@ export default {
       glyph: "⚖", 
       desc: "Rights erosion, courtroom alchemy, and the machinery of law — mapping injustice as a ritual system.", 
       tier: "free", 
-      state: "default" 
+      state: "coming-soon" 
     },
     { 
       href: "/pillars/the-obsidian-key/empire-codes/",    

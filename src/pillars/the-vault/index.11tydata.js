@@ -9,7 +9,7 @@ export default {
     "Preservation of forbidden and sacred texts — codices, pages, and erased histories.",
   tagline: "Codices ✦ pages ✦ erased histories",
   glyph: "⛪︎",
-  glyphRow: ["🜂", "🕯", "🜂"],
+  glyphRow: ["🜔", "🜍", "🜔"],
   accent: "vault",
   bodyClass: "vault",
   tier: "free",

@@ -13,7 +13,7 @@ export default {
   tags: ["pillar", "the-resonant-key"],
 
   // === Header Glyph Row ===
-  glyphRow: ["🎧", "🔊", "🌌"],
+  glyphRow: ["🜁", "🜔", "🜕"],
 
   // === Breadcrumb Trail ===
   breadcrumbs: [

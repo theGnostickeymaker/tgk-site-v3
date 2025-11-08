@@ -14,7 +14,7 @@ export default {
   tags: ["pillar", "tgk-community"],
 
   // === Header Glyph Row ===
-  glyphRow: ["💬", "📚", "🎥"],
+  glyphRow: ["🜍", "🕊", "☊"],
 
   // === Breadcrumb Trail ===
   breadcrumbs: [

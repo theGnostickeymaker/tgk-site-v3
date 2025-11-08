@@ -772,7 +772,7 @@ socialImages:
 
   <p>Both teach that <strong>death is not an end</strong>. It is a proving ground, a mirror, a gate. And the one who passes is not the ego or the mind. It is the <strong>truthful essence</strong> within, called Ren, Akh, or Spark.</p>
 
-  <p>The Archons of the Gnostics, like the Gatekeepers of the Du&rdquo;st, test the soul. They tempt it with fear, illusion, and false light. But the one who <strong>knows their Name</strong>, who speaks with coherence, cannot be detained.</p>
+  <p>The Archons of the Gnostics, like the Gatekeepers of the Du&rsquo;st, test the soul. They tempt it with fear, illusion, and false light. But the one who <strong>knows their Name</strong>, who speaks with coherence, cannot be detained.</p>
 
   <p>Whether crossing the Bardo, the Astral Threshold, or the Field of Reeds, the Gnostic path and the Egyptian path converge on this:  
   <strong>You are not saved. You are revealed.</strong></p>
