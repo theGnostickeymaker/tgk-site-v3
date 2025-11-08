@@ -1,9 +1,7 @@
 /* ===========================================================
-   🜂 TGK — Drawer Navigation Controller (v3.0)
-   Handles floating hamburger, overlay, ESC closing,
-   and safe reset after hot reload.
+   🜂 TGK — Drawer Navigation Controller (v3.1)
+   Adds dynamic auth-aware link toggling for membership items
    =========================================================== */
-
 (function () {
   const $ = (id) => document.getElementById(id);
 
@@ -19,10 +17,9 @@
       return;
     }
 
-    // --- Ensure clean start (no stuck menus after reload) ---
+    /* --- Ensure clean start (no stuck menus after reload) --- */
     closeDrawer({ silent: true });
 
-    // === Core helpers ===
     const isOpen = () => drawer.classList.contains('open');
 
     function sync(expanded) {
@@ -37,7 +34,6 @@
       toggles.forEach((btn) => (btn.textContent = expanded ? '✕' : '☰'));
     }
 
-    // === Actions ===
     function openDrawer() {
       drawer.hidden = false;
       drawer.classList.add('open');
@@ -64,7 +60,6 @@
       if (!opts.silent) setIcon(false);
     }
 
-    // === Bindings ===
     toggles.forEach((btn) =>
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -84,10 +79,50 @@
       if (el) closeDrawer();
     });
 
+    /* ===========================================================
+       🜂 Auth-aware menu visibility
+       =========================================================== */
+    try {
+      import("https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js")
+        .then(({ getAuth, onAuthStateChanged, signOut }) => {
+          import("/js/firebase-init.js").then(({ app }) => {
+            const auth = getAuth(app);
+            const showAuthTrue  = drawer.querySelectorAll('[data-auth="true"]');
+            const showAuthFalse = drawer.querySelectorAll('[data-auth="false"]');
+            const signOutBtn    = drawer.querySelector('.nav-signout');
+
+            onAuthStateChanged(auth, (user) => {
+              if (user) {
+                showAuthTrue.forEach(el => el.hidden = false);
+                showAuthFalse.forEach(el => el.hidden = true);
+              } else {
+                showAuthTrue.forEach(el => el.hidden = true);
+                showAuthFalse.forEach(el => el.hidden = false);
+              }
+            });
+
+            if (signOutBtn) {
+              signOutBtn.addEventListener('click', async () => {
+                try {
+                  await signOut(auth);
+                  localStorage.clear();
+                  sessionStorage.clear();
+                  window.location.href = "/signin/";
+                } catch (err) {
+                  console.error("[TGK] Sign-out error:", err);
+                  alert("Error signing out: " + err.message);
+                }
+              });
+            }
+          });
+        });
+    } catch (err) {
+      console.error("[TGK] nav-auth integration failed:", err);
+    }
+
     console.info('[TGK] nav: ready');
   }
 
-  // === Auto-init when DOM ready ===
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
