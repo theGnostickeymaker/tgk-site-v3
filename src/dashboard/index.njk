@@ -34,7 +34,7 @@ breadcrumbs:
     <section class="section-block">
       <h3 class="section-heading">Membership & Billing</h3>
       <div class="btn-wrap">
-        <a href="/membership/" class="btn gold">View / Manage Membership</a>
+        <a href="/membership/" class="btn outline">View / Manage Membership</a>
       </div>
       <p class="small">
         Upgrade, join, or manage your billing anytime in your membership centre.
@@ -42,22 +42,32 @@ breadcrumbs:
     </div>
   </section>
 
-    <!-- ✦ Profile Information -->
-    <section class="section-block">
-    <h3 class="section-heading">Profile Information</h3>
-    <form id="profile-form" class="form-block">
-      <label for="profile-name">Display Name</label>
-      <input type="text" id="profile-name" placeholder="Your name" />
+  <!-- ✦ Profile Information -->
+  <section class="section-block auth-form">
+    <h2 class="section-heading">Profile Information</h2>
+    <p class="lead muted">Update your display name or review your account details below.</p>
 
-      <label for="profile-email">Email</label>
-      <input type="email" id="profile-email" placeholder="Your email" disabled />
+    <form id="profile-form" class="tgk-form" autocomplete="off" novalidate>
+      <div class="form-group">
+        <label for="profile-name">Display Name</label>
+        <input type="text" id="profile-name" placeholder="Your display name" required />
+      </div>
 
-      <div class="btn-wrap">
-        <button type="submit" class="btn outline">Save Changes</button>
+      <div class="form-group">
+        <label for="profile-email">Email Address</label>
+        <input type="email" id="profile-email" placeholder="your@email.com" disabled />
+      </div>
+
+      <div class="btn-wrap center">
+        <button type="submit" class="btn outline full-width">Save Changes</button>
         <span id="profile-status" class="small muted"></span>
       </div>
     </form>
-    </section>
+
+    <p class="auth-note">
+      Having trouble? <a href="/password-reset/">Reset your password</a> or <a href="/signin/">sign out</a> to switch accounts.
+    </p>
+  </section>
 
     <!-- ✦ Activity Widgets (optional hidden) -->
     <section hidden>

@@ -1,71 +1,187 @@
-/* ===========================================================
-   TGK Auth Gateway Styling — Ceremonial Unified Theme
+@layer components {
+
+  /* ===========================================================
+     TGK Form System — Gnostic Card Variant
+     Matches .gnostic-card tone & behaviour
+     =========================================================== */
+
+  /* Glyph Pulse */
+  .auth-glyph-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+  }
+
+  .auth-glyph {
+    font-size: 3rem;
+    color: var(--glyph-color);
+    opacity: 0.9;
+    text-shadow: 0 0 8px var(--shadow-glow);
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%,100% { opacity: 0.8; text-shadow: 0 0 6px var(--shadow-glow); }
+    50% { opacity: 1; text-shadow: 0 0 14px var(--highlight); }
+  }
+
+  /* ===========================================================
+     Base Form Block (styled like gnostic-card)
+     =========================================================== */
+  .tgk-form,
+  .profile-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 460px;
+    margin: 0 auto;
+    padding: var(--space-xl);
+    background: var(--card-gradient, linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.1)));
+    border: 1px solid var(--section-border, rgba(255,255,255,0.1));
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+
+  .tgk-form:hover,
+  .profile-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(0,0,0,.12);
+    border-color: var(--highlight);
+  }
+
+  /* ===========================================================
+   Inputs (card-body style, improved spacing & rhythm)
    =========================================================== */
-
-.auth-glyph-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.auth-glyph {
-  font-size: 3.2rem;
-  opacity: 0.85;
-  color: var(--gold);
-  text-shadow: 0 0 12px rgba(191,168,101,0.35);
-  animation: pulseGlow 3.5s ease-in-out infinite;
-}
-
-@keyframes pulseGlow {
-  0%, 100% { text-shadow: 0 0 6px rgba(191,168,101,0.25); opacity: 0.75; }
-  50% { text-shadow: 0 0 20px rgba(191,168,101,0.6); opacity: 1; }
-}
-
-/* Shared form block (already similar to your TGK layout) */
-.tgk-form {
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  max-width: 420px;
-  margin: 0 auto;
-  padding: var(--space-lg);
-  border-radius: var(--border-radius-base);
-  background: rgba(255,255,255,0.04);
-  box-shadow: 0 0 18px rgba(0,0,0,0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.08);
+  gap: 0.4rem;                     /* consistent gap between label and field */
+  margin-bottom: var(--space-md);  /* breathing space between form groups */
 }
 
 .form-group label {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-accent);
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.2rem;
+  text-align: left;
 }
 
 .form-group input {
-  padding: 0.6rem 0.8rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--section-border);
   border-radius: var(--border-radius-sm);
-  background: rgba(255,255,255,0.08);
+  background: color-mix(in srgb, var(--bg-primary) 95%, var(--highlight) 5%);
   color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  line-height: 1.5;
 }
 
 .form-group input:focus {
-  border-color: var(--gold);
+  border-color: var(--highlight);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(191,168,101,0.35);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--highlight) 25%, transparent);
+  background: color-mix(in srgb, var(--bg-primary) 90%, var(--highlight) 10%);
 }
 
-.auth-note {
-  text-align: center;
-  margin-top: var(--space-md);
-  font-size: 0.9rem;
-}
 
-.auth-feedback {
-  text-align: center;
-  margin-top: var(--space-md);
-  font-size: 0.9rem;
-  color: var(--text-accent);
+  /* ===========================================================
+     Floating Fields (borrowed from card-title flow)
+     =========================================================== */
+  .floating-field {
+    position: relative;
+    width: 100%;
+  }
+
+  .floating-field input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--section-border);
+    color: var(--text-primary);
+    font-size: 1rem;
+    padding: 0.8rem 0.5rem 0.4rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .floating-field input:focus {
+    border-color: var(--highlight);
+    box-shadow: 0 3px 8px var(--shadow-glow);
+  }
+
+  .floating-field label {
+    position: absolute;
+    top: 0.9rem;
+    left: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-accent);
+    pointer-events: none;
+    transition: all 0.25s ease;
+  }
+
+  .floating-field input:focus + label,
+  .floating-field input:not(:placeholder-shown) + label {
+    top: -0.3rem;
+    left: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--highlight);
+    background: var(--card-bg);
+    padding: 0 0.25rem;
+    border-radius: 4px;
+  }
+
+  /* ===========================================================
+     Buttons (matches gnostic-card hover rhythm)
+     =========================================================== */
+  .btn.outline {
+    display: inline-block;
+    padding: 0.85rem 1.6rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--highlight);
+    color: var(--highlight);
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+
+  .btn.outline:hover,
+  .btn.outline:focus-visible {
+    background: var(--highlight);
+    color: var(--bg-primary);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn.outline:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  /* ===========================================================
+     Form Footer / Helper Text
+     =========================================================== */
+  .auth-note,
+  .form-hint {
+    text-align: center;
+    color: var(--text-accent);
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+
+  .auth-note a {
+    color: var(--highlight);
+    font-weight: 500;
+  }
+
+  .auth-note a:hover {
+    text-decoration: underline;
+  }
 }
