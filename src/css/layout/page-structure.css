@@ -275,4 +275,17 @@
     border-radius: 0.5rem;
     z-index: 9999;
   }
+  .legal-library {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.legal-library .section-subheading {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  color: var(--highlight);
+}
+
 }
