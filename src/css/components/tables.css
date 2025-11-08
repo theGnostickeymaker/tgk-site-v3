@@ -1,15 +1,16 @@
 @layer components {
   /* ===================================================
      🧾 Gnostic Data Tables – Comparative Layout
-     Version: 1.1 – Tokenised & Accessible
+     Version: 1.2 – Fixed Dark Mode Contrast
      =================================================== */
+
   .gnostic-table-responsive {
     overflow-x: auto;
     margin: var(--space-lg) 0;
     border: 1px solid var(--section-border);
     border-radius: var(--border-radius-base);
     box-shadow: 0 0 12px var(--shadow-glow);
-    background: var(--bg-primary);
+    background: var(--bg-surface, var(--bg-primary));
   }
 
   .gnostic-table {
@@ -21,9 +22,11 @@
     line-height: 1.6;
   }
 
-  /* Header row */
+  /* ---------------------------
+     Header Row
+  --------------------------- */
   .gnostic-table thead {
-    background: var(--section-bg-top, var(--bg-secondary));
+    background: var(--table-head-bg, rgba(255, 220, 140, 0.12));
     color: var(--text-accent);
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -44,13 +47,44 @@
     font-weight: 700;
   }
 
-  /* Zebra striping for rows */
+  /* ---------------------------
+     Row Alternation + Highlight
+  --------------------------- */
   .gnostic-table tbody tr:nth-child(odd) {
-    background: var(--surface-alt, rgba(0,0,0,0.02));
+    background: var(--table-row-odd, rgba(255, 255, 255, 0.05));
+  }
+
+  .gnostic-table tbody tr:nth-child(even) {
+    background: var(--table-row-even, transparent);
   }
 
   .gnostic-table tbody tr:hover {
-    background: var(--highlight, rgba(255,255,200,0.08));
+    background: var(--highlight, rgba(255, 235, 150, 0.1));
     transition: background 0.2s ease;
+  }
+
+  /* ---------------------------
+     Dark Mode Overrides
+  --------------------------- */
+  html[data-theme="dark"] .gnostic-table {
+    color: var(--text-primary-dark, #f5f2e9);
+  }
+
+  html[data-theme="dark"] .gnostic-table thead {
+    background: var(--table-head-bg-dark, rgba(255, 220, 140, 0.15));
+    color: var(--text-accent-dark, #ffde8a);
+    border-bottom: 2px solid var(--text-accent-dark, #ffde8a);
+  }
+
+  html[data-theme="dark"] .gnostic-table tbody tr:nth-child(odd) {
+    background: var(--table-row-odd-dark, rgba(255, 255, 255, 0.06));
+  }
+
+  html[data-theme="dark"] .gnostic-table tbody tr:nth-child(even) {
+    background: var(--table-row-even-dark, rgba(255, 255, 255, 0.02));
+  }
+
+  html[data-theme="dark"] .gnostic-table tbody tr:hover {
+    background: var(--highlight-dark, rgba(255, 235, 150, 0.18));
   }
 }
