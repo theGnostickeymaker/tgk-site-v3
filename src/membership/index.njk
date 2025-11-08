@@ -24,35 +24,29 @@ breadcrumbs:
 <main class="main-content page-membership">
   <section class="content-container" id="page-membership">
 
-    <!-- ✦ Welcome -->
+    <!-- ✦ Current Tier Summary -->
     <div class="tier-display inline">
       <span>Your current tier:</span>
       <span id="tier-badge" class="tier-badge tier-free">Free</span>
-      <span class="tier-divider"></span>
-      <span class="member-since muted"> <span id="member-since">—</span></span>
+      <span class="tier-divider">☉</span>
+      <span class="member-since muted">
+        Member since <span id="member-since">—</span>
+      </span>
     </div>
 
     <!-- ✦ Membership & Billing -->
     <section class="section-block">
-    <h3 class="section-heading">Membership & Billing</h3>
-    <div class="btn-wrap membership-buttons">
-      <button
-        id="upgrade-btn"
-        class="btn outline"
-        data-price="price_INITIATE_ID">
-        Upgrade / Join via Stripe
-      </button>
-
-      <button id="manage-btn" class="btn outline">
-        Manage Billing Portal
-      </button>
-    </div>
-    <p class="small">
-      You can upgrade, downgrade, or cancel your plan at any time through the secure Stripe portal.
-    </p>
+      <h3 class="section-heading">Membership & Billing</h3>
+      <div class="btn-wrap membership-buttons center">
+        <button id="manage-btn" class="btn gold">Open Billing Portal</button>
+      </div>
+      <p class="small muted">
+        Manage your payment methods, view invoices, or cancel your plan anytime
+        through Stripe’s secure customer portal.
+      </p>
     </section>
 
-    <!-- ✦ Join Section (for visitors or free users) -->
+    <!-- ✦ Join Options -->
     <section class="section-block join-options">
       <h3 class="section-heading">Choose Your Path</h3>
       <p class="lead">
@@ -60,7 +54,6 @@ breadcrumbs:
         Choose your tier of membership to unlock deeper archives,<br>
         support future pages, and join our growing circle of initiates.
       </p>
-
       {% include "partials/page-membership-grid.njk" %}
     </section>
 
@@ -85,7 +78,6 @@ breadcrumbs:
     <section class="section-block">
       <h3 class="section-heading">Sign Out</h3>
       <p class="small">You can securely sign out of your TGK account below.</p>
-
       <div class="btn-wrap center">
         <button id="logout-btn" class="btn outline">Sign Out</button>
       </div>
@@ -101,7 +93,12 @@ breadcrumbs:
 <!-- 🜂 Unified Membership Logic -->
 <script type="module">
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-  import { loadDashboardHeader, pageSignout, updateTierUI, refreshEntitlementsLive } from "/js/tgk-user.js";
+  import {
+    loadDashboardHeader,
+    pageSignout,
+    updateTierUI,
+    refreshEntitlementsLive
+  } from "/js/tgk-user.js";
 
   const auth = getAuth();
 
@@ -117,64 +114,36 @@ breadcrumbs:
       } else {
         updateTierUI("visitor");
         window.__TGK_GATE__?.saveReturnUrl?.();
-        if (!location.pathname.includes("/signin")) {
-          window.location.replace("/signin/");
-        }
+        if (!location.pathname.includes("/signin")) window.location.replace("/signin/");
       }
     });
   });
 
-  // 🜂 Upgrade Button
-  import { getAuth as getAuth2 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-  const auth2 = getAuth2();
-  const upgradeBtn = document.getElementById("upgrade-btn");
-  if (upgradeBtn) {
-    upgradeBtn.addEventListener("click", async () => {
-      const user = auth2.currentUser;
-      if (!user) {
-        alert("Please sign in before upgrading.");
-        window.location.href = "/signin/";
-        return;
-      }
-      try {
-        const token = await user.getIdToken();
-        const priceId = upgradeBtn.dataset.price;
-        const res = await fetch("/.netlify/functions/create-checkout-session", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            priceId,
-            uid: user.uid,
-            email: user.email,
-            returnUrl: window.location.origin + "/membership/"
-          })
-        });
-        const data = await res.json();
-        if (!res.ok || !data.sessionId) throw new Error(data.error || "Stripe session error");
-        const stripe = Stripe(window.STRIPE_PUBLISHABLE_KEY);
-        await stripe.redirectToCheckout({ sessionId: data.sessionId });
-      } catch (err) {
-        console.error("[TGK] Upgrade error:", err);
-        alert("Could not start checkout: " + err.message);
-      }
-    });
-  }
-
   // 🜂 Manage Billing Portal
   const manageBtn = document.getElementById("manage-btn");
-  if (manageBtn) {
-    manageBtn.addEventListener("click", async () => {
-      const user = auth2.currentUser;
-      if (!user) return alert("Please sign in to manage billing.");
+  manageBtn?.addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (!user) return alert("Please sign in to manage billing.");
+
+    try {
       const token = await user.getIdToken();
       const res = await fetch("/.netlify/functions/create-portal-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, email: user.email })
       });
+
       const data = await res.json();
-      if (res.ok && data.url) window.location.href = data.url;
-      else alert("Could not open billing portal.");
-    });
-  }
+      if (res.ok && data.url) {
+        console.log("[TGK] Redirecting to Stripe Portal");
+        window.location.href = data.url;
+      } else {
+        console.warn("[TGK] Portal error:", data);
+        alert("Could not open billing portal. Please try again.");
+      }
+    } catch (err) {
+      console.error("[TGK] Portal session error:", err);
+      alert("Error opening billing portal.");
+    }
+  });
 </script>
