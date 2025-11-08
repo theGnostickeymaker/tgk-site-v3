@@ -11,6 +11,7 @@ permalink: "/logout/index.html"
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
+<body>
 <main class="main-content center">
   <section class="content-container">
     <h2>Signing you out...</h2>
@@ -19,13 +20,15 @@ permalink: "/logout/index.html"
 </main>
 
 <script type="module">
+import { app } from "/js/firebase-init.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const auth = getAuth(app);
 
 (async () => {
   try {
-    console.log("[TGK] Executing logout script...");
+    console.log("[TGK] Executing logout script…");
+
     await signOut(auth);
 
     // 🔹 Clear local and session data
@@ -45,3 +48,4 @@ const auth = getAuth(app);
   }
 })();
 </script>
+</body>

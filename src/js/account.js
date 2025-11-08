@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (profileForm) profileForm.addEventListener("submit", saveProfile);
   if (resetBtn) resetBtn.addEventListener("click", () => pageReset(auth.currentUser.email));
-  if (logoutBtn) logoutBtn.addEventListener("click", pageSignout);
+  if (logoutBtn) logoutbtn.addEventListener("click", () => window.location.href = "/logout/");
   if (manageBtn) manageBtn.addEventListener("click", openStripePortal);
 });
 

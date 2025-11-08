@@ -80,7 +80,7 @@ breadcrumbs:
       if (user) {
         await loadDashboardHeader(user);
         const btn = document.getElementById("logout-btn");
-        if (btn) btn.addEventListener("click", pageSignout);
+        if (btn) btn.addEventListener("click", () => window.location.href = "/logout/");
       } else {
         updateTierUI("visitor");
         window.__TGK_GATE__?.saveReturnUrl?.();
