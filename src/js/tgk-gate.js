@@ -67,6 +67,7 @@ function initGate() {
 
       // Fallback to localStorage if claims missing
       const userTier = claims.tier || localStorage.getItem("tgk-tier") || "free";
+      if (claims.tier) localStorage.setItem("tgk-tier", claims.tier);
       console.log("[Gate] User tier:", userTier);
 
       const rank = tierRank[userTier] ?? 0;

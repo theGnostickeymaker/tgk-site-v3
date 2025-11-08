@@ -213,6 +213,11 @@ export default function (eleventyConfig) {
     }
   });
 
+    /* =========================
+     8) Environment passthrough
+  ========================= */
+  eleventyConfig.addGlobalData("env", process.env);
+
   /* =========================
      8) Return
   ========================= */

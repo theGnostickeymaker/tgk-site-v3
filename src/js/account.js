@@ -57,28 +57,35 @@ async function refreshEntitlement(user) {
     const body = {
       token,
       uid: user.uid,
-      email: user.email
+      email: user.email,
     };
 
     const res = await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     const data = await res.json();
     console.log("[TGK] Entitlement refresh result:", data);
 
     if (res.ok && data.tier) {
+      // 1) persist locally
       localStorage.setItem("tgk-tier", data.tier);
-      if (tierEl) tierEl.textContent = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
-      alert(`Your membership has been updated to ${data.tier}.`);
+      // 2) force-refresh claims
+      await user.getIdToken(true);
+      // 3) update visible UI (badge + text)
+      const tierText = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
+      if (tierEl) tierEl.textContent = tierText;
+      // optional: also nudge the global badge
+      import("./tgk-user.js").then((m) => m.updateTierUI?.(data.tier));
+      alert(`Your membership has been updated to ${tierText}.`);
     } else {
       console.warn("[TGK] Unexpected entitlement response:", data);
       if (tierEl) tierEl.textContent = "Free";
     }
   } catch (err) {
-    console.error("[TGK] Entitlement sync error:", err);
+    console.error("[TGK] Entitlement refresh error:", err);
     if (tierEl) tierEl.textContent = "Error";
   }
 }
@@ -95,7 +102,7 @@ async function openStripePortal() {
     const res = await fetch("/.netlify/functions/create-portal-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token, email: user.email })
+      body: JSON.stringify({ token, email: user.email }),
     });
 
     const data = await res.json();

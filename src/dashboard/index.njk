@@ -66,35 +66,28 @@ breadcrumbs:
 
 <!-- 🜂 Dashboard Page Logic -->
 <script type="module" src="/js/dashboard.js?v={{ bust }}"></script>
-
 <script type="module">
   import { loadDashboardHeader, pageSignout, updateTierUI } from "/js/tgk-user.js";
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
   const auth = getAuth();
 
-  // Wait for Firebase auth to resolve before showing any tier
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      // Logged in → populate header and tier info
-      await loadDashboardHeader(user);
-      document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
-    } else {
-      // Not logged in → show visitor badge then redirect
-      updateTierUI("visitor");
-      window.__TGK_GATE__?.saveReturnUrl?.();
-      if (!location.pathname.includes("/signin")) {
-        window.location.replace("/signin/");
-      }
-    }
-  });
-
-  // Only apply cached tier if Firebase hasn’t loaded yet
   document.addEventListener("DOMContentLoaded", () => {
-    const cachedTier = localStorage.getItem("tgk-tier");
-    if (cachedTier) updateTierUI(cachedTier);
+    const cached = localStorage.getItem("tgk-tier");
+    if (cached) updateTierUI(cached);
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await loadDashboardHeader(user);
+        const btn = document.getElementById("logout-btn");
+        if (btn) btn.addEventListener("click", pageSignout);
+      } else {
+        updateTierUI("visitor");
+        window.__TGK_GATE__?.saveReturnUrl?.();
+        if (!location.pathname.includes("/signin")) window.location.replace("/signin/");
+      }
+    });
   });
 </script>
-
 
 </body>
