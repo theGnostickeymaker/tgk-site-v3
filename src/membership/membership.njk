@@ -18,16 +18,20 @@ breadcrumbs:
   {% set headline = "Membership — The Gnostic Key" %}
   {% set base = "/membership/" %}
   {% include "partials/jsonld-collection.njk" %}
+
+  <!-- Firebase + Membership Logic -->
+  <script type="module" src="/js/membership.js?v={{ bust }}"></script>
 {% endblock %}
 
+<body>
 <main class="main-content page-membership">
   <section class="content-container">
 
     <section class="section-block">
       <h2 class="section-heading">Choose Your Path</h2>
       <p class="lead">
-        The Gnostic Key is sustained by seekers like you.  
-        Choose your tier of membership to unlock deeper archives,  
+        The Gnostic Key is sustained by seekers like you.<br>
+        Choose your tier of membership to unlock deeper archives,<br>
         support future pages, and join our growing circle of initiates.
       </p>
 
@@ -44,15 +48,55 @@ breadcrumbs:
         <summary>Do I need an account to access free pages?</summary>
         <p>No — free-tier pages are open to all visitors, but an account allows you to save bookmarks and join discussions.</p>
       </details>
+      <details>
+        <summary>How secure is my payment?</summary>
+        <p>All payments are handled via Stripe — TGK never stores your card details or sensitive financial data.</p>
+      </details>
     </section>
 
     <section class="section-block cta">
       <p>Already a member?</p>
       <a href="/signin/" class="btn outline">Sign In</a>
     </section>
+
   </section>
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
   </div>
 </main>
+
+  <!-- 🜂 Account Page Logic -->
+<script type="module" src="/js/account.js?v={{ bust }}"></script>
+
+<script type="module">
+  import { loadDashboardHeader, pageSignout, updateTierUI } from "/js/tgk-user.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      // Logged in → populate header and tier info
+      await loadDashboardHeader(user);
+      document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
+    } else {
+      // Not logged in → set visitor badge + redirect
+      updateTierUI("visitor");
+      window.__TGK_GATE__?.saveReturnUrl?.();
+
+      if (!location.pathname.includes("/signin")) {
+        window.location.replace("/signin/");
+      }
+    }
+  });
+
+  // Apply cached tier immediately on load (for instant UI state)
+  document.addEventListener("DOMContentLoaded", () => {
+    const cachedTier = localStorage.getItem("tgk-tier") || "visitor";
+    updateTierUI(cachedTier);
+  });
+</script>
+</body>
+
+

@@ -28,6 +28,7 @@ breadcrumbs:
     <!-- ✦ Welcome + Tier -->
     <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
     <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
+    <span id="tier-badge" class="tier-badge tier-free">Free</span>
 
     <div class="btn-wrap">
       <a href="/account/" class="btn outline">Manage Account</a>
@@ -64,27 +65,38 @@ breadcrumbs:
 </main>
 
 <!-- 🜂 Dashboard Page Logic -->
-<script type="module" src="/js/dashboard.js"></script>
+<script type="module" src="/js/dashboard.js?v={{ bust }}"></script>
 
-<!-- Bookmark engine -->
-<script type="module" src="/js/bookmarks.js"></script>
+<!-- 🜂 Account Page Logic -->
+<script type="module" src="/js/account.js?v={{ bust }}"></script>
 
 <script type="module">
-  import { loadDashboardHeader, pageSignout } from "/js/tgk-user.js";
+  import { loadDashboardHeader, pageSignout, updateTierUI } from "/js/tgk-user.js";
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
   const auth = getAuth();
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
+      // Logged in → populate header and tier info
       await loadDashboardHeader(user);
       document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
     } else {
-      // Only redirect if not already on signin
+      // Not logged in → set visitor badge + redirect
+      updateTierUI("visitor");
+      window.__TGK_GATE__?.saveReturnUrl?.();
+
       if (!location.pathname.includes("/signin")) {
-        window.__TGK_GATE__.saveReturnUrl();
         window.location.replace("/signin/");
       }
     }
   });
+
+  // Apply cached tier immediately on load (for instant UI state)
+  document.addEventListener("DOMContentLoaded", () => {
+    const cachedTier = localStorage.getItem("tgk-tier") || "visitor";
+    updateTierUI(cachedTier);
+  });
 </script>
+
 </body>

@@ -1,0 +1,46 @@
+/* ===========================================================
+   TGK — Tier Badges
+   =========================================================== */
+
+.tier-badge {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 0.5rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Free (default) */
+.tier-free {
+  background: var(--grey-600, #7a7a7a);
+  color: #fff;
+}
+
+/* Initiate (gold) */
+.tier-initiate {
+  background: var(--gold, #c2a85a);
+  color: #111;
+}
+
+/* Adept (obsidian) */
+.tier-adept {
+  background: var(--obsidian, #111);
+  color: var(--gold, #c2a85a);
+  border: 1px solid var(--gold, #c2a85a);
+}
+
+/* Admin (crimson or royal blue highlight) */
+.tier-admin {
+  background: var(--crimson, #b91c1c);
+  color: #fff;
+}
+
+/* Visitor (neutral slate) */
+.tier-visitor {
+  background: var(--slate-500, #4b5563);
+  color: #eee;
+}
