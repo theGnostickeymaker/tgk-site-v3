@@ -65,29 +65,40 @@ window.pageSignin = async (email, password) => {
 
 // === pageSignup ===
 window.pageSignup = async (email, password) => {
+  let lock = false;
+  if (lock) return;
+  lock = true;
+
   try {
-    const res = await fetch("/.netlify/functions/signup-checkout", {
+    const res = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: normalizeEmail(email), password })
     });
 
-    if (!res.ok) throw new Error((await res.json()).error);
+    if (!res.ok) throw new Error((await res.json()).error || "Signup failed");
 
-    const { uid, customerId } = await res.json();
+    const { customerId } = await res.json();
     const cred = await signInWithEmailAndPassword(auth, normalizeEmail(email), password);
+    const user = cred.user;
 
-    // Sync entitlements
+    // Sync entitlements after signup
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
-      body: JSON.stringify({ uid: cred.user.uid, customerId, email: normalizeEmail(email) })
+      body: JSON.stringify({ uid: user.uid, customerId, email: normalizeEmail(email) })
     });
+
+    // Refresh token + store tier
+    await user.getIdToken(true);
+    localStorage.setItem("tgk-tier", "initiate"); // default for new users
 
     alert("Welcome!");
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
   } catch (err) {
     alert("Signup failed: " + err.message);
+  } finally {
+    lock = false;
   }
 };
 

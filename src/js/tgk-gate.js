@@ -1,5 +1,5 @@
 /* ===========================================================
-   TGK — Unified Gate v3.8 — FINAL (CLICK + UNLOCK + CLAIMS)
+   TGK — Unified Gate v3.7 — FINAL (CLICK + UNLOCK + CLAIMS)
    =========================================================== */
 
 import { app } from "/js/firebase-init.js";
@@ -65,16 +65,14 @@ function initGate() {
       const claims = idTokenResult.claims;
       console.log("[Gate] Claims:", claims);
 
-      // Normalize tier to lowercase
-      const rawTier = claims.tier || localStorage.getItem("tgk-tier") || "free";
-      const userTier = rawTier.toString().toLowerCase();
-      localStorage.setItem("tgk-tier", userTier); // persist
+      // Fallback to localStorage if claims missing
+      const userTier = claims.tier || localStorage.getItem("tgk-tier") || "free";
       console.log("[Gate] User tier:", userTier);
 
       const rank = tierRank[userTier] ?? 0;
 
       lockedBlocks.forEach(block => {
-        const reqTier = (block.dataset.requiredTier || "initiate").toLowerCase();
+        const reqTier = block.dataset.requiredTier || "initiate";
         const reqRank = tierRank[reqTier] ?? 1;
         console.log(`[Gate] Block requires: ${reqTier} (rank ${reqRank}), user has rank ${rank}`);
 
