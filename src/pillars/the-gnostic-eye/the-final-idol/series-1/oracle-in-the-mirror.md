@@ -85,6 +85,7 @@ breadcrumbs:
   - { title: "The Final Idol", url: "/pillars/the-gnostic-eye/the-final-idol/" }
   - { title: "Part III" }
 
+# 🔗 Auto-injected navigation (v4.2 - corrected permalinks)
 episodeParts:
   - title: "Part I — The Final Idol"
     desc: "The Image as God — the birth of synthetic belief."

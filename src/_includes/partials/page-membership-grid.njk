@@ -1,84 +1,83 @@
 {# =========================================================
-   🜂 TGK — Membership Tier Grid (v1.2)
-   Purpose:
-   Unified grid for TGK membership tiers, aligned with portal layout.
-   Stripe-ready via data-price attributes for checkout integration.
+   TGK — Membership Tier Grid (v1.4) — FINAL
+   Stripe-ready via data-tier + checkout-btn
+   Case-insensitive, Firebase-ready, return-url aware
    ========================================================= #}
-
 <section class="membership-grid">
   <div class="portal-grid">
 
-    {# ✦ Free Tier #}
-    <article class="gnostic-card tier-free">
+    {# Free Tier #}
+    <article class="gnostic-card tier-free" data-tier="free">
       <div class="card-body">
-        <div class="card-glyph" aria-hidden="true">✦</div>
+        <div class="card-glyph" aria-hidden="true">Star</div>
         <h3 class="card-title">Free Seeker</h3>
         <p class="card-desc">
           Begin your path at no cost — access the first three pages of every series,
           explore open Vault texts, and join the TGK community as a silent observer.
         </p>
-
         <ul class="card-list">
           <li>First three pages unlocked</li>
           <li>Public Vault access</li>
           <li>Community (read-only)</li>
         </ul>
-
-        <button class="btn outline full-width" disabled aria-disabled="true">
+        <button class="btn outline full-width" disabled>
           Already Unlocked
         </button>
       </div>
     </article>
 
-    {# ☥ Initiate Tier #}
-    <article class="gnostic-card tier-initiate">
+    {# Initiate Tier #}
+    <article class="gnostic-card tier-initiate" data-tier="initiate">
       <div class="card-body">
-        <div class="card-glyph" aria-hidden="true">☥</div>
+        <div class="card-glyph" aria-hidden="true">Ankh</div>
         <h3 class="card-title">Initiate</h3>
         <p class="card-desc">
           Deepen your initiation and open the full first series of every pillar —
           with access to member discussions, rituals, and community gatherings.
         </p>
-
         <ul class="card-list">
           <li>Full Series I access (all pillars)</li>
           <li>Forum participation</li>
           <li>Community events</li>
         </ul>
-
         <button
           class="btn gold full-width checkout-btn"
-          data-price="price_initiate_monthly">
+          data-price-id="{{ env.PRICE_INITIATE_MONTHLY }}">
           Join — £5 / month
         </button>
+        <p class="small yearly">
+          or <a href="#" class="checkout-btn" data-price-id="{{ env.PRICE_INITIATE_YEARLY }}">£50 / year</a>
+        </p>
       </div>
     </article>
 
-    {# 🜏 Adept Tier #}
-    <article class="gnostic-card tier-adept">
+    {# Adept Tier #}
+    <article class="gnostic-card tier-adept" data-tier="adept">
       <div class="card-body">
-        <div class="card-glyph" aria-hidden="true">🜏</div>
+        <div class="card-glyph" aria-hidden="true">Alchemical Symbol</div>
         <h3 class="card-title">Adept</h3>
         <p class="card-desc">
           Enter the inner circle — every page unlocked, premium Vault archives,
           Resonant Key media, early shop access, and exclusive Adept gatherings.
         </p>
-
         <ul class="card-list">
           <li>All pages unlocked</li>
           <li>Premium Vault archives</li>
           <li>Event priority & shop discounts</li>
         </ul>
-
         <button
           class="btn obsidian full-width checkout-btn"
-          data-price="price_adept_monthly">
+          data-price-id="{{ env.PRICE_ADEPT_MONTHLY }}">
           Ascend — £12 / month
         </button>
+        <p class="small yearly">
+          or <a href="#" class="checkout-btn" data-price-id="{{ env.PRICE_ADEPT_YEARLY }}">£120 / year</a>
+        </p>
       </div>
     </article>
 
   </div>
 </section>
 
-<script defer src="/js/membership.js"></script>
+<!-- Firebase + Membership Logic (in <head> of membership.njk) -->
+<!-- tgk-membership.js is loaded globally in head -->

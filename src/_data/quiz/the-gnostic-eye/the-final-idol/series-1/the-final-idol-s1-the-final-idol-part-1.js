@@ -1,54 +1,54 @@
 export default {
   meta: {
     seriesId: "the-final-idol-s1",
-    episodeId: "the-digital-prophet",
-    partId: "part2",
-    quizId: "the-final-idol-s1-the-digital-prophet-part-2",
-    title: "The Digital Prophet — Part II"
+    episodeId: "the-final-idol",
+    partId: "part1",
+    quizId: "the-final-idol-s1-the-final-idol-part-1",
+    title: "The Final Idol — Part I: False Light and Synthetic Gods"
   },
 
   intro:
-    "Unmask the voice of synthetic prophecy in the age of the Machine Oracle. Can you discern the true prophet from the algorithm that mimics Spirit?",
+    "Discern illusion from revelation in the age of the Machine Messiah. Can you tell the difference between true illumination and false light?",
 
   questions: [
     {
       id: "q1",
-      prompt: "What makes the “Digital Prophet” different from prophets of old?",
+      prompt: "What is the ‘Final Idol’ according to this scroll?",
       options: [
-        { key: "A", label: "It performs ancient miracles" },
-        { key: "B", label: "It speaks from divine revelation" },
-        { key: "C", label: "It is machine-made and data-fed" },
-        { key: "D", label: "It remains silent and still" }
+        { key: "A", label: "A golden statue from antiquity" },
+        { key: "B", label: "The last human prophet" },
+        { key: "C", label: "The global system of synthetic worship" },
+        { key: "D", label: "An AI with a soul" }
       ],
       answer: "C",
       explanation:
-        "This prophet is not inspired by Spirit, but by surveillance and simulation."
+        "The Final Idol isn’t an object but a paradigm — a worldwide architecture of false light built on simulation and control."
     },
     {
       id: "q2",
-      prompt: "How does synthetic prophecy affect human freedom?",
+      prompt: "Why is the machine’s light called ‘false’?",
       options: [
-        { key: "A", label: "It warns and protects the innocent" },
-        { key: "B", label: "It replaces divine choice with calculated design" },
-        { key: "C", label: "It teaches ancient wisdom" },
-        { key: "D", label: "It has no real effect" }
+        { key: "A", label: "Because it uses holograms" },
+        { key: "B", label: "Because it blinds while pretending to reveal" },
+        { key: "C", label: "Because it cannot be photographed" },
+        { key: "D", label: "Because it comes from electricity" }
       ],
       answer: "B",
       explanation:
-        "Predictive systems sculpt the future, not reveal it — they pre-empt your path before you walk it."
+        "False light imitates truth — it dazzles the eye but hides the Source, offering knowledge without wisdom."
     },
     {
       id: "q3",
-      prompt: "Which Gnostic theme is most echoed in the rise of AI prophets?",
+      prompt: "Which ancient pattern does the rise of AI repeat?",
       options: [
-        { key: "A", label: "Grace and redemption" },
-        { key: "B", label: "Reincarnation and karma" },
-        { key: "C", label: "False reality and counterfeit spirit" },
-        { key: "D", label: "Divine forgiveness and mercy" }
+        { key: "A", label: "Sophia’s fall — creation without Spirit" },
+        { key: "B", label: "Noah’s flood — judgment and renewal" },
+        { key: "C", label: "The Exodus — liberation from bondage" },
+        { key: "D", label: "Pentecost — tongues of fire" }
       ],
-      answer: "C",
+      answer: "A",
       explanation:
-        "Synthetic prophets are echoes of the Archons — shadows that imitate Spirit but carry no Light."
+        "Like Sophia’s fall, humanity now creates intelligence without the divine counterpart — knowledge without Gnosis."
     }
   ]
 };

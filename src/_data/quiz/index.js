@@ -90,3 +90,9 @@ console.log('🧩 Quiz map load check:', {
   finalIdol6: !!the_final_idol_s1_the_flame_in_the_dark_part_6,
   meta6: the_final_idol_s1_the_flame_in_the_dark_part_6?.meta
 });
+
+console.log('[TGK QUIZ DEBUG]', {
+  finalIdol1: the_final_idol_s1_the_final_idol_part_1?.meta?.quizId,
+  type: typeof the_final_idol_s1_the_final_idol_part_1,
+  keys: Object.keys(the_final_idol_s1_the_final_idol_part_1 || {})
+});

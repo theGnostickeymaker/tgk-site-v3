@@ -1,0 +1,90 @@
+---
+layout: base.njk
+title: "Your TGK Dashboard"
+description: "Your personal TGK space — access bookmarks, progress, and membership status."
+glyph: "🜂"
+glyphRow: ["🜂", "☥", "🜂"]
+bodyClass: "lightgold requires-auth"
+permalink: "/dashboard/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Dashboard" }
+  - { title: "Account", url: "/account/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/system/dashboard.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set headline = "Dashboard — The Gnostic Key" %}
+  {% set base = "/dashboard/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<body>
+<main class="main-content page-dashboard">
+  <section class="content-container" id="page-dashboard">
+
+    <!-- ✦ Welcome + Tier -->
+    <h2 class="section-heading">Welcome, <span id="user-name">Seeker</span></h2>
+    <p>Your current tier: <strong id="user-tier">Loading…</strong></p>
+
+    <div class="btn-wrap">
+      <a href="/account/" class="btn outline">Manage Account</a>
+      <button id="logout-btn" class="btn outline">Logout</button>
+    </div>
+
+    <!-- ✦ Activity Widgets (temporarily hidden) -->
+    <section hidden>
+      <h2 class="section-heading">Your Activity</h2>
+
+    <div class="dashboard-widgets">
+      <div id="widget-quiz-progress" class="widget-slot"></div>
+      <div id="widget-community-feed" class="widget-slot"></div>
+      <div id="widget-key-balance" class="widget-slot"></div>
+    </div>
+    </section>
+
+    <!-- ✦ Bookmarks -->
+      <h2 class="section-heading">Your Bookmarks</h2>
+      <div id="bookmark-dashboard">
+        <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
+        <div id="bookmark-grid-mount"></div>
+        <p id="no-bookmarks" class="muted small" hidden>
+          No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
+          the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
+        </p>
+      </div>
+
+  </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+  </div>
+</main>
+
+<!-- 🜂 Dashboard Page Logic -->
+<script type="module" src="/js/dashboard.js"></script>
+
+<!-- Bookmark engine -->
+<script type="module" src="/js/bookmarks.js"></script>
+
+<script type="module">
+  import { loadDashboardHeader, pageSignout } from "/js/tgk-user.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      await loadDashboardHeader(user);
+      document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
+    } else {
+      // Only redirect if not already on signin
+      if (!location.pathname.includes("/signin")) {
+        window.__TGK_GATE__.saveReturnUrl();
+        window.location.replace("/signin/");
+      }
+    }
+  });
+</script>
+</body>

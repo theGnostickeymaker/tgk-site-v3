@@ -5,3 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/logout"
+  to = "/signin/"
+  status = 302

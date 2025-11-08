@@ -4,12 +4,11 @@
 
 import "dotenv/config";
 import fs from "node:fs";
+import path from "node:path";
 import { DateTime } from "luxon";
 import pluginSitemap from "@quasibit/eleventy-plugin-sitemap";
 
-/** @param {import('@11ty/eleventy/src/UserConfig')} eleventyConfig */
 export default function (eleventyConfig) {
-
   /* =========================
      0) Core
   ========================= */
@@ -24,6 +23,23 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/media");
+  eleventyConfig.addPassthroughCopy({ "src/_data/quiz": "quiz" });
+
+  /* =========================
+     1.5) Quiz JSON Auto-Build  (synchronous, no await)
+  ========================= */
+  try {
+    const quizModulePath = path.resolve("./src/_data/quiz/index.js");
+    // eslint-disable-next-line global-require
+    const quizMap = require(quizModulePath);
+    const mapObj = quizMap.default || quizMap;
+
+    const outPath = "./src/_data/quiz/index.json";
+    fs.writeFileSync(outPath, JSON.stringify(mapObj, null, 2), "utf8");
+    console.log("🧩 TGK Quiz index.json regenerated");
+  } catch (err) {
+    console.warn("⚠️  TGK Quiz JSON generation skipped:", err.message);
+  }
 
   if (fs.existsSync("src/media/tgk-assets")) {
     eleventyConfig.addPassthroughCopy("src/media/tgk-assets");

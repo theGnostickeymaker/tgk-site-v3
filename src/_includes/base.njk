@@ -4,6 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="google-site-verification" content="PpZezOYNLiH56Kvo5_pPivFDl9hdKBhP62kvgpm0CZQ" />
+
   <title>{{ title or "The Gnostic Key" }}</title>
   {% if description %}<meta name="description" content="{{ description | safe }}">{% endif %}
   {% set bust = collections.all | length %}
@@ -85,7 +88,7 @@
 
   <!-- COMPONENTS -->
   <link rel="stylesheet" href="/css/components/blockquotes.css?v={{ bust }}">
-
+  <link rel="stylesheet" href="/css/components/dashboard-widgets.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/button-styles.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/card-styles.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/charts.css?v={{ bust }}">
@@ -96,6 +99,7 @@
   <link rel="stylesheet" href="/css/components/sources.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/vault-refs.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/components/tables.css?v={{ bust }}">
+  <link rel="stylesheet" href="/css/components/toast.css?v={{ bust }}">
 
   <!-- NAVIGATION -->
   <link rel="stylesheet" href="/css/navigation/nav-bar.css?v={{ bust }}">
@@ -134,7 +138,7 @@
           <h2>Locked page</h2>
           <p>This page is for <strong>{{ tier | capitalize }}</strong> members.</p>
           <p>
-            <a href="/signin/?next={{ permalink }}" class="btn">Sign in</a>
+            <button type="button" class="btn signin-btn">Sign In</button>
             or
             <a href="/membership/" class="btn">Upgrade</a>
           </p>
@@ -147,12 +151,6 @@
       {{ content | safe }}
     {% endif %}
   </main>
-
-  <!-- 🗝 Cookie-based gate (Netlify / Stripe session) -->
-  <script defer src="/js/gate.js?v={{ bust }}"></script>
-
-  <!-- 🔐 Firebase hybrid unlock (auth + claims) -->
-  <script type="module" defer src="/js/visibility-gates.js?v={{ bust }}"></script>
 
   {% include "partials/footer.njk" %}
 
@@ -197,9 +195,11 @@
     }
   </script>
 
-<script type="module" src="/js/bookmarks.js?v={{ bust }}"></script>
+  <!-- JS -->
 
-<script type="module" src="/js/page.js?v={{ bust }}"></script>
+  <script type="module" src="/js/bookmarks.js?v={{ bust }}"></script>
+  <!-- TGK Gate — MUST BE ON EVERY PAGE -->
+  <script type="module" src="/js/tgk-gate.js?v={{ bust }}" defer></script>
 
 </body>
 </html>

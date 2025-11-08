@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "eleventy --serve",
-    "build": "eleventy",
+    "build": "node ./scripts/build-quiz-json.js && npx @11ty/eleventy",
     "clean": "rm -rf _site .cache || rmdir /s /q _site .cache",
     "netlify-build": "eleventy",
     "scaffold": "node scripts/node/tgk-scaffold.mjs"
