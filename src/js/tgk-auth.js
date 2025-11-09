@@ -1,5 +1,5 @@
 /* ===========================================================
-   TGK — Auth Pages (Sign-in / Sign-up) v3.6 — FINAL (CLAIMS SYNC)
+   TGK — Auth Pages (Sign-in / Sign-up) v3.7 — Stable Gate Sync
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -8,11 +8,20 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   setPersistence,
-  browserLocalPersistence
+  browserLocalPersistence,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const auth = getAuth(app);
+
+// Ensure persistence before anything else runs
 await setPersistence(auth, browserLocalPersistence);
+console.log("[Auth] Persistence set to browserLocalPersistence");
+
+// === Wait for persisted user before any gated checks ===
+onAuthStateChanged(auth, (user) => {
+  console.log("[Auth] onAuthStateChanged:", user ? user.email : "none");
+});
 
 // === ENSURE __TGK_GATE__ ===
 let consumeReturnUrl = () => false;
@@ -25,34 +34,37 @@ const ensureGate = () => {
 };
 ensureGate();
 
-// Normalize email
-const normalizeEmail = (e) => (e || "").trim().toLowerCase();
+// Normalise email input
+const normaliseEmail = (e) => (e || "").trim().toLowerCase();
 
-// === pageSignin ===
+/* ===========================================================
+   SIGN IN
+   =========================================================== */
 window.pageSignin = async (email, password) => {
   console.log("[Auth] pageSignin called");
   try {
-    const cred = await signInWithEmailAndPassword(auth, normalizeEmail(email), password);
+    const cred = await signInWithEmailAndPassword(auth, normaliseEmail(email), password);
     console.log("[Auth] Signed in:", cred.user.email);
 
-    // STEP 1: SEND TOKEN TO SYNC CLAIMS
+    // STEP 1: Sync claims
     const token = await cred.user.getIdToken();
     const res = await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token })
     });
+
     const data = await res.json();
     console.log("[Auth] set-entitlements response:", data);
 
-    // STEP 2: FORCE REFRESH TOKEN TO GET NEW CLAIMS
+    // STEP 2: Refresh token to apply claims
     await cred.user.getIdToken(true);
-    console.log("[Auth] Token refreshed — claims now in effect");
+    console.log("[Auth] Token refreshed — claims now active");
 
-    // STEP 3: STORE TIER IN localStorage (fallback)
+    // STEP 3: Store tier locally
     if (data.tier) {
       localStorage.setItem("tgk-tier", data.tier);
-      console.log("[Auth] localStorage.tgk-tier set to:", data.tier);
+      console.log("[Auth] localStorage.tgk-tier set:", data.tier);
     }
 
     if (consumeReturnUrl()) return;
@@ -63,8 +75,9 @@ window.pageSignin = async (email, password) => {
   }
 };
 
-// === pageSignup ===
-// === pageSignup ===
+/* ===========================================================
+   SIGN UP
+   =========================================================== */
 window.pageSignup = async (email, password) => {
   let lock = false;
   if (lock) return;
@@ -72,24 +85,40 @@ window.pageSignup = async (email, password) => {
 
   try {
     // 1. Validate password before doing anything else
-    if (password.length < 8) {
-      alert("Password must be at least 8 characters long.");
+    const passwordPolicy = {
+      length: password.length >= 8,
+      upper: /[A-Z]/.test(password),
+      lower: /[a-z]/.test(password),
+      number: /[0-9]/.test(password),
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    };
+
+    const failed = Object.entries(passwordPolicy)
+      .filter(([_, valid]) => !valid)
+      .map(([key]) => key);
+
+    if (failed.length > 0) {
+      alert(
+        "Password must include:\n" +
+        "- At least 8 characters\n" +
+        "- Uppercase, lowercase, number, and special character."
+      );
       return;
     }
 
-    // 2. Create Firebase user first
+    // 2. Create Firebase user
     const { createUserWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js");
-    const cred = await createUserWithEmailAndPassword(auth, normalizeEmail(email), password);
+    const cred = await createUserWithEmailAndPassword(auth, normaliseEmail(email), password);
     const user = cred.user;
 
-    // 3. Start Stripe checkout (or free tier setup)
+    // 3. Start Stripe checkout (or default plan)
     const res = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         uid: user.uid,
-        email: normalizeEmail(email),
-        priceId: "price_free_initiate" // or whichever default plan ID applies
+        email: normaliseEmail(email),
+        priceId: "price_free_initiate" // default free tier
       })
     });
 
@@ -101,7 +130,7 @@ window.pageSignup = async (email, password) => {
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ uid: user.uid, customerId, email: normalizeEmail(email) })
+      body: JSON.stringify({ uid: user.uid, customerId, email: normaliseEmail(email) })
     });
 
     // 5. Refresh token + local tier
@@ -119,15 +148,20 @@ window.pageSignup = async (email, password) => {
   }
 };
 
+/* ===========================================================
+   PASSWORD RESET
+   =========================================================== */
 function pageReset(email) {
-  const addr = normalizeEmail(email);
+  const addr = normaliseEmail(email);
   if (!addr.includes("@")) return alert("Invalid email.");
   sendPasswordResetEmail(auth, addr)
     .then(() => alert("Reset link sent."))
     .catch(e => alert("Error: " + e.message));
 }
 
-// === DOM READY: Bind forms ===
+/* ===========================================================
+   BIND FORMS
+   =========================================================== */
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", bindForms);
 } else {
@@ -137,9 +171,10 @@ if (document.readyState === "loading") {
 function bindForms() {
   console.log("[Auth] Binding forms...");
 
+  // === Sign In Form ===
   const signinForm = document.getElementById("signin-form");
   if (signinForm) {
-    signinForm.addEventListener("submit", e => {
+    signinForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const email = signinForm.querySelector("#signin-email")?.value;
       const pw = signinForm.querySelector("#signin-password")?.value;
@@ -150,41 +185,24 @@ function bindForms() {
     });
   }
 
+  // === Sign Up Form ===
   const signupForm = document.getElementById("signup-form");
   if (signupForm) {
-    signupForm.addEventListener("submit", e => {
+    signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const email = signupForm.querySelector("#signup-email")?.value;
       const pw = signupForm.querySelector("#signup-password")?.value;
       if (email && pw) {
-  const passwordPolicy = {
-    length: pw.length >= 8,
-    upper: /[A-Z]/.test(pw),
-    lower: /[a-z]/.test(pw),
-    number: /[0-9]/.test(pw),
-    special: /[!@#$%^&*(),.?":{}|<>]/.test(pw)
-  };
-
-  const failed = Object.entries(passwordPolicy)
-    .filter(([_, valid]) => !valid)
-    .map(([key]) => key);
-
-  if (failed.length > 0) {
-    alert(
-      "Password must include:\n" +
-      "- At least 8 characters\n" +
-      "- Uppercase, lowercase, number, and special character."
-    );
-        return;
+        console.log("[Auth] Submitting sign-up...");
+        pageSignup(email, pw);
+      } else {
+        alert("Please enter both email and password.");
       }
+    });
+  }
 
-      pageSignup(email, pw);
-    } else {
-      alert("Please enter both email and password.");
-    }
-
-
-  document.getElementById("reset-link")?.addEventListener("click", e => {
+  // === Password Reset Link ===
+  document.getElementById("reset-link")?.addEventListener("click", (e) => {
     e.preventDefault();
     const email = prompt("Enter your email:");
     if (email) pageReset(email);
