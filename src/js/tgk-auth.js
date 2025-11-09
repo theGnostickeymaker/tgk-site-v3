@@ -64,38 +64,55 @@ window.pageSignin = async (email, password) => {
 };
 
 // === pageSignup ===
+// === pageSignup ===
 window.pageSignup = async (email, password) => {
   let lock = false;
   if (lock) return;
   lock = true;
 
   try {
+    // 1. Validate password before doing anything else
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return;
+    }
+
+    // 2. Create Firebase user first
+    const { createUserWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js");
+    const cred = await createUserWithEmailAndPassword(auth, normalizeEmail(email), password);
+    const user = cred.user;
+
+    // 3. Start Stripe checkout (or free tier setup)
     const res = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: normalizeEmail(email), password })
+      body: JSON.stringify({
+        uid: user.uid,
+        email: normalizeEmail(email),
+        priceId: "price_free_initiate" // or whichever default plan ID applies
+      })
     });
 
-    if (!res.ok) throw new Error((await res.json()).error || "Signup failed");
+    if (!res.ok) throw new Error((await res.json()).error || "Checkout session failed");
 
     const { customerId } = await res.json();
-    const cred = await signInWithEmailAndPassword(auth, normalizeEmail(email), password);
-    const user = cred.user;
 
-    // Sync entitlements after signup
+    // 4. Sync entitlements
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ uid: user.uid, customerId, email: normalizeEmail(email) })
     });
 
-    // Refresh token + store tier
+    // 5. Refresh token + local tier
     await user.getIdToken(true);
-    localStorage.setItem("tgk-tier", "initiate"); // default for new users
+    localStorage.setItem("tgk-tier", "initiate");
 
-    alert("Welcome!");
+    alert("Welcome to The Gnostic Key!");
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
   } catch (err) {
+    console.error("[Auth] Signup failed:", err);
     alert("Signup failed: " + err.message);
   } finally {
     lock = false;
@@ -139,13 +156,33 @@ function bindForms() {
       e.preventDefault();
       const email = signupForm.querySelector("#signup-email")?.value;
       const pw = signupForm.querySelector("#signup-password")?.value;
-      if (email && pw && pw.length >= 8) {
-        pageSignup(email, pw);
-      } else {
-        alert("Password must be 8+ characters.");
+      if (email && pw) {
+  const passwordPolicy = {
+    length: pw.length >= 8,
+    upper: /[A-Z]/.test(pw),
+    lower: /[a-z]/.test(pw),
+    number: /[0-9]/.test(pw),
+    special: /[!@#$%^&*(),.?":{}|<>]/.test(pw)
+  };
+
+  const failed = Object.entries(passwordPolicy)
+    .filter(([_, valid]) => !valid)
+    .map(([key]) => key);
+
+  if (failed.length > 0) {
+    alert(
+      "Password must include:\n" +
+      "- At least 8 characters\n" +
+      "- Uppercase, lowercase, number, and special character."
+    );
+        return;
       }
-    });
-  }
+
+      pageSignup(email, pw);
+    } else {
+      alert("Please enter both email and password.");
+    }
+
 
   document.getElementById("reset-link")?.addEventListener("click", e => {
     e.preventDefault();
