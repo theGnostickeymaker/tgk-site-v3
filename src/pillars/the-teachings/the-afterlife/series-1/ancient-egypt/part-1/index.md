@@ -35,14 +35,12 @@ seriesMeta:
   label: "Series 1"
   version: 1
 
-# 🕯 Publication Metadata
 author: "The Keymaker"
 published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Ancient Egypt", "Series I", "The Teachings"]
 status: "coming-soon" # or "live" once published
 
-# Visibility
 sitemap: true
 discussEnabled: true
 referencesEnabled: true
@@ -52,18 +50,15 @@ lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
 crossLinks: []
 vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
-# 🎨 Creative Prompt (optional; section hidden if empty)
 creativePrompt:
   text: ""
   sharePrompt: ""
 
-# 🗣 Discussion Prompt
 discussion:
   promptTitle: "Could You Face the Scales?"
   intro: "If your heart were weighed before Ma’at, stripped of all masks and memories, would you recognise its lightness — or its weight?"
@@ -74,8 +69,6 @@ discussion:
     - "If your name were whispered by the gods, would it shine or tremble?"
   footer: "Write your reflection in your Book of Coming Forth by Day, or share it with the living temple using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
 
-
-# 📖 Glossary
 glossary:
   subtitle: "Decode the sacred language of the Egyptian soul’s exile and return."
   terms:
@@ -96,8 +89,6 @@ glossary:
     - term: "Field of Reeds"
       def: "The Egyptian paradise — a perfected reflection of earthly life where righteous souls dwell in peace and fulfillment."
 
-
-# 📚 References
 references:
   title: "Sources & Study Path"
   intro: "For those wishing to go deeper into the Egyptian understanding of death, resurrection, and Ma’at — the following paths blend sacred texts, modern Egyptology, and esoteric interpretations that align with the TGK curriculum."
@@ -142,8 +133,6 @@ references:
       work: "Egyptian Myth: A Very Short Introduction"
       pub: "Oxford University Press"
 
-
-# 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
@@ -152,7 +141,6 @@ breadcrumbs:
   - { title: "Ancient Egypt", url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/" }
   - { title: "I" }
 
-# 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
     title: "Part I — The Eternal Nile: Death Is Not the End"
@@ -208,7 +196,6 @@ socialImages:
 <main class="main-content">
   <section class="content-container">
 
-<!--🜂 Chapter 1: The Eternal Nile, Death is Not the End-->
 <section class="section-block">
   <h2 class="section-heading">🜂 Chapter 1: The Eternal Nile, Death is Not the End</h2>
 
@@ -244,7 +231,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Egyptians believed death was a passage, not an end, into an eternal, perfected realm.</li>
@@ -255,7 +242,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: eternal-nile-threshold -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}eternal-nile-threshold.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -273,7 +259,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--🐍 Chapter 2: The Osiris Code, Death, Resurrection & the First Judged Soul-->
 <section class="section-block">
   <h2 class="section-heading">🐍 Chapter 2: The Osiris Code, Death, Resurrection & the First Judged Soul</h2>
 
@@ -315,7 +300,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: osiris-resurrection-judgement -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}osiris-resurrection-judgement.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -333,7 +317,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--🦅 Chapter 3: The Ba, the Ka, and the Akh, Soul Anatomy of the Immortals-->
   <section class="section-block">
   <h2 class="section-heading">🦅 Chapter 3: The Ba, the Ka, and the Akh ,Soul Anatomy of the Immortals</h2>
 
@@ -356,7 +339,6 @@ socialImages:
   <p>This wasn&rsquo;t automatic. It had to be earned, by living in Ma&rsquo;at, by remembering the rituals, by preserving the body through mummification. The Akh was not just the dead made divine. It was the <strong>initiated</strong> made eternal.</p>
   </section>
 
-<!-- Image: soul-anatomy -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}soul-anatomy.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -386,7 +368,7 @@ socialImages:
   </section>
 
   <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Egyptian soul had multiple parts: Ka (life-force), Ba (spirit-self), and Akh (immortal light-being).</li>
@@ -397,7 +379,6 @@ socialImages:
   </ul>
   </section>
 
-<!-- Image: ba-ka-akh-soul-anatomy -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}ba-ka-akh-soul-anatomy.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -415,7 +396,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--⚖️ Chapter 4: Living in Ma&rsquo;at, The Feather of Truth-->
 <section class="section-block">
   <h2 class="section-heading">⚖️ Chapter 4: Living in Ma&rsquo;at, The Feather of Truth</h2>
 
@@ -455,7 +435,6 @@ socialImages:
   </ul>
   </section>
 
-<!-- Image: maat-feather-balance -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}maat-feather-balance.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -473,8 +452,6 @@ socialImages:
   </figcaption>
 </figure>
 
-
-  <!--🏺 Chapter 5: Tombs, Mummification & the Resurrection Machine-->
   <section class="section-block">
   <h2 class="section-heading">🏺 Chapter 5: Tombs, Mummification & the Resurrection Machine</h2>
 
@@ -518,7 +495,6 @@ socialImages:
   </ul>
   </section>
 
-<!-- Image: mummification-resurrection-machine -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}mummification-resurrection-machine.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -536,7 +512,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--🌒 Chapter 6: Into the Du&rsquo;st, The Map of the Hidden World-->
   <section class="section-block">
   <h2 class="section-heading">🌒 Chapter 6: Into the Du&ldquo;at, The Map of the Hidden World</h2>
 
@@ -568,7 +543,7 @@ socialImages:
   </section>
 
   <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Du&rsquo;st was Egypt&rsquo;s underworld, a realm of transformation, not punishment.</li>
@@ -579,7 +554,6 @@ socialImages:
   </ul>
   </section>
 
-<!-- Image: duat-journey-map -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -597,7 +571,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!-- 🗺️ Visual Map: The Journey Through the Du&rsquo;st -->
 <section class="section-block">
   <h2 class="section-heading">🗺️ Visual Map: The Journey Through the Du&rsquo;st</h2>
   <p>Trace the sacred path of the soul from death to divinity:</p>
@@ -616,7 +589,6 @@ socialImages:
   <p>This is not mythology. It&rsquo;s a mirror. <strong>Each phase is alive within you, now.</strong></p>
 </section>
 
-<!-- Image: duat-journey-map -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}duat-journey-map.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -634,7 +606,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--🚪 Chapter 7: Trials, Gates & the Soul&rsquo;s Passwords-->
   <section class="section-block">
   <h2 class="section-heading">🚪 Chapter 7: Trials, Gates & the Soul&rsquo;s Passwords</h2>
 
@@ -673,7 +644,6 @@ socialImages:
   </section>
 
   <section class="section-block">
-  <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Du&rsquo;st contains gates, each with guardians who demand names, passwords, and purity.</li>
@@ -684,7 +654,6 @@ socialImages:
   </ul>
   </section>
 
-<!-- Image: gatekeepers-duat-trials -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}gatekeepers-duat-trials.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -702,7 +671,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--⚖️ Chapter 8: The Weighing of the Heart, Scales of the Invisible Self-->
 <section class="section-block">
   <h2 class="section-heading">⚖️ Chapter 8: The Weighing of the Heart, Scales of the Invisible Self</h2>
 
@@ -744,7 +712,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: weighing-heart-scales -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}weighing-heart-scales.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -762,7 +729,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--📜 Chapter 9: The 42 Confessions, Soul as Self-Witness-->
 <section class="section-block">
   <h2 class="section-heading">📜 Chapter 9: The 42 Confession, Soul as Self-Witness</h2>
 
@@ -813,7 +779,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: 42-confessions-page -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}42-confessions-page.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -831,7 +796,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--🐊 Chapter 10: Ammit the Devourer, The Second Death-->
   <section class="section-block">
   <h2 class="section-heading">🐊 Chapter 10: Ammit the Devourer, The Second Death</h2>
 
@@ -875,7 +839,6 @@ socialImages:
   </ul>
   </section>
 
-<!-- Image: ammit-devourer-second-death -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}ammit-devourer-second-death.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -893,7 +856,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--🌾 Chapter 11: The Field of Reeds , Paradise as Remembrance-->
 <section class="section-block">
   <h2 class="section-heading">🌾 Chapter 11: The Field of Reeds, Paradise as Remembrance</h2>
 
@@ -925,7 +887,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Sekhet Aaru, the Field of Reeds, was the Egyptian paradise for souls judged worthy.</li>
@@ -936,7 +898,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: field-of-reeds-paradise -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-paradise.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -954,7 +915,6 @@ socialImages:
   </figcaption>
 </figure>
 
-  <!--✨ Chapter 12: The Akh Ascends, Star-Soul of the Immortals-->
  <section class="section-block">
   <h2 class="section-heading">✨ Chapter 12: The Akh Ascends, Star-Soul of the Immortals</h2>
 
@@ -986,7 +946,7 @@ socialImages:
  </section>
 
  <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Akh was the fully realised sou, radiant, divine, and free.</li>
@@ -997,7 +957,6 @@ socialImages:
   </ul>
  </section>
 
-<!-- Image: akh-star-soul-ascent -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}akh-star-soul-ascent.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -1015,7 +974,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--📖 Chapter 13: The Book of the Dead, Operating Manual for the Soul-->
 <section class="section-block">
   <h2 class="section-heading">📖 Chapter 13: The Book of the Dead, Operating Manual for the Soul</h2>
 
@@ -1045,7 +1003,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Book of the Dead was a sacred compilation of spells to guide the soul through the afterlife.</li>
@@ -1056,7 +1014,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: book-of-the-dead-page -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}book-of-the-dead-page.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -1074,7 +1031,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🕯️ Chapter 14: Living to Die Well, Preparing the Soul for Eternity-->
 <section class="section-block">
   <h2 class="section-heading">🕯️ Chapter 14: Living to Die Well, Preparing the Soul for Eternity</h2>
 
@@ -1106,7 +1062,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Egyptian life was a preparation for death, and death was a preparation for eternity.</li>
@@ -1117,7 +1073,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: living-die-well-maat -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}living-die-well-maat.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -1135,7 +1090,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--♻️ Chapter 15: The Return of the Soul, Rebirth, Memory & the Cosmic Cycle-->
 <section class="section-block">
   <h2 class="section-heading">♻️ Chapter 15: The Return of the Soul, Rebirth, Memory & the Cosmic Cycle</h2>
 
@@ -1167,7 +1121,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Death marked a portal in an eternal cycle of becoming, not a final state.</li>
@@ -1178,7 +1132,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: soul-rebirth-scarab-cycle -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}soul-rebirth-scarab-cycle.jpg" target="_blank" rel="noopener noreferrer">
     <picture>

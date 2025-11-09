@@ -36,13 +36,11 @@ seriesMeta:
   label: "Series 1"
   version: 1
 
-# 🕯 Publication Metadata
 author: "The Keymaker"
 published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
 
-# Visibility
 sitemap: true
 discussEnabled: true
 referencesEnabled: true
@@ -52,13 +50,11 @@ lensEnabled: true
 creativePromptEnabled: true
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
 crossLinks: []
 vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
-# 🗣 Discussion Prompt
 discussion:
   promptTitle: "What Did You Leave in the Underworld?"
   intro: "&ldquo;If your bones could speak, what would they confess before they turn to stars?&rdquo; This page wasn&rsquo;t a story — it was a descent, a rite, a remembering of the path walked by every soul."
@@ -70,7 +66,6 @@ discussion:
     - "Do you believe death is the end, or the final test of memory?"
   footer: "Share your reflections with <strong>#TheGnosticKey</strong> or join the <strong>Telegram Temple</strong> to add your voice to the echo of the descent."
 
-# 📖 The Gnostic Key Glossary — page III Edition
 glossary:
   subtitle: "Terms of remembrance, resurrection, and spiral return."
   terms:
@@ -89,7 +84,6 @@ glossary:
     - term: "Light-Body"
       def: "The resurrected form of the soul — not flesh, but radiance. What emerges when all false layers are shed and remembrance is complete."
 
-# 📚 References
 references:
   title: "Sources & Study Path"
   intro: "For those who seek to trace the Feathered Spark — the soul’s journey through sacred time, renewal, and remembrance."
@@ -134,7 +128,6 @@ references:
       work: "Aztec Thought and Culture: A Study of the Ancient Nahuatl Mind"
       pub: "University of Oklahoma Press"
 
-# 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
@@ -143,7 +136,6 @@ breadcrumbs:
   - { title: "Mesoamerica", url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/" }
   - { title: "III" }
 
-# 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
     title: "Part I — The Map of Time and Sacrifice"
@@ -195,7 +187,6 @@ socialImages:
 
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
-
 <main class="main-content">
   <section class="content-container">
 
@@ -207,7 +198,6 @@ socialImages:
     Now begins the spiral upward &mdash; through sacrifice, memory, and the soul&rsquo;s return to the celestial maize field.</p>
 </details>
 
-<!--🌀 Chapter 1: The 52-Year Renewal-->
 <section class="section-block">
   <h2 class="section-heading">🌀 Chapter 1: The 52-Year Renewal</h2>
 
@@ -233,7 +223,6 @@ socialImages:
   <p>But it was more than survival. It was <em>symbolic resurrection</em>. A reminder that death and return were woven into the very structure of time.</p>
 </section>
 
-<!-- TL;DR -->
 <section class="section-block">
   <h2 class="section-heading">⚡ TL;DR:</h2>
   <ul class="list-emoji">
@@ -245,7 +234,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}new-fire-ceremony -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}new-fire-ceremony.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -267,8 +255,6 @@ socialImages:
   </figcaption>
 </figure>
 
-
-<!--🐍 Chapter 2: Serpent of Cycles-->
 <section class="section-block">
   <h2 class="section-heading">🐍 Chapter 2: Serpent of Cycles</h2>
 
@@ -301,7 +287,6 @@ socialImages:
 <p>He is not a saviour. He is a mirror of the path.</p>
 </section>
 
-<!-- TL;DR -->
 <section class="section-block">
   <h2 class="section-heading">⚡ TL;DR:</h2>
     <ul class="list-emoji">
@@ -313,7 +298,6 @@ socialImages:
     </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}quetzalcoatl-spiral-cycle -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}quetzalcoatl-spiral-cycle.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -334,7 +318,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--💀 Chapter 3: Rebuilding the Bones-->
 <section class="section-block">
   <h2 class="section-heading">💀 Chapter 3: Rebuilding the Bones</h2>
 
@@ -376,7 +359,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}rebuilding-bones -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}rebuilding-bones.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -397,7 +379,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🔢 Chapter 4: The Soul as Calendar-->
 <section class="section-block">
 <h2 class="section-heading">🔢 Chapter 4: The Soul as Calendar</h2>
 
@@ -434,7 +415,6 @@ socialImages:
 </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}soul-calendar-glyphs -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}soul-calendar-glyphs.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -455,7 +435,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🕊 Chapter 5: Return of the Feathered Spark-->
 <section class="section-block">
 <h2 class="section-heading">🕊 Chapter 5: Return of the Feathered Spark</h2>
 
@@ -493,7 +472,6 @@ socialImages:
 </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}feathered-spark-ascension -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}feathered-spark-ascension.jpg" target="_blank" rel="noopener noreferrer">
     <picture>

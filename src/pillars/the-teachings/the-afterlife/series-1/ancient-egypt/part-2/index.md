@@ -35,13 +35,11 @@ seriesMeta:
   label: "Series 1"
   version: 1
 
-# 🕯 Publication Metadata
 author: "The Keymaker"
 published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Ancient Egypt", "Series I", "The Teachings"]
 
-# Visibility
 sitemap: true
 discussEnabled: true
 referencesEnabled: true
@@ -51,18 +49,15 @@ lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
 crossLinks: []
 vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
-# 🎨 Creative Prompt (optional; section hidden if empty)
 creativePrompt:
   text: ""
   sharePrompt: ""
 
-# 🗣 Discussion Prompt
 discussion:
   promptTitle: "What Gate Are You At?"
   intro: "The Duʺat is not myth — it is memory. Every soul stands before a threshold, and every threshold asks the same question: do you remember your name?"
@@ -73,7 +68,6 @@ discussion:
     - "If a gate opened tonight, would you recognise the light behind it?"
   footer: "Reflect privately in your own silence, or share your gate and its lesson with the temple using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
 
-# 📖 Glossary
 glossary:
   subtitle: "Decode the sacred symbols of the Duʺat — the hidden world of gates, names, and radiant transformation."
   terms:
@@ -98,7 +92,6 @@ glossary:
     - term: "Ba"
       def: "The mobile, personality-bearing aspect of the soul, often depicted as a bird. It journeys freely through worlds and reunites with the Ka to sustain immortality."
 
-# 📚 References
 references:
   title: "Sources & Study Path"
   intro: "For those wishing to go deeper into the mysteries of the Duat, sacred architecture, and the mechanics of Egyptian resurrection:"
@@ -135,8 +128,6 @@ references:
       work: "The Rise and Fall of Ancient Egypt"
       pub: "Bloomsbury"
 
-
-# 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
@@ -145,7 +136,6 @@ breadcrumbs:
   - { title: "Ancient Egypt", url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/" }
   - { title: "II" }
 
-# 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
     title: "Part I — The Eternal Nile: Death Is Not the End"
@@ -186,8 +176,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-2/ancient-egypt-part-2@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-2/ancient-egypt-part-2@square.jpg"
@@ -211,7 +199,6 @@ socialImages:
   </section>
 </details>
 
-  <!--🌀 Chapter 1: Initiation in the Du&rsquo;st, Why the Hidden World Is Real-->
 <section class="section-block">
   <h2 class="section-heading">🌀 Chapter 1: Initiation in the Du&rsquo;st, Why the Hidden World Is Real</h2>
 
@@ -247,7 +234,6 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Du&rsquo;st is not fictional, it is an inner and cosmic realm mapped in symbolic form.</li>
@@ -260,7 +246,6 @@ socialImages:
   <p>⚠️ <strong>Interpretive Lens:</strong> The framing of the Du&rsquo;st as a psychological map is a modern esoteric perspective. While ancient Egyptians depicted it as a literal underworld, symbolic readings align with their mythopoetic worldview.</p>
 </section>
 
-<!-- Image: solar-boat-amduat-journey -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -278,7 +263,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--☀️ Chapter 2: 12 Gates, 12 Hours, The Journey of Ra Through the Night-->
 <section class="section-block">
   <h2 class="section-heading">☀️ Chapter 2: 12 Gates, 12 Hours, The Journey of Ra Through the Night</h2>
 
@@ -306,7 +290,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Ra journeys through the Du&rsquo;st each night, passing 12 gates in 12 hours of darkness.</li>
@@ -317,7 +301,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: solar-boat-amduat-journey -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -335,7 +318,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🪬 Chapter 3: Spells of Becoming, Words as Soul-Technology-->
 <section class="section-block">
   <h2 class="section-heading">🪬 Chapter 3: Spells of Becoming, Words as Soul-Technology</h2>
 
@@ -378,7 +360,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Egyptian &ldquo;spells&rdquo; were soul-commands, vibrational technologies for navigating the Du&rsquo;st.</li>
@@ -389,7 +371,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: soul-spells-hieroglyph-light -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}soul-spells-hieroglyph-light.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -407,7 +388,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🐍 Chapter 4: Guardians, Serpents & Secret Names-->
 <section class="section-block">
   <h2 class="section-heading">🐍 Chapter 4: Guardians, Serpents & Secret Names</h2>
 
@@ -435,7 +415,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Du&rsquo;st is filled with guardians and serpents, not to punish, but to test the soul&rsquo;s memory and power.</li>
@@ -446,7 +426,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: gate-guardian-serpent-names -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}gate-guardian-serpent-names.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -464,7 +443,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--⛵ Chapter 5: The Solar Boat & The Resurrection Engine-->
 <section class="section-block">
   <h2 class="section-heading">⛵ Chapter 5: The Solar Boat & The Resurrection Engine</h2>
 
@@ -492,7 +470,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Mandjet (solar boat) is Ra&rsquo;s nightly vehicle through the Du&rsquo;st, and a symbol of soul resurrection.</li>
@@ -503,7 +481,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: solar-boat-amduat-journey -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}solar-boat-amduat-journey.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -521,7 +498,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🏛️ Chapter 6: Tomb as Stargate – Architecture of Ascension-->
 <section class="section-block">
   <h2 class="section-heading">🏛️ Chapter 6: Tomb as Stargate – Architecture of Ascension</h2>
 
@@ -555,7 +531,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Egyptian tombs were not just burial sites, they were engineered stargates for soul ascension.</li>
@@ -566,7 +542,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: tomb-stargate-ascension -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}tomb-stargate-ascension.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -584,7 +559,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🧠 Chapter 7: Memory Keys – Hieroglyphs, Numbers & the Hidden Body-->
 <section class="section-block">
   <h2 class="section-heading">🧠 Chapter 7: Memory Keys, Hieroglyphs, Numbers & the Hidden Body</h2>
 
@@ -612,7 +586,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Hieroglyphs were symbolic beings, living keys to preserve the soul&rsquo;s path.</li>
@@ -623,7 +597,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: memory-keys-hieroglyph-body-code -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}memory-keys-hieroglyph-body-code.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -641,7 +614,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--✝️ Chapter 23: Gnostic Parallels, Jesus in the Du&rsquo;st-->
 <section class="section-block">
   <h2 class="section-heading">✝️ Chapter 23: Gnostic Parallels, Jesus in the Du&rsquo;st</h2>
 
@@ -669,7 +641,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Gnostic texts describe Jesus descending into the underworld, like Ra or Osiris.</li>
@@ -680,7 +652,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: jesus-gnostic-duat-parallel -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}jesus-gnostic-duat-parallel.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -698,7 +669,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🌀 Chapter 24: Reversing Death, Ritual, Magic & the Return-->
 <section class="section-block">
   <h2 class="section-heading">🌀 Chapter 24: Reversing Death, Ritual, Magic & the Return</h2>
 
@@ -726,7 +696,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Egyptian funerary rituals were aimed at reactivating the soul, not mourning it.</li>
@@ -737,7 +707,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: reversing-death-magic-return -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}reversing-death-magic-return.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -755,7 +724,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🧬 Chapter 25: Inner Du&rsquo;st, Mapping the Afterlife Within-->
 <section class="section-block">
   <h2 class="section-heading">🧬 Chapter 25: Inner Du&rsquo;st, Mapping the Afterlife Within</h2>
 
@@ -783,7 +751,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Du&rsquo;st is not just a cosmic geography, it is an inner map of consciousness and memory.</li>
@@ -794,7 +762,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: inner-duat-soul-map -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}inner-duat-soul-map.jpg" target="_blank" rel="noopener noreferrer">
     <picture>

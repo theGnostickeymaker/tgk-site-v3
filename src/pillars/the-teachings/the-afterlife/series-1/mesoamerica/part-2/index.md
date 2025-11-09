@@ -37,13 +37,11 @@ seriesMeta:
   label: "Series 1"
   version: 1
 
-# 🕯 Publication Metadata
 author: "The Keymaker"
 published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
 
-# Visibility
 sitemap: true
 discussEnabled: true
 referencesEnabled: true
@@ -53,18 +51,15 @@ lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
 crossLinks: []
 vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
-# 🎨 Creative Prompt (optional; section hidden if empty)
 creativePrompt:
   text: ""
   sharePrompt: ""
 
-# 🗣 Discussion Prompt
 discussion:
   promptTitle: "What Spark Are You Reigniting?"
   intro: "Spread the sacred ripple. Share this page and help awaken the memory of cyclical time, soul geometry, and the serpent of return."
@@ -75,7 +70,6 @@ discussion:
     - "Can truth survive comfort?"
   footer: "Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
 
-# 📖 The Gnostic Key Glossary 
 glossary:
   subtitle: "Decode the sacred language of trials, dismemberment, and soul retrieval."
   terms:
@@ -96,7 +90,6 @@ glossary:
     - term: "Psychopomp"
       def: "A guide of souls after death. In Mesoamerica, this was often a dog — a being that remembered your truth when you forgot."
 
-# 📚 References
 references:
   title: "Sources & Study Path"
   intro: "For those who wish to trace the descent through Mictlán and Xibalba — the mythic cartographies of death, memory, and return."
@@ -137,7 +130,6 @@ references:
       work: "Skywatchers"
       pub: "University of Texas Press"
 
-# 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
@@ -146,7 +138,6 @@ breadcrumbs:
   - { title: "Mesoamerica", url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/" }
   - { title: "II" }
 
-# 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
     title: "Part I — The Map of Time and Sacrifice"
@@ -198,7 +189,6 @@ socialImages:
 
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
-
 <main class="main-content">
   <section class="content-container">
 
@@ -211,7 +201,6 @@ socialImages:
     The Lords are watching. The test is remembering.</p>
 </details>
 
-<!--Chapter 1: The Gates Open at Death-->
 <section class="section-block">
   <h2 class="section-heading">🦴 Chapter 1: The Gates Open at Death</h2>
 
@@ -256,7 +245,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}gates-open-at-death -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}gates-open-at-death.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -276,7 +264,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--💀 Chapter 2: The Nine Levels of Mictlán-->
 <section class="section-block">
   <h2 class="section-heading">💀 Chapter 2: The Nine Levels of Mictlán</h2>
 
@@ -341,7 +328,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}mictlan-nine-levels -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}mictlan-nine-levels.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -363,7 +349,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🕷 Chapter 3: The Lords of Xibalba-->
 <section class="section-block">
   <h2 class="section-heading">🕷 Chapter 3: The Lords of Xibalba</h2>
   
@@ -428,7 +413,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}xibalba-lords-hero-twins -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}xibalba-lords-hero-twins.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -449,7 +433,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🔪 Chapter 4: Dismemberment and Soul Memory-->
 <section class="section-block">
 <h2 class="section-heading">🔪 Chapter 4: Dismemberment and Soul Memory</h2>
 
@@ -502,7 +485,6 @@ And with it &mdash; if the soul is strong enough &mdash; the spark of <em>rememb
   </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}soul-dismemberment-memory -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}soul-dismemberment-memory.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -523,7 +505,6 @@ And with it &mdash; if the soul is strong enough &mdash; the spark of <em>rememb
   </figcaption>
 </figure>
 
-<!--🐕 Chapter 5: The Dog Who Guides You Home-->
 <section class="section-block">
 <h2 class="section-heading">🐕 Chapter 5: The Dog Who Guides You Home</h2>
 
@@ -567,7 +548,6 @@ And with it &mdash; if the soul is strong enough &mdash; the spark of <em>rememb
 </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}dog-soul-crossing -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}dog-soul-crossing.jpg" target="_blank" rel="noopener noreferrer">
     <picture>

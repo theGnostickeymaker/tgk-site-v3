@@ -1001,6 +1001,7 @@ socialImages:
     The Clear Light appears when all clinging dissolves.
   </figcaption>
 </figure>
+</section>
 
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}

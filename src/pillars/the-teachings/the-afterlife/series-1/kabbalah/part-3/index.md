@@ -151,15 +151,15 @@ breadcrumbs:
 # 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
-    title: "Part I"
+    title: "Part I — The Kabbalistic Worldview"
     desc: "The Kabbalistic Worldview."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-1/"
   -
-    title: "Part II"
+    title: "Part II — Ten Thresholds of Light"
     desc: "Ten Thresholds of Light, The Soul&rsquo;s Ascent Through the Tree of Life."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-2/"
   -
-    title: "Part III"
+    title: "Part III — The Soul’s Journey After Death"
     desc: "The Soul&rsquo;s Journey After Death."
     url: "/pillars/the-teachings/the-afterlife/series-1/kabbalah/part-3/"
 

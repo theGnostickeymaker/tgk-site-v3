@@ -37,13 +37,11 @@ seriesMeta:
   label: "Series 1"
   version: 1
 
-# 🕯 Publication Metadata
 author: "The Keymaker"
 published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Ancient Egypt", "Series I", "The Teachings"]
 
-# Visibility
 sitemap: true
 discussEnabled: true
 referencesEnabled: true
@@ -53,20 +51,16 @@ lensEnabled: true
 creativePromptEnabled: true
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks (leave arrays empty; another tool populates them)
 crossLinks: []
 vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
-# 🎨 Creative Prompt
 creativePrompt:
   title: "Name in the Stars"
   text: "Write a poem, draw a glyph, or design a symbol that represents your soul’s journey through the Duat. What form would your Akh take? What truth would your heart reveal before the Scales?"
   sharePrompt: "Would your name rise like a constellation? Would your Ka leave offerings in return?"
 
-
-# 🗣 Discussion Prompt
 discussion:
   promptTitle: "What spark are you reigniting?"
   intro: "You’ve walked through illusion and shadow — now speak from your own flame."
@@ -77,7 +71,6 @@ discussion:
     - "Can truth survive comfort?"
   footer: "Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
 
-# 📖 Glossary
 glossary:
   subtitle: "Decode the symbols of resurrection — where heart, name, and light converge."
   terms:
@@ -98,7 +91,6 @@ glossary:
     - term: "Imperishables"
       def: "The circumpolar stars that never set, representing the eternal dwelling of the perfected Akh in the heavens."
 
-# 📚 References
 references:
   title: "Sources & Study Path"
   intro: "Key texts and modern studies that illuminate the mysteries of resurrection, judgement, and the Akh’s stellar ascent:"
@@ -139,8 +131,6 @@ references:
       work: "Shamanic Wisdom in the Pyramid Texts"
       pub: "Inner Traditions"
 
-
-# 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
@@ -149,7 +139,6 @@ breadcrumbs:
   - { title: "Ancient Egypt", url: "/pillars/the-teachings/the-afterlife/series-1/ancient-egypt/" }
   - { title: "III" }
 
-# 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
     title: "Part I — The Eternal Nile: Death Is Not the End"
@@ -190,8 +179,6 @@ seriesNav:
     desc: "The path of Mesoamerica within the Afterlife Series."
     url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/"
 
-
-
 socialImages:
   x: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-3/ancient-egypt-part-3@x.jpg"
   square: "/tgk-assets/images/share/the-teachings/the-afterlife/ancient-egypt/part-3/ancient-egypt-part-3@square.jpg"
@@ -203,7 +190,6 @@ socialImages:
 
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
-
 <main class="main-content">
   <section class="content-container">
 
@@ -214,7 +200,6 @@ socialImages:
   <p>You deciphered the maps of the afterlife, spells of becoming, trials of identity, and the ciphered rites of return. But resurrection is not mere passage. Now comes the test of transfiguration, when Ka, Ba, and Ren ignite as one: the Akh, radiant and eternal.</p>
 </details>
 
-  <!--🌾 Chapter 26: The Field of Reeds, The Mirror of the Soul&rsquo;s Becoming-->
 <section class="section-block">
   <h2 class="section-heading">🌾 Chapter 26: The Field of Reeds, The Mirror of the Soul&rsquo;s Becoming</h2>
 
@@ -242,7 +227,6 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Sekhet-Aaru (Field of Reeds) is the Egyptian &ldquo;paradise,&rdquo; but not as reward, it is the reflection of your own actions.</li>
@@ -253,7 +237,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: field-of-reeds-mirror-soul -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}field-of-reeds-mirror-soul.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -271,7 +254,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--⚖️ Chapter 27: The Weighing of the Heart, Justice Beyond Illusion-->
 <section class="section-block">
   <h2 class="section-heading">⚖️ Chapter 27: The Weighing of the Heart, Justice Beyond Illusion</h2>
 
@@ -321,7 +303,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Weighing of the Heart is a metaphysical judgement, a test of truth, not belief.</li>
@@ -332,7 +314,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: weighing-of-the-heart-truth-balance -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}weighing-of-the-heart-truth-balance.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -350,7 +331,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🗣️ Chapter 28: 42 Judges, 42 Confessions, The Trial of Memory-->
 <section class="section-block">
   <h2 class="section-heading">🗣️ Chapter 28: 42 Judges, 42 Confessions, The Trial of Memory</h2>
 
@@ -378,7 +358,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>After the heart is weighed, the soul gives 42 &ldquo;Negative Confessions&rdquo;, declarations of moral-spiritual alignment.</li>
@@ -389,7 +369,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: 42-judges-negative-confession-trial -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}42-judges-negative-confession-trial.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -407,7 +386,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🪶 Chapter 29: The Feather of Ma&rsquo;at, Balancing Truth and Self-->
 <section class="section-block">
   <h2 class="section-heading">🪶 Chapter 29: The Feather of Ma&rsquo;at, Balancing Truth and Self</h2>
 
@@ -433,7 +411,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Feather of Ma&rsquo;at is the vibrational standard, light, pure, undistorted.</li>
@@ -444,7 +422,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: feather-of-maat-resonance-truth -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}feather-of-maat-resonance-truth.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -462,7 +439,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🐊 Chapter 30: The Devourer, What Happens When You Fail-->
 <section class="section-block">
   <h2 class="section-heading">🐊 Chapter 30: The Devourer, What Happens When You Fail</h2>
 
@@ -500,7 +476,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: devourer-ammit-erasure-of-soul -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}devourer-ammit-erasure-of-soul.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -518,7 +493,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🌟 Chapter 31: Becoming the Akh, The Soul Transfigured-->
 <section class="section-block">
   <h2 class="section-heading">🌟 Chapter 31: Becoming the Akh, The Soul Transfigured</h2>
 
@@ -548,7 +522,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Akh is the final form of the soul, luminous, eternal, divinely effective.</li>
@@ -558,8 +532,6 @@ socialImages:
     <li>To become Akh is to awaken as light, no longer bound by illusion, fear, or time.</li>
   </ul>
 </section>
-
-<!-- Image: becoming-the-akh-soul-transfigured -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}becoming-the-akh-soul-transfigured.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -577,7 +549,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🌌 Chapter 32: The Star Map, Returning to the Constellations-->
 <section class="section-block">
   <h2 class="section-heading">🌌 Chapter 32: The Star Map, Returning to the Constellations</h2>
 
@@ -614,7 +585,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Akh does not wander, it ascends to mapped constellations, especially Sirius and Orion.</li>
@@ -625,7 +596,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: star-map-return-to-constellations -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}star-map-return-to-constellations.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -643,7 +613,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🔥 Chapter 33: The Role of the Ka, Fuel, Offering, Flame-->
 <section class="section-block">
   <h2 class="section-heading">🔥 Chapter 33: The Role of the Ka, Fuel, Offering, Flame</h2>
 
@@ -669,7 +638,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Ka is the life-force double, an energetic, immortal body requiring nourishment.</li>
@@ -680,7 +649,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: ka-energy-offering-flame -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}ka-energy-offering-flame.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -698,7 +666,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🗝️ Chapter 34: Final Resurrection, When the Name Is Eternal-->
 <section class="section-block">
   <h2 class="section-heading">🗝️ Chapter 34: Final Resurrection, When the Name Is Eternal</h2>
 
@@ -726,7 +693,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>Resurrection in Egyptian thought is soul-transformation, not physical reanimation.</li>
@@ -737,7 +704,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: final-resurrection-eternal-name -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}final-resurrection-eternal-name.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -755,7 +721,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🌀 Chapter 35: Gnostic Reflections, Memory, Light & the Divine Self-->
 <section class="section-block">
   <h2 class="section-heading">🌀 Chapter 35: Gnostic Reflections, Memory, Light & the Divine Self</h2>
 
@@ -788,7 +753,7 @@ socialImages:
 </section>
 
 <section class="section-block">
-  <!-- TL;DR-->
+
   <h2 class="section-heading">⚡ TL;DR</h2>
   <ul class="list-emoji">
     <li>The Akh and the Gnostic Divine Spark describe the same core reality, the awakened, immortal Self.</li>
@@ -799,7 +764,6 @@ socialImages:
   </ul>
 </section>
 
-<!-- Image: gnostic-reflection-akhet-spark -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}gnostic-reflection-akhet-spark.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -817,7 +781,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!-- 🛠️ Practicing the Egyptian Mysteries -->
 <section class="section-block">
   <h3 class="section-heading">🛠️ Practicing the Egyptian Mysteries</h3>
   <p>Resurrection does not begin in the tomb. It begins in your choices, your memory, your offerings. These practices awaken the Akh, and prepare the soul to pass the Scales:</p>

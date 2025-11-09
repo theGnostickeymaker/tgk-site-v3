@@ -35,13 +35,11 @@ seriesMeta:
   label: "Series 1"
   version: 1
 
-# 🕯 Publication Metadata
 author: "The Keymaker"
 published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Mesoamerica", "Series 1", "The Teachings"]
 
-# Visibility
 sitemap: true
 discussEnabled: true
 referencesEnabled: true
@@ -51,13 +49,11 @@ lensEnabled: true
 creativePromptEnabled: false
 discussionPromptEnabled: true
 
-# ⚯ Synergist Lens hooks
 crossLinks: []
 vaultRefs: []
 communityThreads: []
 relatedProducts: []
 
-# 🗣 Discussion Prompt
 discussion:
   promptTitle: "What Spark Are You Reigniting?"
   intro: "Spread the sacred ripple. Share this page and help awaken the memory of cyclical time, soul geometry, and the serpent of return."
@@ -68,7 +64,6 @@ discussion:
     - "Can truth survive comfort?"
   footer: "Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>."
 
-# 📖 Glossary
 glossary:
   subtitle: "Decode the hidden language of the soul’s exile and return."
   terms:
@@ -91,7 +86,6 @@ glossary:
     - term: "Jade Bead"
       def: "Placed in the mouth of the deceased to symbolise eternal breath and life essence."
 
-# 📚 References
 references:
   title: "Sources & Study Path"
   intro: "For those wishing to go deeper into the sacred science of time, death, and return — these works illuminate the Mesoamerican cosmology that inspired this page."
@@ -130,7 +124,6 @@ references:
       work: "Death and the Idea of Mexico"
       pub: "University Press of Colorado"
 
-# 🧭 Breadcrumbs
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
@@ -139,7 +132,6 @@ breadcrumbs:
   - { title: "Mesoamerica", url: "/pillars/the-teachings/the-afterlife/series-1/mesoamerica/" }
   - { title: "I" }
 
-# 🔗 Auto-injected navigation (v4.1)
 episodeParts:
   -
     title: "Part I — The Map of Time and Sacrifice"
@@ -195,7 +187,6 @@ socialImages:
 <main class="main-content">
   <section class="content-container">
 
-<!--🔥 Chapter 1: Time Is a Serpent, Not a Line-->
 <section class="section-block">
   <h2 class="section-heading">🔥 Chapter 1: Time Is a Serpent, Not a Line</h2>
 
@@ -230,7 +221,7 @@ socialImages:
     <li>To forget the cycle is to drift from cosmic truth</li>
   </ul>
 </section>
-<!-- Image: {{ imgPrefix }}serpent-calendar-temple -->
+
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}serpent-calendar-temple.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -251,7 +242,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🔢 Chapter 2: The Calendar Round and the Turning of Worlds-->
 <section class="section-block">
   <h2 class="section-heading">🔢 Chapter 2: The Calendar Round and the Turning of Worlds</h2>
 
@@ -282,7 +272,7 @@ socialImages:
     <li>When the calendar resets, time is reborn &mdash; not ended</li>
   </ul>
 </section>
-<!-- Image: {{ imgPrefix }}calendar-round-sacred-sun -->
+
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}calendar-round-sacred-sun.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -302,7 +292,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🐍 Chapter 3: El Castillo and the Serpent of Light-->
 <section class="section-block">
   <h2 class="section-heading">🐍 Chapter 3: El Castillo and the Serpent of Light</h2>
 
@@ -340,7 +329,6 @@ socialImages:
     </ul>
 </section>
 
-<!-- Image: {{ imgPrefix }}equinox-shadow-pyramid -->
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}equinox-shadow-pyramid.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -360,7 +348,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🔢 Chapter 4: Sacred Numbers and the Breath of the Cosmos-->
 <section class="section-block">
   <h2 class="section-heading">🔢 Chapter 4: Sacred Numbers and the Breath of the Cosmos</h2>
 
@@ -407,7 +394,7 @@ socialImages:
     <li>To die at the right time is to pass through the correct portal</li>
   </ul>
 </section>
-<!-- Image: {{ imgPrefix }}sacred-geometry-directions -->
+
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}sacred-geometry-directions.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
@@ -427,7 +414,6 @@ socialImages:
   </figcaption>
 </figure>
 
-<!--🕰️ Chapter 5: When You Die, the Calendar Remembers-->
 <section class="section-block">
   <h2 class="section-heading">🕰️ Chapter 5: When You Die, the Calendar Remembers</h2>
 
@@ -468,7 +454,7 @@ socialImages:
     <li>To die at the right time is to pass through the correct portal</li>
   </ul>
 </section>
-<!-- Image: {{ imgPrefix }}funeral-ritual-jade-path -->
+
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}funeral-ritual-jade-path.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
