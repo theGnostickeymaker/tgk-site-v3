@@ -46,17 +46,20 @@ breadcrumbs:
             required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group password-group">
           <label for="signup-password">Password</label>
-          <input
-            type="password"
-            id="signup-password"
-            placeholder="8+ characters, be wise"
-            autocomplete="new-password"
-            required>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="signup-password"
+              placeholder="8+ characters, be wise"
+              autocomplete="new-password"
+              required>
+            <button type="button" class="toggle-password" aria-label="Show password">🙈</button>
+          </div>
         </div>
 
-        <div class="btn-wrap center">
+        <div class="btn-wrap centre">
           <button type="submit" class="btn outline full-width">Create Account</button>
           <span id="signup-status" class="small muted"></span>
         </div>
@@ -74,3 +77,47 @@ breadcrumbs:
 </main>
 
 <script type="module" src="/js/tgk-auth.js?v={{ bust }}" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.toggle-password');
+  const input = document.getElementById('signup-password');
+
+  toggle.addEventListener('click', () => {
+    const hidden = input.getAttribute('type') === 'password';
+    input.setAttribute('type', hidden ? 'text' : 'password');
+    toggle.textContent = hidden ? '🙉' : '🙈';
+    toggle.setAttribute('aria-label', hidden ? 'Hide password' : 'Show password');
+  });
+});
+</script>
+
+<style>
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: centre;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.toggle-password:hover {
+  transform: scale(1.15);
+}
+</style>

@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Refund & Cancellation Policy"
+title: "Refund and Cancellation Policy"
 description: "Information on refunds, cancellations, and membership adjustments for The Gnostic Key."
 glyph: "⚖"
 glyphRow: ["🜂", "⚖", "🜂"]
@@ -10,13 +10,13 @@ permalink: "/refund-policy/index.html"
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "Legal", url: "/legal/" }
-  - { title: "Refund & Cancellation Policy" }
+  - { title: "Refund and Cancellation Policy" }
 ---
 
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/system/refund-policy.jpg" %}
   {% include "partials/head-meta.njk" %}
-  {% set headline = "Refund & Cancellation Policy — The Gnostic Key" %}
+  {% set headline = "Refund and Cancellation Policy — The Gnostic Key" %}
   {% set base = "/refund-policy/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
@@ -25,10 +25,11 @@ breadcrumbs:
   <section class="content-container">
 
     <section class="section-block">
-      <h2 class="section-heading">Refund & Cancellation Policy</h2>
+      <h2 class="section-heading">Refund and Cancellation Policy</h2>
+
       <p class="lead">
-        We aim to maintain fairness and clarity for every seeker.  
-        Below you’ll find how refunds, cancellations, and failed payments are handled at <strong>The Gnostic Key</strong>.
+        We strive to ensure fairness, clarity, and transparency for every seeker.  
+        The following outlines how refunds, cancellations, and failed payments are managed at <strong>The Gnostic Key</strong>.
       </p>
 
       <h3>1. Subscription Refunds</h3>
@@ -36,26 +37,34 @@ breadcrumbs:
         All TGK memberships are processed securely through <strong>Stripe</strong>.
         You may cancel your subscription at any time from your account dashboard.
         Refunds are available within <strong>14 days</strong> of the initial purchase
-        for annual or lifetime plans.
+        for annual or lifetime plans, provided that significant content access has not already occurred.
       </p>
 
       <h3>2. Cancellations</h3>
       <p>
-        Monthly subscriptions can be cancelled anytime and will remain active until the
-        end of the current paid period. No further charges will be applied after cancellation.
+        Monthly subscriptions may be cancelled at any time and will remain active until the
+        end of the current paid period. No further payments will be taken after cancellation.
       </p>
 
       <h3>3. Failed Payments</h3>
       <p>
-        If a payment fails, your account automatically reverts to the
+        If a payment fails, your account will automatically revert to the
         <em>Free</em> tier until the issue is resolved.
-        Once payment is successful, access to your original tier is restored instantly.
+        Once payment is successfully processed, access to your original tier will be restored immediately.
       </p>
 
       <h3>4. Contact</h3>
       <p>
-        For refund requests or billing assistance, contact our support team at  
+        For refund requests, billing queries, or subscription support, please contact our team at  
         <a href="mailto:support@thegnostickey.com">support@thegnostickey.com</a>.
+      </p>
+
+      <hr class="divider-line">
+
+      <p class="small muted">
+        © {{ "now" | date("yyyy") }} The Gnostic Key Limited.<br>
+        Registered in England and Wales No. 16342669.<br>
+        All rights reserved.
       </p>
     </section>
 
