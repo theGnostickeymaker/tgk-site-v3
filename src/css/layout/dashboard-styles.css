@@ -184,6 +184,19 @@
     z-index: 5;
   }
 
+    .download-tag {
+    margin-left: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--accent);
+    transition: opacity 0.3s ease;
+  }
+
+  .download-tag:hover {
+    opacity: 0.8;
+  }
   /* ===================================================
      📱 Responsive
      =================================================== */
@@ -635,6 +648,5 @@
     transparent);
   opacity: 0.6;
 }
-
 
 }

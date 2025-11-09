@@ -193,7 +193,6 @@ socialImages:
 
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 
-
 <main class="main-content">
 <section class="content-container">
 

@@ -1,0 +1,13 @@
+{# ===========================================================
+   📄 TGK — Download Partial (v1.0)
+   Client-side PDF generator toggle (paired with Bookmarks)
+   =========================================================== #}
+
+<button
+  class="download-tag page-download"
+  type="button"
+  aria-label="Download this Scroll as PDF"
+  data-download-id="{{ pageId or page.url }}"
+  data-filename="{{ title | slugify }}.pdf">
+  📄
+</button>
