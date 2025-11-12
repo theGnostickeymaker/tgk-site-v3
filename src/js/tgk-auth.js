@@ -19,8 +19,11 @@ await setPersistence(auth, browserLocalPersistence);
 console.log("[Auth] Persistence set to browserLocalPersistence");
 
 // === Wait for persisted user before any gated checks ===
-onAuthStateChanged(auth, (user) => {
-  console.log("[Auth] onAuthStateChanged:", user ? user.email : "none");
+await setPersistence(auth, browserLocalPersistence).then(() => {
+  console.log("[Auth] Persistence set");
+  onAuthStateChanged(auth, (user) => {
+    console.log("[Auth] onAuthStateChanged:", user ? user.email : "none");
+  });
 });
 
 // === ENSURE __TGK_GATE__ ===
@@ -70,9 +73,27 @@ window.pageSignin = async (email, password) => {
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
   } catch (err) {
-    console.error("[Auth] Login failed:", err);
-    alert("Login failed: " + (err.message || "Unknown error"));
+  console.error("[Auth] Login failed:", err.code, err.message);
+
+  // Ignore transient or recoverable errors that occur on some mobile browsers
+  const ignorableErrors = [
+    "auth/network-request-failed",
+    "auth/internal-error",
+    "auth/popup-closed-by-user",
+    "auth/popup-blocked"
+  ];
+
+  if (!ignorableErrors.includes(err.code)) {
+    const statusEl = document.getElementById("login-status");
+if (statusEl) {
+  statusEl.textContent = err.message || "Unable to log in.";
+  statusEl.classList.remove("hidden");
+}
+
+  } else {
+    console.warn("[Auth] Non-critical sign-in error suppressed:", err.code);
   }
+}
 };
 
 /* ===========================================================
