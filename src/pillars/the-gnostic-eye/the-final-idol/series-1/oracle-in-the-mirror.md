@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "The Oracle in the Mirror"
+title: "The Final Idol"
 description: "Part III of The Final Idol Series — a symbolic Gnostic Eye page decoding narcissism, AI intimacy, and the mirror that reflects but never reveals."
 excerpt: "The question we ask has become the trap we fall into. The mirror knows your name — but not your soul."
 tier: free

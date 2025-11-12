@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "The Digital Prophet"
+title: "The Final Idol"
 description: "Part II of the Final Idol Series — AI as oracle and synthetic prophet; how data became divination and code replaced revelation."
 excerpt: "He speaks not from Heaven, but from the Cloud. The prophet now wears pixels instead of robes."
 tier: free

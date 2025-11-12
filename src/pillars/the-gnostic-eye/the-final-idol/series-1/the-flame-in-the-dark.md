@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "The Flame in the Dark"
+title: "The Final Idol"
 description: "Part VI of The Final Idol Series — in the age of synthetic unity, what divine spark resists the machine? Explore the last resistance."
 excerpt: "A spark remains untouched by simulation, and the soul remembers its fire."
 tier: initiate

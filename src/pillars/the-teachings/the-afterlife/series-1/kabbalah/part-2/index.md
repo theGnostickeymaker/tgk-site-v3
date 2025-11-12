@@ -10,7 +10,7 @@ pageId: "the-teachings-the-afterlife-series-1-kabbalah-part-2"
 # 🔹 Identity & Structure
 episode: 3
 partNumeral: "II"
-partTitle: "The Middle Gates — From Exile to Radiance"
+partTitle: "Ten Thresholds of Light"
 tagline: "Through the ten luminous gates, the soul learns to remember itself."
 slug: "part-2"
 

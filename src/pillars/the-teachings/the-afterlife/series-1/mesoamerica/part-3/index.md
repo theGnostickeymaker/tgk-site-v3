@@ -1,7 +1,7 @@
 ---
 
 layout: base.njk
-title: "Mesoamerica — Part III"
+title: "Mesoamerica"
 description: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death."
 excerpt: "You descended into Mictlán, outwitted the Lords of Xibalba, and faced the games of death.  
     Now begins the spiral upward — through sacrifice, memory, and the soul’s return to the celestial maize f…"

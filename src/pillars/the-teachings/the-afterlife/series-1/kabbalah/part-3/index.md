@@ -9,7 +9,7 @@ pageId: "the-teachings-the-afterlife-series-1-kabbalah-part-3"
 
 episode: 3
 partNumeral: III
-partTitle: "The Mystical Union and Resurrection"
+partTitle: "The Soul’s Journey After Death"
 tagline: "Tikkun Olam — the soul’s repair, remembrance, and reunion with the Infinite."
 slug: "part-3"
 

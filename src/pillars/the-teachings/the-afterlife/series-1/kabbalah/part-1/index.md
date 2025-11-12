@@ -9,7 +9,7 @@ tier: free
 pageId: "the-teachings-the-afterlife-series-1-kabbalah-part-1"
 episode: 3
 partNumeral: I
-partTitle: "The Tree of Emanation"
+partTitle: "The Kabbalistic Worldview"
 tagline: "The divine descent — Worlds, Sefirot, and the shattering of vessels."
 slug: "part-1"
 
