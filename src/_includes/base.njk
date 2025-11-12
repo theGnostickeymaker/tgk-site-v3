@@ -139,10 +139,13 @@
           <h2>Locked page</h2>
           <p>This page is for <strong>{{ tier | capitalize }}</strong> members.</p>
           <p>
-            <button type="button" class="btn signin-btn">Sign In</button>
-            or
-            <a href="/membership/" class="btn">Upgrade</a>
+            <a href="/signup/" class="btn outline">Sign Up</a>
+            <span class="divider">or</span>
+            <button type="button" class="btn outline signin-btn">Sign In</button>
+            <span class="divider">or</span>
+            <a href="/membership/" class="btn outline">Upgrade</a>
           </p>
+
         </div>
         <div class="page-content" style="display:none;">
           {{ content | safe }}

@@ -165,6 +165,20 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
 
+  .locked-placeholder p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: centre;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .locked-placeholder .divider {
+    align-self: centre;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
   /* ===========================================================
      Form Footer / Helper Text
      =========================================================== */
