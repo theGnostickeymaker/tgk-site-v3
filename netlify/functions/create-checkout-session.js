@@ -1,5 +1,5 @@
 // .netlify/functions/create-checkout-session.js
-// v2.0 — Unified TGK Upgrade Flow (Dashboard Return)
+// v2.1 — Unified TGK Upgrade Flow (Dashboard Return + Free Tier Support)
 
 import Stripe from "stripe";
 import admin from "firebase-admin";
@@ -18,8 +18,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const auth = admin.auth();
 const firestore = admin.firestore();
 
+/**
+ * @param {{ httpMethod: string; body: any; }} event
+ */
 export async function handler(event) {
-  if (event.httpMethod !== "POST") return json(405, { error: "Method Not Allowed" });
+  if (event.httpMethod !== "POST") {
+    return json(405, { error: "Method Not Allowed" });
+  }
 
   const { priceId, uid, email } = JSON.parse(event.body || "{}");
   const site = process.env.SITE_URL || process.env.URL || "https://thegnostickey.com";
@@ -55,7 +60,29 @@ export async function handler(event) {
       console.log("[Checkout] Created new customer:", customerId);
     }
 
-    // 3️⃣ Create Checkout Session
+    // 🜂 Handle Free Tier (no payment required)
+    if (priceId === "price_1SSbN52NNS39COWZzEg9tTWn") {
+      console.log("[Checkout] Free tier signup detected — skipping Stripe checkout");
+
+      // Ensure entitlement record is up to date
+      await entRef.set(
+        { stripeCustomerId: customerId, tier: "free" },
+        { merge: true }
+      );
+
+      // 🔹 Apply custom claim in Firebase
+      await auth.setCustomUserClaims(uid, { tier: "free" });
+      console.log("[Checkout] Firebase custom claim set: free");
+
+      // Respond directly — no checkout URL needed
+      return json(200, {
+        message: "Free tier signup complete",
+        customerId,
+        sessionId: null,
+      });
+    }
+
+    // 3️⃣ Create Checkout Session (for paid upgrades)
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       payment_method_types: ["card"],
@@ -75,6 +102,10 @@ export async function handler(event) {
   }
 }
 
+/**
+ * @param {number} status
+ * @param {{ error?: any; message?: string; customerId?: any; sessionId?: string; url?: string; }} body
+ */
 function json(status, body) {
   return {
     statusCode: status,

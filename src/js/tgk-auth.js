@@ -153,14 +153,13 @@ window.pageSignup = async (email, password) => {
       console.warn("[Auth] Could not send verification email:", verr.message);
     }
 
-    // 3. Start Stripe checkout (or default plan)
     const res = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         uid: user.uid,
         email: normaliseEmail(email),
-        priceId: "price_free_initiate" // default free tier
+        priceId: "price_1SSbN52NNS39COWZzEg9tTWn" // ✅ LIVE Free Tier ID from Stripe
       })
     });
 
