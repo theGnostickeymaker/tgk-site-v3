@@ -136,17 +136,15 @@
     {% if tier and tier != "free" %}
       <div class="locked-page" data-required-tier="{{ tier }}">
         <div class="locked-placeholder">
-          <h2>Locked page</h2>
-          <p>This page is for <strong>{{ tier | capitalize }}</strong> members.</p>
-          <p>
-            <a href="/signup/" class="btn outline">Sign Up</a>
-            <span class="divider">or</span>
-            <button type="button" class="btn outline signin-btn">Sign In</button>
-            <span class="divider">or</span>
-            <a href="/membership/" class="btn outline">Upgrade</a>
-          </p>
+          <h2>Locked Page</h2>
+          <p>This scroll is reserved for <strong>{{ tier | capitalize }}</strong> members.</p>
 
+          <p class="locked-actions">
+            <a href="/signup/" class="btn outline">Join Now</a>
+            <a href="/signin/" class="btn outline">Sign In</a>
+          </p>
         </div>
+
         <div class="page-content" style="display:none;">
           {{ content | safe }}
         </div>

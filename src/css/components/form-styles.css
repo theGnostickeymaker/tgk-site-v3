@@ -165,18 +165,19 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
 
-  .locked-placeholder p {
+  .locked-actions {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: centre;
-    gap: 0.75rem;
+    flex-direction: column;
+    align-items: centre;
+    gap: 1rem;
     margin-top: 1.25rem;
   }
-
-  .locked-placeholder .divider {
-    align-self: centre;
-    color: var(--text-muted);
-    font-weight: 500;
+  .locked-actions .text-link {
+    color: var(--highlight);
+    text-decoration: underline;
+  }
+  .locked-actions .text-link:hover {
+    color: var(--strong-text);
   }
 
   /* ===========================================================
