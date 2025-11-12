@@ -1,5 +1,6 @@
 /* ===========================================================
-   TGK — Unified Gate v3.7 — FINAL (CLICK + UNLOCK + CLAIMS)
+   TGK — Unified Gate v3.9.2
+   Early Export + Verified Return + Unlock + Toast
    =========================================================== */
 
 import { app } from "/js/firebase-init.js";
@@ -13,7 +14,9 @@ const auth = getAuth(app);
 const RETURN_KEY = "tgk-return-url";
 const tierRank = { free: 0, initiate: 1, adept: 2, admin: 3 };
 
-// === SAVE / CONSUME RETURN URL ===
+/* ===========================================================
+   🜂 EARLY EXPORT — ensures Auth can consume Gate immediately
+   =========================================================== */
 export function saveReturnUrl(url = window.location.href) {
   if (!url.startsWith(window.location.origin)) return;
   if (url === window.location.origin + "/" || url.includes("/index.html")) return;
@@ -25,16 +28,42 @@ export function saveReturnUrl(url = window.location.href) {
 export function consumeReturnUrl() {
   const url = sessionStorage.getItem(RETURN_KEY) || localStorage.getItem(RETURN_KEY);
   if (!url || !url.startsWith(window.location.origin)) return false;
+
   sessionStorage.removeItem(RETURN_KEY);
   localStorage.removeItem(RETURN_KEY);
+  sessionStorage.setItem("tgk-returned", "1");
+
   console.log("[Gate] Returning to:", url);
-  window.location.replace(url);
+  setTimeout(() => window.location.replace(url), 200); // delay prevents Firebase race
   return true;
 }
 
+// Make globally accessible for Auth
 window.__TGK_GATE__ = { saveReturnUrl, consumeReturnUrl };
 
-// === DOM READY: Unlock + Click Handler ===
+/* ===========================================================
+   🜂 Toast Helper + Return Notification
+   =========================================================== */
+function showToast(msg) {
+  const toast = document.createElement("div");
+  toast.className = "tgk-toast";
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add("visible"), 50);
+  setTimeout(() => toast.classList.remove("visible"), 4000);
+  setTimeout(() => toast.remove(), 4500);
+}
+
+if (sessionStorage.getItem("tgk-returned")) {
+  setTimeout(() => {
+    showToast("🗝️ Welcome back. Scroll unlocked.");
+    sessionStorage.removeItem("tgk-returned");
+  }, 350);
+}
+
+/* ===========================================================
+   🜂 Init Gate — Unlock + Click Logic
+   =========================================================== */
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initGate);
 } else {
@@ -42,52 +71,34 @@ if (document.readyState === "loading") {
 }
 
 function initGate() {
-  console.log("[Gate] Initializing...");
+  console.log("[Gate] Initialising...");
 
   const lockedBlocks = document.querySelectorAll(".locked-page");
   if (!lockedBlocks.length) return;
 
-  // === 1. UNLOCK CONTENT IF LOGGED IN ===
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
-      console.log("[Gate] No user — showing locked UI");
+      console.log("[Gate] No user — locked UI stays.");
       return;
     }
 
-    console.log("[Gate] User detected:", user.email, user.uid);
-
     try {
-      // FORCE REFRESH TOKEN TO GET LATEST CLAIMS
       await user.getIdToken(true);
-      console.log("[Gate] Token refreshed — claims loaded");
-
       const idTokenResult = await user.getIdTokenResult();
       const claims = idTokenResult.claims;
-      console.log("[Gate] Claims:", claims);
-
-      // Fallback to localStorage if claims missing
       const userTier = claims.tier || localStorage.getItem("tgk-tier") || "free";
-      if (claims.tier) localStorage.setItem("tgk-tier", claims.tier);
-      console.log("[Gate] User tier:", userTier);
-
       const rank = tierRank[userTier] ?? 0;
 
-      lockedBlocks.forEach(block => {
+      lockedBlocks.forEach((block) => {
         const reqTier = block.dataset.requiredTier || "initiate";
         const reqRank = tierRank[reqTier] ?? 1;
-        console.log(`[Gate] Block requires: ${reqTier} (rank ${reqRank}), user has rank ${rank}`);
-
         if (rank >= reqRank) {
-          console.log("[Gate] UNLOCKING BLOCK");
           block.classList.add("unlocked-page");
           block.querySelector(".locked-placeholder")?.remove();
-          const content = block.querySelector(".page-content");
-          if (content) {
-            content.style.display = "block";
-            content.style.opacity = "1";
-          }
+          block.querySelector(".page-content")?.style.setProperty("display", "block");
+          console.log("[Gate] Unlocked:", block.id || block.className);
         } else {
-          console.log("[Gate] Access denied — tier too low");
+          console.log("[Gate] Insufficient tier:", userTier);
         }
       });
     } catch (err) {
@@ -95,15 +106,21 @@ function initGate() {
     }
   });
 
-  // === 2. CLICK: "Sign In" button ===
+  // === "Sign In" button
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".signin-btn");
     if (!btn) return;
-
-    console.log("[Gate] Sign In button clicked");
     e.preventDefault();
-    e.stopPropagation();
     saveReturnUrl();
     window.location.href = "/signin/";
+  });
+
+  // === "Join Now" button
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".join-btn");
+    if (!btn) return;
+    e.preventDefault();
+    saveReturnUrl();
+    window.location.href = "/signup/";
   });
 }
