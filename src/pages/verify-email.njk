@@ -1,0 +1,66 @@
+---
+layout: base.njk
+title: "Verify Email"
+description: "Confirm your email address to activate your TGK membership."
+glyph: "☥"
+glyphRow: ["☥", "✶", "☥"]
+bodyClass: "lightgold"
+permalink: "/verify-email/index.html"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Membership", url: "/membership/" }
+  - { title: "Dashboard", url: "/dashboard/" }
+  - { title: "Verify Email" }
+---
+
+<main class="main-content page-auth">
+  <section class="content-container">
+
+    <div class="auth-glyph-wrap">
+      <div class="auth-glyph glow">✶</div>
+    </div>
+
+    <section class="section-block auth-form">
+      <h2 class="section-heading">Confirm Your Email</h2>
+      <p class="lead muted">We are verifying your address, please hold the light...</p>
+
+      <div id="verify-msg" class="auth-feedback" role="alert"></div>
+    </section>
+
+  </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow">{{ glyph }}</span>
+  </div>
+</main>
+
+<script type="module">
+  import {
+    getAuth,
+    applyActionCode
+  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  import { app } from "/js/firebase-init.js";
+
+  const auth = getAuth(app);
+  const msg = document.getElementById("verify-msg");
+  const params = new URLSearchParams(window.location.search);
+  const oobCode = params.get("oobCode");
+
+  async function verify() {
+    msg.textContent = "Verifying your address...";
+    try {
+      await applyActionCode(auth, oobCode);
+      msg.innerHTML = "<strong>Email verified successfully!</strong><br>Your account is now active. Redirecting to dashboard...";
+      setTimeout(() => {
+        window.location.href = "/dashboard/";
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+      msg.innerHTML = "Verification link invalid or expired. Please request a new one from your dashboard.";
+    }
+  }
+
+  if (oobCode) verify();
+  else msg.textContent = "Invalid verification link.";
+</script>

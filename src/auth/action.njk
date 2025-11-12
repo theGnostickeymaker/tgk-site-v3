@@ -1,0 +1,47 @@
+---
+layout: base.njk
+title: "Account Action"
+description: "Handling account verification and recovery."
+glyph: "☥"
+glyphRow: ["☥", "✶", "☥"]
+bodyClass: "lightgold"
+permalink: "/auth/action/index.html"
+---
+
+<main class="main-content page-auth">
+  <section class="content-container">
+    <div class="auth-glyph-wrap"><div class="auth-glyph glow">✶</div></div>
+    <section class="section-block auth-form">
+      <h2 class="section-heading">Processing...</h2>
+      <p class="lead muted" id="status">Checking your link...</p>
+    </section>
+  </section>
+
+  <div class="gnostic-divider">
+    <span class="divider-symbol pillar-glyph spin glow">{{ glyph }}</span>
+  </div>
+</main>
+
+<script type="module">
+  import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  import { app } from "/js/firebase-init.js";
+
+  const auth = getAuth(app);
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
+  const oobCode = params.get("oobCode");
+  const status = document.getElementById("status");
+
+  if (!mode || !oobCode) {
+    status.textContent = "Invalid or incomplete link.";
+  } else if (mode === "verifyEmail") {
+    window.location.href = `/verify-email/?${params.toString()}`;
+  } else if (mode === "resetPassword") {
+    window.location.href = `/reset-password/?${params.toString()}`;
+  } else if (mode === "recoverEmail") {
+    status.textContent = "Email recovery not yet implemented.";
+  } else {
+    status.textContent = "Unknown action type.";
+  }
+</script>
+
