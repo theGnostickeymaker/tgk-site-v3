@@ -41,6 +41,7 @@ breadcrumbs:
     applyActionCode
   } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
   import { app } from "/js/firebase-init.js";
+  import { consumeReturnUrl } from "/js/tgk-gate.js";
 
   const auth = getAuth(app);
   const msg = document.getElementById("verify-msg");
@@ -49,18 +50,34 @@ breadcrumbs:
 
   async function verify() {
     msg.textContent = "Verifying your address...";
+
     try {
       await applyActionCode(auth, oobCode);
-      msg.innerHTML = "<strong>Email verified successfully!</strong><br>Your account is now active. Redirecting to dashboard...";
+      msg.innerHTML = `
+        <strong>Email verified successfully!</strong><br>
+        Your account is now active. Redirecting...
+      `;
+
+      // Give Firebase a moment to refresh claims
+      await auth.currentUser?.getIdToken(true);
+
+      // 🜂 Attempt to return to the saved page, fallback to dashboard
       setTimeout(() => {
-        window.location.href = "/dashboard/";
-      }, 3000);
+        if (!consumeReturnUrl()) {
+          window.location.replace("/dashboard/");
+        }
+      }, 2500);
     } catch (error) {
-      console.error(error);
-      msg.innerHTML = "Verification link invalid or expired. Please request a new one from your dashboard.";
+      console.error("[Verify] Error:", error);
+      msg.innerHTML =
+        "Verification link invalid or expired.<br>Please request a new one from your dashboard.";
     }
   }
 
-  if (oobCode) verify();
-  else msg.textContent = "Invalid verification link.";
+  if (oobCode) {
+    verify();
+  } else {
+    msg.textContent = "Invalid verification link.";
+  }
 </script>
+
