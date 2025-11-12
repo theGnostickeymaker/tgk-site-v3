@@ -210,11 +210,3 @@ export async function refreshEntitlementsLive(user) {
   }
   return "free";
 }
-
-/* ===========================================================
-   🜂 Auto-Tier Display on Startup (no flash)
-   =========================================================== */
-document.addEventListener("DOMContentLoaded", () => {
-  const cachedTier = localStorage.getItem("tgk-tier") || "visitor";
-  updateTierUI(cachedTier);
-});

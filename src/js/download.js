@@ -1,22 +1,22 @@
 /* ===========================================================
-   📄 TGK — Download System v1.0
-   Client-side PDF generator for Scrolls
+   📄 TGK — Download System v1.1
    =========================================================== */
-console.log("[TGK] Download v1.0 loaded");
 
-import html2pdf from "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js";
+console.log("[TGK] Download v1.1 loaded");
 
 /* ===========================================================
-   ✦ Toast Helper (reuse global if present)
+   ✦ Lazy Load html2pdf (UMD-compatible)
    =========================================================== */
-function showToast(msg, type = "info") {
-  if (window.showToast) return window.showToast(msg, type);
-  const c = document.createElement("div");
-  c.className = `tgk-toast ${type}`;
-  c.textContent = msg;
-  document.body.appendChild(c);
-  setTimeout(() => c.remove(), 4000);
+async function loadHtml2Pdf() {
+  if (window.html2pdf) return window.html2pdf;
+  await import("https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js");
+  return window.html2pdf;
 }
+
+/* ===========================================================
+   ✦ Toast Integration
+   =========================================================== */
+import { showToast } from "/js/toast.js";
 
 /* ===========================================================
    ✦ Generate + Download
@@ -38,6 +38,7 @@ async function generatePDF(btn) {
   btn.disabled = true;
   btn.textContent = "⏳";
 
+  const html2pdf = await loadHtml2Pdf(); // ✅ dynamic load
   const options = {
     margin: 10,
     filename,

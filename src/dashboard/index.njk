@@ -124,9 +124,22 @@ breadcrumbs:
 
   const auth = getAuth();
 
+  // 🜂 Wait until tgk-user.js defines updateTierUI
+  async function waitForUpdateTierUI() {
+    for (let i = 0; i < 40; i++) { // wait up to ~4 seconds
+      if (typeof updateTierUI === "function") return;
+      await new Promise(r => setTimeout(r, 100));
+    }
+    console.warn("[TGK] updateTierUI never became available");
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const cachedTier = localStorage.getItem("tgk-tier");
-    if (cachedTier) updateTierUI(cachedTier);
+    if (cachedTier) {
+      await waitForUpdateTierUI();
+      updateTierUI(cachedTier);
+    }
+
   });
 
   onAuthStateChanged(auth, async (user) => {
