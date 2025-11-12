@@ -9,7 +9,8 @@ import {
   sendPasswordResetEmail,
   setPersistence,
   browserLocalPersistence,
-  onAuthStateChanged
+  onAuthStateChanged,
+  sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const auth = getAuth(app);
@@ -21,9 +22,22 @@ console.log("[Auth] Persistence set to browserLocalPersistence");
 // === Wait for persisted user before any gated checks ===
 await setPersistence(auth, browserLocalPersistence).then(() => {
   console.log("[Auth] Persistence set");
-  onAuthStateChanged(auth, (user) => {
-    console.log("[Auth] onAuthStateChanged:", user ? user.email : "none");
-  });
+  onAuthStateChanged(auth, async (user) => {
+  if (!user) return console.log("[Auth] No user signed in.");
+
+  console.log("[Auth] onAuthStateChanged:", user.email);
+
+  await user.reload(); // make sure we have the latest verification state
+
+  if (!user.emailVerified) {
+    console.warn("[Auth] Email not verified:", user.email);
+    showVerifyBanner(user);
+  } else {
+    console.log("[Auth] Email verified:", user.email);
+    // Normal dashboard flow continues here
+  }
+});
+
 });
 
 // === ENSURE __TGK_GATE__ ===
@@ -131,6 +145,13 @@ window.pageSignup = async (email, password) => {
     const { createUserWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js");
     const cred = await createUserWithEmailAndPassword(auth, normaliseEmail(email), password);
     const user = cred.user;
+    // Send a background verification email (non-blocking)
+    try {
+      await sendEmailVerification(user);
+      console.log("[Auth] Verification email sent to:", user.email);
+    } catch (verr) {
+      console.warn("[Auth] Could not send verification email:", verr.message);
+    }
 
     // 3. Start Stripe checkout (or default plan)
     const res = await fetch("/.netlify/functions/create-checkout-session", {
@@ -158,7 +179,7 @@ window.pageSignup = async (email, password) => {
     await user.getIdToken(true);
     localStorage.setItem("tgk-tier", "initiate");
 
-    alert("Welcome to The Gnostic Key!");
+    alert("Welcome to The Gnostic Key! We’ve sent a quick verification link to your email — you can explore right away, but please confirm later to secure your access.");
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
   } catch (err) {

@@ -44,6 +44,17 @@ async function startCheckout(priceId) {
     return;
   }
 
+  await user.reload();
+  if (!user.emailVerified) {
+    const proceed = confirm(
+      "Your email has not been verified yet.\n\nYou can continue, but please confirm your address to avoid membership access issues.\n\nContinue anyway?"
+    );
+    if (!proceed) return;
+  }
+
+  // ... existing checkout logic ...
+}
+
   try {
     const token = await user.getIdToken();
     const body = {
@@ -75,7 +86,6 @@ async function startCheckout(priceId) {
     console.error("[TGK] Checkout flow failed:", err);
     alert("An unexpected error occurred. Please try again later.");
   }
-}
 
 // ===========================================================
 //  Auth State Awareness (optional UX enhancement)
