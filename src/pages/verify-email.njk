@@ -35,11 +35,9 @@ breadcrumbs:
   </div>
 </main>
 
+{% raw %}
 <script type="module">
-  import {
-    getAuth,
-    applyActionCode
-  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  import { getAuth, applyActionCode } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
   import { app } from "/js/firebase-init.js";
   import { consumeReturnUrl } from "/js/tgk-gate.js";
 
@@ -47,10 +45,10 @@ breadcrumbs:
   const msg = document.getElementById("verify-msg");
   const params = new URLSearchParams(window.location.search);
   const oobCode = params.get("oobCode");
+  const fallbackReturn = params.get("return"); // <— new
 
   async function verify() {
     msg.textContent = "Verifying your address...";
-
     try {
       await applyActionCode(auth, oobCode);
       msg.innerHTML = `
@@ -58,26 +56,30 @@ breadcrumbs:
         Your account is now active. Redirecting...
       `;
 
-      // Give Firebase a moment to refresh claims
+      // Refresh token so tier claims are available immediately
       await auth.currentUser?.getIdToken(true);
 
-      // 🜂 Attempt to return to the saved page, fallback to dashboard
       setTimeout(() => {
-        if (!consumeReturnUrl()) {
-          window.location.replace("/dashboard/");
+        // 1) Try storage-based handoff (original tab/session)
+        if (consumeReturnUrl()) return;
+
+        // 2) Use the URL encoded in the email link (cross-context handoff)
+        if (fallbackReturn) {
+          window.location.replace(fallbackReturn);
+          return;
         }
-      }, 2500);
+
+        // 3) Final fallback
+        window.location.replace("/dashboard/");
+      }, 1500);
     } catch (error) {
       console.error("[Verify] Error:", error);
-      msg.innerHTML =
-        "Verification link invalid or expired.<br>Please request a new one from your dashboard.";
+      msg.innerHTML = "Verification link invalid or expired. Please request a new one from your dashboard.";
     }
   }
 
-  if (oobCode) {
-    verify();
-  } else {
-    msg.textContent = "Invalid verification link.";
-  }
+  if (oobCode) verify();
+  else msg.textContent = "Invalid verification link.";
 </script>
+{% endraw %}
 
