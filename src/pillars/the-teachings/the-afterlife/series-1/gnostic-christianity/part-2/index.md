@@ -400,11 +400,11 @@ socialImages:
 
 <!-- Image: gnosis-vs-religion-page -->
 <figure class="image-block">
-  <a href="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-page.jpg" target="_blank" rel="noopener noreferrer">
+  <a href="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.jpg" target="_blank" rel="noopener noreferrer">
     <picture>
-      <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-page.webp" type="image/webp">
+      <source srcset="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.webp" type="image/webp">
       <img
-        src="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-page.jpg"
+        src="{{ imgBase }}/{{ imgPrefix }}gnosis-vs-religion-scroll.jpg"
         alt="An ancient page burns from within, light breaking through its faded doctrines. Silhouettes of seekers stand outside collapsing temples as golden sparks of remembrance rise into the air. Gnosis emerges from the ashes of belief."
         class="image-gnostic"
         loading="lazy"

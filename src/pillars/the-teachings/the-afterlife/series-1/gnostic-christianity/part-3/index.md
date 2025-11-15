@@ -336,7 +336,7 @@ socialImages:
     <li>This soul map appears in <em>Apocalypse of Paul</em>, <em>Pistis Sophia</em>, and other Gnostic scriptures.</li>
   </ul>
 </section>
-<!-- Image: toll-gates-archons -->
+
 <figure class="image-block">
   <a href="{{ imgBase }}/{{ imgPrefix }}toll-gates-archons.jpg" target="_blank" rel="noopener noreferrer">
     <picture>

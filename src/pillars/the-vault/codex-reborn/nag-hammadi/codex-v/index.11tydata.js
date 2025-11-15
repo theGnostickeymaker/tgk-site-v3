@@ -62,14 +62,6 @@ export default {
       glyph: "💧",
       tier: "free",
       state: "default"
-    },
-    {
-      title: "Fragment on the Origin of the World (Codex V Variant)",
-      desc: "A fragmentary retelling of the cosmic myth paralleling Codex II — differing in tone and detail.",
-      href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/origin-fragment/",
-      glyph: "🜁",
-      tier: "free",
-      state: "default"
     }
   ],
 
