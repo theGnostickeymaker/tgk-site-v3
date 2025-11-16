@@ -29,7 +29,7 @@ publishedBy: "The Gnostic Key"
 tags: ["The Gnostic Eye", "The Final Idol", "Gnosis", "Resistance", "Inner Flame"]
 
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/index.html"
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/the-flame-in-the-dark@x.jpg"
+socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-6/the-flame-in-the-dark-part-6.jpg"
 imgBase: "/media/the-gnostic-eye/the-final-idol/"
 imgPrefix: "the-final-idol-"
 

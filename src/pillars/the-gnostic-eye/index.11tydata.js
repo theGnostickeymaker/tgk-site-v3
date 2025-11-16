@@ -18,6 +18,19 @@ export default {
   description:
     "Symbolic vision and revelation — decoding modern myths, idols, and the invisible architectures shaping belief and control.",
 
+  socialImage: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index.jpg",
+
+  socialImages: {
+  x: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@x.jpg",
+  square: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@square.jpg",
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@portrait.jpg",
+  story: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@story.jpg",
+  hero: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@2x.jpg"
+  },
+
+  ogTitle: "The Gnostic Eye — Symbolic Vision and False Light",
+  ogDescription: "Decode the symbols shaping modern myth, illusion, and hidden power.",
+
   introText:
     "Each series within The Gnostic Eye reveals the unseen forces shaping perception, belief, and power — from synthetic gods and false light to the geometry of allegiance.",
 

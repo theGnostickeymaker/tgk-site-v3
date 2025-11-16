@@ -49,7 +49,11 @@ discussionPromptEnabled: true
 glossaryEnabled: true
 lensEnabled: true
 
-# ⚯ Synergist Lens
+crossLinks: []
+vaultRefs: []
+communityThreads: []
+relatedProducts: []
+
 creativePrompt:
   text: ""
   sharePrompt: ""
@@ -85,7 +89,6 @@ breadcrumbs:
   - { title: "The Final Idol", url: "/pillars/the-gnostic-eye/the-final-idol/" }
   - { title: "Part III" }
 
-# 🔗 Auto-injected navigation (v4.2 - corrected permalinks)
 episodeParts:
   - title: "Part I — The Final Idol"
     desc: "The Image as God — the birth of synthetic belief."
@@ -152,6 +155,8 @@ socialImages:
   portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@portrait.jpg"
   story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@story.jpg"
   hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@2x.jpg"
+
+
 ---
 
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}

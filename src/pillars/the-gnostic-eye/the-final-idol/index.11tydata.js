@@ -2,6 +2,7 @@ export default {
   layout: "base.njk",
 
   // 🌌 Series Overview
+
   pageId: "the-gnostic-eye-the-final-idol",
   permalink: "/pillars/the-gnostic-eye/the-final-idol/index.html",
   pillarId: "the-gnostic-eye",
@@ -18,6 +19,19 @@ export default {
   tagline: "Synthetic gods ✦ Predictive prophets ✦ The flame of Gnosis reborn",
   description:
     "AI as idol, prophet, and antichrist — tracing the symbolic evolution of faith and control in the digital age.",
+  
+  socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index.jpg",
+
+  socialImages: {
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@x.jpg",
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@square.jpg",
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@portrait.jpg",
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@story.jpg",
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@2x.jpg"
+  },
+
+  ogTitle: "The Final Idol — Synthetic Vision and False Light",
+  ogDescription: "Decode the rise of synthetic gods, algorithmic prophecy, and the illusions that shape modern belief.",
 
   introText:
     "There is no more truth — only the appearance of it. The Final Idol is a six-Part descent through synthetic spirituality, predictive machines, false prophecy, and the Gnostic warning encoded in today’s technology.",
