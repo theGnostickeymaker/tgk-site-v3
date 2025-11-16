@@ -20,8 +20,8 @@ bodyClass: "eye"
 
 glyph: "🜏"
 glyphRow: ["☿","🜏","👁"]
-series: "The Final Idol"
 series: "the-final-idol"
+pillar: "the-gnostic-eye"
 
 seriesId: "the-final-idol-s1"
 episodeId: "the-final-idol"
