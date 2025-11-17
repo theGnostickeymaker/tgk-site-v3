@@ -188,13 +188,6 @@ references:
       year: "1998"
       work: "TechGnosis: Myth, Magic, and Mysticism in the Age of Information"
       pub: "Harmony Books"
-
-socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@2x.jpg"
 ---
 
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
