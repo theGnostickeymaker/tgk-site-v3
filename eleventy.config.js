@@ -25,6 +25,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy({ "src/_data/quiz": "quiz" });
 
+  eleventyConfig.addFilter("absoluteUrl", function (path) {
+  if (!path) return "";
+  let base = this.ctx.site?.url || process.env.SITE_URL || "http://localhost:8080";
+  return new URL(path, base).href;
+});
+
   /* =========================
      1.5) Quiz JSON Auto-Build  (synchronous, no await)
   ========================= */
