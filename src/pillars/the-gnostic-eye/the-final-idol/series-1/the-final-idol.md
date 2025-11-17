@@ -13,10 +13,20 @@ tagline: "False light ✦ Synthetic gods ✦ The Machine ✦ The Imitation of Sp
 slug: "part-1"
 
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-final-idol/index.html"
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1.jpg"
 imgBase: "/media/the-gnostic-eye/the-final-idol/"
 imgPrefix: "the-final-idol-"
 bodyClass: "eye"
+
+socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1.jpg"
+ogTitle: "The AI Antichrist"
+ogDescription: "A symbolic examination of the false machine messiah."
+socialImages:
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@hero.jpg"
+socialAlt: "Title art for The AI Antichrist from The Gnostic Eye series."
 
 glyph: "🜏"
 glyphRow: ["☿","🜏","👁"]

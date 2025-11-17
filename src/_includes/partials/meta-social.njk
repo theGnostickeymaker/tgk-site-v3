@@ -1,0 +1,50 @@
+{# ---------------------------------------------- #}
+{# TGK SOCIAL METADATA                            #}
+{# ---------------------------------------------- #}
+
+{# Resolve share image object with fallbacks       #}
+{# Priority: page > directory defaults > site      #}
+
+{% set shareImages = 
+    socialImages 
+    or (dataFileDefaults and dataFileDefaults.socialImages) 
+    or site.socialImages 
+%}
+
+{# Choose the canonical share image. Use the x variant if present. #}
+{% set ogImage = shareImages.x or shareImages.hero %}
+
+{# Resolve text metadata with fallbacks. #}
+{% set title = ogTitle or title or site.title %}
+{% set description = ogDescription or description or site.description %}
+{% set alt = socialAlt or (dataFileDefaults and dataFileDefaults.socialAlt) or site.socialAlt %}
+
+{# Absolute URL helper #}
+{% set absoluteOg = ogImage | absoluteUrl(site.url) %}
+
+{# ---------------------------------------------- #}
+{# OPEN GRAPH META TAGS                            #}
+{# ---------------------------------------------- #}
+
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ page.url | absoluteUrl(site.url) }}">
+<meta property="og:image" content="{{ absoluteOg }}">
+<meta property="og:image:alt" content="{{ alt }}">
+
+{# ---------------------------------------------- #}
+{# TWITTER (X) META TAGS                           #}
+{# ---------------------------------------------- #}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ absoluteOg }}">
+<meta name="twitter:image:alt" content="{{ alt }}">
+
+{# ---------------------------------------------- #}
+{# OPTIONAL EXTRA TAGS (SAFE TO LEAVE COMMENTED)   #}
+{# Uncomment if required for SEO                   #}
+{# <meta name="description" content="{{ description }}"> #}
+{# ---------------------------------------------- #}
