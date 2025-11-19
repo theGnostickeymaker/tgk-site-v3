@@ -27,6 +27,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("src/tgk-assets");
+  eleventyConfig.addPassthroughCopy("src/_headers")
 
   if (fs.existsSync("src/robots.txt")) {
     eleventyConfig.addPassthroughCopy("src/robots.txt");
