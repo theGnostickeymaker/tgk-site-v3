@@ -24,6 +24,13 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy({ "src/_data/quiz": "quiz" });
+  eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("src/tgk-assets");
+
+  if (fs.existsSync("src/robots.txt")) {
+    eleventyConfig.addPassthroughCopy("src/robots.txt");
+  }
 
   eleventyConfig.addFilter("absoluteUrl", function (path) {
   if (!path) return "";
@@ -45,17 +52,6 @@ export default function (eleventyConfig) {
     console.log("🧩 TGK Quiz index.json regenerated");
   } catch (err) {
     console.warn("⚠️  TGK Quiz JSON generation skipped:", err.message);
-  }
-
-  if (fs.existsSync("src/media/tgk-assets")) {
-    eleventyConfig.addPassthroughCopy("src/media/tgk-assets");
-  }
-
-  eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
-  eleventyConfig.addPassthroughCopy("favicon.ico");
-
-  if (fs.existsSync("src/robots.txt")) {
-    eleventyConfig.addPassthroughCopy("src/robots.txt");
   }
 
   /* =========================

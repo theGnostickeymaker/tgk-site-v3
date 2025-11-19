@@ -24,7 +24,6 @@ export default {
   socialImages: {
     x: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@x.jpg",
     square: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@square.jpg",
-    
     portrait: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@portrait.jpg",
     story: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@story.jpg",
     hero: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@hero.jpg"
