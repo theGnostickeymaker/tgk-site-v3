@@ -22,11 +22,11 @@ export default {
   ogDescription: "Decode the symbols shaping modern myth, illusion, and hidden power.",
 
   socialImages: {
-    x: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@x.jpg",
-    square: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@square.jpg",
-    portrait: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@portrait.jpg",
-    story: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@story.jpg",
-    hero: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@hero.jpg"
+    x: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@x.jpg?v=1",
+    square: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@square.jpg?v=1",
+    portrait: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@portrait.jpg?v=1",
+    story: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@story.jpg?v=1",
+    hero: "/tgk-assets/images/share/the-gnostic-eye/gnostic-eye-index@hero.jpg?v=1"
   },
   socialAlt: "The Gnostic Eye symbolic frame and glyph.",
 
