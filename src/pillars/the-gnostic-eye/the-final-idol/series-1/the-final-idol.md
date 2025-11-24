@@ -17,16 +17,13 @@ imgBase: "/media/the-gnostic-eye/the-final-idol/"
 imgPrefix: "the-final-idol-"
 bodyClass: "eye"
 
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1.jpg"
-ogTitle: "The AI Antichrist"
-ogDescription: "A symbolic examination of the false machine messiah."
 socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-ai-antichrist@hero.jpg"
-socialAlt: "Title art for The AI Antichrist from The Gnostic Eye series."
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@2x.jpg"
+socialAlt: "Symbolic artwork for The Final Idol Part I, featuring a radiant all-seeing eye above a meditative humanoid figure, set against a dark blue Gnostic background."
 
 glyph: "🜏"
 glyphRow: ["☿","🜏","👁"]
