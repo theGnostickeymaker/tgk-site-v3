@@ -35,7 +35,7 @@ export default {
       title: "Forbidden Documents",
       glyph: "🚫",
       desc: "Erased, banned, or classified texts preserved for study.",
-      state: "default",
+      state: "coming-soon",
       tier: "initiate"
     },
     {
@@ -43,7 +43,7 @@ export default {
       title: "Mystical Traditions",
       glyph: "✨",
       desc: "Sacred writings from Egypt, Kabbalah, Sufi Islam, and more.",
-      state: "default",
+      state: "coming-soon",
       tier: "initiate"
     },
     {

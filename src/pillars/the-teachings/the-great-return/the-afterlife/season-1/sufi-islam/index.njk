@@ -1,0 +1,40 @@
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/sufi-islam.jpg" %}
+  {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "Sufi Islam — Season 1" %}
+  {% set base = "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      Sufi Islam — the journey of the soul through divine love, annihilation of self, and union with the Beloved.
+    </h4>
+
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
+
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">☪ About Sufi Islam</span>
+      </summary>
+      <p>
+        <strong>Sufi Islam</strong> reveals the mystical heart of Islam — the path of the lover and the Beloved, where remembrance (dhikr) dissolves illusion.
+      </p>
+      <p>
+        This page explores the stations of the soul, purification of the heart, and the mysteries of fanā’ and baqā’.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

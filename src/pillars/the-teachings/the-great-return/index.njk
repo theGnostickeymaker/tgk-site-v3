@@ -1,0 +1,61 @@
+{% block head %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+  <h4 class="index-heading">
+    A unified arc of remembrance: the maps of the afterlife, the hidden temple of inner passage, and the sacred inquiry into the nature and destiny of the human being.
+  </h4>
+
+  <details class="disclaimer-box">
+    <summary>
+      <span class="disclaimer-heading">☥ About The Great Return</span>
+    </summary>
+
+    <p>
+      <strong>The Great Return</strong> is a threefold journey into the deepest questions of
+      the soul. It unites the world’s afterlife traditions, the inner temple teachings of
+      transformation, and the sacred inquiry into what it means to be human.
+    </p>
+
+    <p>
+      <strong>Season 1, The Afterlife Scrolls</strong>, maps the passages of death and rebirth
+      found across the world’s mystical traditions. It traces the soul’s movement through
+      judgement, transformation and remembrance, revealing the many ways cultures have
+      understood the return beyond the veil.
+    </p>
+
+    <p>
+      <strong>Season 2, Temple of the Afterlife</strong>, turns inward to the subtle body, the
+      initiatory gates, and the esoteric teachings that guide the traveller through the hidden
+      architecture of consciousness.
+    </p>
+
+    <p>
+      <strong>Season 3, The Human Question</strong>, asks how the sacred traditions define the
+      human being, examining the soul’s origin, purpose and dignity within the wider struggle
+      for meaning and spiritual sovereignty.
+    </p>
+
+    <p>
+      Across all three seasons, The Great Return teaches that death is not an ending but a
+      passage, that remembrance is a discipline, and that the soul carries a destiny older than
+      any world it enters.
+    </p>
+  </details>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "The Teachings — Pillars of Initiation" %}
+    {% set base = "/pillars/the-teachings/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+    </div>
+
+  </section>
+</main>

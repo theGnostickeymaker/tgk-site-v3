@@ -1,0 +1,48 @@
+{% block head %}
+  {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "Gnostic Christianity — Season 1" %}
+  {% set base = "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/" %}
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- 🜂 Intro -->
+    <h4 class="index-heading">
+      Gnostic Christianity — the false cosmos, Christ the Revealer, and the soul’s return.
+    </h4>
+
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
+
+    <!-- ⚠️ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">✝ About Gnostic Christianity</span></summary>
+      <p>
+        <strong>Gnostic Christianity</strong> unveils a universe born of error, ruled by false powers,
+        and redeemed through knowledge. It is not faith that saves, but <em>gnosis</em> — the awakening
+        of the divine spark within humanity.
+      </p>
+      <p>
+        In this series, we follow Sophia’s fall and Christ’s revelation — tracing how light became trapped
+        in matter, and how the Redeemer descends not to rule, but to remind us of our forgotten origin.
+      </p>
+      <p>
+        These pages reveal how every soul carries within it the memory of the Pleroma — and how the return
+        begins the moment the illusion of separation ends.
+      </p>
+    </details>
+
+    <!-- ✦ Series Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

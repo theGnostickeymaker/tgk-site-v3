@@ -1,0 +1,56 @@
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/ancient-egypt.jpg" %}
+  {% include "partials/head-meta.njk" %}
+
+  {% set items = pillarGrid %}
+  {% set headline = "Ancient Egypt — Season 1" %}
+  {% set base = "/pillars/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/" %}
+
+  {% include "partials/jsonld-collection.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- 🜂 Intro -->
+    <h4 class="index-heading">
+      Ancient Egypt — the Ka, the Duat, and the Akh: the resurrection mysteries of the Nile.
+    </h4>
+
+    {% block bookmark %}
+      {% include "partials/bookmark.njk" %}
+    {% endblock %}
+
+    <!-- 𓂀 Disclaimer -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">𓂀 About Ancient Egypt</span></summary>
+
+      <p>
+        <strong>Ancient Egyptian afterlife teachings</strong> preserve one of humanity’s oldest maps of the soul’s return.
+        Shaped by <em>Ma’at</em>, the cosmic law of truth and balance, the dead were judged not by belief but by resonance.
+        Every soul had to remember its name (<em>Ren</em>), nourish its essence (<em>Ka</em>), and pass through the
+        twelve gates of the <em>Duat</em> before becoming <em>Akh</em>, radiant eternal light.
+      </p>
+
+      <p>
+        In this three-part journey, we follow the soul’s path from ritual preservation and mummification,
+        through the Duat’s trials, guardians, and passwords, to the Weighing of the Heart and the birth of the immortal Akh.
+        What the Egyptians called resurrection, the Gnostics would later understand as <em>gnosis</em>,
+        the remembrance of the divine identity concealed within.
+      </p>
+
+    </details>
+
+    <!-- ✦ Series Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span 
+        class="divider-symbol pillar-glyph spin glow" 
+        aria-hidden="true">{{ glyph or pillarGlyph }}
+      </span>
+    </div>
+
+  </section>
+</main>

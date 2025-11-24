@@ -10,34 +10,34 @@ import the_final_idol_s1_the_ai_antichrist_part_5 from './the-gnostic-eye/the-fi
 import the_final_idol_s1_the_flame_in_the_dark_part_6 from './the-gnostic-eye/the-final-idol/series-1/the-final-idol-s1-the-flame-in-the-dark-part-6.js';
 
 // ── GNOSTIC CHRISTIANITY ─────────────────────────────────────────────────────
-import the_afterlife_s1_gnostic_christianity_part_1 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-gnostic-christianity-part-1.js';
-import the_afterlife_s1_gnostic_christianity_part_2 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-gnostic-christianity-part-2.js';
-import the_afterlife_s1_gnostic_christianity_part_3 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-gnostic-christianity-part-3.js';
+import the_afterlife_s1_gnostic_christianity_part_1 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-gnostic-christianity-part-1.js';
+import the_afterlife_s1_gnostic_christianity_part_2 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-gnostic-christianity-part-2.js';
+import the_afterlife_s1_gnostic_christianity_part_3 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-gnostic-christianity-part-3.js';
 
 // ── SUFI ISLAM ───────────────────────────────────────────────────────────────
-import the_afterlife_s1_sufi_islam_part_1 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-sufi-islam-part-1.js';
-import the_afterlife_s1_sufi_islam_part_2 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-sufi-islam-part-2.js';
-import the_afterlife_s1_sufi_islam_part_3 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-sufi-islam-part-3.js';
+import the_afterlife_s1_sufi_islam_part_1 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-sufi-islam-part-1.js';
+import the_afterlife_s1_sufi_islam_part_2 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-sufi-islam-part-2.js';
+import the_afterlife_s1_sufi_islam_part_3 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-sufi-islam-part-3.js';
 
 // ── KABBALAH ─────────────────────────────────────────────────────────────────
-import the_afterlife_s1_kabbalah_part_1 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-kabbalah-part-1.js';
-import the_afterlife_s1_kabbalah_part_2 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-kabbalah-part-2.js';
-import the_afterlife_s1_kabbalah_part_3 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-kabbalah-part-3.js';
+import the_afterlife_s1_kabbalah_part_1 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-kabbalah-part-1.js';
+import the_afterlife_s1_kabbalah_part_2 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-kabbalah-part-2.js';
+import the_afterlife_s1_kabbalah_part_3 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-kabbalah-part-3.js';
 
 // ── BUDDHISM ─────────────────────────────────────────────────────────────────
-import the_afterlife_s1_buddhism_part_1 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-buddhism-part-1.js';
-import the_afterlife_s1_buddhism_part_2 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-buddhism-part-2.js';
-import the_afterlife_s1_buddhism_part_3 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-buddhism-part-3.js';
+import the_afterlife_s1_buddhism_part_1 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-buddhism-part-1.js';
+import the_afterlife_s1_buddhism_part_2 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-buddhism-part-2.js';
+import the_afterlife_s1_buddhism_part_3 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-buddhism-part-3.js';
 
 // ── ANCIENT EGYPT ────────────────────────────────────────────────────────────
-import the_afterlife_s1_ancient_egypt_part_1 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-ancient-egypt-part-1.js';
-import the_afterlife_s1_ancient_egypt_part_2 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-ancient-egypt-part-2.js';
-import the_afterlife_s1_ancient_egypt_part_3 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-ancient-egypt-part-3.js';
+import the_afterlife_s1_ancient_egypt_part_1 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-ancient-egypt-part-1.js';
+import the_afterlife_s1_ancient_egypt_part_2 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-ancient-egypt-part-2.js';
+import the_afterlife_s1_ancient_egypt_part_3 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-ancient-egypt-part-3.js';
 
 // ── MESOAMERICA ──────────────────────────────────────────────────────────────
-import the_afterlife_s1_mesoamerica_part_1 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-1.js';
-import the_afterlife_s1_mesoamerica_part_2 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-2.js';
-import the_afterlife_s1_mesoamerica_part_3 from './the-teachings/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-3.js';
+import the_afterlife_s1_mesoamerica_part_1 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-1.js';
+import the_afterlife_s1_mesoamerica_part_2 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-2.js';
+import the_afterlife_s1_mesoamerica_part_3 from './the-teachings/the-great-return/the-afterlife/series-1/the-afterlife-s1-mesoamerica-part-3.js';
 
 // ── EXPORT MAP ───────────────────────────────────────────────────────────────
 export default {

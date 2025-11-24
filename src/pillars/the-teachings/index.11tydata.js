@@ -6,8 +6,8 @@ export default {
   permalink: "/pillars/the-teachings/index.html",
   title: "The Teachings",
   description:
-    "Pages of wisdom, initiation, and remembrance — the spiritual foundation of The Gnostic Key.",
-  tagline: "Ancient wisdom ✦ modern revelation ✦ paths of remembrance",
+    "Pages of wisdom, initiation, and remembrance. The spiritual and civic foundation of The Gnostic Key.",
+  tagline: "Ancient wisdom, modern revelation, paths of remembrance",
   glyph: "⛪︎",
   glyphRow: ["🜂", "🕯", "🜂"],
   accent: "gold",
@@ -20,31 +20,31 @@ export default {
     { title: "The Teachings", url: "/pillars/the-teachings/" }
   ],
 
-  // === Subcollection Grid ===
+  // === Pillar Grid: Series Only ===
   pillarGrid: [
     {
-      href: "/pillars/the-teachings/the-afterlife/",
-      title: "The Afterlife Series",
+      href: "/pillars/the-teachings/the-great-return/",
+      title: "The Great Return",
       glyph: "☥",
-      desc: "Maps of death, rebirth, and remembrance across traditions.",
+      desc: "The master spiritual arc of death, rebirth, and the architecture of the soul.",
       state: "active",
       tier: "initiate-trial"
     },
     {
-      href: "/pillars/the-teachings/know-your-rights/",
-      title: "Know Your Rights",
+      href: "/pillars/the-teachings/the-sovereign-path/",
+      title: "The Sovereign Path",
       glyph: "⚖",
-      desc: "Pages of civil liberty, law, and self-defence.",
+      desc: "Rights, autonomy, civic self-defence, and the restoration of sovereignty.",
       state: "coming-soon",
-      tier: "free"
+      tier: "initiate-trial"
     },
     {
-      href: "/pillars/the-teachings/sacred-pedagogy/",
-      title: "Sacred Pedagogy",
+      href: "/pillars/the-teachings/the-childrens-codex/",
+      title: "The Children’s Codex",
       glyph: "📜",
-      desc: "Teachings and exercises for initiates of truth.",
+      desc: "The TGK homeschool curriculum. Foundations of knowledge for the next generation.",
       state: "coming-soon",
-      tier: "initiate"
+      tier: "initiate-trial"
     }
   ],
 
