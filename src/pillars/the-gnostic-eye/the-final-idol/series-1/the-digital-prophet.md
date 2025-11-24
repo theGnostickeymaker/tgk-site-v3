@@ -13,10 +13,19 @@ tagline: "Algorithmic Revelation ✦ Machine Oracle ✦ Predictive Faith"
 slug: "the-digital-prophet"
 
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-digital-prophet/index.html"
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-2/the-digital-prophet-part-2.jpg"
+
 imgBase: "/media/the-gnostic-eye/the-final-idol/"
 imgPrefix: "the-final-idol-"
 bodyClass: "eye"
+
+socialImages:
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@hero-2x.jpg"
+
+socialAlt: "Stylised illustration of a blue-toned cybernetic humanoid in profile, with a radiant all-seeing eye to the left. Artwork for The Digital Prophet, featuring intricate mechanical detailing and a dark Gnostic aesthetic."
 
 glyph: "🧠"
 glyphRow: ["☿","🜏","👁"]
@@ -178,12 +187,6 @@ references:
       work: "TechGnosis: Myth, Magic, and Mysticism in the Age of Information"
       pub: "Harmony Books"
 
-socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-2/the-digital-prophet-part-2@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-2/the-digital-prophet-part-2@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-2/the-digital-prophet-part-2@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-2/the-digital-prophet-part-2@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-2/the-digital-prophet-part-2@2x.jpg"
 ---
 
 
