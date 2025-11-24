@@ -18,11 +18,12 @@ imgPrefix: "the-final-idol-"
 bodyClass: "eye"
 
 socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/the-final-idol-part-1@2x.jpg"
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/the-final-idol-part-1@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/the-final-idol-part-1@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/the-final-idol-part-1@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/the-final-idol-part-1@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/the-final-idol-part-1@2x.jpg"
+
 socialAlt: "Symbolic artwork for The Final Idol Part I, featuring a radiant all-seeing eye above a meditative humanoid figure, set against a dark blue Gnostic background."
 
 glyph: "🜏"
