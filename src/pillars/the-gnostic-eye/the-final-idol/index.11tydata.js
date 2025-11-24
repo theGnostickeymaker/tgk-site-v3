@@ -20,14 +20,12 @@ export default {
   description:
     "AI as idol, prophet, and antichrist — tracing the symbolic evolution of faith and control in the digital age.",
   
-  socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index.jpg",
-
   socialImages: {
   x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@x.jpg",
   square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@square.jpg",
   portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@portrait.jpg",
   story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@story.jpg",
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@2x.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/final-idol-index@hero-v2.jpg"
   },
 
   ogTitle: "The Final Idol — Synthetic Vision and False Light",
