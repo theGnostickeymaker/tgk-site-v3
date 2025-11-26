@@ -8,7 +8,15 @@ pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-1"
 
 episode: 1
 partNumeral: I
-partTitle: "The World Is Not What It Seems"
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode I: Gnostic Christianity"
+partTitle: "Part I: The World Is Not What It Seems"
 tagline: "Sophia ✦ The Fall ✦ The False God ✦ The Hidden Spark"
 slug: "part-1"
 
@@ -136,6 +144,7 @@ breadcrumbs:
   - { title: "The Teachings", url: "/pillars/the-teachings/" }
   - { title: "The Great Return", url: "/pillars/the-teachings/the-great-return/" }
   - { title: "Season 1", url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/" }
+  - { title: "Series I: The Afterlife", url: "/pillars/the-teachings/the-great-return/the-afterlife/" }
   - { title: "Gnostic Christianity", url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/" }
   - { title: "I" }
 

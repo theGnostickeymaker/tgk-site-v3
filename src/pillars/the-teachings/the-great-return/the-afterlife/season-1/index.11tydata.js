@@ -6,10 +6,16 @@ export default {
   permalink:
     "/pillars/the-teachings/the-great-return/the-afterlife/season-1/index.html",
 
-  title: "Season I: The Afterlife Scrolls",
-  tagline: "Through death’s veil, the soul remembers and the light returns.",
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Teachings",
+  gateTitle: "The Great Return",
+  seriesTitle: "Series I: The Afterlife",
+  seasonTitle: "Season I: Maps of the Afterlife",
+
+  title: "Season I: Maps of the Afterlife",
+  tagline: "Through death’s veil the soul remembers and the light returns.",
   description:
-    "The first six traditions of the Afterlife arc, exploring the pathways of death, rebirth, judgement, transformation and remembrance.",
+    "The opening season of The Great Return. Six world traditions, each preserving a unique map of death, rebirth, judgement, transformation, and the soul’s return to its origin.",
 
   // === Hierarchy Metadata ===
   pillarId: "the-teachings",
@@ -17,7 +23,6 @@ export default {
   pillarUrl: "/pillars/the-teachings/",
 
   seriesId: "the-great-return",
-  seriesName: "The Great Return",
   seriesUrl: "/pillars/the-teachings/the-great-return/",
 
   seasonNumber: 1,
@@ -32,11 +37,11 @@ export default {
   landing: {
     title: "The Afterlife — Season I",
     description:
-      "Six traditions, six gates of return: a journey through the soul’s passage beyond the veil."
+      "Six traditions, six gates of return. Begin the journey through the soul’s passage beyond the veil."
   },
 
   introText:
-    "Choose an episode — each tradition reveals a different face of the afterlife and the soul’s return.",
+    "Choose an episode. Each tradition reveals a different architecture of death, rebirth, and remembrance.",
 
   // === Episode Grid ===
   pillarGrid: [
@@ -45,7 +50,7 @@ export default {
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/",
       title: "Gnostic Christianity",
       glyph: "✝",
-      tagline: "The false cosmos ✦ Christ the Revealer ✦ the soul’s return.",
+      tagline: "The false cosmos, Christ the Revealer, and the soul’s return.",
       tier: "free",
       state: "active"
     },
@@ -54,7 +59,7 @@ export default {
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/",
       title: "Sufi Islam",
       glyph: "☪",
-      tagline: "The seeker’s path through love, annihilation and divine return.",
+      tagline: "The seeker’s path through love, annihilation, and divine return.",
       tier: "free",
       state: "active"
     },
@@ -63,7 +68,7 @@ export default {
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/",
       title: "Kabbalah",
       glyph: "✡",
-      tagline: "The Tree of Life ✦ the soul’s descent ✦ the light of restoration.",
+      tagline: "The Tree of Life, the soul’s descent, and the light of restoration.",
       tier: "free",
       state: "active"
     },
@@ -72,7 +77,7 @@ export default {
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/",
       title: "Buddhism",
       glyph: "☸",
-      tagline: "The Wheel ✦ The Heart ✦ The Clear Light of Compassion.",
+      tagline: "The Wheel, the Heart, and the Clear Light of Compassion.",
       tier: "initiate",
       state: "active"
     },
@@ -82,7 +87,7 @@ export default {
       title: "Ancient Egypt",
       glyph: "𓂀",
       tagline:
-        "The Weighing of the Heart ✦ The Duat ✦ The Book of Coming Forth by Day.",
+        "The Weighing of the Heart, the Duat, and the Book of Coming Forth by Day.",
       tier: "initiate",
       state: "active"
     },
@@ -91,7 +96,8 @@ export default {
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/",
       title: "Mesoamerica",
       glyph: "🌽",
-      tagline: "Three-part journey through the false cosmos and the Revealer.",
+      tagline:
+        "Sacred time, cosmic descent, and the calendrical architecture of death and return.",
       tier: "initiate",
       state: "active"
     }
@@ -101,13 +107,13 @@ export default {
   seriesNav: [
     {
       title: "Gnostic Christianity",
-      desc: "The false cosmos, Christ the Revealer and the soul’s return.",
+      desc: "The false cosmos, Christ the Revealer, and the soul’s return.",
       url:
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/"
     },
     {
       title: "Sufi Islam",
-      desc: "The seeker’s path through love, annihilation and return.",
+      desc: "The seeker’s path through love, annihilation, and return.",
       url:
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/"
     },
@@ -139,7 +145,7 @@ export default {
 
   // === Social Meta ===
   socialImage:
-    "/tgk-assets/images/share/the-teachings/the-great-return/season-1/the-afterlife-scrolls.jpg",
+    "/tgk-assets/images/share/the-teachings/the-great-return/season-1/the-afterlife.jpg",
 
   // === Breadcrumbs ===
   breadcrumbs: [
@@ -147,7 +153,7 @@ export default {
     { title: "The Teachings", url: "/pillars/the-teachings/" },
     { title: "The Great Return", url: "/pillars/the-teachings/the-great-return/" },
     {
-      title: "Season I: The Afterlife Scrolls",
+      title: "Season I: The Afterlife",
       url:
         "/pillars/the-teachings/the-great-return/the-afterlife/season-1/"
     }

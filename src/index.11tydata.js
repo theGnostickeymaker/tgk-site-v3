@@ -1,13 +1,21 @@
+import site from "./_data/site.js";
+
 export default {
   layout: "base.njk",
 
   // === Core Identity ===
+  suppressPageTitle: true,
+
   pageId: "home",
   permalink: "/index.html",
-  title: "The Gnostic Key",
+  title: "The Gnostic Key | Exposing Hidden Power, Restoring Memory and Reclaiming Human Sovereignty",
+
+  siteTitle: "The Gnostic Key",
+  tagline: "Where the erased, the forbidden, and the sacred converge.",
+
   description:
     "Where the erased, the forbidden, and the sacred converge — a sanctuary of pages across traditions, investigations, archetypes, and vaults of hidden memory.",
-  tagline: "Where the erased, the forbidden, and the sacred converge.",
+
   glyph: "𓂀",
   glyphRow: ["☉", "🜂", "☿", "✷"],
   accent: "lightgold",

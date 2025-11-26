@@ -1,30 +1,23 @@
 {# ===========================================================
-   🜂 TGK — Unified Site Header (v3.0)
-   Purpose:
-   Renders the global header for all pages, vaults, and index pages.
-   Combines breadcrumb navigation, glyph/title block, and mobile drawer.
+   TGK — Unified Site Header (v4.1)
+   Hierarchy:
+     • Site Title   (tiny, optional)
+     • Pillar Title (tiny, optional)
+     • Gate Title   (tiny, optional unless Series exists)
 
-   ✅ Expected Data:
-     - title           → page / page title
-     - tagline         → Optional subtitle
-     - breadcrumbs     → Array of { title, url }
-     - glyphRow        → Array of glyphs for header cluster
-     - pillarGlyph     → Pillar-specific glyph
-     - glyph           → Fallback glyph (optional)
-     - seriesMeta      → { number, label } (optional)
-     - episode         → Numeric episode index
-     - partNumeral     → Roman or numeric string for part number
-     - partTitle       → Optional subtitle for part
+     • Series Title  (large, always shown when provided)
+     • Season Title  (medium)
+     • Episode Title (medium-small)
+     • Part Title    (small highlight)
 
-   🧭 Behaviour:
-     - Breadcrumbs auto-render with separators
-     - Series chain builds dynamically if data exists
-     - Hamburger button controls overlay + mobile nav panel
-     - Keyboard / screen-reader safe (ARIA + tabindex handling)
+   SEO "title:" is NOT displayed.
    =========================================================== #}
 
 <header class="site-header minimal" role="banner">
-  {# --- Breadcrumb Navigation --- #}
+
+  {# ---------------------------------------------------------
+     Breadcrumb Navigation
+     --------------------------------------------------------- #}
   {% if breadcrumbs %}
   <nav class="breadcrumbs" aria-label="Breadcrumb">
     <span class="crumbs">
@@ -40,9 +33,11 @@
   </nav>
   {% endif %}
 
-  {# --- Main Header Block --- #}
   <div class="header-main">
-    {# Glyph logic: row, single pillar, or fallback #}
+
+    {# =========================================================
+       0. GLYPH CLUSTER
+       ========================================================= #}
     {% if glyphRow %}
       <span class="pillar-glyph-row" aria-hidden="true">
         {% for g in glyphRow %}
@@ -53,27 +48,67 @@
       <span class="pillar-glyph" aria-hidden="true">{{ pillarGlyph or glyph }}</span>
     {% endif %}
 
-    {# --- Main Title --- #}
-    <h1 class="page-title">{{ title }}</h1>
+    {# =========================================================
+      1. UPPER BAND — small context line
+      Always displays:
+        The Gnostic Key · The Teachings · The Great Return
+      ========================================================= #}
 
-    {# --- Series / Episode / Part Chain --- #}
-    {% if seriesMeta %}
-      <h2 class="series-episode-chain">
-        Season {{ seriesMeta.number | roman }}
-        {% if episode %} · Episode {{ episode }}{% endif %}
-        {% if partNumeral %}
-          · Part {{ partNumeral }}
-          {% if partTitle %}: {{ partTitle }}{% endif %}
-        {% endif %}
-      </h2>
+    {% set upperItems = [] %}
+
+    {% if siteTitle %}
+      {% set upperItems = upperItems.concat([siteTitle]) %}
     {% endif %}
 
-    {# --- Dynamic Tagline --- #}
+    {% if pillarTitle %}
+      {% set upperItems = upperItems.concat([pillarTitle]) %}
+    {% endif %}
+
+    {% if gateTitle %}
+      {% set upperItems = upperItems.concat([gateTitle]) %}
+    {% endif %}
+
+    {% if upperItems.length %}
+      <div class="upper-band-line">
+        {%- for i in upperItems -%}
+          {{ i }}{% if not loop.last %} · {% endif %}
+        {%- endfor -%}
+      </div>
+    {% endif %}
+
+
+    {# =========================================================
+       2. HIERARCHY BLOCK — Series, Season, Episode, Part
+       ========================================================= #}
+    <div class="hierarchy-block">
+
+      {% if seriesTitle %}
+        <h1 class="series-title">{{ seriesTitle }}</h1>
+      {% endif %}
+
+      {% if seasonTitle %}
+        <h2 class="season-title">{{ seasonTitle }}</h2>
+      {% endif %}
+
+      {% if episodeTitle %}
+        <h3 class="episode-title">{{ episodeTitle }}</h3>
+      {% endif %}
+
+      {% if partTitle %}
+        <h4 class="part-title">{{ partTitle }}</h4>
+      {% endif %}
+    </div>
+
+    {# ---------------------------------------------------------
+       Tagline
+       --------------------------------------------------------- #}
     {% if tagline %}
       <p class="page-tagline">{{ tagline }}</p>
     {% endif %}
 
-    {# --- Publication Metadata --- #}
+    {# ---------------------------------------------------------
+       Publication Metadata
+       --------------------------------------------------------- #}
     {% if author or published %}
       <div class="page-meta header-inline">
         {% if author %}
@@ -87,16 +122,15 @@
         {% endif %}
       </div>
     {% endif %}
+
   </div>
 </header>
 
+
 {# ===========================================================
    📱 Floating Hamburger + Drawer Navigation
-   Accessible toggle pattern with overlay blocker.
-   JS must sync [aria-expanded] + [hidden] states.
    =========================================================== #}
 
-<!-- Floating Hamburger (top-left corner) -->
 <div class="floating-hamburger">
   <button
     id="hamburgerFloating"
@@ -107,7 +141,6 @@
     type="button">☰</button>
 </div>
 
-<!-- Drawer Navigation Panel -->
 <nav
   id="mobileNav"
   class="mobile-menu"
@@ -150,8 +183,8 @@
       <li><a href="https://t.me/thegnostickey"          target="_blank" rel="noopener noreferrer">Telegram</a></li>
       <li><a href="https://thegnostickey.substack.com"  target="_blank" rel="noopener noreferrer">Substack</a></li>
     </ul>
+
   </div>
 </nav>
 
-<!-- Overlay (click to close drawer) -->
 <div id="navOverlay" class="nav-overlay" hidden></div>

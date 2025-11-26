@@ -4,10 +4,17 @@ export default {
   // === Core Identity ===
   pageId: "the-great-return",
   permalink: "/pillars/the-teachings/the-great-return/index.html",
-  title: "The Great Return",
-  description:
-    "The master spiritual arc of The Teachings, mapping death, rebirth, remembrance, and the architecture of the soul.",
+
+  title: "The Gnostic Key | The Great Return | Death, Rebirth, and the Hidden Architecture of the Soul",
+  
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Teachings",
+  gateTitle: "The Great Return",
   tagline: "Return, remembrance, renewal",
+  
+  description:
+    "The unifying arc of The Teachings. A map of remembrance that traces the soul’s passage through death, rebirth, inner awakening, and the recovery of its original knowledge.",
+  
   glyph: "☥",
   glyphRow: ["☥", "🜂", "☥"],
   accent: "gold",
@@ -18,32 +25,38 @@ export default {
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Teachings", url: "/pillars/the-teachings/" },
-    { title: "The Great Return", url: "/pillars/the-teachings/the-great-return/" }
+    {
+      title: "The Great Return",
+      url: "/pillars/the-teachings/the-great-return/"
+    }
   ],
 
-  // === Season Grid ===
+  // === Series Grid (The Great Return contains multiple Series) ===
   pillarGrid: [
     {
       href: "/pillars/the-teachings/the-great-return/the-afterlife/",
-      title: "Series 1: The Afterlife Scrolls",
+      title: "Series I: The Afterlife",
       glyph: "☸",
-      desc: "Twelve episodes on death, rebirth, and post-mortem cosmology across world traditions.",
+      desc:
+        "Six-episode initiation into the world’s afterlife traditions. Death, rebirth, cosmology, and the soul’s passage beyond the veil.",
       state: "active",
       tier: "initiate-trial"
     },
     {
       href: "/pillars/the-teachings/the-great-return/temple-of-the-afterlife/",
-      title: "Series 2: Temple of the Afterlife",
+      title: "Series II: Temple of the Afterlife",
       glyph: "🕯",
-      desc: "Advanced initiatory teachings on the subtle body and spiritual passageways.",
+      desc:
+        "Advanced teachings on the subtle body, inner gates, and the sacred architecture of spiritual passage.",
       state: "coming-soon",
       tier: "adept"
     },
     {
       href: "/pillars/the-teachings/the-great-return/the-human-question/",
-      title: "Series 3: The Human Question",
+      title: "Series III: The Human Question",
       glyph: "👁",
-      desc: "How sacred traditions define the human being and the war for the soul.",
+      desc:
+        "How sacred traditions define the human being, the nature of consciousness, and the war for the soul.",
       state: "coming-soon",
       tier: "adept"
     }

@@ -72,4 +72,81 @@
     color: var(--highlight);
     text-shadow: 0 0 8px var(--shadow-glow);
   }
+
+  /* --- Site Title (smallest context marker) --- */
+  .site-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* --- Pillar Title --- */
+  .pillar-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+  }
+
+  /* --- Gate Title (The Great Return) --- */
+  .gate-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+  }
+
+  /* --- Series Title (Series I: The Afterlife) --- */
+  .series-title {
+    font-family: var(--page-title, 'Cormorant Garamond', serif);
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    margin: var(--space-md) 0 var(--space-sm);
+    text-transform: uppercase;
+  }
+
+  /* --- Season Title (Season I: Maps of the Afterlife) --- */
+  .season-title {
+    font-family: var(--page-title, 'Cormorant Garamond', serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-sm);
+  }
+
+  /* --- Episode Title (Episode I: Gnostic Christianity) --- */
+  .episode-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* --- Part Title (for Part pages only) --- */
+  .part-title {
+    font-family: var(--page-title, 'Cormorant Garamond', serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* --- Tagline --- */
+  .page-tagline {
+    font-family: var(--font-serif, 'Libre Baskerville', serif);
+    font-size: 1.05rem;
+    opacity: 0.9;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
 }
