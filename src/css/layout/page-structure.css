@@ -8,7 +8,7 @@
   /* 🌐 Core Content Container */
   .content-container,
   .site-main {
-    max-width: 98%;
+    max-width: 95%;
     margin: 0 auto;
     padding: var(--space-vs) var(--space-md);
     line-height: var(--font-base-line);
