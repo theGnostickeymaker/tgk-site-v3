@@ -1,38 +1,40 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "Part III of the Afterlife Scrolls — the soul’s ascent through the toll gates, the trial of memory, and the return to the Pleroma."
-excerpt: "Previously: You walked the path of return, past the Archons and through the toll gates, armed with gnosis and memory. The soul that remembers ascends. The soul that forgets returns."
+description: "Part III of the Afterlife Scrolls: the soul’s ascent through the toll gates, the trial of memory, and the return to the Pleroma."
+excerpt: "Previously: you walked the path of return, past the Archons and through the toll gates, armed with gnosis and memory. The soul that remembers ascends. The soul that forgets returns."
 tier: free
 pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-3"
 
 episode: 1
 partNumeral: III
-partTitle: "The Toll Gates & the Return"
-tagline: "Archons ✦ Memory ✦ Death as Initiation ✦ The Pleromic Homecoming"
-slug: "part-3"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode I: Gnostic Christianity"
+partTitle: "Part III: The Toll Gates and the Return"
+tagline: "Archons ✦ Memory ✦ Death as Initiation ✦ The Pleromic Homecoming"
+
+slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-3/index.html"
+
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-3"
 imgPrefix: "gnostic-christianity-"
 bodyClass: "gold"
 
 glyph: "✝"
-glyphRow: ["✝", "☥", "✝"]
+glyphRow:
+  - "✝"
+  - "☥"
+  - "✝"
+
 pillar: "the-teachings"
 series: "the-great-return"
-season: "season-1"
-
-seriesId: "the-afterlife-s1"
-episodeId: "gnostic-christianity"
-partId: "part3"
-quizId: "the-afterlife-s1-gnostic-christianity-part-3"
-quizTitle: "Gnostic Christianity — Part III: The Toll Gates & the Return"
-quizIntro: "Can you see through the veil of Part III?"
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

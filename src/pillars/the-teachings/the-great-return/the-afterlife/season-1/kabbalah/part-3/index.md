@@ -1,8 +1,7 @@
 ---
-
 layout: base.njk
 title: "Kabbalah"
-description: "The soul’s return to the Source, the remembrance of its vow, the healing of the fracture, and the ascent beyond the gates of life and death."
+description: "Part III of the Afterlife Scrolls: the soul’s return to the Source, the remembrance of its vow, the healing of the fracture, and the ascent beyond the gates of life and death."
 excerpt: "You climbed the Tree, from Malkhut’s dust to Keter’s crown, and tasted the soul’s ascent through divine light and shadow."
 tier: free
 
@@ -10,10 +9,18 @@ pageId: "the-great-return-afterlife-season-1-kabbalah-part-3"
 
 episode: 3
 partNumeral: III
-partTitle: "The Soul’s Journey After Death"
-tagline: "Tikkun Olam — the soul’s repair, remembrance, and reunion with the Infinite."
-slug: "part-3"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode III: Kabbalah"
+partTitle: "Part III: The Soul’s Journey After Death"
+tagline: "Tikkun Olam, the soul’s repair, remembrance, and reunion with the Infinite."
+
+slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-3/index.html"
 
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-3/kabbalah-part-3.jpg"
@@ -23,24 +30,14 @@ imgPrefix: "kabbalah-"
 bodyClass: "gold"
 
 glyph: "✡"
-glyphRow: ["✡", "☥", "✡"]
+glyphRow:
+  - "✡"
+  - "☥"
+  - "✡"
 
 pillar: "the-teachings"
 series: "the-great-return"
-season: "the-afterlife"
-
-seriesId: "the-afterlife-s1"
-episodeId: "kabbalah"
-partId: "part3"
-
-quizId: "the-afterlife-s1-kabbalah-part-3"
-quizTitle: "Kabbalah — Part III"
-quizIntro: "Do you remember your soul contract?"
-
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 # Publication Metadata
 author: "The Keymaker"

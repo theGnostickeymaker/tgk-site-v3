@@ -1,18 +1,26 @@
 ---
-
 layout: base.njk
 title: "Mesoamerica"
-description: "Time as a serpent, calendars as temples, and death as alignment — the Mesoamerican revelation of cyclical immortality."
+description: "Part I of the Afterlife Scrolls: time as a serpent, calendars as temples, and death as alignment, the Mesoamerican revelation of cyclical immortality."
 excerpt: "The modern world sees time as a straight line. Climax. Decline. Death. A story with one direction and an end."
 tier: initiate
-pageId: "the-teachings-the-great-return-the-afterlife-s1-mesoamerica-part-1"
+
+pageId: "the-great-return-afterlife-season-1-mesoamerica-part-1"
 
 episode: 6
 partNumeral: I
-partTitle: "The Map of Time and Sacrifice"
-tagline: "The Serpent of Time ✦ The Calendar of Stone ✦ The Architecture of Death"
-slug: "part-1"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode VI: Mesoamerica"
+partTitle: "Part I: The Map of Time and Sacrifice"
+tagline: "The Serpent of Time ✦ The Calendar of Stone ✦ The Architecture of Death"
+
+slug: "part-1"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/part-1/index.html"
 
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/part-1/mesoamerica-part-1.jpg"
@@ -22,23 +30,14 @@ imgPrefix: "mesoamerica-"
 bodyClass: "gold"
 
 glyph: "🌽"
-glyphRow: ["🌽", "☥", "🌽"]
+glyphRow:
+  - "🌽"
+  - "☥"
+  - "🌽"
 
 pillar: "the-teachings"
 series: "the-great-return"
-
-seriesId: "the-great-return-afterlife-s1"
-episodeId: "mesoamerica"
-partId: "part1"
-
-quizId: "the-great-return-s1-mesoamerica-part-1"
-quizTitle: "Mesoamerica — Part I"
-quizIntro: "Can you see through the veil of I?"
-
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

@@ -1,38 +1,40 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "Part II of the Afterlife Scrolls — the Christ of Gnosis and the spark that remembers beyond death."
-excerpt: "Previously: You heard the voice behind the veil, not a god of wrath but a Revealer of the spark. Christ came not to be worshipped but to mirror what you truly are."
+description: "Part II of the Afterlife Scrolls: the Christ of Gnosis and the spark that remembers beyond death."
+excerpt: "Previously: you heard the voice behind the veil, not a god of wrath but a Revealer of the spark. Christ came not to be worshipped but to mirror what you truly are."
 tier: free
 pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-2"
 
 episode: 1
 partNumeral: II
-partTitle: "The Revealer and the Spark"
-tagline: "The Hidden Christ ✦ The Light Within ✦ The Return Begins"
-slug: "part-2"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode I: Gnostic Christianity"
+partTitle: "Part II: The Revealer and the Spark"
+tagline: "The Hidden Christ ✦ The Light Within ✦ The Return Begins"
+
+slug: "part-2"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-2/index.html"
+
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-2"
 imgPrefix: "gnostic-christianity-"
 bodyClass: "gold"
 
 glyph: "✝"
-glyphRow: ["✝", "☥", "✝"]
+glyphRow:
+  - "✝"
+  - "☥"
+  - "✝"
+
 pillar: "the-teachings"
 series: "the-great-return"
-season: "season-1"
-
-seriesId: "the-afterlife-s1"
-episodeId: "gnostic-christianity"
-partId: "part2"
-quizId: "the-afterlife-s1-gnostic-christianity-part-2"
-quizTitle: "Gnostic Christianity — Part II: The Revealer and the Spark"
-quizIntro: "Can you pierce the illusion and recognise the spark within?"
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

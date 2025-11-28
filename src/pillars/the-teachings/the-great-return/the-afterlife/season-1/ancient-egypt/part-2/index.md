@@ -1,40 +1,42 @@
 ---
-
 layout: base.njk
 title: "Ancient Egypt"
-description: "Through the twelve gates of night, spells, tombs, and soul-technologies of the Duat."
-excerpt: "You entered the Duat, faced the weighing of your heart, and discovered that the soul is not one thing, but many. Now we descend deeper, through tomb texts, resurrection spells, and ciphered maps of return."
+description: "Part II of the Afterlife Scrolls: through the twelve gates of night, spells, tombs, and the soul-technologies of the Duat."
+excerpt: "You entered the Duat, faced the weighing of your heart, and discovered that the soul is not one thing but many. Now we descend deeper, through tomb texts, resurrection spells, and ciphered maps of return."
 tier: initiate
-pageId: "the-teachings-the-great-return-the-afterlife-season-1-ancient-egypt-part-2"
+
+pageId: "the-great-return-afterlife-season-1-ancient-egypt-part-2"
 
 episode: 5
 partNumeral: II
-partTitle: "The Gates of the Duat"
-tagline: "Twelve Hours ✦ Twelve Gates ✦ One Soul"
-slug: "part-2"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode V: Ancient Egypt"
+partTitle: "Part II: The Gates of the Duat"
+tagline: "Twelve Hours ✦ Twelve Gates ✦ One Soul"
+
+slug: "part-2"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-2/index.html"
+
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-2/ancient-egypt-part-2.jpg"
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-2"
 imgPrefix: "egyptian-afterlife-"
 bodyClass: "gold"
 
 glyph: "𓂀"
-glyphRow: ["𓂀", "☥", "𓂀"]
+glyphRow:
+  - "𓂀"
+  - "☥"
+  - "𓂀"
 
 pillar: "the-teachings"
-season: "the-afterlife"
-
-seriesId: "the-afterlife-s1"
-episodeId: "ancient-egypt"
-partId: "part2"
-quizId: "the-afterlife-s1-ancient-egypt-part-2"
-quizTitle: "Ancient Egypt — Part II"
-quizIntro: "Can you see through the veil of II?"
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+series: "the-great-return"
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

@@ -1,19 +1,28 @@
 ---
-
 layout: base.njk
 title: "Mesoamerica"
-description: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death."
-excerpt: "You descended into Mictlán, outwitted the Lords of Xibalba, and faced the games of death.  
-    Now begins the spiral upward — through sacrifice, memory, and the soul’s return to the celestial maize f…"
+description: "Part III of the Afterlife Scrolls: sacred time, calendars of stone, and the cosmic architecture of death."
+excerpt: |
+  You descended into Mictlán, outwitted the Lords of Xibalba, and faced the games of death.
+  Now begins the spiral upward, through sacrifice, memory, and the soul’s return to the celestial maize field.
 tier: initiate
-pageId: "the-teachings-the-great-return-afterlife-s1-mesoamerica-part-3"
+
+pageId: "the-great-return-afterlife-season-1-mesoamerica-part-3"
 
 episode: 6
-partNumeral: "III"
-partTitle: "The Spiral of Return"
-tagline: "Sacred Time, Calendars of Stone, and the Cosmic Architecture of Death."
-slug: "part-3"
+partNumeral: III
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode VI: Mesoamerica"
+partTitle: "Part III: The Spiral of Return"
+tagline: "Sacred Time ✦ Calendars of Stone ✦ The Cosmic Architecture of Death"
+
+slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/part-3/index.html"
 
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/part-3/mesoamerica-part-3.jpg"
@@ -23,22 +32,14 @@ imgPrefix: "mesoamerica-"
 bodyClass: "gold"
 
 glyph: "🌽"
-glyphRow: ["🌽", "☥", "🌽"]
+glyphRow:
+  - "🌽"
+  - "☥"
+  - "🌽"
 
 pillar: "the-teachings"
 series: "the-great-return"
-
-seriesId: "the-great-return-afterlife-s1"
-episodeId: "mesoamerica"
-partId: "part3"
-quizId: "the-great-return-s1-mesoamerica-part-3"
-quizTitle: "Mesoamerica — Part III"
-quizIntro: "Can you see through the veil of III?"
-
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

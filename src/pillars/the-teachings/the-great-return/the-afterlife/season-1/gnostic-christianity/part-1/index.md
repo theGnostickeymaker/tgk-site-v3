@@ -1,8 +1,8 @@
 ---
 layout: base.njk
 title: "Gnostic Christianity"
-description: "Part I of the Afterlife Scrolls — The false cosmos, Sophia’s fall, and the divine spark hidden within matter."
-excerpt: "Long before the Church became empire—before Eden was named paradise, and before time was broken into hours—there was the Pleroma."
+description: "Part I of the Afterlife Scrolls: the false cosmos, Sophia’s fall, and the divine spark hidden within matter."
+excerpt: "Long before the Church became empire, before Eden was named paradise, and before time was broken into hours, there was the Pleroma."
 tier: free
 pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-1"
 
@@ -18,15 +18,20 @@ seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode I: Gnostic Christianity"
 partTitle: "Part I: The World Is Not What It Seems"
 tagline: "Sophia ✦ The Fall ✦ The False God ✦ The Hidden Spark"
-slug: "part-1"
 
+slug: "part-1"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-1/index.html"
+
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-1"
 imgPrefix: "gnostic-christianity-"
 bodyClass: "gold"
 
 glyph: "✝"
-glyphRow: ["✝", "☥", "✝"]
+glyphRow:
+  - "✝"
+  - "☥"
+  - "✝"
+
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1

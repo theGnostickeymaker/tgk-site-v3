@@ -1,38 +1,41 @@
 ---
 layout: base.njk
 title: "Sufi Islam"
-description: "Fanāʾ and baqāʾ — the soul’s final dissolution and eternal abiding in the Beloved’s light."
+description: "Part III of the Afterlife Scrolls: fanāʾ and baqāʾ, the soul’s final dissolution and eternal abiding in the Beloved’s light."
 excerpt: "After longing, remembrance, and unveiling, there is one final gate: the surrender of the “I.”"
 tier: free
 pageId: "the-great-return-afterlife-season-1-sufi-islam-part-3"
 
 episode: 2
 partNumeral: III
-partTitle: "Fanāʾ and the Eternal Dance"
-tagline: "The false self melts away, the soul abides, and Love continues its infinite unfolding."
-slug: "part-3"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode II: Sufi Islam"
+partTitle: "Part III: Fanāʾ and the Eternal Dance"
+tagline: "The false self melts away, the soul abides, and love continues its infinite unfolding."
+
+slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-3/index.html"
+
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-3"
 imgPrefix: "sufi-islam-"
 bodyClass: "gold"
 
 glyph: "☪"
-glyphRow: ["☪", "☥", "☪"]
+glyphRow:
+  - "☪"
+  - "☥"
+  - "☪"
+
 pillar: "the-teachings"
 series: "the-great-return"
-season: "season-1"
+season: 1
 
-seriesId: "the-afterlife-s1"
-episodeId: "sufi-islam"
-partId: "part3"
-quizId: "the-afterlife-s1-sufi-islam-part-3"
-quizTitle: "Sufi Islam — Part III"
-quizIntro: "Can you see through the veil of Part III?"
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"

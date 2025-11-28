@@ -1,19 +1,26 @@
 ---
-
 layout: base.njk
 title: "Kabbalah"
-description: "Journey through the middle gates of the Kabbalistic Tree, from Malkhut’s exile to Keter’s crown, tracing the soul’s remembrance and return."
+description: "Part II of the Afterlife Scrolls: the journey through the middle gates of the Kabbalistic Tree, from Malkhut’s exile to Keter’s crown, tracing the soul’s remembrance and return."
 excerpt: "You walked the soul’s journey from Gehinnom to Gan Eden, through sparks and tikkun, glimpsing the Divine hidden in the descent."
 tier: free
 
 pageId: "the-great-return-afterlife-season-1-kabbalah-part-2"
 
 episode: 3
-partNumeral: "II"
-partTitle: "Ten Thresholds of Light"
-tagline: "Through the ten luminous gates, the soul learns to remember itself."
-slug: "part-2"
+partNumeral: II
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode III: Kabbalah"
+partTitle: "Part II: Ten Thresholds of Light"
+tagline: "Through the ten luminous gates, the soul learns to remember itself."
+
+slug: "part-2"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-2/index.html"
 
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-2/kabbalah-part-2.jpg"
@@ -23,24 +30,14 @@ imgPrefix: "kabbalah-"
 bodyClass: "gold"
 
 glyph: "✡"
-glyphRow: ["✡", "☥", "✡"]
+glyphRow:
+  - "✡"
+  - "☥"
+  - "✡"
 
 pillar: "the-teachings"
 series: "the-great-return"
-season: "the-afterlife"
-
-seriesId: "the-afterlife-s1"
-episodeId: "kabbalah"
-partId: "part2"
-
-quizId: "the-afterlife-s1-kabbalah-part-2"
-quizTitle: "Kabbalah — Part II"
-quizIntro: "Can you see through the veil of the middle gates?"
-
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

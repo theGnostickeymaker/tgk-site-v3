@@ -1,20 +1,29 @@
 ---
-
 layout: base.njk
 title: "Mesoamerica"
-description: "The Rebel Gospel, the Secret Teachings, and the Mirror of the Divine."
-excerpt: "You walked the calendars of stone and remembered the spiral of time.  
-    Now descend — into the nine levels of Mictlán and the trial chambers of Xibalba.  
-    The Lords are watching. The test is re…"
+description: "Part II of the Afterlife Scrolls: the rebel gospel, the secret teachings, and the mirror of the Divine."
+excerpt: |
+  You walked the calendars of stone and remembered the spiral of time.
+  Now descend, into the nine levels of Mictlán and the trial chambers of Xibalba.
+  The Lords are watching. The test is real.
 tier: initiate
-pageId: "the-teachings-the-great-return-afterlife-s1-mesoamerica-part-2"
+
+pageId: "the-great-return-afterlife-season-1-mesoamerica-part-2"
 
 episode: 6
 partNumeral: II
-partTitle: "The Descent into Mictlán and Xibalba"
-tagline: "Trials of the Underworld ✦ The Unmaking of the Soul ✦ The Dog Who Remembers"
-slug: "part-2"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode VI: Mesoamerica"
+partTitle: "Part II: The Descent into Mictlán and Xibalba"
+tagline: "Trials of the Underworld ✦ The Unmaking of the Soul ✦ The Dog Who Remembers"
+
+slug: "part-2"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/part-2/index.html"
 
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/part-2/mesoamerica-part-2.jpg"
@@ -24,23 +33,14 @@ imgPrefix: "mesoamerica-"
 bodyClass: "gold"
 
 glyph: "🌽"
-glyphRow: ["🌽", "☥", "🌽"]
+glyphRow:
+  - "🌽"
+  - "☥"
+  - "🌽"
 
 pillar: "the-teachings"
 series: "the-great-return"
-
-seriesId: "the-great-return-afterlife-s1"
-episodeId: "mesoamerica"
-partId: "part2"
-
-quizId: "the-great-return-s1-mesoamerica-part-2"
-quizTitle: "Mesoamerica — Part II"
-quizIntro: "Can you see through the veil of II?"
-
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

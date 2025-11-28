@@ -1,8 +1,7 @@
 ---
-
 layout: base.njk
 title: "Kabbalah"
-description: "The Kabbalistic map of the afterlife, tracing the descent of souls through the Sefirot, the cosmic tree, and the pathways of return."
+description: "Part I of the Afterlife Scrolls: the Kabbalistic map of the afterlife, tracing the descent of souls through the Sefirot, the cosmic tree, and the pathways of return."
 excerpt: "Before there was a Bible, there was a flame."
 tier: free
 
@@ -10,10 +9,18 @@ pageId: "the-great-return-afterlife-season-1-kabbalah-part-1"
 
 episode: 3
 partNumeral: I
-partTitle: "The Kabbalistic Worldview"
-tagline: "The divine descent, the Sefirot, and the shattering of vessels."
-slug: "part-1"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode III: Kabbalah"
+partTitle: "Part I: The Kabbalistic Worldview"
+tagline: "The divine descent, the Sefirot, and the shattering of vessels."
+
+slug: "part-1"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-1/index.html"
 
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-1/kabbalah-part-1.jpg"
@@ -23,24 +30,14 @@ imgPrefix: "kabbalah-"
 bodyClass: "gold"
 
 glyph: "✡"
-glyphRow: ["✡", "☥", "✡"]
+glyphRow:
+  - "✡"
+  - "☥"
+  - "✡"
 
 pillar: "the-teachings"
 series: "the-great-return"
-season: "the-afterlife"
-
-seriesId: "the-afterlife-s1"
-episodeId: "kabbalah"
-partId: "part1"
-
-quizId: "the-afterlife-s1-kabbalah-part-1"
-quizTitle: "Kabbalah — Part I"
-quizIntro: "Can you see through the veil of Part I?"
-
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

@@ -1,42 +1,42 @@
 ---
-
 layout: base.njk
 title: "Buddhism"
-description: "The Diamond Path, through the bardos and the Clear Light, towards final liberation."
-excerpt: "From Samsāra’s wheel to the bodhisattva’s return, you have danced through birth, death, and intention. Now the Diamond Path opens, the Vajra blade cuts illusion, and the radiant void calls the soul home."
+description: "Part III of the Afterlife Scrolls: the Diamond Path, through the bardos and the Clear Light, towards final liberation."
+excerpt: "From Samsāra’s wheel to the Bodhisattva’s return, you have danced through birth, death, and intention. Now the Diamond Path opens, the Vajra blade cuts illusion, and the radiant void calls the soul home."
 tier: initiate
-pageId: "the-teachings-the-afterlife-series-1-buddhism-part-3"
 
-# Episode Identity
+pageId: "the-great-return-afterlife-season-1-buddhism-part-3"
+
 episode: 4
 partNumeral: III
-partTitle: "The Diamond Path"
-tagline: "The Bardo, the Clear Light, the Diamond Path"
-slug: "part-3"
 
-# Paths
-permalink: "/pillars/the-teachings/the-afterlife/series-1/buddhism/part-3/index.html"
-socialImage: "/tgk-assets/images/share/the-teachings/the-afterlife/series-1/buddhism/part-3/buddhism-part-3.jpg"
-imgBase: "/media/the-teachings/the-afterlife/series-1/buddhism/part-3"
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode IV: Buddhism"
+partTitle: "Part III: The Diamond Path"
+tagline: "The Bardo, the Clear Light, the Diamond Path"
+
+slug: "part-3"
+permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-3/index.html"
+
+socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-3/buddhism-part-3.jpg"
+imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-3"
 imgPrefix: "buddhism-"
 bodyClass: "gold"
 
-# Pillar Metadata
 glyph: "☸"
-glyphRow: ["☸", "☥", "☸"]
-pillar: "the-teachings"
-series: "the-afterlife"
+glyphRow:
+  - "☸"
+  - "☥"
+  - "☸"
 
-seriesId: "the-afterlife-s1"
-episodeId: "buddhism"
-partId: "part3"
-quizId: "the-afterlife-s1-buddhism-part-3"
-quizTitle: "Buddhism, Part III"
-quizIntro: "Can you see through the veil of III?"
-seriesMeta:
-  number: 1
-  label: "Series 1"
-  version: 1
+pillar: "the-teachings"
+series: "the-great-return"
+season: 1
 
 # Publication Metadata
 author: "The Keymaker"

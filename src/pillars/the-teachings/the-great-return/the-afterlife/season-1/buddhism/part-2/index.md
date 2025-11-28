@@ -1,40 +1,42 @@
 ---
-
 layout: base.njk
 title: "Buddhism"
-description: "The Path of Compassion, from the Bodhisattva’s vow to the clear light of emptiness."
-excerpt: "You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. This page descends into compassion’s fire, the bodhisattva vow, and the fierce path of a seeker."
+description: "Part II of the Afterlife Scrolls: the path of compassion, from the Bodhisattva’s vow to the clear light of emptiness."
+excerpt: "You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. This page descends into compassion’s fire, the Bodhisattva vow, and the fierce path of a seeker."
 tier: initiate
+
 pageId: "the-great-return-afterlife-season-1-buddhism-part-2"
 
 episode: 4
 partNumeral: II
-partTitle: "The Path of Compassion"
-tagline: "The Bodhisattva, the Heart, the Clear Light"
-slug: "part-2"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode IV: Buddhism"
+partTitle: "Part II: The Path of Compassion"
+tagline: "The Bodhisattva, the Heart, the Clear Light"
+
+slug: "part-2"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-2/index.html"
+
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-2/buddhism-part-2.jpg"
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-2"
 imgPrefix: "buddhism-"
 bodyClass: "gold"
 
 glyph: "☸"
-glyphRow: ["☸", "☥", "☸"]
+glyphRow:
+  - "☸"
+  - "☥"
+  - "☸"
+
 pillar: "the-teachings"
 series: "the-great-return"
-season: "the-afterlife"
-
-seriesId: "the-afterlife-s1"
-episodeId: "buddhism"
-partId: "part2"
-quizId: "the-afterlife-s1-buddhism-part-2"
-quizTitle: "Buddhism, Part II"
-quizIntro: "Can you see through the veil of the second gate"
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

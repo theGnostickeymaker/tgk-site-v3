@@ -1,41 +1,42 @@
 ---
-
 layout: base.njk
 title: "Ancient Egypt"
-description: "The resurrection of light, from the weighing of the heart to the soul’s ascent among the Imperishables."
+description: "Part III of the Afterlife Scrolls: the resurrection of light, from the weighing of the heart to the soul’s ascent among the Imperishables."
 excerpt: "You deciphered the maps of the afterlife, the spells of becoming, the trials of identity, and the rites of return. But resurrection is more than passage. Now comes transfiguration, when Ka, Ba, and Ren converge as radiant Akh."
 tier: initiate
-pageId: "the-teachings-the-great-return-the-afterlife-season-1-ancient-egypt-part-3"
+
+pageId: "the-great-return-afterlife-season-1-ancient-egypt-part-3"
 
 episode: 5
 partNumeral: III
-partTitle: "The Resurrection of Light"
-tagline: "The Scales ✦ The Akh ✦ The Eternal Name"
-slug: "part-3"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode V: Ancient Egypt"
+partTitle: "Part III: The Resurrection of Light"
+tagline: "The Scales ✦ The Akh ✦ The Eternal Name"
+
+slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-3/index.html"
+
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-3/ancient-egypt-part-3.jpg"
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-3"
 imgPrefix: "egyptian-afterlife-"
 bodyClass: "gold"
 
 glyph: "𓂀"
-glyphRow: ["𓂀", "☥", "𓂀"]
+glyphRow:
+  - "𓂀"
+  - "☥"
+  - "𓂀"
 
 pillar: "the-teachings"
-season: "the-afterlife"
-
-seriesId: "the-afterlife-s1"
-episodeId: "ancient-egypt"
-partId: "part3"
-quizId: "the-afterlife-s1-ancient-egypt-part-3"
-quizTitle: "Ancient Egypt — Part III"
-quizIntro: "Can you see through the veil of III?"
-
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+series: "the-great-return"
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"

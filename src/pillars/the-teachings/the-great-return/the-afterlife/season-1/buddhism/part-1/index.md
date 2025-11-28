@@ -1,40 +1,42 @@
 ---
-
 layout: base.njk
 title: "Buddhism"
-description: "Through the Six Realms, the Bardos, and the mind’s last illusions, the soul learns how to die before death."
+description: "Part I of the Afterlife Scrolls: through the Six Realms, the Bardos, and the mind’s last illusions, the soul learns how to die before death."
 excerpt: "In Buddhist cosmology, reality is not linear. It spirals."
 tier: initiate
+
 pageId: "the-great-return-afterlife-season-1-buddhism-part-1"
 
 episode: 4
 partNumeral: I
-partTitle: "Roots and Cosmology"
-tagline: "The Wheel, the Bardo, the Liberation Gates"
-slug: "part-1"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode IV: Buddhism"
+partTitle: "Part I: Roots and Cosmology"
+tagline: "The Wheel, the Bardo, the Liberation Gates"
+
+slug: "part-1"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-1/index.html"
+
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-1/buddhism-part-1.jpg"
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/buddhism/part-1"
 imgPrefix: "buddhism-"
 bodyClass: "gold"
 
 glyph: "☸"
-glyphRow: ["☸", "☥", "☸"]
+glyphRow:
+  - "☸"
+  - "☥"
+  - "☸"
+
 pillar: "the-teachings"
 series: "the-great-return"
-season: "the-afterlife"
-
-seriesId: "the-afterlife-s1"
-episodeId: "buddhism"
-partId: "part1"
-quizId: "the-afterlife-s1-buddhism-part-1"
-quizTitle: "Buddhism, Part I"
-quizIntro: "Can you see through the veil of the first gate?"
-seriesMeta:
-  number: 1
-  label: "Season 1"
-  version: 1
+season: 1
 
 author: "The Keymaker"
 published: "2025-10-14"
