@@ -295,7 +295,7 @@
 }
 
 .upper-band-line {
-  font-size: 1.4rem;
+  font-size: 1rem;
   opacity: 0.65;
   color: var(--text-accent);
 }
@@ -305,29 +305,126 @@
   margin-bottom: 0.75rem;
 }
 
-.series-title {
-  font-size: 1.6rem;
-  font-weight: 500;
-  margin-bottom: 0.35rem;
-}
+/* --- Site Title (smallest context marker) --- */
+  .site-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+    margin-bottom: var(--space-xs);
+  }
 
-.season-title {
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-}
+  /* --- Pillar Title --- */
+  .pillar-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+  }
 
-.episode-title {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 0.2rem;
-}
+  /* --- Gate Title (The Great Return) --- */
+  .gate-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+  }
 
-.part-title {
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 0.2rem;
-  color: var(--text-accent);
+  /* --- Series Title (Series I: The Afterlife) --- */
+  .series-title {
+    font-family: var(--page-title, 'Cormorant Garamond', serif);
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    margin: var(--space-md) 0 var(--space-sm);
+    text-transform: uppercase;
+  }
+
+  /* --- Season Title (Season I: Maps of the Afterlife) --- */
+  .season-title {
+    font-family: var(--page-title, 'Cormorant Garamond', serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-sm);
+  }
+
+  /* --- Episode Title (Episode I: Gnostic Christianity) --- */
+  .episode-title {
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* --- Part Title (for Part pages only) --- */
+  .part-title {
+    font-family: var(--page-title, 'Cormorant Garamond', serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* --- Tagline --- */
+  .page-tagline {
+    font-family: var(--font-serif, 'Libre Baskerville', serif);
+    font-size: 1.05rem;
+    opacity: 0.9;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+@media (max-width: 640px) {
+
+  .breadcrumbs {
+    display: none;
+  }
+
+  .upper-band-line {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-bottom: 0.6rem;
+  }
+
+  .pillar-title,
+  .gate-title,
+  .season-title {
+    display: none;
+  }
+
+  .series-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .episode-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .part-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .pillar-glyph-row .pillar-glyph {
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-tagline {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
 }
 
 }
