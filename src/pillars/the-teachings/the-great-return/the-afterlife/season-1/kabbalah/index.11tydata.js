@@ -1,7 +1,7 @@
 export default {
   layout: "base.njk",
 
-  // 🌍 Pillar & Series Metadata
+  // 🌍 Page Identity
   pageId: "the-great-return-afterlife-season-1-kabbalah",
   permalink:
     "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/index.html",
@@ -21,15 +21,18 @@ export default {
   description:
     "The Tree of Life, the ascent of the soul, and the restoration of divine harmony.",
 
-  // 📖 Series Identity
-  seriesLabel: "Season 1: The Afterlife Scrolls",
-  pillarLabel: "The Teachings",
-  seriesHome:
-    "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/",
-  pillarHome: "/pillars/the-teachings/",
+  // 🌍 Unified Hierarchy for Header
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Teachings",
+  gateTitle: "The Great Return",
 
+  seriesTitle: "Series I: The Afterlife",
+  seasonTitle: "Season I: Maps of the Afterlife",
+  episodeTitle: "Episode III: Kabbalah",
+
+  // Structural placement
   series: "the-great-return",
-  season: "the-afterlife",
+  season: "season-1",
   episode: 3,
 
   seriesMeta: {
@@ -142,7 +145,7 @@ export default {
     { title: "The Teachings", url: "/pillars/the-teachings/" },
     { title: "The Great Return", url: "/pillars/the-teachings/the-great-return/" },
     {
-      title: "Season 1",
+      title: "Season 1: The Afterlife Scrolls",
       url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/"
     },
     {

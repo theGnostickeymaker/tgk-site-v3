@@ -20,9 +20,15 @@ export default {
   description:
     "The journey of the soul through divine love, annihilation of self, and union with the Beloved.",
 
-  // 📖 Series Identity (NEW hierarchy)
-  seriesLabel: "The Great Return",
-  pillarLabel: "The Teachings",
+  // 🌍 Unified Hierarchy (Required for header)
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Teachings",
+  gateTitle: "The Great Return",
+
+  seriesTitle: "Series I: The Afterlife",
+  seasonTitle: "Season I: Maps of the Afterlife",
+  episodeTitle: "Episode II: Sufi Islam",
+
   seriesHome: "/pillars/the-teachings/the-great-return/",
   seasonHome:
     "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/",

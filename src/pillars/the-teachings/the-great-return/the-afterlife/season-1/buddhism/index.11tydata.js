@@ -1,7 +1,7 @@
 export default {
   layout: "base.njk",
 
-  // 🌍 Pillar & Series Metadata
+  // 🌍 Page Identity
   pageId: "the-great-return-afterlife-season-1-buddhism",
   permalink:
     "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/index.html",
@@ -13,7 +13,6 @@ export default {
   glyphRow: ["☸", "☥", "☸"],
   accent: "gold",
   bodyClass: "gold",
-
   tier: "initiate",
 
   title: "Buddhism",
@@ -21,16 +20,18 @@ export default {
   description:
     "The Wheel, the Bardos and the Diamond Path of Liberation.",
 
-  // 📖 Series Identity
-  seriesLabel: "Season 1: The Afterlife Scrolls",
-  pillarLabel: "The Teachings",
+  // 🌍 Unified Hierarchy for Header (required)
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Teachings",
+  gateTitle: "The Great Return",
 
-  seriesHome:
-    "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/",
+  seriesTitle: "Series I: The Afterlife",
+  seasonTitle: "Season I: Maps of the Afterlife",
+  episodeTitle: "Episode IV: Buddhism",
 
-  pillarHome: "/pillars/the-teachings/",
+  // Structural placement
   series: "the-great-return",
-  season: "the-afterlife",
+  season: "season-1",
   episode: 4,
 
   seriesMeta: {
@@ -139,10 +140,14 @@ export default {
     { title: "The Gnostic Key", url: "/" },
     { title: "The Teachings", url: "/pillars/the-teachings/" },
     { title: "The Great Return", url: "/pillars/the-teachings/the-great-return/" },
-    { title: "Season 1: The Afterlife Scrolls",
-      url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/" },
-    { title: "Buddhism",
-      url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/" }
+    {
+      title: "Season 1: The Afterlife Scrolls",
+      url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/"
+    },
+    {
+      title: "Buddhism",
+      url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/"
+    }
   ],
 
   // === Behaviour Flags ===

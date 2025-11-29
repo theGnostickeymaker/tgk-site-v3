@@ -1,14 +1,14 @@
 export default {
   layout: "base.njk",
 
-  // 🌍 Pillar & Series Metadata
+  // 🌍 Page Identity
   pageId: "the-teachings-the-great-return-the-afterlife-season-1-mesoamerica",
   permalink:
     "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/index.html",
 
   pillarId: "the-teachings",
   pillarName: "The Teachings",
-  pillarUrl: "/pillars/the-teachings/the-great-return/the-afterlife/",
+  pillarUrl: "/pillars/the-teachings/",
   pillarGlyph: "🌽",
   glyphRow: ["🌽", "☥", "🌽"],
   accent: "gold",
@@ -20,15 +20,18 @@ export default {
   description:
     "Sacred time, calendars of stone, and the cosmic architecture of death and rebirth.",
 
-  // 📖 Series Identity
-  seriesLabel: "The Afterlife Series",
-  pillarLabel: "The Teachings",
+  // 🌍 Unified Hierarchy for Page Header
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Teachings",
+  gateTitle: "The Great Return",
 
-  seriesHome:
-    "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/",
-  pillarHome: "/pillars/the-teachings/",
+  seriesTitle: "Series I: The Afterlife",
+  seasonTitle: "Season I: Maps of the Afterlife",
+  episodeTitle: "Episode VI: Mesoamerica",
 
-  series: "the-afterlife",
+  // Structural placement
+  series: "the-great-return",
+  season: "season-1",
   episode: 6,
 
   seriesMeta: {
@@ -77,22 +80,22 @@ export default {
     },
     {
       title: "Kabbalah",
-      desc: "The path of Kabbalah within the Afterlife Series.",
+      desc: "The path of Kabbalah within the Afterlife Scrolls.",
       url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/"
     },
     {
       title: "Buddhism",
-      desc: "The path of Buddhism within the Afterlife Series.",
+      desc: "The path of Buddhism within the Afterlife Scrolls.",
       url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/buddhism/"
     },
     {
       title: "Ancient Egypt",
-      desc: "The path of Ancient Egypt within the Afterlife Series.",
+      desc: "The path of Ancient Egypt within the Afterlife Scrolls.",
       url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/"
     },
     {
       title: "Mesoamerica",
-      desc: "The path of Mesoamerica within the Afterlife Series.",
+      desc: "The path of Mesoamerica within the Afterlife Scrolls.",
       url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/"
     }
   ],
@@ -140,14 +143,12 @@ export default {
     { title: "The Gnostic Key", url: "/" },
     { title: "The Teachings", url: "/pillars/the-teachings/" },
     { title: "The Great Return", url: "/pillars/the-teachings/the-great-return/" },
-    { title: "The Afterlife", url: "/pillars/the-teachings/the-great-return/the-afterlife/" },
-    {
-      title: "Season 1",
-      url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/"
-    },
+    { title: "Season 1: The Afterlife Scrolls",
+      url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/" },
     {
       title: "Mesoamerica",
-      url: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/"
+      url:
+        "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/"
     }
   ],
 

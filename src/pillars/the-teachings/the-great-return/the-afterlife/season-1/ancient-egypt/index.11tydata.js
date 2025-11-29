@@ -1,14 +1,14 @@
 export default {
   layout: "base.njk",
 
-  // 🌍 Pillar & Series Metadata
+  // 🌍 Page Identity
   pageId: "the-teachings-the-great-return-the-afterlife-season-1-ancient-egypt",
   permalink:
     "/pillars/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/index.html",
 
   pillarId: "the-teachings",
   pillarName: "The Teachings",
-  pillarUrl: "/pillars/the-teachings/the-great-return/",
+  pillarUrl: "/pillars/the-teachings/",
   pillarGlyph: "𓂀",
   glyphRow: ["𓂀", "☥", "𓂀"],
   accent: "gold",
@@ -16,19 +16,22 @@ export default {
   tier: "initiate",
 
   title: "Ancient Egypt",
-  tagline: "The Ka ✦ The Duat ✦ The Akh",
+  tagline: "The Ka, the Duat, the Akh.",
   description:
     "The Weighing of the Heart, the Duat, and the Resurrection of Light.",
 
-  // 📖 Series Identity
-  seriesLabel: "The Afterlife Scrolls",
-  pillarLabel: "The Great Return",
+  // 🌍 Unified Hierarchy (Required for header)
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Teachings",
+  gateTitle: "The Great Return",
 
-  seriesHome:
-    "/pillars/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/",
-  pillarHome: "/pillars/the-teachings/the-great-return/",
+  seriesTitle: "Series I: The Afterlife",
+  seasonTitle: "Season I: Maps of the Afterlife",
+  episodeTitle: "Episode V: Ancient Egypt",
 
-  series: "the-afterlife",
+  // Structural placement
+  series: "the-great-return",
+  season: "season-1",
   episode: 5,
 
   seriesMeta: {
@@ -36,8 +39,7 @@ export default {
     label: "Season 1",
     version: 1
   },
-
-  // 🜂 Episode Overview
+    // 🜂 Episode Overview
   introText:
     "— a three-part journey through the Ka, the Duat, and the Akh: the resurrection mysteries of the Nile.",
   disclaimerTitle: "⚠️ Diversity of Sources",
