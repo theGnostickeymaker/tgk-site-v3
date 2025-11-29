@@ -1,41 +1,63 @@
 ---
 layout: base.njk
 title: "The Final Idol"
-description: "Part VI of The Final Idol Series — in the age of synthetic unity, what divine spark resists the machine? Explore the last resistance."
+description: "Part VI of The Final Idol Series: in the age of synthetic unity, what divine spark resists the machine? Explore the last resistance."
 excerpt: "A spark remains untouched by simulation, and the soul remembers its fire."
 tier: initiate
-pageId: "the-gnostic-eye-the-final-idol-series-1-the-flame-in-the-dark"
+
+pageId: "the-gnostic-eye-the-final-idol-series-1-part-6"
 
 episode: 6
 partNumeral: VI
-partTitle: "The Flame in the Dark"
-tagline: "Inner Fire ✦ Resistance ✦ The Uncoded Spark"
-slug: "the-flame-in-the-dark"
 
-seriesId: "the-final-idol-s1"
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Gnostic Eye"
+gateTitle: "The Final Idol"
+
+seriesTitle: "Series I: The Final Idol"
+episodeTitle: "Part VI: The Flame in the Dark"
+partTitle: "Part VI: The Flame in the Dark"
+tagline: "Inner fire ✦ Resistance ✦ The uncoded spark"
+
+slug: "the-flame-in-the-dark"
+permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/index.html"
+
+socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-6/the-flame-in-the-dark-part-6.jpg"
+
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark"
+imgPrefix: "the-flame-in-the-dark-"
+bodyClass: "eye"
+
+glyph: "🜂"
+glyphRow:
+  - "☿"
+  - "🜏"
+  - "👁"
+
+pillar: "the-gnostic-eye"
+series: "the-final-idol"
+season: 1
+
+seriesId: "the-final-idol"
 episodeId: "the-flame-in-the-dark"
-partId: "part6"
+partId: "part-6"
 quizId: "the-final-idol-s1-the-flame-in-the-dark-part-6"
 quizTitle: "The Flame in the Dark — Part VI: The Last Spark"
-quizIntro: "Find the ember that the Machine cannot model — test your Gnosis in the age of simulation."
+quizIntro: "Find the ember that the Machine cannot model. Test your Gnosis in the age of simulation."
 
-bodyClass: "eye"
-pillar: "the-gnostic-eye"
-glyph: "🜂"
-accent: "eye"
 author: "The Architect"
 published: "2025-10-18"
 publishedBy: "The Gnostic Key"
-tags: ["The Gnostic Eye", "The Final Idol", "Gnosis", "Resistance", "Inner Flame"]
-
-permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/index.html"
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-6/the-flame-in-the-dark-part-6.jpg"
-imgBase: "/media/the-gnostic-eye/the-final-idol/"
-imgPrefix: "the-final-idol-"
+tags:
+  - "The Gnostic Eye"
+  - "The Final Idol"
+  - "Gnosis"
+  - "Resistance"
+  - "Inner Flame"
 
 seriesMeta:
   number: 1
-  label: "Series 1"
+  label: "Series I"
   version: 1
 
 sitemap: true

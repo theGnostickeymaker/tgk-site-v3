@@ -1,26 +1,29 @@
-// /src/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/index.11tydata.js
 export default {
   layout: "base.njk",
 
-  // === Core Identity ===
+  // Identity
   pageId: "the-vault-codex-reborn-nag-hammadi-codex-i",
   permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/index.html",
+
   pillar: "the-vault",
   series: "codex-reborn",
   collection: "nag-hammadi",
   codex: "codex-i",
+
   title: "Nag Hammadi – Codex I",
   description:
-    "Contains key Gnostic writings such as the Gospel of Truth — the revelation of self-knowledge and return to the Father.",
+    "The Jung Codex, containing the Gospel of Truth and early Valentinian revelations.",
   tagline: "The Jung Codex ✦ The Gospel of Truth ✦ The Light Returned",
+
   glyph: "📜",
   glyphRow: ["📜", "🕯", "📜"],
   accent: "vault",
   bodyClass: "vault",
   tier: "free",
+
   tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi", "codex-i"],
 
-  // === Breadcrumbs ===
+  // Breadcrumbs
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
@@ -29,7 +32,7 @@ export default {
     { title: "Codex I", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/" }
   ],
 
-  // === Subcollection Grid (Texts within Codex I) ===
+  // Texts within Codex I
   pillarGrid: [
     {
       title: "Gospel of Truth",
@@ -41,7 +44,7 @@ export default {
     },
     {
       title: "Tripartite Tractate",
-      desc: "A grand cosmological narrative describing emanation, fall, and restoration within the divine Fullness.",
+      desc: "A vast cosmological exposition describing emanation, fall, and restoration within the divine Fullness.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/tripartite-tractate/text/",
       glyph: "🕯",
       tier: "free",
@@ -49,7 +52,7 @@ export default {
     },
     {
       title: "Treatise on the Resurrection",
-      desc: "A letter on spiritual rebirth and the awakening of the inner man, attributed to Rheginos.",
+      desc: "A mystical letter on spiritual rebirth and the awakening of the inner human.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/treatise-on-the-resurrection/text/",
       glyph: "🜂",
       tier: "free",
@@ -57,7 +60,7 @@ export default {
     },
     {
       title: "Prayer of the Apostle Paul",
-      desc: "A short invocation to the Redeemer, placed at the opening of Codex I.",
+      desc: "A short invocation to the Redeemer placed at the opening of Codex I.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/prayer-of-the-apostle-paul/text/",
       glyph: "🕊",
       tier: "free",
@@ -65,7 +68,7 @@ export default {
     },
     {
       title: "Apocryphon of James",
-      desc: "Secret teachings of Jesus to James the Just, exploring the mystery of suffering and salvation.",
+      desc: "Secret teachings of Jesus to James the Just concerning suffering, vision, and salvation.",
       href: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/apocryphon-of-james/text/",
       glyph: "🌿",
       tier: "free",
@@ -73,10 +76,10 @@ export default {
     }
   ],
 
-  // === Social Meta ===
-  socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi-codex-i.jpg",
+  // Social image
+  socialImage: "/tgk-assets/images/share/the-vault/codex-reborn/nag-hammadi/codex-i.jpg",
 
-  // === Behaviour Flags ===
+  // Behaviour
   showLens: false,
   showSeriesNav: false
 };

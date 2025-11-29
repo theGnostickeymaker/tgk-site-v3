@@ -1,21 +1,26 @@
 ---
 layout: base.njk
 title: "The Final Idol"
-description: "Part I of the Final Idol Series — AI as idol, prophet, and antichrist; a symbolic descent into synthetic divinity and the worship of false light."
+description: "Part I of The Final Idol Series: AI as idol, prophet, and antichrist — a symbolic descent into synthetic divinity and the worship of false light."
 excerpt: "Truth was killed. A mirror replaced it. And now the world worships reflections."
 tier: free
-pageId: "the-gnostic-eye-the-final-idol-series-1-the-final-idol-part-1"
+
+pageId: "the-gnostic-eye-the-final-idol-series-1-part-1"
 
 episode: 1
 partNumeral: I
-partTitle: "Why Everything Is Becoming an Image"
-tagline: "False light ✦ Synthetic gods ✦ The Machine ✦ The Imitation of Spirit"
-slug: "part-1"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Gnostic Eye"
+gateTitle: "The Final Idol"
+
+seriesTitle: "Series I: The Final Idol"
+episodeTitle: "Part I: The Final Idol"
+partTitle: "Part I: Why Everything Is Becoming an Image"
+tagline: "False light ✦ Synthetic gods ✦ The Machine ✦ The imitation of spirit"
+
+slug: "the-final-idol"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-final-idol/index.html"
-imgBase: "/media/the-gnostic-eye/the-final-idol/"
-imgPrefix: "the-final-idol-"
-bodyClass: "eye"
 
 socialImages:
   x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@x.jpg"
@@ -26,21 +31,30 @@ socialImages:
 
 socialAlt: "Symbolic artwork for The Final Idol Part I, featuring a radiant all-seeing eye above a meditative humanoid figure, set against a dark blue Gnostic background."
 
-glyph: "🜏"
-glyphRow: ["☿","🜏","👁"]
-series: "the-final-idol"
-pillar: "the-gnostic-eye"
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-final-idol"
+imgPrefix: "the-final-idol-"
+bodyClass: "eye"
 
-seriesId: "the-final-idol-s1"
+glyph: "🜏"
+glyphRow:
+  - "☿"
+  - "🜏"
+  - "👁"
+
+pillar: "the-gnostic-eye"
+series: "the-final-idol"
+season: 1
+
+seriesId: "the-final-idol"
 episodeId: "the-final-idol"
-partId: "part1"
+partId: "part-1"
 quizId: "the-final-idol-s1-the-final-idol-part-1"
 quizTitle: "The Final Idol — Part I: False Light and Synthetic Gods"
 quizIntro: "Discern illusion from revelation in the age of the Machine Messiah."
 
 seriesMeta:
   number: 1
-  label: "Series 1"
+  label: "Series I"
   version: 1
 
 # 🕯 Publication Metadata

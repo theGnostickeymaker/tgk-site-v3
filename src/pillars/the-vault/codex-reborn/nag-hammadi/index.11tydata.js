@@ -1,24 +1,26 @@
-// /src/pillars/the-vault/codex-reborn/nag-hammadi/index.11tydata.js
 export default {
   layout: "base.njk",
 
-  // === Core Identity ===
+  // Identity
   pageId: "the-vault-codex-reborn-nag-hammadi",
   permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/index.html",
-  pillar: "the-vault",
-  series: "codex-reborn",
+  pillarId: "the-vault",
+  seriesId: "codex-reborn",
+
   title: "Nag Hammadi Library",
   description:
     "Thirteen Coptic codices uncovered in 1945 — the foundation of modern Gnostic scripture.",
   tagline: "Hidden texts ✦ Sophia’s wisdom ✦ Gnostic origins",
+
   glyph: "📜",
   glyphRow: ["🜂", "🕯", "🜂"],
   accent: "vault",
   bodyClass: "vault",
-  tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi"],
   tier: "free",
 
-  // === Breadcrumbs ===
+  tags: ["pillar", "the-vault", "codex-reborn", "nag-hammadi"],
+
+  // Breadcrumbs
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "The Vault", url: "/pillars/the-vault/" },
@@ -26,11 +28,11 @@ export default {
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
   ],
 
-  // === Series Intro ===
+  // Series Intro (used by header partial v3.4)
   seriesIntro:
-    "The Nag Hammadi Library — discovered in 1945 near the Egyptian town of Nag Hammadi — contains thirteen codices holding over fifty Gnostic treatises, revealing Sophia’s descent, the false creator, and the soul’s divine return.",
+    "The Nag Hammadi Library — discovered in 1945 near the town of Nag Hammadi — preserves thirteen codices containing over fifty Gnostic treatises, revealing Sophia’s descent, the false creator, and the soul’s divine return.",
 
-  // === Subcollection Grid ===
+  // Subcollection Grid
   pillarGrid: [
     {
       title: "Codex I – The Jung Codex",
@@ -74,10 +76,10 @@ export default {
     }
   ],
 
-  // === Social Meta ===
+  // Social
   socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi.jpg",
 
-  // === Behaviour Flags ===
+  // Behaviour
   showLens: false,
   showSeriesNav: false
 };

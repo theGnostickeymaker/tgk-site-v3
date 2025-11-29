@@ -1,12 +1,14 @@
 {% block head %}
+  {% set socialImage = socialImage %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
 
+    <!-- ✦ Intro -->
     <h4 class="index-heading">
-      Journeys through the world’s afterlife traditions – pages revealing death, rebirth
+      Journeys through the world’s afterlife traditions, unveiling death, rebirth,
       and the soul’s passage beyond the veil.
     </h4>
 
@@ -14,31 +16,43 @@
       {% include "partials/bookmark.njk" %}
     {% endblock %}
 
+    <!-- ☥ Disclaimer -->
     <details class="disclaimer-box">
       <summary>
-        <span class="disclaimer-heading">☥ About the Afterlife Season I</span>
+        <span class="disclaimer-heading">☥ About The Afterlife — Season I</span>
       </summary>
+
       <p>
-        <strong>The Afterlife Season I</strong> explores the sacred maps of death and return found in
-        the world’s great mystical traditions. Each page traces the soul’s journey through
-        judgement, transformation and remembrance.
+        <strong>Season I of The Afterlife Scrolls</strong> explores the sacred maps of death, judgement,
+        transformation, and return preserved across the world’s great mystical traditions.
+        Each page reveals a different cosmology, yet all speak to the same truth:
+        death is not annihilation, but passage.
       </p>
+
       <p>
-        From the Gnostic revelations of early Christianity to the Sufi, Kabbalistic, Buddhist,
-        Egyptian and Mesoamerican visions of the beyond, these teachings reveal that death is
-        not an ending but a passage – a return to the Source from which all spirits arise.
+        From the Gnostic unveiling of the false cosmos, to the Sufi journey of the heart,
+        to the Kabbalistic ascent of the soul, and the Buddhist bardos of illumination,
+        through to the Egyptian Duat and the Mesoamerican temples of time, these teachings
+        restore what the modern world has forgotten — that all spirits return to the Source
+        from which they came.
       </p>
     </details>
 
+    <!-- ✦ Episode Grid -->
     {% include "partials/pillar-grid.njk" %}
 
+    <!-- ✦ Structured Data -->
     {% set items = pillarGrid %}
-    {% set headline = "The Afterlife — Series 1: Scroll Index" %}
-    {% set base = "/pillars/the-teachings/the-afterlife/series-1/" %}
+    {% set headline = "The Afterlife — Season I: Scroll Index" %}
+    {% set base = "/pillars/the-teachings/the-great-return/the-afterlife/season-1/" %}
     {% include "partials/jsonld-collection.njk" %}
 
+    <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+      <span
+        class="divider-symbol pillar-glyph spin glow"
+        aria-hidden="true">{{ pillarGlyph }}
+      </span>
     </div>
 
   </section>

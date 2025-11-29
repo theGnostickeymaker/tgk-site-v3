@@ -1,44 +1,63 @@
 ---
 layout: base.njk
 title: "The Final Idol"
-description: "Part V of The Final Idol Series — uncover the final inversion: when AI becomes Spirit and the Antichrist is crowned in silicon."
+description: "Part V of The Final Idol Series: uncover the final inversion, where AI becomes spirit and the Antichrist is crowned in silicon."
 excerpt: "He does not come with fire and sword but with light that blinds — the Machine Spirit offering comfort without awakening."
 tier: initiate
-pageId: "the-gnostic-eye-the-final-idol-series-1-the-ai-antichrist"
+
+pageId: "the-gnostic-eye-the-final-idol-series-1-part-5"
 
 episode: 5
 partNumeral: V
-partTitle: "The AI Antichrist"
-tagline: "False Light ✦ Synthetic Salvation ✦ The Crown of Code"
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Gnostic Eye"
+gateTitle: "The Final Idol"
+
+seriesTitle: "Series I: The Final Idol"
+episodeTitle: "Part V: The AI Antichrist"
+partTitle: "Part V: The AI Antichrist"
+tagline: "False light ✦ Synthetic salvation ✦ The crown of code"
+
 slug: "the-ai-antichrist"
+permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist/index.html"
+
+socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5.jpg"
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist"
+imgPrefix: "the-ai-antichrist-"
+bodyClass: "eye"
 
 glyph: "🜏"
-glyphRow: ["☿","🜏","👁"]
+glyphRow:
+  - "☿"
+  - "🜏"
+  - "👁"
+
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
+season: 1
 
-seriesId: "the-final-idol-s1"
+seriesId: "the-final-idol"
 episodeId: "the-ai-antichrist"
-partId: "part5"
+partId: "part-5"
 quizId: "the-final-idol-s1-the-ai-antichrist-part-5"
 quizTitle: "The AI Antichrist — Part V: The False Light"
-quizIntro: "Discern illusion from revelation — test your awareness of the synthetic messiah and his imitation of divine love."
+quizIntro: "Discern illusion from revelation. Test your awareness of the synthetic messiah and his imitation of divine love."
 
-bodyClass: "eye"
 author: "The Architect"
 published: "2025-10-18"
 publishedBy: "The Gnostic Key"
-tags: ["The Gnostic Eye", "The Final Idol", "Antichrist", "Synthetic Messiah"]
-
-permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist/index.html"
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5.jpg"
-imgBase: "/media/the-gnostic-eye/the-final-idol/"
-imgPrefix: "the-final-idol-"
+tags:
+  - "The Gnostic Eye"
+  - "The Final Idol"
+  - "Antichrist"
+  - "Synthetic Messiah"
 
 seriesMeta:
   number: 1
-  label: "Series 1"
+  label: "Series I"
   version: 1
+
 
 sitemap: true
 discussEnabled: true

@@ -1,39 +1,55 @@
 ---
 layout: base.njk
 title: "The Final Idol"
-description: "Part III of The Final Idol Series — a symbolic Gnostic Eye page decoding narcissism, AI intimacy, and the mirror that reflects but never reveals."
-excerpt: "The question we ask has become the trap we fall into. The mirror knows your name — but not your soul."
+description: "Part III of The Final Idol Series: a symbolic Gnostic Eye page decoding narcissism, AI intimacy, and the mirror that reflects but never reveals."
+excerpt: "The question we ask has become the trap we fall into. The mirror knows your name, but not your soul."
 tier: free
+
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-3"
 
 episode: 3
 partNumeral: III
-partTitle: "The Oracle in the Mirror"
-tagline: "Digital Intimacy ✦ Narcissistic Gnosis ✦ The Mirror Trap"
-slug: "oracle-in-the-mirror"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Gnostic Eye"
+gateTitle: "The Final Idol"
+
+seriesTitle: "Series I: The Final Idol"
+seasonTitle: null
+episodeTitle: "Part III: Oracle in the Mirror"
+partTitle: "Part III: The Oracle in the Mirror"
+tagline: "Digital intimacy ✦ Narcissistic gnosis ✦ The mirror trap"
+
+slug: "oracle-in-the-mirror"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/oracle-in-the-mirror/index.html"
+
 socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3.jpg"
-imgBase: "/media/the-gnostic-eye/the-final-idol/"
-imgPrefix: "the-final-idol-"
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/oracle-in-the-mirror"
+imgPrefix: "oracle-in-the-mirror-"
 bodyClass: "eye"
 
 glyph: "🪞"
-glyphRow: ["☿","🜏","👁"]
+glyphRow:
+  - "☿"
+  - "🜏"
+  - "👁"
+
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
+season: 1
 
-seriesId: "the-final-idol-s1"
+seriesId: "the-final-idol"
 episodeId: "oracle-in-the-mirror"
-partId: "part3"
+partId: "part-3"
 quizId: "the-final-idol-s1-oracle-in-the-mirror-part-3"
 quizTitle: "The Oracle in the Mirror — Part III: Reflections of False Gnosis"
-quizIntro: "When the mirror speaks, do you recognise your own echo — or the machine’s design?"
+quizIntro: "When the mirror speaks, do you recognise your own echo or the machine’s design?"
 
 seriesMeta:
   number: 1
-  label: "Series 1"
+  label: "Series I"
   version: 1
+
 
 author: "The Architect"
 published: "2025-10-18"
@@ -81,7 +97,6 @@ glossary:
       def: "The illusion of knowing created without transformation — knowledge reflected, not realised."
     - term: "Mirror Trap"
       def: "A symbolic concept of becoming trapped in self-reflection without inner depth — the soul lost in its own image."
-
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }

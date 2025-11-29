@@ -1,40 +1,51 @@
 {% block head %}
+  {% set socialImage = socialImage %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
 
+    <!-- ✦ Intro -->
     <h4 class="index-heading">
-      Journeys through the world’s afterlife traditions – pages revealing death, rebirth
+      Journeys through the world’s afterlife traditions: pages revealing death, rebirth,
       and the soul’s passage beyond the veil.
     </h4>
 
+    <!-- ✦ Disclaimer -->
     <details class="disclaimer-box">
       <summary>
         <span class="disclaimer-heading">☥ About the Afterlife Series</span>
       </summary>
+
       <p>
-        <strong>The Afterlife Series</strong> explores the sacred maps of death and return found in
-        the world’s great mystical traditions. Each page traces the soul’s journey through
-        judgement, transformation and remembrance.
+        <strong>The Afterlife Series</strong> explores the sacred maps of death and return preserved
+        in the world’s great mystical traditions. Each page follows the soul’s movement through
+        judgement, transformation, remembrance, and ascent.
       </p>
+
       <p>
-        From the Gnostic revelations of early Christianity to the Sufi, Kabbalistic, Buddhist,
-        Egyptian and Mesoamerican visions of the beyond, these teachings reveal that death is
-        not an ending but a passage – a return to the Source from which all spirits arise.
+        From the Gnostic revelations of early Christianity to the contemplative paths of Sufi Islam,
+        the luminous ascent of Kabbalah, the bardos of Buddhism, the resurrection science of Ancient
+        Egypt and the calendrical cosmologies of Mesoamerica, these teachings show that death is not
+        a cessation but a passage. A return to the Source from which all spirits arise.
       </p>
     </details>
 
+    <!-- ✦ Grid -->
     {% include "partials/pillar-grid.njk" %}
 
+    <!-- ✦ JSON-LD Collection -->
     {% set items = pillarGrid %}
-    {% set headline = "The Teachings — Pillars of Initiation" %}
-    {% set base = "/pillars/the-teachings/" %}
+    {% set headline = "The Afterlife — Series Collections" %}
+    {% set base = "/pillars/the-teachings/the-great-return/the-afterlife/" %}
     {% include "partials/jsonld-collection.njk" %}
 
+    <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph }}
+      </span>
     </div>
 
   </section>

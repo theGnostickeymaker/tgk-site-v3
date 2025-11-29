@@ -1,4 +1,5 @@
 {% block head %}
+  {% set socialImage = socialImage %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
@@ -6,7 +7,7 @@
   <section class="content-container">
 
     <h4 class="index-heading">
-      Codex Reborn — recovered Gnostic gospels and apocrypha of the hidden Christ.
+      Codex Reborn — recovered Gnostic gospels and apocrypha revealing the hidden Christ.
     </h4>
 
     {% block bookmark %}
@@ -14,26 +15,28 @@
     {% endblock %}
 
     <details class="disclaimer-box">
-      <summary><span class="disclaimer-heading">📚 About Codex Reborn</span></summary>
+      <summary><span class="disclaimer-heading">📜 About Codex Reborn</span></summary>
+
       <p>
-        <strong>Codex Reborn</strong> forms part of <strong>The Vault</strong> — the archival pillar of
-        <em>The Gnostic Key</em> — where sacred, forbidden, and forgotten texts are preserved for study
-        and remembrance. It gathers the <strong>Gnostic Gospels</strong> recovered from Nag Hammadi and
-        other hidden libraries, curated for modern seekers of truth.
+        <strong>Codex Reborn</strong> forms a central collection within <em>The Vault</em>,  
+        the archival pillar of <strong>The Gnostic Key</strong> devoted to preserving sacred,
+        forbidden, and forgotten writings.
       </p>
 
       <p>
-        These pages, once buried in sand or condemned by empire, are restored within the
-        <strong>Vault of Remembrance</strong>. Each text reveals fragments of the same celestial map —
-        unveiling Sophia’s fall, the false creator, and the awakening of the soul’s divine spark.
+        This collection gathers the <strong>Gnostic Gospels</strong> and apocrypha recovered
+        from Nag Hammadi, the Berlin Codex, and other hidden libraries.  
+        Buried beneath sand, condemned by empire, or erased by institutional power,
+        these texts return here as part of a living remembrance.
       </p>
 
       <p>
-        The collection includes the <em>Apocryphon of John</em>, the <em>Gospel of Thomas</em>,
-        the <em>Gospel of Truth</em>, and <em>Pistis Sophia</em> — each freely accessible,
-        formatted for clarity, and interlinked with teachings throughout 
-        <strong>The Afterlife Series</strong> and other pillars of <em>The Gnostic Key</em>.
+        The writings include the <em>Apocryphon of John</em>, the <em>Gospel of Thomas</em>,
+        the <em>Gospel of Truth</em>, and <em>Pistis Sophia</em>.  
+        Each manuscript offers a fragment of the celestial map, revealing Sophia’s descent,
+        the false creator, and the awakening of the divine spark within the human soul.
       </p>
+
     </details>
 
   </section>
@@ -46,6 +49,9 @@
   {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+      {{ glyph }}
+    </span>
   </div>
+
 </main>

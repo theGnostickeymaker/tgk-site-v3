@@ -1,41 +1,62 @@
 {% block head %}
+  {% set socialImage = socialImage %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
 
+    <!-- ✦ Intro -->
     <h4 class="index-heading">
-      Teachings that weave together ancient wisdom and living guidance —
-      afterlife maps, rights pages, and paths of remembrance.
+      Teachings that weave together ancient wisdom and living guidance, 
+      uniting afterlife maps, rights pages, and paths of remembrance.
     </h4>
 
     {% block bookmark %}
       {% include "partials/bookmark.njk" %}
     {% endblock %}
 
-  <details class="disclaimer-box">
-    <summary><span class="disclaimer-heading">🔑 About The Afterlife</span></summary>
-    <p>
-      <strong>The Afterlife</strong> is the first gate of <em>The Great Return</em>. It gathers the world’s oldest maps of the soul’s journey and preserves the teachings that power, empire, and organised religion have attempted to erase. These pages chart what happens when breath leaves the body, how consciousness travels, and how memory shapes fate.
-    </p>
-    <p>
-      Each tradition reveals a different fragment of the same truth. Some speak of trials, some of judgement, some of liberation through knowledge, and some of cyclical time. All of them echo the Gnostic insight that the journey after death mirrors the journey within life. Nothing is wasted. Everything returns.
-    </p>
-    <p>
-      These scrolls explain afterlife cosmologies, the rights of the dead, the powers of remembrance, and the soul’s capacity to ascend. They are offered as a guide for those who wish to understand the unseen world and to recognise their own place within it.
-    </p>
-  </details>
+    <!-- ✦ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">🔑 About The Afterlife</span></summary>
 
+      <p>
+        <strong>The Afterlife</strong> forms the first gate of <em>The Great Return</em>.  
+        It gathers the world’s most enduring maps of the soul’s passage and preserves 
+        the teachings that power, empire, and institutional religion have attempted to suppress.  
+        These pages explore what unfolds as breath departs the body, how consciousness 
+        journeys through unseen realms, and how memory shapes destiny.
+      </p>
+
+      <p>
+        Each tradition reveals a distinct fragment of a greater unity.  
+        Some describe trials, others speak of judgement, liberation through knowledge,  
+        or the cycles of time. All echo a single Gnostic truth: the journey after death 
+        mirrors the journey within life. Nothing is lost. All paths return to their origin.
+      </p>
+
+      <p>
+        These scrolls illuminate afterlife cosmologies, the rights and dignity of the dead,  
+        the power of remembrance, and the soul’s potential to ascend.  
+        They are offered as a guide for readers who seek to understand the unseen world  
+        and to recognise their place within it.
+      </p>
+    </details>
+
+    <!-- ✦ Series Grid -->
     {% include "partials/pillar-grid.njk" %}
 
+    <!-- ✦ Structured Data -->
     {% set items = pillarGrid %}
     {% set headline = "The Afterlife — Series Collections" %}
     {% set base = "/pillars/the-teachings/the-afterlife/" %}
     {% include "partials/jsonld-collection.njk" %}
 
+    <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ pillarGlyph }}
+      </span>
     </div>
 
   </section>

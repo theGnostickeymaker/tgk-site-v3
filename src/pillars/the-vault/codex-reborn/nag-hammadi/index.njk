@@ -1,5 +1,10 @@
 {% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-vault/codex-reborn/nag-hammadi/nag-hammadi@x.jpg" %}
   {% include "partials/head-meta.njk" %}
+  {% set items = pillarGrid %}
+  {% set headline = "Nag Hammadi Library — Text Index" %}
+  {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/" %}
+  {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
 <main class="main-content">
@@ -15,15 +20,20 @@
 
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">📜 About the Nag Hammadi Library</span></summary>
+      
       <p>
-        The <strong>Nag Hammadi Library</strong> is the heart of the <strong>Codex Reborn</strong> archive.
-        Thirteen papyrus codices were discovered in Upper Egypt in 1945, containing over fifty Gnostic treatises.
+        The <strong>Nag Hammadi Library</strong> forms the heart of the <strong>Codex Reborn</strong> 
+        archive within <strong>The Vault</strong>. Thirteen Coptic codices were unearthed near 
+        Nag Hammadi in 1945, preserving over fifty treatises that reveal the earliest 
+        Christian mysticism and the hidden knowledge of the soul.
       </p>
 
       <p>
-        These texts preserve the earliest Christian mysticism, revealing hidden knowledge of creation, the soul,
-        and the cosmic drama between light and archons. The collection includes the <em>Gospel of Thomas</em>,
-        the <em>Apocryphon of John</em>, and the <em>Gospel of the Egyptians</em>.
+        These manuscripts record the dramas of Sophia, the creation of the false cosmos, the 
+        descent of the revealer, and the soul’s passage through the powers. Here you will find 
+        foundational texts such as the <em>Gospel of Thomas</em>, the <em>Apocryphon of John</em>, 
+        and the <em>Gospel of the Egyptians</em> — restored, formatted, and preserved for seekers 
+        within the Vault of Remembrance.
       </p>
     </details>
 
@@ -31,12 +41,10 @@
 
   {% include "partials/pillar-grid.njk" %}
 
-  {% set items = pillarGrid %}
-  {% set headline = "Nag Hammadi Codices — Text Index" %}
-  {% set base = "/pillars/the-vault/codex-reborn/nag-hammadi/" %}
-  {% include "partials/jsonld-collection.njk" %}
-
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+      {{ glyph }}
+    </span>
   </div>
+
 </main>

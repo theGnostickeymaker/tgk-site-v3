@@ -1,8 +1,9 @@
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/sufi-islam.jpg" %}
   {% include "partials/head-meta.njk" %}
+
   {% set items = pillarGrid %}
-  {% set headline = "Sufi Islam — Season 1" %}
+  {% set headline = "Sufi Islam — Season I" %}
   {% set base = "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
@@ -10,30 +11,42 @@
 <main class="main-content">
   <section class="content-container">
 
+    <!-- ☪ Intro -->
     <h4 class="index-heading">
-      Sufi Islam — the journey of the soul through divine love, annihilation of self, and union with the Beloved.
+      Sufi Islam — the soul’s journey through divine love, purification, and union with the Beloved.
     </h4>
 
     {% block bookmark %}
       {% include "partials/bookmark.njk" %}
     {% endblock %}
 
+    <!-- ☪ Disclaimer -->
     <details class="disclaimer-box">
       <summary>
         <span class="disclaimer-heading">☪ About Sufi Islam</span>
       </summary>
+
       <p>
-        <strong>Sufi Islam</strong> reveals the mystical heart of Islam — the path of the lover and the Beloved, where remembrance (dhikr) dissolves illusion.
+        <strong>Sufi Islam</strong> reveals the inner, contemplative heart of Islam: the path of love, remembrance, 
+        and the unveiling of the Real. Through <em>dhikr</em>, devotion dissolves illusion; through longing, the soul 
+        is refined; through presence, the veil thins.
       </p>
+
       <p>
-        This page explores the stations of the soul, purification of the heart, and the mysteries of fanā’ and baqā’.
+        This Season explores the stations and states of the traveller, the purification of the heart, the mysteries 
+        of <em>fanā’</em> (the annihilation of the false self), and <em>baqā’</em> (abiding in divine reality). It is a map 
+        of return to the Beloved, not through doctrine, but through direct experience.
       </p>
     </details>
 
+    <!-- ✦ Series Grid -->
     {% include "partials/pillar-grid.njk" %}
 
+    <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

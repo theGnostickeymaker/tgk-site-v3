@@ -1,7 +1,9 @@
 {% block head %}
   {% include "partials/head-meta.njk" %}
+
+  {# JSON-LD for episode cards #}
   {% set items = pillarGrid %}
-  {% set headline = "Gnostic Christianity — Season 1" %}
+  {% set headline = "Gnostic Christianity — Season I" %}
   {% set base = "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
@@ -9,7 +11,7 @@
 <main class="main-content">
   <section class="content-container">
 
-    <!-- 🜂 Intro -->
+    <!-- ✝ Intro -->
     <h4 class="index-heading">
       Gnostic Christianity — the false cosmos, Christ the Revealer, and the soul’s return.
     </h4>
@@ -18,21 +20,25 @@
       {% include "partials/bookmark.njk" %}
     {% endblock %}
 
-    <!-- ⚠️ Disclaimer -->
+    <!-- ✝ Disclaimer -->
     <details class="disclaimer-box">
       <summary><span class="disclaimer-heading">✝ About Gnostic Christianity</span></summary>
+
       <p>
-        <strong>Gnostic Christianity</strong> unveils a universe born of error, ruled by false powers,
-        and redeemed through knowledge. It is not faith that saves, but <em>gnosis</em> — the awakening
-        of the divine spark within humanity.
+        <strong>Gnostic Christianity</strong> unveils a cosmos born of error, ruled by lesser powers,
+        and redeemed through remembrance. Salvation is not granted by belief but revealed through
+        <em>gnosis</em>, the awakening of the divine spark concealed within humanity.
       </p>
+
       <p>
-        In this series, we follow Sophia’s fall and Christ’s revelation — tracing how light became trapped
-        in matter, and how the Redeemer descends not to rule, but to remind us of our forgotten origin.
+        This series follows Sophia’s fall, the birth of the false creator, and the descent of the
+        Revealer. Christ appears not as ruler but as mirror, calling the soul to remember its origin
+        beyond the veil of matter.
       </p>
+
       <p>
-        These pages reveal how every soul carries within it the memory of the Pleroma — and how the return
-        begins the moment the illusion of separation ends.
+        These pages trace the return to the Pleroma — the realm of fullness — where the soul awakens
+        from forgetfulness and recognises its true light once more.
       </p>
     </details>
 
@@ -41,7 +47,9 @@
 
     <!-- ✦ Divider -->
     <div class="gnostic-divider">
-      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph or pillarGlyph }}</span>
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph or pillarGlyph }}
+      </span>
     </div>
 
   </section>

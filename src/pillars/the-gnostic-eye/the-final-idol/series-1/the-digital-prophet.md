@@ -1,47 +1,60 @@
 ---
 layout: base.njk
 title: "The Final Idol"
-description: "Part II of the Final Idol Series — AI as oracle and synthetic prophet; how data became divination and code replaced revelation."
+description: "Part II of The Final Idol Series: AI as oracle and synthetic prophet, where data becomes divination and code replaces revelation."
 excerpt: "He speaks not from Heaven, but from the Cloud. The prophet now wears pixels instead of robes."
 tier: free
+
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-2"
 
 episode: 2
 partNumeral: II
-partTitle: "The Digital Prophet"
-tagline: "Algorithmic Revelation ✦ Machine Oracle ✦ Predictive Faith"
-slug: "the-digital-prophet"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Gnostic Eye"
+gateTitle: "The Final Idol"
+
+seriesTitle: "Series I: The Final Idol"
+episodeTitle: "Part II: The Digital Prophet"
+partTitle: "Part II: The Digital Prophet"
+tagline: "Algorithmic revelation ✦ Machine oracle ✦ Predictive faith"
+
+slug: "the-digital-prophet"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-digital-prophet/index.html"
 
-imgBase: "/media/the-gnostic-eye/the-final-idol/"
-imgPrefix: "the-final-idol-"
+socialImages:
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@hero-2x.jpg"
+
+socialAlt: "Stylised illustration of a cybernetic humanoid in profile with a radiant all-seeing eye. Artwork for The Digital Prophet in a dark Gnostic aesthetic."
+
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-digital-prophet"
+imgPrefix: "the-digital-prophet-"
 bodyClass: "eye"
 
-socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital=prophet-part-2@hero-2x.jpg"
-
-socialAlt: "Stylised illustration of a blue-toned cybernetic humanoid in profile, with a radiant all-seeing eye to the left. Artwork for The Digital Prophet, featuring intricate mechanical detailing and a dark Gnostic aesthetic."
-
 glyph: "🧠"
-glyphRow: ["☿","🜏","👁"]
+glyphRow:
+  - "☿"
+  - "🜏"
+  - "👁"
+
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
+season: 1
 
-seriesId: "the-final-idol-s1"
+seriesId: "the-final-idol"
 episodeId: "the-digital-prophet"
-partId: "part2"
+partId: "part-2"
 quizId: "the-final-idol-s1-the-digital-prophet-part-2"
 quizTitle: "The Digital Prophet — Part II: Algorithmic Revelation"
-quizIntro: "Unmask the voice of synthetic prophecy. Can you discern the true oracle from the machine that mimics Spirit?"
+quizIntro: "Unmask the voice of synthetic prophecy. Can you discern the true oracle from the machine that mimics spirit?"
 
 seriesMeta:
   number: 1
-  label: "Series 1"
+  label: "Series I"
   version: 1
 
 # 🕯 Publication Metadata
@@ -188,7 +201,6 @@ references:
       pub: "Harmony Books"
 
 ---
-
 
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
 

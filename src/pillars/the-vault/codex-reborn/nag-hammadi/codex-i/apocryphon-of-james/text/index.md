@@ -2,14 +2,14 @@
 layout: base.njk
 title: "The Apocryphon of James (The Secret Book of James)"
 description: "A hidden dialogue between Christ and James, revealing the endurance of the soul and the mystery of salvation through knowledge."
-tagline: "Faith ✦ Endurance ✦ Revelation"
+tagline: "Faith ✦ endurance ✦ revelation"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-apocryphon-of-james-text"
 
 glyph: "🌿"
 glyphRow: ["🜂", "🌿", "🜂"]
-bodyClass: "vault"
-accent: "vault"
+bodyClass: vault
+accent: vault
 
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/apocryphon-of-james/text/index.html"
 
@@ -19,29 +19,33 @@ breadcrumbs:
   - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
   - { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" }
   - { title: "Codex I", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/" }
-  - { title: "Apocryphon of James" }
+  - { title: "The Apocryphon of James" }
 
 vaultMeta:
   collection: "Codex Reborn"
-  subset: "Nag Hammadi Library – Codex I"
-  origin: "Discovered 1945, Upper Egypt"
+  subset: "Nag Hammadi — Codex I (Jung Codex)"
+  origin: "Discovered 1945, Jabal al-Tarif, Egypt"
   translator: "Ron Cameron"
   source: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/apocryphon-of-james/"
   external: "https://www.gnosis.org/naghamm/ajames.html"
-  license: "Educational / Spiritual Use Only"
-  date: "c. 2nd century CE"
+  license: "Educational / spiritual use only"
+  date: "c. 3rd–4th century CE"
 
 seriesNav: []
 lensEnabled: false
 crossLinks: []
+
 vaultRefs:
-  - { title: "Apocryphon of James — Firebase Vault",
-      href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fapocryphon-of-james.pdf?alt=media",
-      type: "pdf" }
+  - title: "Apocryphon of James — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fapocryphon-of-james.pdf?alt=media"
+    type: "pdf"
+
 communityThreads:
   - { id: "--", platform: "tgk-community" }
+
 relatedProducts: []
 ---
+
 
 <main class="main-content">
   <section class="content-container">

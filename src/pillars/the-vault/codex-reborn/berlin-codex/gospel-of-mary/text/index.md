@@ -1,51 +1,53 @@
 ---
 layout: base.njk
 title: "The Gospel of Mary (Magdalene)"
-description: "A dialogue between the risen Christ and Mary Magdalene — revealing the soul’s ascent, the illusion of sin, and the liberation through inner knowledge."
-tagline: "Mary’s vision of the soul’s flight ✦ the true apostolic gnosis ✦ beyond sin and fear"
+description: "A dialogue between the risen Christ and Mary Magdalene, revealing the soul’s ascent, the illusion of sin, and liberation through inner knowledge."
+tagline: "Mary’s vision of ascent ✦ inner revelation ✦ courage beyond fear"
 pageId: "the-vault-codex-reborn-berlin-codex-gospel-of-mary-text"
 
 glyph: "🌹"
 glyphRow: ["🜂", "🌹", "🜂"]
-accent: vault
-bodyClass: vault
-tier: free
+accent: "vault"
+bodyClass: "vault"
+tier: "free"
 
-# ✅ Corrected permalink — under Berlin Codex
 permalink: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/text/index.html"
 
 breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "The Vault", url: "/pillars/the-vault/" }
-  - { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
-  - { title: "Berlin Codex (BG 8502)", url: "/pillars/the-vault/codex-reborn/berlin-codex/" }
-  - { title: "The Gospel of Mary (Magdalene)" }
+  - title: "The Gnostic Key"
+    url: "/"
+  - title: "The Vault"
+    url: "/pillars/the-vault/"
+  - title: "Codex Reborn"
+    url: "/pillars/the-vault/codex-reborn/"
+  - title: "Berlin Codex"
+    url: "/pillars/the-vault/codex-reborn/berlin-codex/"
+  - title: "The Gospel of Mary (Magdalene)"
 
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Berlin Codex (BG 8502)"
-  origin: "Discovered 1896, Akhmim, Egypt"
-  translator: "George W. MacRae & R. McL. Wilson"
+  origin: "Akhmim, Egypt — discovered 1896"
+  translator: "George W. MacRae and R. McL. Wilson"
   source: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/"
   external: "https://www.gnosis.org/library/marygosp.htm"
-  license: "Educational / Spiritual Use Only"
-  date: "c. 2nd century CE"
-
-# 🔗 Auto-injected navigation (v3.9a)
+  license: "Educational and spiritual use only"
+  date: "c. second century CE"
 
 seriesNav:
   - title: "Apocryphon of John (Fragment)"
-    desc: "A shorter variant of the revelation text, preserved alongside Mary’s gospel in the same codex."
+    desc: "A shorter variant of the revelation text preserved alongside Mary’s gospel."
     url: "/pillars/the-vault/codex-reborn/berlin-codex/apocryphon-of-john-fragment/"
+
 lensEnabled: true
 
 crossLinks: []
 
-vaultRefs:
-  []
+vaultRefs: []
 
 communityThreads:
-  - { id: '--', platform: 'tgk-community' }
+  - id: "--"
+    platform: "tgk-community"
 
 relatedProducts: []
 ---

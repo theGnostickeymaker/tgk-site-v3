@@ -1,21 +1,26 @@
+// /src/pillars/the-vault/codex-reborn/berlin-codex/index.11tydata.js
 export default {
   layout: "base.njk",
 
-  // === Core Identity ===
+  // === Identity ===
   pageId: "the-vault-codex-reborn-berlin-codex",
   permalink: "/pillars/the-vault/codex-reborn/berlin-codex/index.html",
-  pillarId: "the-vault",
-  seriesId: "codex-reborn",
+
   title: "Berlin Codex",
+  tagline: "Hidden pages ✦ Restored wisdom ✦ The memory of the soul",
   description:
-    "Recovered Gnostic texts from the Berlin Codex — preserved fragments of Sophia’s light.",
-  tagline: "Hidden pages ✦ restored wisdom ✦ the memory of the soul",
-  glyph: "💮",
-  glyphRow: ["🜂", "🕯", "🜂"],
+    "Recovered Gnostic texts preserved from the Berlin Codex — revelations of Mary, John, and Sophia restored within The Vault.",
+
+  // === Pillar Metadata ===
+  pillarId: "the-vault",
+  pillarName: "The Vault",
+  pillarUrl: "/pillars/the-vault/",
+  pillarGlyph: "🜔",
+  glyph: "📚",
+  glyphRow: ["🜔", "📚", "🜔"],
   accent: "vault",
   bodyClass: "vault",
   tier: "free",
-  tags: ["pillar", "the-vault", "codex-reborn", "berlin-codex"],
 
   // === Breadcrumbs ===
   breadcrumbs: [
@@ -25,27 +30,27 @@ export default {
     { title: "Berlin Codex", url: "/pillars/the-vault/codex-reborn/berlin-codex/" }
   ],
 
-  // === Section Grid ===
+  // === Index Grid ===
   pillarGrid: [
     {
       href: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/text/",
       title: "Gospel of Mary Magdalene",
-      desc: "A dialogue between the risen Christ and Mary revealing the soul’s ascent through the powers.",
       glyph: "🌸",
+      tagline: "A dialogue between the risen Christ and Mary, revealing the soul’s ascent through the powers.",
       tier: "free",
-      state: "default"
+      state: "active"
     },
     {
       href: "/pillars/the-vault/codex-reborn/berlin-codex/apocryphon-of-john-fragment/text/",
-      title: "Apocryphon of John (fragment)",
-      desc: "A shorter version of the same revelation text, preserved here as an alternate copy.",
+      title: "Apocryphon of John (Fragment)",
       glyph: "📜",
+      tagline: "A shorter recension of the revelation text, preserved as an alternate copy.",
       tier: "free",
       state: "coming-soon"
     }
   ],
 
-  // === Social Meta ===
+  // === Social Metadata ===
   socialImage: "/tgk-assets/images/share/the-vault/berlin-codex.jpg",
 
   // === Behaviour Flags ===

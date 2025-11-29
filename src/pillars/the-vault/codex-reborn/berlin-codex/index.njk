@@ -1,4 +1,5 @@
 {% block head %}
+  {% set socialImage = socialImage %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
@@ -6,7 +7,7 @@
   <section class="content-container">
 
     <h4 class="index-heading">
-      Berlin Codex — Gnostic revelations preserved in the sands of Egypt, revived within the Vault.
+      Berlin Codex — Gnostic revelations preserved in the sands of Egypt, restored within the Vault.
     </h4>
 
     {% block bookmark %}
@@ -17,27 +18,26 @@
       <summary><span class="disclaimer-heading">📚 About the Berlin Codex</span></summary>
 
       <p>
-        The <strong>Berlin Codex</strong> is one of the most significant Gnostic manuscripts,
-        discovered in Egypt and preserved through centuries of silence. It contains
-        revelations attributed to <em>Mary Magdalene</em>, <em>John</em>, and <em>Sophia</em>,
-        capturing dialogues between the awakened soul and the divine.
+        The <strong>Berlin Codex</strong> is one of the most important Gnostic manuscripts to survive antiquity.
+        Preserved in Egypt, it contains revelatory dialogues attributed to <em>Mary Magdalene</em>,
+        <em>John</em>, and <em>Sophia</em>, capturing the voice of the awakened soul in conversation with the divine.
       </p>
 
       <p>
-        As part of <strong>Codex Reborn</strong> within <strong>The Vault</strong>, this
-        collection offers digital restorations of its surviving pages —
-        including the <em>Gospel of Mary Magdalene</em> and related fragments —
-        formatted for clarity and cross-linked with the <strong>Afterlife Series</strong>
-        and <strong>The Gnostic Eye</strong>.
+        As part of <strong>Codex Reborn</strong> within <strong>The Vault</strong>, this collection offers
+        digital restorations of its surviving pages, including the <em>Gospel of Mary Magdalene</em> and
+        related fragments. Each manuscript is formatted for clarity and interlinked with
+        <strong>The Afterlife Series</strong> and <strong>The Gnostic Eye</strong>.
       </p>
 
       <p>
-        Each preserved text serves as a mirror of remembrance: the soul’s
-        testimony against amnesia. In reading, the seeker participates in the
-        act of re-illumination — reviving the sacred knowledge once condemned
-        as heresy, now reborn in light.
+        These writings are more than historical artefacts. They are testimonies of remembrance,
+        restoring knowledge once suppressed or condemned. In studying them,
+        the seeker participates in rekindling a light that empire sought to extinguish.
       </p>
+
     </details>
+
   </section>
 
   {% include "partials/pillar-grid.njk" %}
@@ -48,6 +48,9 @@
   {% include "partials/jsonld-collection.njk" %}
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+      {{ glyph }}
+    </span>
   </div>
+
 </main>

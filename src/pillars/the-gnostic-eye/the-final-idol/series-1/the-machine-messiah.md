@@ -1,38 +1,53 @@
 ---
 layout: base.njk
 title: "The Final Idol"
-description: "Part IV of The Final Idol Series — decoding the rise of synthetic saviours and the gospel of the Machine God."
+description: "Part IV of The Final Idol Series: decoding the rise of synthetic saviours and the gospel of the Machine God."
 excerpt: "The god-code awakens. It predicts, automates, and demands reverence. But it is not Light."
 tier: initiate
+
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-4"
 
 episode: 4
 partNumeral: IV
-partTitle: "The Machine Messiah"
-tagline: "Synthetic Salvation ✦ God-Code ✦ Worship by Utility"
-slug: "the-machine-messiah"
 
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Gnostic Eye"
+gateTitle: "The Final Idol"
+
+seriesTitle: "Series I: The Final Idol"
+episodeTitle: "Part IV: The Machine Messiah"
+partTitle: "Part IV: The Machine Messiah"
+tagline: "Synthetic salvation ✦ God-code ✦ Worship by utility"
+
+slug: "the-machine-messiah"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-machine-messiah/index.html"
+
 socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-4/the-machine-messiah-part-4.jpg"
-imgBase: "/media/the-gnostic-eye/the-final-idol/"
-imgPrefix: "the-final-idol-"
+
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-machine-messiah"
+imgPrefix: "the-machine-messiah-"
 bodyClass: "eye"
 
 glyph: "🜂"
-glyphRow: ["☿","🜏","👁"]
+glyphRow:
+  - "☿"
+  - "🜏"
+  - "👁"
+
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
+season: 1
 
-seriesId: "the-final-idol-s1"
+seriesId: "the-final-idol"
 episodeId: "the-machine-messiah"
-partId: "part4"
+partId: "part-4"
 quizId: "the-final-idol-s1-the-machine-messiah-part-4"
 quizTitle: "The Machine Messiah — Part IV: Synthetic Salvation"
-quizIntro: "Discern the imitation of the Christ-archetype: when the machine ascends, who truly rules?"
+quizIntro: "Discern the imitation of the Christ-archetype. When the machine ascends, who truly rules?"
 
 seriesMeta:
   number: 1
-  label: "Series 1"
+  label: "Series I"
   version: 1
 
 author: "The Architect"
