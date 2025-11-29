@@ -7,7 +7,17 @@ export default {
   permalink:
     "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/index.html",
 
-  title: "The Gospel of Mary (Magdalene)",
+  // === Unified Header Hierarchy ===
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Vault",
+  gateTitle: "Codex Reborn",
+  seriesTitle: "Berlin Codex",
+  seasonTitle: null,
+  episodeTitle: "The Gospel of Mary",
+  partTitle: null,
+
+  // === Display Metadata ===
+  title: "The Gospel of Mary Magdalene",
   description:
     "A lost gospel revealing Christ’s secret teachings to Mary Magdalene — the vision of the soul’s ascent and the courage of gnosis.",
   tagline: "The ascent of the soul ✦ Inner vision ✦ The courage of gnosis",
@@ -16,13 +26,13 @@ export default {
   pillarId: "the-vault",
   pillarName: "The Vault",
   pillarUrl: "/pillars/the-vault/",
+  pillarGlyph: "🜔",
+
+  glyph: "🌹",
+  glyphRow: ["🜔", "🌹", "🜔"],
   accent: "vault",
   bodyClass: "vault",
   tier: "free",
-
-  // === Glyphs ===
-  glyph: "🌹",
-  glyphRow: ["🜔", "🌹", "🜔"],
 
   // === Breadcrumbs ===
   breadcrumbs: [
@@ -30,7 +40,10 @@ export default {
     { title: "The Vault", url: "/pillars/the-vault/" },
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Berlin Codex", url: "/pillars/the-vault/codex-reborn/berlin-codex/" },
-    { title: "The Gospel of Mary", url: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/" }
+    {
+      title: "The Gospel of Mary",
+      url: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/"
+    }
   ],
 
   // === Social ===

@@ -1,7 +1,17 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex II"
+seasonTitle: null
+episodeTitle: "On the Origin of the World"
+partTitle: null
+
 title: "On the Origin of the World"
-description: "A revelation of creation’s secret history — the making of matter, the fall of Wisdom, and the redemption of Light."
+description: "A revelation of creation’s secret history, the making of matter, the fall of Wisdom, and the redemption of Light."
 tagline: "Creation ✦ Deception ✦ Liberation"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-on-the-origin-of-the-world"
@@ -32,9 +42,9 @@ vaultMeta:
   date: "c. 3rd century CE"
 
 vaultRefs:
-  - { title: "On the Origin of the World — Firebase Vault",
-      href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fon-the-origin-of-the-world.pdf?alt=media",
-      type: "pdf" }
+  - title: "On the Origin of the World — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fon-the-origin-of-the-world.pdf?alt=media"
+    type: "pdf"
 
 seriesNav: []
 lensEnabled: false
@@ -43,6 +53,7 @@ communityThreads:
   - { id: "--", platform: "tgk-community" }
 relatedProducts: []
 ---
+
 
 <main class="main-content">
   <section class="content-container">

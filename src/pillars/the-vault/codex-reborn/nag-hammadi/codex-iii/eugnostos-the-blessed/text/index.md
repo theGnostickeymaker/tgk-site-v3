@@ -1,15 +1,25 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex III"
+episodeTitle: "Eugnostos the Blessed"
+seasonTitle: null
+partTitle: null
+
 title: "Eugnostos the Blessed"
-description: "A hymn to the Great Invisible Spirit — the source of all light and consciousness."
+description: "A hymn to the Great Invisible Spirit, the source of all light and consciousness."
 tagline: "The Aeons of Mind ✦ The Pleroma ✦ The Blessed Vision"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-iii-eugnostos-the-blessed"
 
 glyph: "🜂"
 glyphRow: ["🜂", "🕯", "🜂"]
-accent: vault
-bodyClass: vault
+accent: "vault"
+bodyClass: "vault"
 
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/eugnostos-the-blessed/text/index.html"
 
@@ -34,12 +44,19 @@ vaultMeta:
 seriesNav: []
 lensEnabled: false
 crossLinks: []
+
 vaultRefs:
-  - { title: "Eugnostos the Blessed — Firebase Vault", href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Feugnostos-the-blessed.pdf?alt=media", type: "pdf" }
+  - title: "Eugnostos the Blessed — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Feugnostos-the-blessed.pdf?alt=media"
+    type: "pdf"
+
 communityThreads:
   - { id: "--", platform: "tgk-community" }
+
 relatedProducts: []
 ---
+
+
 
 <main class="main-content">
   <section class="content-container">

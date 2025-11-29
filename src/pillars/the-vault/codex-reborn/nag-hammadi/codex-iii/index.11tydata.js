@@ -5,14 +5,25 @@ export default {
   // === Core Identity ===
   pageId: "the-vault-codex-reborn-nag-hammadi-codex-iii",
   permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/index.html",
+
   pillar: "the-vault",
   series: "codex-reborn",
   collection: "nag-hammadi",
   codex: "codex-iii",
 
-  title: "Codex III — Nag Hammadi",
+  // === Unified Header Hierarchy ===
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Vault",
+  gateTitle: "Codex Reborn",
+  seriesTitle: "Nag Hammadi – Codex III",
+  seasonTitle: null,
+  episodeTitle: null,
+  partTitle: null,
+
+  // === Display ===
+  title: "Nag Hammadi – Codex III",
   description:
-    "Codex III contains treatises of cosmic revelation — including The Gospel of the Egyptians and Eugnostos the Blessed.",
+    "Codex III contains three major visionary treatises of cosmic revelation, including The Gospel of the Egyptians and Eugnostos the Blessed.",
   tagline: "Aeons ✦ Revelation ✦ The Luminous Mind",
 
   glyph: "🜂",

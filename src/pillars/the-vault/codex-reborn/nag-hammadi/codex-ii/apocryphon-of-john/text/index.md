@@ -1,19 +1,31 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex II"
+episodeTitle: "The Apocryphon of John"
+seasonTitle: null
+partTitle: null
+
+# === Page Metadata ===
 title: "The Apocryphon of John (The Secret Book of John)"
-description: "The Secret Book of John — Sophia’s fall and the birth of Yaldabaoth. A revelation of the false cosmos and the soul’s hidden origin."
+description: "The Secret Book of John — Sophia’s fall, the birth of Yaldabaoth, and the revelation of the false cosmos and the soul’s hidden origin."
 tagline: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark hidden within humanity."
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-apocryphon-of-john-text"
 
 glyph: "🜂"
 glyphRow: ["🜂", "🕯", "🜂"]
-bodyClass: "vault"
-accent: "vault"
+bodyClass: vault
+accent: vault
 
-# ✅ Correct text path consistency
+# === URL ===
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/index.html"
 
+# === Breadcrumbs ===
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Vault", url: "/pillars/the-vault/" }
@@ -22,6 +34,7 @@ breadcrumbs:
   - { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" }
   - { title: "The Apocryphon of John" }
 
+# === Vault Metadata ===
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex II"
@@ -32,10 +45,10 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
-# === Auto-injected navigation (v3.9a) ===
+# === Local Navigation (Codex II) ===
 seriesNav:
   - title: "Gospel of Thomas"
-    desc: "Sayings of the living Jesus revealed to Thomas — the hidden wisdom of inner sight."
+    desc: "Sayings of the Living Jesus revealed to Thomas — the hidden wisdom of inner sight."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/"
   - title: "Gospel of Philip"
     desc: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and self-knowledge."
@@ -47,9 +60,14 @@ seriesNav:
     desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the light that redeems it."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
 
+# === Behaviour ===
 lensEnabled: true
 crossLinks: []
-vaultRefs: []
+
+vaultRefs:
+  - title: "Apocryphon of John — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fapocryphon-of-john.pdf?alt=media"
+    type: "pdf"
 
 communityThreads:
   - { id: "--", platform: "tgk-community" }

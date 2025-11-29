@@ -6,19 +6,34 @@ export default {
   pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-gospel-of-truth",
   permalink:
     "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/index.html",
+
+  // === Unified Header Hierarchy ===
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Vault",
+  gateTitle: "Codex Reborn",
+  seriesTitle: "Nag Hammadi – Codex I",
+  episodeTitle: "The Gospel of Truth",
+  seasonTitle: null,
+  partTitle: null,
+
+  // === Pillar + Collection Identity ===
   pillar: "the-vault",
   series: "codex-reborn",
   collection: "nag-hammadi",
   codex: "codex-i",
+
+  // === Display ===
   title: "The Gospel of Truth",
   description:
     "A poetic meditation on ignorance, revelation, and the joy of return — attributed to Valentinus, revealing the mystery of remembrance and reunion with the Source.",
   tagline: "Mystic reflection ✦ divine remembrance ✦ the return to fullness",
+
   glyph: "📜",
   glyphRow: ["🜂", "📜", "🜂"],
   accent: "vault",
   bodyClass: "vault",
   tier: "free",
+
   tags: [
     "pillar",
     "the-vault",
@@ -35,10 +50,10 @@ export default {
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" },
     { title: "Codex I", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/" },
-    { title: "The Gospel of Truth", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/" }
+    { title: "The Gospel of Truth" }
   ],
 
-  // === Local Series Navigation (within Codex I) ===
+  // === Local Navigation (Other texts in Codex I) ===
   seriesNav: [
     {
       title: "Tripartite Tractate",
@@ -57,7 +72,7 @@ export default {
     crossLinks: [
       {
         title: "Afterlife Series I – Gnostic Christianity (Part II)",
-        path: "/pillars/the-teachings/the-afterlife/series-1/gnostic-christianity/part-2/",
+        path: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-2/",
         desc: "Explores how the Gospel of Truth’s revelation of remembrance parallels the soul’s awakening from the Archonic dream."
       }
     ]
@@ -73,7 +88,7 @@ export default {
     access: "public"
   },
 
-  // === Social Meta ===
+  // === Social ===
   socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi/gospel-of-truth.jpg",
 
   // === Behaviour Flags ===

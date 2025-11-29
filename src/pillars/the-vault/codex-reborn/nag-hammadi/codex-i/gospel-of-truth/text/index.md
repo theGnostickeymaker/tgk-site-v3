@@ -1,5 +1,16 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex I"
+episodeTitle: "The Gospel of Truth (Text)"
+seasonTitle: null
+partTitle: null
+
+# === Page Metadata ===
 title: "The Gospel of Truth"
 description: "A meditation on ignorance, revelation, and the joy of return — the text of awakening attributed to Valentinus."
 tagline: "A reflection on the forgetfulness of the soul and the grace of remembrance — the Gospel of Truth reveals the mystery of the return to the Source."
@@ -11,7 +22,7 @@ glyphRow: ["🜂", "📜", "🜂"]
 bodyClass: "vault"
 accent: "vault"
 
-# ✅ Correct permalink for text file
+# === URL ===
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/text/index.html"
 
 # === Breadcrumb Hierarchy ===
@@ -34,7 +45,7 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
-# === Auto-injected Navigation ===
+# === Local Navigation ===
 seriesNav:
   - title: "Tripartite Tractate"
     desc: "A grand cosmological narrative describing emanation, fall, and restoration within the divine Fullness."
@@ -43,6 +54,7 @@ seriesNav:
     desc: "A letter on spiritual rebirth and the awakening of the inner man, attributed to Rheginos."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/treatise-on-the-resurrection/"
 
+# === Behaviour ===
 lensEnabled: true
 
 crossLinks: []
@@ -53,6 +65,7 @@ communityThreads:
 
 relatedProducts: []
 ---
+
 
 <main class="main-content">
 <section class="content-container">

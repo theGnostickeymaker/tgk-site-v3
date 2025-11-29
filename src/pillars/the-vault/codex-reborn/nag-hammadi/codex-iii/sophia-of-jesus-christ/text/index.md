@@ -1,18 +1,31 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex III"
+episodeTitle: "The Sophia of Jesus Christ"
+seasonTitle: null
+partTitle: null
+
+# === Page Metadata ===
 title: "The Sophia of Jesus Christ"
-description: "A post-resurrection revelation of Wisdom and Word restoring the divine harmony."
-tagline: "The Aeons of Mind ✦ Logos and Sophia ✦ The Dialogue of Light"
+description: "A post-resurrection dialogue in which the Saviour unveils the origin of creation, the emanations of the aeons, and the restoration of Wisdom."
+tagline: "Logos and Sophia ✦ The Aeons of Light ✦ The Dialogue of Mind"
 tier: free
-pageId: "the-vault-codex-reborn-nag-hammadi-codex-iii-sophia-of-jesus-christ"
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-iii-sophia-of-jesus-christ-text"
 
 glyph: "🜂"
 glyphRow: ["🜂", "🕯", "🜂"]
-accent: vault
 bodyClass: vault
+accent: vault
 
+# === URL ===
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/sophia-of-jesus-christ/text/index.html"
 
+# === Breadcrumb Hierarchy ===
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Vault", url: "/pillars/the-vault/" }
@@ -21,27 +34,34 @@ breadcrumbs:
   - { title: "Codex III", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/" }
   - { title: "The Sophia of Jesus Christ" }
 
+# === Vault Metadata ===
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex III"
   origin: "Discovered 1945, Upper Egypt"
-  translator: "Frederik Wisse"
+  translator: "Bentley Layton"
   source: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-iii/sophia-of-jesus-christ/"
-  external: "https://www.gnosis.org/naghamm/sophjc.html"
+  external: "https://www.gnosis.org/naghamm/sjc.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd–3rd century CE"
 
+# === Local Navigation ===
 seriesNav: []
+
 lensEnabled: false
 crossLinks: []
+
 vaultRefs:
   - { title: "The Sophia of Jesus Christ — Firebase Vault",
       href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fsophia-of-jesus-christ.pdf?alt=media",
       type: "pdf" }
+
 communityThreads:
   - { id: "--", platform: "tgk-community" }
+
 relatedProducts: []
 ---
+
 
 <main class="main-content">
   <section class="content-container">

@@ -1,4 +1,3 @@
-// /src/pillars/the-vault/codex-reborn/berlin-codex/index.11tydata.js
 export default {
   layout: "base.njk",
 
@@ -6,6 +5,16 @@ export default {
   pageId: "the-vault-codex-reborn-berlin-codex",
   permalink: "/pillars/the-vault/codex-reborn/berlin-codex/index.html",
 
+  // === Unified Header Hierarchy ===
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Vault",
+  gateTitle: "Codex Reborn",
+  seriesTitle: "Berlin Codex",
+  seasonTitle: null,
+  episodeTitle: null,
+  partTitle: null,
+
+  // === Display Metadata ===
   title: "Berlin Codex",
   tagline: "Hidden pages ✦ Restored wisdom ✦ The memory of the soul",
   description:
@@ -16,6 +25,7 @@ export default {
   pillarName: "The Vault",
   pillarUrl: "/pillars/the-vault/",
   pillarGlyph: "🜔",
+
   glyph: "📚",
   glyphRow: ["🜔", "📚", "🜔"],
   accent: "vault",
@@ -36,7 +46,8 @@ export default {
       href: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/text/",
       title: "Gospel of Mary Magdalene",
       glyph: "🌸",
-      tagline: "A dialogue between the risen Christ and Mary, revealing the soul’s ascent through the powers.",
+      tagline:
+        "A dialogue between the risen Christ and Mary, revealing the soul’s ascent through the powers.",
       tier: "free",
       state: "active"
     },
@@ -44,7 +55,8 @@ export default {
       href: "/pillars/the-vault/codex-reborn/berlin-codex/apocryphon-of-john-fragment/text/",
       title: "Apocryphon of John (Fragment)",
       glyph: "📜",
-      tagline: "A shorter recension of the revelation text, preserved as an alternate copy.",
+      tagline:
+        "A shorter recension of the revelation text, preserved as an alternate copy.",
       tier: "free",
       state: "coming-soon"
     }

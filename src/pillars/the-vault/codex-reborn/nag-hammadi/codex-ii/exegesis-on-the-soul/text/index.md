@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "Exegesis on the Soul"
-description: "An allegory of the fallen and redeemed soul — a hymn of repentance, purification, and divine reunion."
+description: "An allegory of the fallen and redeemed soul, expressed as a hymn of repentance, purification, and reunion with the divine Bridegroom."
 tagline: "Fall ✦ Purification ✦ Reunion"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-exegesis-on-the-soul"
@@ -32,9 +32,9 @@ vaultMeta:
   date: "c. 3rd century CE"
 
 vaultRefs:
-  - { title: "Exegesis on the Soul — Firebase Vault",
-      href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fexegesis-on-the-soul.pdf?alt=media",
-      type: "pdf" }
+  - title: "Exegesis on the Soul — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fexegesis-on-the-soul.pdf?alt=media"
+    type: "pdf"
 
 seriesNav: []
 lensEnabled: false
@@ -43,6 +43,7 @@ communityThreads:
   - { id: "--", platform: "tgk-community" }
 relatedProducts: []
 ---
+
 
 <main class="main-content">
   <section class="content-container">

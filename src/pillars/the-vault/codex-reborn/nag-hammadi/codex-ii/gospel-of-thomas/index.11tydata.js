@@ -1,18 +1,27 @@
-// /src/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/index.11tydata.js
 export default {
   layout: "base.njk",
 
   // === Core Identity ===
   pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-thomas",
   permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/index.html",
+
   pillar: "the-vault",
   series: "codex-reborn",
   collection: "nag-hammadi",
   codex: "codex-ii",
 
+  // === Unified Header Hierarchy ===
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "The Vault",
+  gateTitle: "Codex Reborn",
+  seriesTitle: "Nag Hammadi – Codex II",
+  seasonTitle: null,
+  episodeTitle: "The Gospel of Thomas",
+  partTitle: null,
+
   title: "The Gospel of Thomas",
   description:
-    "114 sayings of the Living Jesus — the hidden gospel of self-knowledge and remembrance. A path of illumination through direct knowing of the Light within.",
+    "114 sayings of the Living Jesus — the hidden gospel of inner remembrance and direct self-knowledge. A path of illumination through immediate encounter with the Light within.",
   tagline: "Hidden Sayings ✦ Inner Revelation ✦ The Kingdom Within",
 
   glyph: "📜",
@@ -37,34 +46,35 @@ export default {
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" },
     { title: "Nag Hammadi Library", url: "/pillars/the-vault/codex-reborn/nag-hammadi/" },
     { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" },
-    { title: "The Gospel of Thomas", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/" }
+    { title: "The Gospel of Thomas" }
   ],
 
-  // === Local Series Navigation (within Codex II) ===
+  // === Local Series Navigation (Codex II) ===
+  // These correctly point to INDEX pages
   seriesNav: [
     {
       title: "Apocryphon of John",
-      desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark within humanity.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/"
+      desc: "A revelation of the false creator, Sophia’s fall, and the divine spark hidden within humanity.",
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/"
     },
     {
       title: "Gospel of Philip",
-      desc: "Teachings on unity, illusion, and the bridal chamber — the mystical reunion of the soul with the Light.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/"
+      desc: "Mystical teachings on unity, illusion, and the bridal chamber — the restoration of the divided soul.",
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
     },
     {
       title: "Hypostasis of the Archons",
-      desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/"
+      desc: "A mythic commentary on Genesis revealing the rulers of the false world and the spirit’s defiance.",
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/"
     },
     {
       title: "On the Origin of the World",
-      desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the Light that redeems it.",
-      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
+      desc: "A cosmological revelation exposing the powers that shaped matter and the light that redeems it.",
+      url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/"
     }
   ],
 
-  // === Synergist Lens (Cross-Pillar Connections) ===
+  // === Synergist Lens (Cross-Series Links) ===
   synergistLens: {
     crossLinks: [
       {
@@ -73,7 +83,7 @@ export default {
         desc: "Explores the inner resurrection taught in Thomas — awakening through self-knowledge and remembrance of the Light within."
       },
       {
-        title: "The Gnostic Eye – The Final Idol (Part III: Oracle in the Mirror)",
+        title: "The Final Idol (Part III: Oracle in the Mirror)",
         path: "/pillars/the-gnostic-eye/the-final-idol/part-3/",
         desc: "Parallels between the mirror sayings of Thomas and modern self-reflection in the digital age."
       }
@@ -90,7 +100,7 @@ export default {
     access: "public"
   },
 
-  // === Social Meta ===
+  // === Social Image ===
   socialImage: "/tgk-assets/images/share/the-vault/gospel-of-thomas.jpg",
 
   // === Behaviour Flags ===

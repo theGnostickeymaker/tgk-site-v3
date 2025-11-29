@@ -1,8 +1,19 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy (required by base.njk) ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "The Gospel of Mary (Magdalene)"
+seasonTitle: null
+episodeTitle: null
+partTitle: null
+
 title: "The Gospel of Mary (Magdalene)"
 description: "A dialogue between the risen Christ and Mary Magdalene, revealing the soul’s ascent, the illusion of sin, and liberation through inner knowledge."
 tagline: "Mary’s vision of ascent ✦ inner revelation ✦ courage beyond fear"
+
 pageId: "the-vault-codex-reborn-berlin-codex-gospel-of-mary-text"
 
 glyph: "🌹"
@@ -23,6 +34,7 @@ breadcrumbs:
   - title: "Berlin Codex"
     url: "/pillars/the-vault/codex-reborn/berlin-codex/"
   - title: "The Gospel of Mary (Magdalene)"
+    url: "/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/"
 
 vaultMeta:
   collection: "Codex Reborn"
@@ -42,7 +54,6 @@ seriesNav:
 lensEnabled: true
 
 crossLinks: []
-
 vaultRefs: []
 
 communityThreads:
@@ -51,6 +62,7 @@ communityThreads:
 
 relatedProducts: []
 ---
+
 
 <main class="main-content">
   <section class="content-container">

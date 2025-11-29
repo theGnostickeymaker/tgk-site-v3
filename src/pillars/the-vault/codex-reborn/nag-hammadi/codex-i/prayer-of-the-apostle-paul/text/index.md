@@ -1,15 +1,15 @@
 ---
 layout: base.njk
 title: "Prayer of the Apostle Paul"
-description: "A short invocation to the Redeemer — the soul’s appeal for illumination and union with the Divine Mind."
+description: "A short invocation to the Redeemer, expressing the yearning of the soul for illumination and union with the Divine Mind."
 tagline: "Invocation ✦ Illumination ✦ Union"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-prayer-of-the-apostle-paul-text"
 
 glyph: "🕊"
 glyphRow: ["🜂","🕊","🜂"]
-bodyClass: "vault"
-accent: "vault"
+bodyClass: vault
+accent: vault
 
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/prayer-of-the-apostle-paul/text/index.html"
 
@@ -34,14 +34,18 @@ vaultMeta:
 seriesNav: []
 lensEnabled: false
 crossLinks: []
+
 vaultRefs:
-  - { title: "Prayer of the Apostle Paul — Firebase Vault",
-      href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fprayer-of-the-apostle-paul.pdf?alt=media",
-      type: "pdf" }
+  - title: "Prayer of the Apostle Paul — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fprayer-of-the-apostle-paul.pdf?alt=media"
+    type: "pdf"
+
 communityThreads:
   - { id: "--", platform: "tgk-community" }
+
 relatedProducts: []
 ---
+
 
 <main class="main-content">
   <section class="content-container">

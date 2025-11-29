@@ -1,18 +1,31 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex II"
+episodeTitle: "The Gospel of Thomas"
+seasonTitle: null
+partTitle: null
+
+# === Page Metadata ===
 title: "The Gospel of Thomas"
-description: "114 sayings of the Living Jesus — the hidden gospel of self-knowledge and remembrance of the Light within."
+description: "One hundred and fourteen sayings of the Living Jesus — the hidden gospel of inner remembrance and direct self-knowledge."
 tagline: "Hidden sayings ✦ inner revelation ✦ the kingdom within"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-gospel-of-thomas-text"
 
 glyph: "📜"
 glyphRow: ["🜂", "📜", "🜂"]
-bodyClass: "vault"
-accent: "vault"
+bodyClass: vault
+accent: vault
 
+# === URL ===
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/index.html"
 
+# === Breadcrumbs ===
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Vault", url: "/pillars/the-vault/" }
@@ -21,39 +34,47 @@ breadcrumbs:
   - { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" }
   - { title: "The Gospel of Thomas" }
 
+# === Vault Metadata ===
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex II"
   origin: "Discovered 1945, Upper Egypt"
-  translator: "Thomas O. Lambdin"
+  translator: "Thomas O. Lambdin / Bentley Layton"
   source: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/"
   external: "https://www.gnosis.org/naghamm/gosthom.html"
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
+# === Local Navigation ===
 seriesNav:
   - title: "Apocryphon of John"
-    desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark within humanity."
+    desc: "A revelation of the false creator, Sophia’s fall, and the divine spark hidden within humanity."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/"
   - title: "Gospel of Philip"
-    desc: "Teachings on unity, illusion, and the bridal chamber — the mystical reunion of the soul with the Light."
+    desc: "Mystical teachings on unity, illusion, and the bridal chamber — the restoration of the divided soul."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/"
   - title: "Hypostasis of the Archons"
-    desc: "A mythic commentary on Genesis revealing the rulers who formed the false world and the spirit’s path of defiance."
+    desc: "A mythic commentary on Genesis revealing the rulers of the false world and the spirit’s defiance."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/"
   - title: "On the Origin of the World"
-    desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the Light that redeems it."
+    desc: "A cosmological revelation exposing the powers that shaped matter and the light that redeems it."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
 
+# === Behaviour ===
 lensEnabled: true
 crossLinks: []
-vaultRefs: []
+
+vaultRefs:
+  - title: "Gospel of Thomas — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/the-vault%2Fcodex-reborn%2Fnag-hammadi%2Fcodex-ii%2Fgospel-of-thomas.pdf?alt=media"
+    type: "pdf"
 
 communityThreads:
   - { id: "--", platform: "tgk-community" }
 
 relatedProducts: []
 ---
+
 
 
 

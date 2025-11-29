@@ -4,7 +4,7 @@ export default {
 
   pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-tripartite-tractate",
   permalink:
-    "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/tripartite-tractate/text/index.html",
+    "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/tripartite-tractate/index.html",
   pillar: "the-vault",
   series: "codex-reborn",
   collection: "nag-hammadi",

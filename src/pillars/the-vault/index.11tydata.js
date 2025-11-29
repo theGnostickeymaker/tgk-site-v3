@@ -5,6 +5,16 @@ export default {
   pageId: "the-vault",
   permalink: "/pillars/the-vault/index.html",
 
+  // === Unified Header Hierarchy ===
+  siteTitle: "The Gnostic Key",
+  pillarTitle: null,
+  gateTitle: null,              // Vault has no gate/series at index level
+  seriesTitle: "The Vault",            // No series for index
+  seasonTitle: null,
+  episodeTitle: null,
+  partTitle: null,
+
+  // === Display Metadata ===
   title: "The Vault",
   tagline: "Codices ✦ Pages ✦ Erased Histories",
   description:
@@ -14,8 +24,9 @@ export default {
   pillarId: "the-vault",
   pillarName: "The Vault",
   pillarUrl: "/pillars/the-vault/",
-  pillarGlyph: "🜔",
+
   glyph: "🜔",
+  pillarGlyph: "🜔",
   glyphRow: ["🜔", "🜍", "🜔"],
   accent: "vault",
   bodyClass: "vault",

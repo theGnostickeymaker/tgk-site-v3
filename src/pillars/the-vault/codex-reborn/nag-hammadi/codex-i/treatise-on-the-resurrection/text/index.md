@@ -1,10 +1,12 @@
 ---
 layout: base.njk
+
 title: "Treatise on the Resurrection"
 description: "A Gnostic epistle describing the mystery of spiritual rebirth and triumph over death through knowledge of the Living Christ."
 tagline: "Rebirth ✦ Spirit ✦ Victory over Death"
 tier: free
-pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-treatise-on-the-resurrection"
+
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-i-treatise-on-the-resurrection-text"
 
 glyph: "🜂"
 glyphRow: ["🜂","🕯","🜂"]
@@ -32,17 +34,20 @@ vaultMeta:
   date: "c. 2nd century CE"
 
 vaultRefs:
-  - { title: "Treatise on the Resurrection — Firebase Vault",
-      href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Ftreatise-on-the-resurrection.pdf?alt=media",
-      type: "pdf" }
+  - title: "Treatise on the Resurrection — Firebase Vault"
+    href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Ftreatise-on-the-resurrection.pdf?alt=media"
+    type: "pdf"
 
 seriesNav: []
 lensEnabled: false
 crossLinks: []
+
 communityThreads:
   - { id: "--", platform: "tgk-community" }
+
 relatedProducts: []
 ---
+
 
 <main class="main-content">
   <section class="content-container">

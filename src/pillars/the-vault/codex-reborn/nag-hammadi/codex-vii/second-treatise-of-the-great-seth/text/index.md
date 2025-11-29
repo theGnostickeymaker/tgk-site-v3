@@ -1,15 +1,24 @@
 ---
 layout: base.njk
 title: "The Second Treatise of the Great Seth"
-description: "A revelation from the voice of Christ in the Pleroma — proclaiming the illusion of worldly powers and the triumph of the true Light beyond crucifixion and deception."
+description: "A revelation from the voice of Christ in the Pleroma, proclaiming the illusion of worldly powers and the triumph of the true Light beyond crucifixion and deception."
 tagline: "Christ speaks from the realm of truth ✦ mocking the rulers who believed they had power over him."
 tier: free
-pageId: "the-vault-codex-reborn-nag-hammadi-codex-vii-second-treatise-of-the-great-seth"
+pageId: "the-vault-codex-reborn-nag-hammadi-codex-vii-second-treatise-of-the-great-seth-text"
 
 glyph: "🜃"
 glyphRow: ["🜃", "☀", "🜃"]
 bodyClass: "vault"
 accent: "vault"
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex VII"
+episodeTitle: "The Second Treatise of the Great Seth"
+seasonTitle: null
+partTitle: null
 
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/text/index.html"
 
@@ -32,9 +41,7 @@ vaultMeta:
   date: "c. 2nd–3rd century CE"
 
 lensEnabled: true
-
 crossLinks: []
-
 vaultRefs: []
 
 communityThreads:
@@ -42,6 +49,7 @@ communityThreads:
 
 relatedProducts: []
 ---
+
 
 <main class="main-content">
 <section class="content-container">

@@ -1,18 +1,31 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex V"
+episodeTitle: "The Apocalypse of Adam"
+seasonTitle: null
+partTitle: null
+
+# === Page Metadata ===
 title: "The Apocalypse of Adam"
-description: "A revelation from Adam to his son Seth — describing the floods of illusion, the coming of the Spirit, and the triumph of divine remembrance."
+description: "A revelation from Adam to his son Seth, describing the floods of illusion, the descent of the Spirit, and the triumph of divine remembrance."
 tagline: "Adam’s vision ✦ the descent of light ✦ the fire of gnosis"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-v-apocalypse-of-adam-text"
 
 glyph: "🔥"
 glyphRow: ["🜂", "🔥", "🜂"]
-bodyClass: "vault"
-accent: "vault"
+bodyClass: vault
+accent: vault
 
+# === URL ===
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-adam/text/index.html"
 
+# === Breadcrumb Hierarchy ===
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Vault", url: "/pillars/the-vault/" }
@@ -21,6 +34,7 @@ breadcrumbs:
   - { title: "Codex V", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/" }
   - { title: "The Apocalypse of Adam" }
 
+# === Vault Metadata ===
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex V"
@@ -31,26 +45,19 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd century CE"
 
+# === Local Navigation ===
 seriesNav: []
+
 lensEnabled: false
 crossLinks: []
+
 vaultRefs:
   - { title: "Apocalypse of Adam — Firebase Vault",
       href: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.appspot.com/o/vault%2Fnag-hammadi%2Fapocalypse-of-adam.pdf?alt=media",
       type: "pdf" }
+
 communityThreads:
   - { id: "--", platform: "tgk-community" }
+
 relatedProducts: []
 ---
-
-<main class="main-content">
-  <section class="content-container">
-    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
-    <h2>The Apocalypse of Adam</h2>
-    <p>
-      Text coming soon — preserved within <strong>The Vault</strong> for translation and study.  
-      This revelation records Adam’s final testament to Seth, foretelling the fall of the rulers
-      and the return of the Light through the Spirit of Life.
-    </p>
-  </section>
-</main>

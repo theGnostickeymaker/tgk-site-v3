@@ -1,5 +1,16 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex II"
+episodeTitle: "The Gospel of Philip"
+seasonTitle: null
+partTitle: null
+
+# === Page Metadata ===
 title: "The Gospel of Philip"
 description: "Union, rebirth, and the bridal chamber — the soul’s sacred reunion with the Light."
 tagline: "The mysteries of the bridal chamber ✦ sacred union ✦ the restoration of wholeness"
@@ -11,8 +22,10 @@ glyphRow: ["🜂", "🕯", "🜂"]
 bodyClass: "vault"
 accent: "vault"
 
+# === URL ===
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/index.html"
 
+# === Breadcrumbs ===
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Vault", url: "/pillars/the-vault/" }
@@ -21,6 +34,7 @@ breadcrumbs:
   - { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" }
   - { title: "The Gospel of Philip" }
 
+# === Vault Metadata ===
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex II"
@@ -31,6 +45,7 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 2nd–3rd century CE"
 
+# === Local Navigation ===
 seriesNav:
   - title: "Apocryphon of John"
     desc: "A revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark within humanity."
@@ -45,8 +60,11 @@ seriesNav:
     desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the light that redeems it."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
 
+# === Behaviour ===
 lensEnabled: true
 crossLinks: []
+
+# === Vault Reference (Optional PDF) ===
 vaultRefs: []
 
 communityThreads:
@@ -54,6 +72,7 @@ communityThreads:
 
 relatedProducts: []
 ---
+
 
 
 <main class="main-content">

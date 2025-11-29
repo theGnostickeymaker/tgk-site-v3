@@ -1,18 +1,31 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex II"
+episodeTitle: "The Hypostasis of the Archons"
+seasonTitle: null
+partTitle: null
+
+# === Page Metadata ===
 title: "The Hypostasis of the Archons (The Reality of the Rulers)"
-description: "A Gnostic revelation describing the origin of the Archons — rulers of the material cosmos — and the soul’s awakening through Sophia’s intervention and remembrance of the divine light."
+description: "A revelation describing the origin of the Archons, their deception of humanity, and the soul’s awakening through Sophia’s intervention and remembrance of the divine light."
 tagline: "The Reality of the Rulers ✦ Sophia’s defiance ✦ the birth of the true human"
 tier: free
 pageId: "the-vault-codex-reborn-nag-hammadi-codex-ii-hypostasis-of-the-archons-text"
 
 glyph: "👁"
 glyphRow: ["🜂", "👁", "🜂"]
-bodyClass: "vault"
-accent: "vault"
+bodyClass: vault
+accent: vault
 
+# === URL ===
 permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/index.html"
 
+# === Breadcrumbs ===
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "The Vault", url: "/pillars/the-vault/" }
@@ -21,6 +34,7 @@ breadcrumbs:
   - { title: "Codex II", url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/" }
   - { title: "The Hypostasis of the Archons" }
 
+# === Vault Metadata ===
 vaultMeta:
   collection: "Codex Reborn"
   subset: "Nag Hammadi Library – Codex II"
@@ -31,18 +45,22 @@ vaultMeta:
   license: "Educational / Spiritual Use Only"
   date: "c. 3rd century CE"
 
+# === Local Navigation (Codex II) ===
 seriesNav:
   - title: "Apocryphon of John"
-    desc: "Revelation granted to John by the Living Christ — unveiling Sophia’s fall, the false god Yaldabaoth, and the divine spark hidden within humanity."
+    desc: "The revelation of Sophia’s fall, the false creator Yaldabaoth, and the hidden divine spark within humanity."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/"
+
   - title: "Gospel of Thomas"
-    desc: "Sayings of the Living Jesus — the hidden wisdom of self-knowledge and remembrance."
+    desc: "One hundred and fourteen sayings of the Living Jesus — the path of inner sight and remembrance."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/"
+
   - title: "Gospel of Philip"
-    desc: "Teachings on unity, illusion, and the bridal chamber — unveiling mystical sacrament and the reunion of the soul with the Light."
+    desc: "Teachings on unity, illusion, and the bridal chamber — the mystical reunion of the divided soul."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/"
+
   - title: "On the Origin of the World"
-    desc: "A cosmic retelling of creation, exposing the powers that shaped matter and the Light that redeems it."
+    desc: "A cosmic retelling of creation and the powers that shaped matter — and the Light that redeems it."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
 
 lensEnabled: true
@@ -54,6 +72,8 @@ communityThreads:
 
 relatedProducts: []
 ---
+
+
 
 <main class="main-content">
 <section class="content-container">
