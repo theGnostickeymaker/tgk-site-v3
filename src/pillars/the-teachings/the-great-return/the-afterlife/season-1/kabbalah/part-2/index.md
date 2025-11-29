@@ -1,15 +1,20 @@
 ---
 layout: base.njk
-title: "Kabbalah"
-description: "Part II of the Afterlife Scrolls: the journey through the middle gates of the Kabbalistic Tree, from Malkhut’s exile to Keter’s crown, tracing the soul’s remembrance and return."
-excerpt: "You walked the soul’s journey from Gehinnom to Gan Eden, through sparks and tikkun, glimpsing the Divine hidden in the descent."
-tier: free
 
+# === SEO TITLE (strengthened and descriptive) ===
+title: "Kabbalah: The Ten Sefirot and the Soul’s Ascent Through the Gates of Light"
+
+description: "Part II of the Afterlife Scrolls: the passage through the ten Sefirot, the restoration of the shattered vessels, and the soul’s ascent from exile to remembrance in the Kabbalistic Tree."
+
+excerpt: "You walked the soul’s journey from Gehinnom to Gan Eden, through sparks and tikkun, glimpsing the Divine hidden in the descent."
+
+tier: free
 pageId: "the-great-return-afterlife-season-1-kabbalah-part-2"
 
 episode: 3
 partNumeral: II
 
+# === Unified Hierarchy Fields ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -18,6 +23,7 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode III: Kabbalah"
 partTitle: "Part II: Ten Thresholds of Light"
+
 tagline: "Through the ten luminous gates, the soul learns to remember itself."
 
 slug: "part-2"
@@ -35,6 +41,7 @@ glyphRow:
   - "☥"
   - "✡"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1

@@ -1,8 +1,13 @@
 ---
 layout: base.njk
-title: "The Final Idol"
-description: "Part I of The Final Idol Series: AI as idol, prophet, and antichrist — a symbolic descent into synthetic divinity and the worship of false light."
+
+# === Expanded SEO Title ===
+title: "The Final Idol: Why Everything Is Becoming an Image"
+
+description: "Part I of The Final Idol Series: AI as idol, prophet, and antichrist — a symbolic descent into synthetic divinity, false light, and the worship of the image."
+
 excerpt: "Truth was killed. A mirror replaced it. And now the world worships reflections."
+
 tier: free
 
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-1"
@@ -10,18 +15,20 @@ pageId: "the-gnostic-eye-the-final-idol-series-1-part-1"
 episode: 1
 partNumeral: I
 
+# === Unified TGK Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Gnostic Eye"
 gateTitle: "The Final Idol"
 
 seriesTitle: "Series I: The Final Idol"
-episodeTitle: "Part I: The Final Idol"
-partTitle: "Part I: Why Everything Is Becoming an Image"
+episodeTitle: "Episode I: The Final Idol"
+
 tagline: "False light ✦ Synthetic gods ✦ The Machine ✦ The imitation of spirit"
 
 slug: "the-final-idol"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-final-idol/index.html"
 
+# === Social Images (multi-format) ===
 socialImages:
   x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@x.jpg"
   square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@square.jpg"
@@ -29,25 +36,30 @@ socialImages:
   story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@story.jpg"
   hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-1/the-final-idol-part-1@hero-2x.jpg"
 
-socialAlt: "Symbolic artwork for The Final Idol Part I, featuring a radiant all-seeing eye above a meditative humanoid figure, set against a dark blue Gnostic background."
+socialAlt: "Symbolic artwork for The Final Idol Part I, featuring a radiant all-seeing eye above a meditative humanoid figure, rendered in a dark blue Gnostic aesthetic."
 
-imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-final-idol"
+# === Media ===
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/"
 imgPrefix: "the-final-idol-"
 bodyClass: "eye"
 
+# === Glyphs — Standardised Final Idol Triad ===
 glyph: "🜏"
 glyphRow:
-  - "☿"
-  - "🜏"
-  - "👁"
+  - "🜏"   # Antimony: inversion, artificial spirit
+  - "👁"   # The all-seeing Eye: the idol of synthetic sight
+  - "☿"   # Mercury: the trickster-prophet of the machine
 
+# === Structural Placement ===
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
 season: 1
 
-seriesId: "the-final-idol"
+# === Corrected IDs ===
+seriesId: "the-final-idol-s1"
 episodeId: "the-final-idol"
-partId: "part-1"
+partId: "part1"
+
 quizId: "the-final-idol-s1-the-final-idol-part-1"
 quizTitle: "The Final Idol — Part I: False Light and Synthetic Gods"
 quizIntro: "Discern illusion from revelation in the age of the Machine Messiah."

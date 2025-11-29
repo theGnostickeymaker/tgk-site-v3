@@ -1,14 +1,23 @@
 ---
 layout: base.njk
-title: "Sufi Islam"
-description: "Part III of the Afterlife Scrolls: fanāʾ and baqāʾ, the soul’s final dissolution and eternal abiding in the Beloved’s light."
-excerpt: "After longing, remembrance, and unveiling, there is one final gate: the surrender of the “I.”"
+
+# === Expanded SEO Title ===
+title: "Sufi Islam: Fanāʾ, Baqāʾ, and the Soul’s Final Unveiling"
+
+description: "Part III of the Afterlife Scrolls: the dissolution of the self, the soul’s abiding in the Beloved, and the final unveiling beyond life and death."
+
+excerpt: |
+  After longing, remembrance, and unveiling, one final gate remains.
+  It is the surrender of the “I”.
+
 tier: free
+
 pageId: "the-great-return-afterlife-season-1-sufi-islam-part-3"
 
 episode: 2
 partNumeral: III
 
+# === Unified Hierarchy Fields ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -17,25 +26,43 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode II: Sufi Islam"
 partTitle: "Part III: Fanāʾ and the Eternal Dance"
-tagline: "The false self melts away, the soul abides, and love continues its infinite unfolding."
+
+tagline: "The false self dissolves ✦ the soul abides ✦ love unfolds without end"
 
 slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-3/index.html"
 
+# === Social / Media Paths ===
+socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-3/sufi-islam-part-3.jpg"
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-3"
 imgPrefix: "sufi-islam-"
 bodyClass: "gold"
 
+# === Glyphs ===
 glyph: "☪"
 glyphRow:
   - "☪"
   - "☥"
   - "☪"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1
 
+# === IDs for quizzes and navigation ===
+seriesId: "the-afterlife-s1"
+episodeId: "sufi-islam"
+partId: "part3"
+quizId: "the-afterlife-s1-sufi-islam-part-3"
+
+quizTitle: "Sufi Islam — Part III: Fanāʾ and the Eternal Dance"
+quizIntro: "Can you cross the final gate where the self dissolves?"
+
+seriesMeta:
+  number: 1
+  label: "Season 1"
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"

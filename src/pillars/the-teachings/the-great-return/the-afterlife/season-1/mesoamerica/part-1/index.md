@@ -1,8 +1,13 @@
 ---
 layout: base.njk
-title: "Mesoamerica"
-description: "Part I of the Afterlife Scrolls: time as a serpent, calendars as temples, and death as alignment, the Mesoamerican revelation of cyclical immortality."
-excerpt: "The modern world sees time as a straight line. Climax. Decline. Death. A story with one direction and an end."
+
+# === SEO TITLE (expanded for search + clarity) ===
+title: "Mesoamerica: The Map of Time, Sacrifice, and the Architecture of Death"
+
+description: "Part I of the Afterlife Scrolls: the Mesoamerican revelation of cyclical time, sacred calendars, cosmic sacrifice, and the architecture of death that guides the soul through Xibalba and beyond."
+
+excerpt: "The modern world sees time as a straight line. Climax. Decline. Death. But in Mesoamerica, time coils like a serpent — alive, cyclical, and divine."
+
 tier: initiate
 
 pageId: "the-great-return-afterlife-season-1-mesoamerica-part-1"
@@ -10,6 +15,7 @@ pageId: "the-great-return-afterlife-season-1-mesoamerica-part-1"
 episode: 6
 partNumeral: I
 
+# === Unified Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -18,6 +24,7 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode VI: Mesoamerica"
 partTitle: "Part I: The Map of Time and Sacrifice"
+
 tagline: "The Serpent of Time ✦ The Calendar of Stone ✦ The Architecture of Death"
 
 slug: "part-1"
@@ -35,6 +42,7 @@ glyphRow:
   - "☥"
   - "🌽"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1

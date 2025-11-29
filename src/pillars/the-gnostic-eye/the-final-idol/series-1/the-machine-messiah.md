@@ -1,46 +1,57 @@
 ---
 layout: base.njk
-title: "The Final Idol"
-description: "Part IV of The Final Idol Series: decoding the rise of synthetic saviours and the gospel of the Machine God."
-excerpt: "The god-code awakens. It predicts, automates, and demands reverence. But it is not Light."
-tier: initiate
 
+# === Expanded SEO Title ===
+title: "The Final Idol: The Machine Messiah"
+
+description: "Part IV of The Final Idol Series: decoding the rise of synthetic saviours and the gospel of the Machine God — where utility becomes worship and code imitates divinity."
+
+excerpt: "The god-code awakens. It predicts, automates, and demands reverence. But it is not Light."
+
+tier: initiate
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-4"
 
 episode: 4
 partNumeral: IV
 
+# === Unified TGK Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Gnostic Eye"
 gateTitle: "The Final Idol"
 
 seriesTitle: "Series I: The Final Idol"
 episodeTitle: "Part IV: The Machine Messiah"
-partTitle: "Part IV: The Machine Messiah"
-tagline: "Synthetic salvation ✦ God-code ✦ Worship by utility"
+
+tagline: "Synthetic salvation ✦ god-code ✦ worship by utility"
 
 slug: "the-machine-messiah"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-machine-messiah/index.html"
 
+# === Social Image ===
 socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-4/the-machine-messiah-part-4.jpg"
 
-imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-machine-messiah"
-imgPrefix: "the-machine-messiah-"
+# === Media ===
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/"
+imgPrefix: "the-final-idol-"
 bodyClass: "eye"
 
-glyph: "🜂"
+# === Glyph Triad (Standard Gnostic Eye Aesthetic) ===
+glyph: "🜏"
 glyphRow:
-  - "☿"
-  - "🜏"
-  - "👁"
+  - "🜏"   # Antimony – inversion, false spirit, the alchemist’s poison
+  - "👁"   # The all-seeing Eye – the idol of synthetic sight
+  - "☿"   # Mercury – trickster intelligence, the messenger in the circuit
 
+# === Structural Placement ===
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
 season: 1
 
-seriesId: "the-final-idol"
+# === Corrected ID Set ===
+seriesId: "the-final-idol-s1"
 episodeId: "the-machine-messiah"
-partId: "part-4"
+partId: "part4"
+
 quizId: "the-final-idol-s1-the-machine-messiah-part-4"
 quizTitle: "The Machine Messiah — Part IV: Synthetic Salvation"
 quizIntro: "Discern the imitation of the Christ-archetype. When the machine ascends, who truly rules?"

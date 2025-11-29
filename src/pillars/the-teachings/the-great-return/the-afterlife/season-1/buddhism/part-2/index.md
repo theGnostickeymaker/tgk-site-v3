@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "Buddhism"
-description: "Part II of the Afterlife Scrolls: the path of compassion, from the Bodhisattva’s vow to the clear light of emptiness."
+title: "Buddhist Afterlife Path — The Bodhisattva Vow, Compassion, and the Clear Light"
+description: "Part II of the Afterlife Scrolls: the path of compassion, the Bodhisattva’s vow, the six perfections, and the radiant Clear Light at the threshold of liberation."
 excerpt: "You passed through the Bardo, saw the wheel of becoming, and glimpsed the Clear Light. This page descends into compassion’s fire, the Bodhisattva vow, and the fierce path of a seeker."
 tier: initiate
 

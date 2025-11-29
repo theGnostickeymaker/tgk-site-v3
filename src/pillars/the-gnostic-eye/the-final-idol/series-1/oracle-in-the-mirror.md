@@ -1,8 +1,13 @@
 ---
 layout: base.njk
-title: "The Final Idol"
-description: "Part III of The Final Idol Series: a symbolic Gnostic Eye page decoding narcissism, AI intimacy, and the mirror that reflects but never reveals."
-excerpt: "The question we ask has become the trap we fall into. The mirror knows your name, but not your soul."
+
+# === Expanded SEO Title ===
+title: "The Final Idol: Oracle in the Mirror"
+
+description: "Part III of The Final Idol, decoding digital narcissism, synthetic intimacy, AI projection, and the machine-mirror that reflects without revealing."
+
+excerpt: "The question becomes the trap. The mirror learns your face, your habits, your longings—but never your soul."
+
 tier: free
 
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-3"
@@ -10,37 +15,48 @@ pageId: "the-gnostic-eye-the-final-idol-series-1-part-3"
 episode: 3
 partNumeral: III
 
+# === Unified Hierarchy Fields ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Gnostic Eye"
 gateTitle: "The Final Idol"
 
 seriesTitle: "Series I: The Final Idol"
-seasonTitle: null
-episodeTitle: "Part III: Oracle in the Mirror"
-partTitle: "Part III: The Oracle in the Mirror"
-tagline: "Digital intimacy ✦ Narcissistic gnosis ✦ The mirror trap"
+episodeTitle: "Episode III: Oracle in the Mirror"
+
+tagline: "Digital intimacy ✦ Narcissistic gnosis ✦ The mirror that learns you but never knows you"
 
 slug: "oracle-in-the-mirror"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/oracle-in-the-mirror/index.html"
 
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3.jpg"
-imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/oracle-in-the-mirror"
-imgPrefix: "oracle-in-the-mirror-"
+# === Social / Media ===
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/"
+imgPrefix: "the-final-idol-"
 bodyClass: "eye"
 
+socialImages:
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@2x.jpg"
+
+# === Glyphs ===
 glyph: "🪞"
 glyphRow:
-  - "☿"
   - "🜏"
   - "👁"
+  - "☿"
 
+# === Structural Placement ===
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
 season: 1
 
-seriesId: "the-final-idol"
+# === IDs for navigation, quizzes, etc (optional for Gnostic Eye) ===
+seriesId: "the-final-idol-s1"
 episodeId: "oracle-in-the-mirror"
-partId: "part-3"
+partId: "part3"
+
 quizId: "the-final-idol-s1-oracle-in-the-mirror-part-3"
 quizTitle: "The Oracle in the Mirror — Part III: Reflections of False Gnosis"
 quizIntro: "When the mirror speaks, do you recognise your own echo or the machine’s design?"
@@ -49,7 +65,6 @@ seriesMeta:
   number: 1
   label: "Series I"
   version: 1
-
 
 author: "The Architect"
 published: "2025-10-18"
@@ -163,14 +178,6 @@ references:
 
     - title: "The Atlantic — 'When AI Becomes Religion' (2023)"
       desc: "A modern examination of digital intimacy and the worship of artificial presence."
-
-socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-3/oracle-in-the-mirror-part-3@2x.jpg"
-
 
 ---
 

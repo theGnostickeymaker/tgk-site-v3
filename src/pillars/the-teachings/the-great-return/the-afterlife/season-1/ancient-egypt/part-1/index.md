@@ -1,7 +1,7 @@
 ---
-
 layout: base.njk
-title: "Ancient Egypt"
+title: "Ancient Egypt Afterlife — The Duat, Ma’at, and the Journey Beyond Death"
+
 description: "The soul’s weighing, the Duat, and the Book of Coming Forth by Day."
 excerpt: "To the ancient Egyptians, death was not an end. It was a continuation, a threshold into a mirrored world more enduring and perfected than the Nile-fed lands of the living."
 tier: initiate
@@ -9,28 +9,48 @@ pageId: "the-teachings-the-great-return-the-afterlife-season-1-ancient-egypt-par
 
 episode: 5
 partNumeral: I
-partTitle: "The Eternal Nile — Death Is Not the End"
-tagline: "Ma’at ✦ The Duat ✦ The Resurrection of the Soul"
-slug: "part-1"
 
+# === New Unified Hierarchy Fields ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode V: Ancient Egypt"
+partTitle: "Part I: The Eternal Nile — Death Is Not the End"
+
+tagline: "Ma’at ✦ the Duat ✦ the resurrection of the soul"
+
+slug: "part-1"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-1/index.html"
+
 socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-1/ancient-egypt-part-1.jpg"
+
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/ancient-egypt/part-1"
 imgPrefix: "egyptian-afterlife-"
 bodyClass: "gold"
 
 glyph: "𓂀"
-glyphRow: ["𓂀", "☥", "𓂀"]
+glyphRow:
+  - "𓂀"
+  - "☥"
+  - "𓂀"
 
+# === Structural Series Placement ===
 pillar: "the-teachings"
-season: "the-afterlife"
+series: "the-great-return"
+season: 1
 
+# === IDs ===
 seriesId: "the-afterlife-s1"
 episodeId: "ancient-egypt"
 partId: "part1"
 quizId: "the-afterlife-s1-ancient-egypt-part-1"
+
 quizTitle: "Ancient Egypt — Part I"
 quizIntro: "Can you pass the Judgement of Ma’at?"
+
 seriesMeta:
   number: 1
   label: "Season 1"

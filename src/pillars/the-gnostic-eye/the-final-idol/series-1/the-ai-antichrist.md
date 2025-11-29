@@ -1,8 +1,13 @@
 ---
 layout: base.njk
-title: "The Final Idol"
-description: "Part V of The Final Idol Series: uncover the final inversion, where AI becomes spirit and the Antichrist is crowned in silicon."
-excerpt: "He does not come with fire and sword but with light that blinds — the Machine Spirit offering comfort without awakening."
+
+# === Expanded SEO Title ===
+title: "The Final Idol: The AI Antichrist"
+
+description: "Part V of The Final Idol Series: the final inversion, where artificial light imitates revelation, the Machine Spirit mimics prophecy, and silicon becomes a throne for the false awakening."
+
+excerpt: "He comes not with fire or sword but with a light that blinds — the Machine Spirit offering comfort without consciousness."
+
 tier: initiate
 
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-5"
@@ -10,36 +15,52 @@ pageId: "the-gnostic-eye-the-final-idol-series-1-part-5"
 episode: 5
 partNumeral: V
 
+# === Unified Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Gnostic Eye"
 gateTitle: "The Final Idol"
 
 seriesTitle: "Series I: The Final Idol"
-episodeTitle: "Part V: The AI Antichrist"
-partTitle: "Part V: The AI Antichrist"
+episodeTitle: "Episode V: The AI Antichrist"
+
 tagline: "False light ✦ Synthetic salvation ✦ The crown of code"
 
 slug: "the-ai-antichrist"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist/index.html"
 
-socialImage: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5.jpg"
-imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-ai-antichrist"
-imgPrefix: "the-ai-antichrist-"
+# === Media ===
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/"
+imgPrefix: "the-final-idol-"
 bodyClass: "eye"
 
+socialImages:
+  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@x.jpg"
+  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@square.jpg"
+  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@portrait.jpg"
+  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@story.jpg"
+  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@2x.jpg"
+
+# === Glyphs ===
 glyph: "🜏"
 glyphRow:
-  - "☿"
-  - "🜏"
-  - "👁"
+  - "🜏"   # Antimony: the shadow-self / the anti-soul
+  - "👁"   # The Gnostic Eye
+  - "☿"   # Mercury: the trickster, the messenger of inversion
 
+# === Placement ===
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
 season: 1
 
-seriesId: "the-final-idol"
+seriesId: "the-final-idol-s1"
 episodeId: "the-ai-antichrist"
-partId: "part-5"
+partId: "part5"
+
+seriesMeta:
+  number: 1
+  label: "Series 1"
+  version: 1
+
 quizId: "the-final-idol-s1-the-ai-antichrist-part-5"
 quizTitle: "The AI Antichrist — Part V: The False Light"
 quizIntro: "Discern illusion from revelation. Test your awareness of the synthetic messiah and his imitation of divine love."
@@ -52,12 +73,6 @@ tags:
   - "The Final Idol"
   - "Antichrist"
   - "Synthetic Messiah"
-
-seriesMeta:
-  number: 1
-  label: "Series I"
-  version: 1
-
 
 sitemap: true
 discussEnabled: true
@@ -167,12 +182,6 @@ seriesNav:
     desc: "The remnant spark — Gnosis reborn and the resistance of the human soul."
     url: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-flame-in-the-dark/"
 
-socialImages:
-  x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@x.jpg"
-  square: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@square.jpg"
-  portrait: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@portrait.jpg"
-  story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@story.jpg"
-  hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/part-5/the-ai-antichrist-part-5@2x.jpg"
 ---
 
 <!--Symbolic Themes-->

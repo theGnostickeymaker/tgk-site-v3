@@ -1,14 +1,20 @@
 ---
 layout: base.njk
-title: "Gnostic Christianity"
-description: "Part III of the Afterlife Scrolls: the soul’s ascent through the toll gates, the trial of memory, and the return to the Pleroma."
-excerpt: "Previously: you walked the path of return, past the Archons and through the toll gates, armed with gnosis and memory. The soul that remembers ascends. The soul that forgets returns."
+
+# === SEO Title (expanded for maximum clarity and mystic authority) ===
+title: "Gnostic Christianity: The Toll Gates, the Archons, and the Soul’s Return to the Pleroma"
+
+description: "Part III of the Afterlife Scrolls: the soul’s ascent through the toll gates, the Archons’ trials, the judgement of memory, and the final return to the Pleroma."
+
+excerpt: "Previously, you walked the path of return, past the Archons and through the toll gates, armed with gnosis and memory. The soul that remembers ascends. The soul that forgets returns."
+
 tier: free
 pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-3"
 
 episode: 1
 partNumeral: III
 
+# === Unified Hierarchy Metadata ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -17,7 +23,8 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode I: Gnostic Christianity"
 partTitle: "Part III: The Toll Gates and the Return"
-tagline: "Archons ✦ Memory ✦ Death as Initiation ✦ The Pleromic Homecoming"
+
+tagline: "Archons ✦ memory ✦ death as initiation ✦ the Pleromic homecoming"
 
 slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-3/index.html"
@@ -32,6 +39,7 @@ glyphRow:
   - "☥"
   - "✝"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1

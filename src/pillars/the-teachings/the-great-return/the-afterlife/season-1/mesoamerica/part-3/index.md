@@ -1,10 +1,15 @@
 ---
 layout: base.njk
-title: "Mesoamerica"
-description: "Part III of the Afterlife Scrolls: sacred time, calendars of stone, and the cosmic architecture of death."
+
+# === Expanded SEO Title ===
+title: "Mesoamerica: The Spiral of Return and Sacred Time"
+
+description: "Part III of the Afterlife Scrolls: the Mesoamerican spiral of return, cosmic time cycles, celestial agriculture, and the resurrection of the soul through maize, sacrifice, and memory."
+
 excerpt: |
   You descended into Mictlán, outwitted the Lords of Xibalba, and faced the games of death.
   Now begins the spiral upward, through sacrifice, memory, and the soul’s return to the celestial maize field.
+
 tier: initiate
 
 pageId: "the-great-return-afterlife-season-1-mesoamerica-part-3"
@@ -12,6 +17,7 @@ pageId: "the-great-return-afterlife-season-1-mesoamerica-part-3"
 episode: 6
 partNumeral: III
 
+# === Unified Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -20,7 +26,8 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode VI: Mesoamerica"
 partTitle: "Part III: The Spiral of Return"
-tagline: "Sacred Time ✦ Calendars of Stone ✦ The Cosmic Architecture of Death"
+
+tagline: "Sacred Time ✦ Cosmovision ✦ The Celestial Maize Field"
 
 slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/mesoamerica/part-3/index.html"
@@ -37,6 +44,7 @@ glyphRow:
   - "☥"
   - "🌽"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1

@@ -1,14 +1,23 @@
 ---
 layout: base.njk
-title: "Sufi Islam"
-description: "Part II of the Afterlife Scrolls: the seeker ascends through longing and remembrance, spiralling ever closer to the Beloved whose face was never far."
-excerpt: "In the Sufi path, the ascent is not made by effort, it is drawn by longing."
+
+# === Expanded SEO Title ===
+title: "Sufi Islam: The Ascent, the Beloved, and the Spiral of Longing"
+
+description: "Part II of the Afterlife Scrolls: the ascent through longing, remembrance, and the magnetism of the Beloved that draws the soul beyond death."
+
+excerpt: |
+  In the Sufi path, ascent is not achieved by effort.
+  It is drawn by longing.
+
 tier: free
+
 pageId: "the-great-return-afterlife-season-1-sufi-islam-part-2"
 
 episode: 2
 partNumeral: II
 
+# === Unified Hierarchy Fields ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -17,24 +26,45 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode II: Sufi Islam"
 partTitle: "Part II: The Ascent and the Beloved"
-tagline: "Longing becomes ladder, remembrance becomes orbit, and the soul dances ever nearer to the Beloved."
+
+tagline: "Longing as ladder ✦ Remembrance as orbit ✦ The soul drawn to the Beloved"
 
 slug: "part-2"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-2/index.html"
 
+# === Social Image ===
+socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-2/sufi-islam-part-2.jpg"
+
+# === Media Paths ===
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-2"
 imgPrefix: "sufi-islam-"
 bodyClass: "gold"
 
+# === Glyphs ===
 glyph: "☪"
 glyphRow:
   - "☪"
   - "☥"
   - "☪"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1
+
+# === IDs for quizzes and nav ===
+seriesId: "the-afterlife-s1"
+episodeId: "sufi-islam"
+partId: "part2"
+quizId: "the-afterlife-s1-sufi-islam-part-2"
+
+quizTitle: "Sufi Islam — Part II: The Ascent and the Beloved"
+quizIntro: "Can you ascend through longing and remembrance?"
+
+seriesMeta:
+  number: 1
+  label: "Season 1"
+  version: 1
 
 # 🕯 Publication Metadata
 author: "The Keymaker"

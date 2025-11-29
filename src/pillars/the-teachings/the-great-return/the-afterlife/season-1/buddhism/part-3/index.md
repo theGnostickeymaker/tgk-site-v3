@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "Buddhism"
-description: "Part III of the Afterlife Scrolls: the Diamond Path, through the bardos and the Clear Light, towards final liberation."
+title: "Buddhist Afterlife: The Diamond Path, the Clear Light, and Final Liberation"
+description: "Part III of the Afterlife Scrolls: the Diamond Path of Vajrayāna, the passage through the bardos, the Clear Light encounter, and the soul’s final liberation from Samsāra."
 excerpt: "From Samsāra’s wheel to the Bodhisattva’s return, you have danced through birth, death, and intention. Now the Diamond Path opens, the Vajra blade cuts illusion, and the radiant void calls the soul home."
 tier: initiate
 

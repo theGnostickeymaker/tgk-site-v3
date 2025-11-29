@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Buddhism"
+title: "Buddhist Afterlife Cosmology — The Six Realms, the Bardos, and the Mind’s Final Illusions"
 description: "Part I of the Afterlife Scrolls: through the Six Realms, the Bardos, and the mind’s last illusions, the soul learns how to die before death."
 excerpt: "In Buddhist cosmology, reality is not linear. It spirals."
 tier: initiate

@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Ancient Egypt"
+title: "Ancient Egypt Afterlife — The Resurrection of Light and the Ascent of the Akh"
 description: "Part III of the Afterlife Scrolls: the resurrection of light, from the weighing of the heart to the soul’s ascent among the Imperishables."
 excerpt: "You deciphered the maps of the afterlife, the spells of becoming, the trials of identity, and the rites of return. But resurrection is more than passage. Now comes transfiguration, when Ka, Ba, and Ren converge as radiant Akh."
 tier: initiate

@@ -1,14 +1,20 @@
 ---
 layout: base.njk
-title: "Gnostic Christianity"
-description: "Part II of the Afterlife Scrolls: the Christ of Gnosis and the spark that remembers beyond death."
-excerpt: "Previously: you heard the voice behind the veil, not a god of wrath but a Revealer of the spark. Christ came not to be worshipped but to mirror what you truly are."
+
+# === SEO Title (expanded and high-authority) ===
+title: "Gnostic Christianity: The Hidden Christ, the Revealer of the Spark, and the Return to the Pleroma"
+
+description: "Part II of the Afterlife Scrolls: Christ the Revealer, the divine spark within the soul, and the Gnostic path of remembrance beyond death."
+
+excerpt: "Previously, you heard the voice behind the veil, not a god of wrath but a Revealer of the spark. Christ came not to be worshipped but to mirror what you truly are."
+
 tier: free
 pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-2"
 
 episode: 1
 partNumeral: II
 
+# === Unified TGK Header Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -17,7 +23,8 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode I: Gnostic Christianity"
 partTitle: "Part II: The Revealer and the Spark"
-tagline: "The Hidden Christ ✦ The Light Within ✦ The Return Begins"
+
+tagline: "The hidden Christ ✦ the light within ✦ the return begins"
 
 slug: "part-2"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/gnostic-christianity/part-2/index.html"

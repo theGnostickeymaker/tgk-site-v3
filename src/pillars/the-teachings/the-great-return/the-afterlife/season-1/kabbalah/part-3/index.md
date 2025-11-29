@@ -1,8 +1,13 @@
 ---
 layout: base.njk
-title: "Kabbalah"
-description: "Part III of the Afterlife Scrolls: the soul’s return to the Source, the remembrance of its vow, the healing of the fracture, and the ascent beyond the gates of life and death."
-excerpt: "You climbed the Tree, from Malkhut’s dust to Keter’s crown, and tasted the soul’s ascent through divine light and shadow."
+
+# === SEO TITLE (full contextual strength) ===
+title: "Kabbalah: The Soul’s Journey After Death and the Return to the Infinite"
+
+description: "Part III of the Afterlife Scrolls: the soul’s post-mortem ascent through the Kabbalistic worlds, the healing of the shattered vessels, remembrance of the vow, and the return to the Infinite (Ein Sof)."
+
+excerpt: "You climbed the Tree, from Malkhut’s dust to Keter’s crown, tracing the soul’s ascent through divine light and shadow. Now the final gates open, where remembrance becomes return."
+
 tier: free
 
 pageId: "the-great-return-afterlife-season-1-kabbalah-part-3"
@@ -10,6 +15,7 @@ pageId: "the-great-return-afterlife-season-1-kabbalah-part-3"
 episode: 3
 partNumeral: III
 
+# === Unified Hierarchy Fields ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -18,7 +24,8 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode III: Kabbalah"
 partTitle: "Part III: The Soul’s Journey After Death"
-tagline: "Tikkun Olam, the soul’s repair, remembrance, and reunion with the Infinite."
+
+tagline: "Tikkun, remembrance, reunion — the soul returns to the Infinite."
 
 slug: "part-3"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-3/index.html"
@@ -35,6 +42,7 @@ glyphRow:
   - "☥"
   - "✡"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1

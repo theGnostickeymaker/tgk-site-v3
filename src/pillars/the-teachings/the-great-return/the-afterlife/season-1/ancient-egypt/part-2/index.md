@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "Ancient Egypt"
+title: "Ancient Egypt Afterlife — The Twelve Gates of the Duat and the Night Journey of the Soul"
 description: "Part II of the Afterlife Scrolls: through the twelve gates of night, spells, tombs, and the soul-technologies of the Duat."
 excerpt: "You entered the Duat, faced the weighing of your heart, and discovered that the soul is not one thing but many. Now we descend deeper, through tomb texts, resurrection spells, and ciphered maps of return."
 tier: initiate

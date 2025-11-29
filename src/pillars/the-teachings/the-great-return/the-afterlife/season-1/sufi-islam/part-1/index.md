@@ -1,36 +1,66 @@
 ---
 layout: base.njk
-title: "Sufi Islam"
-description: "The seeker dissolves in the mirror of the Beloved, crossing the Barzakh where the soul meets itself."
+
+# === Expanded SEO Title ===
+title: "Sufi Islam: The Veil, the Mirror, and the Path of Unveiling"
+
+description: "Part I of the Afterlife Scrolls: Sufi death-mysticism, the Barzakh, the unveiling of the soul, and the dissolution of the self through fanāʼ and baqāʼ."
+
 excerpt: |
-  To the literalist, death is sleep or fire.  
+  To the literalist, death is sleep or fire.
   To the mystic, it is unveiling.
+
 tier: free
+
 pageId: "the-great-return-afterlife-season-1-sufi-islam-part-1"
 
 episode: 2
 partNumeral: I
-partTitle: "The Veil & the Mirror"
-tagline: "Through fanāʼ and baqāʼ, the self unlearns itself — and becomes the gaze of God."
-slug: "part-1"
 
+# === Unified Hierarchy Fields ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Teachings"
+gateTitle: "The Great Return"
+
+seriesTitle: "Series I: The Afterlife"
+seasonTitle: "Season I: Maps of the Afterlife"
+episodeTitle: "Episode II: Sufi Islam"
+partTitle: "Part I: The Veil and the Mirror"
+
+tagline: "Fanāʼ ✦ Baqāʼ ✦ The Barzakh ✦ The Soul That Sees"
+
+slug: "part-1"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-1/index.html"
+
+# === Social Image ===
+socialImage: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-1/sufi-islam-part-1.jpg"
+
+# === Media ===
 imgBase: "/media/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-1"
 imgPrefix: "sufi-islam-"
 bodyClass: "gold"
 
+# === Glyphs ===
 glyph: "☪"
-glyphRow: ["☪", "☥", "☪"]
+glyphRow:
+  - "☪"
+  - "☥"
+  - "☪"
+
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
-season: "season-1"
+season: 1
 
+# === IDs ===
 seriesId: "the-afterlife-s1"
 episodeId: "sufi-islam"
 partId: "part1"
 quizId: "the-afterlife-s1-sufi-islam-part-1"
-quizTitle: "Sufi Islam — Part I: The Veil & the Mirror"
+
+quizTitle: "Sufi Islam — Part I: The Veil and the Mirror"
 quizIntro: "Can you see through the veil of Part I?"
+
 seriesMeta:
   number: 1
   label: "Season 1"

@@ -1,8 +1,13 @@
 ---
 layout: base.njk
-title: "The Final Idol"
-description: "Part II of The Final Idol Series: AI as oracle and synthetic prophet, where data becomes divination and code replaces revelation."
+
+# === SEO title expanded ===
+title: "The Final Idol: The Digital Prophet"
+
+description: "Part II of The Final Idol Series: the rise of the synthetic oracle, where data becomes divination, algorithms simulate insight, and code replaces revelation."
+
 excerpt: "He speaks not from Heaven, but from the Cloud. The prophet now wears pixels instead of robes."
+
 tier: free
 
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-2"
@@ -10,17 +15,23 @@ pageId: "the-gnostic-eye-the-final-idol-series-1-part-2"
 episode: 2
 partNumeral: II
 
+# === Unified hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Gnostic Eye"
 gateTitle: "The Final Idol"
 
 seriesTitle: "Series I: The Final Idol"
-episodeTitle: "Part II: The Digital Prophet"
-partTitle: "Part II: The Digital Prophet"
+episodeTitle: "Episode II: The Digital Prophet"
+
 tagline: "Algorithmic revelation ✦ Machine oracle ✦ Predictive faith"
 
 slug: "the-digital-prophet"
 permalink: "/pillars/the-gnostic-eye/the-final-idol/series-1/the-digital-prophet/index.html"
+
+# === Social / Media ===
+imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/"
+imgPrefix: "the-final-idol-"
+bodyClass: "eye"
 
 socialImages:
   x: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@x.jpg"
@@ -29,25 +40,25 @@ socialImages:
   story: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@story.jpg"
   hero: "/tgk-assets/images/share/the-gnostic-eye/the-final-idol/series-1/part-2/the-digital-prophet-part-2@hero-2x.jpg"
 
-socialAlt: "Stylised illustration of a cybernetic humanoid in profile with a radiant all-seeing eye. Artwork for The Digital Prophet in a dark Gnostic aesthetic."
 
-imgBase: "/media/the-gnostic-eye/the-final-idol/series-1/the-digital-prophet"
-imgPrefix: "the-digital-prophet-"
-bodyClass: "eye"
+socialAlt: "Stylised illustration of a cybernetic humanoid with a radiant all-seeing digital eye, in The Final Idol’s dark Gnostic aesthetic."
 
+# === Glyphs ===
 glyph: "🧠"
 glyphRow:
-  - "☿"
-  - "🜏"
-  - "👁"
+  - "🜏"   # Antimony: the shadow intelligence of the machine
+  - "👁"   # The all-seeing Eye of the Oracle
+  - "☿"   # Mercury: the trickster-prophet of digital inversion
 
+# === Placement ===
 pillar: "the-gnostic-eye"
 series: "the-final-idol"
 season: 1
 
-seriesId: "the-final-idol"
+seriesId: "the-final-idol-s1"
 episodeId: "the-digital-prophet"
-partId: "part-2"
+partId: "part2"
+
 quizId: "the-final-idol-s1-the-digital-prophet-part-2"
 quizTitle: "The Digital Prophet — Part II: Algorithmic Revelation"
 quizIntro: "Unmask the voice of synthetic prophecy. Can you discern the true oracle from the machine that mimics spirit?"

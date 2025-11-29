@@ -1,11 +1,16 @@
 ---
 layout: base.njk
-title: "Mesoamerica"
-description: "Part II of the Afterlife Scrolls: the rebel gospel, the secret teachings, and the mirror of the Divine."
+
+# === SEO TITLE (expanded for search + clarity) ===
+title: "Mesoamerica: The Descent into Mictlán and Xibalba"
+
+description: "Part II of the Afterlife Scrolls: the nine levels of Mictlán, the chambers of Xibalba, the soul’s unmaking, and the sacred trials that determine passage through the Mesoamerican underworld."
+
 excerpt: |
   You walked the calendars of stone and remembered the spiral of time.
   Now descend, into the nine levels of Mictlán and the trial chambers of Xibalba.
   The Lords are watching. The test is real.
+
 tier: initiate
 
 pageId: "the-great-return-afterlife-season-1-mesoamerica-part-2"
@@ -13,6 +18,7 @@ pageId: "the-great-return-afterlife-season-1-mesoamerica-part-2"
 episode: 6
 partNumeral: II
 
+# === Unified Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -21,6 +27,7 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode VI: Mesoamerica"
 partTitle: "Part II: The Descent into Mictlán and Xibalba"
+
 tagline: "Trials of the Underworld ✦ The Unmaking of the Soul ✦ The Dog Who Remembers"
 
 slug: "part-2"
@@ -38,6 +45,7 @@ glyphRow:
   - "☥"
   - "🌽"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1

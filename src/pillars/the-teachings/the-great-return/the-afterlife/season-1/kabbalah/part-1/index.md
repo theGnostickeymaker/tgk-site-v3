@@ -1,15 +1,20 @@
 ---
 layout: base.njk
-title: "Kabbalah"
-description: "Part I of the Afterlife Scrolls: the Kabbalistic map of the afterlife, tracing the descent of souls through the Sefirot, the cosmic tree, and the pathways of return."
-excerpt: "Before there was a Bible, there was a flame."
-tier: free
 
+# === SEO Title (strengthened and descriptive) ===
+title: "Kabbalah: The Tree of Life, the Sefirot, and the Descent of Souls"
+
+description: "Part I of the Afterlife Scrolls: the Kabbalistic map of the afterlife, tracing emanation, the descent of souls, the Sefirot, and the pathways of return to the Infinite."
+
+excerpt: "Before there was a Bible, there was a flame."
+
+tier: free
 pageId: "the-great-return-afterlife-season-1-kabbalah-part-1"
 
 episode: 3
 partNumeral: I
 
+# === Unified Hierarchy Metadata ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"
@@ -18,7 +23,8 @@ seriesTitle: "Series I: The Afterlife"
 seasonTitle: "Season I: Maps of the Afterlife"
 episodeTitle: "Episode III: Kabbalah"
 partTitle: "Part I: The Kabbalistic Worldview"
-tagline: "The divine descent, the Sefirot, and the shattering of vessels."
+
+tagline: "The divine descent ✦ the Sefirot ✦ the shattering of vessels"
 
 slug: "part-1"
 permalink: "/pillars/the-teachings/the-great-return/the-afterlife/season-1/kabbalah/part-1/index.html"
@@ -35,6 +41,7 @@ glyphRow:
   - "☥"
   - "✡"
 
+# === Structural Placement ===
 pillar: "the-teachings"
 series: "the-great-return"
 season: 1
