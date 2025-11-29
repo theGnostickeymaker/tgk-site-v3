@@ -6,7 +6,7 @@ tier: free
 glyph: "🕯"
 accent: vault
 bodyClass: vault
-permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-viii/letter-of-peter-to-philip/index.html"
+permalink: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-viii/letter-of-peter-to-philip/text/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
