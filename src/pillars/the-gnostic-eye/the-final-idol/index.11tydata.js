@@ -5,11 +5,17 @@ export default {
   pageId: "the-gnostic-eye-the-final-idol",
   permalink: "/pillars/the-gnostic-eye/the-final-idol/index.html",
 
+  // === Unified Hierarchy Fields ===
   siteTitle: "The Gnostic Key",
   pillarTitle: "The Gnostic Eye",
-  gateTitle: null,
+  gateTitle: "The Final Idol",
 
-  title: "The Final Idol",
+  // The missing fields (required for header display)
+  seriesTitle: "Series I: The Final Idol",
+  seasonTitle: null,
+  episodeTitle: null,
+
+  title: "The Final Idol | Synthetic gods, predictive prophets, the flame of Gnosis reborn.",
   tagline: "Synthetic gods, predictive prophets, the flame of Gnosis reborn.",
   description:
     "AI as idol, prophet, and antichrist: tracing the symbolic evolution of faith and control in the digital age.",

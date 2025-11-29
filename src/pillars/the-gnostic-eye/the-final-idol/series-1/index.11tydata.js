@@ -9,7 +9,7 @@ export default {
   pillarTitle: "The Gnostic Eye",
   gateTitle: "The Final Idol",
 
-  title: "The Final Idol — Series I",
+  title: "The Final Idol | False light, synthetic gods, the mirror of AI.",
   tagline: "False light, synthetic gods, the mirror of AI.",
   description:
     "A six-part descent through synthetic spirituality, predictive machines, and the Gnostic warning encoded in technology.",

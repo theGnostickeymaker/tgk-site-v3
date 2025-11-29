@@ -9,7 +9,7 @@ export default {
   pillarTitle: "The Gnostic Eye",
   gateTitle: null,
 
-  title: "The Gnostic Eye",
+  title: "The Gnostic Eye | Symbol reading, decoding illusion, unveiling the code beneath the world.",
   tagline: "Symbol reading, decoding illusion, unveiling the code beneath the world.",
   description:
     "Symbolic vision and revelation: decoding modern myths, idols, and the invisible architectures shaping belief and control.",
