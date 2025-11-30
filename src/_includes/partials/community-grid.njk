@@ -1,0 +1,105 @@
+{# =========================================================
+   🜂 TGK — Community Grid Partial (v1.0)
+   Purpose:
+   Renders a responsive card grid for the Community Pillar:
+   • Discussion Threads
+   • Study Circles
+   • Live Sessions
+   • Future modules
+
+   Expects:
+   - communityModules = [
+       {
+         href, title, glyph, desc/tagline,
+         tier (free/initiate/adept),
+         state (default, coming-soon, premium, locked, archived, draft),
+         image (optional),
+         badge (optional)
+       }
+     ]
+
+   Behaviour:
+   • Mirrors the pillar-grid / gnostic-card appearance
+   • Maintains all TGK card states and tier badges
+   • Uses ".community-grid" wrapper for clarity
+   ========================================================= #}
+
+{%- if communityModules and communityModules.length -%}
+<section class="community-grid">
+  <div class="portal-grid">
+    {% for c in communityModules %}
+
+      {# --- Derive visual state --- #}
+      {% set state = c.state or "default" %}
+      {% set cls = "gnostic-card" %}
+      {% if state == "premium" %}
+        {% set cls = cls + " premium" %}
+      {% elif state == "coming-soon" %}
+        {% set cls = cls + " coming-soon" %}
+      {% elif state == "locked" %}
+        {% set cls = cls + " locked" %}
+      {% elif state == "archived" %}
+        {% set cls = cls + " archived" %}
+      {% elif state == "draft" %}
+        {% set cls = cls + " draft" %}
+      {% endif %}
+
+      <article class="{{ cls }}">
+        <a class="card-link" href="{{ c.href or '#' }}">
+
+          {# --- Optional image --- #}
+          {% if c.image %}
+            <figure class="card-media">
+              <img src="{{ c.image }}" alt="{{ c.title or 'Module Image' }}" loading="lazy">
+            </figure>
+          {% endif %}
+
+          <div class="card-body">
+            {% if c.glyph %}
+              <div class="card-glyph" aria-hidden="true">{{ c.glyph }}</div>
+            {% endif %}
+
+            <h3 class="card-title">{{ c.title or "Untitled" }}</h3>
+
+            {% if c.desc %}
+              <p class="card-desc">{{ c.desc }}</p>
+            {% endif %}
+          </div>
+
+          {# --- Overlays for module state --- #}
+          {% if state == "coming-soon" %}
+            <div class="card-overlay"><span class="banner">Coming Soon</span></div>
+          {% elif state == "premium" %}
+            <div class="card-overlay"><span class="banner">Premium</span></div>
+          {% elif state == "locked" %}
+            <div class="card-overlay"><span class="banner">Locked</span></div>
+          {% elif state == "archived" %}
+            <div class="card-overlay"><span class="banner">Archived</span></div>
+          {% elif state == "draft" %}
+            <div class="card-overlay"><span class="banner">In Development</span></div>
+          {% endif %}
+
+          {# --- Tier badge --- #}
+          {% set badgeTxt = c.badge %}
+          {% if not badgeTxt %}
+            {% if c.tier == "adept" %}
+              {% set badgeTxt = "Adept Access" %}
+            {% elif c.tier == "initiate" %}
+              {% set badgeTxt = "Initiate" %}
+            {% elif c.tier == "initiate-trial" %}
+              {% set badgeTxt = "Free Intro" %}
+            {% elif c.tier == "free" %}
+              {% set badgeTxt = "Free" %}
+            {% endif %}
+          {% endif %}
+
+          {% if badgeTxt %}
+            <div class="card-badge tier-{{ c.tier | default('none') }}">{{ badgeTxt }}</div>
+          {% endif %}
+
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{%- endif -%}

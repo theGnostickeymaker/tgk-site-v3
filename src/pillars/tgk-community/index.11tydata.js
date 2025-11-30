@@ -8,7 +8,7 @@ export default {
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: null,
-  seriesTitle: null,
+  seriesTitle: "TGK Community",
   seasonTitle: null,
   episodeTitle: null,
   partTitle: null,
@@ -25,6 +25,7 @@ export default {
   // ============================================
   // VISUAL IDENTITY
   // ============================================
+
   bodyClass: "community",
   accent: "community",
 
@@ -36,36 +37,27 @@ export default {
   tags: ["pillar", "tgk-community", "community"],
 
   // ============================================
-  // COMMUNITY MODULES (ROADMAP-READY)
+  // PILLAR MODULES (ROOT CARDS)
   // ============================================
 
   communityGrid: [
     {
-      href: "#",
-      title: "Discussion Threads",
-      glyph: "💬",
+      href: "/pillars/tgk-community/guide/",
+      title: "Community Guide",
+      glyph: "✦",
       desc:
-        "Topic-based community discussions linked to TGK scrolls. A structured space to debate, reply, and practise the Steel Man ethic.",
+        "Charter, participation rules, steelman method, and community ethos.",
       tier: "free",
       state: "active"
     },
     {
-      href: "#",
-      title: "Study Circles",
-      glyph: "📚",
+      href: "/pillars/tgk-community/threads/",
+      title: "Discussion Threads",
+      glyph: "💬",
       desc:
-        "Small-group readings and decodings of TGK texts. Community-led learning in a structured, respectful format.",
+        "Topic-based discussions, replies, and the practice of the Steel Man principle.",
       tier: "free",
-      state: "coming-soon"
-    },
-    {
-      href: "#",
-      title: "Live Sessions",
-      glyph: "🎙",
-      desc:
-        "Talks, Q&A gatherings, rituals, and knowledge-sharing events held in real time.",
-      tier: "free",
-      state: "coming-soon"
+      state: "active"
     }
   ],
 
@@ -73,6 +65,6 @@ export default {
   // FLAGS
   // ============================================
 
-  showLens: false,     // Synergist Lens not used here
-  showSeriesNav: false // Not a scroll
+  showLens: false,
+  showSeriesNav: false
 };

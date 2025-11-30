@@ -22,72 +22,76 @@ breadcrumbs:
   - { title: "TGK Community", url: "/pillars/tgk-community/" }
 ---
 
-<main class="main-content pillar-community">
+<main class="main-content">
+  <section class="content-container">
 
-  <section class="section-block">
-    <h1 class="section-heading">TGK Community</h1>
-    <p class="lead">
-      A gathering place for readers, seekers, contrarians, and builders of The Gnostic Key.
-      Here, arguments are sharpened, assumptions tested, and interpretations refined through
-      disciplined, respectful dialogue.
-    </p>
-  </section>
+    <section class="section-block">
+      <h1 class="section-heading">TGK Community</h1>
+      <p class="lead">
+        A gathering place for readers, seekers, contrarians, and builders of The Gnostic Key.
+        Here, arguments are sharpened, assumptions tested, and interpretations refined through
+        disciplined, respectful dialogue.
+      </p>
 
-  <section class="community-charter section-block">
-    <h2 class="section-heading">Community Ethos</h2>
-    <p>
-      The TGK Community rests on one foundational principle:
-      <strong>we seek truth through clarity, not dominance.</strong>
-      We engage arguments, not identities. We steelman before we critique.
-    </p>
+      <!-- ✦ Charter Link -->
+      <p class="muted small">
+        For full principles and expectations, read the 
+        <a href="/pillars/tgk-community/charter/" class="link-accent">
+          TGK Community Charter
+        </a>.
+      </p>
+    </section>
 
-    <ul class="rules-list">
-      <li>No doxxing or targeted harassment.</li>
-      <li>Critique institutions, systems, and public power, not private citizens.</li>
-      <li>No calls for violence of any kind.</li>
-      <li>Pseudonyms encouraged. Real names not required.</li>
-      <li>Good faith is the expected baseline. Bad faith is structurally discouraged.</li>
-    </ul>
+    <!-- ✦ Removed detailed ethos + rules block that was previously here -->
 
-    <p class="muted small">
-      Commenting requires sign-in with email. You may choose any pseudonym.
-    </p>
-  </section>
+    <section class="section-block">
+    <h2 class="section-heading">Community Gateways</h2>
 
-  <section class="community-modules section-block">
-    <h2 class="section-heading">Community Spaces</h2>
+    <div class="community-grid portal-grid">
+      {% for m in communityGrid %}
 
-    <div class="community-grid">
-      {% for m in communityModules %}
-        <div class="community-card {{ m.state }}">
-          <div class="community-card-glyph">{{ m.glyph }}</div>
-          <h3 class="community-card-title">{{ m.title }}</h3>
-          <p class="community-card-desc">{{ m.desc }}</p>
+        {% set state = m.state or "default" %}
 
-          <p class="community-card-meta small">
-            Tier: <strong>{{ m.tier | upper }}</strong>
-            {% if m.state == "coming-soon" %}
-              <span class="coming-soon-tag">Coming Soon</span>
+        <article class="gnostic-card {{ state }}">
+          <a class="card-link" href="{{ m.href }}">
+
+            <div class="card-body">
+              {% if m.glyph %}
+                <div class="card-glyph">{{ m.glyph }}</div>
+              {% endif %}
+              <h3 class="card-title">{{ m.title }}</h3>
+              {% if m.desc %}
+                <p class="card-desc">{{ m.desc }}</p>
+              {% endif %}
+            </div>
+
+            {% if state == "coming-soon" %}
+              <div class="card-overlay"><span class="banner">Coming Soon</span></div>
             {% endif %}
-          </p>
-        </div>
-      {% endfor %}
-    </div>
+
+            <div class="card-badge tier-free">Free</div>
+          </a>
+        </article>
 
       {% endfor %}
     </div>
   </section>
 
-  <section class="section-block">
-    <h2 class="section-heading">The Steel Man Principle</h2>
-    <p>
-      Every reply within the community begins with a simple requirement:
-      <strong>“What is the argument you are responding to, in your own words?”</strong>
-      This ensures that clarity precedes criticism, and understanding precedes disagreement.
-    </p>
-    <p>
-      This is not merely a rule, but a cultural signature that defines the TGK Community.
-    </p>
-  </section>
+    <section class="section-block">
+      <h2 class="section-heading">The Steel Man Principle</h2>
+      <p>
+        Every reply begins with a discipline: 
+        <strong>summarise the argument you are addressing, in your own words.</strong>
+      </p>
+      <p>
+        This is the signature ethic that defines the TGK Community.
+        It protects clarity, prevents distortion, and makes disagreement productive.
+      </p>
+      <p class="muted small">
+        The full version of this principle is outlined in the
+        <a href="/pillars/tgk-community/charter/" class="link-accent">Community Charter</a>.
+      </p>
+    </section>
 
+  </section>
 </main>

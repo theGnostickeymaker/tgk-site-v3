@@ -1,0 +1,84 @@
+---
+layout: base.njk
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Community Threads"
+seriesTitle: "Topic Threads"
+seasonTitle: null
+episodeTitle: null
+partTitle: null
+
+title: "Discussion Topics"
+description: "Browse all active and upcoming TGK community discussion threads."
+
+glyph: "🗂️"
+glyphRow: ["✦", "☉", "✦"]
+
+bodyClass: "community"
+accent: "community"
+tier: "free"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
+  - { title: "Discussion Threads", url: "/pillars/tgk-community/threads/" }
+  - { title: "Topics" }
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- INTRO -->
+    <section class="section-block">
+      <h1 class="section-heading">Discussion Topics</h1>
+      <p class="lead">
+        All community discussion begins here. Topics are organised spaces where
+        readers, seekers, and contrarians can debate, interpret, and explore ideas
+        with the Steel Man ethic at the core.
+      </p>
+      <p>
+        Future scrolls will link directly to their corresponding topics, ensuring
+        clean pages and a unified conversation centre for the entire TGK ecosystem.
+      </p>
+    </section>
+
+    <!-- TOPIC GRID -->
+    <section class="section-block">
+      <h2 class="section-heading">Active & Upcoming Topics</h2>
+
+      <div class="topics-grid">
+
+        {% for t in topicsGrid %}
+          {% set state = t.state or "default" %}
+
+          <article class="gnostic-card {{ state }}">
+            <a class="card-link" href="{{ t.href }}">
+
+              <div class="card-body">
+                <div class="card-glyph">{{ t.glyph }}</div>
+                <h3 class="card-title">{{ t.title }}</h3>
+
+                {% if t.desc %}
+                  <p class="card-desc">{{ t.desc }}</p>
+                {% endif %}
+              </div>
+
+              {% if state == "coming-soon" %}
+                <div class="card-overlay">
+                  <span class="banner">Coming Soon</span>
+                </div>
+              {% endif %}
+
+              <div class="card-badge tier-free">Free</div>
+
+            </a>
+          </article>
+
+        {% endfor %}
+
+      </div>
+    </section>
+
+  </section>
+</main>

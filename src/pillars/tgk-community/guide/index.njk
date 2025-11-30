@@ -1,0 +1,81 @@
+---
+layout: base.njk
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Community Guide"
+seriesTitle: "Community Foundations"
+seasonTitle: null
+episodeTitle: null
+partTitle: null
+
+title: "Community Guide"
+description: "A gateway to the foundational documents and principles of the TGK Community."
+
+glyph: "✦"
+glyphRow: ["✦", "☉", "✦"]
+
+bodyClass: "community"
+accent: "community"
+tier: "free"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
+  - { title: "Community Guide", url: "/pillars/tgk-community/guide/" }
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- INTRO -->
+    <section class="section-block">
+      <h1 class="section-heading">Community Guide</h1>
+      <p class="lead">
+        The foundations of the TGK Community: clarity, discipline, fair-minded debate,
+        and a shared commitment to the Steel Man ethic.
+      </p>
+      <p>
+        These documents define the culture, expectations, and method of discourse that
+        make the TGK Community a sovereign, principled space distinct from the noise
+        of mainstream platforms.
+      </p>
+    </section>
+
+    <!-- GRID -->
+    <section class="section-block">
+      <h2 class="section-heading">Foundational Documents</h2>
+
+      <div class="guide-grid">
+
+        {% for g in guideGrid %}
+          {% set state = g.state or "default" %}
+
+          <article class="gnostic-card {{ state }}">
+            <a class="card-link" href="{{ g.href }}">
+
+              <div class="card-body">
+                <div class="card-glyph">{{ g.glyph }}</div>
+                <h3 class="card-title">{{ g.title }}</h3>
+
+                {% if g.desc %}
+                  <p class="card-desc">{{ g.desc }}</p>
+                {% endif %}
+              </div>
+
+              {% if state == "coming-soon" %}
+                <div class="card-overlay">
+                  <span class="banner">Coming Soon</span>
+                </div>
+              {% endif %}
+
+            </a>
+          </article>
+
+        {% endfor %}
+
+      </div>
+    </section>
+
+  </section>
+</main>
