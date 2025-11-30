@@ -143,57 +143,62 @@ seriesNav:
     desc: "A forensic read on minor royal privilege."
     url: "/pillars/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/"
 
-
 references:
   readings:
-    - title: "UK Government — Sovereign Grant 2025–26 Report"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fsovereign-grant-act-2011-report-of-the-royal-trustees-on-the-sovereign-grant-2025-26.pdf?alt=media&token=cc1998f6-efbc-4f74-bb9c-b1a3edc9965f"
-      desc: "Official parliamentary report on the Sovereign Grant and projected royal funding."
-    
-    - title: "The Crown Estate — Annual Report 2023–24"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2FTCE_AR24_Web_Laying.pdf?alt=media&token=268fbf56-e93b-497f-8bfd-ae2df1fa403e"
-      desc: "Financial disclosures and asset performance for the Crown Estate."
+    - id: source1
+      title: "Finances of the Monarchy – House of Commons Library (CBP-9807, 2025)"
+      url: "https://commonslibrary.parliament.uk/research-briefings/cbp-9807/"
+      desc: "Parliamentary briefing explaining the Sovereign Grant formula, the Duchies, tax arrangements and overall framework of royal finances."
 
-    - title: "Investopedia — Royal Family Net Worth Overview"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fbritish-royal-family-wealth.pdf?alt=media&token=df416697-cead-4e22-8129-d8d535f696f2"
-      desc: "Summary analysis of the Royal Family’s known financial holdings."
+    - id: source2
+      title: "Sovereign Grant and Sovereign Grant Reserve Annual Report and Accounts 2023–24"
+      url: "https://www.royal.uk/sites/default/files/documents/2024-07/Sovereign%20Grant%20Report%202023-24.pdf"
+      desc: "Official accounts for the Sovereign Grant, including the £86.3m total and net expenditure figures for 2022–23 and 2023–24."
 
-    - title: "The Guardian — King Charles’s £1.8bn Wealth Estimate"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Frevealed-king-charless-private-fortune-estimated-at-almost-2bn.pdf?alt=media&token=e30f29e2-2140-4403-8cb1-1fb504a3c862"
-      desc: "Investigative breakdown of King Charles III’s estimated private fortune."
+    - id: source3
+      title: "Duchy of Lancaster and Duchy of Cornwall Annual Reports 2023–24"
+      url: "https://duchyoflancaster.co.uk"
+      desc: "Latest published accounts for the Duchy of Lancaster and Duchy of Cornwall, showing capital values and surplus income for the King and the Prince of Wales."
 
-    - title: "Fortune — Prince William Inherits £1.2bn Duchy Estate"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fprince-william-inherits-duchy-of-cornwall-estate-from-king-charles-queen-death.pdf?alt=media&token=e2a35bf2-a4ae-4dc1-a400-c495581a4e8b"
-      desc: "Financial assessment following William’s inheritance of the Duchy of Cornwall."
+    - id: source4
+      title: "Royal Finances Report 2024 – Republic"
+      url: "https://assets.nationbuilder.com/republic/pages/407/attachments/original/1727082261/Royal_Finances_Report_2024_FINAL_for_publication.pdf"
+      desc: "Campaign group analysis estimating the total annual cost of the monarchy at more than £500m, including security, hidden local costs and tax advantages."
 
-    - title: "BBC — Paradise Papers: Queen’s Estate Invested Offshore"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2FBBC-paradise-papers-uk-41878305.pdf?alt=media&token=29d72d8f-a318-480a-847c-14aadd761891"
-      desc: "Revelations of offshore investments held by the Duchy of Lancaster."
+    - id: source5
+      title: "Revealed: King Charles’s private fortune estimated at almost £2bn"
+      url: "https://www.theguardian.com/uk-news/ng-interactive/2023/apr/20/revealed-king-charless-private-fortune-estimated-at-almost-2bn"
+      desc: "Guardian investigation placing King Charles’s private wealth at around £1.8bn and explaining how that estimate is constructed."
 
-    - title: "The Guardian — Crown Estate Deal with Azerbaijani Regime"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fqueen-crown-estate-bought-property-family-azerbaijan-ruler.pdf?alt=media&token=f0da477f-f9a5-42bd-be3e-e0d18bec8c12"
-      desc: "Investigation into a £67m property deal with a politically exposed family."
+    - id: source6
+      title: "Queen’s private estate invested millions of pounds offshore – Paradise Papers"
+      url: "https://www.theguardian.com/news/2017/nov/05/revealed-queen-private-estate-invested-offshore-paradise-papers"
+      desc: "Reveals the Duchy of Lancaster’s investments in funds based in Bermuda and the Cayman Islands."
 
-    - title: "Aljazeera — How Britain Took £45 Trillion from India"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fhow-britain-stole-45-trillion-from-india.pdf?alt=media&token=5aca975d-a94c-4ba0-809f-f290f0961e86"
-      desc: "Historical analysis of British imperial extraction from India."
+    - id: source7
+      title: "Crown Estate bought £67m London property from family of Azerbaijan ruler"
+      url: "https://www.theguardian.com/news/2021/oct/03/queen-crown-estate-bought-property-family-azerbaijan-ruler"
+      desc: "Investigation into the Crown Estate’s purchase of a £67m London property linked to Azerbaijan’s ruling family."
 
-    - title: "Smithsonian — The Bloody History of the Koh-i-Noor"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Ftrue-story-koh-i-noor-diamondand-why-british-wont-give-it-back-180964660.pdf?alt=media&token=9d6343d0-e2b0-48b4-981e-2ad4ab835cb0"
-      desc: "A detailed account of the contested history of the Koh-i-Noor diamond."
+    - id: source8
+      title: "How Britain stole $45 trillion from India"
+      url: "https://www.aljazeera.com/opinions/2018/12/19/how-britain-stole-45-trillion-from-india"
+      desc: "Explains Utsa Patnaik’s widely cited, but contested, estimate of colonial wealth drain from India between 1765 and 1938."
 
-    - title: "The Guardian — The Cost of the Crown: Slavery Podcast"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fcost-of-the-crown-part-3-hidden-history-monarchy-slavery-podcast.pdf?alt=media&token=52e85301-cbfd-4133-8a7f-90f15685c8a9"
-      desc: "Podcast investigation into royal links to slavery and colonial wealth."
+    - id: source9
+      title: "The true story of the Koh-i-Noor diamond"
+      url: "https://www.smithsonianmag.com/history/true-story-koh-i-noor-diamondand-why-british-wont-give-it-back-180964660/"
+      desc: "Historical account of the Koh-i-Noor’s seizure during British expansion in India and its incorporation into the Crown Jewels."
 
-    - title: "Yahoo — King Charles III Descended from Slaveowners"
-      url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fking-charles-ancestors-owned-slaves-165546456.pdf?alt=media&token=1279337c-88d3-468f-b4e1-7eca13999ee4"
-      desc: "Historical tracing of slave-owning ancestry within Charles III’s family line."
+    - id: source10
+      title: "The British kings and queens who supported and profited from slavery"
+      url: "https://www.theguardian.com/uk-news/2023/apr/06/the-british-kings-and-queens-who-supported-and-profited-from-slavery"
+      desc: "Outlines royal involvement in the Royal African Company and wider slave-trade profits."
 
-referencesNote:
-  All data derived from public records, investigative journalism and verified reporting.
-  Certain royal finances remain legally exempt from audit and FOI requests, so figures
-  marked “estimated” reflect the best available evidence.
+    - id: source11
+      title: "Direct ancestors of King Charles owned slave plantations, documents reveal"
+      url: "https://www.theguardian.com/uk-news/2023/apr/27/direct-ancestors-of-king-charles-owned-slave-plantations-documents-reveal"
+      desc: "Evidence linking King Charles’s family line to slave-owning families in colonial Virginia and the Caribbean."
 
 scholarly: []
 
@@ -210,33 +215,31 @@ scholarly: []
 <section class="content-container">
 
 <section class="section-block">
-<h2 class="section-heading">Not Just a Symbol</h2>
+  <h2 class="section-heading">Not Just a Symbol</h2>
 
-<blockquote class="blockquote">
-    <p>&ldquo;They bring in more than they cost.&rdquo;<br>  
-        &ldquo;It&rsquo;s just tradition.&rdquo;<br>  
-        &ldquo;They&rsquo;re good for tourism.&rdquo;</p>
-</blockquote>
+  <blockquote class="blockquote">
+    <p>&ldquo;They bring in more than they cost.&rdquo;<br>
+      &ldquo;It&rsquo;s just tradition.&rdquo;<br>
+      &ldquo;They&rsquo;re good for tourism.&rdquo;</p>
+  </blockquote>
 
-<p>These are the mantras of a well-guarded illusion, rehearsed in newspapers, echoed in classrooms, and baked into the psyche of a nation still under spell.</p>
+  <p>These are the mantras of a well-guarded illusion, rehearsed in newspapers, echoed in classrooms, and baked into the psyche of a nation still under a spell.</p>
 
-<p>But the monarchy is <strong>not ceremonial</strong>. It is <strong>not passive</strong>. And it is far from symbolic.
-    The British Royal Family is a <em>living system of economic extraction, spiritual inversion, and elite immunity</em>.
-    It is sustained by public money, protected by law, and <strong>insulated from the very accountability it demands of everyone else</strong>.</p>
-<p>This article isn't about whether you <em>like</em> the monarchy. It&rsquo;s about what it <strong>costs you</strong>. What it <strong>hides from you</strong>. And why it cannot coexist with truth.</p>
+  <p>But the monarchy is <strong>not ceremonial</strong>. It is <strong>not passive</strong>. And it is far from symbolic. The British Royal Family is a <em>living system of economic extraction, spiritual inversion, and elite immunity</em>. It is sustained by public money, protected by law, and <strong>insulated from the very accountability it demands of everyone else</strong>.</p>
 
+  <p>This article is not about whether you <em>like</em> the monarchy. It is about what it <strong>costs you</strong>, what it <strong>hides from you</strong>, and why it cannot coexist with truth.</p>
 </section>
 
 <!--Chapter 2. The Real Price Tag-->
 <section class="section-block">
 <h2 class="section-heading">The Real Price Tag</h2>
 
-<p>
-    The British public is told the Royal Family costs &ldquo;just £86 million per year.&rdquo;  
-    That number is the <em>Sovereign Grant, </em>the sanitized PR figure presented as if it covers the whole operation.
-</p>
+<p>The British public is told the Royal Family costs &ldquo;just £86 million per year.&rdquo;  
+    That number is the <em>Sovereign Grant, </em>the sanitized PR figure presented as if it covers the whole operation.</p>
 
-<p><strong>Sovereign Grant for 2022-23 was £107.5 million due to palace refurbishments, showing the figure is not fixed.</strong></p>
+<p>This headline figure has been frozen in cash terms at £86.3 million since 2021–22, but the Royal Trustees have already approved an increase to about £132 million in 2025–26, driven by record Crown Estate profits from offshore wind leases.</p>
+
+<p><strong>Net expenditure funded by the Sovereign Grant and its reserve peaked at £107.5 million in 2022–23, mainly because of the Buckingham Palace refurbishment, and was still £89.1 million in 2023–24, even though the official Grant line stayed at £86.3 million.</strong></p>
 
 <p><strong>But the truth is far more expensive.</strong> And far more hidden.</p>
 
@@ -245,93 +248,98 @@ scholarly: []
 </blockquote>
 </section>
 
-  <section class="section-block">
-    <h2 class="section-heading">What the Royals Actually Cost</h2>
-    <ul class="list-emoji">
-      <li><strong>Sovereign Grant:</strong> £86.3 million/year (official public budget)</li>
-      <li><strong>Security & Protection:</strong> Estimated £300-400 million/year (guarding palaces, events, VIPs)</li>
-      <li><strong>Hidden Costs:</strong> £50-70 million/year (local councils, royal travel, estate services)</li>
-      <li><strong>Tax Exemptions:</strong> £20-40 million/year (inheritance, capital gains, land profits)</li>
-    </ul>
-  </section>
-
-<section class="section-block">
-<h2 class="section-heading">💰 The Hidden Ledger of the Crown</h2>
-
-<div class="gnostic-table-responsive">
-    <table class="gnostic-table royal-cost-table">
-    <thead>
-        <tr>
-        <th>Category</th>
-        <th>Low Estimate</th>
-        <th>High Estimate</th>
-        <th>Source</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td><strong>Sovereign Grant</strong></td>
-        <td>£86.3 million</td>
-        <td>£86.3 million</td>
-        <td><a href="#source1">UK Parliament [1]</a></td>
-        </tr>
-        <tr>
-        <td><strong>Security (Police, Events, Residences)</strong></td>
-        <td>£300 million</td>
-        <td>£400 million</td>
-        <td>Estimated via Commons reports + FOI journalism</td>
-        </tr>
-        <tr>
-        <td><strong>Hidden Local Costs</strong></td>
-        <td>£50 million</td>
-        <td>£70 million</td>
-        <td>Freedom of Info responses, local audits</td>
-        </tr>
-        <tr>
-        <td><strong>Tax Breaks (Inheritance, Land, CGT)</strong></td>
-        <td>£20 million</td>
-        <td>£40 million</td>
-        <td><a href="#source4">The Guardian [4]</a></td>
-        </tr>
-        <tr>
-        <td><strong>Total Annual Cost</strong></td>
-        <td><strong>£456.3 million</strong></td>
-        <td><strong>£596.3 million</strong></td>
-        <td><em>Aggregated Estimate</em></td>
-        </tr>
-    </tbody>
-    </table>
+<div class="callout callout-warning">
+  <p><strong>Update 2025:</strong> Because the Crown Estate booked more than £1.1 billion in
+  offshore wind option fees, the Sovereign Grant is set to jump to about <strong>£132 million
+  in 2025–26</strong>. The percentage was cut from 25% to 12% simply to stop the visible
+  windfall becoming even bigger.</p>
 </div>
 
-  <p><strong>Total estimated public cost: £450-600 million per year.</strong></p>
-  </section>
-  
-  <section class="section-block">
-    <h2 class="section-heading">What That Means For You</h2>
-    <ul class="list-emoji">
-      <li><strong>Per citizen (68.5 million):</strong> ~<span class="highlight">£6.57 - £8.76/year</span></li>
-      <li><strong>Per taxpayer (33 million workers):</strong> ~<span class="highlight">£13.64 - £18.18/year</span></li>
-      <li><strong>Per average taxpayer household:</strong> ~<span class="highlight">£27.27 - £36.36/year</span></li>
-    </ul>
+<section class="section-block">
+  <h2 class="section-heading">💰 The Hidden Ledger of the Crown</h2>
 
-    <p>It&rsquo;s not about whether it&rsquo;s &ldquo;a lot.&rdquo; It&rsquo;s about what it&rsquo;s <strong>used for, </strong>and how <strong>you have no say</strong> in it.</p>
+  <div class="gnostic-table-responsive">
+    <table class="gnostic-table royal-cost-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Low estimate</th>
+          <th>High estimate</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sovereign Grant (official budget)</strong></td>
+          <td>£86.3 million</td>
+          <td>£86.3 million</td>
+          <td>Official Sovereign Grant total 2023-24 <sup><a href="#source1">[1]</a>, <a href="#source2">[2]</a></sup></td>
+        </tr>
+        <tr>
+          <td><strong>Security (police, events, residences)</strong></td>
+          <td>£150 million</td>
+          <td>£200 million</td>
+          <td>Campaign estimates based on Republic’s 2024-25 royal finances research <sup><a href="#source4">[4]</a></sup></td>
+        </tr>
+        <tr>
+          <td><strong>Hidden local and departmental costs</strong></td>
+          <td>£40 million</td>
+          <td>£80 million</td>
+          <td>Local authority budgets, departmental spending, and case studies aggregated by researchers and Republic <sup><a href="#source4">[4]</a></sup></td>
+        </tr>
+        <tr>
+          <td><strong>Tax advantages and lost revenue</strong></td>
+          <td>£180 million</td>
+          <td>£230 million</td>
+          <td>House of Commons Library analysis and Republic’s modelling of exemptions and tax breaks <sup><a href="#source1">[1]</a>, <a href="#source4">[4]</a></sup></td>
+        </tr>
+        <tr>
+          <td><strong>Total annual cost to the public</strong></td>
+          <td><strong>£456.3 million</strong></td>
+          <td><strong>£596.3 million</strong></td>
+          <td><em>Aggregated estimate based on the above sources</em></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <p>While you&rsquo;re taxed on your job, your food, and your energy, the King is inheriting <em>half a billion pounds tax-free</em> and living in palaces you paid to renovate.</p>
+  <p><strong>Total estimated public cost: roughly £450-600 million per year.</strong></p>
 
-    <p>This isn't symbolic. It&rsquo;s <strong>structured inequality, </strong>funded by you, and sealed by law.</p>
-  </section>
+  <p class="muted">
+    Figures for security, hidden local costs and tax advantages are aggregated estimates based on
+    campaign group Republic’s 2024 Royal Finances Report and later commentary, together with
+    independent analysis of tax exemptions and public budgets. These are not official audited totals.
+    The only figure the Government itself presents as the cost of the monarchy is the Sovereign Grant. 
+    <sup><a href="#source1">[1]</a>, <a href="#source2">[2]</a>, <a href="#source4">[4]</a></sup>
+  </p>
+</section>
 
-<!--Chapter 3. A Royal Fortune in Full View-->
+<section class="section-block">
+  <h2 class="section-heading">What That Means For You</h2>
+  <ul class="list-emoji">
+    <li><strong>Per citizen (c. 69.3 million people):</strong> ~<span class="highlight">£6.49 - £8.66/year</span></li>
+    <li><strong>Per taxpayer (c. 37.5 million people paying income tax):</strong> ~<span class="highlight">£12.00 - £16.00/year</span></li>
+    <li><strong>Per average taxpayer household:</strong> ~<span class="highlight">£24.00 - £32.00/year</span></li>
+  </ul>
+
+  <p>It is not about whether it is &ldquo;a lot.&rdquo; It is about what it is <strong>used for,</strong> and how <strong>you have no say</strong> in it.</p>
+
+  <p>While you are taxed on your job, your food, and your energy, the King is inheriting <em>around half a billion pounds tax-free</em> and living in palaces you paid to renovate.</p>
+
+  <p>This is not symbolic. It is <strong>structured inequality,</strong> funded by you, and sealed by law.</p>
+</section>
+
+<!-- Chapter 3. A Royal Fortune in Full View -->
 <section id="chapter-3" class="section-block">
   <h2 class="section-heading">A Royal Fortune in Full View</h2>
 
   <p>
-    The Royal Family claims to &ldquo;serve the nation.&rdquo; But in financial terms, it&rsquo;s the nation that serves them.
-    Their wealth is not mythical. It&rsquo;s <strong>measured, inherited, and ring-fenced, </strong>passed down through trusts, Duchies, sealed wills, and immunity from tax.
+    The Royal Family claims to “serve the nation”. But in financial terms, it is the nation that serves them.
+    Their wealth is not mythical. It is <strong>measured, inherited, and ring-fenced,</strong> passed down through trusts, Duchies, sealed wills, and immunity from tax.
   </p>
 
   <blockquote class="blockquote">
-    &ldquo;The Crown&rsquo;s wealth is not ceremonial, it&rsquo;s calculable. And it&rsquo;s protected by laws that exist for no other citizen in the land.&rdquo;
+    “The Crown’s wealth is not ceremonial, it is calculable. And it is protected by laws that exist for no other citizen in the land.”
   </blockquote>
 </section>
 
@@ -339,12 +347,19 @@ scholarly: []
   <h2 class="section-heading">Key Assets Held by the Crown</h2>
 
   <ul class="list-emoji">
-    <li><strong>Crown Estate:</strong> £15.5 billion (generates public revenue, not owned personally)</li>
-    <li><strong>Duchy of Lancaster:</strong> £653 million (held by King Charles III, generates approximately £23.3 million per year) <sup><a href="#source2">[2]</a></sup></li>
-    <li><strong>Duchy of Cornwall:</strong> £900 million (controlled by Prince William, generates approximately £24.6 million per year) <sup><a href="#source5">[5]</a></sup></li>
-    <li><strong>Sandringham Estate:</strong> £160 million (privately owned)</li>
-    <li><strong>Balmoral Castle:</strong> £140 million (privately owned)</li>
-    <li><strong>Royal Collection (art, jewels, regalia):</strong> Not publicly valued (said to be &ldquo;held in trust&rdquo;, but beyond audit)</li>
+    <li><strong>Crown Estate:</strong> about £16 billion in assets, generating around £1.1 billion profit a year, with offshore wind leases providing a huge new revenue stream that now directly feeds into the Sovereign Grant calculation.</li>
+
+    <li><strong>Recent offshore wind option fees</strong> alone brought in around £1.07 billion in a single year, a spike so large that ministers cut the Grant formula from 25 per cent to 12 per cent to avoid an even bigger visible windfall.</li>
+
+    <li><strong>Duchy of Lancaster (King’s private estate):</strong> worth around £650–680 million on paper, and paying the King around £24–27 million a year in private income, according to its latest published accounts. <sup><a href="#source3">[3]</a></sup></li>
+
+    <li><strong>Duchy of Cornwall (Prince William’s estate):</strong> worth about £1.1 billion, generating around £23–24 million a year in surplus income for the Prince of Wales. <sup><a href="#source3">[3]</a></sup></li>
+
+    <li><strong>Sandringham Estate:</strong> approximately £160 million (privately owned).</li>
+
+    <li><strong>Balmoral Castle:</strong> approximately £140 million (privately owned).</li>
+
+    <li><strong>Royal Collection (art, jewels, regalia):</strong> not publicly valued (said to be “held in trust”, but beyond independent audit).</li>
   </ul>
 </section>
 
@@ -352,315 +367,332 @@ scholarly: []
   <h2 class="section-heading">Private Royal Wealth (Best Estimates)</h2>
 
   <ul class="list-emoji">
-    <li><strong>King Charles III:</strong> approximately £1.8 billion net worth <sup><a href="#source4">[4]</a></sup></li>
-    <li><strong>Prince William:</strong> approximately £1.2 billion, including Duchy assets</li>
-    <li><strong>Inheritance Tax Paid:</strong> £0 (legal exemption on royal transitions)</li>
+    <li><strong>King Charles III:</strong> serious estimates of his personal fortune range from around £640 million (using a narrow definition of his assets) up to about £1.8 billion (when Duchy interests and wider holdings are included). <sup><a href="#source5">[5]</a></sup></li>
+
+    <li><strong>Prince William:</strong> often estimated in the hundreds of millions, with control of a Duchy estate worth about £1.1 billion and personal wealth widely reported in the low hundreds of millions. <sup><a href="#source3">[3]</a></sup></li>
+
+    <li><strong>Inheritance tax paid on royal succession:</strong> effectively £0, because royal transitions are granted a specific legal exemption.</li>
   </ul>
 
   <p>
-    These are not symbolic holdings. They are <strong>cash-generating empires</strong>, run like commercial operations but exempt from commercial oversight.
+    These are not symbolic holdings. They are <strong>cash-generating empires</strong>, run like commercial operations but insulated from normal commercial scrutiny.
   </p>
 
   <p>
-    The Duchies function as vast real estate portfolios, owning shopping centres, holiday parks, farmland and even office buildings.
-    Yet unlike typical landowners, the royals face no income tax, no corporation tax, and no inheritance tax on these estates.
+    The Duchies function as vast real estate portfolios, owning shopping centres, holiday parks,
+    farmland, and office buildings. Since the 1990s the monarch and heir have <em>voluntarily</em>
+    paid income tax on parts of this income, but the core privileges remain: no inheritance tax
+    on sovereign succession, and exemptions from corporation tax and capital gains tax on the
+    Duchies themselves.
   </p>
 
-  <p><strong>These estates were built on conquest. Enforced by law. And protected by royal silence.</strong></p>
+  <p><strong>These estates were built on conquest, enforced by law, and protected by royal silence.</strong></p>
 
 </section>
 
-<!--Chapter 4. Global Comparison-->
+<!-- Chapter 4. Global Comparison -->
 <section id="chapter-4" class="section-block">
   <h2 class="section-heading">Global Comparison</h2>
 
   <p>
     Defenders of the monarchy often say:  
-    <em>&ldquo;All countries have figureheads. Ours is no worse.&rdquo;</em>  
-    But when you look at the numbers, the British Crown isn't just expensive, it&rsquo;s the <strong>most costly constitutional monarchy in Europe</strong>.
+    <em>“All countries have figureheads. Ours is no worse.”</em>  
+    But when you look at the numbers, the British Crown is not just expensive, it is widely assessed as the
+    <strong>most costly constitutional monarchy in Europe</strong>, once security, Duchies, and hidden subsidies are included.
   </p>
 
   <blockquote class="blockquote">
-    &ldquo;No monarchy in the democratic world drains more from its people while offering less in return than Britain&rsquo;s.&rdquo;
+    “No monarchy in the democratic world drains more from its people while offering less in return than Britain’s.”
   </blockquote>
 </section>
 
 <section class="section-block">
-<h2 class="section-heading">Monarchies by Cost &mdash; Per Citizen</h2>
+  <h2 class="section-heading">Monarchies by Cost: Per Citizen</h2>
 
-<div class="gnostic-table-responsive">
+  <div class="gnostic-table-responsive">
     <table class="gnostic-table">
-    <thead>
+      <thead>
         <tr>
-        <th>Country</th>
-        <th>Cost per Person</th>
-        <th>Transparency</th>
-        <th>Tax Paid?</th>
-        <th>Notes</th>
+          <th>Country</th>
+          <th>Cost per Person</th>
+          <th>Transparency</th>
+          <th>Tax Paid?</th>
+          <th>Notes</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         <tr>
-        <td><strong>United Kingdom</strong></td>
-        <td><strong>£8.76</strong></td>
-        <td>Low</td>
-        <td>Voluntary only</td>
-        <td>Most expensive in Europe</td>
-        </tr>
-        <tr>
-        <td>Netherlands</td>
-        <td>~£4.00</td>
-        <td>Moderate</td>
-        <td>Some</td>
-        <td>Fixed annual budget</td>
+          <td><strong>United Kingdom</strong></td>
+          <td><strong>£6.50–£8.50 (est.)</strong></td>
+          <td>Low</td>
+          <td>Voluntary only</td>
+          <td>Highest true cost in Europe once security and hidden subsidies are included (Republic 2024)</td>
         </tr>
         <tr>
-        <td>Spain</td>
-        <td>~£1.00</td>
-        <td>Low</td>
-        <td>Yes (since 2015)</td>
-        <td>Budget limited by law</td>
+          <td>Netherlands</td>
+          <td>~£4.00</td>
+          <td>Moderate</td>
+          <td>Some</td>
+          <td>Fixed annual budget</td>
         </tr>
         <tr>
-        <td>Sweden</td>
-        <td>£0.65</td>
-        <td>High</td>
-        <td>Yes</td>
-        <td>Fully itemised royal budget</td>
+          <td>Spain</td>
+          <td>~£1.00</td>
+          <td>Low</td>
+          <td>Yes (since 2015)</td>
+          <td>Budget limited by law</td>
         </tr>
         <tr>
-        <td>Japan</td>
-        <td>£0.14</td>
-        <td>High</td>
-        <td>N/A</td>
-        <td>Emperor has no private fortune</td>
+          <td>Sweden</td>
+          <td>£0.65</td>
+          <td>High</td>
+          <td>Yes</td>
+          <td>Fully itemised royal budget</td>
         </tr>
         <tr>
-        <td>Saudi Arabia</td>
-        <td>£100+ (est.)</td>
-        <td>None</td>
-        <td>No</td>
-        <td>Absolute monarchy</td>
+          <td>Japan</td>
+          <td>£0.14</td>
+          <td>High</td>
+          <td>N/A</td>
+          <td>Emperor has no private fortune</td>
         </tr>
         <tr>
-        <td>UAE</td>
-        <td>£150+ (est.)</td>
-        <td>None</td>
-        <td>No</td>
-        <td>Oil-based dynasty</td>
+          <td>Saudi Arabia</td>
+          <td>£100+ (est.)</td>
+          <td>None</td>
+          <td>No</td>
+          <td>Absolute monarchy</td>
         </tr>
-    </tbody>
+        <tr>
+          <td>UAE</td>
+          <td>£150+ (est.)</td>
+          <td>None</td>
+          <td>No</td>
+          <td>Oil-based dynasty</td>
+        </tr>
+      </tbody>
     </table>
-</div>
+  </div>
 
-<p>
-    Even if we remove the Gulf monarchies (which are absolute and autocratic), the Windsors still top the list of royal drainers in the democratic world.
-</p>
+  <p>
+    Even if we remove the Gulf monarchies (which are absolute and autocratic), the Windsors still sit at the top of the royal drainers list in the democratic world.
+  </p>
 
-<p>
-    The Swedish Crown publishes itemised expenses.  
-    The Dutch monarchy has a capped stipend.  
-    The Spanish royals pay tax.  
+  <p>
+    The Swedish Crown publishes itemised expenses.<br>
+    The Dutch monarchy has a capped stipend.<br>
+    The Spanish royals pay tax.<br>
     The Japanese Emperor has no personal fortune.
-</p>
+  </p>
 
-<p>The British monarchy is <strong>the only one in Europe with both high cost and low accountability</strong>.</p>
+  <p>The British monarchy is <strong>the only one in Europe with both very high cost and very low accountability</strong>.</p>
 
-<p>
-    It&rsquo;s not tradition.  
-    It&rsquo;s a gilded siphon.
-</p>
+  <p>
+    It is not tradition.<br>
+    It is a gilded siphon.
+  </p>
 
 </section>
 
-<!--Chapter 5. The Architecture of Secrecy-->
+<!-- Chapter 5. The Architecture of Secrecy -->
 <section id="chapter-5" class="section-block">
-<h2 class="section-heading">The Architecture of Secrecy</h2>
+  <h2 class="section-heading">The Architecture of Secrecy</h2>
 
-<p>
+  <p>
     How does the monarchy maintain such vast wealth and control with so little scrutiny?
     The answer is simple: <strong>they are legally protected from the systems that hold the rest of us accountable</strong>.
-</p>
+  </p>
 
-<blockquote class="blockquote">
-    &ldquo;The Crown operates behind a veil stitched from secrecy clauses, sealed documents, and centuries of exemptions.&rdquo;
-</blockquote>
+  <blockquote class="blockquote">
+    “The Crown operates behind a veil stitched from secrecy clauses, sealed documents, and centuries of exemptions.”
+  </blockquote>
 </section>
 
 <section class="section-block">
-<h2 class="section-heading">Royal Tools of Obscurity</h2>
+  <h2 class="section-heading">Royal Tools of Obscurity</h2>
 
-<ul class="list-emoji">
-<li><strong>Sealed Wills:</strong> Royal wills are locked away for over 90 years, with no public access to who inherited what</li>
-<li><strong>Sovereign Immunity:</strong> The monarch cannot be sued, subpoenaed, or prosecuted in civil or criminal court</li>
-<li><strong>Freedom of Information (FOI) Exemption:</strong> The Royal Household is not subject to FOI laws, meaning the public has no right to financial records</li>
-<li><strong>No Inheritance Tax:</strong> Assets passed from monarch to monarch are completely exempt from the standard 40% estate tax</li>
-<li><strong>Offshore Investments:</strong> The Paradise Papers exposed £10 million of Duchy investments in Bermuda and the Cayman Islands <sup><a href="#source6">[6]</a></sup></li>
-<li><strong>Hidden Private Holdings:</strong> Duchies are legally classified as &ldquo;private estates&rdquo;, yet generate tens of millions in profit annually for royal use</li>
-</ul>
+  <ul class="list-emoji">
+    <li><strong>Sealed wills:</strong> royal wills are sealed for at least 90 years, and even then are only opened under a controlled process, with no automatic public access to who inherited what.</li>
 
-<p>
-    In 2022, investigative reporters found the Crown Estate had purchased a £67 million London property from the family of Azerbaijan&rsquo;s president, an oligarchic regime with money laundering allegations <sup><a href="#source7">[7]</a></sup>.
-</p>
+    <li><strong>Sovereign immunity:</strong> the monarch cannot be prosecuted or made the subject of civil legal action in the ordinary courts.</li>
 
-<p>
-    And when Queen Elizabeth died, King Charles inherited approximately £500 million in personal assets, without paying a single pound in inheritance tax.
-</p>
+    <li><strong>Freedom of Information (FOI) exemption:</strong> the Royal Household is not subject to FOI laws, meaning the public has no right of access to its internal financial records.</li>
 
-<p>If any ordinary citizen tried to shield this much wealth from audit or tax, they&rsquo;d be investigated. When the monarchy does it, it&rsquo;s tradition.</p>
+    <li><strong>No inheritance tax on succession:</strong> assets passed from monarch to monarch are exempt from the standard 40 per cent estate tax under a special agreement with government.</li>
+
+    <li><strong>Offshore investments:</strong> the Paradise Papers showed the Duchy of Lancaster, the late Queen’s private estate, had invested about £10 million in funds based in Bermuda and the Cayman Islands. <sup><a href="#source6">[6]</a></sup></li>
+
+    <li><strong>Hidden private holdings:</strong> the Duchies are legally classified as “private estates”, yet function as large commercial property empires generating tens of millions in profit each year for royal use.</li>
+  </ul>
+
+  <p>
+    Investigative reporting revealed that the Crown Estate bought a London property worth around £67 million from the family of Azerbaijan’s president, a regime long linked to corruption and money-laundering concerns. <sup><a href="#source7">[7]</a></sup>
+  </p>
+
+  <p>
+    When Queen Elizabeth II died, King Charles inherited a private fortune widely estimated in the hundreds of millions of pounds, without paying a single pound in inheritance tax on that transfer.
+  </p>
+
+  <p>If any ordinary citizen tried to shield this much wealth from audit or tax, they would be investigated. When the monarchy does it, it is called tradition.</p>
 </section>
 
-<!--Chapter 6. A System Built on Extraction-->
+<!-- Chapter 6. A System Built on Extraction -->
 <section id="chapter-6" class="section-block">
-<h2 class="section-heading">A System Built on Extraction</h2>
+  <h2 class="section-heading">A System Built on Extraction</h2>
 
-<p>
-    The monarchy&rsquo;s current wealth is not just protected by modern laws, it was <strong>accumulated through conquest, slavery, and colonisation</strong>.
-    From the sugar fields of the Caribbean to the temples of India, the Crown was the apex of a global exploitation engine.
-</p>
+  <p>
+    The monarchy’s current wealth is not only protected by modern laws, it was <strong>accumulated through conquest, slavery, and colonisation</strong>.
+    From the sugar fields of the Caribbean to the temples of India, the Crown sat at the apex of a global exploitation engine.
+  </p>
 
-<blockquote class="blockquote">
-    &ldquo;The gold in the vault and the stones in the crown were pulled from someone else&rsquo;s hands, often at gunpoint.&rdquo;
-</blockquote>
+  <blockquote class="blockquote">
+    “The gold in the vault and the stones in the crown were pulled from someone else’s hands, often at gunpoint.”
+  </blockquote>
 </section>
 
 <section class="section-block">
-<h2 class="section-heading">Colonial Conquest</h2>
+  <h2 class="section-heading">Colonial Conquest</h2>
 
-<ul class="list-emoji">
-    <li><strong>In India:</strong> British imperial rule drained an estimated £45 trillion in wealth between 1765-1938 <sup><a href="#source8">[8]</a></sup></li>
-    <li><strong>Koh-i-Noor Diamond:</strong> Acquired through conquest and &ldquo;gifted&rdquo; under duress, now set in the royal crown <sup><a href="#source9">[9]</a></sup></li>
-    <li><strong>East India Company:</strong> Functioned as a military-commercial proxy of the Crown, looting trade routes and territories</li>
-    <li><strong>Caribbean:</strong> British sugar colonies operated as slave economies that directly enriched the Crown and its allies</li>
-</ul>
+  <ul class="list-emoji">
+    <li><strong>In India:</strong> one widely cited, but contested, economic study estimates that British rule drained the equivalent of up to £45 trillion in wealth between 1765 and 1938. <sup><a href="#source8">[8]</a></sup></li>
+
+    <li><strong>Koh-i-Noor diamond:</strong> seized in the context of conquest and later “gifted” under duress, now set in the British royal regalia. <sup><a href="#source9">[9]</a></sup></li>
+
+    <li><strong>East India Company:</strong> functioned as a military-commercial proxy of the Crown, conquering and looting trade routes and territories across Asia.</li>
+
+    <li><strong>Caribbean:</strong> British sugar colonies operated as slave economies that directly enriched the Crown, British investors, and allied families.</li>
+  </ul>
 </section>
 
 <section class="section-block">
-<h2 class="section-heading">Slavery and Royal Ties</h2>
+  <h2 class="section-heading">Slavery and Royal Ties</h2>
 
-<ul class="list-emoji">
-    <li><strong>Royal African Company:</strong> The monarchy held shares in Britain&rsquo;s largest slave-trading company in the 17th century <sup><a href="#source10">[10]</a></sup></li>
-    <li><strong>Charles III’s ancestry:</strong> Directly linked to slave-owning families in colonial Virginia <sup><a href="#source11">[11]</a></sup></li>
-    <li><strong>Post-Abolition Compensation:</strong> In the 1830s, Britain paid slaveowners (not slaves) £20 million, including many aristocrats and royal allies</li>
-</ul>
+  <ul class="list-emoji">
+    <li><strong>Royal African Company:</strong> the monarchy held shares in Britain’s largest slave-trading company in the seventeenth century, and senior royals served as its governors. <sup><a href="#source10">[10]</a></sup></li>
 
-<p>
-    When Caribbean nations began seeking apologies and reparations, the Royal Family issued only &ldquo;expressions of sorrow&rdquo;, never a full admission of benefit or wrongdoing.
-</p>
+    <li><strong>Charles III’s ancestry:</strong> research has traced his family line directly to slave-owning families in colonial Virginia and the Caribbean. <sup><a href="#source11">[11]</a></sup></li>
 
-<p>
+    <li><strong>Post-abolition compensation:</strong> in the 1830s Britain paid £20 million in public money to slaveowners (not the enslaved), a vast bailout that enriched many aristocratic and royal-aligned families.</li>
+  </ul>
+
+  <p>
+    When Caribbean nations began seeking apologies and reparations, the Royal Family offered only carefully worded “expressions of sorrow”, never a full admission of benefit or wrongdoing.
+  </p>
+
+  <p>
     The monarchy was built on <strong>blood-stained contracts</strong>, sanctified by empire, and passed down through generations of entitlement.
-</p>
+  </p>
 
-<p>The Crown is not just a symbol of history. It is a <strong>mechanism of ongoing wealth transfer, from colonised pasts to elite futures</strong>.</p>
+  <p>The Crown is not just a symbol of history. It is a <strong>mechanism of ongoing wealth transfer, from colonised pasts to elite futures</strong>.</p>
 </section>
 
-<!--Chapter 7. TGK Reflection-->
+<!-- Chapter 7. TGK Reflection -->
 <section id="chapter-7" class="section-block">
-<h2 class="section-heading">TGK Reflection: The Anti-Sacred Crown</h2>
+  <h2 class="section-heading">TGK Reflection: The Anti-Sacred Crown</h2>
 
-<p>
-    Monarchy is marketed as tradition.  
-    As continuity. As a divine archetype.  
+  <p>
+    Monarchy is marketed as tradition, as continuity, as a divine archetype.
     But true sovereignty is not inherited. It is <strong>earned through virtue and service</strong>.
-</p>
+  </p>
 
-<blockquote class="blockquote">
-    &ldquo;When power is claimed without wisdom, and wealth without labour, you are no longer ruled, you are farmed.&rdquo;
-</blockquote>
+  <blockquote class="blockquote">
+    “When power is claimed without wisdom, and wealth without labour, you are no longer ruled, you are farmed.”
+  </blockquote>
 
-<p>
+  <p>
     In esoteric terms, the Crown is presented as a <strong>spiritual axis</strong>, a pillar of national identity, blessed by divine right.
     But the true crown is not made of gold. It is the inner flame of awakened conscience.
-</p>
+  </p>
 
-<p>
-    What we have instead is a <strong>ritual machine of empire</strong>, a bloodline of unaccountable power, cloaked in reverence, sustained by ignorance.
-</p>
+  <p>
+    What we have instead is a <strong>ritual machine of empire</strong>, a bloodline of unaccountable power, cloaked in reverence and sustained by ignorance.
+  </p>
 </section>
 
 <section class="section-block">
-<h2 class="section-heading">The Gnostic Interpretation</h2>
+  <h2 class="section-heading">The Gnostic Interpretation</h2>
 
-<ul class="list-emoji">
-    <li><strong>The Monarchy as an Archonic Entity:</strong> It sustains hierarchy, enforces illusion, and feeds on inherited obedience.</li>
-    <li><strong>The Crown as False Light:</strong> It appears sacred, but serves no cosmic order, only preservation of self.</li>
-    <li><strong>The Ritual of Silence:</strong> By hiding its ledger, it becomes a spiritual parasite, protected by law, not justice.</li>
-</ul>
+  <ul class="list-emoji">
+    <li><strong>The monarchy as an archonic entity:</strong> it sustains hierarchy, enforces illusion, and feeds on inherited obedience.</li>
+    <li><strong>The Crown as false light:</strong> it appears sacred, but serves no higher order, only preservation of itself.</li>
+    <li><strong>The ritual of silence:</strong> by hiding its ledger, it becomes a spiritual parasite, protected by law rather than justice.</li>
+  </ul>
 
-<p>
+  <p>
     In the ancient mysteries, kingship was a burden, not a right. The crown was a flame to guard, not a throne to inherit.
     What we see now is the <strong>inversion of that truth</strong>.
-</p>
+  </p>
 
-<p>When gold hides corruption, when tradition protects theft, and when reverence replaces inquiry, that is not divinity.  
-    It is <em>ritualised deception</em>.</p>
+  <p>
+    When gold hides corruption, when tradition protects theft, and when reverence replaces inquiry, that is not divinity.  
+    It is <em>ritualised deception</em>.
+  </p>
 
-<p>
-    This is why the monarchy is not just a political issue. It is a <strong>spiritual disorder</strong>, one that asks you to kneel, when the real work is to awaken.
-</p>
+  <p>
+    This is why the monarchy is not just a political issue. It is a <strong>spiritual disorder</strong>, one that asks you to kneel when the real work is to awaken.
+  </p>
 </section>
 
-<!--Final Chapter. The Time to See Clearly-->
+<!-- Final Chapter. The Time to See Clearly -->
 <section id="final-chapter" class="section-block">
-<h2 class="section-heading">The Time to See Clearly</h2>
+  <h2 class="section-heading">The Time to See Clearly</h2>
 
-<p>
-    You don't have to hate the King.  
-    You don't have to disrespect tradition.  
+  <p>
+    You do not have to hate the King.  
+    You do not have to despise tradition.  
     But you do have to <strong>know the truth</strong>:
-</p>
+  </p>
 
-<blockquote class="blockquote">
-    &ldquo;The monarchy is not ceremonial.  
+  <blockquote class="blockquote">
+    “The monarchy is not ceremonial.  
     It is not harmless.  
     It is not for you.  
-    It is funded by you, but designed to remain above you.&rdquo;
-</blockquote>
+    It is funded by you, but designed to remain above you.”
+  </blockquote>
 
-<p>
-    The numbers are not debatable:
-</p>
+  <p>
+    The core facts are not hard to see:
+  </p>
 
-<ul class="list-emoji">
-    <li>You fund <strong>£450-600 million/year</strong> in royal operations</li>
-    <li>The King inherited <strong>£500 million tax-free</strong></li>
-    <li>The family controls <strong>billions in estates</strong> shielded from audit</li>
-    <li>Their wills are sealed, their holdings hidden, their power protected</li>
-</ul>
+  <ul class="list-emoji">
+    <li>You fund around <strong>£450–600 million a year</strong> in royal operations once security, tax breaks, and hidden subsidies are included.</li>
+    <li>The King inherited a private fortune widely estimated at <strong>around £500 million</strong> from his mother, without paying inheritance tax on that transfer.</li>
+    <li>The family controls <strong>billions in estates and assets</strong> that are shielded from normal audit and democratic oversight.</li>
+    <li>Their wills are sealed, their holdings obscured, their legal position protected above that of ordinary citizens.</li>
+  </ul>
 
-<p>
-    And yet you&rsquo;re told: &ldquo;It&rsquo;s only a few quid.&rdquo;  
-    <strong>That&rsquo;s the con.</strong>
-</p>
+  <p>
+    And yet you are told: “It is only a few quid.”  
+    <strong>That is the con.</strong>
+  </p>
 </section>
 
 <section class="section-block">
-<h2 class="section-heading">What This Is Not</h2>
+  <h2 class="section-heading">What This Is Not</h2>
 
-<ul class="list-emoji">
-    <li>This is not anti-history</li>
-    <li>This is not anti-ceremony</li>
-    <li>This is not even anti-royal</li>
-</ul>
+  <ul class="list-emoji">
+    <li>This is not anti-history.</li>
+    <li>This is not anti-ceremony.</li>
+    <li>This is not even anti-royal.</li>
+  </ul>
 
-<p>
+  <p>
     This is a <strong>call to sacred clarity</strong>.
     A moment to stop worshipping power you cannot question.
     A moment to stop funding wealth you cannot access.
     A moment to see what stands behind the velvet curtain.
-</p>
+  </p>
 
-<p><strong>The Crown does not protect you. The Crown protects itself.</p>
+  <p><strong>The Crown does not protect you. The Crown protects itself.</strong></p>
 
-<p>
-    You've seen the truth of the Crown.  
+  <p>
+    You have seen the truth of the Crown.  
     What you do with it is yours now.
-</p>
+  </p>
 
-<p class="highlight">
+  <p class="highlight">
     ✶ Let no lie survive the light.
-</p>
+  </p>
 </section>
 
 <!-- ========================= -->
