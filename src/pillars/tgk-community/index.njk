@@ -57,19 +57,23 @@ breadcrumbs:
   <section class="community-modules section-block">
     <h2 class="section-heading">Community Spaces</h2>
 
-    <div class="pillar-grid">
+    <div class="community-grid">
       {% for m in communityModules %}
-        <div class="pillar-card {{ m.state }}">
-          <div class="pillar-card-glyph">{{ m.glyph }}</div>
-          <h3 class="pillar-card-title">{{ m.title }}</h3>
-          <p class="pillar-card-desc">{{ m.desc }}</p>
-          <p class="pillar-card-meta small">
+        <div class="community-card {{ m.state }}">
+          <div class="community-card-glyph">{{ m.glyph }}</div>
+          <h3 class="community-card-title">{{ m.title }}</h3>
+          <p class="community-card-desc">{{ m.desc }}</p>
+
+          <p class="community-card-meta small">
             Tier: <strong>{{ m.tier | upper }}</strong>
             {% if m.state == "coming-soon" %}
               <span class="coming-soon-tag">Coming Soon</span>
             {% endif %}
           </p>
         </div>
+      {% endfor %}
+    </div>
+
       {% endfor %}
     </div>
   </section>

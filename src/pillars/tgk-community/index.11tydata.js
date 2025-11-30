@@ -39,13 +39,13 @@ export default {
   // COMMUNITY MODULES (ROADMAP-READY)
   // ============================================
 
-  communityModules: [
+  communityGrid: [
     {
       href: "#",
       title: "Discussion Threads",
       glyph: "💬",
       desc:
-        "Comment spaces under selected scrolls. A place to read, respond, and practise the Steel Man ethic.",
+        "Topic-based community discussions linked to TGK scrolls. A structured space to debate, reply, and practise the Steel Man ethic.",
       tier: "free",
       state: "active"
     },
@@ -54,7 +54,7 @@ export default {
       title: "Study Circles",
       glyph: "📚",
       desc:
-        "Small-group readings and decodings of TGK texts. Community-led learning in a structured format.",
+        "Small-group readings and decodings of TGK texts. Community-led learning in a structured, respectful format.",
       tier: "free",
       state: "coming-soon"
     },
@@ -63,7 +63,7 @@ export default {
       title: "Live Sessions",
       glyph: "🎙",
       desc:
-        "Talks, Q&A, and real-time gatherings. Rituals, reflections, and knowledge-sharing events.",
+        "Talks, Q&A gatherings, rituals, and knowledge-sharing events held in real time.",
       tier: "free",
       state: "coming-soon"
     }
