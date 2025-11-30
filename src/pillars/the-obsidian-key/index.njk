@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "The Obsidian Key"
-description: "Deep dives into systems of control, hidden power, and societal erosion."
+description: "Deep investigations into systems of control, hidden power, corruption, and the machinery of modern empire."
 tagline: "Follow the money ✦ decode the myths and the masks"
 tier: free
 
@@ -11,41 +11,60 @@ bodyClass: obsidian
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Obsidian Key" }
+
+socialImage: "/tgk-assets/images/share/the-obsidian-key/obsidian-index.jpg"
 ---
 
 {% block head %}
-  {% set socialImage = "/tgk-assets/images/share/the-obsidian-key/obsidian-index.jpg" %}
+  {% set socialImage = socialImage %}
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
 <main class="main-content">
   <section class="content-container">
 
-<h4 class="index-heading">Deep investigations into hidden power, systemic erosion, and the machinery of control.</h4>
+    <!-- ✦ Intro -->
+    <h4 class="index-heading">
+      Deep investigations into hidden power, systemic erosion, corruption, and
+      the mechanisms that shape modern empire and obedience.
+    </h4>
 
-  <details class="disclaimer-box">
-    <summary><span class="disclaimer-heading">🔑 About The Obsidian Key</span></summary>
-    <p>
-      <strong>The Obsidian Key</strong> is the investigative pillar of The Gnostic Key —
-      a place for deep dives into systems of control, societal erosion, and the hidden
-      architecture of power. Here the pages unravel the illusions that mask injustice.
-    </p>
-    <p>
-      From the <em>House of Grift</em> to <em>SYSTEMIC</em>, these investigations map
-      corruption, expose courtroom alchemy, and confront the shadow structures that
-      shape our world. The Obsidian Key is not just research — it is a lens, sharpened
-      to cut through the myths and reveal what lies beneath.
-    </p>
-  </details>
+    <!-- ✦ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">✶ About The Obsidian Key</span>
+      </summary>
 
-  {% include "partials/pillar-grid.njk" %}
+      <p>
+        <strong>The Obsidian Key</strong> is the investigative pillar of The Gnostic Key.
+        It examines the structures beneath public illusion, exposing the covert mechanisms 
+        of power, wealth extraction, and institutional theatre that shape the modern world.
+      </p>
 
-  {% set items = pillarGrid %}
-  {% set headline = "The Gnostic Key — Pillars" %}
-  {% set base = "/" %}
-  {% include "partials/jsonld-collection.njk" %}
+      <p>
+        From the parasitic dynasties of the <em>House of Grift</em> to the judicial rituals
+        of <em>SYSTEMIC</em> and the financial spellcraft explored in <em>Empire Codes</em>,
+        these pages illuminate the architecture designed to manage populations, consolidate
+        wealth, and maintain inherited authority.
+      </p>
+    </details>
 
-  <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-  </div>
+    <!-- ✦ Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- ✦ JSON-LD Collection -->
+    {% set items = pillarGrid %}
+    {% set headline = "The Obsidian Key — Investigative Series" %}
+    {% set base = "/pillars/the-obsidian-key/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph }}
+      </span>
+    </div>
+
+  </section>
 </main>

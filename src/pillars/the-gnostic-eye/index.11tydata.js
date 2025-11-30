@@ -6,7 +6,8 @@ export default {
   permalink: "/pillars/the-gnostic-eye/index.html",
 
   siteTitle: "The Gnostic Key",
-  pillarTitle: "The Gnostic Eye",
+  pillarTitle: null,
+  seriesTitle: "The Gnostic Eye",
   gateTitle: null,
 
   title: "The Gnostic Eye | Symbol reading, decoding illusion, unveiling the code beneath the world.",

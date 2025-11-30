@@ -1,57 +1,55 @@
 {# ========================================================= 
-   🜏 TGK — Reference Section Partial (v2.1)
+   🗝 TGK — Reference Section Partial (v2.5 HOG/Investigations)
    Purpose:
-   Renders end-of-page reading lists and scholarly citations.
+   - Renders formal reference citations (not “recommended reading”)
+   - Numbers sources automatically for in-text linking
+   - Optional scholarly block
+   - Episode-specific FOI / evidence disclaimer (referencesNote)
+   - Universal TGK study disclaimer
 
-   ✅ Expects front-matter object:
+   Usage:
+     <sup><a href="#source3">[3]</a></sup>
+
+   Front matter:
      references:
-       title: "Further Study"
-       intro: "Explore the roots of this teaching."
-       readings:
-         - { title: "The Nag Hammadi Library", desc: "A collection of Gnostic scriptures." }
-       scholarly:
-         - { author: "Elaine Pagels", year: 1979, work: "The Gnostic Gospels", pub: "Random House" }
-
-   ⚙️ Styling:
-   - Uses `.section-block.source-footer` wrapper
-   - Symbolic bullets via `.list-emoji`
-   - Intended to appear before the footer / quiz section
-
-   🧩 Structure:
-   - references.title → section heading
-   - references.intro → optional intro paragraph
-   - references.readings → “Recommended Reading” list
-   - references.scholarly → “Scholarly Sources & Translations” list
+       readings: [ { title, url, desc } ]
+       scholarly: []
+     referencesNote: "string"
    ========================================================= #}
 
 {% if references %}
-<section id="resources" class="section-block source-footer">
-  <h2 class="section-heading">{{ references.title }}</h2>
+<section id="resources" class="section-block">
 
-  {% if references.intro %}
-    <p class="intro">{{ references.intro }}</p>
-  {% endif %}
+  <h2 class="section-heading">Resources</h2>
 
-  {# --- Recommended Reading --- #}
+  {# ---------------------------- #
+     REFERENCES (Primary)
+     ---------------------------- #}
   {% if references.readings %}
-    <h3 class="sub-heading">🔍 Recommended Reading</h3>
+    <h3 class="sub-heading">📑 References</h3>
     <ul class="list-emoji">
       {% for item in references.readings %}
-        <li>
-          <strong>{{ item.title }}</strong>
-          {% if item.desc %}&mdash; {{ item.desc }}{% endif %}
+        <li id="source{{ loop.index }}">
+          <strong>
+            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+              [{{ loop.index }}] {{ item.title }}
+            </a>
+          </strong>
+          {% if item.desc %} — {{ item.desc }}{% endif %}
         </li>
       {% endfor %}
     </ul>
   {% endif %}
 
-  {# --- Scholarly Sources & Translations --- #}
+  {# ---------------------------- #
+     SCHOLARLY SOURCES
+     ---------------------------- #}
   {% if references.scholarly %}
     <h3 class="sub-heading">📖 Scholarly Sources &amp; Translations</h3>
     <ul class="list-emoji">
       {% for item in references.scholarly %}
         <li>
-          {{ item.author }} ({{ item.year }}). 
+          {{ item.author }} ({{ item.year }}).
           <em>{{ item.work }}</em>.
           {% if item.pub %} {{ item.pub }}.{% endif %}
         </li>
@@ -59,9 +57,23 @@
     </ul>
   {% endif %}
 
+  {# ---------------------------- #
+     EPISODE-SPECIFIC REFERENCE NOTE
+     ---------------------------- #}
+  {% if referencesNote %}
+    <p class="disclaimer">
+      {{ referencesNote }}
+    </p>
+  {% endif %}
+
+  {# ---------------------------- #
+     UNIVERSAL TGK LEARNING DISCLAIMER
+     ---------------------------- #}
   <p class="disclaimer">
-    These sources are recommended for study and context —
-    they represent diverse voices and are offered as entry points, not dogma.
+    These sources are provided for verification, study and context.
+    They represent diverse perspectives and are offered as reference points,
+    not as doctrinal positions.
   </p>
+
 </section>
 {% endif %}

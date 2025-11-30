@@ -1,0 +1,70 @@
+---
+layout: base.njk
+title: "House of Grift — Season I"
+description: "A forensic descent into the parasitic machinery of the monarchy. Season I exposes the Crown’s extraction networks, symbolic roles and theatre of legitimacy."
+tagline: "Royals, throne lice and inherited extraction"
+tier: free
+
+glyph: "♕"
+accent: obsidian
+bodyClass: obsidian
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Obsidian Key", url: "/pillars/the-obsidian-key/" }
+  - { title: "House of Grift", url: "/pillars/the-obsidian-key/house-of-grift/" }
+  - { title: "Season I" }
+
+socialImage: "/tgk-assets/images/share/the-obsidian-key/hog-season-1.jpg"
+---
+
+{% block head %}
+  {% set socialImage = socialImage %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- ✦ Intro -->
+    <h4 class="index-heading">
+      Season I traces the symbolic and financial anatomy of monarchy, revealing the
+      extraction systems, myth-making and dynastic illusions that sustain the Crown.
+    </h4>
+
+    <!-- ✦ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">♕ About This Season</span>
+      </summary>
+
+      <p>
+        <strong>Season I</strong> examines the British monarchy as a parasitic organism.
+        Each episode breaks down a different node within the dynastic network, revealing
+        the financial shields, political protection and cultural theatre woven around it.
+      </p>
+
+      <p>
+        The aim is not commentary but autopsy. A clear view of how inherited power
+        extracts wealth, commands loyalty and maintains illusion.
+      </p>
+    </details>
+
+    <!-- ✦ Episode Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- ✦ JSON-LD -->
+    {% set items = seriesGrid %}
+    {% set headline = "House of Grift — Episodes" %}
+    {% set base = "/pillars/the-obsidian-key/house-of-grift/season-1/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph }}
+      </span>
+    </div>
+
+  </section>
+</main>
