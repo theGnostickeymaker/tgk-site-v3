@@ -200,6 +200,16 @@ references:
       url: "https://www.theguardian.com/uk-news/2023/apr/27/direct-ancestors-of-king-charles-owned-slave-plantations-documents-reveal"
       desc: "Evidence linking King Charles’s family line to slave-owning families in colonial Virginia and the Caribbean."
 
+  referencesNote: >
+    References [1]–[11] combine official reports, parliamentary briefings, campaign research, and
+    investigative journalism. Figures for the Sovereign Grant and Duchies are taken from official
+    accounts; the wider cost ranges for security, hidden local spending, and tax advantages are
+    modelled estimates based largely on Republic’s 2024 Royal Finances Report and other independent
+    analysis, not audited government totals. Historical material on empire, slavery, and colonial
+    wealth extraction reflects current academic debate, and the “up to £45 trillion” figure for India
+    is an upper-bound estimate from a contested economic study, not an official valuation. Gnostic
+    and symbolic readings are presented as interpretation, not as factual claims.
+
 scholarly: []
 
 ---
@@ -235,9 +245,16 @@ scholarly: []
 <h2 class="section-heading">The Real Price Tag</h2>
 
 <p>The British public is told the Royal Family costs &ldquo;just £86 million per year.&rdquo;  
-    That number is the <em>Sovereign Grant, </em>the sanitized PR figure presented as if it covers the whole operation.</p>
+    That number is the <em>Sovereign Grant, </em>the sanitised PR figure presented as if it covers the whole operation.</p>
 
 <p>This headline figure has been frozen in cash terms at £86.3 million since 2021–22, but the Royal Trustees have already approved an increase to about £132 million in 2025–26, driven by record Crown Estate profits from offshore wind leases.</p>
+
+<blockquote class="blockquote">
+  <strong>2023–24</strong>: Crown Estate books £1.108 billion (mostly one-off offshore wind fees)<br>
+  <strong>Old formula</strong>: 25% → Sovereign Grant would have been <strong>£277 million</strong><br>
+  <strong>Government fix</strong>: Slash formula to 12% → Grant “only” rises to <strong>£132 million</strong><br>
+  <strong>Translation</strong>: The public made a billion. The King still gets a 53% pay rise. The formula was changed to hide the scale.
+</blockquote>
 
 <p><strong>Net expenditure funded by the Sovereign Grant and its reserve peaked at £107.5 million in 2022–23, mainly because of the Buckingham Palace refurbishment, and was still £89.1 million in 2023–24, even though the official Grant line stayed at £86.3 million.</strong></p>
 
@@ -246,14 +263,15 @@ scholarly: []
 <blockquote class="blockquote">
     &ldquo;They say it&rsquo;s just a few quid a year. But the royals don't live on loose change, they live on silence.&rdquo;
 </blockquote>
-</section>
 
-<div class="callout callout-warning">
-  <p><strong>Update 2025:</strong> Because the Crown Estate booked more than £1.1 billion in
-  offshore wind option fees, the Sovereign Grant is set to jump to about <strong>£132 million
-  in 2025–26</strong>. The percentage was cut from 25% to 12% simply to stop the visible
-  windfall becoming even bigger.</p>
+<p class="callout callout-warning">
+  <strong>Update 2025:</strong> Because the Crown Estate booked more than £1.1 billion in
+    offshore wind option fees in a single year, the Sovereign Grant is set to jump to about
+    <strong>£132 million in 2025–26</strong>. The percentage used in the formula was cut from
+    25 per cent to 12 per cent not to reduce royal funding, but simply to stop the visible
+    windfall becoming even bigger on paper.</p>
 </div>
+</section>
 
 <section class="section-block">
   <h2 class="section-heading">💰 The Hidden Ledger of the Crown</h2>
@@ -279,7 +297,7 @@ scholarly: []
           <td><strong>Security (police, events, residences)</strong></td>
           <td>£150 million</td>
           <td>£200 million</td>
-          <td>Campaign estimates based on Republic’s 2024-25 royal finances research <sup><a href="#source4">[4]</a></sup></td>
+          <td>Campaign estimates based on Republic's 2024-25 royal finances research and Freedom of Information work on royal protection, special branch units, and major events. Government refuses to publish consolidated security costs, making independent modelling the only available assessment.</td>
         </tr>
         <tr>
           <td><strong>Hidden local and departmental costs</strong></td>
@@ -306,12 +324,14 @@ scholarly: []
   <p><strong>Total estimated public cost: roughly £450-600 million per year.</strong></p>
 
   <p class="muted">
-    Figures for security, hidden local costs and tax advantages are aggregated estimates based on
-    campaign group Republic’s 2024 Royal Finances Report and later commentary, together with
-    independent analysis of tax exemptions and public budgets. These are not official audited totals.
-    The only figure the Government itself presents as the cost of the monarchy is the Sovereign Grant. 
-    <sup><a href="#source1">[1]</a>, <a href="#source2">[2]</a>, <a href="#source4">[4]</a></sup>
-  </p>
+  Figures for security, hidden local costs and tax advantages are aggregated estimates based on
+  campaign group Republic’s 2024 Royal Finances Report and later commentary, together with
+  independent analysis of tax exemptions and public budgets. Because the Government refuses to
+  publish a dedicated royal security total, these ranges are the best available public modelling,
+  not official audited sums. The only figure the Government itself presents as the cost of the
+  monarchy is the Sovereign Grant. 
+  <sup><a href="#source1">[1]</a>, <a href="#source2">[2]</a>, <a href="#source4">[4]</a></sup>
+</p>
 </section>
 
 <section class="section-block">
@@ -321,6 +341,12 @@ scholarly: []
     <li><strong>Per taxpayer (c. 37.5 million people paying income tax):</strong> ~<span class="highlight">£12.00 - £16.00/year</span></li>
     <li><strong>Per average taxpayer household:</strong> ~<span class="highlight">£24.00 - £32.00/year</span></li>
   </ul>
+
+  <p class="muted">
+    These figures are simple averages. In reality, higher-rate taxpayers fund a larger share of the bill,
+    but the point remains: every working household is paying towards a system they cannot meaningfully
+    question or control.
+  </p>
 
   <p>It is not about whether it is &ldquo;a lot.&rdquo; It is about what it is <strong>used for,</strong> and how <strong>you have no say</strong> in it.</p>
 
@@ -404,6 +430,33 @@ scholarly: []
   <blockquote class="blockquote">
     “No monarchy in the democratic world drains more from its people while offering less in return than Britain’s.”
   </blockquote>
+</section>
+
+<section class="section-block">
+  <h2 class="section-heading">Breaking the Royal Myths</h2>
+
+  <ul class="list-emoji">
+    <li><strong>“They pay for themselves through tourism.”</strong><br>
+      France, Italy and the United States attract more visitors and generate huge palace and
+      heritage tourism without a monarchy. People come for history, not for whose face is on
+      the balcony. There is no serious evidence that abolishing the monarchy would reduce
+      overall tourism; what would change is who benefits from the revenue. Versailles alone attracts more than 10 million visitors annually and generates over €100 million in revenue—without a single monarch in residence. The Tower of London, Windsor Castle, and Buckingham Palace could operate identically as state-managed heritage sites, with all revenue going to the public purse rather than being funneled through the Sovereign Grant formula.</li>
+
+    <li><strong>“The Crown Estate belongs to the monarch.”</strong><br>
+      The Crown Estate is formally held in the name of the monarch but managed by an independent board. Its profits flow to the Treasury, and then a percentage (currently 12%, previously 25%) is returned as the Sovereign Grant. In essence, public assets are used to calculate a private royal allowance, with the formula designed to obscure the scale of wealth involved.</li>
+
+    <li><strong>“They work hard for the money.”</strong><br>
+      Royal “engagements” are counted in bulk, but most are short ceremonial appearances
+      supported by staff, not full working days. Even on the most generous measure, no
+      senior royal comes close to the hours expected of ordinary professionals or public
+      servants on a fraction of the pay and with none of the inherited perks.</li>
+  </ul>
+
+  <p>
+    When you strip away the slogans, you are left with a simple structure: public wealth,
+    public assets and public labour used to sustain a private hereditary institution that
+    no citizen has ever been allowed to vote for.
+  </p>
 </section>
 
 <section class="section-block">
@@ -554,7 +607,7 @@ scholarly: []
   <h2 class="section-heading">Colonial Conquest</h2>
 
   <ul class="list-emoji">
-    <li><strong>In India:</strong> one widely cited, but contested, economic study estimates that British rule drained the equivalent of up to £45 trillion in wealth between 1765 and 1938. <sup><a href="#source8">[8]</a></sup></li>
+    <li><strong>In India:</strong> economic historians universally acknowledge that British rule drained vast wealth from the subcontinent; published estimates range from hundreds of billions to a highly contested upper bound of around £45 trillion (in today’s money) between 1765 and 1938, depending on method and assumptions. <sup><a href="#source8">[8]</a></sup></li>
 
     <li><strong>Koh-i-Noor diamond:</strong> seized in the context of conquest and later “gifted” under duress, now set in the British royal regalia. <sup><a href="#source9">[9]</a></sup></li>
 
@@ -656,10 +709,16 @@ scholarly: []
 
   <ul class="list-emoji">
     <li>You fund around <strong>£450–600 million a year</strong> in royal operations once security, tax breaks, and hidden subsidies are included.</li>
-    <li>The King inherited a private fortune widely estimated at <strong>around £500 million</strong> from his mother, without paying inheritance tax on that transfer.</li>
+    <li>the King inherited a private fortune from his mother—estimates of his total personal wealth range from £640 million to £1.8 billion—without paying inheritance tax on the royal-to-royal transfer.</li>
     <li>The family controls <strong>billions in estates and assets</strong> that are shielded from normal audit and democratic oversight.</li>
     <li>Their wills are sealed, their holdings obscured, their legal position protected above that of ordinary citizens.</li>
   </ul>
+
+  <p class="muted">
+    That is money which could be funding nurses, teachers, social housing, mental health services,
+    or debt relief. Instead, it is ring-fenced for a hereditary institution that sits above the
+    laws it benefits from.
+  </p>
 
   <p>
     And yet you are told: “It is only a few quid.”  
@@ -686,13 +745,14 @@ scholarly: []
   <p><strong>The Crown does not protect you. The Crown protects itself.</strong></p>
 
   <p>
-    You have seen the truth of the Crown.  
-    What you do with it is yours now.
+    You have seen the truth of the Crown. What you do with it is yours now.
   </p>
 
   <p class="highlight">
     ✶ Let no lie survive the light.
   </p>
+
+  <p>You cannot vote out a monarch. But you can refuse to mistake ceremony for consent, tradition for truth, or inherited power for earned authority. You can speak. You can question. You can name what you see. That act—the refusal to kneel to comfortable lies—is the only sovereign power that cannot be inherited.</p>
 </section>
 
 <!-- ========================= -->

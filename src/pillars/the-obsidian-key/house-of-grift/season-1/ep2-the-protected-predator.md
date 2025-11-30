@@ -158,16 +158,8 @@ references:
       url: "https://firebasestorage.googleapis.com/v0/b/the-gnostic-key.firebasestorage.app/o/House%20of%20Grift%2Fandrew-newsnight-interview-uk.pdf?alt=media&token=cc81173c-39c0-4565-8b67-94e191745969"
       desc: "Full interview transcript including disputed claims, inconsistencies, and public reactions."
 
-referencesNote: >
-  References [1]–[11] combine official reports, parliamentary briefings, campaign research,
-  and investigative journalism. Figures for the Sovereign Grant and Duchies are taken from
-  official accounts; the wider cost ranges for security, hidden local spending, and tax
-  advantages are modelled estimates based largely on Republic’s 2024 Royal Finances Report
-  and other independent analysis, not audited government totals. Historical material on
-  empire, slavery, and colonial wealth extraction reflects current academic debate: the
-  “up to £45 trillion” figure for India is an upper-bound estimate from a contested
-  economic study, not an official valuation. Gnostic and symbolic readings are presented
-  as interpretation, not as factual claims.
+referencesNote:
+  "This article is grounded in verified journalism, court filings and established reporting. Certain financial arrangements and royal estate details remain legally exempt from public scrutiny."
 
 scholarly: []
 
