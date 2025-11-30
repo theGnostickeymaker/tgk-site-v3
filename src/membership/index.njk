@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "Your TGK Membership"
-description: "Join, manage, or upgrade your access — support sacred knowledge preservation and unlock deeper pages of The Gnostic Key."
+description: "Join, manage, or upgrade your access. Support sacred knowledge preservation and unlock deeper pages of The Gnostic Key."
 glyph: "🜂"
 glyphRow: ["🜂", "☥", "🜂"]
 bodyClass: "lightgold requires-auth"
@@ -9,7 +9,7 @@ permalink: "/membership/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "Dashboard",  url: "/dashboard/"}
+  - { title: "Dashboard", url: "/dashboard/" }
   - { title: "Membership" }
 ---
 
@@ -30,58 +30,64 @@ breadcrumbs:
       </h2>
     </div>
 
-    <!-- ✦ Current Tier Summary -->
+    <!-- Current Tier Summary -->
     <div class="tier-display inline">
       <span>Your current tier:</span>
       <span id="tier-badge" class="tier-badge tier-free">Free</span>
-      <span class="member-since muted"> <span id="member-since">—</span>
-      </span>
+      <span class="member-since muted"><span id="member-since">—</span></span>
     </div>
 
-    <!-- ✦ Membership & Billing -->
+    <!-- Membership and Billing -->
     <section class="section-block">
-      <h3 class="section-heading">Membership & Billing</h3>
+      <h3 class="section-heading">Membership and Billing</h3>
+
       <div class="btn-wrap membership-buttons center">
         <button id="manage-btn" class="btn gold">Open Billing Portal</button>
       </div>
+
       <p class="small muted">
-        Manage your payment methods, view invoices, or cancel your plan anytime
-        through Stripe’s secure customer portal.
+        Manage your payment methods, view invoices, update your tier, or cancel your plan at any time through Stripe’s secure customer portal.
       </p>
     </section>
 
-    <!-- ✦ Join Options -->
+    <!-- Join Options -->
     <section class="section-block join-options">
       <h3 class="section-heading">Choose Your Path</h3>
+
       <p class="lead">
-        The Gnostic Key is sustained by seekers like you.<br>
-        Choose your tier of membership to unlock deeper archives,<br>
-        support future pages, and join our growing circle of initiates.
+        The Gnostic Key is sustained by its readers.  
+        Select a tier of membership to unlock deeper archives, support future investigations,  
+        and take your place within our circle of initiates.
       </p>
+
       {% include "partials/page-membership-grid.njk" %}
     </section>
 
-    <!-- ✦ FAQ -->
+    <!-- FAQ -->
     <section class="section-block">
       <h3 class="section-heading">Frequently Asked Questions</h3>
+
       <details>
         <summary>Can I change my tier later?</summary>
-        <p>Yes — you can upgrade, downgrade, or cancel anytime through your Dashboard.</p>
+        <p>You may upgrade, downgrade, or cancel at any time through your dashboard.</p>
       </details>
+
       <details>
         <summary>Do I need an account to access free pages?</summary>
-        <p>No — free-tier pages are open to all visitors, but an account allows you to save bookmarks and join discussions.</p>
+        <p>Free content is publicly available. However, creating an account allows you to save bookmarks and access future community features.</p>
       </details>
+
       <details>
         <summary>How secure is my payment?</summary>
-        <p>All payments are handled via Stripe — TGK never stores your card details or sensitive financial data.</p>
+        <p>All billing is conducted through Stripe. The Gnostic Key never stores card details or sensitive financial information.</p>
       </details>
     </section>
 
-    <!-- ✦ Logout -->
+    <!-- Logout -->
     <section class="section-block">
       <h3 class="section-heading">Sign Out</h3>
-      <p class="small">You can securely sign out of your TGK account below.</p>
+      <p class="small">You may securely sign out of your account below.</p>
+
       <div class="btn-wrap center">
         <button id="logout-btn" class="btn outline">Sign Out</button>
       </div>
@@ -94,7 +100,7 @@ breadcrumbs:
   </div>
 </main>
 
-<!-- 🜂 Unified Membership Logic -->
+<!-- Unified Membership Logic -->
 <script type="module">
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
   import {
@@ -107,6 +113,7 @@ breadcrumbs:
   const auth = getAuth();
 
   document.addEventListener("DOMContentLoaded", () => {
+    // Load cached tier instantly
     const cachedTier = localStorage.getItem("tgk-tier");
     if (cachedTier) updateTierUI(cachedTier);
 
@@ -117,20 +124,31 @@ breadcrumbs:
         document.getElementById("logout-btn")?.addEventListener("click", pageSignout);
       } else {
         updateTierUI("visitor");
+
+        // Preserve intended destination
         window.__TGK_GATE__?.saveReturnUrl?.();
-        if (!location.pathname.includes("/signin")) window.location.replace("/signin/");
+
+        // Redirect to sign in unless already on that page
+        if (!location.pathname.includes("/signin")) {
+          window.location.replace("/signin/");
+        }
       }
     });
   });
 
-  // 🜂 Manage Billing Portal
+  // Manage Billing Portal
   const manageBtn = document.getElementById("manage-btn");
+
   manageBtn?.addEventListener("click", async () => {
     const user = auth.currentUser;
-    if (!user) return alert("Please sign in to manage billing.");
+    if (!user) {
+      alert("Please sign in to manage billing.");
+      return;
+    }
 
     try {
       const token = await user.getIdToken();
+
       const res = await fetch("/.netlify/functions/create-portal-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -138,16 +156,17 @@ breadcrumbs:
       });
 
       const data = await res.json();
+
       if (res.ok && data.url) {
-        console.log("[TGK] Redirecting to Stripe Portal");
+        console.log("[TGK] Redirecting to Stripe portal");
         window.location.href = data.url;
       } else {
         console.warn("[TGK] Portal error:", data);
-        alert("Could not open billing portal. Please try again.");
+        alert("The billing portal could not be opened. Please try again shortly.");
       }
     } catch (err) {
       console.error("[TGK] Portal session error:", err);
-      alert("Error opening billing portal.");
+      alert("An error occurred whilst opening the billing portal.");
     }
   });
 </script>

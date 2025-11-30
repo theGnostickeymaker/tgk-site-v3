@@ -1,9 +1,39 @@
 ---
 layout: base.njk
-title: "Signing Out..."
-description: "Ending your TGK session safely."
-bodyClass: "obsidian"
+
+# Identity
+pageId: "logout"
 permalink: "/logout/index.html"
+
+# Unified Header Hierarchy
+siteTitle: "The Gnostic Key"
+pillarTitle: "Account"
+gateTitle: null
+seriesTitle: null
+seasonTitle: null
+episodeTitle: "Signing Out"
+partTitle: null
+
+# Display
+title: "Signing Out"
+description: "Ending your TGK session safely."
+tagline: "Session closure and return to the Gate"
+
+glyph: "⌁"
+glyphRow: ["☉", "⌁", "☽"]
+accent: "obsidian"
+bodyClass: "obsidian"
+tier: "free"
+
+tags:
+  - "account"
+  - "logout"
+  - "auth"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "Account" }
+  - { title: "Signing Out" }
 ---
 
 {% block head %}
@@ -11,41 +41,41 @@ permalink: "/logout/index.html"
   {% include "partials/head-meta.njk" %}
 {% endblock %}
 
-<body>
 <main class="main-content center">
   <section class="content-container">
-    <h2>Signing you out...</h2>
-    <p class="muted">Please wait while we close your session.</p>
+    <h2>Signing you out</h2>
+    <p class="muted">Please wait while your session is securely closed.</p>
   </section>
 </main>
 
 <script type="module">
-import { app } from "/js/firebase-init.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  import { app } from "/js/firebase-init.js";
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
-const auth = getAuth(app);
+  const auth = getAuth(app);
 
-(async () => {
-  try {
-    console.log("[TGK] Executing logout script…");
+  (async () => {
+    try {
+      console.log("[TGK] Executing logout script");
 
-    await signOut(auth);
+      await signOut(auth);
 
-    // 🔹 Clear local and session data
-    localStorage.clear();
-    sessionStorage.clear();
-    document.cookie.split(";").forEach(c => {
-      document.cookie = c
-        .replace(/^ +/, "")
-        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    });
+      // Clear browser storage
+      localStorage.clear();
+      sessionStorage.clear();
 
-    console.log("[TGK] Sign-out complete. Redirecting home…");
-    window.location.href = "/";
-  } catch (err) {
-    console.error("[TGK] Logout failed:", err);
-    window.location.href = "/";
-  }
-})();
+      // Clear cookies
+      document.cookie.split(";").forEach(c => {
+        document.cookie = c
+          .replace(/^ +/, "")
+          .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      });
+
+      console.log("[TGK] Sign-out complete. Redirecting home");
+      window.location.href = "/";
+    } catch (err) {
+      console.error("[TGK] Logout failed:", err);
+      window.location.href = "/";
+    }
+  })();
 </script>
-</body>

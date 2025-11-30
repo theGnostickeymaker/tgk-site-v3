@@ -45,7 +45,7 @@ breadcrumbs:
   const msg = document.getElementById("verify-msg");
   const params = new URLSearchParams(window.location.search);
   const oobCode = params.get("oobCode");
-  const fallbackReturn = params.get("return"); // <— new
+  const fallbackReturn = params.get("return");
 
   async function verify() {
     msg.textContent = "Verifying your address...";
@@ -56,25 +56,27 @@ breadcrumbs:
         Your account is now active. Redirecting...
       `;
 
-      // Refresh token so tier claims are available immediately
+      // Refresh token immediately so membership tier can sync
       await auth.currentUser?.getIdToken(true);
 
       setTimeout(() => {
-        // 1) Try storage-based handoff (original tab/session)
+        // 1. Return to the originating page if stored in session
         if (consumeReturnUrl()) return;
 
-        // 2) Use the URL encoded in the email link (cross-context handoff)
+        // 2. Cross-context fallback: use return URL from email link
         if (fallbackReturn) {
           window.location.replace(fallbackReturn);
           return;
         }
 
-        // 3) Final fallback
+        // 3. Default destination
         window.location.replace("/dashboard/");
       }, 1500);
+
     } catch (error) {
       console.error("[Verify] Error:", error);
-      msg.innerHTML = "Verification link invalid or expired. Please request a new one from your dashboard.";
+      msg.innerHTML =
+        "Verification link invalid or expired. Please request a new one from your dashboard.";
     }
   }
 
@@ -82,4 +84,3 @@ breadcrumbs:
   else msg.textContent = "Invalid verification link.";
 </script>
 {% endraw %}
-

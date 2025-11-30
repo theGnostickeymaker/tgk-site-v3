@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "Your TGK Dashboard"
-description: "Your personal TGK space — access bookmarks, progress, membership, and billing."
+description: "Your personal TGK space, including bookmarks, progress, membership, and billing."
 glyph: "🜂"
 glyphRow: ["🜂", "☥", "🜂"]
 bodyClass: "lightgold requires-auth"
@@ -9,9 +9,10 @@ permalink: "/dashboard/index.html"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
-  - { title: "Membership",  url: "/membership/"}
+  - { title: "Membership", url: "/membership/" }
   - { title: "Dashboard" }
 ---
+
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/system/dashboard.jpg" %}
   {% include "partials/head-meta.njk" %}
@@ -20,61 +21,58 @@ breadcrumbs:
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
 
-<body>
 <main class="main-content page-dashboard">
   <section class="content-container" id="page-dashboard">
 
-  <!-- ✦ Welcome Header -->
-   <div class="dashboard-welcome">
+    <!-- Welcome Header -->
+    <div class="dashboard-welcome">
       <h2 class="section-heading">
         Welcome, <span id="user-name" class="highlight">Seeker</span>
       </h2>
     </div>
 
-    <!-- ✦ Current Tier Summary -->
+    <!-- Current Tier Summary -->
     <div class="tier-display inline">
       <span>Your current tier:</span>
       <span id="tier-badge" class="tier-badge tier-free">Free</span>
-      <span class="member-since muted"> <span id="member-since">—</span>
-      </span>
+      <span class="member-since muted"><span id="member-since">—</span></span>
     </div>
 
-    <!-- ✦ Membership Management -->
+    <!-- Membership Management -->
     <section class="section-block">
-      <h3 class="section-heading">Membership & Billing</h3>
+      <h3 class="section-heading">Membership and Billing</h3>
       <div class="btn-wrap">
-        <a href="/membership/" class="btn outline">View / Manage Membership</a>
+        <a href="/membership/" class="btn outline">View or Manage Membership</a>
       </div>
-      <p class="small">
-        Upgrade, join, or manage your billing anytime in your membership centre.
+      <p class="small muted">
+        Upgrade, join, or manage your billing at any time through your membership centre.
       </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- ✦ Profile Information -->
-  <section class="section-block auth-form">
-    <h2 class="section-heading">Profile Information</h2>
-    <p class="lead muted">Update your display name or review your account details below.</p>
+    <!-- Profile Information -->
+    <section class="section-block auth-form">
+      <h2 class="section-heading">Profile Information</h2>
+      <p class="lead muted">Update your display name or review your account details below.</p>
 
-    <form id="profile-form" class="tgk-form" autocomplete="off" novalidate>
-      <div class="form-group">
-        <label for="profile-name">Display Name</label>
-        <input type="text" id="profile-name" placeholder="Your display name" required />
-      </div>
+      <form id="profile-form" class="tgk-form" autocomplete="off" novalidate>
+        <div class="form-group">
+          <label for="profile-name">Display Name</label>
+          <input type="text" id="profile-name" placeholder="Your display name" required>
+        </div>
 
-      <div class="form-group">
-        <label for="profile-email">Email Address</label>
-        <input type="email" id="profile-email" placeholder="your@email.com" disabled />
-      </div>
+        <div class="form-group">
+          <label for="profile-email">Email Address</label>
+          <input type="email" id="profile-email" disabled>
+        </div>
 
-      <div class="btn-wrap center">
-        <button type="submit" class="btn outline full-width">Save Changes</button>
-        <span id="profile-status" class="small muted"></span>
-      </div>
-    </form>
-  </section>
+        <div class="btn-wrap center">
+          <button type="submit" class="btn outline full-width">Save Changes</button>
+          <span id="profile-status" class="small muted"></span>
+        </div>
+      </form>
+    </section>
 
-    <!-- ✦ Activity Widgets (optional hidden) -->
+    <!-- Activity Widgets (Reserved for future releases) -->
     <section hidden>
       <h3 class="section-heading">Your Activity</h3>
       <div class="dashboard-widgets">
@@ -84,27 +82,33 @@ breadcrumbs:
       </div>
     </section>
 
-    <!-- ✦ Bookmarks -->
+    <!-- Bookmarks -->
     <section class="section-block">
-    <h3 class="section-heading">Your Bookmarks</h3>
-    <div id="bookmark-dashboard">
-      <p id="bookmark-loading" class="muted small">Loading bookmarks…</p>
-      <div id="bookmark-grid-mount"></div>
-      <p id="no-bookmarks" class="muted small" hidden>
-        No bookmarks yet. Explore the <a href="/pillars/the-teachings/">Teachings</a> or
-        the <a href="/pillars/the-vault/">Vault</a> to begin your journey.
-      </p>
-    </div>
-  </section>
+      <h3 class="section-heading">Your Bookmarks</h3>
 
-  <!-- ✦ Logout -->
-  <section class="section-block">
-    <h3 class="section-heading">Sign Out</h3>
-    <p class="small">You can securely sign out of your TGK account below.</p>
+      <div id="bookmark-dashboard">
+        <p id="bookmark-loading" class="muted small">Loading bookmarks...</p>
 
-    <div class="btn-wrap center">
-      <button id="logout-btn" class="btn outline">Sign Out</button>
-    </div>
+        <div id="bookmark-grid-mount"></div>
+
+        <p id="no-bookmarks" class="muted small" hidden>
+          No bookmarks yet. Explore the
+          <a href="/pillars/the-teachings/">Teachings</a> or the
+          <a href="/pillars/the-vault/">Vault</a> to begin your journey.
+        </p>
+      </div>
+    </section>
+
+    <!-- Logout -->
+    <section class="section-block">
+      <h3 class="section-heading">Sign Out</h3>
+      <p class="small">You may securely sign out of your TGK account below.</p>
+
+      <div class="btn-wrap center">
+        <button id="logout-btn" class="btn outline">Sign Out</button>
+      </div>
+    </section>
+
   </section>
 
   <div class="gnostic-divider">
@@ -112,15 +116,20 @@ breadcrumbs:
   </div>
 </main>
 
-<!-- 🜂 Dashboard Logic -->
+<!-- Dashboard Logic -->
 <script type="module">
   import {
     loadDashboardHeader,
     refreshEntitlementsLive,
     pageSignout,
-    saveProfile
+    saveProfile,
+    updateTierUI
   } from "/js/tgk-user.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
   const auth = getAuth();
 
@@ -135,37 +144,13 @@ breadcrumbs:
       return window.location.replace("/signin/");
     }
 
-    // 🔹 Always refresh live entitlements
     await refreshEntitlementsLive(user);
     await loadDashboardHeader(user);
 
-    // 🔹 Bind actions
+    // Bind form and logout
     document.getElementById("profile-form").addEventListener("submit", saveProfile);
     document.getElementById("logout-btn").addEventListener("click", pageSignout);
-    document.getElementById("upgrade-btn").addEventListener("click", async () => {
-      const token = await user.getIdToken();
-      const res = await fetch("/.netlify/functions/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, uid: user.uid, email: user.email })
-      });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-      else alert("Could not start checkout. Please try again.");
-    });
-    document.getElementById("billing-btn").addEventListener("click", async () => {
-      const token = await user.getIdToken();
-      const res = await fetch("/.netlify/functions/create-portal-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, email: user.email })
-      });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
-      else alert("Could not open billing portal.");
-    });
   });
 </script>
 
 <script type="module" src="/js/bookmarks.js?v={{ bust }}"></script>
-</body>

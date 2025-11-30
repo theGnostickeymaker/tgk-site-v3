@@ -1,13 +1,16 @@
 ---
 layout: base.njk
 title: "Admin — TGK Toolkit"
-bodyClass: admin
+description: "Internal administrative console for The Gnostic Key: accents, scaffolding, inventories, and build tasks."
+bodyClass: "admin"
 glyph: "✶"
+glyphRow: ["✶", "☥", "✶"]
+permalink: "/admin/index.html"
 ---
-
 {% block head %}
   <link rel="stylesheet" href="/css/tokens/accents/admin.css?v={{ bust }}">
-  <!-- Load ALL accents so dropdown can switch at runtime -->
+
+  <!-- Load all accents for runtime switching -->
   <link rel="stylesheet" href="/css/tokens/accents/lightgold.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/tokens/accents/gnostic-eye.css?v={{ bust }}">
   <link rel="stylesheet" href="/css/tokens/accents/obsidian-key.css?v={{ bust }}">
@@ -23,6 +26,7 @@ glyph: "✶"
 {% set cats = todo.categories %}
 
 <main class="admin-wrap">
+
   <!-- HERO / HEADER -->
   <section class="section-block admin-hero">
     <header class="admin-header">
@@ -32,6 +36,8 @@ glyph: "✶"
       <div class="admin-meta">Last updated: {{ todo.lastUpdated }}</div>
 
       <div class="admin-toolbar">
+
+        <!-- Accent Switcher -->
         <label class="accent-chooser">
           <span>Accent:</span>
           <select id="admin-accent">
@@ -47,21 +53,23 @@ glyph: "✶"
             <option value="community">Community</option>
           </select>
         </label>
+
         <button id="accent-sync" class="btn">Sync with page bodyClass</button>
 
         <span style="flex:1"></span>
 
-        <!-- Inventory filters -->
+        <!-- Filters -->
         <input type="search" id="inv-search" placeholder="Filter by title, pillar, tier, path…">
         <select id="inv-filter-pillar" title="Filter by Pillar"></select>
         <select id="inv-filter-tier" title="Filter by Tier"></select>
+
         <select id="gating-preview" title="View as tier">
           <option value="free">(View as) Free</option>
           <option value="initiate">Initiate</option>
           <option value="adept">Adept</option>
         </select>
 
-        <!-- Exports -->
+        <!-- Export Tools -->
         <button id="export-tasks" class="btn small">Export To-Do JSON</button>
         <button id="export-notes" class="btn small">Export Notes</button>
       </div>
@@ -75,17 +83,18 @@ glyph: "✶"
     </header>
   </section>
 
-  <!-- To-Do Board -->
+  <!-- TO-DO BOARD -->
   <section id="tab-todo" class="tab-panel is-active section-block" role="tabpanel">
     {% for cat, items in cats %}
       <section class="section-block admin-card">
         <h2 class="section-header">
           {{ cat
-            | replace("siteFunctionality","Site Functionality & Templates")
-            | replace("designTheme","Design & Theme Enhancements")
-            | replace("contentGating","Content Integration & Gating")
-            | replace("testingPolish","Testing & UX Polish") }}
+            | replace("siteFunctionality","Site Functionality and Templates")
+            | replace("designTheme","Design and Theme Enhancements")
+            | replace("contentGating","Content Integration and Gating")
+            | replace("testingPolish","Testing and User Experience Polish") }}
         </h2>
+
         <ul class="task-list" data-cat="{{ cat }}">
           {% for item in items %}
             {% set id = (cat + '-' + loop.index) | slug %}
@@ -106,9 +115,10 @@ glyph: "✶"
     {% endfor %}
   </section>
 
-  <!-- Content Inventory -->
+  <!-- CONTENT INVENTORY -->
   <section id="tab-inventory" class="tab-panel section-block" role="tabpanel">
     <h2 class="section-header">Content Inventory</h2>
+
     <div class="table-wrap">
       <table class="inv-table">
         <thead>
@@ -123,42 +133,48 @@ glyph: "✶"
             <th>Status</th>
           </tr>
         </thead>
+
         <tbody id="inv-body">
           {% for p in collections.all %}
-            {% set data = p.data or {} %}
-            {% set raw  = p.url or p.inputPath %}
+            {% set d = p.data or {} %}
+            {% set raw = p.url or p.inputPath %}
             {% set path = raw | normpath %}
+
             {% if path and '/pillars/' in path %}
-              {% set pillar  = (path | split('/'))[2] %}
-              {% set series  = data.series or data.seriesLabel or '' %}
-              {% set episode = data.episode or data.slug or '' %}
-              {% set tier    = (data.tier or 'free') | lower %}
+              {% set pillar = (path | split('/'))[2] %}
+              {% set series = d.series or d.seriesLabel or '' %}
+              {% set episode = d.episode or d.slug or '' %}
+              {% set tier = (d.tier or 'free') | lower %}
 
               {% set missing = [] %}
-              {% if not data.title %}{% set missing = missing.concat(['title']) %}{% endif %}
+              {% if not d.title %}{% set missing = missing.concat(['title']) %}{% endif %}
               {% if not tier %}{% set missing = missing.concat(['tier']) %}{% endif %}
               {% if not series %}{% set missing = missing.concat(['series']) %}{% endif %}
               {% if not episode %}{% set missing = missing.concat(['episode']) %}{% endif %}
-              {% if not data.bodyClass %}{% set missing = missing.concat(['bodyClass']) %}{% endif %}
-              {% if not data.glyph %}{% set missing = missing.concat(['glyph']) %}{% endif %}
+              {% if not d.bodyClass %}{% set missing = missing.concat(['bodyClass']) %}{% endif %}
+              {% if not d.glyph %}{% set missing = missing.concat(['glyph']) %}{% endif %}
 
               <tr data-pill="{{ pillar }}" data-tier="{{ tier }}" data-url="{{ p.url or '' }}">
-                <td>{{ data.title or (path | replace('/',' ')) }}</td>
+                <td>{{ d.title or (path | replace('/',' ')) }}</td>
                 <td>{{ pillar }}</td>
                 <td>{{ series }} {{ episode }}</td>
                 <td class="tier">{{ tier }}</td>
                 <td class="mono">{{ path }}</td>
-                <td>{{ (p.date or data.date) | date("yyyy-LL-dd") }}</td>
+                <td>{{ (p.date or d.date) | date("yyyy-LL-dd") }}</td>
+
                 <td>
                   <a class="btn small"
                      href="{{ 'vscode://file' ~ (p.inputPath | replace('\\\\','/') ) }}"
                      title="Open in VSCode">Open</a>
                 </td>
+
                 <td>
                   {% if missing.length %}
-                    <span class="badge" title="Missing: {{ missing | join(', ') }}">⚠️ Missing {{ missing | join(', ') }}</span>
+                    <span class="badge" title="Missing: {{ missing | join(', ') }}">
+                      ⚠️ Missing {{ missing | join(', ') }}
+                    </span>
                   {% else %}
-                    <span class="badge">✅ OK</span>
+                    <span class="badge">✓ OK</span>
                   {% endif %}
                 </td>
               </tr>
@@ -169,18 +185,27 @@ glyph: "✶"
     </div>
   </section>
 
-  <!-- Accent Audit -->
+  <!-- ACCENT AUDIT -->
   <section id="tab-accents" class="tab-panel section-block" role="tabpanel">
     <h2 class="section-header">Accent Audit</h2>
+
     <table class="inv-table">
       <thead>
-        <tr><th>Title</th><th>bodyClass</th><th>glyph</th><th>Has card gradient?</th><th>Path</th></tr>
+        <tr>
+          <th>Title</th>
+          <th>bodyClass</th>
+          <th>glyph</th>
+          <th>Has card-gradient?</th>
+          <th>Path</th>
+        </tr>
       </thead>
+
       <tbody>
         {% for p in collections.all %}
-          {% set d    = p.data or {} %}
-          {% set raw  = p.url or p.inputPath %}
+          {% set d = p.data or {} %}
+          {% set raw = p.url or p.inputPath %}
           {% set path = raw | normpath %}
+
           {% if path and '/pillars/' in path %}
             <tr>
               <td>{{ d.title or '—' }}</td>
@@ -195,24 +220,33 @@ glyph: "✶"
     </table>
   </section>
 
-  <!-- Build Checks -->
+  <!-- BUILD CHECKS -->
   <section id="tab-checks" class="tab-panel section-block" role="tabpanel">
     <h2 class="section-header">Build Checks</h2>
     <ul class="checks">
-      <li>✅ 11ty collections loaded</li>
-      <li>✅ todo.js found ({{ todo.lastUpdated }})</li>
-      <li>⚠️ Netlify/Firebase admin gating not enforced (see notes)</li>
-      <li>⚠️ Old CSS cleanup pending</li>
+      <li>✓ Eleventy collections loaded</li>
+      <li>✓ todo.js loaded ({{ todo.lastUpdated }})</li>
+      <li>⚠ Admin gating not yet enforced</li>
+      <li>⚠ Legacy CSS clean-up outstanding</li>
     </ul>
+
     <details class="note">
-      <summary>Protect /admin (recommended)</summary>
+      <summary>Protect the Admin area (recommended)</summary>
       <ol>
-        <li><strong>Netlify Basic Auth</strong>: add <code>_headers</code> with
-          <code>/admin/*<br>  Basic-Auth: username:password</code></li>
-        <li><strong>Firebase</strong>: require <code>auth.currentUser</code> and redirect to /account if not signed in.</li>
+        <li><strong>Netlify Basic Auth</strong>:  
+          Add to <code>_headers</code>:  
+          <code>
+            /admin/*  
+            Basic-Auth: admin:yourpassword
+          </code>
+        </li>
+
+        <li><strong>Firebase gating</strong>:  
+          Require <code>auth.currentUser</code> and redirect to <code>/signin/</code> if not authenticated.</li>
       </ol>
     </details>
   </section>
+
 </main>
 
 {% block scripts %}
