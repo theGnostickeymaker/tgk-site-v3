@@ -16,6 +16,7 @@ pillarTitle: "The Obsidian Key"
 gateTitle: null
 
 seriesTitle: "House of Grift"
+seasonTitle: "Season I: The Crown Unmasked"
 episodeTitle: "Episode I: The British Royals"
 partNumeral: "I"
 

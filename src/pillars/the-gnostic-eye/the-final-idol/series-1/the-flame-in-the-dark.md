@@ -328,8 +328,9 @@ socialImages:
   </figcaption>
 </figure>
   
-{% include "partials/quiz-block.njk" %}
+{% include "partials/creative-prompt.njk" %}
 {% include "partials/discussion-prompt.njk" %}
+{% include "partials/quiz-block.njk" %}
 {% include "partials/glossary-block.njk" %}
 {% include "partials/reference-section.njk" %}
 {% include "partials/series-nav-buttons.njk" %}

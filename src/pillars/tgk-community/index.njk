@@ -1,49 +1,89 @@
 ---
 layout: base.njk
-title: "TGK Community"
-description: "Gathering place for seekers of The Gnostic Key."
-tagline: "Voices together ✦ the circle of seekers"
-tier: free
 
-glyph: "✶"
-accent: community
-bodyClass: community
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: null
+seriesTitle: "TGK Community"
+seasonTitle: null
+episodeTitle: null
+partTitle: null
+
+title: "TGK Community"
+description: "A sovereign space for clarity, discourse, and shared interpretation."
+tier: "free"
+glyph: "✦"
+glyphRow: ["✦", "☉", "✦"]
+bodyClass: "community"
+accent: "community"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
 ---
 
-{% block head %}
-  {% set socialImage = "/tgk-assets/images/share/tgk-community/community-index.jpg" %}
-  {% include "partials/head-meta.njk" %}
-{% endblock %}
+<main class="main-content pillar-community">
 
-<main class="main-content">
-  <section class="content-container">
+  <section class="section-block">
+    <h1 class="section-heading">TGK Community</h1>
+    <p class="lead">
+      A gathering place for readers, seekers, contrarians, and builders of The Gnostic Key.
+      Here, arguments are sharpened, assumptions tested, and interpretations refined through
+      disciplined, respectful dialogue.
+    </p>
+  </section>
 
-<h4 class="index-heading">A gathering place for seekers of The Gnostic Key — voices together in the circle of remembrance.</h4>
-
-  <details class="disclaimer-box">
-    <summary><span class="disclaimer-heading">🔑 About TGK Community</span></summary>
+  <section class="community-charter section-block">
+    <h2 class="section-heading">Community Ethos</h2>
     <p>
-      <strong>TGK Community</strong> is the gathering space of The Gnostic Key —
-      a place for seekers to meet, share, and reflect together. Here dialogue,
-      study circles, and live sessions carry the work beyond the pages.
+      The TGK Community rests on one foundational principle:
+      <strong>we seek truth through clarity, not dominance.</strong>
+      We engage arguments, not identities. We steelman before we critique.
+    </p>
+
+    <ul class="rules-list">
+      <li>No doxxing or targeted harassment.</li>
+      <li>Critique institutions, systems, and public power, not private citizens.</li>
+      <li>No calls for violence of any kind.</li>
+      <li>Pseudonyms encouraged. Real names not required.</li>
+      <li>Good faith is the expected baseline. Bad faith is structurally discouraged.</li>
+    </ul>
+
+    <p class="muted small">
+      Commenting requires sign-in with email. You may choose any pseudonym.
+    </p>
+  </section>
+
+  <section class="community-modules section-block">
+    <h2 class="section-heading">Community Spaces</h2>
+
+    <div class="pillar-grid">
+      {% for m in communityModules %}
+        <div class="pillar-card {{ m.state }}">
+          <div class="pillar-card-glyph">{{ m.glyph }}</div>
+          <h3 class="pillar-card-title">{{ m.title }}</h3>
+          <p class="pillar-card-desc">{{ m.desc }}</p>
+          <p class="pillar-card-meta small">
+            Tier: <strong>{{ m.tier | upper }}</strong>
+            {% if m.state == "coming-soon" %}
+              <span class="coming-soon-tag">Coming Soon</span>
+            {% endif %}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <h2 class="section-heading">The Steel Man Principle</h2>
+    <p>
+      Every reply within the community begins with a simple requirement:
+      <strong>“What is the argument you are responding to, in your own words?”</strong>
+      This ensures that clarity precedes criticism, and understanding precedes disagreement.
     </p>
     <p>
-      More than a forum, this is a living circle — a commons of remembrance where
-      voices join, questions unfold, and collective gnosis takes root.
+      This is not merely a rule, but a cultural signature that defines the TGK Community.
     </p>
-  </details>
+  </section>
 
-  {% include "partials/pillar-grid.njk" %}
-
-  {% set items = pillarGrid %}
-  {% set headline = "The Gnostic Key — Pillars" %}
-  {% set base = "/" %}
-  {% include "partials/jsonld-collection.njk" %}
-
-  <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
-  </div>
 </main>

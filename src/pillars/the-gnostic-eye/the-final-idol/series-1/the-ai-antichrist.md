@@ -340,14 +340,13 @@ seriesNav:
   <p>When the false Christ asks for no transformation, only your trust, will you call it love?</p>
 </section>
 
-  {% include "partials/creative-prompt.njk" %}
-  {% include "partials/discussion-prompt.njk" %}
-  {% include "partials/quiz-block.njk" %}
-  {% include "partials/glossary-block.njk" %}
-  {% include "partials/reference-section.njk" %}
-
-  {% include "partials/series-nav-buttons.njk" %}
-  {% include "partials/episode-part-nav.njk" %}
+{% include "partials/creative-prompt.njk" %}
+{% include "partials/discussion-prompt.njk" %}
+{% include "partials/quiz-block.njk" %}
+{% include "partials/glossary-block.njk" %}
+{% include "partials/reference-section.njk" %}
+{% include "partials/series-nav-buttons.njk" %}
+{% include "partials/episode-part-nav.njk" %}
 
 <!-- ⚠️ Authorship & Origin Note -->
 <details class="disclaimer-box">

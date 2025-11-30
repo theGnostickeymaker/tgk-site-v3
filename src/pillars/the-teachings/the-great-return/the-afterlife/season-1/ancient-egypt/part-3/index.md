@@ -792,9 +792,7 @@ socialImages:
   <p>To walk as Akh is to remember. To weigh lightly. To live now as if you had already passed through death, radiant, upright, eternal.</p>
 </section>
 
-  {% include "partials/creative-prompt.njk" %}
-  {% include "partials/discussion-prompt.njk" %}
-  {% include "partials/quiz-block.njk" %}
+    {% include "partials/quiz-block.njk" %}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 

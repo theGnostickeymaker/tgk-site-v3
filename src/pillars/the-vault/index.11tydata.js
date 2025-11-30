@@ -47,6 +47,14 @@ export default {
       state: "active"
     },
     {
+      href: "/pillars/the-vault/house-of-grift/",
+      title: "The House of Grift",
+      glyph: "📜",
+      tagline: "Recovered Gnostic texts — Nag Hammadi, Berlin Codex, Gospel fragments.",
+      tier: "free",
+      state: "active"
+    },
+    {
       href: "/pillars/the-vault/forbidden-documents/",
       title: "Forbidden Documents",
       glyph: "🚫",

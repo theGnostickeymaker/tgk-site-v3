@@ -447,9 +447,7 @@ socialImages:
   <p><strong>Suggestion:</strong> Start a 21-day "Remembrance Log." Alternate practices daily. Record your insights, dreams, or shifts. At the end, ask: <em>&ldquo;Where is the Beloved now?&rdquo;</em></p>
 </section>
   
-  {% include "partials/creative-prompt.njk" %}
-  {% include "partials/discussion-prompt.njk" %}
-  {% include "partials/quiz-block.njk" %}
+    {% include "partials/quiz-block.njk" %}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 

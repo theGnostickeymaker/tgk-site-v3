@@ -39,7 +39,7 @@ tagline: "Follow the money, decode the myths and the masks",
       desc:
         "Royal theatre, dynastic extraction, and the parasitic bloodlines of empire. A forensic journey through entitlement, illusion and public manipulation.",
       state: "active",
-      tier: "free"
+      tier: "initiate-trial"
     },
     {
       href: "/pillars/the-obsidian-key/systemic/",

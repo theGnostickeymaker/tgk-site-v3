@@ -574,9 +574,7 @@ And with it &mdash; if the soul is strong enough &mdash; the spark of <em>rememb
   </figcaption>
 </figure>
 
-  {% include "partials/creative-prompt.njk" %}
-  {% include "partials/discussion-prompt.njk" %}
-  {% include "partials/quiz-block.njk" %}
+    {% include "partials/quiz-block.njk" %}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 

@@ -1,0 +1,183 @@
+/* ===========================================================
+   💬 TGK — Comment System Styles (v1.0)
+   Formal, structured, readable aesthetic for The Gnostic Key.
+   =========================================================== */
+
+/* Container */
+.comments-block {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+/* Section Heading */
+.comments-block .section-heading {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* Muted text */
+.comments-block .muted {
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   Sign-in Panel
+   ------------------------------ */
+.comments-signin {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: var(--radius-xl);
+  text-align: centre;
+}
+
+.comments-signin p {
+  margin: 0.8rem 0;
+}
+
+/* ------------------------------
+   Comment Form
+   ------------------------------ */
+.comments-form {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+.comments-form .form-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.comments-form .form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  background: var(--bg);
+  font-size: 1rem;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.comments-form .btn {
+  margin-top: 0.5rem;
+}
+
+/* ------------------------------
+   Comment List
+   ------------------------------ */
+.comments-list {
+  margin-top: 3rem;
+}
+
+/* Individual comment */
+.comment-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Meta row */
+.comment-item .comment-meta {
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.comment-item .comment-meta strong {
+  color: var(--text);
+}
+
+.comment-item .comment-meta .muted {
+  margin-left: 0.4rem;
+}
+
+/* Steelman block */
+.comment-item .comment-steelman {
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  background: rgba(255,255,255,0.04);
+  padding: 0.8rem;
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-xl);
+}
+
+.comment-item .comment-steelman em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Comment body */
+.comment-item .comment-body {
+  font-size: 1rem;
+}
+
+/* Paragraph spacing */
+.comment-item .comment-body p,
+.comment-item .comment-steelman p {
+  margin: 0.2rem 0 0.2rem 0;
+}
+
+/* ------------------------------
+   Pinned Comment
+   ------------------------------ */
+.pinned-comment {
+  background: var(--card-bg);
+  border: 2px solid var(--accent);
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+.pinned-comment .comment-meta strong {
+  color: var(--accent);
+}
+
+/* Badge for pinned */
+.comment-pinned .comment-meta::after {
+  content: "Pinned Comment";
+  margin-left: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: var(--radius-xl);
+  font-size: 0.75rem;
+}
+
+/* ------------------------------
+   Responsive refinements
+   ------------------------------ */
+@media (max-width: 700px) {
+
+  .comments-form,
+  .comment-item,
+  .comments-signin,
+  .pinned-comment {
+    padding: 1rem;
+  }
+
+  .comments-block {
+    margin-top: 2.5rem;
+  }
+
+  .comment-item .comment-steelman {
+    padding: 0.6rem;
+  }
+
+}
+/* ===========================================================
+   End of TGK Comment System Styles
+   =========================================================== */

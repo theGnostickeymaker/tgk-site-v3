@@ -1,56 +1,78 @@
 export default {
+  // ============================================
+  // PAGE METADATA (Unified TGK Hierarchy v4.2)
+  // ============================================
+
   layout: "base.njk",
-  pillar: "tgk-community",
+
+  siteTitle: "The Gnostic Key",
+  pillarTitle: "TGK Community",
+  gateTitle: null,
+  seriesTitle: null,
+  seasonTitle: null,
+  episodeTitle: null,
+  partTitle: null,
+
+  // Display Title
   title: "TGK Community",
 
   description:
-    "A gathering place for seekers of The Gnostic Key — a living circle of discussion, study, and shared insight.",
-  glyph: "💬",
+    "A sovereign space for readers and seekers of The Gnostic Key, built around dialogue, clarity, and good-faith disagreement.",
+
+  excerpt:
+    "A living circle where ideas sharpen ideas, steelmanning is culture, and shared inquiry lights the path.",
+
+  // ============================================
+  // VISUAL IDENTITY
+  // ============================================
   bodyClass: "community",
   accent: "community",
+
+  // ============================================
+  // ACCESS
+  // ============================================
+
   tier: "free",
+  tags: ["pillar", "tgk-community", "community"],
 
-  // === Tagging ===
-  tags: ["pillar", "tgk-community"],
+  // ============================================
+  // COMMUNITY MODULES (ROADMAP-READY)
+  // ============================================
 
-  // === Header Glyph Row ===
-  glyphRow: ["🜍", "🕊", "☊"],
-
-  // === Breadcrumb Trail ===
-  breadcrumbs: [
-    { title: "The Gnostic Key", url: "/" },
-    { title: "TGK Community", url: "/pillars/tgk-community/" }
-  ],
-
-  // === Community Sections ===
-  pillarGrid: [
-    { 
-      href: "#", 
-      title: "Forums for the Initiated", 
-      glyph: "💬", 
-      desc: "Discussion boards for seekers and initiates — a space to share insights and interpretations.",
-      tier: "free", 
-      state: "coming-soon" 
+  communityModules: [
+    {
+      href: "#",
+      title: "Discussion Threads",
+      glyph: "💬",
+      desc:
+        "Comment spaces under selected scrolls. A place to read, respond, and practise the Steel Man ethic.",
+      tier: "free",
+      state: "active"
     },
-    { 
-      href: "#", 
-      title: "Study Circles", 
-      glyph: "📚", 
-      desc: "Small group readings and decodings of pages — learning through shared discovery.",
-      tier: "free", 
-      state: "coming-soon" 
+    {
+      href: "#",
+      title: "Study Circles",
+      glyph: "📚",
+      desc:
+        "Small-group readings and decodings of TGK texts. Community-led learning in a structured format.",
+      tier: "free",
+      state: "coming-soon"
     },
-    { 
-      href: "#", 
-      title: "Live Sessions", 
-      glyph: "🎥", 
-      desc: "Talks, Q&A, and digital rituals — gathering the community in real time.",
-      tier: "free", 
-      state: "coming-soon" 
+    {
+      href: "#",
+      title: "Live Sessions",
+      glyph: "🎙",
+      desc:
+        "Talks, Q&A, and real-time gatherings. Rituals, reflections, and knowledge-sharing events.",
+      tier: "free",
+      state: "coming-soon"
     }
   ],
 
-  // === Pillar Aesthetic Settings ===
-  showLens: false,
-  showSeriesNav: false
+  // ============================================
+  // FLAGS
+  // ============================================
+
+  showLens: false,     // Synergist Lens not used here
+  showSeriesNav: false // Not a scroll
 };

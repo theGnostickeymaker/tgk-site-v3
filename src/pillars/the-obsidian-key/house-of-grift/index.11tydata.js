@@ -28,12 +28,12 @@ export default {
   pillarGrid: [
     {
       href: "/pillars/the-obsidian-key/house-of-grift/season-1/",
-      title: "Season I: Royals and Throne Lice",
+      title: "Season I: The Crown Unmasked",
       glyph: "♕",
       desc:
         "The monarchy as a parasitic institution. A symbolic and forensic analysis of its key players and their extraction networks.",
       state: "active",
-      tier: "free"
+      tier: "initiate-trial"
     }
   ],
 

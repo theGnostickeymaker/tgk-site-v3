@@ -7,13 +7,13 @@ export default {
     "/pillars/the-obsidian-key/house-of-grift/season-1/index.html",
 
   title:
-    "The Gnostic Key | House of Grift | Season I | Royals and Throne Lice",
+    "The Gnostic Key | House of Grift | Season I | The Crown Unmasked",
   siteTitle: "The Gnostic Key",
 
   pillarTitle: "The Obsidian Key",
   seriesTitle: "House of Grift",
   gateTitle: null,
-  seasonTitle: "Season I: Royals and Throne Lice",
+  seasonTitle: "Season I: The Crown Unmasked",
 
   tagline: "A forensic descent into the parasitic machinery of monarchy",
 
@@ -25,17 +25,6 @@ export default {
   accent: "obsidian",
   bodyClass: "obsidian",
   tier: "free",
-
-  // === Breadcrumbs ===
-  breadcrumbs: [
-    { title: "The Gnostic Key", url: "/" },
-    { title: "The Obsidian Key", url: "/pillars/the-obsidian-key/" },
-    { title: "House of Grift", url: "/pillars/the-obsidian-key/house-of-grift/" },
-    {
-      title: "Season I",
-      url: "/pillars/the-obsidian-key/house-of-grift/season-1/"
-    }
-  ],
 
   // === Episode Grid ===
   pillarGrid: [
