@@ -7,6 +7,15 @@ glyphRow: ["🜂", "☥", "🜂"]
 bodyClass: "lightgold requires-auth"
 permalink: "/membership/index.html"
 
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "Membership"
+gateTitle: "Membership Centre"
+seriesTitle: null
+seasonTitle: null
+episodeTitle: "Membership"
+partTitle: null
+
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "Dashboard", url: "/dashboard/" }
@@ -128,7 +137,6 @@ breadcrumbs:
         // Preserve intended destination
         window.__TGK_GATE__?.saveReturnUrl?.();
 
-        // Redirect to sign in unless already on that page
         if (!location.pathname.includes("/signin")) {
           window.location.replace("/signin/");
         }

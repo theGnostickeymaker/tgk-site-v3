@@ -7,6 +7,15 @@ glyphRow: ["🜂", "☥", "🜂"]
 bodyClass: "lightgold requires-auth"
 permalink: "/dashboard/index.html"
 
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "Membership"
+gateTitle: "User Dashboard"
+seriesTitle: null
+seasonTitle: null
+episodeTitle: "Dashboard"
+partTitle: null
+
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "Membership", url: "/membership/" }
@@ -72,7 +81,7 @@ breadcrumbs:
       </form>
     </section>
 
-    <!-- Activity Widgets (Reserved for future releases) -->
+    <!-- Activity Widgets -->
     <section hidden>
       <h3 class="section-heading">Your Activity</h3>
       <div class="dashboard-widgets">
@@ -147,7 +156,6 @@ breadcrumbs:
     await refreshEntitlementsLive(user);
     await loadDashboardHeader(user);
 
-    // Bind form and logout
     document.getElementById("profile-form").addEventListener("submit", saveProfile);
     document.getElementById("logout-btn").addEventListener("click", pageSignout);
   });
