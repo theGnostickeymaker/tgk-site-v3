@@ -7,6 +7,15 @@ glyphRow: ["☥", "✶", "☥"]
 bodyClass: "lightgold"
 permalink: "/verify-email/index.html"
 
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "Membership"
+gateTitle: "Verification"
+seriesTitle: null
+seasonTitle: null
+episodeTitle: "Verify Email"
+partTitle: null
+
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "Membership", url: "/membership/" }
@@ -63,13 +72,13 @@ breadcrumbs:
         // 1. Return to the originating page if stored in session
         if (consumeReturnUrl()) return;
 
-        // 2. Cross-context fallback: use return URL from email link
+        // 2. Cross-context fallback from the email link
         if (fallbackReturn) {
           window.location.replace(fallbackReturn);
           return;
         }
 
-        // 3. Default destination
+        // 3. Default destination: dashboard
         window.location.replace("/dashboard/");
       }, 1500);
 
