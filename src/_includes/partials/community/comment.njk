@@ -1,0 +1,40 @@
+{# ============================================================
+   TGK — Community Comment Block (v1.0)
+   Renders a single comment inside a discussion thread.
+   ============================================================ #}
+
+<div class="discussion-message" id="comment-{{ comment.id }}">
+
+  <div class="discussion-message-header">
+    <span class="discussion-message-author">
+      {{ comment.pseudonym or "Anonymous" }}
+    </span>
+
+    <span class="discussion-message-meta">
+      {{ comment.timestamp | readableDate }}
+    </span>
+  </div>
+
+  {% if comment.steelman %}
+    <p class="discussion-message-steelman">
+      <em>{{ comment.steelman }}</em>
+    </p>
+  {% endif %}
+
+  <p class="discussion-message-body">
+    {{ comment.body }}
+  </p>
+
+  {# ------------------------------------------------------------
+     Admin delete button (only visible if current user is admin)
+     ------------------------------------------------------------ #}
+  {% if user and user.tier == "admin" %}
+    <button 
+      class="btn-delete-comment"
+      data-comment-id="{{ comment.id }}"
+      data-topic-id="{{ topicId }}">
+      ✖ Delete
+    </button>
+  {% endif %}
+
+</div>

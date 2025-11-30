@@ -1,0 +1,76 @@
+---
+layout: base.njk
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Community Threads"
+seriesTitle: "Topic Threads"
+seasonTitle: null
+episodeTitle: "The Steel Man Method"
+partTitle: null
+
+title: "Topic: The Steel Man Method"
+description: "A structured discussion space dedicated to mastering and applying the Steel Man principle within the TGK Community."
+
+glyph: "⚯"
+glyphRow: ["✦", "☉", "✦"]
+
+bodyClass: "community"
+accent: "community"
+tier: "free"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
+  - { title: "Discussion Threads", url: "/pillars/tgk-community/threads/" }
+  - { title: "Topics", url: "/pillars/tgk-community/threads/topics/" }
+  - { title: "The Steel Man Method" }
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- INTRO -->
+    <section class="section-block">
+      <h1 class="section-heading">Discussion Topic: The Steel Man Method</h1>
+
+      <p class="lead">
+        A dedicated space for practising and refining the discipline of representing
+        another person’s argument in its strongest reasonable form before responding.
+      </p>
+    </section>
+
+    <!-- GUIDANCE -->
+    <section class="section-block">
+      <h2 class="section-heading">How to Participate</h2>
+
+      <ul class="rules-list">
+        <li>Begin your reply with a Steel Man summary of the point you are addressing.</li>
+        <li>Engage ideas, not individuals.</li>
+        <li>Clarify before criticising.</li>
+        <li>Protect clarity, dignity, and intellectual honesty.</li>
+      </ul>
+
+      <p class="muted small">
+        Full guidelines are available in the
+        <a href="/pillars/tgk-community/guide/charter/" class="link-accent">
+          TGK Community Charter
+        </a>.
+      </p>
+    </section>
+
+    <!-- DISCUSSION MODULES -->
+    <section id="discussion-root"
+             class="section-block"
+             data-topic-id="steel-man-method">
+      {% include "components/discussion/reply-prompt.njk" %}
+      {% include "components/discussion/thread-list.njk" %}
+    </section>
+
+  </section>
+</main>
+
+<script type="module" src="/assets/js/discussion-topic.js"></script>
+
+{% include "partials/community/delete-modal.njk" %}
+<script type="module" src="/assets/js/community-delete.js"></script>

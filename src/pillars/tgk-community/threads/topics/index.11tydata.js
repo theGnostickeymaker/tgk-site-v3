@@ -19,7 +19,7 @@ export default {
   topicsGrid: [
 
     {
-      href: "#",
+      href: "/pillars/tgk-community/threads/topics/steel-man-method/",
       title: "The Steel Man Method",
       glyph: "⚯",
       desc: "Applying disciplined interpretation to disagreement.",

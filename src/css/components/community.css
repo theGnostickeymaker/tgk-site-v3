@@ -1,17 +1,283 @@
-.community-grid {
-  display: grid;
-  gap: var(--grid-gap, 2rem);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+@layer components {
+
+  /* ===================================================
+     COMMUNITY GRID (2×2, 3×3, auto-fit)
+     =================================================== */
+
+  .community-grid,
+  .topics-grid,
+  .guide-grid {
+    display: grid;
+    gap: var(--space-lg, 1.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: stretch;
+  }
+
+  @media (max-width: 700px) {
+    .community-grid,
+    .topics-grid,
+    .guide-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+  /* ===================================================
+     COMMUNITY CARD (inherits gnostic-card tokens)
+     =================================================== */
+
+  .community-card,
+  .gnostic-card.community-card {
+    border-radius: var(--radius-xl, 18px);
+    background: var(--card-gradient);
+    box-shadow: var(--card-shadow, 0 4px 12px rgba(0,0,0,0.06));
+    border: 1px solid var(--card-border);
+    padding: 1.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .community-card:hover,
+  .gnostic-card.community-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+  }
+
+
+  /* ===================================================
+     CARD GLYPH / TITLE / DESC
+     =================================================== */
+
+  .community-card .card-glyph {
+    display: block;
+    text-align: center;
+    font-size: clamp(2rem, 2.5vw, 2.8rem);
+    margin-bottom: 0.5rem;
+    color: var(--glyph-color);
+    text-shadow: 0 0 10px var(--shadow-glow);
+  }
+
+  .community-card .card-title {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-accent);
+    margin: 0;
+    margin-bottom: 0.4rem;
+  }
+
+  .community-card .card-desc {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: var(--strong-text);
+    max-width: 95%;
+    margin: 0 auto;
+  }
+
+
+  /* ===================================================
+     BADGES & OVERLAYS
+     =================================================== */
+
+  .community-card .card-badge {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1px solid var(--badge-border);
+    box-shadow: var(--badge-shadow);
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(3px);
+  }
+
+  .community-card .card-overlay .banner {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1px solid var(--badge-border);
+    box-shadow: var(--badge-shadow);
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    backdrop-filter: blur(3px);
+  }
+
+
+  /* ===================================================
+     MUTED INFO BOX (for guide + rules)
+     =================================================== */
+
+  .muted-box {
+    background: var(--card-gradient);
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-lg, 12px);
+    border: 1px solid var(--section-border);
+    box-shadow: var(--shadow-soft);
+    margin-top: 1rem;
+    color: var(--text-primary);
+  }
+
+
+  /* ===================================================
+     DISCUSSION THREAD COMPONENTS
+     =================================================== */
+
+  /* FORM */
+  .discussion-form {
+    margin-top: 1rem;
+  }
+
+  .discussion-form .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .discussion-form textarea,
+  .discussion-form input[type="text"] {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--input-text);
+    font: inherit;
+    resize: vertical;
+  }
+
+  .discussion-form textarea:focus,
+  .discussion-form input[type="text"]:focus {
+    outline: 2px solid var(--input-focus-border);
+    outline-offset: 2px;
+    box-shadow: var(--input-focus-shadow);
+    border-color: var(--input-focus-border);
+  }
+
+
+  /* MESSAGE LIST */
+  .discussion-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .discussion-message {
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius-lg, 12px);
+    background: var(--card-gradient);
+    border: 1px solid var(--section-border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .discussion-message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+
+  .discussion-message-author {
+    font-weight: 600;
+    color: var(--text-accent);
+    font-size: 0.9rem;
+  }
+
+  .discussion-message-meta {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+
+  .discussion-message-steelman {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--cite-color);
+    margin-bottom: 0.35rem;
+  }
+
+  .discussion-message-body {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: var(--text-primary);
+  }
+
+/* ============================================================
+   TGK — Admin Delete Button
+   ============================================================ */
+
+.btn-delete-comment {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.4rem;
+  opacity: 0.55;
+  transition: opacity 0.2s ease, colour 0.2s ease;
 }
 
-.community-card {
-  border-radius: var(--radius-xl);
-  background: var(--card-gradient);
+.btn-delete-comment:hover {
+  opacity: 1;
+  color: var(--text-accent);
+}
+
+/* ============================================================
+   TGK — Delete Modal
+   ============================================================ */
+
+.confirm-delete-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: centre;
+  justify-content: centre;
+  z-index: 999;
+}
+
+.confirm-delete-modal[hidden] {
+  display: none;
+}
+
+.modal-box {
+  background: var(--card-bg);
   padding: 1.5rem;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
-  transition: var(--transition);
+  width: 320px;
+  text-align: centre;
 }
 
-.community-card:hover {
-  box-shadow: var(--shadow-hover);
+.modal-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: centre;
+  gap: 1rem;
+}
+
+.btn-modal-yes {
+  background: var(--accent-page);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.btn-modal-no {
+  background: transparent;
+  border: 1px solid var(--accent-page);
+  color: var(--accent-page);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+
 }
