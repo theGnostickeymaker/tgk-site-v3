@@ -42,20 +42,26 @@ export default function(eleventyConfig) {
 
 
   /* =========================
-     1.5) Quiz JSON Auto-Build
+     1.5) Quiz JSON Auto-Build (ESM-safe)
   ========================= */
   try {
+    const { createRequire } = await import("node:module");
+    const require = createRequire(import.meta.url);
+
     const quizModulePath = path.resolve("./src/_data/quiz/index.js");
     const quizMap = require(quizModulePath);
     const mapObj = quizMap.default || quizMap;
 
     const outPath = "./src/_data/quiz/index.json";
     fs.writeFileSync(outPath, JSON.stringify(mapObj, null, 2), "utf8");
+
     console.log("🧩 TGK Quiz index.json regenerated");
+    console.log("🧩 Quiz map load check:", Object.fromEntries(
+      Object.entries(mapObj).map(([k, v]) => [k, !!v])
+    ));
   } catch (err) {
     console.warn("⚠️  TGK Quiz JSON generation skipped:", err.message);
   }
-
 
   /* =========================
      2) Collections & Filters
