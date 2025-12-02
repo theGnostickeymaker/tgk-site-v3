@@ -1,5 +1,5 @@
 // ==========================================================
-// 🧠 The Gnostic Key — Eleventy Config (Unified v3.3 Stable, Patched)
+// 🧠 The Gnostic Key — Eleventy Config (Unified v3.3 Stable)
 // ==========================================================
 
 import "dotenv/config";
@@ -8,24 +8,17 @@ import path from "node:path";
 import { DateTime } from "luxon";
 import pluginSitemap from "@quasibit/eleventy-plugin-sitemap";
 
-export default function(eleventyConfig) {
-
+export default function (eleventyConfig) {
   /* =========================
      0) Core
   ========================= */
   eleventyConfig.setDataDeepMerge(true);
 
   /* =========================
-     0.5) Environment variable passthrough
-     (needed for Firebase config templating)
-  ========================= */
-  eleventyConfig.addGlobalData("env", process.env);
-
-
-  /* =========================
-     1) Passthrough copy
+     1) Passthrough (Safe cross-platform)
   ========================= */
   console.log("🜂 TGK Passthrough copy setup");
+  console.log("📁 Checking src/js →", fs.existsSync("src/js"));
 
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
@@ -34,31 +27,30 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("src/tgk-assets");
-  eleventyConfig.addPassthroughCopy("src/_headers");
+  eleventyConfig.addPassthroughCopy("src/_headers")
 
   if (fs.existsSync("src/robots.txt")) {
     eleventyConfig.addPassthroughCopy("src/robots.txt");
   }
 
+  eleventyConfig.addFilter("absoluteUrl", function (path) {
+  if (!path) return "";
+  let base = this.ctx.site?.url || process.env.SITE_URL || "http://localhost:8080";
+  return new URL(path, base).href;
+});
 
   /* =========================
-     1.5) Quiz JSON Auto-Build (ESM-safe)
+     1.5) Quiz JSON Auto-Build  (synchronous, no await)
   ========================= */
   try {
-    const { createRequire } = await import("node:module");
-    const require = createRequire(import.meta.url);
-
     const quizModulePath = path.resolve("./src/_data/quiz/index.js");
+    // eslint-disable-next-line global-require
     const quizMap = require(quizModulePath);
     const mapObj = quizMap.default || quizMap;
 
     const outPath = "./src/_data/quiz/index.json";
     fs.writeFileSync(outPath, JSON.stringify(mapObj, null, 2), "utf8");
-
     console.log("🧩 TGK Quiz index.json regenerated");
-    console.log("🧩 Quiz map load check:", Object.fromEntries(
-      Object.entries(mapObj).map(([k, v]) => [k, !!v])
-    ));
   } catch (err) {
     console.warn("⚠️  TGK Quiz JSON generation skipped:", err.message);
   }
@@ -155,7 +147,6 @@ export default function(eleventyConfig) {
     return `${d}${suffix(d)} ${dt.toFormat("MMM yyyy")}`;
   });
 
-
   /* =========================
      3) Shortcodes
   ========================= */
@@ -177,9 +168,8 @@ export default function(eleventyConfig) {
     <iframe class="tgk-pdf" src="${src}" width="100%" height="${height}" loading="lazy"></iframe>
   `);
 
-
   /* =========================
-     4) Watch Targets
+     4) Dev server watch
   ========================= */
   eleventyConfig.addWatchTarget("src/css");
   eleventyConfig.addWatchTarget("src/js");
@@ -187,12 +177,10 @@ export default function(eleventyConfig) {
   eleventyConfig.addWatchTarget("src/_data");
   eleventyConfig.addWatchTarget("src/pillars");
 
-
   /* =========================
-     5) Layout Aliases
+     5) Layout alias
   ========================= */
   eleventyConfig.addLayoutAlias("base", "base.njk");
-
 
   /* =========================
      6) Plugins
@@ -212,16 +200,12 @@ export default function(eleventyConfig) {
     },
   });
 
-
   /* =========================
      7) Directory-style URLs
   ========================= */
   eleventyConfig.setBrowserSyncConfig({ ghostMode: false });
 
-
-  /* =========================
-     8) Build Verification
-  ========================= */
+  /* ✅ Build Verification */
   eleventyConfig.on("afterBuild", () => {
     const file = "_site/js/bookmarks.js";
     if (fs.existsSync(file)) {
@@ -232,9 +216,13 @@ export default function(eleventyConfig) {
     }
   });
 
+    /* =========================
+     8) Environment passthrough
+  ========================= */
+  eleventyConfig.addGlobalData("env", process.env);
 
   /* =========================
-     9) Return final config
+     8) Return
   ========================= */
   return {
     dir: {
