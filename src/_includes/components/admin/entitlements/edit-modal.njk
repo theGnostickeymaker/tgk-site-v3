@@ -1,0 +1,33 @@
+<div id="entitlement-edit-modal" class="tgk-modal" hidden>
+
+  <div class="tgk-modal-backdrop"></div>
+
+  <div class="tgk-modal-dialog">
+    <header class="tgk-modal-header">
+      <h3>Edit User Entitlement</h3>
+    </header>
+
+    <section class="tgk-modal-body">
+      <form id="entitlement-edit-form" class="tgk-form" novalidate>
+        <input type="hidden" id="entitlement-edit-uid">
+
+        <div class="form-group">
+          <label for="entitlement-edit-tier">Tier</label>
+          <select id="entitlement-edit-tier">
+            <option value="free">Free</option>
+            <option value="initiate">Initiate</option>
+            <option value="adept">Adept</option>
+            <option value="admin">Administrator</option>
+          </select>
+        </div>
+      </form>
+
+      <p id="entitlement-edit-status" class="small muted" hidden></p>
+    </section>
+
+    <footer class="tgk-modal-footer">
+      <button id="entitlement-save-btn" class="btn-primary">Save</button>
+      <button id="entitlement-cancel-btn" class="btn-secondary">Cancel</button>
+    </footer>
+  </div>
+</div>

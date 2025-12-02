@@ -1,0 +1,50 @@
+---
+layout: base.njk
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Administration"
+seriesTitle: "Topic Management"
+
+title: "Admin: Manage Discussion Topics"
+description: "Create, edit, and maintain TGK Community discussion topics."
+
+glyph: "🛡"
+glyphRow: ["☉", "✦", "☉"]
+
+bodyClass: "community"
+accent: "community"
+tier: "admin"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
+  - { title: "Admin Tools", url: "/pillars/tgk-community/admin/" }
+  - { title: "Topic Management" }
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <section class="section-block">
+      <h1 class="section-heading">Manage Discussion Topics</h1>
+      <p class="lead">
+        Administrators can create new conversation topics, update metadata, and manage visibility.
+      </p>
+    </section>
+
+    <section class="section-block">
+      {% include "components/admin/topics/topic-form.njk" %}
+    </section>
+
+    <section class="section-block">
+      <h2 class="section-heading">Existing Topics</h2>
+      <div id="admin-topic-list" class="admin-topic-list">
+        <!-- Populated by admin-topics.js -->
+      </div>
+    </section>
+
+  </section>
+</main>
+
+<script type="module" src="/js/admin-topics.js"></script>

@@ -1,0 +1,50 @@
+<div id="admin-edit-topic-modal" class="tgk-modal" hidden>
+
+  <div class="tgk-modal-backdrop"></div>
+
+  <div class="tgk-modal-dialog">
+    <header class="tgk-modal-header">
+      <h3>Edit Topic</h3>
+    </header>
+
+    <section class="tgk-modal-body">
+      <form id="admin-edit-topic-form" class="tgk-form" novalidate>
+        
+        <input type="hidden" id="edit-topic-id">
+
+        <div class="form-group">
+          <label for="edit-topic-title">Display Title</label>
+          <input id="edit-topic-title" type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-topic-desc">Description</label>
+          <textarea id="edit-topic-desc" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-topic-glyph">Glyph</label>
+          <input id="edit-topic-glyph" type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-topic-state">State</label>
+          <select id="edit-topic-state">
+            <option value="active">Active</option>
+            <option value="coming-soon">Coming Soon</option>
+          </select>
+        </div>
+
+      </form>
+
+      <p id="admin-edit-topic-status" class="small muted" hidden></p>
+
+    </section>
+
+    <footer class="tgk-modal-footer">
+      <button id="admin-edit-topic-save" class="btn-primary">Save</button>
+      <button id="admin-edit-topic-cancel" class="btn-secondary">Cancel</button>
+    </footer>
+
+  </div>
+</div>

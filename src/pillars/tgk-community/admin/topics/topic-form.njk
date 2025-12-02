@@ -1,0 +1,39 @@
+<section class="admin-topic-form">
+  <h2 class="section-heading">Create New Topic</h2>
+
+  <form id="topic-create-form" class="tgk-form" novalidate>
+
+    <div class="form-group">
+      <label for="topic-id">Topic ID (lowercase, hyphens only)</label>
+      <input id="topic-id" type="text" required placeholder="e.g. steel-man-method">
+      <p class="small muted">This becomes the document ID in Firestore.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="topic-title">Display Title</label>
+      <input id="topic-title" type="text" required placeholder="e.g. The Steel Man Method">
+    </div>
+
+    <div class="form-group">
+      <label for="topic-desc">Description</label>
+      <textarea id="topic-desc" rows="3" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="topic-glyph">Glyph</label>
+      <input id="topic-glyph" type="text" required placeholder="e.g. ⚯">
+    </div>
+
+    <div class="form-group">
+      <label for="topic-state">State</label>
+      <select id="topic-state">
+        <option value="active">Active (visible)</option>
+        <option value="coming-soon">Coming Soon</option>
+      </select>
+    </div>
+
+    <button class="btn-primary" type="submit">Create Topic</button>
+
+    <p id="topic-create-status" class="small muted" hidden></p>
+  </form>
+</section>

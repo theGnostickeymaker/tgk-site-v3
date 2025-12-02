@@ -1,7 +1,18 @@
 // netlify/functions/stripe-webhook.js
 import Stripe from "stripe";
 import crypto from "crypto";
+import admin from "firebase-admin";
 
+// Initialise Firebase Admin
+if (!admin.apps.length) {
+  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
+}
+
+const db = admin.firestore();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 /**
@@ -24,14 +35,15 @@ export async function handler(event) {
 
   try {
     switch (stripeEvent.type) {
-      // 🔔 Subscription created or renewed
+
+      // Subscription created or renewed
       case "customer.subscription.created":
       case "customer.subscription.updated":
       case "invoice.payment_succeeded":
         await updateEntitlements(stripeEvent.data.object.customer);
         break;
 
-      // 🛑 Subscription cancelled or expired
+      // Subscription cancelled or payment failed
       case "customer.subscription.deleted":
       case "invoice.payment_failed":
         await clearEntitlements(stripeEvent.data.object.customer);
@@ -42,6 +54,7 @@ export async function handler(event) {
     }
 
     return json(200, { received: true });
+
   } catch (err) {
     console.error("[TGK] Webhook processing error:", err);
     return json(500, { error: "Webhook handler error" });
@@ -54,27 +67,85 @@ export async function handler(event) {
 
 async function updateEntitlements(customerId) {
   if (!customerId) return;
-  const subs = await stripe.subscriptions.list({ customer: customerId, status: "active", limit: 1 });
-  const sub = subs.data[0];
-  const priceId = sub?.items?.data?.[0]?.price?.id;
 
-  const INITIATE_IDS = (process.env.PRICE_INITIATE_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
-  const ADEPT_IDS     = (process.env.PRICE_FULL_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
-  const ADEPT_LIFEIDS = (process.env.PRICE_FULL_LIFETIME_IDS || "").split(",").map(s=>s.trim()).filter(Boolean);
+  const subs = await stripe.subscriptions.list({
+    customer: customerId,
+    status: "active",
+    limit: 1
+  });
+
+  const sub = subs.data[0];
+  if (!sub) {
+    console.log(`[TGK] No active subscription for ${customerId}, setting tier=free`);
+    await writeToFirestore(customerId, "free", null);
+    return;
+  }
+
+  const priceId = sub.items.data[0].price.id;
+
+  const INITIATE_IDS = (process.env.PRICE_INITIATE_IDS || "").split(",").map(s => s.trim()).filter(Boolean);
+  const ADEPT_IDS     = (process.env.PRICE_FULL_IDS || "").split(",").map(s => s.trim()).filter(Boolean);
+  const ADEPT_LIFEIDS = (process.env.PRICE_FULL_LIFETIME_IDS || "").split(",").map(s => s.trim()).filter(Boolean);
 
   let tier = "free";
+
   if (INITIATE_IDS.includes(priceId)) tier = "initiate";
   if (ADEPT_IDS.includes(priceId) || ADEPT_LIFEIDS.includes(priceId)) tier = "adept";
 
-  console.log(`[TGK] Updated entitlements: ${customerId} → ${tier}`);
-
-  // (Optional) store this in Firestore or Netlify KV if you want a persistent server-side record.
-  // For cookie-based access, nothing else required; the user refresh will renew tgk_ent.
+  console.log(`[TGK] Determined tier for ${customerId}: ${tier}`);
+  await writeToFirestore(customerId, tier, sub);
 }
 
 async function clearEntitlements(customerId) {
-  console.log(`[TGK] Clearing entitlements for ${customerId}`);
-  // If you use Firestore/Netlify KV, mark this user as "free".
+  console.log(`[TGK] Subscription cancelled. Setting tier=free for ${customerId}`);
+  await writeToFirestore(customerId, "free", null);
+}
+
+async function writeToFirestore(customerId, tier, subscription) {
+  // Match Stripe customerId to entitlement entry
+  const entDocs = await db
+    .collection("entitlements")
+    .where("stripeCustomerId", "==", customerId)
+    .get();
+
+  if (entDocs.empty) {
+    console.warn(`[TGK] No entitlements document found for Stripe customerId: ${customerId}`);
+    return;
+  }
+
+  const entDoc = entDocs.docs[0];
+  const uid = entDoc.id;
+
+  const entRef = db.collection("entitlements").doc(uid);
+  const subRef = db.collection("subscriptions").doc(uid);
+
+  // Update entitlements tier
+  await entRef.set(
+    {
+      tier,
+      lastUpdated: admin.firestore.FieldValue.serverTimestamp()
+    },
+    { merge: true }
+  );
+
+  // Update subscription details if subscription exists
+  if (subscription) {
+    await subRef.set(
+      {
+        stripeCustomerId: customerId,
+        stripeSubscriptionId: subscription.id,
+        status: subscription.status,
+        priceId: subscription.items.data[0].price.id,
+        currentPeriodEnd: admin.firestore.Timestamp.fromMillis(
+          subscription.current_period_end * 1000
+        ),
+        lastUpdated: admin.firestore.FieldValue.serverTimestamp()
+      },
+      { merge: true }
+    );
+  }
+
+  console.log(`[TGK] Firestore updated: uid=${uid}, tier=${tier}`);
 }
 
 function json(statusCode, body) {

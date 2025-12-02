@@ -1,0 +1,55 @@
+---
+layout: base.njk
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Administration"
+seriesTitle: "Entitlements Manager"
+
+title: "Entitlements Management"
+description: "Administrative control over user access tiers, privileges, and subscription-linked entitlements."
+
+glyph: "🗝"
+glyphRow: ["✦", "🗝", "✦"]
+
+bodyClass: "community"
+accent: "community"
+tier: "admin"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
+  - { title: "Administration", url: "/pillars/tgk-community/admin/" }
+  - { title: "Entitlements Management" }
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <section class="section-block">
+      <h1 class="section-heading">Entitlements Management</h1>
+      <p class="lead">
+        Modify user access tiers for the TGK Community. This includes manual promotion,
+        correction of subscription mismatches, and administrative privilege assignment.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <h2 class="section-heading">Search Users</h2>
+      {% include "components/admin/entitlements/search-form.njk" %}
+    </section>
+
+    <section class="section-block">
+      <h2 class="section-heading">User Entitlements</h2>
+      <div id="entitlements-list" class="entitlements-list">
+        <p class="muted">Enter a user ID or email address to view entitlement records.</p>
+      </div>
+    </section>
+
+    {% include "components/admin/entitlements/edit-modal.njk" %}
+
+
+  </section>
+</main>
+
+<script type="module" src="/js/admin-entitlements.js"></script>
