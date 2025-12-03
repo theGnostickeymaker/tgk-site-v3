@@ -10,18 +10,25 @@ import { loadStripe } from "https://js.stripe.com/v3/";
 const auth = getAuth(app);
 let stripe;
 
-// 🜂 Initialise Stripe
+// ===========================================================
+//  Stripe initialisation
+// ===========================================================
 (async () => {
   try {
-    const publishableKey = import.meta.env?.VITE_STRIPE_PUBLISHABLE_KEY || window.STRIPE_PUBLISHABLE_KEY;
+    const publishableKey =
+      import.meta.env?.VITE_STRIPE_PUBLISHABLE_KEY || window.STRIPE_PUBLISHABLE_KEY;
+
     if (!publishableKey) throw new Error("Stripe publishable key missing");
+
     stripe = await loadStripe(publishableKey);
   } catch (err) {
     console.error("[TGK] Stripe init error:", err);
   }
 })();
 
-// 🜂 Attach handlers once DOM is ready
+// ===========================================================
+//  Attach upgrade buttons
+// ===========================================================
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll("[data-price]");
   buttons.forEach((btn) =>
@@ -33,10 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===========================================================
-//  Start Checkout Flow
+//  MAIN CHECKOUT FUNCTION — **correctly closed**
 // ===========================================================
 async function startCheckout(priceId) {
   const user = auth.currentUser;
+
   if (!user) {
     alert("Please sign in to upgrade your membership.");
     window.__TGK_GATE__?.saveReturnUrl?.();
@@ -45,6 +53,7 @@ async function startCheckout(priceId) {
   }
 
   await user.reload();
+
   if (!user.emailVerified) {
     const proceed = confirm(
       "Your email has not been verified yet.\n\nYou can continue, but please confirm your address to avoid membership access issues.\n\nContinue anyway?"
@@ -52,11 +61,9 @@ async function startCheckout(priceId) {
     if (!proceed) return;
   }
 
-  // ... existing checkout logic ...
-}
-
   try {
     const token = await user.getIdToken();
+
     const body = {
       priceId,
       uid: user.uid,
@@ -74,6 +81,7 @@ async function startCheckout(priceId) {
     });
 
     const data = await res.json();
+
     if (!res.ok || !data.sessionId) {
       console.error("[TGK] Checkout error:", data);
       alert("Sorry, we could not start your checkout session.");
@@ -82,15 +90,22 @@ async function startCheckout(priceId) {
 
     console.log(`[TGK] Redirecting to Stripe session ${data.sessionId}`);
     await stripe.redirectToCheckout({ sessionId: data.sessionId });
+
   } catch (err) {
     console.error("[TGK] Checkout flow failed:", err);
     alert("An unexpected error occurred. Please try again later.");
   }
+}
 
 // ===========================================================
-//  Auth State Awareness (optional UX enhancement)
+//  Auth-based UI updates
 // ===========================================================
 onAuthStateChanged(auth, (user) => {
-  document.querySelectorAll("[data-auth='false']").forEach((el) => (el.hidden = !!user));
-  document.querySelectorAll("[data-auth='true']").forEach((el) => (el.hidden = !user));
+  document
+    .querySelectorAll("[data-auth='false']")
+    .forEach((el) => (el.hidden = !!user));
+
+  document
+    .querySelectorAll("[data-auth='true']")
+    .forEach((el) => (el.hidden = !user));
 });
