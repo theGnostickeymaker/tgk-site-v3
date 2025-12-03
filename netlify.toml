@@ -10,3 +10,7 @@
   from = "/logout"
   to = "/signin/"
   status = 302
+
+[build.environment]
+SECRETS_SCAN_SMART_DETECTION_OMIT_VALUES = "1"
+SECRETS_SCAN_SMART_DETECTION_ENABLED = "0"
