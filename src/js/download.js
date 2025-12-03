@@ -4,7 +4,7 @@
    =========================================================== */
 console.log("[TGK] Download v1.0 loaded");
 
-import html2pdf from "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js";
+import "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js";
 
 /* ===========================================================
    ✦ Toast Helper (reuse global if present)
