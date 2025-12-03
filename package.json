@@ -16,6 +16,7 @@
   "dependencies": {
     "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
     "dotenv": "^16.6.1",
+    "firebase": "^12.6.0",
     "firebase-admin": "^13.5.0",
     "stripe": "^18.5.0"
   }

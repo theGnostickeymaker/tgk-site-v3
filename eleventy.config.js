@@ -9,79 +9,55 @@ import { DateTime } from "luxon";
 import pluginSitemap from "@quasibit/eleventy-plugin-sitemap";
 
 export default function (eleventyConfig) {
-
-  // ==========================================================
-  // 0) Environment variables available to all Nunjucks templates
-  // ==========================================================
-  eleventyConfig.addGlobalData("env", process.env);
-
-  console.log("🔥 Firebase env loaded:");
-  console.log("API:", process.env.FIREBASE_API_KEY);
-  console.log("Domain:", process.env.FIREBASE_AUTH_DOMAIN);
-  console.log("Project:", process.env.FIREBASE_PROJECT_ID);
-
-
-  // ==========================================================
-  // 1) Core
-  // ==========================================================
+  /* =========================
+     0) Core
+  ========================= */
   eleventyConfig.setDataDeepMerge(true);
 
-
-  // ==========================================================
-  // 2) Passthrough Copy (Safe)
-  // ==========================================================
+  /* =========================
+     1) Passthrough (Safe cross-platform)
+  ========================= */
   console.log("🜂 TGK Passthrough copy setup");
   console.log("📁 Checking src/js →", fs.existsSync("src/js"));
 
-  // Copy JS folder, EXCEPT firebase-init.njk (templated output)
-  eleventyConfig.addPassthroughCopy({
-    "src/js": "js"
-  });
-
-  // Exclude firebase-init.njk from passthrough
-  eleventyConfig.ignores.add("src/js/firebase-init.njk");
-
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy({ "src/_data/quiz": "quiz" });
   eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("src/tgk-assets");
-  eleventyConfig.addPassthroughCopy("src/_headers");
+  eleventyConfig.addPassthroughCopy("src/_headers")
 
   if (fs.existsSync("src/robots.txt")) {
     eleventyConfig.addPassthroughCopy("src/robots.txt");
   }
 
   eleventyConfig.addFilter("absoluteUrl", function (path) {
-    if (!path) return "";
-    let base = this.ctx.site?.url || process.env.SITE_URL || "http://localhost:8080";
-    return new URL(path, base).href;
-  });
+  if (!path) return "";
+  let base = this.ctx.site?.url || process.env.SITE_URL || "http://localhost:8080";
+  return new URL(path, base).href;
+});
 
-
-  // ==========================================================
-  // 3) Quiz JSON Auto-Build
-  // ==========================================================
+  /* =========================
+     1.5) Quiz JSON Auto-Build  (synchronous, no await)
+  ========================= */
   try {
     const quizModulePath = path.resolve("./src/_data/quiz/index.js");
+    // eslint-disable-next-line global-require
     const quizMap = require(quizModulePath);
     const mapObj = quizMap.default || quizMap;
 
-    fs.writeFileSync("./src/_data/quiz/index.json",
-      JSON.stringify(mapObj, null, 2),
-      "utf8"
-    );
-
+    const outPath = "./src/_data/quiz/index.json";
+    fs.writeFileSync(outPath, JSON.stringify(mapObj, null, 2), "utf8");
     console.log("🧩 TGK Quiz index.json regenerated");
   } catch (err) {
-    console.warn("⚠️ TGK Quiz JSON generation skipped:", err.message);
+    console.warn("⚠️  TGK Quiz JSON generation skipped:", err.message);
   }
 
-
-  // ==========================================================
-  // 4) Collections & Filters
-  // ==========================================================
+  /* =========================
+     2) Collections & Filters
+  ========================= */
   const read = (obj, pathStr) =>
     pathStr.split(".").reduce((v, k) => (v && v[k] !== undefined ? v[k] : undefined), obj);
 
@@ -119,7 +95,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("normpath", (s = "") => s.replace(/\\/g, "/"));
   eleventyConfig.addFilter("split", (s = "", sep = "/") => (s + "").split(sep));
 
-  eleventyConfig.addFilter("date", (v) => {
+  eleventyConfig.addFilter("date", (v, fmt = "yyyy-LL-dd") => {
     if (!v) return "";
     const d = v instanceof Date ? v : new Date(v);
     if (isNaN(d)) return "";
@@ -128,7 +104,7 @@ export default function (eleventyConfig) {
       .slice(0, 10);
   });
 
-  eleventyConfig.addFilter("roman", num => {
+  eleventyConfig.addFilter("roman", function (num) {
     if (!num || isNaN(num)) return "";
     const map = [
       [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
@@ -145,20 +121,20 @@ export default function (eleventyConfig) {
     return result;
   });
 
-  eleventyConfig.addFilter("fromJson", value => {
+  eleventyConfig.addFilter("fromJson", function (value) {
     try {
       return JSON.parse(value);
     } catch {
-      console.warn("⚠️ fromJson filter failed:", value);
+      console.warn("⚠️ fromJson filter could not parse:", value);
       return [];
     }
   });
 
-  eleventyConfig.addFilter("tgkDate", value => {
+  eleventyConfig.addFilter("tgkDate", (value) => {
     if (!value) return "";
     const dt = DateTime.fromISO(value);
     const d = dt.day;
-    const suffix = n => {
+    const suffix = (n) => {
       const v = n % 100;
       if (v >= 11 && v <= 13) return "th";
       switch (n % 10) {
@@ -171,10 +147,9 @@ export default function (eleventyConfig) {
     return `${d}${suffix(d)} ${dt.toFormat("MMM yyyy")}`;
   });
 
-
-  // ==========================================================
-  // 5) Shortcodes
-  // ==========================================================
+  /* =========================
+     3) Shortcodes
+  ========================= */
   eleventyConfig.addShortcode("video", (src, caption = "") => `
     <figure class="tgk-video">
       <video controls src="${src}" preload="metadata"></video>
@@ -193,26 +168,23 @@ export default function (eleventyConfig) {
     <iframe class="tgk-pdf" src="${src}" width="100%" height="${height}" loading="lazy"></iframe>
   `);
 
-
-  // ==========================================================
-  // 6) Dev Server Watch Targets
-  // ==========================================================
+  /* =========================
+     4) Dev server watch
+  ========================= */
   eleventyConfig.addWatchTarget("src/css");
   eleventyConfig.addWatchTarget("src/js");
   eleventyConfig.addWatchTarget("src/_includes");
   eleventyConfig.addWatchTarget("src/_data");
   eleventyConfig.addWatchTarget("src/pillars");
 
-
-  // ==========================================================
-  // 7) Layout Aliases
-  // ==========================================================
+  /* =========================
+     5) Layout alias
+  ========================= */
   eleventyConfig.addLayoutAlias("base", "base.njk");
 
-
-  // ==========================================================
-  // 8) Plugins
-  // ==========================================================
+  /* =========================
+     6) Plugins
+  ========================= */
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: {
       hostname: "https://thegnostickey.com",
@@ -224,20 +196,16 @@ export default function (eleventyConfig) {
         if (tier === "adept") return 0.6;
         return 0.7;
       },
-      lastmodDateExtractor: page => page.data.published || page.date,
+      lastmodDateExtractor: (page) => page.data.published || page.date,
     },
   });
 
-
-  // ==========================================================
-  // 9) Directory-style URLs
-  // ==========================================================
+  /* =========================
+     7) Directory-style URLs
+  ========================= */
   eleventyConfig.setBrowserSyncConfig({ ghostMode: false });
 
-
-  // ==========================================================
-  // 10) Build Verification
-  // ==========================================================
+  /* ✅ Build Verification */
   eleventyConfig.on("afterBuild", () => {
     const file = "_site/js/bookmarks.js";
     if (fs.existsSync(file)) {
@@ -248,10 +216,14 @@ export default function (eleventyConfig) {
     }
   });
 
+    /* =========================
+     8) Environment passthrough
+  ========================= */
+  eleventyConfig.addGlobalData("env", process.env);
 
-  // ==========================================================
-  // 11) Return config
-  // ==========================================================
+  /* =========================
+     8) Return
+  ========================= */
   return {
     dir: {
       input: "src",
@@ -262,7 +234,7 @@ export default function (eleventyConfig) {
     pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"], // JS no longer rendered as templates
+    templateFormats: ["njk", "md", "html"],
     passthroughFileCopy: true,
   };
 }
