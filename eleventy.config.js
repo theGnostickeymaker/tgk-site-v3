@@ -234,7 +234,7 @@ export default function (eleventyConfig) {
     pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"],
+    templateFormats: ["njk", "md", "html", "js", "css"],
     passthroughFileCopy: true,
   };
 }
