@@ -4,6 +4,7 @@
    =========================================================== */
 console.log("[TGK] Download v1.0 loaded");
 
+// Correct: bundle does NOT export anything
 import "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js";
 
 /* ===========================================================
@@ -47,7 +48,7 @@ async function generatePDF(btn) {
   };
 
   try {
-    await html2pdf().from(main).set(options).save();
+    await window.html2pdf().from(main).set(options).save();
     showToast("📄 Scroll saved as PDF", "success");
   } catch (err) {
     console.error("[TGK] Download error:", err);
