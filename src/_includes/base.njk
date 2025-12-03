@@ -8,8 +8,9 @@
   <meta name="google-site-verification" content="PpZezOYNLiH56Kvo5_pPivFDl9hdKBhP62kvgpm0CZQ" />
 
   <script>
-    window.STRIPE_PUBLISHABLE_KEY = "{{ env.STRIPE_PUBLISHABLE_KEY }}";
+   console.log("DEBUG STRIPE KEY:", "{{ env.STRIPE_PUBLISHABLE_KEY }}");
   </script>
+
   <script src="https://js.stripe.com/v3"></script>
 
   <title>{{ title or "The Gnostic Key" }}</title>
