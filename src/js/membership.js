@@ -1,30 +1,29 @@
 /* ===========================================================
    TGK — Membership Upgrade Flow (Stripe + Firebase)
-   Version 2.0 — 2025-11-08
+   CDN Version — Correct Stripe Loader
    =========================================================== */
 
 import { app } from "./firebase-init.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-import { loadStripe } from "https://js.stripe.com/v3/";
 
 const auth = getAuth(app);
 let stripe;
 
 // ===========================================================
-//  Stripe initialisation
+// Stripe initialisation (CDN global)
 // ===========================================================
-(async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const publishableKey =
-      import.meta.env?.VITE_STRIPE_PUBLISHABLE_KEY || window.STRIPE_PUBLISHABLE_KEY;
-
+    const publishableKey = window.STRIPE_PUBLISHABLE_KEY;
     if (!publishableKey) throw new Error("Stripe publishable key missing");
 
-    stripe = await loadStripe(publishableKey);
+    stripe = Stripe(publishableKey);   // IMPORTANT: Stripe() not loadStripe()
+
+    console.log("[TGK] Stripe ready");
   } catch (err) {
     console.error("[TGK] Stripe init error:", err);
   }
-})();
+});
 
 // ===========================================================
 //  Attach upgrade buttons
