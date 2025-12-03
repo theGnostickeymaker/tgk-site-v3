@@ -3,9 +3,7 @@ permalink: "/js/firebase-init.js"
 eleventyExcludeFromCollections: true
 ---
 
-/* ===========================================================
-   TGK — Firebase Init (templated)
-   =========================================================== */
+/* TGK Firebase Init */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
@@ -22,10 +20,6 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 
-try {
-  getAnalytics(app);
-} catch (err) {
-  console.warn("Analytics disabled:", err.message);
-}
+try { getAnalytics(app); } catch (err) {}
 
 console.log("[Firebase] App initialised.");

@@ -9,19 +9,39 @@ import { DateTime } from "luxon";
 import pluginSitemap from "@quasibit/eleventy-plugin-sitemap";
 
 export default function (eleventyConfig) {
-  /* =========================
-     0) Core
-  ========================= */
+
+  // ==========================================================
+  // 0) Environment variables available to all Nunjucks templates
+  // ==========================================================
+  eleventyConfig.addGlobalData("env", process.env);
+
+  console.log("🔥 Firebase env loaded:");
+  console.log("API:", process.env.FIREBASE_API_KEY);
+  console.log("Domain:", process.env.FIREBASE_AUTH_DOMAIN);
+  console.log("Project:", process.env.FIREBASE_PROJECT_ID);
+
+
+  // ==========================================================
+  // 1) Core
+  // ==========================================================
   eleventyConfig.setDataDeepMerge(true);
 
-  /* =========================
-     1) Passthrough (Safe cross-platform)
-  ========================= */
+
+  // ==========================================================
+  // 2) Passthrough Copy (Safe)
+  // ==========================================================
   console.log("🜂 TGK Passthrough copy setup");
   console.log("📁 Checking src/js →", fs.existsSync("src/js"));
 
+  // Copy JS folder, EXCEPT firebase-init.njk (templated output)
+  eleventyConfig.addPassthroughCopy({
+    "src/js": "js"
+  });
+
+  // Exclude firebase-init.njk from passthrough
+  eleventyConfig.ignores.add("src/js/firebase-init.njk");
+
   eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/js");   // keep this for nav.js etc.
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy({ "src/_data/quiz": "quiz" });
   eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
@@ -39,25 +59,29 @@ export default function (eleventyConfig) {
     return new URL(path, base).href;
   });
 
-  /* =========================
-     1.5) Quiz JSON Auto-Build  (synchronous, no await)
-  ========================= */
+
+  // ==========================================================
+  // 3) Quiz JSON Auto-Build
+  // ==========================================================
   try {
     const quizModulePath = path.resolve("./src/_data/quiz/index.js");
-    // eslint-disable-next-line global-require
     const quizMap = require(quizModulePath);
     const mapObj = quizMap.default || quizMap;
 
-    const outPath = "./src/_data/quiz/index.json";
-    fs.writeFileSync(outPath, JSON.stringify(mapObj, null, 2), "utf8");
+    fs.writeFileSync("./src/_data/quiz/index.json",
+      JSON.stringify(mapObj, null, 2),
+      "utf8"
+    );
+
     console.log("🧩 TGK Quiz index.json regenerated");
   } catch (err) {
-    console.warn("⚠️  TGK Quiz JSON generation skipped:", err.message);
+    console.warn("⚠️ TGK Quiz JSON generation skipped:", err.message);
   }
 
-  /* =========================
-     2) Collections & Filters
-  ========================= */
+
+  // ==========================================================
+  // 4) Collections & Filters
+  // ==========================================================
   const read = (obj, pathStr) =>
     pathStr.split(".").reduce((v, k) => (v && v[k] !== undefined ? v[k] : undefined), obj);
 
@@ -95,18 +119,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("normpath", (s = "") => s.replace(/\\/g, "/"));
   eleventyConfig.addFilter("split", (s = "", sep = "/") => (s + "").split(sep));
 
-  // Removed TypeScript interface declaration
-
-  eleventyConfig.addFilter("date", (v, fmt = "yyyy-LL-dd") => {
+  eleventyConfig.addFilter("date", (v) => {
     if (!v) return "";
     const d = v instanceof Date ? v : new Date(v);
-    if (!(d instanceof Date) || isNaN(d.getTime())) return "";
+    if (isNaN(d)) return "";
     return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
       .toISOString()
       .slice(0, 10);
   });
 
-  eleventyConfig.addFilter("roman", function (num) {
+  eleventyConfig.addFilter("roman", num => {
     if (!num || isNaN(num)) return "";
     const map = [
       [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
@@ -115,28 +137,28 @@ export default function (eleventyConfig) {
     ];
     let result = "";
     for (const [value, numeral] of map) {
-      while (Number(num) >= Number(value)) {
+      while (num >= value) {
         result += numeral;
-        num = Number(num) - Number(value);
+        num -= value;
       }
     }
     return result;
   });
 
-  eleventyConfig.addFilter("fromJson", function (value) {
+  eleventyConfig.addFilter("fromJson", value => {
     try {
       return JSON.parse(value);
     } catch {
-      console.warn("⚠️ fromJson filter could not parse:", value);
+      console.warn("⚠️ fromJson filter failed:", value);
       return [];
     }
   });
 
-  eleventyConfig.addFilter("tgkDate", (value) => {
+  eleventyConfig.addFilter("tgkDate", value => {
     if (!value) return "";
     const dt = DateTime.fromISO(value);
     const d = dt.day;
-    const suffix = (n) => {
+    const suffix = n => {
       const v = n % 100;
       if (v >= 11 && v <= 13) return "th";
       switch (n % 10) {
@@ -149,9 +171,10 @@ export default function (eleventyConfig) {
     return `${d}${suffix(d)} ${dt.toFormat("MMM yyyy")}`;
   });
 
-  /* =========================
-     3) Shortcodes
-  ========================= */
+
+  // ==========================================================
+  // 5) Shortcodes
+  // ==========================================================
   eleventyConfig.addShortcode("video", (src, caption = "") => `
     <figure class="tgk-video">
       <video controls src="${src}" preload="metadata"></video>
@@ -170,23 +193,26 @@ export default function (eleventyConfig) {
     <iframe class="tgk-pdf" src="${src}" width="100%" height="${height}" loading="lazy"></iframe>
   `);
 
-  /* =========================
-     4) Dev server watch
-  ========================= */
+
+  // ==========================================================
+  // 6) Dev Server Watch Targets
+  // ==========================================================
   eleventyConfig.addWatchTarget("src/css");
   eleventyConfig.addWatchTarget("src/js");
   eleventyConfig.addWatchTarget("src/_includes");
   eleventyConfig.addWatchTarget("src/_data");
   eleventyConfig.addWatchTarget("src/pillars");
 
-  /* =========================
-     5) Layout alias
-  ========================= */
+
+  // ==========================================================
+  // 7) Layout Aliases
+  // ==========================================================
   eleventyConfig.addLayoutAlias("base", "base.njk");
 
-  /* =========================
-     6) Plugins
-  ========================= */
+
+  // ==========================================================
+  // 8) Plugins
+  // ==========================================================
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: {
       hostname: "https://thegnostickey.com",
@@ -198,16 +224,20 @@ export default function (eleventyConfig) {
         if (tier === "adept") return 0.6;
         return 0.7;
       },
-      lastmodDateExtractor: (page) => page.data.published || page.date,
+      lastmodDateExtractor: page => page.data.published || page.date,
     },
   });
 
-  /* =========================
-     7) Directory-style URLs
-  ========================= */
+
+  // ==========================================================
+  // 9) Directory-style URLs
+  // ==========================================================
   eleventyConfig.setBrowserSyncConfig({ ghostMode: false });
 
-  /* ✅ Build Verification */
+
+  // ==========================================================
+  // 10) Build Verification
+  // ==========================================================
   eleventyConfig.on("afterBuild", () => {
     const file = "_site/js/bookmarks.js";
     if (fs.existsSync(file)) {
@@ -218,15 +248,11 @@ export default function (eleventyConfig) {
     }
   });
 
-    /* =========================
-     8) Environment passthrough
-  ========================= */
-  eleventyConfig.addGlobalData("env", process.env);
 
-  /* =========================
-     8) Return
-  ========================= */
-return {
+  // ==========================================================
+  // 11) Return config
+  // ==========================================================
+  return {
     dir: {
       input: "src",
       includes: "_includes",
@@ -236,8 +262,7 @@ return {
     pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"], // you do NOT need "js" here
+    templateFormats: ["njk", "md", "html"], // JS no longer rendered as templates
     passthroughFileCopy: true,
   };
 }
-
