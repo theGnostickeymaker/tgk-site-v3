@@ -1,11 +1,11 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+/* ===========================================================
+   TGK — Firebase Init (Browser ESM Safe)
+   =========================================================== */
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
+
+// Live public Firebase config (safe to expose)
 const firebaseConfig = {
   apiKey: "AIzaSyDYrFIw9I3hManf1TqvP6FARZTC-MlMuz0",
   authDomain: "the-gnostic-key.firebaseapp.com",
@@ -16,6 +16,12 @@ const firebaseConfig = {
   measurementId: "G-KD96SXX3JY"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const app = initializeApp(firebaseConfig);
+
+try {
+  getAnalytics(app);
+} catch (err) {
+  console.warn("Analytics disabled:", err.message);
+}
+
+console.log("[Firebase] App initialised.");
