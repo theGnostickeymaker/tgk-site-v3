@@ -21,23 +21,23 @@ export default function (eleventyConfig) {
   console.log("📁 Checking src/js →", fs.existsSync("src/js"));
 
   eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/js");   // keep this for nav.js etc.
   eleventyConfig.addPassthroughCopy("src/media");
   eleventyConfig.addPassthroughCopy({ "src/_data/quiz": "quiz" });
   eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("src/tgk-assets");
-  eleventyConfig.addPassthroughCopy("src/_headers")
+  eleventyConfig.addPassthroughCopy("src/_headers");
 
   if (fs.existsSync("src/robots.txt")) {
     eleventyConfig.addPassthroughCopy("src/robots.txt");
   }
 
   eleventyConfig.addFilter("absoluteUrl", function (path) {
-  if (!path) return "";
-  let base = this.ctx.site?.url || process.env.SITE_URL || "http://localhost:8080";
-  return new URL(path, base).href;
-});
+    if (!path) return "";
+    let base = this.ctx.site?.url || process.env.SITE_URL || "http://localhost:8080";
+    return new URL(path, base).href;
+  });
 
   /* =========================
      1.5) Quiz JSON Auto-Build  (synchronous, no await)
@@ -95,10 +95,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("normpath", (s = "") => s.replace(/\\/g, "/"));
   eleventyConfig.addFilter("split", (s = "", sep = "/") => (s + "").split(sep));
 
+  // Removed TypeScript interface declaration
+
   eleventyConfig.addFilter("date", (v, fmt = "yyyy-LL-dd") => {
     if (!v) return "";
     const d = v instanceof Date ? v : new Date(v);
-    if (isNaN(d)) return "";
+    if (!(d instanceof Date) || isNaN(d.getTime())) return "";
     return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
       .toISOString()
       .slice(0, 10);
@@ -113,9 +115,9 @@ export default function (eleventyConfig) {
     ];
     let result = "";
     for (const [value, numeral] of map) {
-      while (num >= value) {
+      while (Number(num) >= Number(value)) {
         result += numeral;
-        num -= value;
+        num = Number(num) - Number(value);
       }
     }
     return result;
@@ -224,7 +226,7 @@ export default function (eleventyConfig) {
   /* =========================
      8) Return
   ========================= */
-  return {
+return {
     dir: {
       input: "src",
       includes: "_includes",
@@ -234,7 +236,8 @@ export default function (eleventyConfig) {
     pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html", "js", "css"],
+    templateFormats: ["njk", "md", "html"], // you do NOT need "js" here
     passthroughFileCopy: true,
   };
 }
+
