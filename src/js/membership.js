@@ -1,45 +1,47 @@
 /* ===========================================================
    TGK — Membership Upgrade Flow (Stripe + Firebase)
-   CDN Version — Correct Stripe Loader
+   Clean Stripe v3 init using global Stripe()
    =========================================================== */
 
 import { app } from "./firebase-init.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const auth = getAuth(app);
-let stripe;
+let stripe = null;
 
-// ===========================================================
-// Stripe initialisation (CDN global)
-// ===========================================================
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const publishableKey = window.STRIPE_PUBLISHABLE_KEY;
-    if (!publishableKey) throw new Error("Stripe publishable key missing");
-
-    stripe = Stripe(publishableKey);   // IMPORTANT: Stripe() not loadStripe()
-
-    console.log("[TGK] Stripe ready");
-  } catch (err) {
-    console.error("[TGK] Stripe init error:", err);
-  }
-});
-
-// ===========================================================
-//  Attach upgrade buttons
-// ===========================================================
+// Initialise Stripe once DOM + Stripe.js are ready
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll("[data-price]");
-  buttons.forEach((btn) =>
-    btn.addEventListener("click", async () => {
+  const publishableKey = window.STRIPE_PUBLISHABLE_KEY;
+
+  console.log("DEBUG window.STRIPE_PUBLISHABLE_KEY:", publishableKey);
+
+  if (!publishableKey) {
+    console.error("[TGK] Stripe publishable key missing. Check env + base.njk.");
+    return;
+  }
+
+  if (typeof window.Stripe !== "function") {
+    console.error("[TGK] Stripe.js not loaded. Check <script src='https://js.stripe.com/v3'>.");
+    return;
+  }
+
+  stripe = window.Stripe(publishableKey);
+  console.log("[TGK] Stripe initialised");
+
+  // Attach click handlers
+  document.querySelectorAll("[data-price]").forEach((btn) => {
+    btn.addEventListener("click", () => {
       const priceId = btn.dataset.price;
-      await startCheckout(priceId);
-    })
-  );
+      startCheckout(priceId);
+    });
+  });
 });
 
 // ===========================================================
-//  MAIN CHECKOUT FUNCTION — **correctly closed**
+//  Start Checkout Flow
 // ===========================================================
 async function startCheckout(priceId) {
   const user = auth.currentUser;
@@ -52,10 +54,11 @@ async function startCheckout(priceId) {
   }
 
   await user.reload();
-
   if (!user.emailVerified) {
     const proceed = confirm(
-      "Your email has not been verified yet.\n\nYou can continue, but please confirm your address to avoid membership access issues.\n\nContinue anyway?"
+      "Your email has not been verified yet.\n\n" +
+        "You can continue, but please confirm your address to avoid membership access issues.\n\n" +
+        "Continue anyway?"
     );
     if (!proceed) return;
   }
@@ -87,9 +90,8 @@ async function startCheckout(priceId) {
       return;
     }
 
-    console.log(`[TGK] Redirecting to Stripe session ${data.sessionId}`);
+    console.log("[TGK] Redirecting to Stripe session", data.sessionId);
     await stripe.redirectToCheckout({ sessionId: data.sessionId });
-
   } catch (err) {
     console.error("[TGK] Checkout flow failed:", err);
     alert("An unexpected error occurred. Please try again later.");
@@ -97,13 +99,12 @@ async function startCheckout(priceId) {
 }
 
 // ===========================================================
-//  Auth-based UI updates
+//  Auth State Awareness (optional UX enhancement)
 // ===========================================================
 onAuthStateChanged(auth, (user) => {
   document
     .querySelectorAll("[data-auth='false']")
     .forEach((el) => (el.hidden = !!user));
-
   document
     .querySelectorAll("[data-auth='true']")
     .forEach((el) => (el.hidden = !user));
