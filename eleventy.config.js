@@ -21,14 +21,28 @@ async function loadQuizModule(modulePath) {
 
 export default function (eleventyConfig) {
 
-  // =========================
-  // 0) Core
-  // =========================
   eleventyConfig.setDataDeepMerge(true);
 
-  // =========================
-  // 1) Passthrough
-  // =========================
+  /* =========================
+     Early Filters (must load before templates)
+  ========================= */
+  eleventyConfig.addFilter("absoluteUrl", function (path) {
+    if (!path) return "";
+    const base =
+      this.ctx.site?.url ||
+      process.env.SITE_URL ||
+      "http://localhost:8080";
+
+    try {
+      return new URL(path, base).href;
+    } catch {
+      return path;
+    }
+  });
+
+  /* =========================
+     1) Passthrough
+  ========================= */
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/media");
