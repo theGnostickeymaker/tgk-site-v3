@@ -313,6 +313,27 @@ function showVerifyBanner(user) {
   });
 }
 
-function removeVerifyBanner() {
-  document.getElementById("verify-banner")?.remove();
-}
+/* ===========================================================
+   🜂 EMAIL VERIFICATION — CROSS-TAB SYNC LISTENER
+   =========================================================== */
+
+const verifyChannel = new BroadcastChannel("tgk-email-verify");
+
+verifyChannel.onmessage = async (event) => {
+  if (event.data?.verified) {
+    console.log("[Auth] Email verified in another tab");
+
+    try {
+      await auth.currentUser?.reload();
+      await auth.currentUser?.getIdToken(true);
+    } catch (err) {
+      console.warn("[Auth] Could not refresh user after verification:", err.message);
+    }
+
+    removeVerifyBanner();
+
+    // Reload UI to sync tier + remove banner
+    window.location.reload();
+  }
+};
+

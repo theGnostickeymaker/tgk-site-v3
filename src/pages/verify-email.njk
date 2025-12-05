@@ -56,37 +56,49 @@ breadcrumbs:
   const oobCode = params.get("oobCode");
   const fallbackReturn = params.get("return");
 
+  // BroadcastChannel to notify the parent window
+  const channel = new BroadcastChannel("tgk-email-verify");
+
   async function verify() {
     msg.textContent = "Verifying your address...";
+
     try {
       await applyActionCode(auth, oobCode);
+
       msg.innerHTML = `
         <strong>Email verified successfully!</strong><br>
-        Your account is now active. Redirecting...
+        Your account is now active. Completing the process...
       `;
 
-      // Refresh token immediately so membership tier can sync
+      // Refresh user state
       await auth.currentUser?.reload();
       await auth.currentUser?.getIdToken(true);
 
+      // Notify original tab
+      channel.postMessage({ verified: true });
+
+      // Give browser a moment to deliver the message
       setTimeout(() => {
-        // 1. Return to the originating page if stored in session
+        // Try to close this verification window
+        window.close();
+      }, 500);
+
+      // Fallback redirect if window cannot close
+      setTimeout(() => {
         if (consumeReturnUrl()) return;
 
-        // 2. Cross-context fallback from the email link
         if (fallbackReturn) {
           window.location.replace(fallbackReturn);
           return;
         }
 
-        // 3. Default destination: dashboard
         window.location.replace("/dashboard/");
       }, 1500);
 
     } catch (error) {
       console.error("[Verify] Error:", error);
       msg.innerHTML =
-        "Verification link invalid or expired. Please request a new one from your dashboard.";
+        "This verification link is invalid or expired. Please request a new link from your dashboard.";
     }
   }
 
@@ -94,3 +106,4 @@ breadcrumbs:
   else msg.textContent = "Invalid verification link.";
 </script>
 {% endraw %}
+
