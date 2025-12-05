@@ -216,17 +216,6 @@
 <!-- TGK Gate — MUST BE ON EVERY PAGE -->
 <script type="module" src="/js/tgk-gate.js?v={{ bust }}" defer></script>
 
-<!-- ===========================================================
-     TGK — Verify Banner (Global Injection)
-     =========================================================== -->
-<script type="module">
-  import { app } from "/js/firebase-init.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-  import { initVerifyBanner } from "/js/verify-banner.js";
-
-  const auth = getAuth(app);
-  initVerifyBanner(auth);
-</script>
 
 </body>
 </html>

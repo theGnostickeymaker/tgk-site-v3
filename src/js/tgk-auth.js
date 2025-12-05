@@ -1,5 +1,5 @@
 /* ===========================================================
-   TGK — Auth Pages (Sign-in / Sign-up) v3.7 — Stable Gate Sync
+   TGK — Auth Pages (Sign-in / Sign-up) v3.8 — Gate + Verify
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -15,33 +15,44 @@ import {
 
 const auth = getAuth(app);
 
-// Ensure persistence before anything else runs
+/* ===========================================================
+   🜂 Persistence + Auth State Watcher
+   =========================================================== */
+
 await setPersistence(auth, browserLocalPersistence);
 console.log("[Auth] Persistence set to browserLocalPersistence");
 
-// === Wait for persisted user before any gated checks ===
-await setPersistence(auth, browserLocalPersistence).then(() => {
-  console.log("[Auth] Persistence set");
-  onAuthStateChanged(auth, async (user) => {
-  if (!user) return console.log("[Auth] No user signed in.");
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    console.log("[Auth] No user signed in.");
+    removeVerifyBanner();
+    return;
+  }
 
   console.log("[Auth] onAuthStateChanged:", user.email);
 
-  await user.reload(); // make sure we have the latest verification state
+  // Make sure we have current verification state
+  try {
+    await user.reload();
+  } catch (err) {
+    console.warn("[Auth] Could not reload user:", err.message);
+  }
 
   if (!user.emailVerified) {
     console.warn("[Auth] Email not verified:", user.email);
     showVerifyBanner(user);
   } else {
     console.log("[Auth] Email verified:", user.email);
-    // Normal dashboard flow continues here
+    removeVerifyBanner();
   }
 });
 
-});
+/* ===========================================================
+   🜂 Gate Integration (consumeReturnUrl)
+   =========================================================== */
 
-// === ENSURE __TGK_GATE__ ===
 let consumeReturnUrl = () => false;
+
 const ensureGate = () => {
   if (window.__TGK_GATE__?.consumeReturnUrl) {
     consumeReturnUrl = window.__TGK_GATE__.consumeReturnUrl;
@@ -51,12 +62,11 @@ const ensureGate = () => {
 };
 ensureGate();
 
-// Normalise email input
-const normaliseEmail = (e) => (e || "").trim().toLowerCase();
-
 /* ===========================================================
-   SIGN IN
+   🜂 Utilities
    =========================================================== */
+
+const normaliseEmail = (e) => (e || "").trim().toLowerCase();
 
 // === Friendly Error Messages (TGK standard) ===
 const friendlyErrors = {
@@ -67,9 +77,21 @@ const friendlyErrors = {
   "auth/too-many-requests": "Too many attempts. Please wait a moment before trying again.",
   "auth/email-already-in-use": "An account already exists with that email address.",
   "auth/invalid-credential": "Incorrect email or password.",
-  "auth/network-request-failed": "Network error. Please check your connection and try again.",
+  "auth/network-request-failed": "Network error. Please check your connection and try again."
 };
 
+function showLoginStatus(code, fallback) {
+  const statusEl = document.getElementById("login-status");
+  if (!statusEl) return;
+
+  const msg = friendlyErrors[code] || fallback || "Unable to log in.";
+  statusEl.textContent = msg;
+  statusEl.classList.remove("hidden");
+}
+
+/* ===========================================================
+   SIGN IN
+   =========================================================== */
 
 window.pageSignin = async (email, password) => {
   console.log("[Auth] pageSignin called");
@@ -98,41 +120,36 @@ window.pageSignin = async (email, password) => {
       console.log("[Auth] localStorage.tgk-tier set:", data.tier);
     }
 
+    // STEP 4: Honour saved return URL, else go to dashboard
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
   } catch (err) {
-  console.error("[Auth] Login failed:", err.code, err.message);
+    console.error("[Auth] Login failed:", err.code, err.message);
 
-  // Ignore transient or recoverable errors that occur on some mobile browsers
-  const ignorableErrors = [
-    "auth/network-request-failed",
-    "auth/internal-error",
-    "auth/popup-closed-by-user",
-    "auth/popup-blocked"
-  ];
+    const ignorableErrors = [
+      "auth/network-request-failed",
+      "auth/internal-error",
+      "auth/popup-closed-by-user",
+      "auth/popup-blocked"
+    ];
 
-  if (!ignorableErrors.includes(err.code)) {
-    const statusEl = document.getElementById("login-status");
-  if (statusEl) {
-    const msg = friendlyErrors[err.code] || "Unable to log in.";
-    statusEl.textContent = msg;
-
-    statusEl.classList.remove("hidden");
+    if (!ignorableErrors.includes(err.code)) {
+      showLoginStatus(err.code, err.message);
+    } else {
+      console.warn("[Auth] Non-critical sign-in error suppressed:", err.code);
+    }
   }
-
-  } else {
-    console.warn("[Auth] Non-critical sign-in error suppressed:", err.code);
-  }
-}
 };
 
 /* ===========================================================
    SIGN UP
    =========================================================== */
+
+let signupLock = false;
+
 window.pageSignup = async (email, password) => {
-  let lock = false;
-  if (lock) return;
-  lock = true;
+  if (signupLock) return;
+  signupLock = true;
 
   try {
     // 1. Validate password before doing anything else
@@ -161,21 +178,27 @@ window.pageSignup = async (email, password) => {
     const { createUserWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js");
     const cred = await createUserWithEmailAndPassword(auth, normaliseEmail(email), password);
     const user = cred.user;
-    // Send a background verification email (non-blocking)
+
+    // 3. Send verification email with dashboard return URL
     try {
-      await sendEmailVerification(user);
+      const actionCodeSettings = {
+        url: `${window.location.origin}/dashboard/?verify=1`,
+        handleCodeInApp: false
+      };
+      await sendEmailVerification(user, actionCodeSettings);
       console.log("[Auth] Verification email sent to:", user.email);
     } catch (verr) {
       console.warn("[Auth] Could not send verification email:", verr.message);
     }
 
+    // 4. Create / link Stripe customer on free tier
     const res = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         uid: user.uid,
         email: normaliseEmail(email),
-        priceId: "price_1SSbN52NNS39COWZzEg9tTWn" // ✅ LIVE Free Tier ID from Stripe
+        priceId: "price_1SSbN52NNS39COWZzEg9tTWn" // LIVE Free Tier ID from Stripe
       })
     });
 
@@ -183,47 +206,46 @@ window.pageSignup = async (email, password) => {
 
     const { customerId } = await res.json();
 
-    // 4. Sync entitlements
+    // 5. Sync entitlements
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ uid: user.uid, customerId, email: normaliseEmail(email) })
     });
 
-    // 5. Refresh token + local tier
+    // 6. Refresh token + local tier
     await user.getIdToken(true);
     localStorage.setItem("tgk-tier", "initiate");
 
-    alert("Welcome to The Gnostic Key! We’ve sent a quick verification link to your email — you can explore right away, but please confirm later to secure your access.");
+    alert("Welcome to The Gnostic Key! We have sent a quick verification link to your email — you can explore right away, but please confirm later to secure your access.");
+
+    // 7. Return to locked page if gate saved one; else dashboard
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
   } catch (err) {
-  console.error("[Auth] Login failed:", err.code, err.message);
+    console.error("[Auth] Signup failed:", err.code, err.message);
 
-  const ignorableErrors = [
-    "auth/network-request-failed",
-    "auth/internal-error",
-    "auth/popup-closed-by-user",
-    "auth/popup-blocked"
-  ];
+    const ignorableErrors = [
+      "auth/network-request-failed",
+      "auth/internal-error",
+      "auth/popup-closed-by-user",
+      "auth/popup-blocked"
+    ];
 
-  if (!ignorableErrors.includes(err.code)) {
-    const statusEl = document.getElementById("login-status");
-    if (statusEl) {
-      const msg = friendlyErrors[err.code] || "Unable to log in.";
-      statusEl.textContent = msg;
-      statusEl.classList.remove("hidden");
+    if (!ignorableErrors.includes(err.code)) {
+      showLoginStatus(err.code, err.message);
+    } else {
+      console.warn("[Auth] Non-critical sign-up error suppressed:", err.code);
     }
-  } else {
-    console.warn("[Auth] Non-critical sign-in error suppressed:", err.code);
+  } finally {
+    signupLock = false;
   }
-}
-
 };
 
 /* ===========================================================
    PASSWORD RESET
    =========================================================== */
+
 function pageReset(email) {
   const addr = normaliseEmail(email);
   if (!addr.includes("@")) return alert("Invalid email.");
@@ -235,6 +257,7 @@ function pageReset(email) {
 /* ===========================================================
    BIND FORMS
    =========================================================== */
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", bindForms);
 } else {
@@ -280,4 +303,45 @@ function bindForms() {
     const email = prompt("Enter your email:");
     if (email) pageReset(email);
   });
+}
+
+/* ===========================================================
+   EMAIL VERIFICATION BANNER (TGK Integrated)
+   =========================================================== */
+
+function showVerifyBanner(user) {
+  if (!user) return;
+  if (document.getElementById("verify-banner")) return;
+
+  const banner = document.createElement("div");
+  banner.id = "verify-banner";
+  banner.innerHTML = `
+    <span>Your email has not been verified.</span>
+    <button id="resend-link">Resend verification link</button>
+  `;
+
+  document.body.prepend(banner);
+
+  const resendBtn = banner.querySelector("#resend-link");
+  if (resendBtn) {
+    resendBtn.addEventListener("click", async () => {
+      try {
+        const actionCodeSettings = {
+          url: `${window.location.origin}/dashboard/?verify=1`,
+          handleCodeInApp: false
+        };
+        await sendEmailVerification(user, actionCodeSettings);
+        banner.innerHTML = `<span>Verification link sent to ${user.email}.</span>`;
+        console.log("[VerifyBanner] Email re-sent successfully.");
+      } catch (err) {
+        console.error("[VerifyBanner] Resend failed:", err);
+        banner.innerHTML = `<span>Could not send verification link: ${err.message}</span>`;
+      }
+    });
+  }
+}
+
+function removeVerifyBanner() {
+  const existing = document.getElementById("verify-banner");
+  if (existing) existing.remove();
 }
