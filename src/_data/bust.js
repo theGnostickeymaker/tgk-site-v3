@@ -1,3 +1,3 @@
 // Cache-busting build timestamp
-module.exports = Date.now();
+export default Date.now();
 
