@@ -39,14 +39,11 @@ breadcrumbs:
   const oobCode = params.get("oobCode");
   const status = document.getElementById("status");
 
-  // Basic validation
   if (!mode || !oobCode) {
     status.textContent = "The link is invalid or incomplete.";
   } else if (mode === "verifyEmail") {
-    // Redirect to the verification handler
     window.location.href = `/verify-email/?${params.toString()}`;
   } else if (mode === "resetPassword") {
-    // Redirect to the password reset handler
     window.location.href = `/reset-password/?${params.toString()}`;
   } else if (mode === "recoverEmail") {
     status.textContent = "Email recovery has not yet been implemented.";

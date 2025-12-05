@@ -7,10 +7,14 @@ glyphRow: ["☥", "✶", "☥"]
 bodyClass: "lightgold"
 permalink: "/verify-email/index.html"
 
+# === Unified Header Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "Membership"
 gateTitle: "Verification"
+seriesTitle: null
+seasonTitle: null
 episodeTitle: "Verify Email"
+partTitle: null
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -48,39 +52,41 @@ breadcrumbs:
 
   const auth = getAuth(app);
   const msg = document.getElementById("verify-msg");
-
   const params = new URLSearchParams(window.location.search);
   const oobCode = params.get("oobCode");
   const fallbackReturn = params.get("return");
-
-  const channel = new BroadcastChannel("tgk-email-verify");
+  const verifyChannel = new BroadcastChannel("tgk-email-verify");
 
   async function verify() {
     msg.textContent = "Verifying your address...";
-
     try {
       await applyActionCode(auth, oobCode);
-
       msg.innerHTML = `
         <strong>Email verified successfully!</strong><br>
-        Redirecting you now…
+        Your account is now active. Redirecting...
       `;
 
-      await auth.currentUser?.reload();
-      await auth.currentUser?.getIdToken(true);
-
-      // Notify all other tabs immediately
-      channel.postMessage({ verified: true });
+      // Broadcast to any open TGK tabs
+      verifyChannel.postMessage({ verified: true });
 
       setTimeout(() => {
+        // 1. Try stored origin page
         if (consumeReturnUrl()) return;
-        if (fallbackReturn) return window.location.replace(fallbackReturn);
+
+        // 2. Fallback from link parameter
+        if (fallbackReturn) {
+          window.location.replace(fallbackReturn);
+          return;
+        }
+
+        // 3. Default: dashboard
         window.location.replace("/dashboard/");
-      }, 1200);
+      }, 1500);
 
     } catch (error) {
       console.error("[Verify] Error:", error);
-      msg.innerHTML = "Verification link invalid or expired. Please request a new one from your dashboard.";
+      msg.innerHTML =
+        "Verification link invalid or expired. Please request a new one from your dashboard.";
     }
   }
 

@@ -1,13 +1,107 @@
+###############################################
+#  THE GNOSTIC KEY — NETLIFY CONFIG (v3.2)
+#  Static Build • Netlify Functions • Auth Flow
+###############################################
+
 [build]
-  command = "npx @11ty/eleventy"
-  publish = "_site"
+  command   = "npx @11ty/eleventy"
+  publish   = "_site"
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
+  # Optional: reduces cold starts; keeps functions warm longer
+  AWS_LAMBDA_JS_RUNTIME = "nodejs18.x"
 
+###############################################
+# 🔹 FIREBASE EMAIL ACTION HANDLER
+# Required for verifyEmail and passwordReset links
+###############################################
+
+# Firebase will call:
+#   https://thegnostickey.com/auth/action/?mode=verifyEmail&oobCode=...
+# This MUST be preserved. No redirect stripping.
+[[redirects]]
+  from = "/__/auth/action"
+  to   = "/auth/action/"
+  status = 200
+  force = true
+
+# Explicit support for:
+# - mode=verifyEmail
+# - mode=resetPassword
+# - mode=recoverEmail
+[[redirects]]
+  from = "/auth/action"
+  to   = "/auth/action/index.html"
+  status = 200
+
+###############################################
+# 🔹 SIGN-IN / SIGN-OUT UX
+###############################################
+
+# Clean logout endpoint
 [[redirects]]
   from = "/logout"
-  to = "/signin/"
+  to   = "/signin/"
   status = 302
 
+###############################################
+# 🔹 DASHBOARD PROTECTION (fallback)
+# If a user somehow navigates to /dashboard without JS,
+# redirect to signin (JS gate handles the main flow).
+###############################################
+[[redirects]]
+  from = "/dashboard"
+  to   = "/signin/"
+  status = 302
+
+###############################################
+# 🔹 SPA-FRIENDLY 404 FALLBACK
+# Allows JS-driven navigation inside deep routes.
+###############################################
+[[redirects]]
+  from = "/*"
+  to   = "/404.html"
+  status = 404
+
+###############################################
+# 🔹 SECURITY / CACHE HEADER CONTROLS
+###############################################
+
+# Core TGK assets are immutable
+[[headers]]
+  for = "/tgk-assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Share images should NOT cache (auto-regenerated)
+[[headers]]
+  for = "/tgk-assets/images/share/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# JS should be revalidated on load for auth state freshness
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# CSS may be safely immutable
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+###############################################
+# 🔹 SECURITY HEADERS
+###############################################
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

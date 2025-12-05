@@ -49,7 +49,7 @@ breadcrumbs:
 
     <!-- Resume Reading (auto-shown only if a last page exists) -->
     <section class="section-block" id="resume-block" style="display:none;">
-      <h3 class="section-heading">Continue Your Journey</h3>
+      <h3 class="section-heading">Continue your journey</h3>
       <p class="lead muted" id="resume-text">
         Pick up where you last left off.
       </p>
@@ -92,7 +92,7 @@ breadcrumbs:
       </form>
     </section>
 
-    <!-- Activity Widgets -->
+    <!-- Activity Widgets (placeholder) -->
     <section hidden>
       <h3 class="section-heading">Your Activity</h3>
       <div class="dashboard-widgets">
@@ -153,8 +153,27 @@ breadcrumbs:
 
   const auth = getAuth();
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const cachedTier = localStorage.getItem("tgk-tier");
+    if (cachedTier) updateTierUI(cachedTier);
+    loadResumeCard();
+  });
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.__TGK_GATE__?.saveReturnUrl?.();
+      return window.location.replace("/signin/");
+    }
+
+    await refreshEntitlementsLive(user);
+    await loadDashboardHeader(user);
+
+    document.getElementById("profile-form").addEventListener("submit", saveProfile);
+    document.getElementById("logout-btn").addEventListener("click", pageSignout);
+  });
+
   /* ===========================================================
-     🜂 Resume Card Loader
+     🜂 Resume Reading — Dashboard Loader
      =========================================================== */
   function loadResumeCard() {
     const resumeUrl = localStorage.getItem("tgk-last-page");
@@ -166,36 +185,7 @@ breadcrumbs:
     block.style.display = "block";
     link.href = resumeUrl;
   }
-
-  /* ===========================================================
-     🜂 DOM Ready (Tier UI + Resume Card)
-     =========================================================== */
-  document.addEventListener("DOMContentLoaded", () => {
-    const cachedTier = localStorage.getItem("tgk-tier");
-    if (cachedTier) updateTierUI(cachedTier);
-
-    loadResumeCard();
-  });
-
-  /* ===========================================================
-     🜂 Auth Binding + Dashboard Loader
-     =========================================================== */
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      window.__TGK_GATE__?.saveReturnUrl?.();
-      return window.location.replace("/signin/");
-    }
-
-    await refreshEntitlementsLive(user);
-    await loadDashboardHeader(user);
-
-    document.getElementById("profile-form")
-      .addEventListener("submit", saveProfile);
-
-    document.getElementById("logout-btn")
-      .addEventListener("click", pageSignout);
-  });
 </script>
 
-
 <script type="module" src="/js/bookmarks.js?v={{ bust }}"></script>
+<script type="module" src="/js/tgk-auth.js?v={{ bust }}" defer></script>

@@ -218,5 +218,27 @@
 
 <script type="module" src="/js/verify-banner.js?v={{ bust }}"></script>
 
+<script>
+  // Store the last meaningful page for "Continue your journey"
+  (function () {
+    try {
+      var path = window.location.pathname || "/";
+      if (
+        path.startsWith("/dashboard") ||
+        path.startsWith("/signin") ||
+        path.startsWith("/signup") ||
+        path.startsWith("/membership") ||
+        path.startsWith("/auth/") ||
+        path.startsWith("/verify-email")
+      ) {
+        return;
+      }
+      localStorage.setItem("tgk-last-page", window.location.href);
+    } catch (e) {
+      console.warn("[TGK] Could not store last-page:", e.message);
+    }
+  })();
+</script>
+
 </body>
 </html>

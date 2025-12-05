@@ -38,16 +38,13 @@ export async function loadDashboardHeader(user) {
       getDoc(doc(db, "entitlements", user.uid))
     ]);
 
-    // Resolve display name
     const displayName =
       user.displayName ||
       (userSnap.exists() && userSnap.data().displayName) ||
       (user.email ? user.email.split("@")[0] : "Seeker");
 
-    // Resolve membership tier
     const tier = entSnap.exists() ? (entSnap.data().tier || "free") : "free";
 
-    // Resolve membership creation date
     let memberSince = "";
     if (entSnap.exists() && entSnap.data().created) {
       const created = entSnap.data().created.toDate
@@ -59,14 +56,12 @@ export async function loadDashboardHeader(user) {
       memberSince = fallbackDate.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
     }
 
-    // Update visible UI
     if (nameEl) nameEl.textContent = displayName;
     if (tierEl) tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
     if (memberSinceEl && memberSince) memberSinceEl.textContent = `Member since: ${memberSince}`;
     if (nameInput) nameInput.value = displayName;
     if (emailInput) emailInput.value = user.email;
 
-    // Cache tier
     localStorage.setItem("tgk-tier", tier);
     updateTierUI(tier);
 
