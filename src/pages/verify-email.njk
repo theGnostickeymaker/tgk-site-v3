@@ -46,7 +46,11 @@ breadcrumbs:
 
 {% raw %}
 <script type="module">
-  import { getAuth, applyActionCode } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  import {
+    getAuth,
+    applyActionCode
+  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
   import { app } from "/js/firebase-init.js";
   import { consumeReturnUrl } from "/js/tgk-gate.js";
 
@@ -57,36 +61,48 @@ breadcrumbs:
   const fallbackReturn = params.get("return");
   const verifyChannel = new BroadcastChannel("tgk-email-verify");
 
+  async function syncEntitlements(user) {
+    try {
+      const token = await user.getIdToken(true);
+
+      await fetch("/.netlify/functions/set-entitlements", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, uid: user.uid, email: user.email })
+      });
+
+      console.log("[Verify] Claims and entitlements refreshed.");
+    } catch (err) {
+      console.error("[Verify] Sync failed:", err);
+    }
+  }
+
   async function verify() {
-    msg.textContent = "Verifying your address...";
+    msg.textContent = "Verifying…";
+
     try {
       await applyActionCode(auth, oobCode);
+
       msg.innerHTML = `
         <strong>Email verified successfully!</strong><br>
-        Your account is now active. Redirecting...
+        Preparing your account…
       `;
 
-      // Broadcast to any open TGK tabs
+      await auth.currentUser.reload();
+
+      await syncEntitlements(auth.currentUser);
+
       verifyChannel.postMessage({ verified: true });
 
       setTimeout(() => {
-        // 1. Try stored origin page
         if (consumeReturnUrl()) return;
-
-        // 2. Fallback from link parameter
-        if (fallbackReturn) {
-          window.location.replace(fallbackReturn);
-          return;
-        }
-
-        // 3. Default: dashboard
+        if (fallbackReturn) return window.location.replace(fallbackReturn);
         window.location.replace("/dashboard/");
-      }, 1500);
+      }, 1000);
 
-    } catch (error) {
-      console.error("[Verify] Error:", error);
-      msg.innerHTML =
-        "Verification link invalid or expired. Please request a new one from your dashboard.";
+    } catch (err) {
+      console.error("[Verify] Error:", err);
+      msg.innerHTML = "Verification link invalid or expired.";
     }
   }
 
@@ -94,3 +110,5 @@ breadcrumbs:
   else msg.textContent = "Invalid verification link.";
 </script>
 {% endraw %}
+
+

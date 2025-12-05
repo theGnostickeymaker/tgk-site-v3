@@ -34,20 +34,19 @@ breadcrumbs:
   import { app } from "/js/firebase-init.js";
 
   const auth = getAuth(app);
-  const params = new URLSearchParams(window.location.search);
-  const mode = params.get("mode");
-  const oobCode = params.get("oobCode");
   const status = document.getElementById("status");
 
-  if (!mode || !oobCode) {
-    status.textContent = "The link is invalid or incomplete.";
+  const p = new URLSearchParams(window.location.search);
+  const mode = p.get("mode");
+  const oob = p.get("oobCode");
+
+  if (!mode || !oob) {
+    status.textContent = "Invalid or incomplete link.";
   } else if (mode === "verifyEmail") {
-    window.location.href = `/verify-email/?${params.toString()}`;
+    window.location.href = `/verify-email/?${p.toString()}`;
   } else if (mode === "resetPassword") {
-    window.location.href = `/reset-password/?${params.toString()}`;
-  } else if (mode === "recoverEmail") {
-    status.textContent = "Email recovery has not yet been implemented.";
+    window.location.href = `/reset-password/?${p.toString()}`;
   } else {
-    status.textContent = "Unknown or unsupported action type.";
+    status.textContent = "Unsupported action type.";
   }
 </script>
