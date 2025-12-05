@@ -66,6 +66,7 @@ breadcrumbs:
       `;
 
       // Refresh token immediately so membership tier can sync
+      await auth.currentUser?.reload();
       await auth.currentUser?.getIdToken(true);
 
       setTimeout(() => {
