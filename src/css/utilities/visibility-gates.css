@@ -33,14 +33,4 @@
     opacity: 1;
   }
 
-  .auth-error {
-  margin-top: 1rem;
-  color: #c0392b;
-  font-size: 0.95rem;
-}
-
-.hidden {
-  display: none;
-}
-
 }

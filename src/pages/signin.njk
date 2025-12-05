@@ -67,8 +67,13 @@ breadcrumbs:
         <button type="submit" class="btn outline full-width">Sign In</button>
       </form>
 
-      <!-- NEW: Visible error output for login failures -->
-      <p id="login-status" class="auth-error hidden" aria-live="polite"></p>
+      <!-- ===================================================== -->
+      <!--  ERROR DISPLAY — cannot be removed by Eleventy build -->
+      <!-- ===================================================== -->
+
+      <div id="login-status-wrap">
+        <p id="login-status" class="auth-error hidden" aria-live="polite"> &nbsp; </p>
+      </div>
 
       <p class="auth-note">
         <a href="/password-reset/">Forgot your password?</a><br>

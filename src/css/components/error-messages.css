@@ -1,0 +1,57 @@
+@layer components {
+
+  /* ============================================================
+     TGK — Auth Error Message (Token Driven)
+     Lightgold Theme Compatible
+     ============================================================ */
+
+  #login-status-wrap {
+    margin-top: 1rem;
+    min-height: 1.25rem; /* Prevents layout jump */
+  }
+
+  #login-status {
+    display: block;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    /* === TOKENS === */
+    color: var(--text-accent) !important;
+    text-shadow: 0 1px 2px var(--shadow-glow) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 1.6rem;
+    position: relative;
+  }
+
+  /* Gold sigil (token-powered) */
+  #login-status::before {
+    content: "☥";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
+    color: var(--glyph-color) !important;
+    opacity: 0.9;
+    text-shadow: 0 0 6px var(--shadow-glow) !important;
+  }
+
+  /* Reveal state */
+  #login-status:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hidden class must NOT use display: none, or Eleventy collapses it */
+  .hidden {
+    opacity: 0 !important;
+  }
+
+  
+  .auth-error {
+  margin-top: 1rem;
+  color: #c0392b;
+  font-size: 0.95rem;
+}
+}
