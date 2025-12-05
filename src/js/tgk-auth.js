@@ -57,6 +57,20 @@ const normaliseEmail = (e) => (e || "").trim().toLowerCase();
 /* ===========================================================
    SIGN IN
    =========================================================== */
+
+// === Friendly Error Messages (TGK standard) ===
+const friendlyErrors = {
+  "auth/user-not-found": "No account exists with that email address.",
+  "auth/wrong-password": "Incorrect password. Please try again.",
+  "auth/invalid-email": "Please enter a valid email address.",
+  "auth/missing-password": "Please enter your password.",
+  "auth/too-many-requests": "Too many attempts. Please wait a moment before trying again.",
+  "auth/email-already-in-use": "An account already exists with that email address.",
+  "auth/invalid-credential": "Incorrect email or password.",
+  "auth/network-request-failed": "Network error. Please check your connection and try again.",
+};
+
+
 window.pageSignin = async (email, password) => {
   console.log("[Auth] pageSignin called");
   try {
@@ -99,10 +113,12 @@ window.pageSignin = async (email, password) => {
 
   if (!ignorableErrors.includes(err.code)) {
     const statusEl = document.getElementById("login-status");
-if (statusEl) {
-  statusEl.textContent = err.message || "Unable to log in.";
-  statusEl.classList.remove("hidden");
-}
+  if (statusEl) {
+    const msg = friendlyErrors[err.code] || "Unable to log in.";
+    statusEl.textContent = msg;
+
+    statusEl.classList.remove("hidden");
+  }
 
   } else {
     console.warn("[Auth] Non-critical sign-in error suppressed:", err.code);
@@ -182,11 +198,27 @@ window.pageSignup = async (email, password) => {
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
   } catch (err) {
-    console.error("[Auth] Signup failed:", err);
-    alert("Signup failed: " + err.message);
-  } finally {
-    lock = false;
+  console.error("[Auth] Login failed:", err.code, err.message);
+
+  const ignorableErrors = [
+    "auth/network-request-failed",
+    "auth/internal-error",
+    "auth/popup-closed-by-user",
+    "auth/popup-blocked"
+  ];
+
+  if (!ignorableErrors.includes(err.code)) {
+    const statusEl = document.getElementById("login-status");
+    if (statusEl) {
+      const msg = friendlyErrors[err.code] || "Unable to log in.";
+      statusEl.textContent = msg;
+      statusEl.classList.remove("hidden");
+    }
+  } else {
+    console.warn("[Auth] Non-critical sign-in error suppressed:", err.code);
   }
+}
+
 };
 
 /* ===========================================================
