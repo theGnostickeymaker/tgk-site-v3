@@ -3,7 +3,7 @@
     "src/**/*.js",
     "eleventy.config.mjs",
     "scripts/**/*.js"
-  ],
+, "netlify/functions/set-reading-progress.js"  ],
   "exclude": [
     "node_modules",
     "_site"
