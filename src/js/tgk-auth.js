@@ -1,6 +1,6 @@
 /* ===========================================================
    TGK — Auth System (Sign-in / Sign-up / Verify Banner)
-   v4.0 — Production Stable
+   v4.1 — PRODUCTION FINAL
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -11,10 +11,19 @@ import {
   setPersistence,
   browserLocalPersistence,
   onAuthStateChanged,
-  sendEmailVerification,
+  sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const auth = getAuth(app);
+
+/* ===========================================================
+   🜂 Infinite Reload Safety Flag
+   ----------------------------------------------------------- */
+
+if (sessionStorage.getItem("tgk-verified-refresh") === "1") {
+  sessionStorage.removeItem("tgk-verified-refresh");
+  console.log("[Auth] Safe reload complete after verification");
+}
 
 /* ===========================================================
    🜂 Persistence + Auth Listener
@@ -73,13 +82,12 @@ const friendlyErrors = {
   "auth/too-many-requests": "Too many attempts. Please wait.",
   "auth/email-already-in-use": "An account already exists with that email address.",
   "auth/invalid-credential": "Incorrect email or password.",
-  "auth/network-request-failed": "Network error. Please try again.",
+  "auth/network-request-failed": "Network error. Please try again."
 };
 
 function showLoginStatus(code, fallback) {
   const statusEl = document.getElementById("login-status");
   if (!statusEl) return;
-
   statusEl.textContent = friendlyErrors[code] || fallback || "Unable to log in.";
   statusEl.classList.remove("hidden");
 }
@@ -93,14 +101,12 @@ window.pageSignin = async (email, password) => {
 
   try {
     const cred = await signInWithEmailAndPassword(auth, normaliseEmail(email), password);
-    console.log("[Auth] Signed in:", cred.user.email);
 
-    // Sync entitlements
     const token = await cred.user.getIdToken();
     const res = await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token }),
+      body: JSON.stringify({ token })
     });
 
     const data = await res.json();
@@ -115,17 +121,13 @@ window.pageSignin = async (email, password) => {
 
   } catch (err) {
     console.error("[Auth] Sign-in error:", err.code);
-
     const ignorable = [
       "auth/network-request-failed",
       "auth/internal-error",
       "auth/popup-blocked",
-      "auth/popup-closed-by-user",
+      "auth/popup-closed-by-user"
     ];
-
-    if (!ignorable.includes(err.code)) {
-      showLoginStatus(err.code, err.message);
-    }
+    if (!ignorable.includes(err.code)) showLoginStatus(err.code, err.message);
   }
 };
 
@@ -143,15 +145,13 @@ window.pageSignup = async (email, password, confirm) => {
     const e1 = normaliseEmail(email);
     const e2 = normaliseEmail(confirm);
 
+    // Match emails
     if (e1 !== e2) {
-      const mismatchEl = document.getElementById("email-mismatch");
-      if (mismatchEl) mismatchEl.style.display = "block";
+      document.getElementById("email-mismatch").style.display = "block";
       signupLock = false;
       return;
     }
-
-    const mismatchEl = document.getElementById("email-mismatch");
-    if (mismatchEl) mismatchEl.style.display = "none";
+    document.getElementById("email-mismatch").style.display = "none";
 
     // Password rules
     const rules = {
@@ -159,7 +159,7 @@ window.pageSignup = async (email, password, confirm) => {
       upper: /[A-Z]/.test(password),
       lower: /[a-z]/.test(password),
       number: /[0-9]/.test(password),
-      special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
     };
 
     if (Object.values(rules).includes(false)) {
@@ -175,7 +175,7 @@ window.pageSignup = async (email, password, confirm) => {
     const cred = await createUserWithEmailAndPassword(auth, e1, password);
     const user = cred.user;
 
-    // Send verification email (Firebase Action Handler)
+    // Send verification email
     try {
       await sendEmailVerification(user);
       console.log("[Auth] Verification email sent");
@@ -190,8 +190,8 @@ window.pageSignup = async (email, password, confirm) => {
       body: JSON.stringify({
         uid: user.uid,
         email: e1,
-        priceId: "price_1SSbN52NNS39COWZzEg9tTWn", // free tier
-      }),
+        priceId: "price_1SSbN52NNS39COWZzEg9tTWn"
+      })
     });
 
     const { customerId } = await checkoutRes.json();
@@ -200,7 +200,7 @@ window.pageSignup = async (email, password, confirm) => {
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ uid: user.uid, customerId, email: e1 }),
+      body: JSON.stringify({ uid: user.uid, customerId, email: e1 })
     });
 
     await user.getIdToken(true);
@@ -218,12 +218,9 @@ window.pageSignup = async (email, password, confirm) => {
       "auth/network-request-failed",
       "auth/internal-error",
       "auth/popup-blocked",
-      "auth/popup-closed-by-user",
+      "auth/popup-closed-by-user"
     ];
-
-    if (!ignorable.includes(err.code)) {
-      showLoginStatus(err.code, err.message);
-    }
+    if (!ignorable.includes(err.code)) showLoginStatus(err.code, err.message);
 
   } finally {
     signupLock = false;
@@ -236,7 +233,7 @@ window.pageSignup = async (email, password, confirm) => {
 
 function pageReset(email) {
   const addr = normaliseEmail(email);
-  if (!addr.includes("@")) return alert("Invalid email");
+  if (!addr.includes("@")) return alert("Invalid email.");
 
   sendPasswordResetEmail(auth, addr)
     .then(() => alert("Reset link sent."))
@@ -262,7 +259,7 @@ function bindForms() {
       e.preventDefault();
       pageSignin(
         signinForm.querySelector("#signin-email")?.value,
-        signinForm.querySelector("#signin-password")?.value,
+        signinForm.querySelector("#signin-password")?.value
       );
     });
   }
@@ -271,11 +268,10 @@ function bindForms() {
   if (signupForm) {
     signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
-
       pageSignup(
         signupForm.querySelector("#signup-email")?.value,
         signupForm.querySelector("#signup-password")?.value,
-        signupForm.querySelector("#signup-email-confirm")?.value,
+        signupForm.querySelector("#signup-email-confirm")?.value
       );
     });
   }
@@ -313,8 +309,12 @@ function showVerifyBanner(user) {
   });
 }
 
+function removeVerifyBanner() {
+  document.getElementById("verify-banner")?.remove();
+}
+
 /* ===========================================================
-   🜂 EMAIL VERIFICATION — CROSS-TAB SYNC LISTENER
+   🜂 CROSS-TAB VERIFICATION SYNC
    =========================================================== */
 
 const verifyChannel = new BroadcastChannel("tgk-email-verify");
@@ -327,13 +327,36 @@ verifyChannel.onmessage = async (event) => {
       await auth.currentUser?.reload();
       await auth.currentUser?.getIdToken(true);
     } catch (err) {
-      console.warn("[Auth] Could not refresh user after verification:", err.message);
+      console.warn("[Auth] Reload failed:", err.message);
     }
 
     removeVerifyBanner();
 
-    // Reload UI to sync tier + remove banner
+    sessionStorage.setItem("tgk-verified-refresh", "1");
     window.location.reload();
   }
 };
+
+/* ===========================================================
+   🜂 POLLING SAFETY NET (4 seconds)
+   =========================================================== */
+
+setInterval(async () => {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  try {
+    await user.reload();
+
+    if (user.emailVerified) {
+      console.log("[Auth] Email verified via polling");
+
+      removeVerifyBanner();
+      sessionStorage.setItem("tgk-verified-refresh", "1");
+      window.location.reload();
+    }
+  } catch (err) {
+    console.warn("[Auth] Polling error:", err.message);
+  }
+}, 4000);
 

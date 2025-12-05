@@ -7,14 +7,10 @@ glyphRow: ["☥", "✶", "☥"]
 bodyClass: "lightgold"
 permalink: "/verify-email/index.html"
 
-# === Unified Header Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "Membership"
 gateTitle: "Verification"
-seriesTitle: null
-seasonTitle: null
 episodeTitle: "Verify Email"
-partTitle: null
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
@@ -52,11 +48,11 @@ breadcrumbs:
 
   const auth = getAuth(app);
   const msg = document.getElementById("verify-msg");
+
   const params = new URLSearchParams(window.location.search);
   const oobCode = params.get("oobCode");
   const fallbackReturn = params.get("return");
 
-  // BroadcastChannel to notify the parent window
   const channel = new BroadcastChannel("tgk-email-verify");
 
   async function verify() {
@@ -67,38 +63,24 @@ breadcrumbs:
 
       msg.innerHTML = `
         <strong>Email verified successfully!</strong><br>
-        Your account is now active. Completing the process...
+        Redirecting you now…
       `;
 
-      // Refresh user state
       await auth.currentUser?.reload();
       await auth.currentUser?.getIdToken(true);
 
-      // Notify original tab
+      // Notify all other tabs immediately
       channel.postMessage({ verified: true });
 
-      // Give browser a moment to deliver the message
-      setTimeout(() => {
-        // Try to close this verification window
-        window.close();
-      }, 500);
-
-      // Fallback redirect if window cannot close
       setTimeout(() => {
         if (consumeReturnUrl()) return;
-
-        if (fallbackReturn) {
-          window.location.replace(fallbackReturn);
-          return;
-        }
-
+        if (fallbackReturn) return window.location.replace(fallbackReturn);
         window.location.replace("/dashboard/");
-      }, 1500);
+      }, 1200);
 
     } catch (error) {
       console.error("[Verify] Error:", error);
-      msg.innerHTML =
-        "This verification link is invalid or expired. Please request a new link from your dashboard.";
+      msg.innerHTML = "Verification link invalid or expired. Please request a new one from your dashboard.";
     }
   }
 
@@ -106,4 +88,3 @@ breadcrumbs:
   else msg.textContent = "Invalid verification link.";
 </script>
 {% endraw %}
-
