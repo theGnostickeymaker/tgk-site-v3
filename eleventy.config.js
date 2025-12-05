@@ -1,6 +1,5 @@
 // ==========================================================
 // 🧠 The Gnostic Key — Eleventy Config (Unified v3.3 Stable)
-// ESM-SAFE VERSION
 // ==========================================================
 
 import "dotenv/config";
@@ -9,40 +8,18 @@ import path from "node:path";
 import { DateTime } from "luxon";
 import pluginSitemap from "@quasibit/eleventy-plugin-sitemap";
 
-// Use ESM dynamic import for the quiz map to avoid require()
-async function loadQuizModule(modulePath) {
-  try {
-    const mod = await import(modulePath);
-    return mod.default || mod;
-  } catch {
-    return null;
-  }
-}
-
 export default function (eleventyConfig) {
-
+  /* =========================
+     0) Core
+  ========================= */
   eleventyConfig.setDataDeepMerge(true);
 
   /* =========================
-     Early Filters (must load before templates)
+     1) Passthrough (Safe cross-platform)
   ========================= */
-  eleventyConfig.addFilter("absoluteUrl", function (path) {
-    if (!path) return "";
-    const base =
-      this.ctx.site?.url ||
-      process.env.SITE_URL ||
-      "http://localhost:8080";
+  console.log("🜂 TGK Passthrough copy setup");
+  console.log("📁 Checking src/js →", fs.existsSync("src/js"));
 
-    try {
-      return new URL(path, base).href;
-    } catch {
-      return path;
-    }
-  });
-
-  /* =========================
-     1) Passthrough
-  ========================= */
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/media");
@@ -50,48 +27,53 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/tgk-assets/favicon");
   eleventyConfig.addPassthroughCopy("favicon.ico");
   eleventyConfig.addPassthroughCopy("src/tgk-assets");
-  eleventyConfig.addPassthroughCopy("src/_headers");
+  eleventyConfig.addPassthroughCopy("src/_headers")
 
   if (fs.existsSync("src/robots.txt")) {
     eleventyConfig.addPassthroughCopy("src/robots.txt");
   }
 
-  // =========================
-  // 1.5) Quiz JSON Auto-Build
-  // =========================
-  eleventyConfig.on("beforeBuild", async () => {
-    const quizPath = path.resolve("./src/_data/quiz/index.js");
-    const out = "./src/_data/quiz/index.json";
+  eleventyConfig.addFilter("absoluteUrl", function (path) {
+  if (!path) return "";
+  let base = this.ctx.site?.url || process.env.SITE_URL || "http://localhost:8080";
+  return new URL(path, base).href;
+});
 
-    const mapObj = await loadQuizModule(`file://${quizPath}`);
-    if (!mapObj) {
-      console.warn("⚠️  TGK Quiz JSON generation skipped");
-      return;
-    }
+  /* =========================
+     1.5) Quiz JSON Auto-Build  (synchronous, no await)
+  ========================= */
+  try {
+    const quizModulePath = path.resolve("./src/_data/quiz/index.js");
+    // eslint-disable-next-line global-require
+    const quizMap = require(quizModulePath);
+    const mapObj = quizMap.default || quizMap;
 
-    fs.writeFileSync(out, JSON.stringify(mapObj, null, 2), "utf8");
+    const outPath = "./src/_data/quiz/index.json";
+    fs.writeFileSync(outPath, JSON.stringify(mapObj, null, 2), "utf8");
     console.log("🧩 TGK Quiz index.json regenerated");
-  });
+  } catch (err) {
+    console.warn("⚠️  TGK Quiz JSON generation skipped:", err.message);
+  }
 
-  // =========================
-  // 2) Collections & Filters
-  // =========================
+  /* =========================
+     2) Collections & Filters
+  ========================= */
   const read = (obj, pathStr) =>
     pathStr.split(".").reduce((v, k) => (v && v[k] !== undefined ? v[k] : undefined), obj);
 
-  eleventyConfig.addCollection("content", (coll) =>
+  eleventyConfig.addCollection("content", coll =>
     coll.getFilteredByGlob("src/pillars/**/*.md")
   );
 
   eleventyConfig.addFilter("bySeries", (items = [], series = "") =>
-    items.filter((i) => {
+    items.filter(i => {
       const a = (read(i.data, "header.series") || i.data.series || "").toLowerCase();
       return a === series.toLowerCase();
     })
   );
 
   eleventyConfig.addFilter("byPillar", (items = [], pillar = "") =>
-    items.filter((i) => {
+    items.filter(i => {
       const a = (read(i.data, "header.pillar") || i.data.pillar || "").toLowerCase();
       return a === pillar.toLowerCase();
     })
@@ -104,15 +86,16 @@ export default function (eleventyConfig) {
     )
   );
 
-  eleventyConfig.addFilter("labelize", (s) =>
-    (s || "").replace(/[-_]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()).trim()
+  eleventyConfig.addFilter("labelize", s => (s || "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, c => c.toUpperCase())
+    .trim()
   );
 
   eleventyConfig.addFilter("normpath", (s = "") => s.replace(/\\/g, "/"));
-
   eleventyConfig.addFilter("split", (s = "", sep = "/") => (s + "").split(sep));
 
-  eleventyConfig.addFilter("date", (v) => {
+  eleventyConfig.addFilter("date", (v, fmt = "yyyy-LL-dd") => {
     if (!v) return "";
     const d = v instanceof Date ? v : new Date(v);
     if (isNaN(d)) return "";
@@ -142,6 +125,7 @@ export default function (eleventyConfig) {
     try {
       return JSON.parse(value);
     } catch {
+      console.warn("⚠️ fromJson filter could not parse:", value);
       return [];
     }
   });
@@ -163,9 +147,9 @@ export default function (eleventyConfig) {
     return `${d}${suffix(d)} ${dt.toFormat("MMM yyyy")}`;
   });
 
-  // =========================
-  // 3) Shortcodes
-  // =========================
+  /* =========================
+     3) Shortcodes
+  ========================= */
   eleventyConfig.addShortcode("video", (src, caption = "") => `
     <figure class="tgk-video">
       <video controls src="${src}" preload="metadata"></video>
@@ -184,23 +168,23 @@ export default function (eleventyConfig) {
     <iframe class="tgk-pdf" src="${src}" width="100%" height="${height}" loading="lazy"></iframe>
   `);
 
-  // =========================
-  // 4) Watch Targets
-  // =========================
+  /* =========================
+     4) Dev server watch
+  ========================= */
   eleventyConfig.addWatchTarget("src/css");
   eleventyConfig.addWatchTarget("src/js");
   eleventyConfig.addWatchTarget("src/_includes");
   eleventyConfig.addWatchTarget("src/_data");
   eleventyConfig.addWatchTarget("src/pillars");
 
-  // =========================
-  // 5) Layout Alias
-  // =========================
+  /* =========================
+     5) Layout alias
+  ========================= */
   eleventyConfig.addLayoutAlias("base", "base.njk");
 
-  // =========================
-  // 6) Plugins
-  // =========================
+  /* =========================
+     6) Plugins
+  ========================= */
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: {
       hostname: "https://thegnostickey.com",
@@ -216,30 +200,41 @@ export default function (eleventyConfig) {
     },
   });
 
-  // =========================
-  // 7) BrowserSync
-  // =========================
+  /* =========================
+     7) Directory-style URLs
+  ========================= */
   eleventyConfig.setBrowserSyncConfig({ ghostMode: false });
 
-  // =========================
-  // 8) Global Env
-  // =========================
+  /* ✅ Build Verification */
+  eleventyConfig.on("afterBuild", () => {
+    const file = "_site/js/bookmarks.js";
+    if (fs.existsSync(file)) {
+      console.log(`✅ TGK Build: Found ${file}`);
+    } else {
+      console.error(`❌ TGK Build Error: ${file} missing! Check passthrough copy.`);
+      process.exit(1);
+    }
+  });
+
+    /* =========================
+     8) Environment passthrough
+  ========================= */
   eleventyConfig.addGlobalData("env", process.env);
 
-  // =========================
-  // 9) Return
-  // =========================
+  /* =========================
+     8) Return
+  ========================= */
   return {
     dir: {
       input: "src",
       includes: "_includes",
       data: "_data",
-      output: "_site"
+      output: "_site",
     },
     pathPrefix: "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "md", "html"],
-    passthroughFileCopy: true
+    passthroughFileCopy: true,
   };
 }

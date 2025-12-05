@@ -1,19 +1,17 @@
 {
   "include": [
     "src/**/*.js",
-    "eleventy.config.js",
-    "scripts/**/*.js",
-    "netlify/functions/**/*.js",
-    "src/_data/bust.js"
-  ],
+    "eleventy.config.mjs",
+    "scripts/**/*.js"
+, "netlify/functions/set-reading-progress.js"  ],
   "exclude": [
     "node_modules",
     "_site"
   ],
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "allowJs": true,
     "checkJs": false,
     "resolveJsonModule": true,
