@@ -3,16 +3,10 @@ layout: base.njk
 pageId: "signup"
 permalink: "/signup/index.html"
 
-# === Unified Header Hierarchy ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "Membership"
-gateTitle: null
-seriesTitle: null
-seasonTitle: null
 episodeTitle: "Sign Up"
-partTitle: null
 
-# === Display ===
 title: "Join The Gnostic Key"
 description: "Create your TGK account and begin your Initiation."
 tagline: "Enter the threshold and begin your ascent"
@@ -107,20 +101,3 @@ breadcrumbs:
 </main>
 
 <script type="module" src="/js/tgk-auth.js?v={{ bust }}" defer></script>
-
-<script>
-// Simple client side validation for matching emails
-document.getElementById('signup-form').addEventListener('submit', function (e) {
-  const email = document.getElementById('signup-email').value.trim();
-  const confirm = document.getElementById('signup-email-confirm').value.trim();
-  const error = document.getElementById('email-mismatch');
-
-  if (email !== confirm) {
-    e.preventDefault();
-    error.style.display = 'block';
-    return;
-  }
-
-  error.style.display = 'none';
-});
-</script>

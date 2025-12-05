@@ -1,6 +1,6 @@
 /* ===========================================================
-   TGK — Auth Pages (Sign-in / Sign-up) v3.9
-   Clean Verification + Gate Integration + Stable Banner
+   TGK — Auth System (Sign-in / Sign-up / Verify Banner)
+   v4.0 — Production Stable
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -11,42 +11,42 @@ import {
   setPersistence,
   browserLocalPersistence,
   onAuthStateChanged,
-  sendEmailVerification
+  sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const auth = getAuth(app);
 
 /* ===========================================================
-   🜂 Persistence + Auth State Watcher
+   🜂 Persistence + Auth Listener
    =========================================================== */
 
 await setPersistence(auth, browserLocalPersistence);
-console.log("[Auth] Persistence set to browserLocalPersistence");
+console.log("[Auth] Persistence set → localStorage");
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    console.log("[Auth] No user signed in.");
     removeVerifyBanner();
+    console.log("[Auth] No user signed in");
     return;
   }
-
-  console.log("[Auth] Auth state:", user.email);
 
   try {
     await user.reload();
   } catch (err) {
-    console.warn("[Auth] Could not reload user:", err.message);
+    console.warn("[Auth] Reload failed:", err.message);
   }
 
   if (!user.emailVerified) {
+    console.log("[Auth] Unverified:", user.email);
     showVerifyBanner(user);
   } else {
+    console.log("[Auth] Verified:", user.email);
     removeVerifyBanner();
   }
 });
 
 /* ===========================================================
-   🜂 Gate Integration (consumeReturnUrl)
+   🜂 Gate Integration
    =========================================================== */
 
 let consumeReturnUrl = () => false;
@@ -67,13 +67,13 @@ const normaliseEmail = (e) => (e || "").trim().toLowerCase();
 
 const friendlyErrors = {
   "auth/user-not-found": "No account exists with that email address.",
-  "auth/wrong-password": "Incorrect password. Please try again.",
+  "auth/wrong-password": "Incorrect password.",
   "auth/invalid-email": "Please enter a valid email address.",
   "auth/missing-password": "Please enter your password.",
-  "auth/too-many-requests": "Too many attempts. Please wait a moment.",
+  "auth/too-many-requests": "Too many attempts. Please wait.",
   "auth/email-already-in-use": "An account already exists with that email address.",
   "auth/invalid-credential": "Incorrect email or password.",
-  "auth/network-request-failed": "Network error. Please try again."
+  "auth/network-request-failed": "Network error. Please try again.",
 };
 
 function showLoginStatus(code, fallback) {
@@ -85,11 +85,12 @@ function showLoginStatus(code, fallback) {
 }
 
 /* ===========================================================
-   SIGN IN
+   🜂 SIGN IN
    =========================================================== */
 
 window.pageSignin = async (email, password) => {
   console.log("[Auth] Sign-in attempt");
+
   try {
     const cred = await signInWithEmailAndPassword(auth, normaliseEmail(email), password);
     console.log("[Auth] Signed in:", cred.user.email);
@@ -99,18 +100,16 @@ window.pageSignin = async (email, password) => {
     const res = await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token })
+      body: JSON.stringify({ token }),
     });
 
     const data = await res.json();
     console.log("[Auth] Entitlement sync:", data);
 
-    // Refresh
     await cred.user.getIdToken(true);
 
     if (data.tier) localStorage.setItem("tgk-tier", data.tier);
 
-    // Navigate
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
 
@@ -120,8 +119,8 @@ window.pageSignin = async (email, password) => {
     const ignorable = [
       "auth/network-request-failed",
       "auth/internal-error",
+      "auth/popup-blocked",
       "auth/popup-closed-by-user",
-      "auth/popup-blocked"
     ];
 
     if (!ignorable.includes(err.code)) {
@@ -131,72 +130,77 @@ window.pageSignin = async (email, password) => {
 };
 
 /* ===========================================================
-   SIGN UP
+   🜂 SIGN UP
    =========================================================== */
 
 let signupLock = false;
 
-window.pageSignup = async (email, password) => {
+window.pageSignup = async (email, password, confirm) => {
   if (signupLock) return;
   signupLock = true;
 
   try {
-    // Password Rules
+    const e1 = normaliseEmail(email);
+    const e2 = normaliseEmail(confirm);
+
+    if (e1 !== e2) {
+      const mismatchEl = document.getElementById("email-mismatch");
+      if (mismatchEl) mismatchEl.style.display = "block";
+      signupLock = false;
+      return;
+    }
+
+    const mismatchEl = document.getElementById("email-mismatch");
+    if (mismatchEl) mismatchEl.style.display = "none";
+
+    // Password rules
     const rules = {
       length: password.length >= 8,
       upper: /[A-Z]/.test(password),
       lower: /[a-z]/.test(password),
       number: /[0-9]/.test(password),
-      special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
     };
 
     if (Object.values(rules).includes(false)) {
-      alert("Password must include 8+ chars with upper, lower, number, special.");
+      alert("Password must include: uppercase, lowercase, number, special, and 8+ characters.");
+      signupLock = false;
       return;
     }
 
-    // Create user
-    const { createUserWithEmailAndPassword } = 
+    // Create Firebase user
+    const { createUserWithEmailAndPassword } =
       await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js");
 
-    const cred = await createUserWithEmailAndPassword(
-      auth,
-      normaliseEmail(email),
-      password
-    );
-
+    const cred = await createUserWithEmailAndPassword(auth, e1, password);
     const user = cred.user;
 
-    // Send verification email (NO OVERRIDE — Firebase routes to /auth/action/)
+    // Send verification email (Firebase Action Handler)
     try {
       await sendEmailVerification(user);
       console.log("[Auth] Verification email sent");
     } catch (err) {
-      console.warn("[Auth] Verification send error:", err.message);
+      console.warn("[Auth] Verification email error:", err.message);
     }
 
-    // Create free tier Stripe customer
-    const checkout = await fetch("/.netlify/functions/create-checkout-session", {
+    // Create free-tier Stripe customer
+    const checkoutRes = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         uid: user.uid,
-        email: normaliseEmail(email),
-        priceId: "price_1SSbN52NNS39COWZzEg9tTWn"
-      })
+        email: e1,
+        priceId: "price_1SSbN52NNS39COWZzEg9tTWn", // free tier
+      }),
     });
 
-    const { customerId } = await checkout.json();
+    const { customerId } = await checkoutRes.json();
 
-    // Update entitlements
+    // Sync entitlements
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        uid: user.uid,
-        customerId,
-        email: normaliseEmail(email)
-      })
+      body: JSON.stringify({ uid: user.uid, customerId, email: e1 }),
     });
 
     await user.getIdToken(true);
@@ -208,13 +212,13 @@ window.pageSignup = async (email, password) => {
     window.location.replace("/dashboard/");
 
   } catch (err) {
-    console.error("[Auth] Sign-up error:", err.code);
+    console.error("[Auth] Signup error:", err.code);
 
     const ignorable = [
       "auth/network-request-failed",
       "auth/internal-error",
+      "auth/popup-blocked",
       "auth/popup-closed-by-user",
-      "auth/popup-blocked"
     ];
 
     if (!ignorable.includes(err.code)) {
@@ -227,19 +231,20 @@ window.pageSignup = async (email, password) => {
 };
 
 /* ===========================================================
-   PASSWORD RESET
+   🜂 PASSWORD RESET
    =========================================================== */
 
 function pageReset(email) {
   const addr = normaliseEmail(email);
-  if (!addr.includes("@")) return alert("Invalid email.");
+  if (!addr.includes("@")) return alert("Invalid email");
+
   sendPasswordResetEmail(auth, addr)
     .then(() => alert("Reset link sent."))
-    .catch(e => alert("Error: " + e.message));
+    .catch((e) => alert("Error: " + e.message));
 }
 
 /* ===========================================================
-   BIND FORMS
+   🜂 FORM BINDING
    =========================================================== */
 
 if (document.readyState === "loading") {
@@ -249,7 +254,7 @@ if (document.readyState === "loading") {
 }
 
 function bindForms() {
-  console.log("[Auth] Binding forms");
+  console.log("[Auth] Binding forms…");
 
   const signinForm = document.getElementById("signin-form");
   if (signinForm) {
@@ -257,7 +262,7 @@ function bindForms() {
       e.preventDefault();
       pageSignin(
         signinForm.querySelector("#signin-email")?.value,
-        signinForm.querySelector("#signin-password")?.value
+        signinForm.querySelector("#signin-password")?.value,
       );
     });
   }
@@ -266,9 +271,11 @@ function bindForms() {
   if (signupForm) {
     signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
+
       pageSignup(
         signupForm.querySelector("#signup-email")?.value,
-        signupForm.querySelector("#signup-password")?.value
+        signupForm.querySelector("#signup-password")?.value,
+        signupForm.querySelector("#signup-email-confirm")?.value,
       );
     });
   }
@@ -281,7 +288,7 @@ function bindForms() {
 }
 
 /* ===========================================================
-   EMAIL VERIFICATION BANNER
+   🜂 VERIFY BANNER
    =========================================================== */
 
 function showVerifyBanner(user) {
@@ -298,10 +305,10 @@ function showVerifyBanner(user) {
 
   banner.querySelector("#resend-link").addEventListener("click", async () => {
     try {
-      await sendEmailVerification(user); // No custom URL — allows Firebase Action Handler
-      banner.innerHTML = `<span>Verification link sent to ${user.email}.</span>`;
+      await sendEmailVerification(user);
+      banner.innerHTML = `<span>Verification link re-sent to ${user.email}</span>`;
     } catch (err) {
-      banner.innerHTML = `<span>Could not send verification link: ${err.message}</span>`;
+      banner.innerHTML = `<span>Could not send link: ${err.message}</span>`;
     }
   });
 }
