@@ -65,6 +65,22 @@ export default function (eleventyConfig) {
     coll.getFilteredByGlob("src/pillars/**/*.md")
   );
 
+  eleventyConfig.addCollection("communityTopics", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/pillars/tgk-community/threads/topics/**/index.njk")
+      .map(item => {
+        const d = item.data;
+
+        return {
+          url: item.url,
+          title: d.title,
+          description: d.description,
+          glyph: d.glyph || "",
+          state: d.state || "active",
+          minWriteTier: d.minWriteTier || "initiate"
+        };
+      });
+  });
+
   eleventyConfig.addFilter("bySeries", (items = [], series = "") =>
     items.filter(i => {
       const a = (read(i.data, "header.series") || i.data.series || "").toLowerCase();

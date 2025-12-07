@@ -1,24 +1,27 @@
 ---
-layout: "layouts/community-topic.njk"
+layout: "base.njk"
 
-topicId: "steel-man-method"
-title: "The Steel Man Method"
-description: "A structured discussion space dedicated to mastering and applying the Steel Man principle within the TGK Community."
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Community Threads"
+seriesTitle: "Topic Threads"
 
-glyph: "⚯"
-state: "active"
+title: "Discussion Topics"
+description: "Browse all active and upcoming TGK community discussion areas."
 
-minWriteTier: "initiate"
-minCreateTier: "adept"
+glyph: "💬"
+glyphRow: ["✦", "☉", "✦"]
+
+bodyClass: "community"
+accent: "community"
+tier: "free"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "TGK Community", url: "/pillars/tgk-community/" }
   - { title: "Discussion Threads", url: "/pillars/tgk-community/threads/" }
-  - { title: "Topics", url: "/pillars/tgk-community/threads/topics/" }
-  - { title: "The Steel Man Method" }
+  - { title: "Topics" }
 ---
-
 
 <main class="main-content">
   <section class="content-container">
@@ -43,7 +46,7 @@ breadcrumbs:
 
       <div class="community-grid">
 
-        {% for t in collections.communityTopics %}
+        {% for t in topicGrid %}
         <article class="community-card {{ t.state }}">
 
           <!-- Badge (top right) -->
