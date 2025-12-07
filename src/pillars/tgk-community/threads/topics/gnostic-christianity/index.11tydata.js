@@ -5,12 +5,12 @@ export default {
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",
-  seriesTitle: "The Steel Man Method",
+  seriesTitle: "Gnostic Christianity",
 
-  title: "Topic: The Steel Man Method",
-  description: "A structured discussion space dedicated to mastering the Steel Man principle.",
+  title: "Topic: Gnostic Christianity",
+  description: "Community discussion space dedicated to questions, insights, and interpretations related to the Afterlife: Gnostic Christianity scroll.",
 
-  glyph: "⚯",
+  glyph: "☥",
 
   bodyClass: "community",
   accent: "community",

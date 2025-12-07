@@ -1,30 +1,24 @@
 ---
-layout: base.njk
+layout: "layouts/community-topic.njk"
 
-siteTitle: "The Gnostic Key"
-pillarTitle: "TGK Community"
-gateTitle: "Community Threads"
-seriesTitle: "Topic Threads"
-seasonTitle: null
-episodeTitle: null
-partTitle: null
+topicId: "steel-man-method"
+title: "The Steel Man Method"
+description: "A structured discussion space dedicated to mastering and applying the Steel Man principle within the TGK Community."
 
-title: "Discussion Topics"
-description: "Browse all active and upcoming TGK community discussion threads."
+glyph: "⚯"
+state: "active"
 
-glyph: "🗂️"
-glyphRow: ["✦", "☉", "✦"]
-
-bodyClass: "community"
-accent: "community"
-tier: "free"
+minWriteTier: "initiate"
+minCreateTier: "adept"
 
 breadcrumbs:
   - { title: "The Gnostic Key", url: "/" }
   - { title: "TGK Community", url: "/pillars/tgk-community/" }
   - { title: "Discussion Threads", url: "/pillars/tgk-community/threads/" }
-  - { title: "Topics" }
+  - { title: "Topics", url: "/pillars/tgk-community/threads/topics/" }
+  - { title: "The Steel Man Method" }
 ---
+
 
 <main class="main-content">
   <section class="content-container">
@@ -43,38 +37,49 @@ breadcrumbs:
       </p>
     </section>
 
-    <!-- TOPIC GRID -->
+    <!-- TOPIC GRID (Dynamic) -->
     <section class="section-block">
       <h2 class="section-heading">Active & Upcoming Topics</h2>
 
-      <div class="topics-grid">
+      <div class="community-grid">
 
-        {% for t in topicsGrid %}
-          {% set state = t.state or "default" %}
+        {% for t in collections.communityTopics %}
+        <article class="community-card {{ t.state }}">
 
-          <article class="gnostic-card {{ state }}">
-            <a class="card-link" href="{{ t.href }}">
+          <!-- Badge (top right) -->
+          {% if t.state == "coming-soon" %}
+            <div class="card-badge">Coming Soon</div>
+          {% endif %}
+          {% if t.state == "locked" %}
+            <div class="card-badge locked">Locked</div>
+          {% endif %}
+          {% if t.minWriteTier == "adept" %}
+            <div class="card-badge">Adept</div>
+          {% endif %}
 
-              <div class="card-body">
-                <div class="card-glyph">{{ t.glyph }}</div>
-                <h3 class="card-title">{{ t.title }}</h3>
+          <a href="{{ t.url }}" class="card-link">
 
-                {% if t.desc %}
-                  <p class="card-desc">{{ t.desc }}</p>
-                {% endif %}
-              </div>
+            <!-- Glyph -->
+            <div class="community-glyph">{{ t.glyph }}</div>
 
-              {% if state == "coming-soon" %}
-                <div class="card-overlay">
-                  <span class="banner">Coming Soon</span>
+            <!-- Title -->
+            <h3 class="community-card-title">{{ t.title }}</h3>
+
+            <!-- Description -->
+            <p class="community-card-desc">{{ t.description }}</p>
+
+            <!-- Optional overlay for non-active states -->
+            {% if t.state != "active" %}
+              <div class="card-overlay">
+                <div class="banner">
+                  {% if t.state == "coming-soon" %} Coming Soon {% endif %}
+                  {% if t.state == "locked" %} Locked {% endif %}
                 </div>
-              {% endif %}
+              </div>
+            {% endif %}
 
-              <div class="card-badge tier-free">Free</div>
-
-            </a>
-          </article>
-
+          </a>
+        </article>
         {% endfor %}
 
       </div>

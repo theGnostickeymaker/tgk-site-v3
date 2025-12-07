@@ -1,0 +1,61 @@
+{# ============================================================
+   🏛️ TGK — Global Community Topic Template (v1.0)
+   All topic pages inherit this layout.
+   Uses Eleventy-generated front matter from topic .njk files.
+   ============================================================ #}
+
+{% extends "base.njk" %}
+
+{% block content %}
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- INTRO SECTION -->
+    <section class="section-block">
+      <h1 class="section-heading">
+        {{ title or ("Topic: " + topicId | labelize) }}
+      </h1>
+
+      {% if description %}
+        <p class="lead">{{ description }}</p>
+      {% endif %}
+    </section>
+
+    <!-- GUIDANCE (STANDARD) -->
+    <section class="section-block">
+      <h2 class="section-heading">How to Participate</h2>
+
+      <ul class="rules-list">
+        <li>Begin your reply with a Steel Man summary of the idea you are addressing.</li>
+        <li>Engage ideas, not individuals.</li>
+        <li>Clarify before criticising.</li>
+        <li>Protect clarity, dignity, and intellectual honesty.</li>
+      </ul>
+
+      <p class="muted small">
+        Full guidelines are available in the
+        <a href="/pillars/tgk-community/guide/charter/" class="link-accent">
+          TGK Community Charter
+        </a>.
+      </p>
+    </section>
+
+    <!-- DISCUSSION MODULE -->
+    <section id="discussion-root"
+             class="section-block"
+             data-topic-id="{{ topicId }}">
+      {% include "components/discussion/reply-prompt.njk" %}
+      {% include "components/discussion/thread-list.njk" %}
+    </section>
+
+  </section>
+</main>
+
+{% include "partials/community/delete-modal.njk" %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="module" src="/js/discussion-topic.js"></script>
+  <script type="module" src="/js/community-delete.js"></script>
+  <script type="module" src="/js/community-edit.js"></script>
+{% endblock %}

@@ -1,10 +1,11 @@
-import { 
-  getFirestore, 
-  doc, 
-  deleteDoc 
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+// /js/community-delete.js
+// TGK Community - Delete reply
 
-const db = getFirestore();
+import { db } from "/js/firebase-init.js";
+import {
+  doc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 // Global delete click handler
 document.addEventListener("click", async (event) => {
@@ -19,7 +20,6 @@ document.addEventListener("click", async (event) => {
   try {
     await deleteDoc(doc(db, "topics", topicId, "replies", commentId));
 
-    // Remove element from DOM
     const el = document.getElementById(`comment-${commentId}`);
     if (el) el.remove();
 

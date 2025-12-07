@@ -1,22 +1,15 @@
-// =============================================================
-// TGK Community — Edit Reply Module
-// Allows the original author to edit their contribution.
-// =============================================================
+// /js/community-edit.js
+// TGK Community - Edit reply module
 
+import { db, auth } from "/js/firebase-init.js";
 import {
-  getFirestore,
   doc,
   updateDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 import {
-  getAuth,
   onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const db = getFirestore();
-const auth = getAuth();
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 let currentUser = null;
 onAuthStateChanged(auth, (user) => {
@@ -36,11 +29,7 @@ document.addEventListener("click", (event) => {
   enterEditMode(replyCard, replyId);
 });
 
-// -------------------------------------------------------------
-// Enter edit mode: convert reply card into an inline editor
-// -------------------------------------------------------------
 function enterEditMode(card, replyId) {
-
   const steelEl = card.querySelector(".reply-steelman-body");
   const bodyEl = card.querySelector(".reply-body-text");
 
@@ -75,23 +64,17 @@ function enterEditMode(card, replyId) {
   `;
 }
 
-// -------------------------------------------------------------
 // Cancel editing
-// -------------------------------------------------------------
 document.addEventListener("click", (event) => {
   if (!event.target.classList.contains("btn-cancel-edit")) return;
 
   const replyId = event.target.dataset.replyId;
   if (!replyId) return;
 
-  // Reload the page to restore original content (simplest and safest)
-  // A non-refresh version is also possible if you prefer
   location.reload();
 });
 
-// -------------------------------------------------------------
 // Save edited reply
-// -------------------------------------------------------------
 document.addEventListener("click", async (event) => {
   if (!event.target.classList.contains("btn-save-edit")) return;
 
@@ -137,7 +120,6 @@ document.addEventListener("click", async (event) => {
       updatedAt: serverTimestamp()
     });
 
-    // Reload page to ensure clean DOM + fresh listeners
     location.reload();
 
   } catch (err) {
@@ -146,7 +128,6 @@ document.addEventListener("click", async (event) => {
   }
 });
 
-// Utility: show temporary status message
 function showStatus(el, msg) {
   if (!el) return;
   el.hidden = false;

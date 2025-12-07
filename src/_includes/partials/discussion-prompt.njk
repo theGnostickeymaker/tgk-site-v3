@@ -1,21 +1,8 @@
 {# =========================================================
-   🗣️ TGK — Discussion Prompt Partial (v2.2)
+   🗣️ TGK — Discussion Prompt Partial (v2.3)
    Purpose:
-   Invites the seeker to reflect, question, and share insights
-   after completing a page or section.
-
-   ✅ Data Source:
-   - discussion.promptTitle (string)
-   - discussion.intro (html/markdown allowed)
-   - discussion.question (string)
-   - discussion.points (array of strings)
-   - discussion.footer (html/markdown allowed)
-   - discussionEnabled (bool) — can disable via false
-
-   🧭 Behaviour:
-   • Automatically builds share links for X (Twitter) and Telegram
-   • Fallback text if no data is provided
-   • Works at any level: pillar / series / episode
+   Reflection block shown at the end of scrolls.
+   No Community button here.
    ========================================================= #}
 
 {% if discussionEnabled != false %}
@@ -32,25 +19,22 @@
       🗣️ {{ discussion.promptTitle or "Discussion Prompt: What Spark Are You Reigniting?" }}
     </h2>
 
-    {# 🔹 Intro text (optional) #}
     {% if discussion.intro %}
       <p>{{ discussion.intro | safe }}</p>
     {% else %}
       <p>
-        You’ve walked the hidden cosmology – the <strong>Pleroma</strong>,
+        You’ve walked the hidden cosmology, the <strong>Pleroma</strong>,
         <strong>Sophia’s</strong> fall, the veil of illusion, and the buried divine spark.
         Now we ask:
       </p>
     {% endif %}
 
-    {# 🔹 Main question (optional) #}
     {% if discussion.question %}
       <blockquote>
         <strong>{{ discussion.question }}</strong>
       </blockquote>
     {% endif %}
 
-    {# 🔹 Discussion points (optional list) #}
     {% if discussion.points %}
       <ul class="list-emoji">
         {% for p in discussion.points %}
@@ -59,49 +43,34 @@
       </ul>
     {% endif %}
 
-    {# 🔹 Footer or default share message #}
     {% if discussion.footer %}
       <p>{{ discussion.footer | safe }}</p>
     {% else %}
       <p>
         Share your reflections using <strong>#TheGnosticKey</strong> and tag
-        <strong>@thegnostickey</strong> — your words might become the flame that awakens another.
+        <strong>@thegnostickey</strong>. Your words might become the flame that awakens another.
       </p>
     {% endif %}
 
-    {# 🔹 Buttons: Share and Community #}
     <div class="btn-row">
-      <!-- 📤 Discuss on X -->
       <div class="btn-wrap">
         <a href="https://x.com/intent/tweet?url={{ shareUrl | urlencode }}&text={{ encodedSharePrompt }}%20%23TheGnosticKey"
            target="_blank"
            rel="noopener noreferrer"
-           class="btn btn-outline"
-           aria-label="Discuss this topic on X (formerly Twitter)">
+           class="btn btn-outline">
           📤 <strong>Discuss on X</strong>
         </a>
       </div>
 
-      <!-- 💬 Join Telegram -->
       <div class="btn-wrap">
         <a href="https://t.me/TheGnosticKey"
            target="_blank"
            rel="noopener noreferrer"
-           class="btn btn-outline"
-           aria-label="Join The Gnostic Key Telegram community">
+           class="btn btn-outline">
           💬 <strong>Join Us on Telegram</strong>
         </a>
       </div>
     </div>
-
-          <!-- 🏛️ Discuss in the Community -->
-      <div class="btn-wrap">
-        <a href="/pillars/tgk-community/"
-           class="btn btn-outline"
-           aria-label="Discuss this topic inside the TGK Community">
-          🏛️ <strong>Discuss in the TGK Community</strong>
-        </a>
-      </div>
 
   </section>
 {% endif %}

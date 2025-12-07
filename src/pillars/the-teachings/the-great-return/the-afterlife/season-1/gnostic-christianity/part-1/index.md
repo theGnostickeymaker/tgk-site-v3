@@ -77,7 +77,6 @@ vaultRefs:
 communityThreads: []
 relatedProducts: []
 
-
 # ⚯ Synergist Lens data
 creativePrompt:
   text: ""
@@ -92,6 +91,11 @@ discussion:
     - "When did you first feel the spark awaken in your life?"
     - "What would you say to Sophia if she stood before you now?"
   footer: "Share your reflections using <strong>#TheGnosticKey</strong> and tag <strong>@thegnostickey</strong>. Your words might become the flame that awakens another."
+
+community:
+  topicId: "gnostic-christianity"
+  pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-1"
+  label: "Discuss this Scroll in the TGK Community"
 
 glossary:
   subtitle: "Decode the hidden language of rebellion, remembrance, and revelation."
@@ -538,6 +542,7 @@ socialImages:
 
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}
+  {% include "partials/community-entry.njk" %}
   {% include "partials/quiz-block.njk" %}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}

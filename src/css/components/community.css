@@ -279,5 +279,13 @@
   cursor: pointer;
 }
 
+.community-entry-block {
+  border: 1px solid var(--accent-border, #a88c5d);
+  padding: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-radius: 8px;
+  background: var(--bg-panel, rgba(255,255,255,0.02));
+}
 
 }
