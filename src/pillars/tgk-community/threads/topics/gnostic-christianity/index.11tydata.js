@@ -1,7 +1,7 @@
 export default {
 
-  layout: "base.njk",
-
+  layout: data => data?.layout ?? "layouts/community-topic.njk",
+  
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",

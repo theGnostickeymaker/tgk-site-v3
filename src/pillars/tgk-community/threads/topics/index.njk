@@ -1,5 +1,5 @@
 ---
-layout: "base.njk"
+layout: base.njk
 
 siteTitle: "The Gnostic Key"
 pillarTitle: "TGK Community"
@@ -11,7 +11,6 @@ description: "Browse all active and upcoming TGK community discussion areas."
 
 glyph: "💬"
 glyphRow: ["✦", "☉", "✦"]
-
 bodyClass: "community"
 accent: "community"
 tier: "free"
@@ -26,7 +25,6 @@ breadcrumbs:
 <main class="main-content">
   <section class="content-container">
 
-    <!-- INTRO -->
     <section class="section-block">
       <h1 class="section-heading">Discussion Topics</h1>
       <p class="lead">
@@ -36,55 +34,43 @@ breadcrumbs:
       </p>
       <p>
         Future scrolls will link directly to their corresponding topics, ensuring
-        clean pages and a unified conversation centre for the entire TGK ecosystem.
+        clean pages and a unified conversation centre for the TGK ecosystem.
       </p>
     </section>
 
-    <!-- TOPIC GRID (Dynamic) -->
     <section class="section-block">
       <h2 class="section-heading">Active & Upcoming Topics</h2>
 
-      <div class="community-grid">
+      <div class="portal-grid">
+        {% for m in topicGrid %}
+          {% set state = m.state or "default" %}
 
-        {% for t in topicGrid %}
-        <article class="community-card {{ t.state }}">
-
-          <!-- Badge (top right) -->
-          {% if t.state == "coming-soon" %}
-            <div class="card-badge">Coming Soon</div>
-          {% endif %}
-          {% if t.state == "locked" %}
-            <div class="card-badge locked">Locked</div>
-          {% endif %}
-          {% if t.minWriteTier == "adept" %}
-            <div class="card-badge">Adept</div>
-          {% endif %}
-
-          <a href="{{ t.url }}" class="card-link">
-
-            <!-- Glyph -->
-            <div class="community-glyph">{{ t.glyph }}</div>
-
-            <!-- Title -->
-            <h3 class="community-card-title">{{ t.title }}</h3>
-
-            <!-- Description -->
-            <p class="community-card-desc">{{ t.description }}</p>
-
-            <!-- Optional overlay for non-active states -->
-            {% if t.state != "active" %}
-              <div class="card-overlay">
-                <div class="banner">
-                  {% if t.state == "coming-soon" %} Coming Soon {% endif %}
-                  {% if t.state == "locked" %} Locked {% endif %}
-                </div>
+          <article class="gnostic-card {{ state }}">
+            <a class="card-link" href="{{ m.href }}">
+              <div class="card-body">
+                {% if m.glyph %}
+                  <div class="card-glyph">{{ m.glyph }}</div>
+                {% endif %}
+                <h3 class="card-title">{{ m.title }}</h3>
+                {% if m.desc %}
+                  <p class="card-desc">{{ m.desc }}</p>
+                {% endif %}
               </div>
-            {% endif %}
 
-          </a>
-        </article>
+              {% if state != "active" %}
+                <div class="card-overlay">
+                  <span class="banner">
+                    {% if state == "coming-soon" %} Coming Soon {% endif %}
+                    {% if state == "locked" %} Locked {% endif %}
+                  </span>
+                </div>
+              {% endif %}
+
+              <div class="card-badge tier-free">Free</div>
+            </a>
+          </article>
+
         {% endfor %}
-
       </div>
     </section>
 

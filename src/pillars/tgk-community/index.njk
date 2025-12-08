@@ -5,9 +5,6 @@ siteTitle: "The Gnostic Key"
 pillarTitle: "TGK Community"
 gateTitle: null
 seriesTitle: "TGK Community"
-seasonTitle: null
-episodeTitle: null
-partTitle: null
 
 title: "TGK Community"
 description: "A sovereign space for clarity, discourse, and shared interpretation."
@@ -33,7 +30,6 @@ breadcrumbs:
         disciplined, respectful dialogue.
       </p>
 
-      <!-- ✦ Charter Link -->
       <p class="muted small">
         For full principles and expectations, read the 
         <a href="/pillars/tgk-community/charter/" class="link-accent">
@@ -42,45 +38,41 @@ breadcrumbs:
       </p>
     </section>
 
-    <!-- ✦ Removed detailed ethos + rules block that was previously here -->
-
     <section class="section-block">
-    <h2 class="section-heading">Community Gateways</h2>
+      <h2 class="section-heading">Community Gateways</h2>
 
-    <div class="community-grid portal-grid">
-      {% for m in communityGrid %}
+      <div class="portal-grid">
+        {% for m in communityGrid %}
+          {% set state = m.state or "default" %}
 
-        {% set state = m.state or "default" %}
+          <article class="gnostic-card {{ state }}">
+            <a class="card-link" href="{{ m.href }}">
+              <div class="card-body">
+                {% if m.glyph %}
+                  <div class="card-glyph">{{ m.glyph }}</div>
+                {% endif %}
+                <h3 class="card-title">{{ m.title }}</h3>
 
-        <article class="gnostic-card {{ state }}">
-          <a class="card-link" href="{{ m.href }}">
+                {% if m.desc %}
+                  <p class="card-desc">{{ m.desc }}</p>
+                {% endif %}
+              </div>
 
-            <div class="card-body">
-              {% if m.glyph %}
-                <div class="card-glyph">{{ m.glyph }}</div>
+              {% if state == "coming-soon" %}
+                <div class="card-overlay"><span class="banner">Coming Soon</span></div>
               {% endif %}
-              <h3 class="card-title">{{ m.title }}</h3>
-              {% if m.desc %}
-                <p class="card-desc">{{ m.desc }}</p>
-              {% endif %}
-            </div>
 
-            {% if state == "coming-soon" %}
-              <div class="card-overlay"><span class="banner">Coming Soon</span></div>
-            {% endif %}
-
-            <div class="card-badge tier-free">Free</div>
-          </a>
-        </article>
-
-      {% endfor %}
-    </div>
-  </section>
+              <div class="card-badge tier-free">Free</div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
 
     <section class="section-block">
       <h2 class="section-heading">The Steel Man Principle</h2>
       <p>
-        Every reply begins with a discipline: 
+        Every reply begins with a discipline:
         <strong>summarise the argument you are addressing, in your own words.</strong>
       </p>
       <p>
@@ -88,7 +80,7 @@ breadcrumbs:
         It protects clarity, prevents distortion, and makes disagreement productive.
       </p>
       <p class="muted small">
-        The full version of this principle is outlined in the
+        The full version is outlined in the
         <a href="/pillars/tgk-community/charter/" class="link-accent">Community Charter</a>.
       </p>
     </section>

@@ -5,16 +5,12 @@ siteTitle: "The Gnostic Key"
 pillarTitle: "TGK Community"
 gateTitle: "Community Threads"
 seriesTitle: "Discussion Threads"
-seasonTitle: null
-episodeTitle: null
-partTitle: null
 
 title: "Discussion Threads"
 description: "Topic-based spaces for structured community dialogue using the Steel Man principle."
 
 glyph: "💬"
 glyphRow: ["✦", "☉", "✦"]
-
 bodyClass: "community"
 accent: "community"
 tier: "free"
@@ -28,54 +24,47 @@ breadcrumbs:
 <main class="main-content">
   <section class="content-container">
 
-    <!-- INTRO -->
     <section class="section-block">
       <h1 class="section-heading">Discussion Threads</h1>
       <p class="lead">
-        A structured space for community dialogue. Clear topics, disciplined contributions,
-        and the Steel Man principle at the foundation of every reply.
+        A structured space for community dialogue. Clear topics, disciplined
+        contributions, and the Steel Man principle at the foundation of every reply.
       </p>
       <p>
-        Instead of scattered comments beneath scrolls, all discussion lives here in
-        topic-based threads. This keeps the scrolls pristine while providing a sovereign
-        space for interpretation, debate, reflection, and collaborative inquiry.
+        Instead of scattered comments beneath scrolls, discussions live here in
+        topic-based threads. This keeps the scrolls pristine while providing a
+        sovereign space for inquiry and interpretation.
       </p>
     </section>
 
-    <!-- GRID -->
     <section class="section-block">
       <h2 class="section-heading">Community Discussion Spaces</h2>
 
-      <div class="threads-grid">
-
-        {% for t in threadsGrid %}
-          {% set state = t.state or "default" %}
+      <div class="portal-grid">
+        {% for m in threadsGrid %}
+          {% set state = m.state or "default" %}
 
           <article class="gnostic-card {{ state }}">
-            <a class="card-link" href="{{ t.href }}">
-
+            <a class="card-link" href="{{ m.href }}">
               <div class="card-body">
-                <div class="card-glyph">{{ t.glyph }}</div>
-                <h3 class="card-title">{{ t.title }}</h3>
-
-                {% if t.desc %}
-                  <p class="card-desc">{{ t.desc }}</p>
+                {% if m.glyph %}
+                  <div class="card-glyph">{{ m.glyph }}</div>
+                {% endif %}
+                <h3 class="card-title">{{ m.title }}</h3>
+                {% if m.desc %}
+                  <p class="card-desc">{{ m.desc }}</p>
                 {% endif %}
               </div>
 
               {% if state == "coming-soon" %}
-                <div class="card-overlay">
-                  <span class="banner">Coming Soon</span>
-                </div>
+                <div class="card-overlay"><span class="banner">Coming Soon</span></div>
               {% endif %}
 
               <div class="card-badge tier-free">Free</div>
-
             </a>
           </article>
 
         {% endfor %}
-
       </div>
     </section>
 

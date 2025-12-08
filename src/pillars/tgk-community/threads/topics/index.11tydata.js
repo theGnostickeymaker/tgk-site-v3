@@ -1,5 +1,5 @@
 export default {
-  layout: "base.njk",
+  layout: (data) => data.layout || "base.njk",
 
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
@@ -17,21 +17,23 @@ export default {
   showSeriesNav: false,
 
   topicGrid: [
-    {
-      href: "/pillars/tgk-community/threads/topics/steel-man-method/",
-      title: "The Steel Man Method",
-      description: "Master and apply the Steel Man principle.",
-      glyph: "∞",
-      state: "active",
-      minWriteTier: "initiate"
-    },
-    {
-      href: "/pillars/tgk-community/threads/topics/gnostic-christianity/",
-      title: "Gnostic Christianity Q&A",
-      description: "Interpretation and symbolic analysis of the Gnostic Christianity scroll.",
-      glyph: "⚯",
-      state: "active",
-      minWriteTier: "initiate"
-    }
-  ]
+  {
+    href: "/pillars/tgk-community/threads/topics/steel-man-method/",
+    title: "The Steel Man Method",
+    desc: "Master and apply the Steel Man principle.",
+    glyph: "∞",
+    state: "active",
+    tier: "free",
+    minWriteTier: "initiate"
+  },
+  {
+    href: "/pillars/tgk-community/threads/topics/gnostic-christianity/",
+    title: "Gnostic Christianity Q&A",
+    desc: "Interpretation and symbolic analysis of the Gnostic Christianity scroll.",
+    glyph: "✝",
+    state: "active",
+    tier: "free",
+    minWriteTier: "initiate"
+  }
+]
 };

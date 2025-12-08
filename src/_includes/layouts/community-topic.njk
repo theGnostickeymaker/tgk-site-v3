@@ -3,9 +3,10 @@
    All topic pages inherit this layout.
 ============================================================ #}
 
-{% extends "base.njk" %}
+{% extends "base.njk" %}  
 
 {% block content %}
+<main class="main-content">
   <section class="content-container">
 
     <!-- INTRO SECTION -->
@@ -31,7 +32,7 @@
       </ul>
 
       <p class="muted small">
-        Full guidelines: 
+        Full guidelines:
         <a href="/pillars/tgk-community/guide/charter/" class="link-accent">TGK Community Charter</a>.
       </p>
     </section>
@@ -45,9 +46,11 @@
     </section>
 
   </section>
+</main>
 {% endblock %}
 
 {% block scripts %}
+{{ super() }}
   <script type="module" src="/js/discussion-topic.js"></script>
   <script type="module" src="/js/community-delete.js"></script>
   <script type="module" src="/js/community-edit.js"></script>

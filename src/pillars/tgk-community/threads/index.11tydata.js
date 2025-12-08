@@ -1,6 +1,6 @@
 export default {
 
-  layout: "base.njk",
+  layout: (data) => data.layout || "base.njk",
 
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
