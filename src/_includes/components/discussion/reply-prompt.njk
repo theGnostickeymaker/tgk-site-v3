@@ -3,61 +3,44 @@
    Renders the Steel Man reply form. Logic handled by JS.
    ============================================================ #}
 
-<section class="discussion-reply-prompt section-block">
-  <h2 class="section-heading">Add Your Contribution</h2>
+<form id="discussion-form" class="discussion-form">
 
-  <p>
-    Each reply begins with a <strong>Steel Man summary</strong>: your clearest,
-    fairest restatement of the argument you are responding to.
+  <div class="form-group">
+    <label for="steelman-summary">Steel Man Summary</label>
+    <textarea
+      id="steelman-summary"
+      minlength="30"
+      rows="4"
+      placeholder="Summarise the strongest version of the position you are replying to…"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="reply-body">Your Response</label>
+    <textarea
+      id="reply-body"
+      minlength="20"
+      rows="5"
+      placeholder="Your analysis, commentary, or reflection…"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="pseudonym">Pseudonym (optional)</label>
+    <input
+      id="pseudonym"
+      type="text"
+      placeholder="How you appear in this thread"
+    />
+  </div>
+
+  <p id="discussion-auth-hint" class="muted small">
+    You must be signed in to your TGK account to post.
   </p>
 
-  <form id="discussion-form" class="discussion-form" novalidate>
-    <div class="form-group">
-      <label for="steelman-summary">Steel Man summary</label>
-      <textarea id="steelman-summary"
-                name="steelmanSummary"
-                rows="3"
-                minlength="30"
-                required
-                placeholder="In your own words, summarise the position you are responding to."></textarea>
-      <p class="muted small">
-        Minimum 30 words. Focus on clarity, not agreement.
-      </p>
-    </div>
+  <p id="discussion-status" class="small status-text"></p>
 
-    <div class="form-group">
-      <label for="reply-body">Your response</label>
-      <textarea id="reply-body"
-                name="body"
-                rows="4"
-                minlength="20"
-                required
-                placeholder="Offer your response, extension, or challenge."></textarea>
-      <p class="muted small">
-        Critique ideas, not people. Clarify before you criticise.
-      </p>
-    </div>
+  <button class="btn-primary" type="submit">Post Reply</button>
 
-    <div class="form-group">
-      <label for="pseudonym">Display name</label>
-      <input id="pseudonym"
-             name="pseudonym"
-             type="text"
-             maxlength="40"
-             placeholder="Choose how you appear in the thread (pseudonym recommended).">
-      <p class="muted small">
-        If left blank, your saved community pseudonym will be used if available.
-      </p>
-    </div>
+</form>
 
-    <button type="submit" class="btn btn-primary">
-      Post reply
-    </button>
-
-    <p id="discussion-status" class="muted small"></p>
-  </form>
-
-  <p class="muted small" id="discussion-auth-hint">
-    You must be signed in to your TGK account to post. Reading is open to all.
-  </p>
-</section>

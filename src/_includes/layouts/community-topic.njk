@@ -44,10 +44,15 @@
          This wrapper MUST contain the required IDs
     ======================================================= -->
 
-    <section id="discussion-root"
-             class="section-block"
-             data-topic-id="{{ topicId }}"
-             data-min-write-tier="{{ minWriteTier | default('free') }}">
+    <section
+      id="discussion-root"
+      class="section-block"
+      data-topic-id="{{ topicId }}"
+      data-min-write-tier="{{ minWriteTier }}"
+    >
+        {% include "components/discussion/reply-prompt.njk" %}
+        {% include "components/discussion/thread-list.njk" %}
+    </section>
 
       <!-- STATUS MESSAGE -->
       <p id="discussion-status" class="discussion-status muted small"></p>
