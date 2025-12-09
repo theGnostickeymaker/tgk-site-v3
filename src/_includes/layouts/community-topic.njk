@@ -1,9 +1,9 @@
 {# ============================================================
-   TGK — Global Community Topic Template (v1.0)
-   All topic pages inherit this layout.
+   TGK — Global Community Topic Template (v1.1 FIXED)
+   This layout includes all required IDs for the JS engine.
 ============================================================ #}
 
-{% extends "base.njk" %}  
+{% extends "base.njk" %}
 
 {% block content %}
 <main class="main-content">
@@ -33,16 +33,74 @@
 
       <p class="muted small">
         Full guidelines:
-        <a href="/pillars/tgk-community/guide/charter/" class="link-accent">TGK Community Charter</a>.
+        <a href="/pillars/tgk-community/guide/charter/" class="link-accent">
+          TGK Community Charter
+        </a>.
       </p>
     </section>
 
-    <!-- DISCUSSION ENGINE -->
+    <!-- ======================================================
+         DISCUSSION ENGINE ROOT
+         This wrapper MUST contain the required IDs
+    ======================================================= -->
+
     <section id="discussion-root"
              class="section-block"
-             data-topic-id="{{ topicId }}">
-      {% include "components/discussion/reply-prompt.njk" %}
-      {% include "components/discussion/thread-list.njk" %}
+             data-topic-id="{{ topicId }}"
+             data-min-write-tier="{{ minWriteTier | default('free') }}">
+
+      <!-- STATUS MESSAGE -->
+      <p id="discussion-status" class="discussion-status muted small"></p>
+
+      <!-- AUTH HINT -->
+      <p id="discussion-auth-hint" class="muted small"></p>
+
+      <!-- ========================
+           REPLY FORM
+      ========================== -->
+      <form id="discussion-form" class="discussion-form">
+        
+        <div class="form-field">
+          <label for="steelman-summary" class="form-label">
+            Steel Man Summary
+          </label>
+          <textarea id="steelman-summary"
+                    name="steelmanSummary"
+                    required
+                    minlength="30"
+                    class="form-textarea"
+                    placeholder="Summarise the strongest version of the position you are replying to..."></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="reply-body" class="form-label">Your Response</label>
+          <textarea id="reply-body"
+                    name="body"
+                    required
+                    minlength="20"
+                    class="form-textarea"
+                    placeholder="Offer your analysis, commentary, or reflection..."></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="pseudonym" class="form-label">Pseudonym (optional)</label>
+          <input id="pseudonym"
+                 name="pseudonym"
+                 type="text"
+                 class="form-input"
+                 placeholder="How you wish to appear in this thread...">
+        </div>
+
+        <button type="submit" class="btn primary">Post Reply</button>
+      </form>
+
+      <!-- ========================
+           MESSAGE LIST
+      ========================== -->
+      <div id="discussion-messages" class="discussion-messages">
+        {# JS will populate this #}
+      </div>
+
     </section>
 
   </section>
@@ -50,7 +108,8 @@
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
+  {{ super() }}
+
   <script type="module" src="/js/discussion-topic.js"></script>
   <script type="module" src="/js/community-delete.js"></script>
   <script type="module" src="/js/community-edit.js"></script>
