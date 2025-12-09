@@ -2,10 +2,7 @@
 layout: "community-topic"
 
 topicId: "steel-man-method"
-
-community:
-  topicId: "steel-man-method"
-  
+ 
 title: "The Steel Man Method"
 description: "A structured discussion space dedicated to mastering and applying the Steel Man principle within the TGK Community."
 
@@ -23,52 +20,3 @@ breadcrumbs:
   - { title: "The Steel Man Method" }
 ---
 
-<main class="main-content">
-  <section class="content-container">
-
-    <!-- INTRO -->
-    <section class="section-block">
-      <h1 class="section-heading">Discussion Topic: The Steel Man Method</h1>
-
-      <p class="lead">
-        A dedicated space for practising and refining the discipline of
-        representing another person’s argument in its strongest reasonable
-        form before responding.
-      </p>
-    </section>
-
-    <!-- GUIDANCE -->
-    <section class="section-block">
-      <h2 class="section-heading">How to Participate</h2>
-
-      <ul class="rules-list">
-        <li>Begin every reply with a Steel Man summary of the idea you are addressing.</li>
-        <li>Engage ideas, not individuals.</li>
-        <li>Clarify before criticising.</li>
-        <li>Protect clarity, dignity, and intellectual honesty.</li>
-      </ul>
-
-      <p class="muted small">
-        Full guidelines are available in the
-        <a href="/pillars/tgk-community/guide/charter/" class="link-accent">
-          TGK Community Charter
-        </a>.
-      </p>
-    </section>
-
-    <!-- DISCUSSION MODULES -->
-    <section id="discussion-root"
-             class="section-block"
-             data-topic-id="steel-man-method">
-      {% include "components/discussion/reply-prompt.njk" %}
-      {% include "components/discussion/thread-list.njk" %}
-    </section>
-
-  </section>
-</main>
-
-{% include "partials/community/delete-modal.njk" %}
-
-<script type="module" src="/js/discussion-topic.js"></script>
-<script type="module" src="/js/community-delete.js"></script>
-<script type="module" src="/js/community-edit.js"></script>

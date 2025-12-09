@@ -1,46 +1,14 @@
 {# ============================================================
-   TGK Discussion — Reply Prompt (Phase 3)
-   Renders the Steel Man reply form. Logic handled by JS.
-   ============================================================ #}
+   TGK Community — Reply Prompt (no form)
+   This is ONLY the decorative header box before the form.
+   The actual form now lives in community-topic.njk
+============================================================ #}
 
-<form id="discussion-form" class="discussion-form">
+<section class="reply-prompt-box">
+  <h3 class="section-subheading">Add Your Contribution</h3>
 
-  <div class="form-group">
-    <label for="steelman-summary">Steel Man Summary</label>
-    <textarea
-      id="steelman-summary"
-      minlength="30"
-      rows="4"
-      placeholder="Summarise the strongest version of the position you are replying to…"
-    ></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="reply-body">Your Response</label>
-    <textarea
-      id="reply-body"
-      minlength="20"
-      rows="5"
-      placeholder="Your analysis, commentary, or reflection…"
-    ></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="pseudonym">Pseudonym (optional)</label>
-    <input
-      id="pseudonym"
-      type="text"
-      placeholder="How you appear in this thread"
-    />
-  </div>
-
-  <p id="discussion-auth-hint" class="muted small">
-    You must be signed in to your TGK account to post.
+  <p class="muted small">
+    Begin each reply with a Steel Man summary. Clarify before criticising.
+    Protect clarity and intellectual honesty.
   </p>
-
-  <p id="discussion-status" class="small status-text"></p>
-
-  <button class="btn-primary" type="submit">Post Reply</button>
-
-</form>
-
+</section>
