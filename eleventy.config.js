@@ -197,6 +197,9 @@ export default function (eleventyConfig) {
      5) Layout alias
   ========================= */
   eleventyConfig.addLayoutAlias("base", "base.njk");
+  eleventyConfig.addLayoutAlias("community-topic", "layouts/community-topic.njk");
+  eleventyConfig.addLayoutAlias("community-list", "layouts/community-list.njk");
+  eleventyConfig.addLayoutAlias("community-thread", "layouts/community-thread.njk");
 
   /* =========================
      6) Plugins

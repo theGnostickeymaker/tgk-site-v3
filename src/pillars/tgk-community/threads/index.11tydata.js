@@ -1,7 +1,5 @@
 export default {
 
-  layout: (data) => data.layout || "base.njk",
-
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",

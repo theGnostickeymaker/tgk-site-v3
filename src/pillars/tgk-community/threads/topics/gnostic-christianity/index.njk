@@ -1,5 +1,5 @@
 ---
-layout: "layouts/community-topic.njk"
+layout: "community-topic"
 
 topicId: "gnostic-christianity"
 pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-1"
@@ -7,7 +7,6 @@ pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-1"
 title: "Gnostic Christianity Q&A"
 description: "A discussion space for insights, questions, interpretations, and symbolic analysis arising from the Gnostic Christianity scroll in The Afterlife Series."
 
-# Tier permissions
 minWriteTier: "initiate"
 minCreateTier: "adept"
 state: "active"
@@ -21,55 +20,4 @@ breadcrumbs:
   - { title: "Gnostic Christianity" }
 ---
 
-<main class="main-content">
-  <section class="content-container">
-
-    <!-- INTRO -->
-    <section class="section-block">
-      <h1 class="section-heading">Gnostic Christianity Q&A</h1>
-
-      <p class="lead">
-        This space is dedicated to thoughtful engagement with the Gnostic
-        Christianity scroll. Ask questions, offer interpretations, explore
-        symbolism, and help illuminate the hidden layers embedded within the text.
-      </p>
-    </section>
-
-    <!-- PARTICIPATION GUIDANCE -->
-    <section class="section-block">
-      <h2 class="section-heading">How to Participate</h2>
-
-      <ul class="rules-list">
-        <li>Seek understanding before critique.</li>
-        <li>Offer a Steel Man summary when responding to a position.</li>
-        <li>Engage ideas, not individuals.</li>
-        <li>Bring respect and intellectual honesty to each exchange.</li>
-        <li>Keep discussion grounded in the material unless otherwise noted.</li>
-      </ul>
-
-      <p class="muted small">
-        Full community guidelines are set out in the
-        <a href="/pillars/tgk-community/guide/charter/" class="link-accent">
-          TGK Community Charter
-        </a>.
-      </p>
-    </section>
-
-    <!-- DISCUSSION MODULES -->
-    <section id="discussion-root"
-             class="section-block"
-             data-topic-id="the-great-return-afterlife-season-1-gnostic-christianity">
-
-      {% include "components/discussion/reply-prompt.njk" %}
-      {% include "components/discussion/thread-list.njk" %}
-
-    </section>
-
-  </section>
-</main>
-
-{% include "partials/community/delete-modal.njk" %}
-
-<script type="module" src="/js/discussion-topic.js"></script>
-<script type="module" src="/js/community-delete.js"></script>
-<script type="module" src="/js/community-edit.js"></script>
+{# Nothing else is required here – all rendering handled by layout #}

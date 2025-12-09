@@ -1,53 +1,62 @@
 {# =========================================================
-   🏛️ TGK — Community Entry Block (v1.4 CLEAN + CORRECT)
-   Manual topicId ALWAYS wins. No override by pageId.
+   🏛️ TGK — Community Entry Block (v1.6 CLEAN, VALID NUNJUCKS)
+   No unsupported tags. No return. Full conditional wrapper.
    ========================================================= #}
+<script>console.log("COMMUNITY TOPIC LAYOUT ACTIVE");</script>
 
-{% set manualTopicId = community.topicId %}
-{% set manualPageId  = community.pageId %}
-{% set scrollPageId  = pageId %}
-
-{# STEP 1: If topicId is explicitly set → use it exactly #}
-{% if manualTopicId %}
-  {% set resolvedTopicId = manualTopicId %}
-{% elseif manualPageId %}
-  {% set resolvedTopicId = manualPageId %}
+{# STEP 0: Hide this block entirely on topic pages #}
+{% if page.url and page.url.match('/topics/') %}
+  {# Do not render anything #}
 {% else %}
-  {# STEP 2: Auto-generate by stripping part numbers #}
-  {% set resolvedTopicId = scrollPageId
-    | replace("part-1", "")
-    | replace("part-2", "")
-    | replace("part-3", "")
-    | replace("part-4", "")
-    | replace("part-5", "")
-    | replace("part-6", "")
-    | replace("part-7", "")
-    | replace("part-8", "")
-    | replace("-part", "")
+
+  {% set manualTopicId = community.topicId %}
+  {% set manualPageId  = community.pageId %}
+  {% set scrollPageId  = pageId %}
+
+  {# STEP 1: If topicId is explicitly set → use it #}
+  {% if manualTopicId %}
+    {% set resolvedTopicId = manualTopicId %}
+  {% elseif manualPageId %}
+    {% set resolvedTopicId = manualPageId %}
+  {% else %}
+    {# STEP 2: Auto-generate by stripping part numbers #}
+    {% set resolvedTopicId = (
+      scrollPageId
+        | replace("part-1", "")
+        | replace("part-2", "")
+        | replace("part-3", "")
+        | replace("part-4", "")
+        | replace("part-5", "")
+        | replace("part-6", "")
+        | replace("part-7", "")
+        | replace("part-8", "")
+        | replace("-part", "")
+    ) %}
+  {% endif %}
+
+  {# STEP 3: Slugify safely #}
+  {% set resolvedTopicId = resolvedTopicId
+    | trim
+    | lower
+    | replace(" ", "-")
+    | replace("_", "-")
+    | replace("--", "-")
   %}
+
+  <section class="section-block community-entry-block">
+
+    <h2 class="section-heading">Continue the Conversation</h2>
+
+    <p class="muted small">
+      All discussions are publicly readable. Posting requires an Initiate-tier
+      account, and creating new threads is reserved for Adepts.
+    </p>
+
+    <a href="/pillars/tgk-community/threads/topics/{{ resolvedTopicId }}/"
+      class="btn btn-primary">
+      {{ community.label or "Discuss this Scroll in the TGK Community" }}
+    </a>
+
+  </section>
+
 {% endif %}
-
-{# STEP 3: Final slugify for safety #}
-{% set resolvedTopicId = resolvedTopicId
-  | trim
-  | lower
-  | replace(" ", "-")
-  | replace("_", "-")
-  | replace("--", "-")
-%}
-
-<section class="section-block community-entry-block">
-
-  <h2 class="section-heading">Continue the Conversation</h2>
-
-  <p class="muted small">
-    All discussions are publicly readable. Posting requires an Initiate-tier
-    account, and creating new threads is reserved for Adepts.
-  </p>
-
-  <a href="/pillars/tgk-community/threads/topics/{{ resolvedTopicId }}/"
-     class="btn btn-primary">
-    {{ community.label or "Discuss this Scroll in the TGK Community" }}
-  </a>
-
-</section>

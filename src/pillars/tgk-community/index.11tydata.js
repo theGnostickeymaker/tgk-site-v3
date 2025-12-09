@@ -3,8 +3,6 @@ export default {
   // PAGE METADATA (Unified TGK Hierarchy v4.2)
   // ============================================
 
-  layout: (data) => data.layout || "base.njk",
-
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: null,

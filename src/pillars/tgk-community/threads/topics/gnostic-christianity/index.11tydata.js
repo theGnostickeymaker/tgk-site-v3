@@ -1,6 +1,6 @@
 export default {
 
-  layout: data => data?.layout ?? "layouts/community-topic.njk",
+  layout: "community-topic",
   
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
@@ -10,7 +10,8 @@ export default {
   title: "Topic: Gnostic Christianity",
   description: "Community discussion space dedicated to questions, insights, and interpretations related to the Afterlife: Gnostic Christianity scroll.",
 
-  glyph: "☥",
+  glyph: "✝",
+  glyphRow: ["✦", "☉", "✦"],
 
   bodyClass: "community",
   accent: "community",

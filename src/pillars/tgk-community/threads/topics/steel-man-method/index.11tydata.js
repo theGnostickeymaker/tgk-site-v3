@@ -1,6 +1,6 @@
 export default {
 
-  layout: data => data?.layout ?? "layouts/community-topic.njk",
+  layout: "community-topic",
 
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
@@ -11,6 +11,7 @@ export default {
   description: "A structured discussion space dedicated to mastering the Steel Man principle.",
 
   glyph: "⚯",
+  glyphRow: ["✦", "☉", "✦"],
 
   bodyClass: "community",
   accent: "community",

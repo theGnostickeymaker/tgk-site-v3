@@ -2,7 +2,7 @@
 export default {
   // === Global Defaults ===
   defaultTier: "free",
-  defaultLayout: "base.njk",
+  layoutDefaultTemplate: "base.njk",
 
   // === Core Branding ===
   siteTitle: "The Gnostic Key",

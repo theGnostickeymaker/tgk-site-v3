@@ -160,8 +160,11 @@
         </div>
       </div>
     {% else %}
-      {{ content | safe }}
+      {% block content %}
+        {{ content | safe }}
+      {% endblock %}
     {% endif %}
+
   </main>
 
   {% include "partials/footer.njk" %}
