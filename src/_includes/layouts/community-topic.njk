@@ -52,38 +52,35 @@
 
 
     <!-- DISCUSSION ENGINE ROOT -->
-    <section
-      id="discussion-root"
-      class="section-block"
+    <section id="discussion-root" class="section-block"
       data-topic-id="{{ topicId }}"
-      data-min-write-tier="{{ minWriteTier }}"
-    >
+      data-min-write-tier="{{ minWriteTier }}">
 
       <!-- ADD YOUR CONTRIBUTION -->
       {% include "components/discussion/reply-prompt.njk" %}
-
+    </section>
+    
       <!-- THREAD LIST -->
       {% include "components/discussion/thread-list.njk" %}
-    </section>
-
 
     <!-- SHARE BLOCK -->
     <section id="share" class="section-block">
       <h2 class="section-heading">Share this Discussion</h2>
 
-      <div class="share-buttons">
-        <a class="btn outline"
-           href="https://x.com/intent/tweet?text={{ title | urlencode }}&url={{ page.url | absoluteUrl | urlencode }}"
-           target="_blank" rel="noopener">
+      <div class="btn-row">
+        <a class="btn" 
+          href="https://x.com/intent/tweet?text={{ title | urlencode }}&url={{ page.url | absoluteUrl | urlencode }}"
+          target="_blank" rel="noopener">
           Share on X (Twitter)
         </a>
 
-        <a class="btn outline"
-           href="https://t.me/share/url?url={{ page.url | absoluteUrl | urlencode }}&text={{ title | urlencode }}"
-           target="_blank" rel="noopener">
+        <a class="btn"
+          href="https://t.me/share/url?url={{ page.url | absoluteUrl | urlencode }}&text={{ title | urlencode }}"
+          target="_blank" rel="noopener">
           Share on Telegram
         </a>
       </div>
+
     </section>
 
   </section>

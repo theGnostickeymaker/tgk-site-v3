@@ -1,67 +1,47 @@
 {# ============================================================
    TGK — Discussion Thread List (v3.0)
-   Renders:
-     • Votes
-     • Pinned badge
-     • Author + pseudonym
-     • Steelman + body
-     • Admin moderation controls
 ============================================================ #}
 
-<div id="discussion-messages" class="discussion-messages">
+<section id="discussion" class="section-block">
 
-  {# This container starts empty.
-     JS from discussion-topic.js will insert replies dynamically.
-     However, we need to define the HTML STRUCTURE the JS will create.
+  <h2 class="section-heading">Discussion Thread</h2>
 
-     The following <template> is invisible, but JS clones it when
-     building each reply card.
-  #}
+  <div id="discussion-messages" class="discussion-messages">
 
-  <template id="reply-template">
-    <article class="discussion-message" data-reply-id="">
+    <template id="reply-template">
+      <article class="discussion-message" data-reply-id="">
 
-      <!-- HEADER ROW -->
-      <div class="discussion-message-header">
+        <div class="discussion-message-header">
 
-        <!-- Vote Column -->
-        <div class="vote-box">
-          <button
-            type="button"
-            class="vote-btn"
-            data-reply-id=""
-            data-topic-id=""
-            aria-label="Upvote this reply"
-          >
-            ▲
-          </button>
-          <span class="vote-count">0</span>
+          <div class="vote-box">
+            <button
+              type="button"
+              class="vote-btn"
+              data-reply-id=""
+              data-topic-id=""
+              aria-label="Vote on this reply"
+            >▲</button>
+            <span class="vote-count">0</span>
+          </div>
+
+          <div class="author-box">
+            <span class="discussion-message-author">Anonymous Seeker</span>
+            <span class="discussion-message-meta">Just now</span>
+          </div>
+
+          <div class="admin-controls">
+            <button class="btn-inline btn-pin-reply" data-reply-id="">Pin</button>
+            <button class="btn-inline btn-edit-reply" data-reply-id="">Edit</button>
+            <button class="btn-inline btn-delete-comment" data-reply-id="">Delete</button>
+          </div>
         </div>
 
-        <!-- Author & Metadata -->
-        <div class="author-box">
-          <span class="discussion-message-author">Anonymous Seeker</span>
-          <span class="discussion-message-meta">Just now</span>
-        </div>
+        <div class="discussion-message-steelman reply-steelman-body"></div>
+        <div class="discussion-message-body reply-body-text"></div>
 
-        <!-- Pinned Badge (auto-inserted by JS) -->
-        <!-- <span class="pinned-badge">Pinned</span> -->
+      </article>
+    </template>
 
-        <!-- Admin Controls -->
-        <div class="admin-controls">
-          <button class="btn-inline btn-pin-reply" data-reply-id="">Pin</button>
-          <button class="btn-inline btn-edit-reply" data-reply-id="">Edit</button>
-          <button class="btn-inline btn-delete-comment" data-reply-id="">Delete</button>
-        </div>
-      </div>
+  </div>  <!-- end #discussion-messages -->
 
-      <!-- STEELMAN SUMMARY -->
-      <div class="discussion-message-steelman reply-steelman-body"></div>
-
-      <!-- BODY TEXT -->
-      <div class="discussion-message-body reply-body-text"></div>
-
-    </article>
-  </template>
-
-</div>
+</section>  <!-- end #discussion -->

@@ -502,7 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
-      if (form) form.scrollIntoView({ behaviour: "smooth", block: "start" });
+      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     // Cancel reply context

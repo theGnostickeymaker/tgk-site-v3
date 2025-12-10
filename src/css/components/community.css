@@ -115,7 +115,7 @@
     border-radius: 8px;
     background: var(--card-gradient);
     border: 1px dashed var(--section-border);
-    color: var(--cite-color);
+    color: var(--text-primary);
     font-style: italic;
   }
 
