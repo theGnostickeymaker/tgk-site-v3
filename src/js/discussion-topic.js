@@ -712,6 +712,9 @@ if (form) {
 
     if (statusEl) statusEl.textContent = "Posting reply...";
 
+    console.log("[DEBUG] Topic ID =", topicId);
+console.log("[DEBUG] repliesRef =", repliesRef);
+
     try {
     // 1. Always add reply
     await addDoc(repliesRef, {
