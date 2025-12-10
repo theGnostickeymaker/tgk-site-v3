@@ -551,58 +551,57 @@ document.addEventListener("click", async (event) => {
   }
 
   // ----------------------------------------------------------
-  // Voting on replies (Insight / Agree / Challenge)
-  // ----------------------------------------------------------
-  const voteBtn = target.closest("button.vote-btn");
-  if (voteBtn) {
-    const replyId  = voteBtn.dataset.replyId;
-    const voteType = voteBtn.dataset.voteType;
+// Voting on replies (Insight / Agree / Challenge)
+// ----------------------------------------------------------
+const voteBtn = target.closest("button.vote-btn");
+if (voteBtn) {
+  const replyId = voteBtn.dataset.replyId;
+  const voteType = voteBtn.dataset.voteType;
 
-    if (!replyId || !voteType) return;
+  if (!replyId || !voteType) return;
 
-    // button animations
-    spawnRipple(voteBtn, event.clientX, event.clientY);
-    if (voteType === "insight") spawnInsightParticles(voteBtn);
+  spawnRipple(voteBtn, event.clientX, event.clientY);
+  if (voteType === "insight") spawnInsightParticles(voteBtn);
 
-    try {
-      // Load the reply so we know who to award Keys to
-      const replyRef = doc(db, "topics", topicId, "replies", replyId);
-      const replySnap = await getDoc(replyRef);
+  try {
+    // 1. Execute the vote FIRST (critical)
+    await toggleVote(topicId, replyId, voteType);
 
-      if (!replySnap.exists()) {
-        console.error("Vote failed: reply not found", replyId);
-        return;
-      }
+    // 2. Load reply data AFTER successful vote
+    const replyRef = doc(db, "topics", topicId, "replies", replyId);
+    const snap = await getDoc(replyRef);
 
-      const replyData = replySnap.data();
-      const authorUid = replyData.userId;    // *** THIS IS THE FIX ***
-
-      // Award reputation to the AUTHOR, not the voter
-      const points =
-        voteType === "challenge" ? 3 :
-        voteType === "agree"     ? 1 :
-        voteType === "insight"   ? 1 : 0;
-
-      if (points > 0) {
-        await Reputation.awardPoints(
-          authorUid,
-          points,
-          "vote",
-          `Received a ${voteType} vote`,
-          topicId
-        );
-      }
-
-      // Update vote state inside Firestore
-      await toggleVote(topicId, replyId, voteType);
-
-    } catch (e) {
-      console.error("[Vote] Error:", e);
-      if (statusEl) statusEl.textContent = "Unable to register vote. Please try again.";
+    if (!snap.exists()) {
+      console.warn("[Vote] Reply no longer exists:", replyId);
+      return;
     }
 
-    return;
+    const reply = snap.data();
+    const authorUid = reply.userId;
+
+    // 3. Determine reputation amount
+    let points = 0;
+    if (voteType === "challenge") points = 3;
+    if (voteType === "agree") points = 1;
+    if (voteType === "insight") points = 1;
+
+    // 4. Award reputation ONLY if points > 0
+    if (points > 0 && authorUid) {
+      Reputation.awardPoints(authorUid, points, "vote", `Received ${voteType} vote`, topicId)
+        .catch(err => {
+          // Do NOT block votes if rep-award fails
+          console.error("[Vote] Reputation award failed:", err);
+        });
+    }
+
+  } catch (err) {
+    console.error("[Vote] Error:", err);
+    if (statusEl) statusEl.textContent = "Unable to register vote. Please try again.";
   }
+
+  return;
+}
+
 
   // ----------------------------------------------------------
   // Pin / unpin (admin only)
