@@ -439,48 +439,83 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function toggleVote(topicId, replyId, voteType) {
-    if (!currentUser) {
-      if (statusEl) statusEl.textContent = "You must be signed in to vote.";
-      return;
-    }
+  if (!currentUser) {
+    if (statusEl) statusEl.textContent = "You must be signed in to vote.";
+    return;
+  }
 
-    const voteRef = doc(
-      db,
-      "topics",
-      topicId,
-      "replies",
-      replyId,
-      "votes",
-      currentUser.uid
-    );
+  const replyRef = doc(db, "topics", topicId, "replies", replyId);
+  const replySnap = await getDoc(replyRef);
 
-    const snap = await getDoc(voteRef);
+  if (!replySnap.exists()) return;
 
-    if (snap.exists() && snap.data().type === voteType) {
-      await deleteDoc(voteRef);
-      return;
-    }
+  const replyAuthor = replySnap.data().userId;
 
+  const voteRef = doc(
+    db,
+    "topics",
+    topicId,
+    "replies",
+    replyId,
+    "votes",
+    currentUser.uid
+  );
+
+  const voteSnap = await getDoc(voteRef);
+  const prevType = voteSnap.exists() ? voteSnap.data().type : null;
+
+  // Local score map
+  const pts = { insight: 3, agree: 1, challenge: 1 };
+
+  let delta = 0;
+
+  // ------------------------------
+  // CASE 1: Same vote clicked again → UNVOTE
+  // ------------------------------
+  if (prevType === voteType) {
+    await deleteDoc(voteRef);
+    delta = -pts[voteType];       // subtract
+  }
+
+  // ------------------------------
+  // CASE 2: No previous vote → APPLY NEW VOTE
+  // ------------------------------
+  else if (!prevType) {
     await setDoc(voteRef, {
       type: voteType,
       createdAt: serverTimestamp()
     });
+    delta = pts[voteType];         // add
+  }
 
+  // ------------------------------
+  // CASE 3: Different vote → CHANGE VOTE
+  // ------------------------------
+  else {
+    await setDoc(voteRef, {
+      type: voteType,
+      createdAt: serverTimestamp()
+    });
+    delta = pts[voteType] - pts[prevType];   // difference
+  }
+
+  // ------------------------------
+  // APPLY REPUTATION DELTA
+  // ------------------------------
+  if (delta !== 0) {
     try {
-      const amount =
-        voteType === "insight" ? 3 :
-        voteType === "agree"   ? 1 : 1;
-
       await Reputation.awardPoints(
-        amount,
+        replyAuthor,
+        delta,
         "vote",
         `Vote ${voteType} on reply ${replyId}`,
         topicId
       );
-    } catch (e) {
-      console.warn("[Reputation] vote award failed:", e);
+    } catch (err) {
+      console.error("[Reputation] vote award failed:", err);
     }
   }
+}
 
   // ------------------------------------------------------------
   // Vote animation helpers
