@@ -1,10 +1,10 @@
 // =============================================================
-// TGK Community — Topic engine v2.6
+// TGK Community — Topic engine v2.7
 // Enhancements:
 //  • Stable nested replies
-//  • Voting engine (Insight / Agree / Challenge)
-//  • Pin/unpin for admin
-//  • Reputation hooks + visible badges
+//  • Voting (Insight / Agree / Challenge)
+//  • Pin / unpin for admin
+//  • Reputation hooks + live badges
 //  • Clean reply context behaviour
 //  • Safe rendering + error guards
 // =============================================================
@@ -51,9 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentUser = null;
   let currentTier = "free";
   let isAdmin = false;
-  let currentPseudonym = null;
 
-  // Cache of reputation subscriptions per userId
+  // Map<userId, unsubscribeFn>
   const reputationSubscriptions = new Map();
 
   // ------------------------------------------------------------
@@ -107,8 +106,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return "✧";                    // Seeker
   }
 
+  function extractScore(repData) {
+    if (!repData || typeof repData !== "object") return 0;
+    if (typeof repData.total === "number") return repData.total;
+    if (typeof repData.score === "number") return repData.score;
+    return 0;
+  }
+
   function updateAuthorBadges(userId, repData) {
-    const score = repData && typeof repData.score === "number" ? repData.score : 0;
+    const score = extractScore(repData);
     const badge = badgeFor(score);
     const rank = keysRank(score);
 
@@ -117,12 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     authorEls.forEach((el) => {
-      // Preserve the original pseudonym separately
       const existingBase = el.dataset.baseName;
       let baseName = existingBase;
 
       if (!baseName) {
-        // Strip any existing badge glyphs if present
         const raw = el.textContent || "";
         baseName = raw
           .replace("🜂", "")
@@ -151,11 +155,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!userId || reputationSubscriptions.has(userId)) return;
 
     const repRef = doc(db, "reputation", userId);
+
     const unsub = onSnapshot(
       repRef,
       (snap) => {
         const repData = snap.exists() ? snap.data() : null;
-        reputationSubscriptions.set(userId, repData);
         updateAuthorBadges(userId, repData);
       },
       (error) => {
@@ -163,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
-    reputationSubscriptions.set(userId, { unsubscribe: unsub });
+    reputationSubscriptions.set(userId, unsub);
   }
 
   // ------------------------------------------------------------
@@ -222,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const containersById = {};
     const dataById = {};
 
-    // First pass: create all cards and subscribe to reputation
+    // First pass: create cards and subscribe to reputation
     snapshot.forEach((docSnap) => {
       const data = docSnap.data();
       const replyId = docSnap.id;
@@ -236,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Second pass: nest replies under parents
+    // Second pass: nest replies under their parents
     snapshot.forEach((docSnap) => {
       const replyId = docSnap.id;
       const data = dataById[replyId];
@@ -261,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ------------------------------------------------------------
-  // CARD BUILDER — compatible with layout + reputation badges
+  // Card builder
   // ------------------------------------------------------------
   function buildReplyCard(replyId, data) {
     const card = document.createElement("article");
@@ -273,7 +277,9 @@ document.addEventListener("DOMContentLoaded", () => {
       card.dataset.userId = data.userId;
     }
 
-    if (data.pinned) card.classList.add("is-pinned");
+    if (data.pinned) {
+      card.classList.add("is-pinned");
+    }
 
     // Header
     const header = document.createElement("div");
@@ -284,15 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pseudo = data.pseudonym || "Anonymous Seeker";
     author.dataset.baseName = pseudo;
-
-    // If the reply happened to store reputationScore, use as initial badge
-    const initialScore = typeof data.reputationScore === "number" ? data.reputationScore : 0;
-    const initialBadge = badgeFor(initialScore);
-
-    author.textContent = initialBadge ? `${pseudo} ${initialBadge}` : pseudo;
-    if (initialScore > 0) {
-      author.title = `Keys rank: ${keysRank(initialScore)} (${initialScore} Keys)`;
-    }
+    author.textContent = pseudo;
 
     const meta = document.createElement("span");
     meta.className = "discussion-message-meta";
@@ -302,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
     header.appendChild(author);
     header.appendChild(meta);
 
-    // Steelman block
+    // Steel Man block
     const steelBlock = document.createElement("div");
     steelBlock.className = "discussion-message-steelman reply-steelman-body";
     if (data.steelmanSummary) {
@@ -342,24 +340,24 @@ document.addEventListener("DOMContentLoaded", () => {
     voteGroup.dataset.replyId = replyId;
 
     voteGroup.innerHTML = `
-    <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight">
-      🜁 <span class="vote-label">Insight</span>
-      <span class="vote-count" data-count-type="insight">0</span>
-      <span class="vote-tooltip">Highlights valuable analysis</span>
-    </button>
+      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight">
+        🜁 <span class="vote-label">Insight</span>
+        <span class="vote-count" data-count-type="insight">0</span>
+        <span class="vote-tooltip">Highlights valuable analysis</span>
+      </button>
 
-    <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree">
-      ✦ <span class="vote-label">Agree</span>
-      <span class="vote-count" data-count-type="agree">0</span>
-      <span class="vote-tooltip">Signals alignment with the point made</span>
-    </button>
+      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree">
+        ✦ <span class="vote-label">Agree</span>
+        <span class="vote-count" data-count-type="agree">0</span>
+        <span class="vote-tooltip">Signals alignment with the point made</span>
+      </button>
 
-    <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge">
-      ⛧ <span class="vote-label">Challenge</span>
-      <span class="vote-count" data-count-type="challenge">0</span>
-      <span class="vote-tooltip">Pushes respectfully against the argument</span>
-    </button>
-  `;
+      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge">
+        ⛧ <span class="vote-label">Challenge</span>
+        <span class="vote-count" data-count-type="challenge">0</span>
+        <span class="vote-tooltip">Pushes respectfully against the argument</span>
+      </button>
+    `;
 
     actions.appendChild(voteGroup);
 
@@ -485,17 +483,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ------------------------------------------------------------
+  // Vote animation helpers
+  // ------------------------------------------------------------
+  function spawnRipple(btn, x, y) {
+    const ripple = document.createElement("span");
+    ripple.className = "vote-ripple";
+
+    const rect = btn.getBoundingClientRect();
+    ripple.style.left = `${x - rect.left - 7}px`;
+    ripple.style.top = `${y - rect.top - 7}px`;
+
+    btn.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 450);
+  }
+
+  function spawnInsightParticles(btn) {
+    const symbols = ["✧", "☉", "𐌗"];
+    const chosen = symbols[Math.floor(Math.random() * symbols.length)];
+
+    const particle = document.createElement("span");
+    particle.className = "insight-particle";
+    particle.textContent = chosen;
+
+    const rect = btn.getBoundingClientRect();
+    particle.style.left = `${rect.width / 2 - 4}px`;
+    particle.style.top = "0px";
+
+    btn.appendChild(particle);
+
+    setTimeout(() => particle.remove(), 750);
+  }
+
+  // ------------------------------------------------------------
   // Click handlers (reply, vote, pin)
   // ------------------------------------------------------------
   document.addEventListener("click", async (event) => {
-    const el = event.target;
+    const target = event.target;
+    if (!(target instanceof Element)) return;
 
-    // Reply
-    if (el.classList.contains("btn-reply-comment")) {
-      const replyId = el.dataset.replyId;
-      const snippet = el.dataset.snippet || "";
+    // Reply button (support clicks on inner spans)
+    const replyBtn = target.closest(".btn-reply-comment");
+    if (replyBtn) {
+      const replyId = replyBtn.dataset.replyId;
+      const snippet = replyBtn.dataset.snippet || "";
 
-      if (parentReplyField) {
+      if (parentReplyField && replyId) {
         parentReplyField.value = replyId;
       }
 
@@ -503,58 +536,28 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContext) replyContext.hidden = false;
 
       if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
     }
 
     // Cancel reply context
-    if (el.id === "cancel-reply-context") {
+    if (target.id === "cancel-reply-context") {
       if (parentReplyField) parentReplyField.value = "";
       if (replyContext) replyContext.hidden = true;
+      return;
     }
 
-    function spawnRipple(btn, x, y) {
-      const ripple = document.createElement("span");
-      ripple.className = "vote-ripple";
+    // Voting (support clicks on inner spans)
+    const voteBtn = target.closest("button.vote-btn");
+    if (voteBtn) {
+      const replyId = voteBtn.dataset.replyId;
+      const voteType = voteBtn.dataset.voteType;
 
-      const rect = btn.getBoundingClientRect();
-      ripple.style.left = `${x - rect.left - 7}px`;
-      ripple.style.top = `${y - rect.top - 7}px`;
-
-      btn.appendChild(ripple);
-
-      setTimeout(() => ripple.remove(), 450);
-    }
-
-      function spawnInsightParticles(btn) {
-      const symbols = ["✧", "☉", "𐌗"]; // Light Gnostic sparks
-      const chosen = symbols[Math.floor(Math.random() * symbols.length)];
-
-      const particle = document.createElement("span");
-      particle.className = "insight-particle";
-      particle.textContent = chosen;
-
-      const rect = btn.getBoundingClientRect();
-      particle.style.left = `${rect.width / 2 - 4}px`;
-      particle.style.top = `0px`;
-
-      btn.appendChild(particle);
-
-      setTimeout(() => particle.remove(), 750);
-    }
-
-    // Voting
-    if (el.classList.contains("vote-btn")) {
-      spawnRipple(el, event.clientX, event.clientY);
-
-      if (el.dataset.voteType === "insight") {
-        spawnInsightParticles(el);
-      }
-
-      await toggleVote(topicId, el.dataset.replyId, el.dataset.voteType);
-    }
-
-      const replyId = el.dataset.replyId;
-      const voteType = el.dataset.voteType;
       if (!replyId || !voteType) return;
+
+      spawnRipple(voteBtn, event.clientX, event.clientY);
+      if (voteType === "insight") {
+        spawnInsightParticles(voteBtn);
+      }
 
       try {
         await toggleVote(topicId, replyId, voteType);
@@ -563,11 +566,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (statusEl) statusEl.textContent = "Unable to register vote. Please try again.";
       }
 
+      return;
+    }
+
     // Pin / unpin (admin)
-    if (el.classList.contains("btn-pin-reply")) {
+    const pinBtn = target.closest(".btn-pin-reply");
+    if (pinBtn) {
       if (!isAdmin) return;
 
-      const replyId = el.dataset.replyId;
+      const replyId = pinBtn.dataset.replyId;
       if (!replyId) return;
 
       const card = document.getElementById(`comment-${replyId}`);
@@ -582,6 +589,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (e) {
         console.error("Unable to toggle pin:", e);
       }
+
+      return;
     }
   });
 
