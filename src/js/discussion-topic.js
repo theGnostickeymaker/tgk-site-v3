@@ -753,13 +753,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (statusEl) statusEl.textContent = "Reply posted.";
       } catch (err) {
-        console.group("[REPLY ERROR]");
-        console.error("❌ Firestore error:", err);
-        if (err.code) console.error("→ error.code:", err.code);
-        if (err.message) console.error("→ error.message:", err.message);
-        if (err.stack) console.error("→ stack:", err.stack);
-        console.groupEnd();
+        console.log("🔥 RAW ERROR OBJECT:", err);
+        console.log("🔥 JSON STRINGIFIED:", JSON.stringify(err, null, 2));
 
+        if (err.code) console.log("🔥 ERROR CODE:", err.code);
+        if (err.message) console.log("🔥 ERROR MESSAGE:", err.message);
+        if (err.stack) console.log("🔥 STACK:", err.stack);
+        
         statusEl.textContent = "There was a problem posting your reply. See console.";
       }
 
