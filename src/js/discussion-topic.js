@@ -741,11 +741,13 @@ if (form) {
       if (statusEl) statusEl.textContent = "Reply posted.";
 
     } catch (err) {
-      console.error(err);
+      console.error("[Reply Error]", err);
+      alert("Reply failed: " + err.message);
       if (statusEl) {
-        statusEl.textContent = "There was a problem posting your reply. Please try again.";
+        statusEl.textContent = "There was a problem posting your reply. Check console.";
       }
     }
+
   });
 }
 });

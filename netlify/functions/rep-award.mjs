@@ -121,7 +121,7 @@ export const handler = async (event, context) => {
       total: 0,
       tier: "initiate",
       repliesPosted: 0,
-      steelemanAccepted: 0,
+      steelmanAccepted: 0,
       strikes: 0,
       threadsCreated: 0,
       lastUpdated: now,
