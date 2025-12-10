@@ -203,54 +203,46 @@
     opacity: 0 !important;
   }
 /* ============================================================
-   VOTE BUTTON COLOUR FIX
-   Ensures text is visible in both light and dark themes
-   ============================================================ */
+   TGK Community — Rebalanced Vote Colours
+   Subtle, readable, symbolic, non-intrusive  
+============================================================ */
 
-/* Light mode */
-html[data-theme="light"] body.community .vote-btn {
-  color: var(--text-primary) !important;
+/* LIGHT MODE */
+html[data-theme="light"] body.community {
+  --vote-insight: #3eaaa2 !important;
+  --vote-insight-bg: rgba(62, 170, 162, 0.08) !important;
+
+  --vote-agree: #a58535 !important;
+  --vote-agree-bg: rgba(165, 133, 53, 0.10) !important;
+
+  --vote-challenge: #b25563 !important;
+  --vote-challenge-bg: rgba(178, 85, 99, 0.10) !important;
 }
 
-/* Active state in light mode */
-html[data-theme="light"] body.community .vote-btn.active {
-  color: var(--text-accent) !important;
+/* DARK MODE */
+html[data-theme="dark"] body.community {
+  --vote-insight: #7edde0 !important;
+  --vote-insight-bg: rgba(126, 221, 224, 0.16) !important;
+
+  --vote-agree: #d7bb80 !important;
+  --vote-agree-bg: rgba(215, 187, 128, 0.18) !important;
+
+  --vote-challenge: #ff8aa9 !important;
+  --vote-challenge-bg: rgba(255, 138, 169, 0.18) !important;
 }
 
-/* Dark mode */
+/* Vote button text colour alignment */
+html[data-theme="light"] body.community .vote-btn,
 html[data-theme="dark"] body.community .vote-btn {
   color: var(--text-primary) !important;
 }
 
-/* Active state in dark mode */
+html[data-theme="light"] body.community .vote-btn.active {
+  color: var(--text-accent) !important;
+}
+
 html[data-theme="dark"] body.community .vote-btn.active {
   color: var(--glyph-color) !important;
-}
-html[data-theme="light"] body.community {
-  /* Insight (teal) */
-  --vote-insight: #2b8c86 !important;
-  --vote-insight-bg: rgba(43, 140, 134, 0.10) !important;
-
-  /* Agree (gold) */
-  --vote-agree: #b38a2e !important;
-  --vote-agree-bg: rgba(179, 138, 46, 0.12) !important;
-
-  /* Challenge (rose) */
-  --vote-challenge: #b4465c !important;
-  --vote-challenge-bg: rgba(180, 70, 92, 0.12) !important;
-}
-html[data-theme="dark"] body.community {
-  /* Insight (aqua glow) */
-  --vote-insight: #7ee7df !important;
-  --vote-insight-bg: rgba(126, 231, 223, 0.18) !important;
-
-  /* Agree (gold glow) */
-  --vote-agree: #e2c178 !important;
-  --vote-agree-bg: rgba(226, 193, 120, 0.20) !important;
-
-  /* Challenge (rose ember) */
-  --vote-challenge: #ff7a9b !important;
-  --vote-challenge-bg: rgba(255, 122, 155, 0.20) !important;
 }
 
 }

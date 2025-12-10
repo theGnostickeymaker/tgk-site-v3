@@ -670,85 +670,82 @@ if (voteBtn) {
 
 
   // ------------------------------------------------------------
-  // Submit handler
-  // ------------------------------------------------------------
-  if (form) {
-    form.addEventListener("submit", async (evt) => {
-      evt.preventDefault();
+// Submit handler
+// ------------------------------------------------------------
+if (form) {
+  form.addEventListener("submit", async (evt) => {
+    evt.preventDefault();
 
-      if (!currentUser) {
-        if (statusEl) statusEl.textContent = "You must be signed in to post.";
-        return;
+    if (!currentUser) {
+      if (statusEl) statusEl.textContent = "You must be signed in to post.";
+      return;
+    }
+
+    if (!minTierSatisfied()) {
+      if (statusEl) {
+        statusEl.textContent = `Your tier (“${currentTier}”) is not sufficient to post here.`;
       }
+      return;
+    }
 
-      if (!minTierSatisfied()) {
-        if (statusEl) {
-          statusEl.textContent = `Your tier (“${currentTier}”) is not sufficient to post here.`;
-        }
-        return;
+    const steelField = form.querySelector("#steelman-summary");
+    const bodyField = form.querySelector("#reply-body");
+    const pseudoField = form.querySelector("#pseudonym");
+
+    const steel = steelField?.value.trim() || "";
+    const body = bodyField?.value.trim() || "";
+    const pseudo = pseudoField?.value.trim() || "Anonymous Seeker";
+    const parentId = parentReplyField?.value || null;
+
+    const steelWords = steel.split(/\s+/).filter(Boolean).length;
+    const bodyWords = body.split(/\s+/).filter(Boolean).length;
+
+    if (steelWords < 30) {
+      if (statusEl) statusEl.textContent = "Your Steel Man summary is too short. Minimum 30 words.";
+      return;
+    }
+
+    if (bodyWords < 20) {
+      if (statusEl) statusEl.textContent = "Your reply is too short. Minimum 20 words.";
+      return;
+    }
+
+    if (statusEl) statusEl.textContent = "Posting reply...";
+
+    try {
+      // 1. Write reply (always required)
+      await addDoc(repliesRef, {
+        userId: currentUser.uid,
+        pseudonym: pseudo,
+        steelmanSummary: steel,
+        body: body,
+        createdAt: serverTimestamp(),
+        parentReplyId: parentId,
+        pinned: false
+      });
+
+      // 2. Award reputation NON-BLOCKING
+      Reputation.awardPoints(
+        currentUser.uid,
+        1,
+        "reply",
+        `Reply posted in topic ${topicId}`,
+        topicId
+      ).catch(err => console.warn("[Reputation] reply award failed:", err));
+
+      // 3. Reset UI
+      form.reset();
+      if (parentReplyField) parentReplyField.value = "";
+      if (replyContext) replyContext.hidden = true;
+
+      if (statusEl) statusEl.textContent = "Reply posted.";
+
+    } catch (err) {
+      console.error(err);
+      if (statusEl) {
+        statusEl.textContent = "There was a problem posting your reply. Please try again.";
       }
+    }
+  });
+}
 
-      const steelField = form.querySelector("#steelman-summary");
-      const bodyField = form.querySelector("#reply-body");
-      const pseudoField = form.querySelector("#pseudonym");
-
-      const steel = steelField?.value.trim() || "";
-      const body = bodyField?.value.trim() || "";
-      const pseudo = pseudoField?.value.trim() || "Anonymous Seeker";
-      const parentId = parentReplyField?.value || null;
-
-      const steelWords = steel.split(/\s+/).filter(Boolean).length;
-      const bodyWords = body.split(/\s+/).filter(Boolean).length;
-
-      if (steelWords < 30) {
-        if (statusEl) {
-          statusEl.textContent = "Your Steel Man summary is too short. Minimum 30 words.";
-        }
-        return;
-      }
-
-      if (bodyWords < 20) {
-        if (statusEl) {
-          statusEl.textContent = "Your reply is too short. Minimum 20 words.";
-        }
-        return;
-      }
-
-      if (statusEl) statusEl.textContent = "Posting reply...";
-
-      try {
-        await addDoc(repliesRef, {
-          userId: currentUser.uid,
-          pseudonym: pseudo,
-          steelmanSummary: steel,
-          body: body,
-          createdAt: serverTimestamp(),
-          parentReplyId: parentId,
-          pinned: false
-        });
-
-        try {
-          await Reputation.awardPoints(
-            1,
-            "reply",
-            `Reply posted in topic ${topicId}`,
-            topicId
-          );
-        } catch (repErr) {
-          console.warn("[Reputation] reply award failed:", repErr);
-        }
-
-        form.reset();
-        if (parentReplyField) parentReplyField.value = "";
-        if (replyContext) replyContext.hidden = true;
-
-        if (statusEl) statusEl.textContent = "Reply posted.";
-      } catch (err) {
-        console.error(err);
-        if (statusEl) {
-          statusEl.textContent = "There was a problem posting your reply. Please try again.";
-        }
-      }
-    });
-  }
-});
