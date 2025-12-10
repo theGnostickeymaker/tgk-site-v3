@@ -515,6 +515,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("[Reputation] vote award failed:", err);
     }
   }
+  console.log("[VOTE] prevType=", prevType, "newType=", voteType, "delta=", delta);
+console.log("[REP] awarding to", toUserId, "delta=", points);
+
 }
 
   // ------------------------------------------------------------

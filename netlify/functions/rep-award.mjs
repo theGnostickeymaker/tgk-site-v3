@@ -136,6 +136,9 @@ export const handler = async (event, context) => {
       createdAt: now
     };
 
+    console.log("[SERVER] FINAL DELTA RECEIVED:", amount);
+
+
     // --------------------------------------------------------
     // Transaction: create/heal reputation doc + add event
     // --------------------------------------------------------
