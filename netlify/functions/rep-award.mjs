@@ -5,7 +5,6 @@ let appInitialised = false;
 
 /* ============================================================
    Initialise Firebase Admin using split environment variables
-   (avoids the AWS Lambda 4KB environment size limit)
 ============================================================ */
 function initFirebaseAdmin() {
   if (appInitialised) return;
@@ -15,19 +14,15 @@ function initFirebaseAdmin() {
   const privateKey = process.env.FIREBASE_PRIVATE_KEY;
 
   if (!projectId || !clientEmail || !privateKey) {
-    console.error("[rep-award] Missing Firebase Admin environment variables", {
-      hasProjectId: !!projectId,
-      hasClientEmail: !!clientEmail,
-      hasPrivateKey: !!privateKey
-    });
-    throw new Error("Missing Firebase Admin configuration variables");
+    console.error("[rep-award] Missing Firebase Admin environment variables");
+    throw new Error("Missing Firebase Admin configuration");
   }
 
   admin.initializeApp({
     credential: admin.credential.cert({
       project_id: projectId,
       client_email: clientEmail,
-      private_key: privateKey.replace(/\\n/g, "\n") // fix escaped newlines
+      private_key: privateKey.replace(/\\n/g, "\n")
     })
   });
 
@@ -49,12 +44,9 @@ export const handler = async (event, context) => {
 
     initFirebaseAdmin();
 
-    /* ------------------------------------------------------------
-       Robust token extraction — supports all header formats,
-       handles Netlify lowercasing, and accepts both:
-         - Authorization: Bearer <token>
-         - X-Firebase-Token: <token>
-    ------------------------------------------------------------ */
+    // --------------------------------------------------------
+    // Extract Firebase ID token (supports all header forms)
+    // --------------------------------------------------------
     const headers = event.headers || {};
 
     let token =
@@ -64,7 +56,6 @@ export const handler = async (event, context) => {
       headers["X-Firebase-Token"] ||
       null;
 
-    // If using "Bearer <token>"
     if (token && token.startsWith("Bearer ")) {
       token = token.substring(7);
     }
@@ -77,44 +68,57 @@ export const handler = async (event, context) => {
       };
     }
 
-    // Verify token
     let decoded;
     try {
       decoded = await admin.auth().verifyIdToken(token);
     } catch (err) {
-      console.error("[rep-award] Token verification failed", err);
+      console.error("[rep-award] Token verification error:", err);
       return {
         statusCode: 401,
-        body: JSON.stringify({ error: "Invalid Firebase token" })
+        body: JSON.stringify({ error: "Invalid Firebase ID token" })
       };
     }
 
     const uid = decoded.uid;
 
-    /* ------------------------------------------------------------
-       Parse payload
-    ------------------------------------------------------------ */
+    // --------------------------------------------------------
+    // Parse payload
+    // --------------------------------------------------------
     const body = JSON.parse(event.body || "{}");
-    const amount = body.amount ?? body.points; // accept either name
+    const amount = body.points ?? body.amount;
     const type = body.type || "generic";
-    const reason = body.reason || body.details || "";
+    const reason = body.details || body.reason || "";
     const topicId = body.topicId || null;
 
     if (typeof amount !== "number" || isNaN(amount)) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: "Invalid or missing amount" })
+        body: JSON.stringify({ error: "Invalid or missing points/amount" })
       };
     }
 
-    /* ------------------------------------------------------------
-       Perform Firestore writes
-    ------------------------------------------------------------ */
+    // --------------------------------------------------------
+    // Firestore references
+    // --------------------------------------------------------
     const db = admin.firestore();
     const now = admin.firestore.FieldValue.serverTimestamp();
 
     const repDocRef = db.collection("reputation").doc(uid);
     const eventsRef = repDocRef.collection("events").doc();
+
+    // --------------------------------------------------------
+    // FULL reputation schema (self-healing)
+    // --------------------------------------------------------
+    const DEFAULT_SCHEMA = {
+      total: 0,
+      tier: "initiate",
+      repliesPosted: 0,
+      steelemanAccepted: 0,
+      strikes: 0,
+      threadsCreated: 0,
+      lastUpdated: now,
+      updatedAt: now
+    };
 
     const eventPayload = {
       amount,
@@ -124,22 +128,21 @@ export const handler = async (event, context) => {
       createdAt: now
     };
 
+    // --------------------------------------------------------
+    // Transaction: create/heal reputation doc + add event
+    // --------------------------------------------------------
     await db.runTransaction(async (tx) => {
       const repSnap = await tx.get(repDocRef);
-      const currentTotal =
-        repSnap.exists ? repSnap.data().total || 0 : 0;
 
-      const newTotal = currentTotal + amount;
+      const base = repSnap.exists ? repSnap.data() : {};
 
-      tx.set(
-        repDocRef,
-        {
-          total: newTotal,
-          updatedAt: now
-        },
-        { merge: true }
-      );
+      // Merge existing fields with defaults (self-healing)
+      const merged = { ...DEFAULT_SCHEMA, ...base };
 
+      merged.total = (merged.total || 0) + amount;
+      merged.updatedAt = now;
+
+      tx.set(repDocRef, merged, { merge: true });
       tx.set(eventsRef, eventPayload);
     });
 
@@ -151,8 +154,9 @@ export const handler = async (event, context) => {
       statusCode: 200,
       body: JSON.stringify({ ok: true })
     };
+
   } catch (err) {
-    console.error("[rep-award] Error:", err);
+    console.error("[rep-award] ERROR:", err);
     return {
       statusCode: 500,
       body: JSON.stringify({
