@@ -516,83 +516,121 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ------------------------------------------------------------
-  // Click handlers (reply, vote, pin)
-  // ------------------------------------------------------------
-  document.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
+// Click handlers (reply, vote, pin)
+// ------------------------------------------------------------
+document.addEventListener("click", async (event) => {
+  const target = event.target;
+  if (!(target instanceof Element)) return;
 
-    // Reply button (support clicks on inner spans)
-    const replyBtn = target.closest(".btn-reply-comment");
-    if (replyBtn) {
-      const replyId = replyBtn.dataset.replyId;
-      const snippet = replyBtn.dataset.snippet || "";
+  // ----------------------------------------------------------
+  // Reply button (support clicks on inner spans)
+  // ----------------------------------------------------------
+  const replyBtn = target.closest(".btn-reply-comment");
+  if (replyBtn) {
+    const replyId = replyBtn.dataset.replyId;
+    const snippet = replyBtn.dataset.snippet || "";
 
-      if (parentReplyField && replyId) {
-        parentReplyField.value = replyId;
-      }
-
-      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
-      if (replyContext) replyContext.hidden = false;
-
-      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
+    if (parentReplyField && replyId) {
+      parentReplyField.value = replyId;
     }
 
-    // Cancel reply context
-    if (target.id === "cancel-reply-context") {
-      if (parentReplyField) parentReplyField.value = "";
-      if (replyContext) replyContext.hidden = true;
-      return;
-    }
+    if (replyContextSnippet) replyContextSnippet.textContent = snippet;
+    if (replyContext) replyContext.hidden = false;
 
-    // Voting (support clicks on inner spans)
-    const voteBtn = target.closest("button.vote-btn");
-    if (voteBtn) {
-      const replyId = voteBtn.dataset.replyId;
-      const voteType = voteBtn.dataset.voteType;
+    if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
 
-      if (!replyId || !voteType) return;
+  // ----------------------------------------------------------
+  // Cancel reply context
+  // ----------------------------------------------------------
+  if (target.id === "cancel-reply-context") {
+    if (parentReplyField) parentReplyField.value = "";
+    if (replyContext) replyContext.hidden = true;
+    return;
+  }
 
-      spawnRipple(voteBtn, event.clientX, event.clientY);
-      if (voteType === "insight") {
-        spawnInsightParticles(voteBtn);
+  // ----------------------------------------------------------
+  // Voting on replies (Insight / Agree / Challenge)
+  // ----------------------------------------------------------
+  const voteBtn = target.closest("button.vote-btn");
+  if (voteBtn) {
+    const replyId  = voteBtn.dataset.replyId;
+    const voteType = voteBtn.dataset.voteType;
+
+    if (!replyId || !voteType) return;
+
+    // button animations
+    spawnRipple(voteBtn, event.clientX, event.clientY);
+    if (voteType === "insight") spawnInsightParticles(voteBtn);
+
+    try {
+      // Load the reply so we know who to award Keys to
+      const replyRef = doc(db, "topics", topicId, "replies", replyId);
+      const replySnap = await getDoc(replyRef);
+
+      if (!replySnap.exists()) {
+        console.error("Vote failed: reply not found", replyId);
+        return;
       }
 
-      try {
-        await toggleVote(topicId, replyId, voteType);
-      } catch (e) {
-        console.error(e);
-        if (statusEl) statusEl.textContent = "Unable to register vote. Please try again.";
-      }
+      const replyData = replySnap.data();
+      const authorUid = replyData.userId;    // *** THIS IS THE FIX ***
 
-      return;
-    }
+      // Award reputation to the AUTHOR, not the voter
+      const points =
+        voteType === "challenge" ? 3 :
+        voteType === "agree"     ? 1 :
+        voteType === "insight"   ? 1 : 0;
 
-    // Pin / unpin (admin)
-    const pinBtn = target.closest(".btn-pin-reply");
-    if (pinBtn) {
-      if (!isAdmin) return;
-
-      const replyId = pinBtn.dataset.replyId;
-      if (!replyId) return;
-
-      const card = document.getElementById(`comment-${replyId}`);
-      const currentlyPinned = card?.classList.contains("is-pinned") || false;
-
-      try {
-        await setDoc(
-          doc(db, "topics", topicId, "replies", replyId),
-          { pinned: !currentlyPinned },
-          { merge: true }
+      if (points > 0) {
+        await Reputation.awardPoints(
+          authorUid,
+          points,
+          "vote",
+          `Received a ${voteType} vote`,
+          topicId
         );
-      } catch (e) {
-        console.error("Unable to toggle pin:", e);
       }
 
-      return;
+      // Update vote state inside Firestore
+      await toggleVote(topicId, replyId, voteType);
+
+    } catch (e) {
+      console.error("[Vote] Error:", e);
+      if (statusEl) statusEl.textContent = "Unable to register vote. Please try again.";
     }
-  });
+
+    return;
+  }
+
+  // ----------------------------------------------------------
+  // Pin / unpin (admin only)
+  // ----------------------------------------------------------
+  const pinBtn = target.closest(".btn-pin-reply");
+  if (pinBtn) {
+    if (!isAdmin) return;
+
+    const replyId = pinBtn.dataset.replyId;
+    if (!replyId) return;
+
+    const card = document.getElementById(`comment-${replyId}`);
+    const currentlyPinned = card?.classList.contains("is-pinned") || false;
+
+    try {
+      await setDoc(
+        doc(db, "topics", topicId, "replies", replyId),
+        { pinned: !currentlyPinned },
+        { merge: true }
+      );
+    } catch (e) {
+      console.error("Unable to toggle pin:", e);
+    }
+
+    return;
+  }
+});
+
 
   // ------------------------------------------------------------
   // Submit handler
