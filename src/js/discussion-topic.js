@@ -713,40 +713,38 @@ if (form) {
     if (statusEl) statusEl.textContent = "Posting reply...";
 
     try {
-      // 1. Write reply (always required)
-      await addDoc(repliesRef, {
-        userId: currentUser.uid,
-        pseudonym: pseudo,
-        steelmanSummary: steel,
-        body: body,
-        createdAt: serverTimestamp(),
-        parentReplyId: parentId,
-        pinned: false
-      });
+    // 1. Always add reply
+    await addDoc(repliesRef, {
+      userId: currentUser.uid,
+      pseudonym: pseudo,
+      steelmanSummary: steel,
+      body: body,
+      createdAt: serverTimestamp(),
+      parentReplyId: parentId,
+      pinned: false
+    });
 
-      // 2. Award reputation NON-BLOCKING
-      Reputation.awardPoints(
-        currentUser.uid,
-        1,
-        "reply",
-        `Reply posted in topic ${topicId}`,
-        topicId
-      ).catch(err => console.warn("[Reputation] reply award failed:", err));
+    // 2. Reputation is OPTIONAL
+    Reputation.awardPoints(
+      currentUser.uid,
+      1,
+      "reply",
+      `Reply posted in topic ${topicId}`,
+      topicId
+    ).catch(err => {
+      console.warn("[Reputation] reply award failed:", err);
+    });
 
-      // 3. Reset UI
-      form.reset();
-      if (parentReplyField) parentReplyField.value = "";
-      if (replyContext) replyContext.hidden = true;
+    // 3. UI cleanup
+    form.reset();
+    if (parentReplyField) parentReplyField.value = "";
+    if (replyContext) replyContext.hidden = true;
 
-      if (statusEl) statusEl.textContent = "Reply posted.";
-
-    } catch (err) {
-      console.error("[Reply Error]", err);
-      alert("Reply failed: " + err.message);
-      if (statusEl) {
-        statusEl.textContent = "There was a problem posting your reply. Check console.";
-      }
-    }
+    if (statusEl) statusEl.textContent = "Reply posted.";
+  } catch (err) {
+    console.error("[Reply Error]", err);
+    statusEl.textContent = "There was a problem posting your reply. Please try again.";
+  }
 
   });
 }
