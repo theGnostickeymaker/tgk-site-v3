@@ -1,16 +1,26 @@
 {# ============================================================
-   TGK — Global Community Topic Template (v1.1 FIXED)
-   This layout includes all required IDs for the JS engine.
+   TGK — Community Topic Template (v2.0 FINAL)
+   Features:
+     • Floating section tabs
+     • Fully integrated discussion engine
+     • Add Reply section
+     • Thread list
+     • Share block
+     • Correct IDs for JS engine
 ============================================================ #}
 
 {% extends "base.njk" %}
 
 {% block content %}
 <main class="main-content">
+
+  {# Floating navigation (Discussion, Add Reply, Share) #}
+  {% include "partials/page-tabs-community.njk" %}
+
   <section class="content-container">
 
-    <!-- INTRO SECTION -->
-    <section class="section-block">
+    <!-- INTRODUCTION -->
+    <section id="topic-intro" class="section-block">
       <h1 class="section-heading">
         {{ title or ("Topic: " + topicId | labelize) }}
       </h1>
@@ -20,8 +30,9 @@
       {% endif %}
     </section>
 
-    <!-- PARTICIPATION GUIDANCE -->
-    <section class="section-block">
+
+    <!-- PARTICIPATION RULES -->
+    <section id="guidance" class="section-block">
       <h2 class="section-heading">How to Participate</h2>
 
       <ul class="rules-list">
@@ -39,73 +50,40 @@
       </p>
     </section>
 
-    <!-- ======================================================
-         DISCUSSION ENGINE ROOT
-         This wrapper MUST contain the required IDs
-    ======================================================= -->
 
+    <!-- DISCUSSION ENGINE ROOT -->
     <section
       id="discussion-root"
       class="section-block"
       data-topic-id="{{ topicId }}"
       data-min-write-tier="{{ minWriteTier }}"
     >
-        {% include "components/discussion/reply-prompt.njk" %}
-        {% include "components/discussion/thread-list.njk" %}
+
+      <!-- ADD YOUR CONTRIBUTION -->
+      {% include "components/discussion/reply-prompt.njk" %}
+
+      <!-- THREAD LIST -->
+      {% include "components/discussion/thread-list.njk" %}
     </section>
 
-      <!-- STATUS MESSAGE -->
-      <p id="discussion-status" class="discussion-status muted small"></p>
 
-      <!-- AUTH HINT -->
-      <p id="discussion-auth-hint" class="muted small"></p>
+    <!-- SHARE BLOCK -->
+    <section id="share" class="section-block">
+      <h2 class="section-heading">Share this Discussion</h2>
 
-      <!-- ========================
-           REPLY FORM
-      ========================== -->
-      <form id="discussion-form" class="discussion-form">
-        
-        <div class="form-field">
-          <label for="steelman-summary" class="form-label">
-            Steel Man Summary
-          </label>
-          <textarea id="steelman-summary"
-                    name="steelmanSummary"
-                    required
-                    minlength="30"
-                    class="form-textarea"
-                    placeholder="Summarise the strongest version of the position you are replying to..."></textarea>
-        </div>
+      <div class="share-buttons">
+        <a class="btn outline"
+           href="https://x.com/intent/tweet?text={{ title | urlencode }}&url={{ page.url | absoluteUrl | urlencode }}"
+           target="_blank" rel="noopener">
+          Share on X (Twitter)
+        </a>
 
-        <div class="form-field">
-          <label for="reply-body" class="form-label">Your Response</label>
-          <textarea id="reply-body"
-                    name="body"
-                    required
-                    minlength="20"
-                    class="form-textarea"
-                    placeholder="Offer your analysis, commentary, or reflection..."></textarea>
-        </div>
-
-        <div class="form-field">
-          <label for="pseudonym" class="form-label">Pseudonym (optional)</label>
-          <input id="pseudonym"
-                 name="pseudonym"
-                 type="text"
-                 class="form-input"
-                 placeholder="How you wish to appear in this thread...">
-        </div>
-
-        <button type="submit" class="btn primary">Post Reply</button>
-      </form>
-
-      <!-- ========================
-           MESSAGE LIST
-      ========================== -->
-      <div id="discussion-messages" class="discussion-messages">
-        {# JS will populate this #}
+        <a class="btn outline"
+           href="https://t.me/share/url?url={{ page.url | absoluteUrl | urlencode }}&text={{ title | urlencode }}"
+           target="_blank" rel="noopener">
+          Share on Telegram
+        </a>
       </div>
-
     </section>
 
   </section>
@@ -114,8 +92,9 @@
 
 {% block scripts %}
   {{ super() }}
-
   <script type="module" src="/js/discussion-topic.js"></script>
   <script type="module" src="/js/community-delete.js"></script>
   <script type="module" src="/js/community-edit.js"></script>
+  <script type="module" src="/js/community-votes.js"></script>
+  <script type="module" src="/js/community-pin.js"></script>
 {% endblock %}
