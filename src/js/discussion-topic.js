@@ -753,12 +753,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (statusEl) statusEl.textContent = "Reply posted.";
       } catch (err) {
-        console.error("[Reply Error]", err);
-        if (statusEl) {
-          statusEl.textContent =
-            "There was a problem posting your reply. Please try again.";
-        }
+        console.group("[REPLY ERROR]");
+        console.error("❌ Firestore error:", err);
+        if (err.code) console.error("→ error.code:", err.code);
+        if (err.message) console.error("→ error.message:", err.message);
+        if (err.stack) console.error("→ stack:", err.stack);
+        console.groupEnd();
+
+        statusEl.textContent = "There was a problem posting your reply. See console.";
       }
+
     });
   }
 });
