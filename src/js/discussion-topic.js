@@ -722,17 +722,21 @@ document.addEventListener("DOMContentLoaded", () => {
           pseudonym: pseudo,
           steelmanSummary: steel,
           body: body,
-          parentReplyId: parentId
+          createdAt: serverTimestamp(),
+          parentReplyId: parentId,
+          pinned: false,
+          topicTierRequired: minWriteTierAttr  // ← NEW
         });
 
         await addDoc(repliesRef, {
           userId: currentUser.uid,
-          pseudonym: pseudo || "",
+          pseudonym: pseudo,
           steelmanSummary: steel,
           body: body,
           createdAt: serverTimestamp(),
           parentReplyId: parentId,
-          pinned: false
+          pinned: false,
+          topicTierRequired: minWriteTierAttr  // ← NEW
         });
 
         // Reputation is optional, non-blocking
@@ -759,7 +763,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (err.code) console.log("🔥 ERROR CODE:", err.code);
         if (err.message) console.log("🔥 ERROR MESSAGE:", err.message);
         if (err.stack) console.log("🔥 STACK:", err.stack);
-        
+
         statusEl.textContent = "There was a problem posting your reply. See console.";
       }
 
