@@ -716,9 +716,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         // Always add reply
-        await addDoc(repliesRef, {
+
+        console.log("[DEBUG] Payload being written:", {
           userId: currentUser.uid,
           pseudonym: pseudo,
+          steelmanSummary: steel,
+          body: body,
+          parentReplyId: parentId
+        });
+
+        await addDoc(repliesRef, {
+          userId: currentUser.uid,
+          pseudonym: pseudo || "",
           steelmanSummary: steel,
           body: body,
           createdAt: serverTimestamp(),
