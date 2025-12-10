@@ -342,19 +342,25 @@ document.addEventListener("DOMContentLoaded", () => {
     voteGroup.dataset.replyId = replyId;
 
     voteGroup.innerHTML = `
-      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight">
-        🜁 <span class="vote-label">Insight</span>
-        <span class="vote-count" data-count-type="insight">0</span>
-      </button>
-      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree">
-        ✦ <span class="vote-label">Agree</span>
-        <span class="vote-count" data-count-type="agree">0</span>
-      </button>
-      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge">
-        ⛧ <span class="vote-label">Challenge</span>
-        <span class="vote-count" data-count-type="challenge">0</span>
-      </button>
-    `;
+    <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight">
+      🜁 <span class="vote-label">Insight</span>
+      <span class="vote-count" data-count-type="insight">0</span>
+      <span class="vote-tooltip">Highlights valuable analysis</span>
+    </button>
+
+    <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree">
+      ✦ <span class="vote-label">Agree</span>
+      <span class="vote-count" data-count-type="agree">0</span>
+      <span class="vote-tooltip">Signals alignment with the point made</span>
+    </button>
+
+    <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge">
+      ⛧ <span class="vote-label">Challenge</span>
+      <span class="vote-count" data-count-type="challenge">0</span>
+      <span class="vote-tooltip">Pushes respectfully against the argument</span>
+    </button>
+  `;
+
     actions.appendChild(voteGroup);
 
     // Edit button (owner or admin)
@@ -505,8 +511,47 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContext) replyContext.hidden = true;
     }
 
+    function spawnRipple(btn, x, y) {
+      const ripple = document.createElement("span");
+      ripple.className = "vote-ripple";
+
+      const rect = btn.getBoundingClientRect();
+      ripple.style.left = `${x - rect.left - 7}px`;
+      ripple.style.top = `${y - rect.top - 7}px`;
+
+      btn.appendChild(ripple);
+
+      setTimeout(() => ripple.remove(), 450);
+    }
+
+      function spawnInsightParticles(btn) {
+      const symbols = ["✧", "☉", "𐌗"]; // Light Gnostic sparks
+      const chosen = symbols[Math.floor(Math.random() * symbols.length)];
+
+      const particle = document.createElement("span");
+      particle.className = "insight-particle";
+      particle.textContent = chosen;
+
+      const rect = btn.getBoundingClientRect();
+      particle.style.left = `${rect.width / 2 - 4}px`;
+      particle.style.top = `0px`;
+
+      btn.appendChild(particle);
+
+      setTimeout(() => particle.remove(), 750);
+    }
+
     // Voting
     if (el.classList.contains("vote-btn")) {
+      spawnRipple(el, event.clientX, event.clientY);
+
+      if (el.dataset.voteType === "insight") {
+        spawnInsightParticles(el);
+      }
+
+      await toggleVote(topicId, el.dataset.replyId, el.dataset.voteType);
+    }
+
       const replyId = el.dataset.replyId;
       const voteType = el.dataset.voteType;
       if (!replyId || !voteType) return;
@@ -517,7 +562,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(e);
         if (statusEl) statusEl.textContent = "Unable to register vote. Please try again.";
       }
-    }
 
     // Pin / unpin (admin)
     if (el.classList.contains("btn-pin-reply")) {

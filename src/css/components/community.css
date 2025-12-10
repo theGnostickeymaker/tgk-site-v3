@@ -15,687 +15,387 @@
   }
 
 
-  /* ===================================================
-     DISCUSSION THREAD COMPONENTS
-     =================================================== */
+  @layer components {
 
-  /* FORM */
+  /* ============================================================
+     FORM ELEMENTS
+     ============================================================ */
   .discussion-form {
     margin-top: 1rem;
-  }
-
-  .discussion-form .form-group {
-    margin-bottom: 1rem;
   }
 
   .discussion-form textarea,
   .discussion-form input[type="text"] {
     width: 100%;
-    padding: 0.7rem 0.9rem;
-    border-radius: var(--radius-md, 8px);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
     border: 1px solid var(--input-border);
     background: var(--input-bg);
     color: var(--input-text);
-    font: inherit;
     resize: vertical;
+    font: inherit;
   }
 
   .discussion-form textarea:focus,
   .discussion-form input[type="text"]:focus {
     outline: 2px solid var(--input-focus-border);
     outline-offset: 2px;
-    box-shadow: var(--input-focus-shadow);
     border-color: var(--input-focus-border);
+    box-shadow: var(--input-focus-shadow);
   }
 
 
-  /* MESSAGE LIST */
+  /* ============================================================
+     MESSAGE LIST WRAPPER
+     ============================================================ */
   .discussion-messages {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-top: 1.25rem;
   }
 
+
+  /* ============================================================
+     INDIVIDUAL MESSAGE CARD
+     ============================================================ */
   .discussion-message {
-    padding: 1rem 1.2rem;
-    border-radius: var(--radius-lg, 12px);
-    background: var(--card-gradient);
+    position: relative;
+    padding: 1.25rem 1rem 1rem;
+    background: var(--card-bg);
     border: 1px solid var(--section-border);
+    border-left-width: 2px;
+    border-left-color: var(--accent-page);
+    border-radius: 10px;
     box-shadow: var(--shadow-soft);
+    transition: background 0.25s ease, border-color 0.25s ease;
   }
 
+  .discussion-message.is-pinned {
+    border-left-width: 3px;
+    border-left-color: var(--glyph-color);
+    background: var(--highlight);
+    box-shadow: 0 0 14px var(--shadow-glow);
+  }
+
+
+  /* ============================================================
+     MESSAGE HEADER
+     ============================================================ */
   .discussion-message-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.4rem;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
   }
 
   .discussion-message-author {
     font-weight: 600;
     color: var(--text-accent);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
 
   .discussion-message-meta {
+    font-size: 0.78rem;
     color: var(--text-muted);
-    font-size: 0.75rem;
   }
 
+
+  /* ============================================================
+     STEEL MAN SUMMARY BLOCK
+     ============================================================ */
   .discussion-message-steelman {
-    font-size: 0.9rem;
-    font-style: italic;
+    margin-top: 0.4rem;
+    margin-bottom: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 8px;
+    background: var(--card-gradient);
+    border: 1px dashed var(--section-border);
     color: var(--cite-color);
-    margin-bottom: 0.35rem;
+    font-style: italic;
   }
 
-  .discussion-message-body {
-    font-size: 0.92rem;
-    line-height: 1.45;
-    color: var(--text-primary);
+  .steelman-label {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+  }
+
+
+  /* ============================================================
+     ACTION BAR
+     ============================================================ */
+  .discussion-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--text-accent);
+  }
+
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+
+
+  /* ============================================================
+     VOTING SYSTEM
+     ============================================================ */
+  .vote-group {
+    display: inline-flex;
+    gap: 0.5rem;
   }
 
 /* ============================================================
-   TGK — Admin Delete Button
+   THEMED VOTE BUTTON SYSTEM (Insight / Agree / Challenge)
    ============================================================ */
 
-.btn-delete-comment {
-  background: transparent;
-  color: var(--text-muted);
-  border: none;
-  cursor: pointer;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.4rem;
-  opacity: 0.55;
-  transition: opacity 0.2s ease, colour 0.2s ease;
-}
-
-.btn-delete-comment:hover {
-  opacity: 1;
-  color: var(--text-accent);
-}
-
-/* ============================================================
-   TGK — Delete Modal
-   ============================================================ */
-
-.confirm-delete-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: centre;
-  justify-content: centre;
-  z-index: 999;
-}
-
-.confirm-delete-modal[hidden] {
-  display: none;
-}
-
-.modal-box {
-  background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-  width: 320px;
-  text-align: centre;
-}
-
-.modal-actions {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: centre;
-  gap: 1rem;
-}
-
-.btn-modal-yes {
-  background: var(--accent-page);
-  color: var(--text-primary);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-}
-
-.btn-modal-no {
-  background: transparent;
-  border: 1px solid var(--accent-page);
-  color: var(--accent-page);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-}
-
-.community-entry-block {
-  border: 1px solid var(--accent-border, #a88c5d);
-  padding: 2rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  border-radius: 8px;
-  background: var(--bg-panel, rgba(255,255,255,0.02));
-}
-
-.section-subblock {
-  margin-top: 3rem;
-}
-
-.share-buttons .btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-}
-
-.page-tabs {
-  z-index: 50;
-}
-/* TGK Discussion Cards */
-
-.discussion-messages {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.discussion-message {
-  position: relative;
-  padding: 1.25rem 1.25rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--accent-border-soft, rgba(255,255,255,0.08));
-  background: radial-gradient(circle at top left,
-    rgba(255,255,255,0.04),
-    rgba(0,0,0,0.9));
-}
-
-.discussion-message.is-pinned {
-  border-color: var(--accent-strong, gold);
-  box-shadow: 0 0 0 1px rgba(255,215,0,0.3);
-}
-
-.discussion-message-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.discussion-message-author {
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.discussion-message-meta {
-  font-size: 0.8rem;
-  opacity: 0.7;
-}
-
-.discussion-message-steelman {
-  margin-top: 0.5rem;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px dashed rgba(255,255,255,0.15);
-  background: radial-gradient(circle at top,
-    rgba(255,255,255,0.03),
-    transparent);
-}
-
-.steelman-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.8;
-  margin-bottom: 0.25rem;
-}
-
-.steelman-text {
-  font-size: 0.9rem;
-}
-
-.discussion-message-body {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
-}
-
-/* Nested replies */
-
-.discussion-children {
-  margin-top: 0.75rem;
-  margin-left: 1.5rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid rgba(255,255,255,0.12);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Actions + votes */
-
-.discussion-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: centre;
-  gap: 0.75rem 1.25rem;
-  font-size: 0.85rem;
-}
-
-.btn-link.btn-reply-comment,
-.btn-link.btn-pin-reply {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--accent-soft, #e8d38e);
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-.btn-link.btn-reply-comment:hover,
-.btn-link.btn-pin-reply:hover {
-  text-decoration: underline;
-}
-
-.vote-group {
-  display: inline-flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.vote-btn {
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.18);
-  padding: 0.15rem 0.6rem;
-  background: rgba(0,0,0,0.3);
-  font-size: 0.8rem;
-  display: inline-flex;
-  align-items: centre;
-  gap: 0.35rem;
-  cursor: pointer;
-}
-
-.vote-btn .vote-count {
-  opacity: 0.85;
-}
-
-.vote-btn.active {
-  border-color: var(--accent-strong, gold);
-  box-shadow: 0 0 0 1px rgba(255,215,0,0.22);
-}
-
-/* Reply context */
-
-.reply-context {
-  margin-bottom: 0.75rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px dashed rgba(255,255,255,0.15);
-}
-.discussion-messages {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.discussion-message {
-  padding: 1.5rem;
-  border-radius: 12px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-}
-
-.discussion-message-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: .75rem;
-  font-size: .85rem;
-  opacity: .85;
-}
-
-.discussion-message-author {
-  font-weight: 600;
-  color: var(--accent-500);
-}
-
-.reply-steelman-body {
-  font-style: italic;
-  opacity: .9;
-  margin-bottom: .75rem;
-}
-.vote-buttons {
-  display: flex;
-  gap: .5rem;
-  margin-top: .5rem;
-}
-
-.vote-btn {
-  padding: .25rem .6rem;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  cursor: pointer;
-  font-size: .85rem;
-}
-
-.vote-btn.active {
-  background: var(--accent-500);
-  color: white;
-}
-.pinned-badge {
-  display: inline-block;
-  padding: .2rem .5rem;
-  border-radius: 6px;
-  background: var(--accent-500);
-  color: white;
-  font-size: .75rem;
-  margin-left: .5rem;
-}
-/* Vote box styling */
-.vote-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 1rem;
-}
-
-.vote-btn {
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-.vote-btn.active {
-  color: var(--accent);
-  opacity: 1;
-}
-
-.vote-count {
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
-}
-
-/* Pinned */
-.is-pinned {
-  border-left: 3px solid var(--accent);
-  background: var(--bg-elevated);
-}
-
-.pinned-badge {
-  background: var(--accent);
-  color: var(--bg);
-  padding: 0 0.4rem;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  margin-left: 0.5rem;
-}
-
-/* Admin controls */
-.admin-controls {
-  margin-left: auto;
-  display: flex;
-  gap: 0.5rem;
-}
-
-.btn-inline {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.btn-inline:hover {
-  color: var(--accent);
-}
-.discussion-children {
-  border-left: 1px solid var(--accent);
-  padding-left: 1.75rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.discussion-message {
-  padding: 1rem 1.25rem;
-  background: var(--card-bg);
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-/* Make reputation badges subtle and elegant */
-.discussion-message-author {
-  font-weight: 600;
-  color: var(--text-strong);
-}
-
-.discussion-message-author .badge {
-  margin-left: 0.5rem;
-  color: var(--accent);
-  font-size: 1rem;
-}
-/* -------------------------------------------------------------
-   TGK COMMUNITY — Thread Indentation System
-   Creates clean visual hierarchy for nested replies.
--------------------------------------------------------------- */
-
-.discussion-message {
-  border-left: 2px solid var(--accent-300);
-  padding: 1.25rem 1rem 1rem;
-  margin: 1rem 0;
-  background: var(--bg-raise);
-  border-radius: 6px;
-  position: relative;
-}
-
-/* Children container */
-.discussion-children {
-  margin-left: 2rem;
-  padding-left: 1rem;
-  border-left: 1px dashed var(--accent-400);
-}
-/* Level 1 */
-.discussion-message {
-  --depth-color: var(--accent-300);
-}
-
-/* Level 2+ children */
-.discussion-children > .discussion-message {
-  --depth-color: var(--accent-500);
-}
-
-/* Level 3 */
-.discussion-children .discussion-children > .discussion-message {
-  --depth-color: var(--accent-600);
-}
-
-/* Level 4+ */
-.discussion-children .discussion-children .discussion-children > .discussion-message {
-  --depth-color: var(--accent-700);
-}
-
-/* Apply the depth colour */
-.discussion-message {
-  border-left-color: var(--depth-color);
-}
-/* Faint vertical rule guiding the eye */
-.discussion-children {
-  position: relative;
-}
-
-.discussion-children::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -0.75rem;
-  width: 1px;
-  background: var(--accent-300);
-  opacity: 0.15;
-}
-.discussion-message.is-pinned {
-  border-left-width: 3px;
-  border-left-color: var(--accent-gold);
-  background: var(--bg-lift);
-  box-shadow: 0 0 8px var(--accent-gold-glow);
-}
-.discussion-message:hover {
-  background: var(--bg-hover);
-}
-
-.discussion-actions button:hover {
-  color: var(--accent-300);
-}
-@media (max-width: 700px) {
-  .discussion-children {
-    margin-left: 1rem;
-    padding-left: 0.75rem;
+  .vote-btn {
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    transition: all 0.2s ease;
   }
 
+  /* Base colours */
+  .vote-btn[data-vote-type="insight"] {
+    color: var(--vote-insight);
+    border-color: var(--vote-insight-bg);
+    background: var(--vote-insight-bg);
+  }
+
+  .vote-btn[data-vote-type="agree"] {
+    color: var(--vote-agree);
+    border-color: var(--vote-agree-bg);
+    background: var(--vote-agree-bg);
+  }
+
+  .vote-btn[data-vote-type="challenge"] {
+    color: var(--vote-challenge);
+    border-color: var(--vote-challenge-bg);
+    background: var(--vote-challenge-bg);
+  }
+
+  /* Hover states */
+  .vote-btn:hover {
+    filter: brightness(1.08);
+  }
+
+  /* Active (user selected) — stronger highlight */
+  .vote-btn.active[data-vote-type="insight"] {
+    background: var(--vote-insight);
+    color: #fff;
+  }
+
+  .vote-btn.active[data-vote-type="agree"] {
+    background: var(--vote-agree);
+    color: #fff;
+  }
+
+  .vote-btn.active[data-vote-type="challenge"] {
+    background: var(--vote-challenge);
+    color: #fff;
+  }
+
+  /* Count visibility fix */
+  .vote-count {
+    opacity: 0.9;
+  }
+
+  .vote-btn.active {
+  box-shadow: 0 0 8px currentColor;
+  }
+
+  /* ============================================================
+   MICRO-ANIMATIONS FOR VOTE BUTTONS
+   ============================================================ */
+
+  .vote-btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.25s ease;
+  }
+
+  .vote-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .vote-btn:active {
+    transform: scale(0.94);
+  }
+
+  /* Glow when active */
+  .vote-btn.active {
+    box-shadow: 0 0 8px currentColor;
+  }
+
+  /* Ripple element */
+  .vote-ripple {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: currentColor;
+    opacity: 0.35;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: vote-ripple-anim 0.45s ease-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes vote-ripple-anim {
+    from {
+      transform: scale(0);
+      opacity: 0.35;
+    }
+    to {
+      transform: scale(8);
+      opacity: 0;
+    }
+  }
+  /* Floating particles for insight vote */
+  @keyframes insight-particle-rise {
+    0% {
+      transform: translateY(0) scale(0.6);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(-18px) scale(1.1);
+      opacity: 0;
+    }
+  }
+
+  .insight-particle {
+    position: absolute;
+    pointer-events: none;
+    font-size: 0.9rem;
+    color: var(--vote-insight);
+    animation: insight-particle-rise 0.75s ease-out forwards;
+  }
+
+  .vote-btn {
+  position: relative;
+  }
+
+  .vote-tooltip {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg);
+    border: 1px solid var(--section-border);
+    box-shadow: var(--shadow-soft);
+    padding: 0.35rem 0.55rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 20;
+  }
+
+  .vote-btn:hover .vote-tooltip {
+    opacity: 1;
+  }
+
+  /* ============================================================
+     NESTED REPLY TREE (DEPTH GLYPHS)
+     ============================================================ */
   .discussion-message {
-    padding-left: 0.75rem;
+    --glyph-level: "☉";
   }
-}
-/* -------------------------------------------------------------
-   TGK DEPTH GLYPHS
-   Level 1–4 glyphs representing symbolic descent into discourse.
--------------------------------------------------------------- */
 
-.discussion-message {
-  --glyph-level: "☉";      /* top-level */
-}
+  .discussion-children > .discussion-message {
+    --glyph-level: "☽";
+  }
 
-.discussion-children > .discussion-message {
-  --glyph-level: "☽";      /* level 2 */
-}
+  .discussion-children .discussion-children > .discussion-message {
+    --glyph-level: "✶";
+  }
 
-.discussion-children .discussion-children > .discussion-message {
-  --glyph-level: "✶";      /* level 3 */
-}
+  .discussion-children .discussion-children .discussion-children > .discussion-message {
+    --glyph-level: "🜂";
+  }
 
-.discussion-children .discussion-children .discussion-children > .discussion-message {
-  --glyph-level: "🜂";      /* level 4+ — flame of inquiry */
-}
-
-/* Render the glyph */
-.discussion-message::before {
-  content: var(--glyph-level);
-  position: absolute;
-  left: -1.75rem;
-  top: 0.6rem;
-  font-size: 1.1rem;
-  opacity: 0.6;
-  color: var(--accent-400);
-  pointer-events: none;
-}
-/* Vertical lineage column */
-.discussion-children {
-  margin-left: 2rem;
-  padding-left: 1.25rem;
-  position: relative;
-  border-left: 1px solid var(--accent-300);
-  opacity: 0.9;
-}
-
-/* Depth shading */
-.discussion-message {
-  border-left: 2px solid var(--accent-400);
-  padding: 1.25rem 1rem;
-  margin-top: 1.2rem;
-  border-radius: 6px;
-  position: relative;
-  background: var(--bg-raise);
-  transition: background 0.25s ease, border-color 0.25s ease;
-}
-
-/* Deeper replies get darker borders */
-.discussion-children > .discussion-message {
-  border-left-color: var(--accent-500);
-}
-
-.discussion-children .discussion-children > .discussion-message {
-  border-left-color: var(--accent-600);
-}
-
-.discussion-children .discussion-children .discussion-children > .discussion-message {
-  border-left-color: var(--accent-700);
-}
-.discussion-message.is-pinned {
-  border-left-width: 3px;
-  border-left-color: var(--accent-gold);
-  background: var(--bg-lift);
-  box-shadow: 0 0 18px rgba(255, 215, 125, 0.22);
-}
-
-.discussion-message.is-pinned::before {
-  content: "♛";   /* replaces depth glyph when pinned */
-  color: var(--accent-gold);
-  opacity: 1;
-  font-size: 1.3rem;
-}
-/* Collapsible subtree wrapper */
-.discussion-children {
-  max-height: 9999px;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-
-.discussion-children.is-collapsed {
-  max-height: 0;
-  opacity: 0.1;
-  pointer-events: none;
-}
-
-/* Collapse/expand button */
-.thread-toggle {
-  cursor: pointer;
-  font-size: 0.85rem;
-  margin-left: 0.5rem;
-  opacity: 0.6;
-}
-
-.thread-toggle:hover {
-  opacity: 1;
-  color: var(--accent-300);
-}
-/* In action bar, the collapse button */
-.btn-collapse-thread {
-  margin-left: 0.5rem;
-  font-size: 0.75rem;
-  color: var(--accent-300);
-}
-/* Lookup table applied by JS via data-rep */
-.discussion-message[data-rep="adept"],
-.discussion-message[data-rep="master"],
-.discussion-message[data-rep="luminary"] {
-  box-shadow: 0 0 10px var(--accent-500-faint);
-}
-
-.discussion-message[data-rep="master"] {
-  box-shadow: 0 0 14px var(--accent-600-faint);
-}
-
-.discussion-message[data-rep="luminary"] {
-  box-shadow: 0 0 18px var(--accent-gold-glow);
-}
-/* Admin aura */
-.discussion-message[data-author-role="admin"] {
-  border-left-color: var(--accent-gold);
-  background: var(--bg-admin);
-}
-
-/* Thread author subtle colour mark */
-.discussion-message[data-author="op"]::before {
-  color: var(--accent-rose);
-  opacity: 0.8;
-}
-@media (max-width: 650px) {
-  .discussion-children {
-    margin-left: 1rem;
-    padding-left: 0.8rem;
+  .discussion-message.is-pinned::before {
+    content: "♛";
+    color: var(--glyph-color);
+    opacity: 1;
+    font-size: 1.25rem;
   }
 
   .discussion-message::before {
-    left: -1.35rem;
+    content: var(--glyph-level);
+    position: absolute;
+    left: -1.55rem;
+    top: 0.6rem;
+    font-size: 1.1rem;
+    opacity: 0.55;
+    color: var(--glyph-color);
+  }
+
+
+  /* ============================================================
+     NESTED CHILDREN STRUCTURE
+     ============================================================ */
+  .discussion-children {
+    margin-left: 2rem;
+    padding-left: 1.2rem;
+    border-left: 1px solid var(--section-border);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .discussion-children::before {
+    content: "";
+    position: absolute;
+    left: -0.8rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--section-border);
+    opacity: 0.35;
+  }
+
+
+  /* ============================================================
+     REPUTATION BADGES
+     ============================================================ */
+  .discussion-message-author .badge {
+    margin-left: 0.4rem;
+    font-size: 1rem;
+    color: var(--glyph-color);
+  }
+
+
+  /* ============================================================
+     MOBILE OPTIMISATION
+     ============================================================ */
+  @media (max-width: 650px) {
+    .discussion-children {
+      margin-left: 1rem;
+      padding-left: 0.8rem;
+    }
+
+    .discussion-message::before {
+      left: -1.25rem;
+    }
   }
 }
-
 }
