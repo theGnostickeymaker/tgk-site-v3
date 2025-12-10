@@ -78,7 +78,7 @@
   .discussion-message.is-pinned {
     border-left-width: 3px;
     border-left-color: var(--glyph-color);
-    background: var(--highlight);
+    background: var(--card-gradient);
     box-shadow: 0 0 14px var(--shadow-glow);
   }
 

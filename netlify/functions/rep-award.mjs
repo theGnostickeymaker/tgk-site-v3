@@ -1,4 +1,5 @@
 // netlify/functions/rep-award.mjs
+// netlify/functions/rep-award.mjs
 import admin from "firebase-admin";
 
 let appInitialised = false;
@@ -6,21 +7,26 @@ let appInitialised = false;
 function initFirebaseAdmin() {
   if (appInitialised) return;
 
-  const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT;
-  if (!serviceAccountJson) {
-    console.error("[rep-award] Missing FIREBASE_SERVICE_ACCOUNT env var");
-    throw new Error("Service account config missing");
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+
+  if (!privateKey || !clientEmail || !projectId) {
+    console.error("[rep-award] Missing required Firebase Admin environment variables");
+    throw new Error("Missing Firebase Admin env vars");
   }
 
-  const serviceAccount = JSON.parse(serviceAccountJson);
-
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    projectId: process.env.FIREBASE_PROJECT_ID || serviceAccount.project_id
+    credential: admin.credential.cert({
+      project_id: projectId,
+      private_key: privateKey.replace(/\\n/g, "\n"),
+      client_email: clientEmail
+    })
   });
 
   appInitialised = true;
 }
+
 
 export const handler = async (event, context) => {
   try {
