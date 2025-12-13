@@ -438,6 +438,40 @@
       max-height: none !important;
     }
   }
+/* ==========================================================
+   MOBILE FIX: Force Chromium-based browsers to render replies
+   ========================================================== */
+@media (max-width: 900px) {
+
+  /* The container that holds the message list */
+  .discussion-messages,
+  #discussion-messages {
+    display: block !important;
+    overflow: visible !important;
+    contain: none !important; /* Chromium fix */
+  }
+
+  /* Every message card */
+  .discussion-message {
+    position: static !important; /* Fix for Edge/Chrome */
+    overflow: visible !important;
+  }
+
+  /* Nested children wrappers */
+  .discussion-children {
+    overflow: visible !important;
+    position: static !important;  /* Chromium hates nested relative */
+    max-height: none !important;
+  }
+
+  /* Prevent clipping from parent sections */
+  .section-block,
+  .content-container,
+  main {
+    overflow: visible !important;
+    contain: none !important; /* Key Chromium fix */
+  }
+}
 
 
 } /* END @layer components */
