@@ -1,12 +1,6 @@
 {# ============================================================
-   TGK — Community Topic Template (v2.0 FINAL)
-   Features:
-     • Floating section tabs
-     • Fully integrated discussion engine
-     • Add Reply section
-     • Thread list
-     • Share block
-     • Correct IDs for JS engine
+   TGK — Community Topic Template (v2.0 FIXED)
+   Fix: thread-list moved inside #discussion-root so replies nest properly
 ============================================================ #}
 
 {% extends "base.njk" %}
@@ -51,24 +45,29 @@
     </section>
 
 
-    <!-- DISCUSSION ENGINE ROOT -->
+    <!-- =======================================================
+         DISCUSSION ROOT (form + nested thread tree)
+         NESTING ONLY WORKS WHEN THREAD LIST IS INSIDE THIS BLOCK
+       ======================================================= -->
     <section id="discussion-root" class="section-block"
       data-topic-id="{{ topicId }}"
       data-min-write-tier="{{ minWriteTier }}">
 
-      <!-- ADD YOUR CONTRIBUTION -->
+      <!-- ADD NEW REPLY FORM -->
       {% include "components/discussion/reply-prompt.njk" %}
-    </section>
-    
-      <!-- THREAD LIST -->
+
+      <!-- FULL THREAD LIST (must be inside this section!) -->
       {% include "components/discussion/thread-list.njk" %}
+
+    </section>
+
 
     <!-- SHARE BLOCK -->
     <section id="share" class="section-block">
       <h2 class="section-heading">Share this Discussion</h2>
 
       <div class="btn-row">
-        <a class="btn" 
+        <a class="btn"
           href="https://x.com/intent/tweet?text={{ title | urlencode }}&url={{ page.url | absoluteUrl | urlencode }}"
           target="_blank" rel="noopener">
           Share on X (Twitter)
@@ -80,17 +79,17 @@
           Share on Telegram
         </a>
       </div>
-
     </section>
 
   </section>
 </main>
 {% endblock %}
 
+
 {% block scripts %}
   {{ super() }}
 
-  <!-- CORE AUTH AND USER LOADING (required!) -->
+  <!-- CORE AUTH AND USER LOADING -->
   <script type="module" src="/js/firebase-init.js"></script>
   <script type="module" src="/js/tgk-user.js"></script>
 
@@ -100,6 +99,3 @@
   <script type="module" src="/js/community-delete.js"></script>
   <script type="module" src="/js/community-edit.js"></script>
 {% endblock %}
-
-
-
