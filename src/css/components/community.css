@@ -414,4 +414,30 @@
     color: var(--accent-page);
   }
 
+  /* FORCE MOBILE THREAD VISIBILITY */
+  @media (max-width: 900px) {
+
+    /* Remove any clipping */
+    .section-block,
+    .content-container,
+    .discussion-messages,
+    #discussion-messages,
+    #messages,
+    .discussion-thread-list {
+      overflow: visible !important;
+      display: block !important;
+      height: auto !important;
+      max-height: none !important;
+    }
+
+    /* Children must always be visible */
+    .discussion-message,
+    .discussion-children {
+      overflow: visible !important;
+      height: auto !important;
+      max-height: none !important;
+    }
+  }
+
+
 } /* END @layer components */
