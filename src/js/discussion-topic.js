@@ -1,11 +1,11 @@
 // =============================================================
-// TGK Community — Topic Engine v3.0
-//  • Stable nested replies
-//  • Voting (Insight / Agree / Challenge)
-//  • Pin / unpin for admin
-//  • Reputation hooks + live badges
-//  • Clean reply context behaviour
-//  • Safe rendering + error guards
+// TGK Community — Topic Engine v3.1 (with Mobile Debug Panel)
+//  • Nested replies
+//  • Voting
+//  • Pinning
+//  • Reputation badges
+//  • Reply context
+//  • Mobile-safe debug output (Edge iOS fix)
 // =============================================================
 
 import { auth, db } from "/js/firebase-init.js";
@@ -25,14 +25,42 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/f
 import { Reputation } from "./reputation.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ------------------------------------------------------------
+
+  // ============================================================
+  //  🔧 MOBILE DEBUG PANEL (Auto-injected)
+  // ============================================================
+  let debugBox = document.getElementById("tgk-debug");
+  if (!debugBox) {
+    debugBox = document.createElement("div");
+    debugBox.id = "tgk-debug";
+    debugBox.style =
+      "padding:0.5rem;margin:0.5rem 0;font-size:0.7rem;color:#ccc;background:rgba(0,0,0,0.25);max-height:160px;overflow:auto;border-radius:6px;";
+    document.body.appendChild(debugBox);
+  }
+
+  function debugLog(msg) {
+    if (!debugBox) return;
+    const line = document.createElement("div");
+    line.textContent = `[DBG] ${msg}`;
+    debugBox.appendChild(line);
+  }
+
+  debugLog("discussion-topic.js initialised");
+
+  // ============================================================
   // Core DOM references
-  // ------------------------------------------------------------
+  // ============================================================
   const root = document.getElementById("discussion-root");
-  if (!root) return;
+  if (!root) {
+    debugLog("No #discussion-root found. Exiting.");
+    return;
+  }
 
   const topicId = root.getAttribute("data-topic-id");
-  if (!topicId) return;
+  if (!topicId) {
+    debugLog("No topic ID found.");
+    return;
+  }
 
   const minWriteTierAttr =
     root.getAttribute("data-min-write-tier") || "initiate";
@@ -52,22 +80,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentTier = "free";
   let isAdmin = false;
 
-  // Map<userId, unsubscribeFn>
   const reputationSubscriptions = new Map();
 
-  // ------------------------------------------------------------
+  debugLog(`Topic ID detected: ${topicId}`);
+  debugLog(`Topic write tier required: ${minWriteTierAttr}`);
+
+  // ============================================================
   // Tier helpers
-  // ------------------------------------------------------------
+  // ============================================================
   function tierRank(tier) {
     switch (tier) {
-      case "initiate":
-        return 1;
-      case "adept":
-        return 2;
-      case "admin":
-        return 3;
-      default:
-        return 0;
+      case "initiate": return 1;
+      case "adept": return 2;
+      case "admin": return 3;
+      default: return 0;
     }
   }
 
@@ -80,9 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (enabled) {
       form.classList.remove("is-disabled");
-      Array.from(form.elements).forEach((el) => {
-        el.disabled = false;
-      });
+      Array.from(form.elements).forEach((el) => el.disabled = false);
     } else {
       form.classList.add("is-disabled");
       Array.from(form.elements).forEach((el) => {
@@ -93,9 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (authHintEl && message) authHintEl.textContent = message;
   }
 
-  // ------------------------------------------------------------
-  // Keys rank + badge helpers
-  // ------------------------------------------------------------
+  // ============================================================
+  // Reputation helpers
+  // ============================================================
   function keysRank(score) {
     if (score >= 500) return "Guardian";
     if (score >= 200) return "Keeper";
@@ -106,17 +130,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function badgeFor(score) {
     if (!score || score < 1) return "";
-    if (score >= 500) return "🜂"; // Guardian
-    if (score >= 200) return "⟆"; // Keeper
-    if (score >= 50) return "✦"; // Initiate
-    return "✧"; // Seeker
+    if (score >= 500) return "🜂";
+    if (score >= 200) return "⟆";
+    if (score >= 50) return "✦";
+    return "✧";
   }
 
   function extractScore(repData) {
-    if (!repData || typeof repData !== "object") return 0;
-    if (typeof repData.total === "number") return repData.total;
-    if (typeof repData.score === "number") return repData.score;
-    return 0;
+    if (!repData) return 0;
+    return repData.total ?? repData.score ?? 0;
   }
 
   function updateAuthorBadges(userId, repData) {
@@ -129,181 +151,141 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     authorEls.forEach((el) => {
-      const existingBase = el.dataset.baseName;
-      let baseName = existingBase;
-
-      if (!baseName) {
-        const raw = el.textContent || "";
-        baseName = raw
-          .replace("🜂", "")
-          .replace("⟆", "")
-          .replace("✦", "")
-          .replace("✧", "")
-          .trim();
-        el.dataset.baseName = baseName;
-      }
-
-      if (badge) {
-        el.textContent = `${baseName} ${badge}`;
-      } else {
-        el.textContent = baseName;
-      }
-
-      if (rank && score > 0) {
-        el.title = `Keys rank: ${rank} (${score} Keys)`;
-      } else {
-        el.removeAttribute("title");
-      }
+      const base = el.dataset.baseName || el.textContent.split(" ")[0];
+      el.dataset.baseName = base;
+      el.textContent = badge ? `${base} ${badge}` : base;
+      el.title = score > 0 ? `Keys rank: ${rank} (${score})` : "";
     });
   }
 
-  function canReadReputation(targetUserId) {
-    if (!currentUser) return false;
-    if (isAdmin) return true;
-    return currentUser.uid === targetUserId;
+  function canReadReputation(uid) {
+    return currentUser && (isAdmin || currentUser.uid === uid);
   }
 
-  function ensureReputationSubscription(userId) {
-    if (!userId) return;
-    if (reputationSubscriptions.has(userId)) return;
-    if (!canReadReputation(userId)) return;
+  function ensureReputationSubscription(uid) {
+    if (!uid || reputationSubscriptions.has(uid)) return;
+    if (!canReadReputation(uid)) return;
 
-    const repRef = doc(db, "reputation", userId);
+    debugLog(`Subscribing to reputation for user: ${uid}`);
+
+    const repRef = doc(db, "reputation", uid);
 
     const unsub = onSnapshot(
       repRef,
-      (snap) => {
-        const repData = snap.exists() ? snap.data() : null;
-        updateAuthorBadges(userId, repData);
-      },
-      (error) => {
-        console.warn("[Reputation] Snapshot error:", error);
-      }
+      snap => updateAuthorBadges(uid, snap.exists() ? snap.data() : null),
+      err => debugLog(`[Reputation snapshot error] ${err.message}`)
     );
 
-    reputationSubscriptions.set(userId, unsub);
+    reputationSubscriptions.set(uid, unsub);
   }
 
-  // ------------------------------------------------------------
+  // ============================================================
   // Auth tracking
-  // ------------------------------------------------------------
+  // ============================================================
   onAuthStateChanged(auth, async (user) => {
-    currentUser = user || null;
-    currentTier = "free";
-    isAdmin = false;
+    currentUser = user;
+    debugLog(`Auth state changed. User = ${user ? user.uid : "null"}`);
 
     if (!user) {
-      setFormEnabled(
-        false,
-        "You are currently signed out. Sign in to join the discussion."
-      );
+      currentTier = "free";
+      setFormEnabled(false, "Sign in to join the discussion.");
       return;
     }
 
     try {
-      const tokenResult = await user.getIdTokenResult();
-      currentTier = tokenResult.claims.tier || "free";
+      const token = await user.getIdTokenResult(true);
+      currentTier = token.claims.tier || "free";
       isAdmin =
-        tokenResult.claims.tier === "admin" ||
-        tokenResult.claims.role === "admin";
+        token.claims.tier === "admin" ||
+        token.claims.role === "admin";
+
+      debugLog(`User tier: ${currentTier}, admin=${isAdmin}`);
     } catch (err) {
-      console.error("Unable to read user tier from claims:", err);
-      currentTier = "free";
-      isAdmin = false;
+      debugLog(`Unable to read token claims: ${err.message}`);
     }
 
     if (!minTierSatisfied()) {
-      setFormEnabled(
-        false,
-        `Upgrade to “${minWriteTierAttr}” to contribute.`
-      );
+      setFormEnabled(false, `Upgrade to “${minWriteTierAttr}” to contribute.`);
       return;
     }
 
-    setFormEnabled(
-      true,
-      "You are signed in. Your contribution will appear with your chosen pseudonym."
-    );
+    setFormEnabled(true, "You may contribute.");
   });
 
-  // ------------------------------------------------------------
-  // Firestore listener for replies
-  // ------------------------------------------------------------
+  // ============================================================
+  // Replies listener
+  // ============================================================
   const repliesRef = collection(db, "topics", topicId, "replies");
   const repliesQuery = query(repliesRef, orderBy("createdAt", "asc"));
 
-  onSnapshot(repliesQuery, (snapshot) => {
-    if (!messagesEl) return;
+  debugLog("Binding Firestore replies snapshot…");
 
-    messagesEl.innerHTML = "";
+  onSnapshot(
+    repliesQuery,
+    (snapshot) => {
+      debugLog(`Snapshot received: ${snapshot.size} replies`);
 
-    if (snapshot.empty) {
-      messagesEl.innerHTML = `
-        <p class="muted small">
-          No contributions yet. Be the first to offer a Steel Man summary.
-        </p>
-      `;
-      return;
-    }
+      if (!messagesEl) return;
+      messagesEl.innerHTML = "";
 
-    const containersById = {};
-    const dataById = {};
-
-    // First pass: create cards and subscribe to reputation
-    snapshot.forEach((docSnap) => {
-      const data = docSnap.data();
-      const replyId = docSnap.id;
-
-      dataById[replyId] = data;
-      const card = buildReplyCard(replyId, data);
-      containersById[replyId] = card;
-
-      if (data.userId) {
-        ensureReputationSubscription(data.userId);
+      if (snapshot.empty) {
+        messagesEl.innerHTML =
+          `<p class="muted small">No contributions yet.</p>`;
+        return;
       }
-    });
 
-    // Second pass: nest replies under their parents
-    snapshot.forEach((docSnap) => {
-      const replyId = docSnap.id;
-      const data = dataById[replyId];
-      const card = containersById[replyId];
+      const containersById = {};
+      const dataById = {};
 
-      const parentId = data.parentReplyId || null;
+      // Build cards
+      snapshot.forEach((snap) => {
+        const data = snap.data();
+        const replyId = snap.id;
 
-      if (parentId && containersById[parentId]) {
-        let childrenWrap =
-          containersById[parentId].querySelector(".discussion-children");
-        if (!childrenWrap) {
-          childrenWrap = document.createElement("div");
-          childrenWrap.className = "discussion-children";
-          containersById[parentId].appendChild(childrenWrap);
+        dataById[replyId] = data;
+        containersById[replyId] = buildReplyCard(replyId, data);
+
+        if (data.userId) ensureReputationSubscription(data.userId);
+      });
+
+      // Nesting
+      snapshot.forEach((snap) => {
+        const replyId = snap.id;
+        const data = dataById[replyId];
+        const card = containersById[replyId];
+        const parentId = data.parentReplyId;
+
+        if (parentId && containersById[parentId]) {
+          let children = containersById[parentId].querySelector(".discussion-children");
+          if (!children) {
+            children = document.createElement("div");
+            children.className = "discussion-children";
+            containersById[parentId].appendChild(children);
+          }
+          children.appendChild(card);
+        } else {
+          messagesEl.appendChild(card);
         }
-        childrenWrap.appendChild(card);
-      } else {
-        messagesEl.appendChild(card);
-      }
 
-      setupVotes(topicId, replyId, card);
-    });
-  });
+        setupVotes(topicId, replyId, card);
+      });
+    },
+    (err) => {
+      debugLog(`Snapshot error: ${err.message}`);
+    }
+  );
 
-  // ------------------------------------------------------------
-  // Card builder
-  // ------------------------------------------------------------
+  // ============================================================
+  // Reply card builder
+  // ============================================================
   function buildReplyCard(replyId, data) {
     const card = document.createElement("article");
     card.className = "discussion-message";
     card.dataset.replyId = replyId;
+    card.dataset.userId = data.userId || "";
     card.id = `comment-${replyId}`;
 
-    if (data.userId) {
-      card.dataset.userId = data.userId;
-    }
-
-    if (data.pinned) {
-      card.classList.add("is-pinned");
-    }
+    if (data.pinned) card.classList.add("is-pinned");
 
     // Header
     const header = document.createElement("div");
@@ -311,10 +293,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const author = document.createElement("span");
     author.className = "discussion-message-author";
-
-    const pseudo = data.pseudonym || "Anonymous Seeker";
-    author.dataset.baseName = pseudo;
-    author.textContent = pseudo;
+    author.dataset.baseName = data.pseudonym || "Anonymous Seeker";
+    author.textContent = data.pseudonym || "Anonymous Seeker";
 
     const meta = document.createElement("span");
     meta.className = "discussion-message-meta";
@@ -324,86 +304,65 @@ document.addEventListener("DOMContentLoaded", () => {
     header.appendChild(author);
     header.appendChild(meta);
 
-    // Steel Man block
+    // Steelman
     const steelBlock = document.createElement("div");
-    steelBlock.className =
-      "discussion-message-steelman reply-steelman-body";
+    steelBlock.className = "discussion-message-steelman";
     if (data.steelmanSummary) {
-      const label = document.createElement("div");
-      label.className = "steelman-label";
-      label.textContent = "Steel Man Summary";
-
-      const text = document.createElement("div");
-      text.className = "steelman-text";
-      text.textContent = data.steelmanSummary;
-
-      steelBlock.appendChild(label);
-      steelBlock.appendChild(text);
+      steelBlock.innerHTML =
+        `<div class="steelman-label">Steel Man Summary</div>
+         <div>${data.steelmanSummary}</div>`;
     }
 
     // Body
     const body = document.createElement("div");
-    body.className = "discussion-message-body reply-body-text";
+    body.className = "discussion-message-body";
     body.textContent = data.body || "";
 
-    // Actions: reply, votes, edit, delete, pin
+    // Actions
     const actions = document.createElement("div");
     actions.className = "discussion-actions";
 
     // Reply button
     const replyBtn = document.createElement("button");
-    replyBtn.type = "button";
     replyBtn.className = "btn-link btn-reply-comment";
     replyBtn.dataset.replyId = replyId;
-    replyBtn.dataset.snippet = (
-      data.steelmanSummary ||
-      data.body ||
-      ""
-    ).slice(0, 120);
+    replyBtn.dataset.snippet =
+      (data.steelmanSummary || data.body || "").slice(0, 120);
     replyBtn.textContent = "Reply";
+
     actions.appendChild(replyBtn);
 
-    // Vote group
+    // Voting group
     const voteGroup = document.createElement("div");
     voteGroup.className = "vote-group";
     voteGroup.dataset.replyId = replyId;
 
     voteGroup.innerHTML = `
       <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight">
-        🜁 <span class="vote-label">Insight</span>
-        <span class="vote-count" data-count-type="insight">0</span>
-        <span class="vote-tooltip">Highlights valuable analysis</span>
+        🜁 Insight <span class="vote-count" data-count-type="insight">0</span>
       </button>
-
       <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree">
-        ✦ <span class="vote-label">Agree</span>
-        <span class="vote-count" data-count-type="agree">0</span>
-        <span class="vote-tooltip">Signals alignment with the point made</span>
+        ✦ Agree <span class="vote-count" data-count-type="agree">0</span>
       </button>
-
       <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge">
-        ⛧ <span class="vote-label">Challenge</span>
-        <span class="vote-count" data-count-type="challenge">0</span>
-        <span class="vote-tooltip">Pushes respectfully against the argument</span>
+        ⛧ Challenge <span class="vote-count" data-count-type="challenge">0</span>
       </button>
     `;
 
     actions.appendChild(voteGroup);
 
-    // Edit button (owner or admin)
+    // Edit
     if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
       const editBtn = document.createElement("button");
-      editBtn.type = "button";
       editBtn.className = "btn-link btn-edit-reply";
       editBtn.dataset.replyId = replyId;
       editBtn.textContent = "Edit";
       actions.appendChild(editBtn);
     }
 
-    // Delete button (admin)
+    // Delete
     if (isAdmin) {
       const delBtn = document.createElement("button");
-      delBtn.type = "button";
       delBtn.className = "btn-link btn-delete-comment";
       delBtn.dataset.commentId = replyId;
       delBtn.dataset.topicId = topicId;
@@ -411,10 +370,9 @@ document.addEventListener("DOMContentLoaded", () => {
       actions.appendChild(delBtn);
     }
 
-    // Pin / Unpin (admin)
+    // Pin
     if (isAdmin) {
       const pinBtn = document.createElement("button");
-      pinBtn.type = "button";
       pinBtn.className = "btn-link btn-pin-reply";
       pinBtn.dataset.replyId = replyId;
       pinBtn.textContent = data.pinned ? "Unpin" : "Pin";
@@ -429,9 +387,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
-  // ------------------------------------------------------------
-  // Voting system
-  // ------------------------------------------------------------
+  // ============================================================
+  // Voting logic
+  // ============================================================
   function setupVotes(topicId, replyId, card) {
     const votesRef = collection(
       db,
@@ -448,39 +406,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
       snapshot.forEach((snap) => {
         const v = snap.data();
-        if (v && v.type && counts[v.type] != null) {
-          counts[v.type] = (counts[v.type] || 0) + 1;
+        if (v && v.type && counts[v.type] !== undefined) {
+          counts[v.type]++;
         }
-        if (currentUser && snap.id === currentUser.uid && v && v.type) {
+        if (currentUser && snap.id === currentUser.uid && v) {
           userVote = v.type;
         }
       });
 
-      Object.entries(counts).forEach(([type, count]) => {
-        const el = card.querySelector(
+      for (let [type, count] of Object.entries(counts)) {
+        const countEl = card.querySelector(
           `.vote-count[data-count-type="${type}"]`
         );
-        if (el) el.textContent = count;
-      });
+        if (countEl) countEl.textContent = count;
+      }
 
       card.querySelectorAll(".vote-btn").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.voteType === userVote);
+        btn.classList.toggle(
+          "active",
+          btn.dataset.voteType === userVote
+        );
       });
     });
   }
 
   async function toggleVote(topicId, replyId, voteType) {
     if (!currentUser) {
-      if (statusEl) statusEl.textContent = "You must be signed in to vote.";
+      if (statusEl) statusEl.textContent = "Sign in to vote.";
       return;
     }
 
+    debugLog(`Vote cast: reply=${replyId} type=${voteType}`);
+
     const replyRef = doc(db, "topics", topicId, "replies", replyId);
-    const replySnap = await getDoc(replyRef);
+    const snap = await getDoc(replyRef);
+    if (!snap.exists()) return;
 
-    if (!replySnap.exists()) return;
-
-    const replyAuthor = replySnap.data().userId;
+    const replyAuthor = snap.data().userId;
 
     const voteRef = doc(
       db,
@@ -492,25 +454,22 @@ document.addEventListener("DOMContentLoaded", () => {
       currentUser.uid
     );
 
-    const voteSnap = await getDoc(voteRef);
-    const prevType = voteSnap.exists() ? voteSnap.data().type : null;
+    const prevSnap = await getDoc(voteRef);
+    const prevType = prevSnap.exists() ? prevSnap.data().type : null;
 
     const pts = { insight: 3, agree: 1, challenge: 1 };
     let delta = 0;
 
-    // Same vote again: unvote
     if (prevType === voteType) {
       await deleteDoc(voteRef);
       delta = -pts[voteType];
     } else if (!prevType) {
-      // No previous vote: new vote
       await setDoc(voteRef, {
         type: voteType,
         createdAt: serverTimestamp()
       });
       delta = pts[voteType];
     } else {
-      // Different vote: change
       await setDoc(voteRef, {
         type: voteType,
         createdAt: serverTimestamp()
@@ -519,35 +478,163 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (delta !== 0 && replyAuthor) {
-      try {
-        await Reputation.awardPoints(
-          replyAuthor,
-          delta,
-          "vote",
-          `Vote ${voteType} on reply ${replyId}`,
-          topicId
-        );
-      } catch (err) {
-        console.error("[Reputation] vote award failed:", err);
-      }
+      Reputation.awardPoints(
+        replyAuthor,
+        delta,
+        "vote",
+        `Vote ${voteType} on reply ${replyId}`,
+        topicId
+      ).catch(err => debugLog(`Reputation error: ${err.message}`));
     }
-
-    console.log(
-      "[VOTE]",
-      "prevType=",
-      prevType,
-      "newType=",
-      voteType,
-      "delta=",
-      delta,
-      "→ author=",
-      replyAuthor
-    );
   }
 
-  // ------------------------------------------------------------
-  // Vote animation helpers
-  // ------------------------------------------------------------
+  // ============================================================
+  // UI click handling
+  // ============================================================
+  document.addEventListener("click", async (event) => {
+    const t = event.target;
+    if (!(t instanceof Element)) return;
+
+    // Reply button
+    const r = t.closest(".btn-reply-comment");
+    if (r) {
+      debugLog(`Reply clicked for ${r.dataset.replyId}`);
+      const id = r.dataset.replyId;
+      const snippet = r.dataset.snippet || "";
+
+      parentReplyField.value = id;
+      replyContextSnippet.textContent = snippet;
+      replyContext.hidden = false;
+
+      form.scrollIntoView({ behaviour: "smooth" });
+      return;
+    }
+
+    // Cancel reply
+    if (t.id === "cancel-reply-context") {
+      parentReplyField.value = "";
+      replyContext.hidden = true;
+      debugLog("Reply context cancelled");
+      return;
+    }
+
+    // Vote
+    const vb = t.closest(".vote-btn");
+    if (vb) {
+      const replyId = vb.dataset.replyId;
+      const type = vb.dataset.voteType;
+
+      spawnRipple(vb, event.clientX, event.clientY);
+      if (type === "insight") spawnInsightParticles(vb);
+
+      try {
+        await toggleVote(topicId, replyId, type);
+      } catch (err) {
+        debugLog(`Vote error: ${err.message}`);
+      }
+      return;
+    }
+
+    // Pin
+    const pb = t.closest(".btn-pin-reply");
+    if (pb && isAdmin) {
+      const replyId = pb.dataset.replyId;
+      debugLog(`Pin toggle for reply ${replyId}`);
+
+      const card = document.getElementById(`comment-${replyId}`);
+      const currentlyPinned = card?.classList.contains("is-pinned");
+
+      try {
+        await setDoc(
+          doc(db, "topics", topicId, "replies", replyId),
+          { pinned: !currentlyPinned },
+          { merge: true }
+        );
+      } catch (err) {
+        debugLog(`Pin error: ${err.message}`);
+      }
+      return;
+    }
+  });
+
+  // ============================================================
+  // Reply submission
+  // ============================================================
+  if (form) {
+    form.addEventListener("submit", async (evt) => {
+      evt.preventDefault();
+
+      if (!currentUser) {
+        statusEl.textContent = "You must be signed in.";
+        return;
+      }
+
+      if (!minTierSatisfied()) {
+        statusEl.textContent =
+          `Your tier (${currentTier}) is below the required level (${minWriteTierAttr}).`;
+        return;
+      }
+
+      const steel = form.querySelector("#steelman-summary")?.value.trim() || "";
+      const body = form.querySelector("#reply-body")?.value.trim() || "";
+      const pseudo = form.querySelector("#pseudonym")?.value.trim() || "Anonymous Seeker";
+      const parentId = parentReplyField.value || null;
+
+      const steelWords = steel.split(/\s+/).filter(Boolean).length;
+      const bodyWords = body.split(/\s+/).filter(Boolean).length;
+
+      if (steelWords < 30) {
+        statusEl.textContent = "Steel Man summary must be 30+ words.";
+        return;
+      }
+
+      if (bodyWords < 20) {
+        statusEl.textContent = "Reply body must be 20+ words.";
+        return;
+      }
+
+      statusEl.textContent = "Posting…";
+      debugLog("Submitting reply…");
+
+      try {
+        const payload = {
+          userId: currentUser.uid,
+          pseudonym: pseudo,
+          steelmanSummary: steel,
+          body,
+          createdAt: serverTimestamp(),
+          parentReplyId: parentId,
+          pinned: false,
+          topicTierRequired: minWriteTierAttr
+        };
+
+        debugLog(`Payload: ${JSON.stringify(payload)}`);
+
+        await addDoc(repliesRef, payload);
+
+        Reputation.awardPoints(
+          currentUser.uid,
+          1,
+          "reply",
+          `Reply posted in ${topicId}`,
+          topicId
+        ).catch(err => debugLog(`Reputation error: ${err.message}`));
+
+        form.reset();
+        parentReplyField.value = "";
+        replyContext.hidden = true;
+        statusEl.textContent = "Reply posted.";
+
+      } catch (err) {
+        debugLog(`Reply ERROR: ${err.message}`);
+        statusEl.textContent = "Error posting reply.";
+      }
+    });
+  }
+
+  // ============================================================
+  // Vote ripple animations
+  // ============================================================
   function spawnRipple(btn, x, y) {
     const ripple = document.createElement("span");
     ripple.className = "vote-ripple";
@@ -557,14 +644,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ripple.style.top = `${y - rect.top - 7}px`;
 
     btn.appendChild(ripple);
-
     setTimeout(() => ripple.remove(), 450);
   }
 
   function spawnInsightParticles(btn) {
     const symbols = ["✧", "☉", "𐌗"];
     const chosen = symbols[Math.floor(Math.random() * symbols.length)];
-
     const particle = document.createElement("span");
     particle.className = "insight-particle";
     particle.textContent = chosen;
@@ -574,199 +659,6 @@ document.addEventListener("DOMContentLoaded", () => {
     particle.style.top = "0px";
 
     btn.appendChild(particle);
-
     setTimeout(() => particle.remove(), 750);
-  }
-
-  // ------------------------------------------------------------
-  // Click handlers (reply, vote, pin)
-  // ------------------------------------------------------------
-  document.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-
-    // Reply button
-    const replyBtn = target.closest(".btn-reply-comment");
-    if (replyBtn) {
-      const replyId = replyBtn.dataset.replyId;
-      const snippet = replyBtn.dataset.snippet || "";
-
-      if (parentReplyField && replyId) {
-        parentReplyField.value = replyId;
-      }
-
-      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
-      if (replyContext) replyContext.hidden = false;
-
-      if (form) {
-        form.scrollIntoView({ behaviour: "smooth", block: "start" });
-      }
-      return;
-    }
-
-    // Cancel reply context
-    if (target.id === "cancel-reply-context") {
-      if (parentReplyField) parentReplyField.value = "";
-      if (replyContext) replyContext.hidden = true;
-      return;
-    }
-
-    // Voting on replies
-    const voteBtn = target.closest("button.vote-btn");
-    if (voteBtn) {
-      const replyId = voteBtn.dataset.replyId;
-      const voteType = voteBtn.dataset.voteType;
-
-      if (!replyId || !voteType) return;
-
-      spawnRipple(voteBtn, event.clientX, event.clientY);
-      if (voteType === "insight") spawnInsightParticles(voteBtn);
-
-      try {
-        await toggleVote(topicId, replyId, voteType);
-      } catch (err) {
-        console.error("[Vote] Error:", err);
-        if (statusEl) {
-          statusEl.textContent =
-            "Unable to register vote. Please try again.";
-        }
-      }
-
-      return;
-    }
-
-    // Pin / unpin (admin only)
-    const pinBtn = target.closest(".btn-pin-reply");
-    if (pinBtn) {
-      if (!isAdmin) return;
-
-      const replyId = pinBtn.dataset.replyId;
-      if (!replyId) return;
-
-      const card = document.getElementById(`comment-${replyId}`);
-      const currentlyPinned =
-        (card && card.classList.contains("is-pinned")) || false;
-
-      try {
-        await setDoc(
-          doc(db, "topics", topicId, "replies", replyId),
-          { pinned: !currentlyPinned },
-          { merge: true }
-        );
-      } catch (e) {
-        console.error("Unable to toggle pin:", e);
-      }
-
-      return;
-    }
-  });
-
-  // ------------------------------------------------------------
-  // Submit handler
-  // ------------------------------------------------------------
-  if (form) {
-    form.addEventListener("submit", async (evt) => {
-      evt.preventDefault();
-
-      if (!currentUser) {
-        if (statusEl) statusEl.textContent = "You must be signed in to post.";
-        return;
-      }
-
-      if (!minTierSatisfied()) {
-        if (statusEl) {
-          statusEl.textContent = `Your tier (“${currentTier}”) is not sufficient to post here.`;
-        }
-        return;
-      }
-
-      const steelField = form.querySelector("#steelman-summary");
-      const bodyField = form.querySelector("#reply-body");
-      const pseudoField = form.querySelector("#pseudonym");
-
-      const steel = steelField?.value.trim() || "";
-      const body = bodyField?.value.trim() || "";
-      const pseudo =
-        pseudoField?.value.trim() || "Anonymous Seeker";
-      const parentId = parentReplyField?.value || null;
-
-      const steelWords = steel.split(/\s+/).filter(Boolean).length;
-      const bodyWords = body.split(/\s+/).filter(Boolean).length;
-
-      if (steelWords < 30) {
-        if (statusEl) {
-          statusEl.textContent =
-            "Your Steel Man summary is too short. Minimum 30 words.";
-        }
-        return;
-      }
-
-      if (bodyWords < 20) {
-        if (statusEl) {
-          statusEl.textContent =
-            "Your reply is too short. Minimum 20 words.";
-        }
-        return;
-      }
-
-      if (statusEl) statusEl.textContent = "Posting reply...";
-
-      console.log("[DEBUG] Topic ID =", topicId);
-      console.log("[DEBUG] repliesRef =", repliesRef);
-
-      try {
-        // Always add reply
-
-        console.log("[DEBUG] Payload being written:", {
-          userId: currentUser.uid,
-          pseudonym: pseudo,
-          steelmanSummary: steel,
-          body: body,
-          createdAt: serverTimestamp(),
-          parentReplyId: parentId,
-          pinned: false,
-          topicTierRequired: minWriteTierAttr  // ← NEW
-        });
-
-        await addDoc(repliesRef, {
-          userId: currentUser.uid,
-          pseudonym: pseudo,
-          steelmanSummary: steel,
-          body: body,
-          createdAt: serverTimestamp(),
-          parentReplyId: parentId,
-          pinned: false,
-          topicTierRequired: minWriteTierAttr  // ← NEW
-        });
-
-        // Reputation is optional, non-blocking
-        Reputation.awardPoints(
-          currentUser.uid,
-          1,
-          "reply",
-          `Reply posted in topic ${topicId}`,
-          topicId
-        ).catch((err) => {
-          console.warn("[Reputation] reply award failed:", err);
-        });
-
-        // UI cleanup
-        form.reset();
-        if (parentReplyField) parentReplyField.value = "";
-        if (replyContext) replyContext.hidden = true;
-
-        if (statusEl) statusEl.textContent = "Reply posted.";
-      } catch (err) {
-        console.log("🔥 RAW ERROR OBJECT:", err);
-        console.log("🔥 JSON STRINGIFIED:", JSON.stringify(err, null, 2));
-
-        if (err.code) console.log("🔥 ERROR CODE:", err.code);
-        if (err.message) console.log("🔥 ERROR MESSAGE:", err.message);
-        if (err.stack) console.log("🔥 STACK:", err.stack);
-
-        statusEl.textContent = "There was a problem posting your reply. See console.";
-      }
-
-    });
   }
 });
