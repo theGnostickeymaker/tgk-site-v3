@@ -342,7 +342,27 @@ document.addEventListener("DOMContentLoaded", () => {
      Build a reply card
      ----------------------------------------------------------- */
   function buildReplyCard(replyId, data, depth) {
-    const card = document.createElement("article");
+  const card = document.createElement("article");
+  card.className = "discussion-message";
+  card.dataset.replyId = replyId;
+  card.id = `comment-${replyId}`;
+  card.dataset.depth = String(depth ?? 0);
+
+  if (data.deleted) {
+    const tombstone = document.createElement("div");
+    tombstone.className = "discussion-message-deleted";
+
+    tombstone.innerHTML = `
+      <em>
+        This contribution was removed
+        ${data.deletedBy === data.userId ? "by the author" : "by a moderator"}.
+      </em>
+    `;
+
+    card.appendChild(tombstone);
+    return card;
+  }
+
     card.className = "discussion-message";
     card.dataset.replyId = replyId;
     card.id = `comment-${replyId}`;
@@ -678,11 +698,21 @@ document.addEventListener("DOMContentLoaded", () => {
           "votes"
         );
 
-        const votesSnap = await getDocs(votesRef);
-        await Promise.all(votesSnap.docs.map(v => deleteDoc(v.ref)));
-
         // Delete reply
-        await deleteDoc(replyRef);
+        await setDoc(
+          replyRef,
+          {
+            deleted: true,
+            deletedAt: serverTimestamp(),
+            deletedBy: currentUser.uid,
+            deleteReason: isAdmin ? "moderator" : "author"
+          },
+          { merge: true }
+        );
+
+        const card = document.getElementById(`comment-${replyId}`);
+        if (card) card.remove();
+
 
         if (statusEl) statusEl.textContent = "Reply deleted.";
 
