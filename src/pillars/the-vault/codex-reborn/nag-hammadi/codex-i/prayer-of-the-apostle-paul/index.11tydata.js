@@ -64,7 +64,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/codex-reborn/nag-hammadi/prayer-of-the-apostle-paul.jpg",
 
-  // === Behaviour ===
+  // === behavior ===
   showLens: false,
   showSeriesNav: false
 };

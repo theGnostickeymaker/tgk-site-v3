@@ -132,7 +132,7 @@ export default {
     { title: "Series I", url: "/pillars/the-gnostic-eye/the-final-idol/series-1/" }
   ],
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: true
 };

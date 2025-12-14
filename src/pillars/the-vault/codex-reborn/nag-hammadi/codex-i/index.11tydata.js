@@ -113,7 +113,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/codex-reborn/nag-hammadi/codex-i.jpg",
 
-  // Behaviour
+  // behavior
   showLens: false,
   showSeriesNav: false
 };

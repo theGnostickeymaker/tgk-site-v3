@@ -97,7 +97,7 @@ export default {
   // === Social Meta ===
   socialImage: "/tgk-assets/images/share/the-vault/hypostasis-of-the-archons.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: true,
   showSeriesNav: true
 };

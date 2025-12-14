@@ -91,7 +91,7 @@ export default {
   // === Social ===
   socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi/gospel-of-truth.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: true,
   showSeriesNav: true
 };

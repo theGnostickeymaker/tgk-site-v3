@@ -50,7 +50,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/codex-reborn/berlin-codex/gospel-of-mary.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

@@ -106,7 +106,7 @@ export default {
   // === Social Meta ===
   socialImage: "/tgk-assets/images/share/the-gnostic-key/index.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

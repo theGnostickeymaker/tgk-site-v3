@@ -54,7 +54,7 @@ seriesNav:
     desc: "A letter on spiritual rebirth and the awakening of the inner man, attributed to Rheginos."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/treatise-on-the-resurrection/"
 
-# === Behaviour ===
+# === behavior ===
 lensEnabled: true
 
 crossLinks: []

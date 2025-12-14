@@ -13,7 +13,7 @@ document.addEventListener("click", (event) => {
   // Delay for JS-rendered content
   setTimeout(() => {
     target.scrollIntoView({
-      behaviour: "smooth",
+      behavior: "smooth",
       block: "start"
     });
   }, 50);

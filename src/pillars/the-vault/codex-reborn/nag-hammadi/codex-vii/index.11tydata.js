@@ -81,7 +81,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/nag-hammadi-codex-vii.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

@@ -108,7 +108,7 @@ export default {
   // Social Image
   socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi-codex-ii.jpg",
 
-  // Behaviour
+  // behavior
   showLens: false,
   showSeriesNav: false
 };

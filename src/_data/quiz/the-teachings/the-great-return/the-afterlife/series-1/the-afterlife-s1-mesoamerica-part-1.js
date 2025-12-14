@@ -38,7 +38,7 @@ export default {
       id: "q3",
       prompt: "In Mesoamerican belief, what determines a person’s afterlife path?",
       options: [
-        { key: "A", label: "Their moral behaviour in life" },
+        { key: "A", label: "Their moral behavior in life" },
         { key: "B", label: "The prayers said by their family" },
         { key: "C", label: "The time and manner of their death" },
         { key: "D", label: "Their level of temple initiation" }

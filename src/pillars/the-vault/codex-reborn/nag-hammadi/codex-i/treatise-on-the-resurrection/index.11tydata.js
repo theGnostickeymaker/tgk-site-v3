@@ -59,7 +59,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/nag-hammadi-treatise-on-the-resurrection.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

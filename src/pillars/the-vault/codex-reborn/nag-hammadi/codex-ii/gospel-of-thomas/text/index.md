@@ -60,7 +60,7 @@ seriesNav:
     desc: "A cosmological revelation exposing the powers that shaped matter and the light that redeems it."
     url: "/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/on-the-origin-of-the-world/text/"
 
-# === Behaviour ===
+# === behavior ===
 lensEnabled: true
 crossLinks: []
 

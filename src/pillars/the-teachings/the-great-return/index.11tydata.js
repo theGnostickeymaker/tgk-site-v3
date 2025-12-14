@@ -66,7 +66,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-teachings/the-great-return/the-great-return-index.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: true
 };

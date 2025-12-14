@@ -1,5 +1,4 @@
 @layer components {
-
   /* ==========================================================
      MUTED INFO BOX
   ========================================================== */
@@ -44,7 +43,6 @@
     box-shadow: var(--input-focus-shadow);
   }
 
-
   /* ==========================================================
      MESSAGE LIST WRAPPER
   ========================================================== */
@@ -55,28 +53,29 @@
     flex-direction: column;
     gap: 1.5rem;
     margin-top: 1.25rem;
-    overflow: visible;
-    transform: translateZ(0);
   }
 
-
   /* ==========================================================
-     INDIVIDUAL MESSAGE CARD
+     INDIVIDUAL MESSAGE CARD (Desktop)
   ========================================================== */
   .discussion-message {
     position: relative;
-    padding: 1.25rem 1rem 1rem;
-    background: var(--card-bg);
+    margin-bottom: 1.2rem;
+    padding: 0.9rem 1rem;
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
     border: 1px solid var(--section-border);
     border-left-width: 2px;
     border-left-color: var(--accent-page);
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: var(--shadow-soft);
     transition: background 0.25s ease, border-color 0.25s ease;
     overflow-wrap: anywhere;
-    will-change: transform;
+    word-break: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
+  /* Reputation-based glow */
   .discussion-message[data-rep="initiate"] {
     box-shadow: 0 0 6px rgba(120, 200, 200, 0.25);
   }
@@ -94,27 +93,41 @@
     border-left-color: var(--accent-gold);
   }
 
-
-  /* ==========================================================
-     PINNED MESSAGE
-  ========================================================== */
+  /* Pinned message */
   .discussion-message.is-pinned {
     border-left-width: 3px;
     border-left-color: var(--glyph-color);
     background: var(--card-gradient);
     box-shadow: 0 0 14px var(--shadow-glow);
-    --glyph-level: "";
   }
 
+  /* Depth-based background tones */
+  .discussion-message[data-depth="0"] {
+    background: var(--card-gradient, rgba(255, 255, 255, 0.03));
+  }
+
+  .discussion-message[data-depth="1"] {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .discussion-message[data-depth="2"] {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .discussion-message[data-depth="3"] {
+    background: rgba(255, 255, 255, 0.06);
+  }
 
   /* ==========================================================
      MESSAGE HEADER
   ========================================================== */
   .discussion-message-header {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.5rem;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+    position: relative;
   }
 
   .discussion-message-author {
@@ -124,17 +137,23 @@
   }
 
   .discussion-message-meta {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
+    opacity: 0.6;
   }
 
+  .rep-badge {
+    margin-left: 0.35rem;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    color: var(--accent-page);
+  }
 
   /* ==========================================================
      STEEL MAN BLOCK
   ========================================================== */
   .discussion-message-steelman {
-    margin-top: 0.4rem;
-    margin-bottom: 0.75rem;
+    margin: 0.4rem 0 0.75rem;
     padding: 0.65rem 0.85rem;
     border-radius: 8px;
     background: var(--card-gradient);
@@ -150,16 +169,15 @@
     margin-bottom: 0.25rem;
   }
 
-
   /* ==========================================================
-     ACTION BAR
+     ACTION BAR & VOTING
   ========================================================== */
   .discussion-actions {
     display: flex;
+    gap: 0.8rem;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 0.75rem;
-    font-size: 0.85rem;
+    margin-top: 0.6rem;
+    pointer-events: auto;
   }
 
   .btn-link {
@@ -174,28 +192,25 @@
     text-decoration: underline;
   }
 
-
-  /* ==========================================================
-     VOTING SYSTEM
-  ========================================================== */
   .vote-group {
-    display: inline-flex;
-    gap: 0.5rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
   }
 
   .vote-btn {
-    border-radius: 999px;
-    padding: 0.25rem 0.7rem;
-    font-size: 0.8rem;
     display: inline-flex;
-    align-items: centre;
-    gap: 0.35rem;
-    cursor: pointer;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.45rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
     border: 1px solid transparent;
     background: var(--card-bg);
+    cursor: pointer;
     transition: all 0.2s ease;
-    position: relative;
-    overflow: visible;
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 
   .vote-btn[data-vote-type="insight"] {
@@ -228,9 +243,11 @@
   .vote-btn.active[data-vote-type="insight"] {
     background: var(--vote-insight);
   }
+
   .vote-btn.active[data-vote-type="agree"] {
     background: var(--vote-agree);
   }
+
   .vote-btn.active[data-vote-type="challenge"] {
     background: var(--vote-challenge);
   }
@@ -239,40 +256,7 @@
     opacity: 0.9;
   }
 
-
-  /* ==========================================================
-     MICRO-ANIMATIONS
-  ========================================================== */
-  .vote-ripple {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: currentColor;
-    opacity: 0.35;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: vote-ripple-anim 0.45s ease-out forwards;
-    pointer-events: none;
-  }
-
-  @keyframes vote-ripple-anim {
-    from { transform: scale(0); opacity: 0.35; }
-    to   { transform: scale(8); opacity: 0; }
-  }
-
-  .insight-particle {
-    position: absolute;
-    pointer-events: none;
-    font-size: 0.9rem;
-    color: var(--vote-insight);
-    animation: insight-particle-rise 0.75s ease-out forwards;
-  }
-
-  @keyframes insight-particle-rise {
-    0%   { transform: translateY(0) scale(0.6); opacity: 0.9; }
-    100% { transform: translateY(-18px) scale(1.1); opacity: 0; }
-  }
-
+  /* Tooltips & Animations */
   .vote-tooltip {
     position: absolute;
     bottom: 125%;
@@ -295,9 +279,38 @@
     opacity: 1;
   }
 
+  .vote-ripple {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: currentColor;
+    opacity: 0.35;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: vote-ripple-anim 0.45s ease-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes vote-ripple-anim {
+    from { transform: scale(0); opacity: 0.35; }
+    to { transform: scale(8); opacity: 0; }
+  }
+
+  .insight-particle {
+    position: absolute;
+    pointer-events: none;
+    font-size: 0.9rem;
+    color: var(--vote-insight);
+    animation: insight-particle-rise 0.75s ease-out forwards;
+  }
+
+  @keyframes insight-particle-rise {
+    0% { transform: translateY(0) scale(0.6); opacity: 0.9; }
+    100% { transform: translateY(-18px) scale(1.1); opacity: 0; }
+  }
 
   /* ==========================================================
-     DEPTH GLYPHS
+     DEPTH GLYPHS & THREAD LINES (Reddit-style)
   ========================================================== */
   .discussion-message {
     --glyph-level: "☉";
@@ -328,604 +341,125 @@
   .discussion-message.is-pinned::before {
     content: "♛";
     font-size: 1.25rem;
-    color: var(--glyph-color);
     opacity: 1;
   }
 
+  .discussion-children {
+    margin-left: 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .discussion-children .discussion-children {
+    border-left-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Remove card styling from nested replies */
+  .discussion-children .discussion-message {
+    background: transparent;
+    border-radius: 0;
+    border-left-width: 0;
+    padding-left: 0.75rem;
+    margin-top: 0.6rem;
+    box-shadow: none;
+  }
+
   /* ==========================================================
-     DEPTH-BASED BACKGROUND TONES
+     REPLY COLLAPSE TOGGLE
   ========================================================== */
-  .discussion-message[data-depth="0"] {
-    background: var(--card-bg);
+  .reply-collapse-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0.8;
+    z-index: 1;
+    user-select: none;
   }
 
-  .discussion-message[data-depth="1"] {
-    background: rgba(255, 255, 255, 0.02);
+  .reply-collapse-toggle:hover {
+    color: var(--text-accent);
+    text-decoration: underline;
   }
 
-  .discussion-message[data-depth="2"] {
-    background: rgba(255, 255, 255, 0.04);
+  .discussion-children.is-collapsed {
+    display: none;
   }
-
-  .discussion-message[data-depth="3"] {
-    background: rgba(255, 255, 255, 0.06);
-  }
-
 
   /* ==========================================================
-     BADGES
+     MOBILE STYLES (≤768px)
   ========================================================== */
-  .rep-badge {
-    margin-left: 0.35rem;
-    font-size: 1.1rem;
-    opacity: 0.9;
-    color: var(--accent-page);
+  @media (max-width: 768px) {
+    .discussion-message {
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+    }
+
+    .discussion-children {
+      margin-left: 0.5rem;
+      padding-left: 0.5rem;
+      border-left-width: 1px;
+    }
+
+    /* Cap indentation at depth 2, highlight deeper levels */
+    .discussion-message[data-depth="0"] { margin-left: 0; }
+    .discussion-message[data-depth="1"] { margin-left: 0.75rem; }
+    .discussion-message[data-depth="2"],
+    .discussion-message[data-depth="3"],
+    .discussion-message[data-depth="4"],
+    .discussion-message[data-depth="5"],
+    .discussion-message[data-depth="6"] {
+      margin-left: 1.25rem;
+    }
+
+    .discussion-message[data-depth="3"],
+    .discussion-message[data-depth="4"],
+    .discussion-message[data-depth="5"],
+    .discussion-message[data-depth="6"] {
+      border-left: 2px solid rgba(120, 200, 200, 0.35);
+      padding-left: 0.75rem;
+      background: linear-gradient(90deg, rgba(120, 200, 200, 0.06), transparent 40%);
+    }
+
+    .discussion-message-body,
+    .steelman-text {
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .discussion-message-steelman {
+      font-size: 0.85rem;
+    }
+
+    .vote-tooltip {
+      display: none;
+    }
+
+    .vote-label {
+      display: none;
+    }
+
+    .vote-btn {
+      min-width: 44px;
+    }
   }
 
-
   /* ==========================================================
-     HIGHLIGHT ANIMATION (for future use)
+     HIGHLIGHT ANIMATION
   ========================================================== */
   @keyframes highlightPulse {
-    0%   { box-shadow: 0 0 0px 0 var(--accent-page); }
-    50%  { box-shadow: 0 0 10px 3px var(--accent-page); }
-    100% { box-shadow: 0 0 0px 0 var(--accent-page); }
+    0%, 100% { box-shadow: 0 0 0 0 var(--accent-page); }
+    50% { box-shadow: 0 0 10px 3px var(--accent-page); }
   }
 
   .discussion-highlight {
     animation: highlightPulse 1.5s ease-out;
   }
 
-
-  /* ==========================================================
-     MOBILE FIXES (Chromium / Edge / Safari)
-  ========================================================== */
-  @media (max-width: 900px) {
-
-    .section-block,
-    .content-container,
-    main {
-      overflow: visible !important;
-      contain: none !important;
-    }
-
-    .discussion-messages,
-    #discussion-messages,
-    #messages {
-      display: block !important;
-      overflow: visible !important;
-      height: auto !important;
-      max-height: none !important;
-      contain: none !important;
-    }
-
-    .discussion-message {
-      display: block !important;
-      margin-bottom: 1rem;
-      position: static !important;
-      overflow: visible !important;
-    }
-
-    .discussion-children {
-      margin-left: 1rem !important;
-      padding-left: 0.65rem !important;
-      border-left: 1px solid var(--section-border) !important;
-      position: static !important;
-      overflow: visible !important;
-      height: auto !important;
-      max-height: none !important;
-    }
-
-    .discussion-message::before {
-      left: -0.5rem !important;
-      font-size: 0.85rem !important;
-    }
-
-    .vote-tooltip {
-      display: none !important;
-    }
-
-    .vote-ripple {
-      animation-duration: 0.3s !important;
-      transform: scale(5) !important;
-    }
-  }
-/* ==========================================================
-   MOBILE THREAD FLOW FIX
-   Prevent flexbox nesting collapse on iOS
-   ========================================================== */
-@media (max-width: 800px) {
-
-  /* Top-level thread stays flex */
-  .discussion-messages {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  /* ALL nested replies must be block-flow */
-  .discussion-children {
-    display: block !important;
-    margin-left: 0.9rem !important;
-    padding-left: 0.75rem !important;
-    border-left: 1px solid var(--section-border);
-  }
-
-  /* Ensure cards do not shrink or escape */
-  .discussion-message {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box;
-  }
-
-  /* Prevent pseudo-elements pushing layout sideways */
-  .discussion-message::before {
-    position: absolute;
-    left: -0.75rem !important;
-    top: 0.6rem;
-  }
-
-  /* Kill flex inheritance on children */
-  .discussion-children > .discussion-message {
-    display: block !important;
-  }
-
-  /* Ensure parent cards expand to contain children */
-  .discussion-message {
-    overflow: visible !important;
+  .discussion-thread {
+    overflow-x: hidden;
   }
 }
-/* ==========================================================
-   DEPTH CAP — prevent infinite left drift
-   ========================================================== */
-
-.discussion-children {
-  margin-left: clamp(0.75rem, 2vw, 1.25rem);
-  padding-left: 0.75rem;
-}
-/* ==========================================================
-   REPLY COLLAPSE TOGGLE (Reddit-style)
-   ========================================================== */
-
-.reply-collapse-toggle {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 1rem;
-  cursor: pointer;
-  margin-right: 0.4rem;
-  padding: 0;
-  line-height: 1;
-}
-
-.reply-collapse-toggle:hover {
-  color: var(--text-accent);
-}
-/* ==========================================================
-   COLLAPSIBLE CHILD THREADS
-   ========================================================== */
-
-.discussion-children {
-  transition: max-height 0.25s ease, opacity 0.2s ease;
-}
-
-.discussion-children.is-collapsed {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-/* ==========================================================
-   Mobile thread sanity: collapse deep nesting
-   ========================================================== */
-@media (max-width: 800px) {
-
-  .discussion-children {
-    display: none;
-    margin-left: 0;
-    border-left: none;
-  }
-
-  .discussion-children.is-collapsed {
-    display: none;
-  }
-
-  .discussion-message > .discussion-children {
-    display: block;
-  }
-
-  .reply-collapse-toggle {
-    display: inline-flex;
-    font-size: 0.9rem;
-    margin-right: 0.5rem;
-    opacity: 0.75;
-  }
-}
-
-/* ==========================================================
-   DISCUSSION THREAD — FLAT MODE
-   ========================================================== */
-
-.discussion-thread {
-  margin-top: 2rem;
-}
-
-.discussion-heading {
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  letter-spacing: 0.04em;
-  opacity: 0.9;
-}
-
-.discussion-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-.comment {
-  position: relative;
-  padding: 0.9rem 1rem;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: none;
-}
-/* Extra rhythm before new top-level threads */
-.comment[data-depth="0"] {
-  margin-top: 1.75rem;
-}
-.comment {
-  --indent: 0;
-}
-
-.comment[data-depth="1"] { --indent: 1; }
-.comment[data-depth="2"] { --indent: 2; }
-.comment[data-depth="3"] { --indent: 3; }
-
-.comment {
-  margin-left: calc(var(--indent) * 1rem);
-}
-.comment[data-depth]:not([data-depth="0"])::before {
-  content: "";
-  position: absolute;
-  left: -0.6rem;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: rgba(255,255,255,0.15);
-}
-@media (max-width: 800px) {
-
-  .comment {
-    padding: 0.75rem 0.85rem;
-  }
-
-  .comment {
-    margin-left: calc(var(--indent) * 0.6rem);
-  }
-
-  .comment[data-depth]:not([data-depth="0"])::before {
-    left: -0.4rem;
-  }
-}
-.comment.is-collapsed {
-  display: none;
-}
-.discussion-thread-group {
-  border-left: 2px solid rgba(255,255,255,0.08);
-  margin-bottom: 1.5rem;
-  padding-left: 0.75rem;
-}
-
-.discussion-message {
-  margin-left: calc(var(--depth, 0) * 1rem);
-}
-
-.discussion-message[data-depth] {
-  --depth: attr(data-depth number);
-}
-.discussion-message[data-depth="1"] { margin-left: 1rem; }
-.discussion-message[data-depth="2"] { margin-left: 2rem; }
-.discussion-message[data-depth="3"] { margin-left: 3rem; }
-
-/* ============================================================
-   TGK Community — Reddit-style Thread Visuals (CSS ONLY)
-   Safe: no JS dependency, no DOM changes
-   ============================================================ */
-
-/* ---------- Thread root ---------- */
-
-.discussion-message {
-  position: relative;
-  margin-bottom: 1.2rem;
-  padding: 0.9rem 1rem;
-  border-radius: 8px;
-  background: var(--card-bg, rgba(255,255,255,0.02));
-}
-
-/* Remove heavy framing from nested replies */
-.discussion-children .discussion-message {
-  background: transparent;
-  border-radius: 0;
-  padding-left: 0.75rem;
-  margin-top: 0.6rem;
-}
-
-/* ---------- Indentation guide line (Reddit-style) ---------- */
-
-.discussion-children {
-  margin-left: 0.75rem;
-  padding-left: 0.75rem;
-  border-left: 2px solid rgba(255,255,255,0.08);
-}
-
-/* Prevent guide-line stacking visually */
-.discussion-children .discussion-children {
-  border-left-color: rgba(255,255,255,0.05);
-}
-
-/* ---------- Header tightening ---------- */
-
-.discussion-message-header {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 0.4rem;
-}
-
-.discussion-message-meta {
-  opacity: 0.6;
-  font-size: 0.75rem;
-}
-
-/* ---------- Actions ---------- */
-
-.discussion-actions {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-top: 0.6rem;
-}
-
-/* ---------- Voting ---------- */
-
-.vote-group {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.vote-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.45rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-}
-
-.vote-btn.active {
-  background: rgba(255,255,255,0.1);
-}
-
-/* ---------- Mobile pass ---------- */
-
-@media (max-width: 768px) {
-
-  /* Kill nested card illusion */
-  .discussion-message {
-    padding: 0.75rem 0.8rem;
-  }
-
-  .discussion-children {
-    margin-left: 0.5rem;
-    padding-left: 0.5rem;
-    border-left-width: 1px;
-  }
-
-  /* Reduce visual noise */
-  .discussion-message-steelman {
-    font-size: 0.85rem;
-  }
-
-  .discussion-message-body {
-    font-size: 0.9rem;
-    line-height: 1.45;
-  }
-
-  /* Stack actions cleanly */
-  .discussion-actions {
-    gap: 0.6rem;
-  }
-
-  .vote-group {
-    flex-wrap: wrap;
-  }
-}
-
-/* ---------- Optional: subtle thread root emphasis ---------- */
-
-.discussion-message[data-depth="0"] {
-  background: var(--card-gradient, rgba(255,255,255,0.03));
-}
-/* ============================================================
-   TGK Community — Mobile Reply Collapse (Visual Only)
-   ============================================================ */
-
-@media (max-width: 768px) {
-
-  /* Collapsed reply branches */
-  .discussion-children.is-collapsed {
-    display: none;
-  }
-
-  /* Collapse toggle button */
-  .reply-collapse-toggle {
-    appearance: none;
-    background: none;
-    border: none;
-    padding: 0;
-    margin-right: 0.4rem;
-    font-size: 0.8rem;
-    cursor: pointer;
-    color: var(--link-accent, #9fd3ff);
-    opacity: 0.8;
-  }
-
-  .reply-collapse-toggle:hover {
-    opacity: 1;
-    text-decoration: underline;
-  }
-}
-@media (max-width: 768px) {
-  .discussion-thread .content-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .discussion-list {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-}
-/* -------------------------------------------------
-   Mobile-safe depth handling
-------------------------------------------------- */
-
-@media (max-width: 768px) {
-  .discussion-message {
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Cap indentation at depth 2 */
-  .discussion-message[data-depth="0"] { margin-left: 0; }
-  .discussion-message[data-depth="1"] { margin-left: 0.75rem; }
-  .discussion-message[data-depth="2"] { margin-left: 1.25rem; }
-
-  /* Anything deeper stops shifting right */
-  .discussion-message[data-depth="3"],
-  .discussion-message[data-depth="4"],
-  .discussion-message[data-depth="5"],
-  .discussion-message[data-depth="6"] {
-    margin-left: 1.25rem;
-  }
-}
-@media (max-width: 768px) {
-  .discussion-message[data-depth="3"],
-  .discussion-message[data-depth="4"],
-  .discussion-message[data-depth="5"],
-  .discussion-message[data-depth="6"] {
-    border-left: 2px solid rgba(120, 200, 200, 0.35);
-    padding-left: 0.75rem;
-    background: linear-gradient(
-      90deg,
-      rgba(120, 200, 200, 0.06),
-      transparent 40%
-    );
-  }
-}
-@media (max-width: 768px) {
-  .discussion-message {
-    padding: 0.75rem;
-    border-radius: 0.75rem;
-  }
-
-  .discussion-message-body,
-  .steelman-text {
-    font-size: 0.95rem;
-    line-height: 1.45;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-  }
-}
-.discussion-thread {
-  overflow-x: hidden;
-}
-/* -------------------------------------------------
-   Mobile thread collapse (Reddit-style)
-------------------------------------------------- */
-
-@media (max-width: 768px) {
-  .discussion-message.is-collapsed > .discussion-children {
-    display: none;
-  }
-
-  .reply-collapse-toggle {
-    font-size: 0.8rem;
-    color: var(--accent-muted);
-    cursor: pointer;
-    margin-right: 0.5rem;
-    user-select: none;
-  }
-
-  .reply-collapse-toggle:hover {
-    text-decoration: underline;
-  }
-}
-/* -------------------------------------------------
-   Mobile vote button fix
-------------------------------------------------- */
-
-.vote-btn {
-  pointer-events: auto;
-  touch-action: manipulation;
-}
-
-.discussion-actions {
-  pointer-events: auto;
-}
-
-.vote-group {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-.reply-collapse-toggle {
-  background: none;
-  border: none;
-  padding: 0;
-  margin-right: 0.5rem;
-  z-index: 1;
-}
-
-.discussion-message-header {
-  position: relative;
-}
-@media (max-width: 768px) {
-  .discussion-message {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  .discussion-message-body,
-  .steelman-text {
-    max-width: 100%;
-  }
-}
-.discussion-message {
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.discussion-thread-group {
-  max-width: 100%;
-}
-
-@media (max-width: 768px) {
-  .discussion-message {
-    padding-left: calc(var(--depth, 0) * 0.75rem);
-  }
-
-  .vote-label {
-    display: none;
-  }
-
-  .vote-btn {
-    min-width: 44px;
-  }
-}
-
-} /* end @layer components */

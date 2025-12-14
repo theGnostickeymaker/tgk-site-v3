@@ -98,7 +98,7 @@ export default {
     { title: "Codex Reborn", url: "/pillars/the-vault/codex-reborn/" }
   ],
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

@@ -93,7 +93,7 @@ export default {
   // === Social ===
   socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi.jpg",
 
-  // === Behaviour ===
+  // === behavior ===
   showLens: false,
   showSeriesNav: false
 };

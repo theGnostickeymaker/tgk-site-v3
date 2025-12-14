@@ -65,7 +65,7 @@ export default {
   // === Social Metadata ===
   socialImage: "/tgk-assets/images/share/the-vault/berlin-codex.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

@@ -72,7 +72,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/nag-hammadi-zostrianos.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

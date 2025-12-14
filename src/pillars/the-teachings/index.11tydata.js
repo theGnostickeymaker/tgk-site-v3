@@ -61,7 +61,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-teachings/the-teachings-index.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

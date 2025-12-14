@@ -56,7 +56,7 @@ export default {
   // === Social Meta ===
   socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi-sophia-of-jesus-christ.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

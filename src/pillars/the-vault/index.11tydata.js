@@ -92,7 +92,7 @@ export default {
     { title: "The Vault", url: "/pillars/the-vault/" }
   ],
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

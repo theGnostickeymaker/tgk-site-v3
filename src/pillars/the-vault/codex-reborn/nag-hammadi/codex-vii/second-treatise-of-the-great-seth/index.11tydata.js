@@ -69,7 +69,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/second-treatise-of-the-great-seth.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: true,
   showSeriesNav: false
 };

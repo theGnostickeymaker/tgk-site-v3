@@ -294,7 +294,7 @@ references:
 <section class="section-block">
   <h2 class="section-heading">🧿 Synthetic Prophecy: Programming the Future</h2>
   <p>A prophet once warned of what was to come. Now, a digital prophet shapes what will come.</p>
-  <p>It watches behaviour, simulates desire, then feeds back a world designed to keep you inside it.</p>
+  <p>It watches behavior, simulates desire, then feeds back a world designed to keep you inside it.</p>
 
 <blockquote>
   “Woe unto them that call evil good, and good evil... that put darkness for light, and light for darkness...”<br>

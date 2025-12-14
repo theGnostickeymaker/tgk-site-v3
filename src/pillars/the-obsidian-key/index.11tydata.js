@@ -74,7 +74,7 @@ tagline: "Follow the money, decode the myths and the masks",
   socialImage:
     "/tgk-assets/images/share/the-obsidian-key/obsidian-index.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: true,
   showSeriesNav: false
 };

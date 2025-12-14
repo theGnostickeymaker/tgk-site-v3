@@ -52,7 +52,7 @@ export default {
   // === Social Meta ===
   socialImage: "/tgk-assets/images/share/the-vault/nag-hammadi-eugnostos-the-blessed.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

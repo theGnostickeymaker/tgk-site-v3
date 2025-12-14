@@ -41,7 +41,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-obsidian-key/hog-index.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: true,
   showSeriesNav: false
 };

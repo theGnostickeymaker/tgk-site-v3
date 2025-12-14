@@ -162,7 +162,7 @@ export default {
     { title: "Gnostic Christianity", url: "/…" }
   ],
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: true
 };

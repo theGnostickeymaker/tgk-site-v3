@@ -58,7 +58,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-obsidian-key/hog-season-1.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: true
 };

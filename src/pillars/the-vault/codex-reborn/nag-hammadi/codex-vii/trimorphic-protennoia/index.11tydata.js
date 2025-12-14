@@ -69,7 +69,7 @@ export default {
   // === Social Meta ===
   socialImage: "/tgk-assets/images/share/the-vault/trimorphic-protennoia.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

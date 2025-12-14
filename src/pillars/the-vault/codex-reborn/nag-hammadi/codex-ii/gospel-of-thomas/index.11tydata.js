@@ -103,7 +103,7 @@ export default {
   // === Social Image ===
   socialImage: "/tgk-assets/images/share/the-vault/gospel-of-thomas.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: true,
   showSeriesNav: true
 };

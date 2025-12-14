@@ -68,7 +68,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/nag-hammadi-gospel-of-the-egyptians.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

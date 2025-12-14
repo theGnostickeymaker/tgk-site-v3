@@ -75,7 +75,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/codex-reborn/nag-hammadi/apocryphon-of-james.jpg",
 
-  // Behaviour
+  // behavior
   showLens: false,
   showSeriesNav: false
 };

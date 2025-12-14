@@ -112,7 +112,7 @@ export default {
   // === Social ===
   socialImage: "/tgk-assets/images/share/the-vault/gospel-of-philip.jpg",
 
-  // === Behaviour ===
+  // === behavior ===
   showLens: true,
   showSeriesNav: true
 };

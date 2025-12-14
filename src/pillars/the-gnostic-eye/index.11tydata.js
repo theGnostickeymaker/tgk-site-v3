@@ -89,7 +89,7 @@ export default {
     { title: "The Gnostic Eye", url: "/pillars/the-gnostic-eye/" }
   ],
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

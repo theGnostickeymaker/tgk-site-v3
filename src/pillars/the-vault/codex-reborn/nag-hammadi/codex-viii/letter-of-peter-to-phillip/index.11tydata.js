@@ -70,7 +70,7 @@ export default {
   socialImage:
     "/tgk-assets/images/share/the-vault/nag-hammadi-letter-of-peter-to-philip.jpg",
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: false
 };

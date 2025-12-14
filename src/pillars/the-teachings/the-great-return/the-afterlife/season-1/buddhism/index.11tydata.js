@@ -150,7 +150,7 @@ export default {
     }
   ],
 
-  // === Behaviour Flags ===
+  // === behavior Flags ===
   showLens: false,
   showSeriesNav: true
 };

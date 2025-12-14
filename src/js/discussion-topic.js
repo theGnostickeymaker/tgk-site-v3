@@ -1,6 +1,13 @@
 /* =============================================================
    TGK Community — Topic Engine v3.6 (Reddit-style Flat Threads)
-   LOCKED VERSION
+   • Flat thread rendering grouped by root comment (no nested DOM)
+   • Depth-indentation via data-depth (CSS)
+   • Voting (Insight / Agree / Challenge) with ripple + particles
+   • Pin / unpin (admin)
+   • Reputation hooks + live badges
+   • Reply-context preview when replying
+   • Mobile auto-collapse for deep replies (depth >= 3) per thread
+   • Safe rendering + guards
    ============================================================= */
 
 import { auth, db } from "/js/firebase-init.js";
@@ -17,12 +24,10 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-import { onAuthStateChanged }
-  from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import { Reputation } from "./reputation.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
   /* -----------------------------------------------------------
      Core DOM references
      ----------------------------------------------------------- */
@@ -30,8 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!root) return;
 
   const topicId = root.getAttribute("data-topic-id");
-  const minWriteTierAttr =
-    root.getAttribute("data-min-write-tier") || "initiate";
+  if (!topicId) return;
+
+  const minWriteTierAttr = root.getAttribute("data-min-write-tier") || "initiate";
 
   const form = document.getElementById("discussion-form");
   const statusEl = document.getElementById("discussion-status");
@@ -40,8 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const parentReplyField = document.getElementById("parent-reply-id");
   const replyContext = document.getElementById("reply-context");
-  const replyContextSnippet =
-    document.getElementById("reply-context-snippet");
+  const replyContextSnippet = document.getElementById("reply-context-snippet");
 
   if (!messagesEl) return;
 
@@ -49,11 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentTier = "free";
   let isAdmin = false;
 
-  const reputationSubscriptions = new Map();
-  const voteSubscriptions = new Map();
+  const reputationSubscriptions = new Map(); // userId -> unsub
+  const voteSubscriptions = new Map(); // replyId -> unsub
 
   /* -----------------------------------------------------------
-     Utilities
+     Small utilities
      ----------------------------------------------------------- */
   function escapeHtml(str) {
     return String(str || "")
@@ -81,7 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
      Tier helpers
      ----------------------------------------------------------- */
   function tierRank(tier) {
-    return { initiate: 1, adept: 2, admin: 3 }[tier] || 0;
+    switch (tier) {
+      case "initiate": return 1;
+      case "adept": return 2;
+      case "admin": return 3;
+      default: return 0;
+    }
   }
 
   function minTierSatisfied() {
@@ -90,53 +100,98 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setFormEnabled(enabled, message) {
     if (!form) return;
-    form.classList.toggle("is-disabled", !enabled);
-    Array.from(form.elements).forEach(el => {
-      if (el && el.tagName !== "P") el.disabled = !enabled;
-    });
+
+    if (enabled) {
+      form.classList.remove("is-disabled");
+      Array.from(form.elements).forEach(el => { el.disabled = false; });
+    } else {
+      form.classList.add("is-disabled");
+      Array.from(form.elements).forEach(el => {
+        if (el && el.tagName !== "P") el.disabled = true;
+      });
+    }
+
     if (authHintEl && message) authHintEl.textContent = message;
   }
 
   /* -----------------------------------------------------------
-     Reputation helpers
+     Reputation badge helpers
      ----------------------------------------------------------- */
+  function keysRank(score) {
+    if (score >= 500) return "Guardian";
+    if (score >= 200) return "Keeper";
+    if (score >= 50) return "Initiate";
+    if (score >= 1) return "Seeker";
+    return "Observer";
+  }
+
   function badgeFor(score) {
+    if (!score || score < 1) return "";
     if (score >= 500) return "🜂";
     if (score >= 200) return "⟆";
     if (score >= 50) return "✦";
-    if (score >= 1) return "✧";
-    return "";
+    return "✧";
   }
 
-  function extractScore(rep) {
-    return rep?.total ?? rep?.score ?? 0;
+  function extractScore(repData) {
+    if (!repData || typeof repData !== "object") return 0;
+    if (typeof repData.total === "number") return repData.total;
+    if (typeof repData.score === "number") return repData.score;
+    return 0;
   }
 
   function updateAuthorBadges(userId, repData) {
-    const badge = badgeFor(extractScore(repData));
-    document
-      .querySelectorAll(
-        `.discussion-message[data-user-id="${userId}"]
-         .discussion-message-author`
-      )
-      .forEach(el => {
-        const base =
-          el.dataset.baseName ||
-          el.textContent.replace(/[🜂⟆✦✧]/g, "").trim();
-        el.dataset.baseName = base;
-        el.textContent = badge ? `${base} ${badge}` : base;
-      });
+    const score = extractScore(repData);
+    const badge = badgeFor(score);
+    const rank = keysRank(score);
+
+    const authorEls = document.querySelectorAll(
+      `.discussion-message[data-user-id="${userId}"] .discussion-message-author`
+    );
+
+    authorEls.forEach(el => {
+      const existingBase = el.dataset.baseName;
+      let baseName = existingBase;
+
+      if (!baseName) {
+        const raw = el.textContent || "";
+        baseName = raw.replace(/[🜂⟆✦✧]/g, "").trim();
+        el.dataset.baseName = baseName;
+      }
+
+      el.textContent = badge ? `${baseName} ${badge}` : baseName;
+
+      if (rank && score > 0) {
+        el.title = `Keys rank: ${rank} (${score} Keys)`;
+      } else {
+        el.removeAttribute("title");
+      }
+    });
+  }
+
+  function canReadReputation(targetUserId) {
+    if (!currentUser) return false;
+    if (isAdmin) return true;
+    return currentUser.uid === targetUserId;
   }
 
   function ensureReputationSubscription(userId) {
-    if (!userId || reputationSubscriptions.has(userId)) return;
-    if (!currentUser && !isAdmin) return;
-    if (currentUser && currentUser.uid !== userId && !isAdmin) return;
+    if (!userId) return;
+    if (reputationSubscriptions.has(userId)) return;
+    if (!canReadReputation(userId)) return;
 
-    const ref = doc(db, "reputation", userId);
-    const unsub = onSnapshot(ref, snap => {
-      if (snap.exists()) updateAuthorBadges(userId, snap.data());
-    });
+    const repRef = doc(db, "reputation", userId);
+
+    const unsub = onSnapshot(
+      repRef,
+      snap => {
+        const repData = snap.exists() ? snap.data() : null;
+        updateAuthorBadges(userId, repData);
+      },
+      error => {
+        console.warn("[Reputation] Snapshot error:", error);
+      }
+    );
 
     reputationSubscriptions.set(userId, unsub);
   }
@@ -144,153 +199,287 @@ document.addEventListener("DOMContentLoaded", () => {
   /* -----------------------------------------------------------
      Auth tracking
      ----------------------------------------------------------- */
-  onAuthStateChanged(auth, async user => {
+  onAuthStateChanged(auth, async (user) => {
     currentUser = user || null;
     currentTier = "free";
     isAdmin = false;
 
     if (!user) {
-      setFormEnabled(false, "Sign in to participate.");
+      setFormEnabled(false, "You are currently signed out. Sign in to join the discussion.");
       return;
     }
 
     try {
-      const token = await user.getIdTokenResult();
-      currentTier = token.claims.tier || "free";
-      isAdmin =
-        token.claims.tier === "admin" ||
-        token.claims.role === "admin";
-    } catch {}
+      const tokenResult = await user.getIdTokenResult();
+      currentTier = tokenResult.claims.tier || "free";
+      isAdmin = tokenResult.claims.tier === "admin" || tokenResult.claims.role === "admin";
+    } catch (err) {
+      console.error("Unable to read user tier from claims:", err);
+      currentTier = "free";
+      isAdmin = false;
+    }
 
     if (!minTierSatisfied()) {
-      setFormEnabled(false,
-        `Upgrade to “${minWriteTierAttr}” to reply.`
-      );
+      setFormEnabled(false, `Upgrade to “${minWriteTierAttr}” to contribute.`);
       return;
     }
 
-    setFormEnabled(true, "You are signed in.");
+    setFormEnabled(true, "You are signed in. Your contribution will appear with your chosen pseudonym.");
   });
 
   /* -----------------------------------------------------------
-     Firestore listener (flat threads)
+     Flat thread rendering (grouped by root comment)
      ----------------------------------------------------------- */
   const repliesRef = collection(db, "topics", topicId, "replies");
   const repliesQuery = query(repliesRef, orderBy("createdAt", "asc"));
 
-  onSnapshot(repliesQuery, snapshot => {
+  onSnapshot(repliesQuery, (snapshot) => {
     messagesEl.innerHTML = "";
 
     if (snapshot.empty) {
-      messagesEl.innerHTML =
-        `<p class="muted small">No contributions yet.</p>`;
+      messagesEl.innerHTML = `
+        <p class="muted small">
+          No contributions yet. Be the first to offer a Steel Man summary.
+        </p>
+      `;
       return;
     }
 
-    const replies = snapshot.docs.map(d => ({
-      id: d.id,
-      data: d.data()
+    const allReplies = snapshot.docs.map(docSnap => ({
+      id: docSnap.id,
+      data: docSnap.data()
     }));
 
-    const byId = new Map(replies.map(r => [r.id, r]));
+    const byId = new Map(allReplies.map(r => [r.id, r]));
 
-    function depthOf(r) {
-      let d = 0, p = r.data.parentReplyId;
-      while (p) {
-        const pr = byId.get(p);
-        if (!pr) break;
-        d++;
-        p = pr.data.parentReplyId;
+    function getDepth(reply) {
+      let depth = 0;
+      let parent = reply.data.parentReplyId;
+
+      while (parent) {
+        const p = byId.get(parent);
+        if (!p) break;
+        depth += 1;
+        parent = p.data.parentReplyId;
       }
-      return d;
+
+      return depth;
     }
 
-    function rootOf(r) {
-      let root = r.id, p = r.data.parentReplyId;
-      while (p) {
-        const pr = byId.get(p);
-        if (!pr) break;
-        root = pr.id;
-        p = pr.data.parentReplyId;
+    function getRootId(reply) {
+      let rootId = reply.id;
+      let parent = reply.data.parentReplyId;
+
+      while (parent) {
+        const p = byId.get(parent);
+        if (!p) break;
+        rootId = p.id;
+        parent = p.data.parentReplyId;
       }
-      return root;
+
+      return rootId;
     }
 
-    replies.forEach(r => {
-      r.depth = depthOf(r);
-      r.rootId = rootOf(r);
+    allReplies.forEach(r => {
+      r.depth = getDepth(r);
+      r.rootId = getRootId(r);
       if (r.data.userId) ensureReputationSubscription(r.data.userId);
     });
 
-    const cardById = new Map(
-      replies.map(r => [r.id, buildReplyCard(r.id, r.data, r.depth)])
-    );
+    // Build cards once
+    const cardById = new Map();
+    allReplies.forEach(r => {
+      cardById.set(r.id, buildReplyCard(r.id, r.data, r.depth));
+    });
 
-    const threads = new Map();
-    replies.forEach(r => {
+    // Group into thread buckets
+    const threads = new Map(); // rootId -> reply[]
+    allReplies.forEach(r => {
       if (!threads.has(r.rootId)) threads.set(r.rootId, []);
       threads.get(r.rootId).push(r);
     });
 
-    Array.from(threads.entries())
-      .sort((a, b) =>
-        createdSeconds(byId.get(a[0])?.data) -
-        createdSeconds(byId.get(b[0])?.data)
-      )
-      .forEach(([rootId, items]) => {
-        const wrap = document.createElement("div");
-        wrap.className = "discussion-thread-group";
-        wrap.dataset.rootId = rootId;
+    // Stable ordering: pinned threads first (if the root comment is pinned)
+    const threadEntries = Array.from(threads.entries()).map(([rootId, items]) => {
+      const rootReply = byId.get(rootId);
+      const pinned = Boolean(rootReply?.data?.pinned);
+      const rootTime = createdSeconds(rootReply?.data);
+      return { rootId, items, pinned, rootTime };
+    });
 
-        items
-          .sort((a, b) =>
-            a.depth !== b.depth
-              ? a.depth - b.depth
-              : createdSeconds(a.data) - createdSeconds(b.data)
-          )
-          .forEach(r => {
-            const card = cardById.get(r.id);
-            wrap.appendChild(card);
-            setupVotes(topicId, r.id, card);
-          });
+    threadEntries.sort((a, b) => {
+      if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
+      return a.rootTime - b.rootTime;
+    });
 
-        messagesEl.appendChild(wrap);
-      });
+    // Render
+    threadEntries.forEach(({ rootId, items }) => {
+      const threadWrap = document.createElement("div");
+      threadWrap.className = "discussion-thread-group";
+      threadWrap.dataset.rootId = rootId;
 
+      items
+        .sort((a, b) => {
+          if (a.depth !== b.depth) return a.depth - b.depth;
+          return createdSeconds(a.data) - createdSeconds(b.data);
+        })
+        .forEach(r => {
+          const card = cardById.get(r.id);
+          if (!card) return;
+          threadWrap.appendChild(card);
+          setupVotes(topicId, r.id, card);
+        });
+
+      messagesEl.appendChild(threadWrap);
+    });
+
+    // Apply mobile collapse after render
     applyMobileCollapse();
   });
 
   /* -----------------------------------------------------------
-     Voting
+     Build a reply card
+     ----------------------------------------------------------- */
+  function buildReplyCard(replyId, data, depth) {
+    const card = document.createElement("article");
+    card.className = "discussion-message";
+    card.dataset.replyId = replyId;
+    card.id = `comment-${replyId}`;
+    card.dataset.depth = String(depth ?? 0);
+
+    if (data.userId) card.dataset.userId = data.userId;
+    if (data.pinned) card.classList.add("is-pinned");
+
+    const header = document.createElement("div");
+    header.className = "discussion-message-header";
+
+    const author = document.createElement("span");
+    author.className = "discussion-message-author";
+    const pseudo = data.pseudonym || "Anonymous Seeker";
+    author.dataset.baseName = pseudo;
+    author.textContent = pseudo;
+
+    const meta = document.createElement("span");
+    meta.className = "discussion-message-meta";
+    meta.textContent = toLocalTime(data.createdAt);
+
+    header.appendChild(author);
+    header.appendChild(meta);
+
+    const steelBlock = document.createElement("div");
+    steelBlock.className = "discussion-message-steelman reply-steelman-body";
+
+    if (data.steelmanSummary) {
+      steelBlock.innerHTML = `
+        <div class="steelman-label">Steel Man Summary</div>
+        <div class="steelman-text">${escapeHtml(data.steelmanSummary)}</div>
+      `;
+    }
+
+    const body = document.createElement("div");
+    body.className = "discussion-message-body reply-body-text";
+    body.textContent = data.body || "";
+
+    const actions = document.createElement("div");
+    actions.className = "discussion-actions";
+
+    const replyBtn = document.createElement("button");
+    replyBtn.type = "button";
+    replyBtn.className = "btn-link btn-reply-comment";
+    replyBtn.dataset.replyId = replyId;
+    replyBtn.dataset.snippet = (data.steelmanSummary || data.body || "").slice(0, 120);
+    replyBtn.textContent = "Reply";
+    actions.appendChild(replyBtn);
+
+    const voteGroup = document.createElement("div");
+    voteGroup.className = "vote-group";
+    voteGroup.dataset.replyId = replyId;
+    voteGroup.innerHTML = `
+      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight" aria-label="Vote Insight">
+        🜁 <span class="vote-label">Insight</span>
+        <span class="vote-count" data-count-type="insight">0</span>
+      </button>
+      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree" aria-label="Vote Agree">
+        ✦ <span class="vote-label">Agree</span>
+        <span class="vote-count" data-count-type="agree">0</span>
+      </button>
+      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge" aria-label="Vote Challenge">
+        ⛧ <span class="vote-label">Challenge</span>
+        <span class="vote-count" data-count-type="challenge">0</span>
+      </button>
+    `;
+    actions.appendChild(voteGroup);
+
+    if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
+      const editBtn = document.createElement("button");
+      editBtn.type = "button";
+      editBtn.className = "btn-link btn-edit-reply";
+      editBtn.dataset.replyId = replyId;
+      editBtn.textContent = "Edit";
+      actions.appendChild(editBtn);
+    }
+
+    if (isAdmin) {
+      const delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.className = "btn-link btn-delete-comment";
+      delBtn.dataset.commentId = replyId;
+      delBtn.dataset.topicId = topicId;
+      delBtn.textContent = "Delete";
+      actions.appendChild(delBtn);
+
+      const pinBtn = document.createElement("button");
+      pinBtn.type = "button";
+      pinBtn.className = "btn-link btn-pin-reply";
+      pinBtn.dataset.replyId = replyId;
+      pinBtn.textContent = data.pinned ? "Unpin" : "Pin";
+      actions.appendChild(pinBtn);
+    }
+
+    card.appendChild(header);
+    if (data.steelmanSummary) card.appendChild(steelBlock);
+    card.appendChild(body);
+    card.appendChild(actions);
+
+    return card;
+  }
+
+  /* -----------------------------------------------------------
+     Voting system
      ----------------------------------------------------------- */
   function setupVotes(topicIdArg, replyId, card) {
     if (voteSubscriptions.has(replyId)) return;
 
-    const ref = collection(
-      db, "topics", topicIdArg, "replies", replyId, "votes"
+    const votesRef = collection(
+      db,
+      "topics",
+      topicIdArg,
+      "replies",
+      replyId,
+      "votes"
     );
 
-    const unsub = onSnapshot(ref, snap => {
+    const unsub = onSnapshot(votesRef, (snapshot) => {
       const counts = { insight: 0, agree: 0, challenge: 0 };
       let userVote = null;
 
-      snap.forEach(s => {
-        const v = s.data();
-        if (counts[v.type] != null) counts[v.type]++;
-        if (currentUser && s.id === currentUser.uid) userVote = v.type;
+      snapshot.forEach((snap) => {
+        const v = snap.data();
+        if (v && v.type && counts[v.type] != null) {
+          counts[v.type] = (counts[v.type] || 0) + 1;
+        }
+        if (currentUser && snap.id === currentUser.uid && v && v.type) {
+          userVote = v.type;
+        }
       });
 
-      Object.entries(counts).forEach(([t, c]) => {
-        const el = card.querySelector(
-          `.vote-count[data-count-type="${t}"]`
-        );
-        if (el) el.textContent = c;
+      Object.entries(counts).forEach(([type, count]) => {
+        const el = card.querySelector(`.vote-count[data-count-type="${type}"]`);
+        if (el) el.textContent = String(count);
       });
 
-      card.querySelectorAll(".vote-btn").forEach(btn => {
-        btn.classList.toggle(
-          "active", btn.dataset.voteType === userVote
-        );
+      card.querySelectorAll(".vote-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.voteType === userVote);
       });
     });
 
@@ -298,111 +487,310 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function toggleVote(topicIdArg, replyId, voteType) {
-    if (!currentUser) return;
+    if (!currentUser) {
+      if (statusEl) statusEl.textContent = "You must be signed in to vote.";
+      return;
+    }
 
     const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
     const replySnap = await getDoc(replyRef);
     if (!replySnap.exists()) return;
 
-    const author = replySnap.data().userId;
+    const replyAuthor = replySnap.data().userId;
 
     const voteRef = doc(
-      db, "topics", topicIdArg, "replies", replyId,
-      "votes", currentUser.uid
+      db,
+      "topics",
+      topicIdArg,
+      "replies",
+      replyId,
+      "votes",
+      currentUser.uid
     );
 
-    const snap = await getDoc(voteRef);
-    const prev = snap.exists() ? snap.data().type : null;
+    const voteSnap = await getDoc(voteRef);
+    const prevType = voteSnap.exists() ? voteSnap.data().type : null;
 
     const pts = { insight: 3, agree: 1, challenge: 1 };
     let delta = 0;
 
-    if (prev === voteType) {
+    if (prevType === voteType) {
       await deleteDoc(voteRef);
       delta = -pts[voteType];
+    } else if (!prevType) {
+      await setDoc(voteRef, { type: voteType, createdAt: serverTimestamp() });
+      delta = pts[voteType];
     } else {
-      await setDoc(voteRef, {
-        type: voteType,
-        createdAt: serverTimestamp()
-      });
-      delta = pts[voteType] - (pts[prev] || 0);
+      await setDoc(voteRef, { type: voteType, createdAt: serverTimestamp() });
+      delta = pts[voteType] - pts[prevType];
     }
 
-    if (delta && author) {
-      Reputation.awardPoints(
-        author, delta, "vote",
-        `Vote ${voteType}`, topicIdArg
-      ).catch(() => {});
+    if (delta !== 0 && replyAuthor) {
+      try {
+        await Reputation.awardPoints(
+          replyAuthor,
+          delta,
+          "vote",
+          `Vote ${voteType} on reply ${replyId}`,
+          topicIdArg
+        );
+      } catch (err) {
+        console.error("[Reputation] vote award failed:", err);
+      }
     }
   }
 
   /* -----------------------------------------------------------
-     Animations (guarded)
+     Voting animations
      ----------------------------------------------------------- */
   function spawnRipple(btn, x, y) {
-    if (!btn || typeof x !== "number" || typeof y !== "number") return;
-    const r = document.createElement("span");
-    r.className = "vote-ripple";
+    const ripple = document.createElement("span");
+    ripple.className = "vote-ripple";
+
     const rect = btn.getBoundingClientRect();
-    r.style.left = `${x - rect.left - 7}px`;
-    r.style.top = `${y - rect.top - 7}px`;
-    btn.appendChild(r);
-    setTimeout(() => r.remove(), 450);
+    ripple.style.left = `${x - rect.left - 7}px`;
+    ripple.style.top = `${y - rect.top - 7}px`;
+
+    btn.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 450);
   }
 
   function spawnInsightParticles(btn) {
-    if (!btn || window.innerWidth <= 768) return;
-    const p = document.createElement("span");
-    p.className = "insight-particle";
-    p.textContent = ["✧", "☉", "X"][Math.floor(Math.random() * 3)];
-    btn.appendChild(p);
-    setTimeout(() => p.remove(), 750);
+    const symbols = ["✧", "☉", "X"];
+    const chosen = symbols[Math.floor(Math.random() * symbols.length)];
+
+    const particle = document.createElement("span");
+    particle.className = "insight-particle";
+    particle.textContent = chosen;
+
+    const rect = btn.getBoundingClientRect();
+    particle.style.left = `${rect.width / 2 - 4}px`;
+    particle.style.top = "0px";
+
+    btn.appendChild(particle);
+    setTimeout(() => particle.remove(), 750);
   }
 
   /* -----------------------------------------------------------
-     Mobile collapse
+     Mobile collapse (flat threads)
+     - Collapses cards within each thread group where depth >= 3
+     - Adds a single toggle per thread group
      ----------------------------------------------------------- */
   function applyMobileCollapse() {
-    if (window.innerWidth > 768) return;
+    if (window.innerWidth > 768) {
+      // On desktop, ensure everything is visible and remove toggles
+      document.querySelectorAll(".discussion-thread-group").forEach(group => {
+        group.querySelectorAll(".discussion-message.is-collapsed").forEach(c => {
+          c.classList.remove("is-collapsed");
+        });
+        const toggle = group.querySelector(".reply-collapse-toggle");
+        if (toggle) toggle.remove();
+      });
+      return;
+    }
 
-    document.querySelectorAll(".discussion-thread-group").forEach(g => {
-      const deep = [...g.querySelectorAll(".discussion-message")]
-        .filter(c => Number(c.dataset.depth) >= 3);
-      if (!deep.length) return;
+    document.querySelectorAll(".discussion-thread-group").forEach(group => {
+      const cards = Array.from(group.querySelectorAll(".discussion-message"));
+      const deepCards = cards.filter(c => Number(c.dataset.depth || 0) >= 3);
 
-      deep.forEach(c => c.classList.add("is-collapsed"));
+      if (deepCards.length === 0) return;
 
-      let t = g.querySelector(".reply-collapse-toggle");
-      if (!t) {
-        t = document.createElement("button");
-        t.className = "reply-collapse-toggle";
-        t.type = "button";
-        g.prepend(t);
+      // Collapse deep cards by default on mobile
+      deepCards.forEach(c => c.classList.add("is-collapsed"));
+
+      // Ensure exactly one toggle per group
+      let toggle = group.querySelector(".reply-collapse-toggle");
+      if (!toggle) {
+        toggle = document.createElement("button");
+        toggle.className = "reply-collapse-toggle";
+        toggle.type = "button";
+        toggle.textContent = `View ${deepCards.length} replies`;
+        toggle.setAttribute("aria-expanded", "false");
+        group.prepend(toggle);
+      } else {
+        toggle.textContent = `View ${deepCards.length} replies`;
+        toggle.setAttribute("aria-expanded", "false");
       }
-      t.textContent = `View ${deep.length} replies`;
     });
   }
 
+  window.addEventListener("resize", () => {
+    // Light debounce for resize
+    clearTimeout(window.__tgk_discussion_resize);
+    window.__tgk_discussion_resize = setTimeout(() => applyMobileCollapse(), 120);
+  });
+
   /* -----------------------------------------------------------
-     Unified click handler
+     Click handlers (reply, vote, pin, thread collapse)
+     One handler only, delegated, mobile-safe
      ----------------------------------------------------------- */
-  async function handleAction(e) {
-    const t = e.target.closest(".vote-btn");
-    if (t) {
-      const replyId = t.dataset.replyId;
-      const voteType = t.dataset.voteType;
+  async function handleActionEvent(event) {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    // Thread collapse toggle (flat thread group)
+    const collapseToggle = target.closest(".reply-collapse-toggle");
+    if (collapseToggle) {
+      const group = collapseToggle.closest(".discussion-thread-group");
+      if (!group) return;
+
+      const cards = Array.from(group.querySelectorAll(".discussion-message"));
+      const deepCards = cards.filter(c => Number(c.dataset.depth || 0) >= 3);
+      if (deepCards.length === 0) return;
+
+      const currentlyCollapsed = deepCards.some(c => c.classList.contains("is-collapsed"));
+      const nextCollapsed = !currentlyCollapsed;
+
+      deepCards.forEach(c => c.classList.toggle("is-collapsed", nextCollapsed));
+      collapseToggle.textContent = nextCollapsed ? `View ${deepCards.length} replies` : "Hide replies";
+      collapseToggle.setAttribute("aria-expanded", String(!nextCollapsed));
+      return;
+    }
+
+    // Reply button
+    const replyBtn = target.closest(".btn-reply-comment");
+    if (replyBtn) {
+      const replyId = replyBtn.dataset.replyId;
+      const snippet = replyBtn.dataset.snippet || "";
+
+      if (parentReplyField && replyId) parentReplyField.value = replyId;
+
+      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
+      if (replyContext) replyContext.hidden = false;
+
+      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    // Cancel reply context
+    if (target.id === "cancel-reply-context") {
+      if (parentReplyField) parentReplyField.value = "";
+      if (replyContext) replyContext.hidden = true;
+      return;
+    }
+
+    // Voting
+    const voteBtn = target.closest("button.vote-btn");
+    if (voteBtn) {
+      event.preventDefault();
+
+      const replyId = voteBtn.dataset.replyId;
+      const voteType = voteBtn.dataset.voteType;
       if (!replyId || !voteType) return;
 
-      await toggleVote(topicId, replyId, voteType);
+      const clientX = event.clientX || (event.touches && event.touches[0]?.clientX) || 0;
+      const clientY = event.clientY || (event.touches && event.touches[0]?.clientY) || 0;
 
-      if (e.clientX && e.clientY) {
-        spawnRipple(t, e.clientX, e.clientY);
+      spawnRipple(voteBtn, clientX, clientY);
+      if (voteType === "insight") spawnInsightParticles(voteBtn);
+
+      try {
+        await toggleVote(topicId, replyId, voteType);
+      } catch (err) {
+        console.error("[Vote] Error:", err);
+        if (statusEl) statusEl.textContent = "Unable to register vote.";
       }
-      if (voteType === "insight") spawnInsightParticles(t);
+      return;
+    }
+
+    // Pin / unpin (admin only)
+    const pinBtn = target.closest(".btn-pin-reply");
+    if (pinBtn) {
+      if (!isAdmin) return;
+
+      const replyId = pinBtn.dataset.replyId;
+      if (!replyId) return;
+
+      const card = document.getElementById(`comment-${replyId}`);
+      const currentlyPinned = (card && card.classList.contains("is-pinned")) || false;
+
+      try {
+        await setDoc(
+          doc(db, "topics", topicId, "replies", replyId),
+          { pinned: !currentlyPinned },
+          { merge: true }
+        );
+      } catch (e) {
+        console.error("Unable to toggle pin:", e);
+      }
+
+      return;
     }
   }
 
-  document.addEventListener("click", handleAction, { passive: true });
-  document.addEventListener("pointerup", handleAction, { passive: true });
+  // Click works for desktop, some mobile browsers are happier with pointerup too
+  document.addEventListener("click", handleActionEvent, { passive: false });
+  document.addEventListener("pointerup", handleActionEvent, { passive: false });
 
+  /* -----------------------------------------------------------
+     Submit handler
+     ----------------------------------------------------------- */
+  if (form) {
+    form.addEventListener("submit", async (evt) => {
+      evt.preventDefault();
+
+      if (!currentUser) {
+        if (statusEl) statusEl.textContent = "You must be signed in to post.";
+        return;
+      }
+
+      if (!minTierSatisfied()) {
+        if (statusEl) statusEl.textContent = `Your tier (“${currentTier}”) is not sufficient to post here.`;
+        return;
+      }
+
+      const steelField = form.querySelector("#steelman-summary");
+      const bodyField = form.querySelector("#reply-body");
+      const pseudoField = form.querySelector("#pseudonym");
+
+      const steel = steelField?.value.trim() || "";
+      const body = bodyField?.value.trim() || "";
+      const pseudo = pseudoField?.value.trim() || "Anonymous Seeker";
+      const parentId = parentReplyField?.value || null;
+
+      const steelWords = steel.split(/\s+/).filter(Boolean).length;
+      const bodyWords = body.split(/\s+/).filter(Boolean).length;
+
+      if (steelWords < 30) {
+        if (statusEl) statusEl.textContent = "Your Steel Man summary must be at least 30 words.";
+        return;
+      }
+
+      if (bodyWords < 20) {
+        if (statusEl) statusEl.textContent = "Your reply must be at least 20 words.";
+        return;
+      }
+
+      if (statusEl) statusEl.textContent = "Posting reply...";
+
+      try {
+        await addDoc(repliesRef, {
+          userId: currentUser.uid,
+          pseudonym: pseudo,
+          steelmanSummary: steel,
+          body,
+          createdAt: serverTimestamp(),
+          parentReplyId: parentId,
+          pinned: false
+        });
+
+        Reputation.awardPoints(
+          currentUser.uid,
+          1,
+          "reply",
+          `Reply posted in topic ${topicId}`,
+          topicId
+        ).catch(() => {});
+
+        form.reset();
+        if (parentReplyField) parentReplyField.value = "";
+        if (replyContext) replyContext.hidden = true;
+
+        if (statusEl) statusEl.textContent = "Reply posted.";
+      } catch (err) {
+        console.error("[Reply Error]", err);
+        if (statusEl) statusEl.textContent = "There was a problem posting your reply. Please try again.";
+      }
+    });
+  }
 });

@@ -1,6 +1,6 @@
 # =========================================================
 # 🤖 The Gnostic Key — Robots Directives
-# Purpose: control indexing and crawling behaviour for TGK.
+# Purpose: control indexing and crawling behavior for TGK.
 # =========================================================
 
 User-agent: *
