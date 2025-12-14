@@ -842,5 +842,90 @@
 .discussion-thread {
   overflow-x: hidden;
 }
+/* -------------------------------------------------
+   Mobile thread collapse (Reddit-style)
+------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .discussion-message.is-collapsed > .discussion-children {
+    display: none;
+  }
+
+  .reply-collapse-toggle {
+    font-size: 0.8rem;
+    color: var(--accent-muted);
+    cursor: pointer;
+    margin-right: 0.5rem;
+    user-select: none;
+  }
+
+  .reply-collapse-toggle:hover {
+    text-decoration: underline;
+  }
+}
+/* -------------------------------------------------
+   Mobile vote button fix
+------------------------------------------------- */
+
+.vote-btn {
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.discussion-actions {
+  pointer-events: auto;
+}
+
+.vote-group {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.reply-collapse-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 0.5rem;
+  z-index: 1;
+}
+
+.discussion-message-header {
+  position: relative;
+}
+@media (max-width: 768px) {
+  .discussion-message {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .discussion-message-body,
+  .steelman-text {
+    max-width: 100%;
+  }
+}
+.discussion-message {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.discussion-thread-group {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .discussion-message {
+    padding-left: calc(var(--depth, 0) * 0.75rem);
+  }
+
+  .vote-label {
+    display: none;
+  }
+
+  .vote-btn {
+    min-width: 44px;
+  }
+}
 
 } /* end @layer components */

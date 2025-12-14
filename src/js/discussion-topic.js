@@ -1,12 +1,6 @@
 /* =============================================================
-   TGK Community — Topic Engine v3.2
-   • Stable nested replies
-   • Depth-sorted rendering (parents always before children)
-   • Voting (Insight / Agree / Challenge)
-   • Pin / unpin (admin)
-   • Reputation hooks + live badges
-   • Reply-context preview when replying
-   • Safe rendering + error guards
+   TGK Community — Topic Engine v3.6 (Reddit-style Flat Threads)
+   LOCKED VERSION
    ============================================================= */
 
 import { auth, db } from "/js/firebase-init.js";
@@ -23,10 +17,12 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 import { Reputation } from "./reputation.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+
   /* -----------------------------------------------------------
      Core DOM references
      ----------------------------------------------------------- */
@@ -34,8 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!root) return;
 
   const topicId = root.getAttribute("data-topic-id");
-  if (!topicId) return;
-
   const minWriteTierAttr =
     root.getAttribute("data-min-write-tier") || "initiate";
 
@@ -46,25 +40,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const parentReplyField = document.getElementById("parent-reply-id");
   const replyContext = document.getElementById("reply-context");
-  const replyContextSnippet = document.getElementById("reply-context-snippet");
+  const replyContextSnippet =
+    document.getElementById("reply-context-snippet");
+
+  if (!messagesEl) return;
 
   let currentUser = null;
   let currentTier = "free";
   let isAdmin = false;
 
   const reputationSubscriptions = new Map();
+  const voteSubscriptions = new Map();
 
+  /* -----------------------------------------------------------
+     Utilities
+     ----------------------------------------------------------- */
+  function escapeHtml(str) {
+    return String(str || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function toLocalTime(ts) {
+    try {
+      const d = ts?.toDate?.();
+      return d ? d.toLocaleString() : "Pending timestamp";
+    } catch {
+      return "Pending timestamp";
+    }
+  }
+
+  function createdSeconds(data) {
+    return Number(data?.createdAt?.seconds || 0);
+  }
 
   /* -----------------------------------------------------------
      Tier helpers
      ----------------------------------------------------------- */
   function tierRank(tier) {
-    switch (tier) {
-      case "initiate": return 1;
-      case "adept":    return 2;
-      case "admin":    return 3;
-      default:         return 0;
-    }
+    return { initiate: 1, adept: 2, admin: 3 }[tier] || 0;
   }
 
   function minTierSatisfied() {
@@ -73,732 +90,319 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setFormEnabled(enabled, message) {
     if (!form) return;
-
-    if (enabled) {
-      form.classList.remove("is-disabled");
-      Array.from(form.elements).forEach(el => { el.disabled = false; });
-    } else {
-      form.classList.add("is-disabled");
-      Array.from(form.elements).forEach(el => {
-        if (el.tagName !== "P") el.disabled = true;
-      });
-    }
-
+    form.classList.toggle("is-disabled", !enabled);
+    Array.from(form.elements).forEach(el => {
+      if (el && el.tagName !== "P") el.disabled = !enabled;
+    });
     if (authHintEl && message) authHintEl.textContent = message;
   }
 
-
   /* -----------------------------------------------------------
-     Reputation badge helpers
+     Reputation helpers
      ----------------------------------------------------------- */
-  function keysRank(score) {
-    if (score >= 500) return "Guardian";
-    if (score >= 200) return "Keeper";
-    if (score >= 50)  return "Initiate";
-    if (score >= 1)   return "Seeker";
-    return "Observer";
-  }
-
   function badgeFor(score) {
-    if (!score || score < 1) return "";
     if (score >= 500) return "🜂";
     if (score >= 200) return "⟆";
-    if (score >= 50)  return "✦";
-    return "✧";
+    if (score >= 50) return "✦";
+    if (score >= 1) return "✧";
+    return "";
   }
 
-  function extractScore(repData) {
-    if (!repData || typeof repData !== "object") return 0;
-    if (typeof repData.total === "number") return repData.total;
-    if (typeof repData.score === "number") return repData.score;
-    return 0;
+  function extractScore(rep) {
+    return rep?.total ?? rep?.score ?? 0;
   }
 
   function updateAuthorBadges(userId, repData) {
-    const score = extractScore(repData);
-    const badge = badgeFor(score);
-    const rank = keysRank(score);
-
-    const authorEls = document.querySelectorAll(
-      `.discussion-message[data-user-id="${userId}"] .discussion-message-author`
-    );
-
-    authorEls.forEach(el => {
-      const existingBase = el.dataset.baseName;
-      let baseName = existingBase;
-
-      if (!baseName) {
-        const raw = el.textContent || "";
-        baseName = raw.replace(/[🜂⟆✦✧]/g, "").trim();
-        el.dataset.baseName = baseName;
-      }
-
-      el.textContent = badge ? `${baseName} ${badge}` : baseName;
-
-      if (rank && score > 0) {
-        el.title = `Keys rank: ${rank} (${score} Keys)`;
-      } else {
-        el.removeAttribute("title");
-      }
-    });
-  }
-
-  function canReadReputation(targetUserId) {
-    if (!currentUser) return false;
-    if (isAdmin) return true;
-    return currentUser.uid === targetUserId;
+    const badge = badgeFor(extractScore(repData));
+    document
+      .querySelectorAll(
+        `.discussion-message[data-user-id="${userId}"]
+         .discussion-message-author`
+      )
+      .forEach(el => {
+        const base =
+          el.dataset.baseName ||
+          el.textContent.replace(/[🜂⟆✦✧]/g, "").trim();
+        el.dataset.baseName = base;
+        el.textContent = badge ? `${base} ${badge}` : base;
+      });
   }
 
   function ensureReputationSubscription(userId) {
-    if (!userId) return;
-    if (reputationSubscriptions.has(userId)) return;
-    if (!canReadReputation(userId)) return;
+    if (!userId || reputationSubscriptions.has(userId)) return;
+    if (!currentUser && !isAdmin) return;
+    if (currentUser && currentUser.uid !== userId && !isAdmin) return;
 
-    const repRef = doc(db, "reputation", userId);
-
-    const unsub = onSnapshot(
-      repRef,
-      snap => {
-        const repData = snap.exists() ? snap.data() : null;
-        updateAuthorBadges(userId, repData);
-      },
-      error => {
-        console.warn("[Reputation] Snapshot error:", error);
-      }
-    );
+    const ref = doc(db, "reputation", userId);
+    const unsub = onSnapshot(ref, snap => {
+      if (snap.exists()) updateAuthorBadges(userId, snap.data());
+    });
 
     reputationSubscriptions.set(userId, unsub);
   }
 
-
   /* -----------------------------------------------------------
      Auth tracking
      ----------------------------------------------------------- */
-  onAuthStateChanged(auth, async (user) => {
+  onAuthStateChanged(auth, async user => {
     currentUser = user || null;
     currentTier = "free";
     isAdmin = false;
 
     if (!user) {
-      setFormEnabled(
-        false,
-        "You are currently signed out. Sign in to join the discussion."
-      );
+      setFormEnabled(false, "Sign in to participate.");
       return;
     }
 
     try {
-      const tokenResult = await user.getIdTokenResult();
-      currentTier = tokenResult.claims.tier || "free";
+      const token = await user.getIdTokenResult();
+      currentTier = token.claims.tier || "free";
       isAdmin =
-        tokenResult.claims.tier === "admin" ||
-        tokenResult.claims.role === "admin";
-    } catch (err) {
-      console.error("Unable to read user tier from claims:", err);
-      currentTier = "free";
-      isAdmin = false;
-    }
+        token.claims.tier === "admin" ||
+        token.claims.role === "admin";
+    } catch {}
 
     if (!minTierSatisfied()) {
-      setFormEnabled(
-        false,
-        `Upgrade to “${minWriteTierAttr}” to contribute.`
+      setFormEnabled(false,
+        `Upgrade to “${minWriteTierAttr}” to reply.`
       );
       return;
     }
 
-    setFormEnabled(
-      true,
-      "You are signed in. Your contribution will appear with your chosen pseudonym."
-    );
+    setFormEnabled(true, "You are signed in.");
   });
 
-
   /* -----------------------------------------------------------
-     Firestore reply listener
-     Depth-sorted nested threading
+     Firestore listener (flat threads)
      ----------------------------------------------------------- */
   const repliesRef = collection(db, "topics", topicId, "replies");
   const repliesQuery = query(repliesRef, orderBy("createdAt", "asc"));
 
-  onSnapshot(repliesQuery, (snapshot) => {
-    if (!messagesEl) return;
+  onSnapshot(repliesQuery, snapshot => {
     messagesEl.innerHTML = "";
 
     if (snapshot.empty) {
-      messagesEl.innerHTML = `
-        <p class="muted small">
-          No contributions yet. Be the first to offer a Steel Man summary.
-        </p>
-      `;
+      messagesEl.innerHTML =
+        `<p class="muted small">No contributions yet.</p>`;
       return;
     }
 
-    const allReplies = snapshot.docs.map(docSnap => ({
-      id: docSnap.id,
-      data: docSnap.data()
+    const replies = snapshot.docs.map(d => ({
+      id: d.id,
+      data: d.data()
     }));
 
-    function getDepth(reply) {
-      let depth = 0;
-      let parent = reply.data.parentReplyId;
+    const byId = new Map(replies.map(r => [r.id, r]));
 
-      while (parent) {
-        const p = allReplies.find(r => r.id === parent);
-        if (!p) break;
-        depth += 1;
-        parent = p.data.parentReplyId;
+    function depthOf(r) {
+      let d = 0, p = r.data.parentReplyId;
+      while (p) {
+        const pr = byId.get(p);
+        if (!pr) break;
+        d++;
+        p = pr.data.parentReplyId;
       }
-      return depth;
+      return d;
     }
 
-    allReplies.forEach(r => {
-      r.depth = getDepth(r);
-    });
+    function rootOf(r) {
+      let root = r.id, p = r.data.parentReplyId;
+      while (p) {
+        const pr = byId.get(p);
+        if (!pr) break;
+        root = pr.id;
+        p = pr.data.parentReplyId;
+      }
+      return root;
+    }
 
-    allReplies.sort((a, b) => a.depth - b.depth);
-
-    const containersById = {};
-
-    // Build cards
-    allReplies.forEach(r => {
-      const card = buildReplyCard(r.id, r.data, r.depth);
-      containersById[r.id] = card;
-
+    replies.forEach(r => {
+      r.depth = depthOf(r);
+      r.rootId = rootOf(r);
       if (r.data.userId) ensureReputationSubscription(r.data.userId);
     });
 
-   // -----------------------------------------------------------
-  // Reddit-style flat thread render (NO nested DOM)
-  // -----------------------------------------------------------
-
-  const threads = new Map();
-
-  // Build thread groups
-  allReplies.forEach(r => {
-    let rootId = r.id;
-    let parent = r.data.parentReplyId;
-
-    while (parent) {
-      const p = allReplies.find(x => x.id === parent);
-      if (!p) break;
-      rootId = p.id;
-      parent = p.data.parentReplyId;
-    }
-
-    if (!threads.has(rootId)) {
-      threads.set(rootId, []);
-    }
-
-    threads.get(rootId).push(r);
-  });
-
-  // Render each thread
-  threads.forEach(threadReplies => {
-    const threadWrap = document.createElement("div");
-    threadWrap.className = "discussion-thread-group";
-
-    threadReplies
-      .sort((a, b) => a.depth - b.depth)
-      .forEach(r => {
-        const card = containersById[r.id];
-        threadWrap.appendChild(card);
-        setupVotes(topicId, r.id, card);
-      });
-
-    messagesEl.appendChild(threadWrap);
-  });
-  });
-
-
-  /* -----------------------------------------------------------
-     Build a reply card
-     ----------------------------------------------------------- */
-  function buildReplyCard(replyId, data, depth) {
-    const card = document.createElement("article");
-    card.className = "discussion-message";
-    card.dataset.replyId = replyId;
-    card.id = `comment-${replyId}`;
-    card.dataset.depth = String(depth ?? 0);
-
-    if (data.userId) card.dataset.userId = data.userId;
-    if (data.pinned) card.classList.add("is-pinned");
-
-    const header = document.createElement("div");
-    header.className = "discussion-message-header";
-
-    // Collapse toggle (appears only if children exist later)
-    const collapseBtn = document.createElement("button");
-    collapseBtn.className = "reply-collapse-toggle";
-    collapseBtn.type = "button";
-    collapseBtn.textContent = "−";
-    collapseBtn.setAttribute("aria-label", "Collapse replies");
-    header.prepend(collapseBtn);
-
-    const author = document.createElement("span");
-    author.className = "discussion-message-author";
-    const pseudo = data.pseudonym || "Anonymous Seeker";
-    author.dataset.baseName = pseudo;
-    author.textContent = pseudo;
-
-    const meta = document.createElement("span");
-    meta.className = "discussion-message-meta";
-    const ts = data.createdAt?.toDate?.();
-    meta.textContent = ts ? ts.toLocaleString() : "Pending timestamp";
-
-    header.appendChild(author);
-    header.appendChild(meta);
-
-    const steelBlock = document.createElement("div");
-    steelBlock.className = "discussion-message-steelman reply-steelman-body";
-
-    if (data.steelmanSummary) {
-      steelBlock.innerHTML = `
-        <div class="steelman-label">Steel Man Summary</div>
-        <div class="steelman-text">${data.steelmanSummary}</div>
-      `;
-    }
-
-    const body = document.createElement("div");
-    body.className = "discussion-message-body reply-body-text";
-    body.textContent = data.body || "";
-
-    const actions = document.createElement("div");
-    actions.className = "discussion-actions";
-
-    const replyBtn = document.createElement("button");
-    replyBtn.type = "button";
-    replyBtn.className = "btn-link btn-reply-comment";
-    replyBtn.dataset.replyId = replyId;
-    replyBtn.dataset.snippet =
-      (data.steelmanSummary || data.body || "").slice(0, 120);
-    replyBtn.textContent = "Reply";
-    actions.appendChild(replyBtn);
-
-    const voteGroup = document.createElement("div");
-    voteGroup.className = "vote-group";
-    voteGroup.dataset.replyId = replyId;
-    voteGroup.innerHTML = `
-      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight">
-        🜁 <span class="vote-label">Insight</span>
-        <span class="vote-count" data-count-type="insight">0</span>
-      </button>
-      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree">
-        ✦ <span class="vote-label">Agree</span>
-        <span class="vote-count" data-count-type="agree">0</span>
-      </button>
-      <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge">
-        ⛧ <span class="vote-label">Challenge</span>
-        <span class="vote-count" data-count-type="challenge">0</span>
-      </button>
-    `;
-    actions.appendChild(voteGroup);
-
-    if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
-      const editBtn = document.createElement("button");
-      editBtn.type = "button";
-      editBtn.className = "btn-link btn-edit-reply";
-      editBtn.dataset.replyId = replyId;
-      editBtn.textContent = "Edit";
-      actions.appendChild(editBtn);
-    }
-
-    if (isAdmin) {
-      const delBtn = document.createElement("button");
-      delBtn.type = "button";
-      delBtn.className = "btn-link btn-delete-comment";
-      delBtn.dataset.commentId = replyId;
-      delBtn.dataset.topicId = topicId;
-      delBtn.textContent = "Delete";
-      actions.appendChild(delBtn);
-
-      const pinBtn = document.createElement("button");
-      pinBtn.type = "button";
-      pinBtn.className = "btn-link btn-pin-reply";
-      pinBtn.dataset.replyId = replyId;
-      pinBtn.textContent = data.pinned ? "Unpin" : "Pin";
-      actions.appendChild(pinBtn);
-    }
-
-    card.appendChild(header);
-    if (data.steelmanSummary) card.appendChild(steelBlock);
-    card.appendChild(body);
-    card.appendChild(actions);
-
-    return card;
-  }
-
-
-  /* -----------------------------------------------------------
-     Voting system
-     ----------------------------------------------------------- */
-  function setupVotes(topicId, replyId, card) {
-    const votesRef = collection(
-      db,
-      "topics",
-      topicId,
-      "replies",
-      replyId,
-      "votes"
+    const cardById = new Map(
+      replies.map(r => [r.id, buildReplyCard(r.id, r.data, r.depth)])
     );
 
-    onSnapshot(votesRef, (snapshot) => {
+    const threads = new Map();
+    replies.forEach(r => {
+      if (!threads.has(r.rootId)) threads.set(r.rootId, []);
+      threads.get(r.rootId).push(r);
+    });
+
+    Array.from(threads.entries())
+      .sort((a, b) =>
+        createdSeconds(byId.get(a[0])?.data) -
+        createdSeconds(byId.get(b[0])?.data)
+      )
+      .forEach(([rootId, items]) => {
+        const wrap = document.createElement("div");
+        wrap.className = "discussion-thread-group";
+        wrap.dataset.rootId = rootId;
+
+        items
+          .sort((a, b) =>
+            a.depth !== b.depth
+              ? a.depth - b.depth
+              : createdSeconds(a.data) - createdSeconds(b.data)
+          )
+          .forEach(r => {
+            const card = cardById.get(r.id);
+            wrap.appendChild(card);
+            setupVotes(topicId, r.id, card);
+          });
+
+        messagesEl.appendChild(wrap);
+      });
+
+    applyMobileCollapse();
+  });
+
+  /* -----------------------------------------------------------
+     Voting
+     ----------------------------------------------------------- */
+  function setupVotes(topicIdArg, replyId, card) {
+    if (voteSubscriptions.has(replyId)) return;
+
+    const ref = collection(
+      db, "topics", topicIdArg, "replies", replyId, "votes"
+    );
+
+    const unsub = onSnapshot(ref, snap => {
       const counts = { insight: 0, agree: 0, challenge: 0 };
       let userVote = null;
 
-      snapshot.forEach((snap) => {
-        const v = snap.data();
-        if (v && v.type && counts[v.type] != null) {
-          counts[v.type] = (counts[v.type] || 0) + 1;
-        }
-        if (currentUser && snap.id === currentUser.uid && v && v.type) {
-          userVote = v.type;
-        }
+      snap.forEach(s => {
+        const v = s.data();
+        if (counts[v.type] != null) counts[v.type]++;
+        if (currentUser && s.id === currentUser.uid) userVote = v.type;
       });
 
-      Object.entries(counts).forEach(([type, count]) => {
+      Object.entries(counts).forEach(([t, c]) => {
         const el = card.querySelector(
-          `.vote-count[data-count-type="${type}"]`
+          `.vote-count[data-count-type="${t}"]`
         );
-        if (el) el.textContent = count;
+        if (el) el.textContent = c;
       });
 
-      card.querySelectorAll(".vote-btn").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.voteType === userVote);
+      card.querySelectorAll(".vote-btn").forEach(btn => {
+        btn.classList.toggle(
+          "active", btn.dataset.voteType === userVote
+        );
       });
     });
+
+    voteSubscriptions.set(replyId, unsub);
   }
 
-  async function toggleVote(topicId, replyId, voteType) {
-    if (!currentUser) {
-      if (statusEl) statusEl.textContent = "You must be signed in to vote.";
-      return;
-    }
+  async function toggleVote(topicIdArg, replyId, voteType) {
+    if (!currentUser) return;
 
-    const replyRef = doc(db, "topics", topicId, "replies", replyId);
+    const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
     const replySnap = await getDoc(replyRef);
     if (!replySnap.exists()) return;
 
-    const replyAuthor = replySnap.data().userId;
+    const author = replySnap.data().userId;
 
     const voteRef = doc(
-      db,
-      "topics",
-      topicId,
-      "replies",
-      replyId,
-      "votes",
-      currentUser.uid
+      db, "topics", topicIdArg, "replies", replyId,
+      "votes", currentUser.uid
     );
 
-    const voteSnap = await getDoc(voteRef);
-    const prevType = voteSnap.exists() ? voteSnap.data().type : null;
+    const snap = await getDoc(voteRef);
+    const prev = snap.exists() ? snap.data().type : null;
 
     const pts = { insight: 3, agree: 1, challenge: 1 };
     let delta = 0;
 
-    if (prevType === voteType) {
+    if (prev === voteType) {
       await deleteDoc(voteRef);
       delta = -pts[voteType];
-    } else if (!prevType) {
-      await setDoc(voteRef, {
-        type: voteType,
-        createdAt: serverTimestamp()
-      });
-      delta = pts[voteType];
     } else {
       await setDoc(voteRef, {
         type: voteType,
         createdAt: serverTimestamp()
       });
-      delta = pts[voteType] - pts[prevType];
+      delta = pts[voteType] - (pts[prev] || 0);
     }
 
-    if (delta !== 0 && replyAuthor) {
-      try {
-        await Reputation.awardPoints(
-          replyAuthor,
-          delta,
-          "vote",
-          `Vote ${voteType} on reply ${replyId}`,
-          topicId
-        );
-      } catch (err) {
-        console.error("[Reputation] vote award failed:", err);
-      }
+    if (delta && author) {
+      Reputation.awardPoints(
+        author, delta, "vote",
+        `Vote ${voteType}`, topicIdArg
+      ).catch(() => {});
     }
   }
 
-
   /* -----------------------------------------------------------
-     Voting animations
+     Animations (guarded)
      ----------------------------------------------------------- */
   function spawnRipple(btn, x, y) {
-    const ripple = document.createElement("span");
-    ripple.className = "vote-ripple";
-
+    if (!btn || typeof x !== "number" || typeof y !== "number") return;
+    const r = document.createElement("span");
+    r.className = "vote-ripple";
     const rect = btn.getBoundingClientRect();
-    ripple.style.left = `${x - rect.left - 7}px`;
-    ripple.style.top = `${y - rect.top - 7}px`;
-
-    btn.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 450);
+    r.style.left = `${x - rect.left - 7}px`;
+    r.style.top = `${y - rect.top - 7}px`;
+    btn.appendChild(r);
+    setTimeout(() => r.remove(), 450);
   }
 
   function spawnInsightParticles(btn) {
-    const symbols = ["✧", "☉", "𐌗"];
-    const chosen = symbols[Math.floor(Math.random() * symbols.length)];
-
-    const particle = document.createElement("span");
-    particle.className = "insight-particle";
-    particle.textContent = chosen;
-
-    const rect = btn.getBoundingClientRect();
-    particle.style.left = `${rect.width / 2 - 4}px`;
-    particle.style.top = "0px";
-
-    btn.appendChild(particle);
-    setTimeout(() => particle.remove(), 750);
+    if (!btn || window.innerWidth <= 768) return;
+    const p = document.createElement("span");
+    p.className = "insight-particle";
+    p.textContent = ["✧", "☉", "X"][Math.floor(Math.random() * 3)];
+    btn.appendChild(p);
+    setTimeout(() => p.remove(), 750);
   }
 
+  /* -----------------------------------------------------------
+     Mobile collapse
+     ----------------------------------------------------------- */
+  function applyMobileCollapse() {
+    if (window.innerWidth > 768) return;
+
+    document.querySelectorAll(".discussion-thread-group").forEach(g => {
+      const deep = [...g.querySelectorAll(".discussion-message")]
+        .filter(c => Number(c.dataset.depth) >= 3);
+      if (!deep.length) return;
+
+      deep.forEach(c => c.classList.add("is-collapsed"));
+
+      let t = g.querySelector(".reply-collapse-toggle");
+      if (!t) {
+        t = document.createElement("button");
+        t.className = "reply-collapse-toggle";
+        t.type = "button";
+        g.prepend(t);
+      }
+      t.textContent = `View ${deep.length} replies`;
+    });
+  }
 
   /* -----------------------------------------------------------
-     Click handlers (reply, vote, pin)
+     Unified click handler
      ----------------------------------------------------------- */
-  document.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-
-    // Reply button
-    const replyBtn = target.closest(".btn-reply-comment");
-    if (replyBtn) {
-      const replyId = replyBtn.dataset.replyId;
-      const snippet = replyBtn.dataset.snippet || "";
-
-      if (parentReplyField && replyId) {
-        parentReplyField.value = replyId;
-      }
-
-      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
-      if (replyContext) replyContext.hidden = false;
-
-      if (form) {
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      return;
-    }
-
-    // Cancel reply context
-    if (target.id === "cancel-reply-context") {
-      if (parentReplyField) parentReplyField.value = "";
-      if (replyContext) replyContext.hidden = true;
-      return;
-    }
-
-    // Voting
-    const voteBtn = target.closest("button.vote-btn");
-    if (voteBtn) {
-      const replyId = voteBtn.dataset.replyId;
-      const voteType = voteBtn.dataset.voteType;
+  async function handleAction(e) {
+    const t = e.target.closest(".vote-btn");
+    if (t) {
+      const replyId = t.dataset.replyId;
+      const voteType = t.dataset.voteType;
       if (!replyId || !voteType) return;
 
-      spawnRipple(voteBtn, event.clientX, event.clientY);
-      if (voteType === "insight") spawnInsightParticles(voteBtn);
+      await toggleVote(topicId, replyId, voteType);
 
-      try {
-        await toggleVote(topicId, replyId, voteType);
-      } catch (err) {
-        console.error("[Vote] Error:", err);
-        if (statusEl) statusEl.textContent = "Unable to register vote.";
+      if (e.clientX && e.clientY) {
+        spawnRipple(t, e.clientX, e.clientY);
       }
-      return;
+      if (voteType === "insight") spawnInsightParticles(t);
     }
-
-    // Pin / unpin (admin only)
-    const pinBtn = target.closest(".btn-pin-reply");
-    if (pinBtn) {
-      if (!isAdmin) return;
-
-      const replyId = pinBtn.dataset.replyId;
-      if (!replyId) return;
-
-      const card = document.getElementById(`comment-${replyId}`);
-      const currentlyPinned =
-        (card && card.classList.contains("is-pinned")) || false;
-
-      try {
-        await setDoc(
-          doc(db, "topics", topicId, "replies", replyId),
-          { pinned: !currentlyPinned },
-          { merge: true }
-        );
-      } catch (e) {
-        console.error("Unable to toggle pin:", e);
-      }
-
-      return;
-    }
-  });
-
-
-  /* -----------------------------------------------------------
-     Submit handler
-     ----------------------------------------------------------- */
-  if (form) {
-    form.addEventListener("submit", async (evt) => {
-      evt.preventDefault();
-
-      if (!currentUser) {
-        if (statusEl) statusEl.textContent = "You must be signed in to post.";
-        return;
-      }
-
-      if (!minTierSatisfied()) {
-        if (statusEl) {
-          statusEl.textContent =
-            `Your tier (“${currentTier}”) is not sufficient to post here.`;
-        }
-        return;
-      }
-
-      const steelField = form.querySelector("#steelman-summary");
-      const bodyField = form.querySelector("#reply-body");
-      const pseudoField = form.querySelector("#pseudonym");
-
-      const steel = steelField?.value.trim() || "";
-      const body = bodyField?.value.trim() || "";
-      const pseudo =
-        pseudoField?.value.trim() || "Anonymous Seeker";
-      const parentId = parentReplyField?.value || null;
-
-      const steelWords = steel.split(/\s+/).filter(Boolean).length;
-      const bodyWords = body.split(/\s+/).filter(Boolean).length;
-
-      if (steelWords < 30) {
-        if (statusEl) {
-          statusEl.textContent =
-            "Your Steel Man summary must be at least 30 words.";
-        }
-        return;
-      }
-
-      if (bodyWords < 20) {
-        if (statusEl) {
-          statusEl.textContent =
-            "Your reply must be at least 20 words.";
-        }
-        return;
-      }
-
-      if (statusEl) statusEl.textContent = "Posting reply...";
-
-      try {
-        await addDoc(repliesRef, {
-          userId: currentUser.uid,
-          pseudonym: pseudo,
-          steelmanSummary: steel,
-          body,
-          createdAt: serverTimestamp(),
-          parentReplyId: parentId,
-          pinned: false
-        });
-
-        Reputation.awardPoints(
-          currentUser.uid,
-          1,
-          "reply",
-          `Reply posted in topic ${topicId}`,
-          topicId
-        ).catch(() => {});
-
-        form.reset();
-        if (parentReplyField) parentReplyField.value = "";
-        if (replyContext) replyContext.hidden = true;
-
-        if (statusEl) statusEl.textContent = "Reply posted.";
-      } catch (err) {
-        console.error("[Reply Error]", err);
-        if (statusEl) {
-          statusEl.textContent =
-            "There was a problem posting your reply. Please try again.";
-        }
-      }
-    });
   }
 
-  /* -----------------------------------------------------------
-   Reddit-style collapse control (non-destructive)
-   ----------------------------------------------------------- */
-  document.addEventListener("click", (e) => {
-    const toggle = e.target.closest(".reply-collapse-toggle");
-    if (!toggle) return;
-
-    const card = toggle.closest(".discussion-message");
-    if (!card) return;
-
-    const children = card.querySelector(".discussion-children");
-    if (!children) return;
-
-    if (window.innerWidth < 800) {
-      childrenWrap.classList.add("is-collapsed");
-    }
-
-    const count = children.children.length;
-    toggle.textContent = collapsed ? `+ ${count}` : "−";
-  });
-
-  /* -----------------------------------------------------------
-   Mobile auto-collapse for deep threads (Reddit-style)
-   Visual only, non-destructive
------------------------------------------------------------ */
-
-function applyMobileCollapse() {
-  if (window.innerWidth > 768) return;
-
-  document
-    .querySelectorAll(".discussion-message")
-    .forEach(card => {
-      const depth = Number(card.dataset.depth || 0);
-      if (depth < 1) return;
-
-      const children = card.querySelector(".discussion-children");
-      if (!children) return;
-
-      // Auto-collapse deeper branches
-      if (depth >= 1 && !children.dataset.processed) {
-        children.classList.add("is-collapsed");
-        children.dataset.processed = "true";
-
-        let toggle =
-          card.querySelector(".reply-collapse-toggle");
-
-        if (!toggle) {
-          toggle = document.createElement("button");
-          toggle.className = "reply-collapse-toggle";
-          toggle.type = "button";
-
-          const count = children.children.length;
-          toggle.textContent = `+ ${count} replies`;
-
-          toggle.addEventListener("click", () => {
-            const collapsed =
-              children.classList.toggle("is-collapsed");
-
-            toggle.textContent = collapsed
-              ? `+ ${count} replies`
-              : "− Hide replies";
-          });
-
-          const header =
-            card.querySelector(".discussion-message-header");
-          if (header) header.prepend(toggle);
-        }
-      }
-    });
-}
-
-/* Re-run after render and resize */
-window.addEventListener("resize", applyMobileCollapse);
-setTimeout(applyMobileCollapse, 100);
+  document.addEventListener("click", handleAction, { passive: true });
+  document.addEventListener("pointerup", handleAction, { passive: true });
 
 });
