@@ -775,7 +775,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* Attach once */
   document.addEventListener("pointerup", handleActionEvent, { passive: false });
-  document.addEventListener("click", handleActionEvent, { passive: false });
 
   /* -----------------------------------------------------------
      Submit handler
