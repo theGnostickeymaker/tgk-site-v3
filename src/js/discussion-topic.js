@@ -733,6 +733,65 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
   }
+  
+  // Delete reply (author or admin)
+  const deleteBtn = target.closest(".btn-delete-comment");
+  if (deleteBtn) {
+    const replyId = deleteBtn.dataset.commentId;
+    const topicIdArg = deleteBtn.dataset.topicId;
+
+    if (!replyId || !topicIdArg) return;
+
+    if (!currentUser) {
+      if (statusEl) statusEl.textContent = "You must be signed in to delete replies.";
+      return;
+    }
+
+    try {
+      const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
+      const snap = await getDoc(replyRef);
+      if (!snap.exists()) return;
+
+      const data = snap.data();
+      const isAuthor = data.userId === currentUser.uid;
+
+      if (!isAuthor && !isAdmin) {
+        if (statusEl) statusEl.textContent = "You do not have permission to delete this reply.";
+        return;
+      }
+
+      const confirmed = window.confirm(
+        "Delete this reply? This action cannot be undone."
+      );
+      if (!confirmed) return;
+
+      // 🔹 Delete votes first
+      const votesRef = collection(
+        db,
+        "topics",
+        topicIdArg,
+        "replies",
+        replyId,
+        "votes"
+      );
+
+      const votesSnap = await getDocs(votesRef);
+      await Promise.all(
+        votesSnap.docs.map(v => deleteDoc(v.ref))
+      );
+
+      // 🔹 Delete the reply
+      await deleteDoc(replyRef);
+
+      if (statusEl) statusEl.textContent = "Reply deleted.";
+
+    } catch (err) {
+      console.error("[Delete Reply]", err);
+      if (statusEl) statusEl.textContent = "Unable to delete reply.";
+    }
+
+    return;
+  }
 
   // Click works for desktop, some mobile browsers are happier with pointerup too
   document.addEventListener("click", handleActionEvent, { passive: false });
