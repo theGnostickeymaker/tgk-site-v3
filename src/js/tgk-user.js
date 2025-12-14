@@ -110,8 +110,10 @@ export async function saveProfile(e) {
 export async function pageSignout() {
   try {
     await signOut(auth);
-    localStorage.clear();
-    sessionStorage.clear();
+    localStorage.removeItem("tgk-tier");
+    localStorage.removeItem("tgk-return-url");
+    sessionStorage.removeItem("tgk-return-url");
+
     document.cookie.split(";").forEach(c => {
       document.cookie = c
         .replace(/^ +/, "")

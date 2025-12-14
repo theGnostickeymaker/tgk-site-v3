@@ -80,4 +80,8 @@
     color: var(--highlight);
     text-shadow: 0 0 8px var(--shadow-glow);
   }
+html:not(.auth-user):not(.auth-guest) body {
+  visibility: hidden;
+}
+
 }
