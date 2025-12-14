@@ -653,12 +653,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const replyId = replyBtn.dataset.replyId;
       const snippet = replyBtn.dataset.snippet || "";
 
-      if (parentReplyField && replyId) parentReplyField.value = replyId;
+      if (parentReplyField && replyId) {
+        parentReplyField.value = replyId;
+      }
 
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
-      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+      // 🔹 Ensure "Add Your Contribution" section is open
+      const addReplyDetails = document.getElementById("add-reply");
+      if (addReplyDetails && !addReplyDetails.open) {
+        addReplyDetails.open = true;
+      }
+
+      // 🔹 Scroll to the form (not the entire section)
+      if (form) {
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
       return;
     }
 

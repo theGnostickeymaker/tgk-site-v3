@@ -60,7 +60,6 @@
   ========================================================== */
   .discussion-message {
     position: relative;
-    margin-bottom: 1.2rem;
     padding: 0.9rem 1rem;
     background: var(--card-bg, rgba(255, 255, 255, 0.02));
     border: 1px solid var(--section-border);
@@ -73,6 +72,16 @@
     word-break: break-word;
     max-width: 100%;
     box-sizing: border-box;
+  }
+
+  /* Top-level comments breathe */
+  .discussion-message[data-depth="0"] {
+    margin-bottom: 1.6rem;
+  }
+
+  /* Replies stay tighter */
+  .discussion-message[data-depth]:not([data-depth="0"]) {
+    margin-bottom: 0.6rem;
   }
 
   /* Reputation-based glow */
@@ -117,6 +126,49 @@
   .discussion-message[data-depth="3"] {
     background: rgba(255, 255, 255, 0.06);
   }
+
+  /* ==========================================================
+   REDDIT-STYLE FLAT THREAD NESTING
+   ========================================================== */
+
+.discussion-message[data-depth="0"] {
+  margin-left: 0;
+}
+
+.discussion-message[data-depth="1"] {
+  margin-left: 1rem;
+}
+
+.discussion-message[data-depth="2"] {
+  margin-left: 2rem;
+}
+
+.discussion-message[data-depth="3"] {
+  margin-left: 3rem;
+}
+
+.discussion-message[data-depth="4"],
+.discussion-message[data-depth="5"],
+.discussion-message[data-depth="6"] {
+  margin-left: 4rem;
+}
+
+.discussion-message[data-depth]:not([data-depth="0"])::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.discussion-message[data-depth="1"]::after { left: -0.6rem; }
+.discussion-message[data-depth="2"]::after { left: -0.7rem; }
+.discussion-message[data-depth="3"]::after { left: -0.8rem; }
+.discussion-message[data-depth="4"]::after,
+.discussion-message[data-depth="5"]::after,
+.discussion-message[data-depth="6"]::after { left: -0.9rem; }
+  
 
   /* ==========================================================
      MESSAGE HEADER
@@ -312,21 +364,16 @@
   /* ==========================================================
      DEPTH GLYPHS & THREAD LINES (Reddit-style)
   ========================================================== */
-  .discussion-message {
-    --glyph-level: "☉";
-  }
+.discussion-message {
+  --glyph-level: "☉";
+}
 
-  .discussion-children > .discussion-message {
-    --glyph-level: "☽";
-  }
-
-  .discussion-children .discussion-children > .discussion-message {
-    --glyph-level: "✶";
-  }
-
-  .discussion-children .discussion-children .discussion-children > .discussion-message {
-    --glyph-level: "🜂";
-  }
+.discussion-message[data-depth="1"] { --glyph-level: "☽"; }
+.discussion-message[data-depth="2"] { --glyph-level: "✶"; }
+.discussion-message[data-depth="3"] { --glyph-level: "🜂"; }
+.discussion-message[data-depth="4"] { --glyph-level: "⚚"; }
+.discussion-message[data-depth="5"] { --glyph-level: "✺"; }
+.discussion-message[data-depth="6"] { --glyph-level: "☬"; }
 
   .discussion-message::before {
     content: var(--glyph-level);
@@ -342,26 +389,6 @@
     content: "♛";
     font-size: 1.25rem;
     opacity: 1;
-  }
-
-  .discussion-children {
-    margin-left: 0.75rem;
-    padding-left: 0.75rem;
-    border-left: 2px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .discussion-children .discussion-children {
-    border-left-color: rgba(255, 255, 255, 0.05);
-  }
-
-  /* Remove card styling from nested replies */
-  .discussion-children .discussion-message {
-    background: transparent;
-    border-radius: 0;
-    border-left-width: 0;
-    padding-left: 0.75rem;
-    margin-top: 0.6rem;
-    box-shadow: none;
   }
 
   /* ==========================================================
@@ -445,6 +472,30 @@
     .vote-btn {
       min-width: 44px;
     }
+  }
+
+  .discussion-collapsible > summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  }
+
+  .discussion-collapsible > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .discussion-collapsible > summary::after {
+    content: "+";
+    float: right;
+    opacity: 1;
+  }
+
+  .discussion-collapsible[open] > summary::after {
+    content: "-";
+  }
+
+  .discussion-collapsible > summary:hover {
+    opacity: 0.9;
   }
 
   /* ==========================================================

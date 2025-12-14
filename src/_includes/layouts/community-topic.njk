@@ -44,31 +44,38 @@
       </p>
     </section>
 
-    <!-- =======================================================
-      DISCUSSION ROOT (FLAT THREAD MODE)
-  ======================================================= -->
-  <section
-    id="discussion-root"
-    class="discussion-thread"
-    data-topic-id="{{ topicId }}"
-    data-min-write-tier="{{ minWriteTier }}"
-  >
+<!-- =======================================================
+  DISCUSSION ROOT (FLAT THREAD MODE)
+======================================================= -->
+<section
+  id="discussion-root"
+  class="discussion-thread"
+  data-topic-id="{{ topicId }}"
+  data-min-write-tier="{{ minWriteTier }}"
+>
+  <!-- ADD YOUR CONTRIBUTION -->
+  <section id="add-reply" class="section-block">
+    <details class="discussion-collapsible">
+      <summary class="section-heading">
+        Add Your Contribution
+      </summary>
 
-    <div class="content-container">
-
-      <!-- ADD NEW REPLY FORM -->
       {% include "components/discussion/reply-prompt.njk" %}
-
-      <!-- FLAT THREAD LIST -->
-      <div
-        id="discussion-messages"
-        class="discussion-list"
-        aria-live="polite"
-      ></div>
-
-    </div>
-
+    </details>
   </section>
+
+  <!-- DISCUSSION THREADS -->
+  <section id="thread-list" class="section-block">
+    <h2 class="section-heading">Discussion</h2>
+
+    <div
+      id="discussion-messages"
+      class="discussion-list"
+      aria-live="polite"
+    ></div>
+  </section>
+
+</section>
 
     <!-- SHARE BLOCK -->
     <section id="share" class="section-block">
