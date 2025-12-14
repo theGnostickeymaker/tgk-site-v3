@@ -628,6 +628,8 @@ async function handleActionEvent(event) {
   const target = event.target;
   if (!(target instanceof Element)) return;
 
+  // 🔒 Prevent double-fire (click + pointerup)
+  if (event.type === "click" && event.pointerType === "touch") return;
   /* -------------------------------
      Thread collapse toggle
   ------------------------------- */
