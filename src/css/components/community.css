@@ -456,5 +456,49 @@
       transform: scale(5) !important;
     }
   }
+/* ==========================================================
+   MOBILE THREAD FLOW FIX
+   Prevent flexbox nesting collapse on iOS
+   ========================================================== */
+@media (max-width: 800px) {
+
+  /* Top-level thread stays flex */
+  .discussion-messages {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* ALL nested replies must be block-flow */
+  .discussion-children {
+    display: block !important;
+    margin-left: 0.9rem !important;
+    padding-left: 0.75rem !important;
+    border-left: 1px solid var(--section-border);
+  }
+
+  /* Ensure cards do not shrink or escape */
+  .discussion-message {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Prevent pseudo-elements pushing layout sideways */
+  .discussion-message::before {
+    position: absolute;
+    left: -0.75rem !important;
+    top: 0.6rem;
+  }
+
+  /* Kill flex inheritance on children */
+  .discussion-children > .discussion-message {
+    display: block !important;
+  }
+
+  /* Ensure parent cards expand to contain children */
+  .discussion-message {
+    overflow: visible !important;
+  }
+}
 
 } /* end @layer components */
