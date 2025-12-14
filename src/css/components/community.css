@@ -626,5 +626,221 @@
 .discussion-message[data-depth="2"] { margin-left: 2rem; }
 .discussion-message[data-depth="3"] { margin-left: 3rem; }
 
+/* ============================================================
+   TGK Community — Reddit-style Thread Visuals (CSS ONLY)
+   Safe: no JS dependency, no DOM changes
+   ============================================================ */
+
+/* ---------- Thread root ---------- */
+
+.discussion-message {
+  position: relative;
+  margin-bottom: 1.2rem;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  background: var(--card-bg, rgba(255,255,255,0.02));
+}
+
+/* Remove heavy framing from nested replies */
+.discussion-children .discussion-message {
+  background: transparent;
+  border-radius: 0;
+  padding-left: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+/* ---------- Indentation guide line (Reddit-style) ---------- */
+
+.discussion-children {
+  margin-left: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(255,255,255,0.08);
+}
+
+/* Prevent guide-line stacking visually */
+.discussion-children .discussion-children {
+  border-left-color: rgba(255,255,255,0.05);
+}
+
+/* ---------- Header tightening ---------- */
+
+.discussion-message-header {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.discussion-message-meta {
+  opacity: 0.6;
+  font-size: 0.75rem;
+}
+
+/* ---------- Actions ---------- */
+
+.discussion-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+/* ---------- Voting ---------- */
+
+.vote-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.vote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.vote-btn.active {
+  background: rgba(255,255,255,0.1);
+}
+
+/* ---------- Mobile pass ---------- */
+
+@media (max-width: 768px) {
+
+  /* Kill nested card illusion */
+  .discussion-message {
+    padding: 0.75rem 0.8rem;
+  }
+
+  .discussion-children {
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    border-left-width: 1px;
+  }
+
+  /* Reduce visual noise */
+  .discussion-message-steelman {
+    font-size: 0.85rem;
+  }
+
+  .discussion-message-body {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  /* Stack actions cleanly */
+  .discussion-actions {
+    gap: 0.6rem;
+  }
+
+  .vote-group {
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------- Optional: subtle thread root emphasis ---------- */
+
+.discussion-message[data-depth="0"] {
+  background: var(--card-gradient, rgba(255,255,255,0.03));
+}
+/* ============================================================
+   TGK Community — Mobile Reply Collapse (Visual Only)
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  /* Collapsed reply branches */
+  .discussion-children.is-collapsed {
+    display: none;
+  }
+
+  /* Collapse toggle button */
+  .reply-collapse-toggle {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 0.4rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--link-accent, #9fd3ff);
+    opacity: 0.8;
+  }
+
+  .reply-collapse-toggle:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+}
+@media (max-width: 768px) {
+  .discussion-thread .content-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .discussion-list {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+/* -------------------------------------------------
+   Mobile-safe depth handling
+------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .discussion-message {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Cap indentation at depth 2 */
+  .discussion-message[data-depth="0"] { margin-left: 0; }
+  .discussion-message[data-depth="1"] { margin-left: 0.75rem; }
+  .discussion-message[data-depth="2"] { margin-left: 1.25rem; }
+
+  /* Anything deeper stops shifting right */
+  .discussion-message[data-depth="3"],
+  .discussion-message[data-depth="4"],
+  .discussion-message[data-depth="5"],
+  .discussion-message[data-depth="6"] {
+    margin-left: 1.25rem;
+  }
+}
+@media (max-width: 768px) {
+  .discussion-message[data-depth="3"],
+  .discussion-message[data-depth="4"],
+  .discussion-message[data-depth="5"],
+  .discussion-message[data-depth="6"] {
+    border-left: 2px solid rgba(120, 200, 200, 0.35);
+    padding-left: 0.75rem;
+    background: linear-gradient(
+      90deg,
+      rgba(120, 200, 200, 0.06),
+      transparent 40%
+    );
+  }
+}
+@media (max-width: 768px) {
+  .discussion-message {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+  }
+
+  .discussion-message-body,
+  .steelman-text {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+}
+.discussion-thread {
+  overflow-x: hidden;
+}
 
 } /* end @layer components */

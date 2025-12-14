@@ -747,4 +747,58 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.textContent = collapsed ? `+ ${count}` : "−";
   });
 
+  /* -----------------------------------------------------------
+   Mobile auto-collapse for deep threads (Reddit-style)
+   Visual only, non-destructive
+----------------------------------------------------------- */
+
+function applyMobileCollapse() {
+  if (window.innerWidth > 768) return;
+
+  document
+    .querySelectorAll(".discussion-message")
+    .forEach(card => {
+      const depth = Number(card.dataset.depth || 0);
+      if (depth < 1) return;
+
+      const children = card.querySelector(".discussion-children");
+      if (!children) return;
+
+      // Auto-collapse deeper branches
+      if (depth >= 1 && !children.dataset.processed) {
+        children.classList.add("is-collapsed");
+        children.dataset.processed = "true";
+
+        let toggle =
+          card.querySelector(".reply-collapse-toggle");
+
+        if (!toggle) {
+          toggle = document.createElement("button");
+          toggle.className = "reply-collapse-toggle";
+          toggle.type = "button";
+
+          const count = children.children.length;
+          toggle.textContent = `+ ${count} replies`;
+
+          toggle.addEventListener("click", () => {
+            const collapsed =
+              children.classList.toggle("is-collapsed");
+
+            toggle.textContent = collapsed
+              ? `+ ${count} replies`
+              : "− Hide replies";
+          });
+
+          const header =
+            card.querySelector(".discussion-message-header");
+          if (header) header.prepend(toggle);
+        }
+      }
+    });
+}
+
+/* Re-run after render and resize */
+window.addEventListener("resize", applyMobileCollapse);
+setTimeout(applyMobileCollapse, 100);
+
 });

@@ -44,7 +44,7 @@
       </p>
     </section>
 
-  <!-- =======================================================
+    <!-- =======================================================
       DISCUSSION ROOT (FLAT THREAD MODE)
   ======================================================= -->
   <section
@@ -54,15 +54,19 @@
     data-min-write-tier="{{ minWriteTier }}"
   >
 
-    <!-- ADD NEW REPLY FORM -->
-    {% include "components/discussion/reply-prompt.njk" %}
+    <div class="content-container">
 
-    <!-- FLAT THREAD LIST -->
-    <div
-      id="discussion-messages"
-      class="discussion-list"
-      aria-live="polite"
-    ></div>
+      <!-- ADD NEW REPLY FORM -->
+      {% include "components/discussion/reply-prompt.njk" %}
+
+      <!-- FLAT THREAD LIST -->
+      <div
+        id="discussion-messages"
+        class="discussion-list"
+        aria-live="polite"
+      ></div>
+
+    </div>
 
   </section>
 
