@@ -307,6 +307,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.createElement("div");
     header.className = "discussion-message-header";
 
+    // Collapse toggle (appears only if children exist later)
+    const collapseBtn = document.createElement("button");
+    collapseBtn.className = "reply-collapse-toggle";
+    collapseBtn.type = "button";
+    collapseBtn.textContent = "−";
+    collapseBtn.setAttribute("aria-label", "Collapse replies");
+    header.prepend(collapseBtn);
+
     const author = document.createElement("span");
     author.className = "discussion-message-author";
     const pseudo = data.pseudonym || "Anonymous Seeker";
@@ -697,4 +705,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  /* -----------------------------------------------------------
+   Reddit-style collapse control (non-destructive)
+   ----------------------------------------------------------- */
+  document.addEventListener("click", (e) => {
+    const toggle = e.target.closest(".reply-collapse-toggle");
+    if (!toggle) return;
+
+    const card = toggle.closest(".discussion-message");
+    if (!card) return;
+
+    const children = card.querySelector(".discussion-children");
+    if (!children) return;
+
+    if (window.innerWidth < 800) {
+      childrenWrap.classList.add("is-collapsed");
+    }
+
+    const count = children.children.length;
+    toggle.textContent = collapsed ? `+ ${count}` : "−";
+  });
+
 });

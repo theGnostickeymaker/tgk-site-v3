@@ -336,26 +336,25 @@
   /* ==========================================================
      NESTED REPLY TREE
   ========================================================== */
-  .discussion-children {
-    margin-left: 1.25rem;
-    padding-left: 1rem;
-    border-left: 1px solid var(--section-border);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    position: relative;
-  }
+/* ==========================================================
+   Thread Guide Line (single, calm)
+   ========================================================== */
 
-  .discussion-children::before {
-    content: "";
-    position: absolute;
-    left: -0.65rem;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: var(--section-border);
-    opacity: 0.35;
+.discussion-children {
+  position: relative;
+  margin-left: 1rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(255,255,255,0.15);
+}
+
+@media (max-width: 800px) {
+  .discussion-children {
+    margin-left: 0.75rem;
+    padding-left: 0.5rem;
+    border-left-color: rgba(255,255,255,0.12);
   }
+}
+
 
 
   /* ==========================================================
@@ -498,6 +497,100 @@
   /* Ensure parent cards expand to contain children */
   .discussion-message {
     overflow: visible !important;
+  }
+}
+/* ==========================================================
+   DEPTH CAP — prevent infinite left drift
+   ========================================================== */
+
+.discussion-children {
+  margin-left: clamp(0.75rem, 2vw, 1.25rem);
+  padding-left: 0.75rem;
+}
+/* ==========================================================
+   REPLY COLLAPSE TOGGLE (Reddit-style)
+   ========================================================== */
+
+.reply-collapse-toggle {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 0.4rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.reply-collapse-toggle:hover {
+  color: var(--text-accent);
+}
+/* ==========================================================
+   COLLAPSIBLE CHILD THREADS
+   ========================================================== */
+
+.discussion-children {
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.discussion-children.is-collapsed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+/* ==========================================================
+   Mobile thread sanity: collapse deep nesting
+   ========================================================== */
+@media (max-width: 800px) {
+
+  .discussion-children {
+    display: none;
+    margin-left: 0;
+    border-left: none;
+  }
+
+  .discussion-children.is-collapsed {
+    display: none;
+  }
+
+  .discussion-message > .discussion-children {
+    display: block;
+  }
+
+  .reply-collapse-toggle {
+    display: inline-flex;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    opacity: 0.75;
+  }
+}
+/* ==========================================================
+   Discussion Reply Cards (Reddit-style restraint)
+   ========================================================== */
+
+#discussion-root .discussion-message {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--section-border);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+/* Remove heavy chrome as depth increases */
+#discussion-root .discussion-message[data-depth="1"] {
+  background: rgba(255,255,255,0.015);
+}
+
+#discussion-root .discussion-message[data-depth="2"],
+#discussion-root .discussion-message[data-depth="3"] {
+  background: rgba(255,255,255,0.01);
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* Mobile: flatten further */
+@media (max-width: 800px) {
+  #discussion-root .discussion-message {
+    padding: 0.85rem 0.75rem;
+    border-radius: 6px;
   }
 }
 
