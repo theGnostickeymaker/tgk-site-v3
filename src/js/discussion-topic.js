@@ -17,6 +17,7 @@ import {
   addDoc,
   setDoc,
   getDoc,
+  getDocs,
   deleteDoc,
   query,
   orderBy,
@@ -688,6 +689,40 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (err) {
         console.error("[Delete Reply]", err);
         if (statusEl) statusEl.textContent = "Unable to delete reply.";
+      }
+
+      return;
+    }
+
+    /* -----------------------------------------
+      PIN / UNPIN (admin only)
+    ----------------------------------------- */
+    const pinBtn = target.closest(".btn-pin-reply");
+    if (pinBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!isAdmin) return;
+
+      const replyId = pinBtn.dataset.replyId;
+      if (!replyId) return;
+
+      const replyRef = doc(db, "topics", topicId, "replies", replyId);
+      const snap = await getDoc(replyRef);
+      if (!snap.exists()) return;
+
+      const currentlyPinned = Boolean(snap.data().pinned);
+
+      try {
+        await setDoc(
+          replyRef,
+          { pinned: !currentlyPinned },
+          { merge: true }
+        );
+        if (statusEl) statusEl.textContent = currentlyPinned ? "Unpinned reply." : "Pinned reply.";
+      } catch (err) {
+        console.error("[Pin Reply]", err);
+        if (statusEl) statusEl.textContent = "Unable to update pin.";
       }
 
       return;
