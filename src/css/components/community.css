@@ -49,6 +49,7 @@
      MESSAGE LIST WRAPPER
   ========================================================== */
   .discussion-messages,
+  #discussion-messages,
   #messages {
     display: flex;
     flex-direction: column;
@@ -93,8 +94,9 @@
     border-left-color: var(--accent-gold);
   }
 
+
   /* ==========================================================
-     PINNED MESSAGE SPECIAL STATE
+     PINNED MESSAGE
   ========================================================== */
   .discussion-message.is-pinned {
     border-left-width: 3px;
@@ -174,7 +176,7 @@
 
 
   /* ==========================================================
-     VOTING SYSTEM BASE
+     VOTING SYSTEM
   ========================================================== */
   .vote-group {
     display: inline-flex;
@@ -186,7 +188,7 @@
     padding: 0.25rem 0.7rem;
     font-size: 0.8rem;
     display: inline-flex;
-    align-items: center;
+    align-items: centre;
     gap: 0.35rem;
     cursor: pointer;
     border: 1px solid transparent;
@@ -300,12 +302,15 @@
   .discussion-message {
     --glyph-level: "☉";
   }
+
   .discussion-children > .discussion-message {
     --glyph-level: "☽";
   }
+
   .discussion-children .discussion-children > .discussion-message {
     --glyph-level: "✶";
   }
+
   .discussion-children .discussion-children .discussion-children > .discussion-message {
     --glyph-level: "🜂";
   }
@@ -333,13 +338,12 @@
   ========================================================== */
   .discussion-children {
     margin-left: 1.25rem;
-    padding-left: 0.75rem;
+    padding-left: 1rem;
     border-left: 1px solid var(--section-border);
     display: flex;
     flex-direction: column;
     gap: 1rem;
     position: relative;
-    overflow: visible;
   }
 
   .discussion-children::before {
@@ -355,52 +359,22 @@
 
 
   /* ==========================================================
-     MOBILE FIXES
+     DEPTH-BASED BACKGROUND TONES
   ========================================================== */
-  @media (max-width: 800px) {
+  .discussion-message[data-depth="0"] {
+    background: var(--card-bg);
+  }
 
-    #messages,
-    .discussion-messages {
-      display: block !important;
-      overflow: visible !important;
-    }
+  .discussion-message[data-depth="1"] {
+    background: rgba(255, 255, 255, 0.02);
+  }
 
-    .discussion-message {
-      display: block !important;
-      padding: 1rem !important;
-      overflow: visible !important;
-      margin-bottom: 1rem;
-    }
+  .discussion-message[data-depth="2"] {
+    background: rgba(255, 255, 255, 0.04);
+  }
 
-    .discussion-children {
-      margin-left: 1rem !important;
-      padding-left: 0.65rem !important;
-      border-left: 1px solid var(--section-border) !important;
-      max-height: none !important;
-      height: auto !important;
-      overflow: visible !important;
-    }
-
-    .discussion-message::before {
-      left: -0.5rem !important;
-      font-size: 0.85rem !important;
-    }
-
-    /* Remove tooltips for mobile */
-    .vote-tooltip {
-      display: none !important;
-    }
-
-    /* Reduce ripple size */
-    .vote-ripple {
-      animation-duration: 0.3s !important;
-      transform: scale(5) !important;
-    }
-
-    .section-block,
-    .content-container {
-      overflow: visible !important;
-    }
+  .discussion-message[data-depth="3"] {
+    background: rgba(255, 255, 255, 0.06);
   }
 
 
@@ -414,64 +388,73 @@
     color: var(--accent-page);
   }
 
-  /* FORCE MOBILE THREAD VISIBILITY */
+
+  /* ==========================================================
+     HIGHLIGHT ANIMATION (for future use)
+  ========================================================== */
+  @keyframes highlightPulse {
+    0%   { box-shadow: 0 0 0px 0 var(--accent-page); }
+    50%  { box-shadow: 0 0 10px 3px var(--accent-page); }
+    100% { box-shadow: 0 0 0px 0 var(--accent-page); }
+  }
+
+  .discussion-highlight {
+    animation: highlightPulse 1.5s ease-out;
+  }
+
+
+  /* ==========================================================
+     MOBILE FIXES (Chromium / Edge / Safari)
+  ========================================================== */
   @media (max-width: 900px) {
 
-    /* Remove any clipping */
     .section-block,
     .content-container,
+    main {
+      overflow: visible !important;
+      contain: none !important;
+    }
+
     .discussion-messages,
     #discussion-messages,
-    #messages,
-    .discussion-thread-list {
-      overflow: visible !important;
+    #messages {
       display: block !important;
+      overflow: visible !important;
       height: auto !important;
       max-height: none !important;
+      contain: none !important;
     }
 
-    /* Children must always be visible */
-    .discussion-message,
+    .discussion-message {
+      display: block !important;
+      margin-bottom: 1rem;
+      position: static !important;
+      overflow: visible !important;
+    }
+
     .discussion-children {
+      margin-left: 1rem !important;
+      padding-left: 0.65rem !important;
+      border-left: 1px solid var(--section-border) !important;
+      position: static !important;
       overflow: visible !important;
       height: auto !important;
       max-height: none !important;
     }
-  }
-/* ==========================================================
-   MOBILE FIX: Force Chromium-based browsers to render replies
-   ========================================================== */
-@media (max-width: 900px) {
 
-  /* The container that holds the message list */
-  .discussion-messages,
-  #discussion-messages {
-    display: block !important;
-    overflow: visible !important;
-    contain: none !important; /* Chromium fix */
-  }
+    .discussion-message::before {
+      left: -0.5rem !important;
+      font-size: 0.85rem !important;
+    }
 
-  /* Every message card */
-  .discussion-message {
-    position: static !important; /* Fix for Edge/Chrome */
-    overflow: visible !important;
+    .vote-tooltip {
+      display: none !important;
+    }
+
+    .vote-ripple {
+      animation-duration: 0.3s !important;
+      transform: scale(5) !important;
+    }
   }
 
-  /* Nested children wrappers */
-  .discussion-children {
-    overflow: visible !important;
-    position: static !important;  /* Chromium hates nested relative */
-    max-height: none !important;
-  }
-
-  /* Prevent clipping from parent sections */
-  .section-block,
-  .content-container,
-  main {
-    overflow: visible !important;
-    contain: none !important; /* Key Chromium fix */
-  }
-}
-
-
-} /* END @layer components */
+} /* end @layer components */
