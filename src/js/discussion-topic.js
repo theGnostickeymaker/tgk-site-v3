@@ -621,125 +621,128 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -----------------------------------------------------------
-     Click handlers (reply, vote, pin, thread collapse)
-     One handler only, delegated, mobile-safe
-     ----------------------------------------------------------- */
-  async function handleActionEvent(event) {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
+   Click handlers (reply, vote, pin, delete, thread collapse)
+   One handler only, delegated, mobile-safe
+----------------------------------------------------------- */
+async function handleActionEvent(event) {
+  const target = event.target;
+  if (!(target instanceof Element)) return;
 
-    // Thread collapse toggle (flat thread group)
-    const collapseToggle = target.closest(".reply-collapse-toggle");
-    if (collapseToggle) {
-      const group = collapseToggle.closest(".discussion-thread-group");
-      if (!group) return;
+  /* -------------------------------
+     Thread collapse toggle
+  ------------------------------- */
+  const collapseToggle = target.closest(".reply-collapse-toggle");
+  if (collapseToggle) {
+    const group = collapseToggle.closest(".discussion-thread-group");
+    if (!group) return;
 
-      const cards = Array.from(group.querySelectorAll(".discussion-message"));
-      const deepCards = cards.filter(c => Number(c.dataset.depth || 0) >= 3);
-      if (deepCards.length === 0) return;
+    const cards = Array.from(group.querySelectorAll(".discussion-message"));
+    const deepCards = cards.filter(c => Number(c.dataset.depth || 0) >= 3);
+    if (deepCards.length === 0) return;
 
-      const currentlyCollapsed = deepCards.some(c => c.classList.contains("is-collapsed"));
-      const nextCollapsed = !currentlyCollapsed;
+    const currentlyCollapsed = deepCards.some(c => c.classList.contains("is-collapsed"));
+    const nextCollapsed = !currentlyCollapsed;
 
-      deepCards.forEach(c => c.classList.toggle("is-collapsed", nextCollapsed));
-      collapseToggle.textContent = nextCollapsed ? `View ${deepCards.length} replies` : "Hide replies";
-      collapseToggle.setAttribute("aria-expanded", String(!nextCollapsed));
-      return;
-    }
-
-    // Reply button
-    const replyBtn = target.closest(".btn-reply-comment");
-    if (replyBtn) {
-      const replyId = replyBtn.dataset.replyId;
-      const snippet = replyBtn.dataset.snippet || "";
-
-      if (parentReplyField && replyId) {
-        parentReplyField.value = replyId;
-      }
-
-      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
-      if (replyContext) replyContext.hidden = false;
-
-      // 🔹 Open the collapsible FIRST (target the <details>, not the section)
-      const addReplySection = document.getElementById("add-reply");
-      const details = addReplySection?.querySelector("details");
-
-      if (details && !details.open) {
-        details.open = true;
-      }
-
-      // 🔹 Wait for layout to update, then scroll
-      requestAnimationFrame(() => {
-        if (form) {
-          form.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-
-      return;
-    }
-
-    // Cancel reply context
-    if (target.id === "cancel-reply-context") {
-      if (parentReplyField) parentReplyField.value = "";
-      if (replyContext) replyContext.hidden = true;
-      return;
-    }
-
-    // Voting
-    const voteBtn = target.closest("button.vote-btn");
-    if (voteBtn) {
-      event.preventDefault();
-
-      const replyId = voteBtn.dataset.replyId;
-      const voteType = voteBtn.dataset.voteType;
-      if (!replyId || !voteType) return;
-
-      const clientX = event.clientX || (event.touches && event.touches[0]?.clientX) || 0;
-      const clientY = event.clientY || (event.touches && event.touches[0]?.clientY) || 0;
-
-      spawnRipple(voteBtn, clientX, clientY);
-      if (voteType === "insight") spawnInsightParticles(voteBtn);
-
-      try {
-        await toggleVote(topicId, replyId, voteType);
-      } catch (err) {
-        console.error("[Vote] Error:", err);
-        if (statusEl) statusEl.textContent = "Unable to register vote.";
-      }
-      return;
-    }
-
-    // Pin / unpin (admin only)
-    const pinBtn = target.closest(".btn-pin-reply");
-    if (pinBtn) {
-      if (!isAdmin) return;
-
-      const replyId = pinBtn.dataset.replyId;
-      if (!replyId) return;
-
-      const card = document.getElementById(`comment-${replyId}`);
-      const currentlyPinned = (card && card.classList.contains("is-pinned")) || false;
-
-      try {
-        await setDoc(
-          doc(db, "topics", topicId, "replies", replyId),
-          { pinned: !currentlyPinned },
-          { merge: true }
-        );
-      } catch (e) {
-        console.error("Unable to toggle pin:", e);
-      }
-
-      return;
-    }
+    deepCards.forEach(c => c.classList.toggle("is-collapsed", nextCollapsed));
+    collapseToggle.textContent = nextCollapsed
+      ? `View ${deepCards.length} replies`
+      : "Hide replies";
+    collapseToggle.setAttribute("aria-expanded", String(!nextCollapsed));
+    return;
   }
-  
-  // Delete reply (author or admin)
+
+  /* -------------------------------
+     Reply button
+  ------------------------------- */
+  const replyBtn = target.closest(".btn-reply-comment");
+  if (replyBtn) {
+    const replyId = replyBtn.dataset.replyId;
+    const snippet = replyBtn.dataset.snippet || "";
+
+    if (parentReplyField && replyId) parentReplyField.value = replyId;
+    if (replyContextSnippet) replyContextSnippet.textContent = snippet;
+    if (replyContext) replyContext.hidden = false;
+
+    const addReplySection = document.getElementById("add-reply");
+    const details = addReplySection?.querySelector("details");
+    if (details && !details.open) details.open = true;
+
+    requestAnimationFrame(() => {
+      if (form) {
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+
+    return;
+  }
+
+  /* -------------------------------
+     Cancel reply context
+  ------------------------------- */
+  if (target.id === "cancel-reply-context") {
+    if (parentReplyField) parentReplyField.value = "";
+    if (replyContext) replyContext.hidden = true;
+    return;
+  }
+
+  /* -------------------------------
+     Voting
+  ------------------------------- */
+  const voteBtn = target.closest("button.vote-btn");
+  if (voteBtn) {
+    event.preventDefault();
+
+    const replyId = voteBtn.dataset.replyId;
+    const voteType = voteBtn.dataset.voteType;
+    if (!replyId || !voteType) return;
+
+    const clientX = event.clientX || event.touches?.[0]?.clientX || 0;
+    const clientY = event.clientY || event.touches?.[0]?.clientY || 0;
+
+    spawnRipple(voteBtn, clientX, clientY);
+    if (voteType === "insight") spawnInsightParticles(voteBtn);
+
+    try {
+      await toggleVote(topicId, replyId, voteType);
+    } catch (err) {
+      console.error("[Vote] Error:", err);
+      if (statusEl) statusEl.textContent = "Unable to register vote.";
+    }
+    return;
+  }
+
+  /* -------------------------------
+     Pin / unpin (admin)
+  ------------------------------- */
+  const pinBtn = target.closest(".btn-pin-reply");
+  if (pinBtn) {
+    if (!isAdmin) return;
+
+    const replyId = pinBtn.dataset.replyId;
+    if (!replyId) return;
+
+    const card = document.getElementById(`comment-${replyId}`);
+    const currentlyPinned = card?.classList.contains("is-pinned") || false;
+
+    try {
+      await setDoc(
+        doc(db, "topics", topicId, "replies", replyId),
+        { pinned: !currentlyPinned },
+        { merge: true }
+      );
+    } catch (err) {
+      console.error("[Pin] Error:", err);
+    }
+    return;
+  }
+
+  /* -------------------------------
+     Delete reply (author or admin)
+  ------------------------------- */
   const deleteBtn = target.closest(".btn-delete-comment");
   if (deleteBtn) {
     const replyId = deleteBtn.dataset.commentId;
     const topicIdArg = deleteBtn.dataset.topicId;
-
     if (!replyId || !topicIdArg) return;
 
     if (!currentUser) {
@@ -765,7 +768,6 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       if (!confirmed) return;
 
-      // 🔹 Delete votes first
       const votesRef = collection(
         db,
         "topics",
@@ -776,26 +778,25 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       const votesSnap = await getDocs(votesRef);
-      await Promise.all(
-        votesSnap.docs.map(v => deleteDoc(v.ref))
-      );
+      await Promise.all(votesSnap.docs.map(v => deleteDoc(v.ref)));
 
-      // 🔹 Delete the reply
       await deleteDoc(replyRef);
 
       if (statusEl) statusEl.textContent = "Reply deleted.";
-
     } catch (err) {
       console.error("[Delete Reply]", err);
       if (statusEl) statusEl.textContent = "Unable to delete reply.";
     }
-
     return;
   }
+}
 
-  // Click works for desktop, some mobile browsers are happier with pointerup too
-  document.addEventListener("click", handleActionEvent, { passive: false });
-  document.addEventListener("pointerup", handleActionEvent, { passive: false });
+/* -----------------------------------------------------------
+   Event listeners
+----------------------------------------------------------- */
+document.addEventListener("click", handleActionEvent, { passive: false });
+document.addEventListener("pointerup", handleActionEvent, { passive: false });
+
 
   /* -----------------------------------------------------------
      Submit handler
