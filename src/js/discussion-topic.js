@@ -328,7 +328,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const card = cardById.get(r.id);
           if (!card) return;
           threadWrap.appendChild(card);
-          setupVotes(topicId, r.id, card);
+
+          // Only set up votes on non-deleted cards (tombstones do not need vote listeners)
+          if (!r.data.deleted) setupVotes(topicId, r.id, card);
         });
 
       messagesEl.appendChild(threadWrap);
@@ -342,33 +344,47 @@ document.addEventListener("DOMContentLoaded", () => {
      Build a reply card
      ----------------------------------------------------------- */
   function buildReplyCard(replyId, data, depth) {
-  const card = document.createElement("article");
-  card.className = "discussion-message";
-  card.dataset.replyId = replyId;
-  card.id = `comment-${replyId}`;
-  card.dataset.depth = String(depth ?? 0);
-
-  if (data.deleted) {
-    const tombstone = document.createElement("div");
-    tombstone.className = "discussion-message-deleted";
-
-    tombstone.innerHTML = `
-      <em>
-        This contribution was removed
-        ${data.deletedBy === data.userId ? "by the author" : "by a moderator"}.
-      </em>
-    `;
-
-    card.appendChild(tombstone);
-    return card;
-  }
-
+    const card = document.createElement("article");
     card.className = "discussion-message";
     card.dataset.replyId = replyId;
     card.id = `comment-${replyId}`;
     card.dataset.depth = String(depth ?? 0);
 
+    // Maintain userId for badge updates (even on tombstones)
     if (data.userId) card.dataset.userId = data.userId;
+
+    // Tombstone rendering
+    if (data.deleted) {
+      card.classList.add("is-deleted");
+
+      const tombstone = document.createElement("div");
+      tombstone.className = "discussion-message-deleted";
+
+      const who = (data.deletedBy && data.userId && data.deletedBy === data.userId)
+        ? "by the author"
+        : "by a moderator";
+
+      tombstone.innerHTML = `
+        <em>
+          This contribution was removed ${who}.
+        </em>
+      `;
+
+      if (isAdmin) {
+        const restoreBtn = document.createElement("button");
+        restoreBtn.type = "button";
+        restoreBtn.className = "btn-link btn-restore-reply";
+        restoreBtn.dataset.replyId = replyId;
+        restoreBtn.textContent = "Restore";
+        tombstone.appendChild(document.createElement("br"));
+        tombstone.appendChild(restoreBtn);
+      }
+
+      card.appendChild(tombstone);
+      return card;
+    }
+
+    // Normal rendering
     if (data.pinned) card.classList.add("is-pinned");
 
     const header = document.createElement("div");
@@ -440,7 +456,8 @@ document.addEventListener("DOMContentLoaded", () => {
       actions.appendChild(editBtn);
     }
 
-    if (isAdmin) {
+    // Authors should also see delete (soft delete), not just admins
+    if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
       const delBtn = document.createElement("button");
       delBtn.type = "button";
       delBtn.className = "btn-link btn-delete-comment";
@@ -448,7 +465,9 @@ document.addEventListener("DOMContentLoaded", () => {
       delBtn.dataset.topicId = topicId;
       delBtn.textContent = "Delete";
       actions.appendChild(delBtn);
+    }
 
+    if (isAdmin) {
       const pinBtn = document.createElement("button");
       pinBtn.type = "button";
       pinBtn.className = "btn-link btn-pin-reply";
@@ -516,6 +535,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
     const replySnap = await getDoc(replyRef);
     if (!replySnap.exists()) return;
+
+    // Do not allow voting on deleted content
+    if (replySnap.data()?.deleted) {
+      if (statusEl) statusEl.textContent = "You cannot vote on a removed contribution.";
+      return;
+    }
 
     const replyAuthor = replySnap.data().userId;
 
@@ -642,8 +667,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -----------------------------------------------------------
-    Click handlers (reply, vote, pin, delete, thread collapse)
-    Single delegated handler, mobile-safe
+     Click handlers (reply, vote, pin, delete, thread collapse)
+     Single delegated handler, mobile-safe
   ----------------------------------------------------------- */
   async function handleActionEvent(event) {
     const target = event.target;
@@ -653,7 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.type === "click" && event.pointerType === "touch") return;
 
     /* -----------------------------------------
-      DELETE REPLY (author or admin)
+       DELETE REPLY (author or admin) - soft delete
     ----------------------------------------- */
     const deleteBtn = target.closest(".btn-delete-comment");
     if (deleteBtn) {
@@ -661,7 +686,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.stopPropagation();
 
       const replyId = deleteBtn.dataset.commentId;
-      const topicIdArg = deleteBtn.dataset.topicId;
+      const topicIdArg = deleteBtn.dataset.topicId || topicId;
 
       if (!replyId || !topicIdArg) return;
 
@@ -688,17 +713,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         if (!confirmed) return;
 
-        // Delete votes first
-        const votesRef = collection(
-          db,
-          "topics",
-          topicIdArg,
-          "replies",
-          replyId,
-          "votes"
-        );
-
-        // Delete reply
+        // Soft delete: tombstone fields (leave votes intact)
         await setDoc(
           replyRef,
           {
@@ -710,12 +725,26 @@ document.addEventListener("DOMContentLoaded", () => {
           { merge: true }
         );
 
+        // Moderation log (optional but useful)
+        try {
+          await addDoc(collection(db, "moderationLogs"), {
+            action: "delete",
+            topicId: topicIdArg,
+            replyId,
+            performedBy: currentUser.uid,
+            targetUser: data.userId || null,
+            reason: isAdmin ? "moderator" : "author",
+            createdAt: serverTimestamp()
+          });
+        } catch (logErr) {
+          console.warn("[Moderation Log] Unable to write delete log:", logErr);
+        }
+
+        // Optimistic UI: remove immediately (snapshot will re-render tombstone)
         const card = document.getElementById(`comment-${replyId}`);
         if (card) card.remove();
 
-
         if (statusEl) statusEl.textContent = "Reply deleted.";
-
       } catch (err) {
         console.error("[Delete Reply]", err);
         if (statusEl) statusEl.textContent = "Unable to delete reply.";
@@ -725,7 +754,63 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* -----------------------------------------
-      PIN / UNPIN (admin only)
+       RESTORE REPLY (admin only)
+    ----------------------------------------- */
+    const restoreBtn = target.closest(".btn-restore-reply");
+    if (restoreBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!isAdmin) return;
+
+      const replyId = restoreBtn.dataset.replyId;
+      if (!replyId) return;
+
+      try {
+        const replyRef = doc(db, "topics", topicId, "replies", replyId);
+        const snap = await getDoc(replyRef);
+        if (!snap.exists()) return;
+
+        const data = snap.data();
+
+        await setDoc(
+          replyRef,
+          {
+            deleted: false,
+            deletedAt: null,
+            deletedBy: null,
+            deleteReason: null,
+            restoredAt: serverTimestamp(),
+            restoredBy: currentUser.uid
+          },
+          { merge: true }
+        );
+
+        // Moderation log
+        try {
+          await addDoc(collection(db, "moderationLogs"), {
+            action: "restore",
+            topicId,
+            replyId,
+            performedBy: currentUser.uid,
+            targetUser: data.userId || null,
+            createdAt: serverTimestamp()
+          });
+        } catch (logErr) {
+          console.warn("[Moderation Log] Unable to write restore log:", logErr);
+        }
+
+        if (statusEl) statusEl.textContent = "Reply restored.";
+      } catch (err) {
+        console.error("[Restore Reply]", err);
+        if (statusEl) statusEl.textContent = "Unable to restore reply.";
+      }
+
+      return;
+    }
+
+    /* -----------------------------------------
+       PIN / UNPIN (admin only)
     ----------------------------------------- */
     const pinBtn = target.closest(".btn-pin-reply");
     if (pinBtn) {
@@ -759,7 +844,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* -----------------------------------------
-      THREAD COLLAPSE TOGGLE
+       THREAD COLLAPSE TOGGLE
     ----------------------------------------- */
     const collapseToggle = target.closest(".reply-collapse-toggle");
     if (collapseToggle) {
@@ -782,7 +867,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* -----------------------------------------
-      REPLY BUTTON
+       REPLY BUTTON
     ----------------------------------------- */
     const replyBtn = target.closest(".btn-reply-comment");
     if (replyBtn) {
@@ -807,7 +892,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* -----------------------------------------
-      CANCEL REPLY CONTEXT
+       CANCEL REPLY CONTEXT
     ----------------------------------------- */
     if (target.id === "cancel-reply-context") {
       if (parentReplyField) parentReplyField.value = "";
@@ -816,7 +901,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* -----------------------------------------
-      VOTING
+       VOTING
     ----------------------------------------- */
     const voteBtn = target.closest(".vote-btn");
     if (voteBtn) {
@@ -890,7 +975,8 @@ document.addEventListener("DOMContentLoaded", () => {
           body,
           createdAt: serverTimestamp(),
           parentReplyId: parentId,
-          pinned: false
+          pinned: false,
+          deleted: false
         });
 
         Reputation.awardPoints(
