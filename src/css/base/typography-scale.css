@@ -10,6 +10,7 @@
     font-size: var(--font-base-size, 1.05rem);
     line-height: var(--font-base-line, 1.85);
     color: var(--text-primary);
+    -webkit-text-fill-color: var(--text-primary);
   }
 
   html {
