@@ -660,16 +660,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
-      // 🔹 Ensure "Add Your Contribution" section is open
-      const addReplyDetails = document.getElementById("add-reply");
-      if (addReplyDetails && !addReplyDetails.open) {
-        addReplyDetails.open = true;
+      // 🔹 Open the collapsible FIRST (target the <details>, not the section)
+      const addReplySection = document.getElementById("add-reply");
+      const details = addReplySection?.querySelector("details");
+
+      if (details && !details.open) {
+        details.open = true;
       }
 
-      // 🔹 Scroll to the form (not the entire section)
-      if (form) {
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      // 🔹 Wait for layout to update, then scroll
+      requestAnimationFrame(() => {
+        if (form) {
+          form.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
 
       return;
     }
