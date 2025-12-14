@@ -44,23 +44,27 @@
       </p>
     </section>
 
+  <!-- =======================================================
+      DISCUSSION ROOT (FLAT THREAD MODE)
+  ======================================================= -->
+  <section
+    id="discussion-root"
+    class="discussion-thread"
+    data-topic-id="{{ topicId }}"
+    data-min-write-tier="{{ minWriteTier }}"
+  >
 
-    <!-- =======================================================
-         DISCUSSION ROOT (form + nested thread tree)
-         NESTING ONLY WORKS WHEN THREAD LIST IS INSIDE THIS BLOCK
-       ======================================================= -->
-    <section id="discussion-root" class="section-block"
-      data-topic-id="{{ topicId }}"
-      data-min-write-tier="{{ minWriteTier }}">
+    <!-- ADD NEW REPLY FORM -->
+    {% include "components/discussion/reply-prompt.njk" %}
 
-      <!-- ADD NEW REPLY FORM -->
-      {% include "components/discussion/reply-prompt.njk" %}
+    <!-- FLAT THREAD LIST -->
+    <div
+      id="discussion-messages"
+      class="discussion-list"
+      aria-live="polite"
+    ></div>
 
-      <!-- FULL THREAD LIST (must be inside this section!) -->
-      {% include "components/discussion/thread-list.njk" %}
-
-    </section>
-
+  </section>
 
     <!-- SHARE BLOCK -->
     <section id="share" class="section-block">

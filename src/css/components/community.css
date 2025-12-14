@@ -332,31 +332,6 @@
     opacity: 1;
   }
 
-
-  /* ==========================================================
-     NESTED REPLY TREE
-  ========================================================== */
-/* ==========================================================
-   Thread Guide Line (single, calm)
-   ========================================================== */
-
-.discussion-children {
-  position: relative;
-  margin-left: 1rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid rgba(255,255,255,0.15);
-}
-
-@media (max-width: 800px) {
-  .discussion-children {
-    margin-left: 0.75rem;
-    padding-left: 0.5rem;
-    border-left-color: rgba(255,255,255,0.12);
-  }
-}
-
-
-
   /* ==========================================================
      DEPTH-BASED BACKGROUND TONES
   ========================================================== */
@@ -564,34 +539,75 @@
     opacity: 0.75;
   }
 }
+
 /* ==========================================================
-   Discussion Reply Cards (Reddit-style restraint)
+   DISCUSSION THREAD — FLAT MODE
    ========================================================== */
 
-#discussion-root .discussion-message {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--section-border);
+.discussion-thread {
+  margin-top: 2rem;
+}
+
+.discussion-heading {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+}
+
+.discussion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.comment {
+  position: relative;
+  padding: 0.9rem 1rem;
   border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.12);
   box-shadow: none;
 }
-
-/* Remove heavy chrome as depth increases */
-#discussion-root .discussion-message[data-depth="1"] {
-  background: rgba(255,255,255,0.015);
+/* Extra rhythm before new top-level threads */
+.comment[data-depth="0"] {
+  margin-top: 1.75rem;
+}
+.comment {
+  --indent: 0;
 }
 
-#discussion-root .discussion-message[data-depth="2"],
-#discussion-root .discussion-message[data-depth="3"] {
-  background: rgba(255,255,255,0.01);
-  border-color: rgba(255,255,255,0.12);
-}
+.comment[data-depth="1"] { --indent: 1; }
+.comment[data-depth="2"] { --indent: 2; }
+.comment[data-depth="3"] { --indent: 3; }
 
-/* Mobile: flatten further */
+.comment {
+  margin-left: calc(var(--indent) * 1rem);
+}
+.comment[data-depth]:not([data-depth="0"])::before {
+  content: "";
+  position: absolute;
+  left: -0.6rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.15);
+}
 @media (max-width: 800px) {
-  #discussion-root .discussion-message {
-    padding: 0.85rem 0.75rem;
-    border-radius: 6px;
+
+  .comment {
+    padding: 0.75rem 0.85rem;
   }
+
+  .comment {
+    margin-left: calc(var(--indent) * 0.6rem);
+  }
+
+  .comment[data-depth]:not([data-depth="0"])::before {
+    left: -0.4rem;
+  }
+}
+.comment.is-collapsed {
+  display: none;
 }
 
 } /* end @layer components */

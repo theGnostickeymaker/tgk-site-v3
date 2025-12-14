@@ -287,31 +287,6 @@
   margin-top: 2rem;
   color: var(--highlight);
 }
-/* ==========================================================
-   TGK Community Exception
-   Prevent section-block recursion inside discussions
-   ========================================================== */
 
-#discussion-root .section-block {
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-
-/* Allow only the OUTERMOST section-block to render normally */
-#discussion-root > .section-block {
-  margin: var(--space-xl) 0;
-  padding: var(--space-lg);
-  background: linear-gradient(
-    to bottom,
-    var(--section-bg-top),
-    var(--section-bg-bottom)
-  );
-  border: 0.5px solid var(--section-border);
-  border-left: 2px solid var(--section-border);
-  box-shadow: var(--page-shadow-soft);
-}
 
 }
