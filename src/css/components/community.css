@@ -609,5 +609,22 @@
 .comment.is-collapsed {
   display: none;
 }
+.discussion-thread-group {
+  border-left: 2px solid rgba(255,255,255,0.08);
+  margin-bottom: 1.5rem;
+  padding-left: 0.75rem;
+}
+
+.discussion-message {
+  margin-left: calc(var(--depth, 0) * 1rem);
+}
+
+.discussion-message[data-depth] {
+  --depth: attr(data-depth number);
+}
+.discussion-message[data-depth="1"] { margin-left: 1rem; }
+.discussion-message[data-depth="2"] { margin-left: 2rem; }
+.discussion-message[data-depth="3"] { margin-left: 3rem; }
+
 
 } /* end @layer components */
