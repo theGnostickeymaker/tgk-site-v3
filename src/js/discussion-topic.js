@@ -103,7 +103,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getIntent() {
-    return (intentField?.value || "reply").trim();
+  return (intentField?.value || "comment").trim();
+  }
+
+  function updateComposerUI() {
+    if (!form) return;
+
+    const parentId = getParentId();
+    const isReply = Boolean(parentId);
+
+    // Root posts must be "comment"
+    if (!isReply && getIntent() !== "comment") setIntent("comment");
+
+    // Replies cannot be "comment"
+    if (isReply && getIntent() === "comment") setIntent("reply");
+
+    const intent = getIntent();
+    const needsSteel = isReply && intent === "challenge";
+
+    if (steelWrap) steelWrap.hidden = !needsSteel;
+    if (steelField) steelField.required = needsSteel;
+
   }
 
   function setIntent(value) {
@@ -126,21 +146,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const parentId = getParentId();
     const isReply = Boolean(parentId);
 
-    // Root posts are always treated as "reply"
     const intent = getIntent();
-    const effectiveIntent = isReply ? intent : "reply";
-    if (!isReply && intent !== "reply") setIntent("reply");
 
+    // Root posts: always "comment"
+    if (!isReply) {
+      if (intent !== "comment") setIntent("comment");
+    } else {
+      // Replies: never "comment"
+      if (intent === "comment") setIntent("reply");
+    }
+
+    const effectiveIntent = getIntent();
     const needsSteel = isReply && effectiveIntent === "challenge";
 
     if (steelWrap) steelWrap.hidden = !needsSteel;
-
-    if (steelField) {
-      steelField.required = needsSteel;
-      if (!needsSteel) {
-        // Leave text intact in case user typed it intentionally
-      }
-    }
+    if (steelField) steelField.required = needsSteel;
 
     if (bodyField) bodyField.required = true;
 
@@ -781,168 +801,183 @@ document.addEventListener("DOMContentLoaded", () => {
     window.__tgk_discussion_resize = setTimeout(() => applyMobileCollapse(), 120);
   });
 
-  /* -----------------------------------------------------------
-     Click handlers (reply, vote, pin, delete, collapse)
-  ----------------------------------------------------------- */
-  async function handleActionEvent(event) {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-
     /* -----------------------------------------
-       DELETE REPLY (author or admin) - soft delete
-    ----------------------------------------- */
-    const deleteBtn = target.closest(".btn-delete-comment");
-    if (deleteBtn) {
-      event.preventDefault();
-      event.stopPropagation();
+    DELETE REPLY (author or admin) - soft delete
+  ----------------------------------------- */
+  const deleteBtn = target.closest(".btn-delete-comment");
+  if (deleteBtn) {
+    event.preventDefault();
+    event.stopPropagation();
 
-      const replyId = deleteBtn.dataset.commentId;
-      const topicIdArg = deleteBtn.dataset.topicId || topicId;
-      if (!replyId || !topicIdArg) return;
+    const replyId = deleteBtn.dataset.commentId;
+    const topicIdArg = deleteBtn.dataset.topicId || topicId;
+    if (!replyId || !topicIdArg) return;
 
-      if (!currentUser) {
-        if (statusEl) statusEl.textContent = "You must be signed in to delete replies.";
+    if (!currentUser) {
+      if (statusEl) statusEl.textContent = "You must be signed in to delete replies.";
+      return;
+    }
+
+    try {
+      const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
+      const snap = await getDoc(replyRef);
+      if (!snap.exists()) return;
+
+      const data = snap.data();
+      const isAuthor = data.userId === currentUser.uid;
+
+      if (!isAuthor && !isAdmin) {
+        if (statusEl) statusEl.textContent = "You do not have permission to delete this reply.";
         return;
       }
 
+      const confirmed = window.confirm("Delete this reply? This action cannot be undone.");
+      if (!confirmed) return;
+
+      await setDoc(
+        replyRef,
+        {
+          deleted: true,
+          deletedAt: serverTimestamp(),
+          deletedBy: currentUser.uid,
+          deleteReason: isAdmin ? "moderator" : "author"
+        },
+        { merge: true }
+      );
+
+      // Moderation log: author_delete for authors, moderator_delete for admins
       try {
-        const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
-        const snap = await getDoc(replyRef);
-        if (!snap.exists()) return;
+        const action = isAdmin && !isAuthor ? "moderator_delete" : "author_delete";
 
-        const data = snap.data();
-        const isAuthor = data.userId === currentUser.uid;
-
-        if (!isAuthor && !isAdmin) {
-          if (statusEl) statusEl.textContent = "You do not have permission to delete this reply.";
-          return;
-        }
-
-        const confirmed = window.confirm("Delete this reply? This action cannot be undone.");
-        if (!confirmed) return;
-
-        await setDoc(
-          replyRef,
-          {
-            deleted: true,
-            deletedAt: serverTimestamp(),
-            deletedBy: currentUser.uid,
-            deleteReason: isAdmin ? "moderator" : "author"
-          },
-          { merge: true }
-        );
-
-        try {
-          await addDoc(collection(db, "moderationLogs"), {
-            action: "delete",
-            topicId: topicIdArg,
-            replyId,
-            performedBy: currentUser.uid,
-            targetUser: data.userId || null,
-            reason: isAdmin ? "moderator" : "author",
-            createdAt: serverTimestamp()
-          });
-        } catch (logErr) {
-          console.warn("[Moderation Log] Unable to write delete log:", logErr);
-        }
-
-        const card = document.getElementById(`comment-${replyId}`);
-        if (card) card.remove();
-
-        if (statusEl) statusEl.textContent = "Reply deleted.";
-      } catch (err) {
-        console.error("[Delete Reply]", err);
-        if (statusEl) statusEl.textContent = "Unable to delete reply.";
+        await addDoc(collection(db, "moderationLogs"), {
+          action,
+          topicId: topicIdArg,
+          replyId,
+          performedBy: currentUser.uid,
+          targetUser: String(data.userId || ""),
+          reason: isAdmin && !isAuthor ? "moderator" : "author",
+          createdAt: serverTimestamp()
+        });
+      } catch (logErr) {
+        console.warn("[Moderation Log] Unable to write delete log:", logErr);
       }
 
-      return;
+      const card = document.getElementById(`comment-${replyId}`);
+      if (card) card.remove();
+
+      if (statusEl) statusEl.textContent = "Reply deleted.";
+    } catch (err) {
+      console.error("[Delete Reply]", err);
+      if (statusEl) statusEl.textContent = "Unable to delete reply.";
     }
 
-    /* -----------------------------------------
-       RESTORE REPLY (admin only)
-    ----------------------------------------- */
-    const restoreBtn = target.closest(".btn-restore-reply");
-    if (restoreBtn) {
-      event.preventDefault();
-      event.stopPropagation();
+    return;
+  }
 
-      if (!isAdmin) return;
+  /* -----------------------------------------
+    RESTORE REPLY (admin only)
+  ----------------------------------------- */
+  const restoreBtn = target.closest(".btn-restore-reply");
+  if (restoreBtn) {
+    event.preventDefault();
+    event.stopPropagation();
 
-      const replyId = restoreBtn.dataset.replyId;
-      if (!replyId) return;
+    if (!isAdmin) return;
 
-      try {
-        const replyRef = doc(db, "topics", topicId, "replies", replyId);
-        const snap = await getDoc(replyRef);
-        if (!snap.exists()) return;
+    const replyId = restoreBtn.dataset.replyId;
+    if (!replyId) return;
 
-        const data = snap.data();
-
-        await setDoc(
-          replyRef,
-          {
-            deleted: false,
-            deletedAt: null,
-            deletedBy: null,
-            deleteReason: null,
-            restoredAt: serverTimestamp(),
-            restoredBy: currentUser.uid
-          },
-          { merge: true }
-        );
-
-        try {
-          await addDoc(collection(db, "moderationLogs"), {
-            action: "restore",
-            topicId,
-            replyId,
-            performedBy: currentUser.uid,
-            targetUser: data.userId || null,
-            createdAt: serverTimestamp()
-          });
-        } catch (logErr) {
-          console.warn("[Moderation Log] Unable to write restore log:", logErr);
-        }
-
-        if (statusEl) statusEl.textContent = "Reply restored.";
-      } catch (err) {
-        console.error("[Restore Reply]", err);
-        if (statusEl) statusEl.textContent = "Unable to restore reply.";
-      }
-
-      return;
-    }
-
-    /* -----------------------------------------
-       PIN / UNPIN (admin only)
-    ----------------------------------------- */
-    const pinBtn = target.closest(".btn-pin-reply");
-    if (pinBtn) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      if (!isAdmin) return;
-
-      const replyId = pinBtn.dataset.replyId;
-      if (!replyId) return;
-
+    try {
       const replyRef = doc(db, "topics", topicId, "replies", replyId);
       const snap = await getDoc(replyRef);
       if (!snap.exists()) return;
 
-      const currentlyPinned = Boolean(snap.data().pinned);
+      const data = snap.data();
 
+      await setDoc(
+        replyRef,
+        {
+          deleted: false,
+          deletedAt: null,
+          deletedBy: null,
+          deleteReason: null,
+          restoredAt: serverTimestamp(),
+          restoredBy: currentUser.uid
+        },
+        { merge: true }
+      );
+
+      // Moderation log
       try {
-        await setDoc(replyRef, { pinned: !currentlyPinned }, { merge: true });
-        if (statusEl) statusEl.textContent = currentlyPinned ? "Unpinned reply." : "Pinned reply.";
-      } catch (err) {
-        console.error("[Pin Reply]", err);
-        if (statusEl) statusEl.textContent = "Unable to update pin.";
+        await addDoc(collection(db, "moderationLogs"), {
+          action: "restore",
+          topicId,
+          replyId,
+          performedBy: currentUser.uid,
+          targetUser: String(data.userId || ""),
+          reason: "restore",
+          createdAt: serverTimestamp()
+        });
+      } catch (logErr) {
+        console.warn("[Moderation Log] Unable to write restore log:", logErr);
       }
 
-      return;
+      if (statusEl) statusEl.textContent = "Reply restored.";
+    } catch (err) {
+      console.error("[Restore Reply]", err);
+      if (statusEl) statusEl.textContent = "Unable to restore reply.";
     }
 
+    return;
+  }
+
+  /* -----------------------------------------
+    PIN / UNPIN (admin only)
+  ----------------------------------------- */
+  const pinBtn = target.closest(".btn-pin-reply");
+  if (pinBtn) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!isAdmin) return;
+
+    const replyId = pinBtn.dataset.replyId;
+    if (!replyId) return;
+
+    const replyRef = doc(db, "topics", topicId, "replies", replyId);
+    const snap = await getDoc(replyRef);
+    if (!snap.exists()) return;
+
+    const data = snap.data();
+    const currentlyPinned = Boolean(data.pinned);
+    const nextPinned = !currentlyPinned;
+
+    try {
+      await setDoc(replyRef, { pinned: nextPinned }, { merge: true });
+
+      // Moderation log for pin/unpin
+      try {
+        await addDoc(collection(db, "moderationLogs"), {
+          action: nextPinned ? "pin" : "unpin",
+          topicId,
+          replyId,
+          performedBy: currentUser.uid,
+          targetUser: String(data.userId || ""),
+          reason: "moderator",
+          createdAt: serverTimestamp()
+        });
+      } catch (logErr) {
+        console.warn("[Moderation Log] Unable to write pin/unpin log:", logErr);
+      }
+
+      if (statusEl) statusEl.textContent = nextPinned ? "Pinned reply." : "Unpinned reply.";
+    } catch (err) {
+      console.error("[Pin Reply]", err);
+      if (statusEl) statusEl.textContent = "Unable to update pin.";
+    }
+
+    return;
+  }
     /* -----------------------------------------
        THREAD COLLAPSE TOGGLE
     ----------------------------------------- */
@@ -1029,7 +1064,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (statusEl) statusEl.textContent = "Unable to register vote.";
       }
     }
-  }
+    
 
   document.addEventListener("pointerup", handleActionEvent, { passive: false });
 
@@ -1066,7 +1101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const parentId = getParentId();
 
       const isReply = Boolean(parentId);
-      const intent = isReply ? getIntent() : "reply";
+      const intent = isReply ? getIntent() : "comment";
       const isChallengeReply = isReply && intent === "challenge";
 
       if (!body) {

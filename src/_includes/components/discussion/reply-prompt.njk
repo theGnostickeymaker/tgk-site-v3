@@ -6,15 +6,16 @@
   <form id="discussion-form" class="discussion-form">
 
     <div class="form-field">
-      <label for="reply-intent" class="form-label">Reply type</label>
+    <label for="reply-intent" class="form-label">Post type</label>
       <select id="reply-intent" name="intent" class="form-input">
-        <option value="reply" selected>Reply</option>
+        <option value="comment" selected>Comment</option>
+        <option value="reply">Reply</option>
         <option value="agree">Agree</option>
         <option value="insight">Insight</option>
         <option value="challenge">Challenge</option>
       </select>
+
       <p class="muted small">Steel Man is only required for Challenge replies to a specific comment.</p>
-    </div>
 
     <div class="form-field" id="steelman-field-wrap" hidden>
       <label for="steelman-summary" class="form-label">Steel Man Summary</label>
