@@ -1,28 +1,33 @@
 <section id="add" class="section-subblock anchor-target">
 
-  <section id="add" class="section-subblock anchor-target">
-
   <p id="discussion-status" class="discussion-status muted small"></p>
   <p id="discussion-auth-hint" class="muted small"></p>
 
   <form id="discussion-form" class="discussion-form">
 
     <div class="form-field">
+      <label for="reply-intent" class="form-label">Reply type</label>
+      <select id="reply-intent" name="intent" class="form-input">
+        <option value="reply" selected>Reply</option>
+        <option value="agree">Agree</option>
+        <option value="insight">Insight</option>
+        <option value="challenge">Challenge</option>
+      </select>
+      <p class="muted small">Steel Man is only required for Challenge replies to a specific comment.</p>
+    </div>
+
+    <div class="form-field" id="steelman-field-wrap" hidden>
       <label for="steelman-summary" class="form-label">Steel Man Summary</label>
       <textarea id="steelman-summary"
                 name="steelmanSummary"
-                required
-                minlength="30"
                 class="form-textarea"
-                placeholder="Summarise the strongest version of the position you are replying to..."></textarea>
+                placeholder="Summarise the strongest version of the position you are replying to (10 to 40 words)."></textarea>
     </div>
 
     <div class="form-field">
-      <label for="reply-body" class="form-label">Your Response</label>
+      <label for="reply-body" class="form-label">Your response</label>
       <textarea id="reply-body"
                 name="body"
-                required
-                minlength="20"
                 class="form-textarea"
                 placeholder="Offer your analysis, commentary, or reflection..."></textarea>
     </div>
@@ -52,11 +57,10 @@
 
     <div class="btn-row">
       <button type="submit" class="btn">
-        POST REPLY
+        POST
       </button>
     </div>
 
   </form>
 
 </section>
-

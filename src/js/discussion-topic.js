@@ -17,7 +17,6 @@ import {
   addDoc,
   setDoc,
   getDoc,
-  getDocs,
   deleteDoc,
   query,
   orderBy,
@@ -49,6 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const replyContext = document.getElementById("reply-context");
   const replyContextSnippet = document.getElementById("reply-context-snippet");
 
+  // Composer fields
+  const steelField = form?.querySelector("#steelman-summary") || null;
+  const steelWrap = document.getElementById("steelman-field-wrap"); // add in your form partial
+  const bodyField = form?.querySelector("#reply-body") || null;
+  const pseudoField = form?.querySelector("#pseudonym") || null;
+  const intentField = form?.querySelector("#reply-intent") || null;
+
   if (!messagesEl) return;
 
   let currentUser = null;
@@ -57,6 +63,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const reputationSubscriptions = new Map(); // userId -> unsub
   const voteSubscriptions = new Map(); // replyId -> unsub
+
+  /* -----------------------------------------------------------
+     Composer rules
+     ----------------------------------------------------------- */
+  const RULES = {
+    steelMinWords: 10,
+    steelMaxWords: 40,
+    normalMinChars: 10,
+    challengeMinChars: 40
+  };
+
+  function wordCount(str) {
+    return String(str || "").trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  function charCount(str) {
+    return String(str || "").trim().length;
+  }
+
+  function getParentId() {
+    return (parentReplyField?.value || "").trim() || null;
+  }
+
+  function getIntent() {
+    return (intentField?.value || "reply").trim();
+  }
+
+  function setIntent(value) {
+    if (!intentField) return;
+    intentField.value = value;
+  }
+
+  function updateComposerUI() {
+    if (!form) return;
+
+    const parentId = getParentId();
+    const isReply = Boolean(parentId);
+
+    // Root posts cannot be "challenge" in a meaningful sense, treat as normal post
+    const intent = getIntent();
+    const effectiveIntent = isReply ? intent : "reply";
+    if (!isReply && intent !== "reply") setIntent("reply");
+
+    const needsSteel = isReply && effectiveIntent === "challenge";
+
+    if (steelWrap) steelWrap.hidden = !needsSteel;
+    if (steelField) {
+      steelField.required = needsSteel;
+      if (!needsSteel) {
+        // Avoid stale values causing confusion, but do not delete user text if they typed it intentionally
+        // steelField.value = steelField.value || "";
+      }
+    }
+
+    // Body is always required
+    if (bodyField) bodyField.required = true;
+
+    // Optional, but helpful status hinting
+    if (statusEl) {
+      if (!isReply) {
+        statusEl.textContent = "Posting a new thread. Keep it concise and clear.";
+      } else if (needsSteel) {
+        statusEl.textContent = "Challenge reply: Steel Man required.";
+      } else {
+        statusEl.textContent = "Replying in thread.";
+      }
+    }
+  }
 
   /* -----------------------------------------------------------
      Small utilities
@@ -226,6 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     setFormEnabled(true, "You are signed in. Your contribution will appear with your chosen pseudonym.");
+    updateComposerUI();
   });
 
   /* -----------------------------------------------------------
@@ -240,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (snapshot.empty) {
       messagesEl.innerHTML = `
         <p class="muted small">
-          No contributions yet. Be the first to offer a Steel Man summary.
+          No contributions yet. Be the first to start the discussion.
         </p>
       `;
       return;
@@ -674,9 +749,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = event.target;
     if (!(target instanceof Element)) return;
 
-    // 🔒 Prevent double-fire (touch → pointerup + click)
-    if (event.type === "click" && event.pointerType === "touch") return;
-
     /* -----------------------------------------
        DELETE REPLY (author or admin) - soft delete
     ----------------------------------------- */
@@ -878,6 +950,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
+      // Default reply type when replying to someone
+      setIntent("reply");
+      updateComposerUI();
+
       const details = document
         .getElementById("add-reply")
         ?.querySelector("details");
@@ -897,6 +973,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (target.id === "cancel-reply-context") {
       if (parentReplyField) parentReplyField.value = "";
       if (replyContext) replyContext.hidden = true;
+
+      // Reset to root-post mode
+      setIntent("reply");
+      updateComposerUI();
       return;
     }
 
@@ -927,6 +1007,18 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("pointerup", handleActionEvent, { passive: false });
 
   /* -----------------------------------------------------------
+     Composer intent change
+     ----------------------------------------------------------- */
+  if (intentField) {
+    intentField.addEventListener("change", () => {
+      updateComposerUI();
+    });
+  }
+
+  // Initial UI state
+  updateComposerUI();
+
+  /* -----------------------------------------------------------
      Submit handler
      ----------------------------------------------------------- */
   if (form) {
@@ -943,26 +1035,37 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const steelField = form.querySelector("#steelman-summary");
-      const bodyField = form.querySelector("#reply-body");
-      const pseudoField = form.querySelector("#pseudonym");
+      const steel = (steelField?.value || "").trim();
+      const body = (bodyField?.value || "").trim();
+      const pseudo = (pseudoField?.value || "").trim() || "Anonymous Seeker";
+      const parentId = getParentId();
 
-      const steel = steelField?.value.trim() || "";
-      const body = bodyField?.value.trim() || "";
-      const pseudo = pseudoField?.value.trim() || "Anonymous Seeker";
-      const parentId = parentReplyField?.value || null;
+      const isReply = Boolean(parentId);
+      const intent = isReply ? getIntent() : "reply";
+      const isChallengeReply = isReply && intent === "challenge";
 
-      const steelWords = steel.split(/\s+/).filter(Boolean).length;
-      const bodyWords = body.split(/\s+/).filter(Boolean).length;
-
-      if (steelWords < 30) {
-        if (statusEl) statusEl.textContent = "Your Steel Man summary must be at least 30 words.";
+      if (!body) {
+        if (statusEl) statusEl.textContent = "Please write something before posting.";
         return;
       }
 
-      if (bodyWords < 20) {
-        if (statusEl) statusEl.textContent = "Your reply must be at least 20 words.";
-        return;
+      if (isChallengeReply) {
+        if (charCount(body) < RULES.challengeMinChars) {
+          if (statusEl) statusEl.textContent = `Challenge replies must be at least ${RULES.challengeMinChars} characters.`;
+          return;
+        }
+
+        const wc = wordCount(steel);
+        if (wc < RULES.steelMinWords || wc > RULES.steelMaxWords) {
+          if (statusEl) statusEl.textContent =
+            `Steel Man is required for Challenge replies and must be ${RULES.steelMinWords} to ${RULES.steelMaxWords} words.`;
+          return;
+        }
+      } else {
+        if (charCount(body) < RULES.normalMinChars) {
+          if (statusEl) statusEl.textContent = `Please write at least ${RULES.normalMinChars} characters.`;
+          return;
+        }
       }
 
       if (statusEl) statusEl.textContent = "Posting reply...";
@@ -971,8 +1074,9 @@ document.addEventListener("DOMContentLoaded", () => {
         await addDoc(repliesRef, {
           userId: currentUser.uid,
           pseudonym: pseudo,
-          steelmanSummary: steel,
+          steelmanSummary: steel || "",
           body,
+          intent,
           createdAt: serverTimestamp(),
           parentReplyId: parentId,
           pinned: false,
@@ -988,8 +1092,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ).catch(() => {});
 
         form.reset();
+
         if (parentReplyField) parentReplyField.value = "";
         if (replyContext) replyContext.hidden = true;
+
+        // Default state after posting is root-post mode
+        setIntent("reply");
+        updateComposerUI();
 
         if (statusEl) statusEl.textContent = "Reply posted.";
       } catch (err) {

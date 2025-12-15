@@ -1,0 +1,292 @@
+@layer components {
+
+/* ==========================================================
+   CORE CONTAINERS
+========================================================== */
+
+.discussion-thread {
+  margin-top: 2rem;
+  overflow-x: hidden;
+}
+
+.discussion-list,
+#discussion-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  max-width: 100%;
+}
+
+/* Thread group (one root + replies) */
+.discussion-thread-group {
+  border-left: 2px solid rgba(255,255,255,0.08);
+  padding-left: 0.75rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+}
+
+/* ==========================================================
+   MESSAGE CARD
+========================================================== */
+
+.discussion-message {
+  position: relative;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--section-border);
+  border-left: 2px solid var(--accent-page);
+  box-shadow: var(--shadow-soft);
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Root comment emphasis */
+.discussion-message[data-depth="0"] {
+  background: var(--card-gradient);
+  margin-top: 1.5rem;
+}
+
+/* Pinned */
+.discussion-message.is-pinned {
+  border-left-color: var(--glyph-color);
+  box-shadow: 0 0 14px var(--shadow-glow);
+}
+
+/* ==========================================================
+   DEPTH INDENTATION (FLAT)
+========================================================== */
+
+.discussion-message[data-depth="1"] { margin-left: 0.75rem; }
+.discussion-message[data-depth="2"] { margin-left: 1.25rem; }
+
+/* Cap visual drift */
+.discussion-message[data-depth="3"],
+.discussion-message[data-depth="4"],
+.discussion-message[data-depth="5"],
+.discussion-message[data-depth="6"] {
+  margin-left: 1.25rem;
+  border-left-color: rgba(120, 200, 200, 0.35);
+  background: linear-gradient(
+    90deg,
+    rgba(120, 200, 200, 0.06),
+    transparent 40%
+  );
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.discussion-message-header {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.discussion-message-author {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-accent);
+}
+
+.discussion-message-meta {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   STEEL MAN BLOCK
+========================================================== */
+
+.discussion-message-steelman {
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  background: var(--card-gradient);
+  border: 1px dashed var(--section-border);
+  font-style: italic;
+}
+
+.steelman-label {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+.discussion-message-body {
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+/* ==========================================================
+   ACTIONS
+========================================================== */
+
+.discussion-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-accent);
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   VOTING
+========================================================== */
+
+.vote-group {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.vote-btn {
+  display: inline-flex;
+  align-items: centre;
+  gap: 0.25rem;
+  padding: 0.25rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: var(--card-bg);
+  touch-action: manipulation;
+}
+
+.vote-btn[data-vote-type="insight"] {
+  background: var(--vote-insight-bg);
+  color: var(--vote-insight);
+}
+
+.vote-btn[data-vote-type="agree"] {
+  background: var(--vote-agree-bg);
+  color: var(--vote-agree);
+}
+
+.vote-btn[data-vote-type="challenge"] {
+  background: var(--vote-challenge-bg);
+  color: var(--vote-challenge);
+}
+
+.vote-btn.active {
+  box-shadow: 0 0 8px currentColor;
+  color: #fff;
+}
+
+.vote-count {
+  opacity: 0.85;
+}
+
+/* ==========================================================
+   VOTE ANIMATIONS
+========================================================== */
+
+.vote-ripple {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  opacity: 0.35;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: vote-ripple 0.4s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes vote-ripple {
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+.insight-particle {
+  position: absolute;
+  pointer-events: none;
+  font-size: 0.9rem;
+  color: var(--vote-insight);
+  animation: insight-rise 0.7s ease-out forwards;
+}
+
+@keyframes insight-rise {
+  to {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================
+   COLLAPSE (FLAT THREADS)
+========================================================== */
+
+.discussion-message.is-collapsed {
+  display: none;
+}
+
+.reply-collapse-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.reply-collapse-toggle:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+  .discussion-message {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    max-width: 100%;
+  }
+
+  .discussion-message[data-depth="1"] { margin-left: 0.6rem; }
+  .discussion-message[data-depth="2"] { margin-left: 1rem; }
+  .discussion-message[data-depth="3"],
+  .discussion-message[data-depth="4"] {
+    margin-left: 1rem;
+  }
+
+  .vote-label {
+    display: none;
+  }
+
+  .vote-btn {
+    min-width: 44px;
+  }
+}
+
+} /* end @layer components */
