@@ -514,6 +514,23 @@
     opacity: 0.9;
   }
 
+  .reply-intent-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:.15rem .55rem;
+    border:1px solid var(--section-border);
+    border-radius:999px;
+    font-size:.75rem;
+    opacity:.9;
+    margin-left:.5rem;
+  }
+
+  .discussion-message.just-replied{
+    outline:2px solid var(--link-accent, #9ff);
+    outline-offset:2px;
+  }
+
+
   /* ==========================================================
      HIGHLIGHT ANIMATION
   ========================================================== */

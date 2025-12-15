@@ -1,8 +1,10 @@
 /* =============================================================
-   TGK Community — Topic Engine v3.6 (Reddit-style Flat Threads)
+   TGK Community — Topic Engine v3.7 (Reddit-style Flat Threads)
    • Flat thread rendering grouped by root comment (no nested DOM)
    • Depth-indentation via data-depth (CSS)
    • Voting (Insight / Agree / Challenge) with ripple + particles
+   • Vote -> Reply flow (auto-intent + scroll)
+   • Reply type badge per post (Reply / Agree / Insight / Challenge)
    • Pin / unpin (admin)
    • Reputation hooks + live badges
    • Reply-context preview when replying
@@ -50,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Composer fields
   const steelField = form?.querySelector("#steelman-summary") || null;
-  const steelWrap = document.getElementById("steelman-field-wrap"); // add in your form partial
+  const steelWrap = document.getElementById("steelman-field-wrap"); // in your form partial
   const bodyField = form?.querySelector("#reply-body") || null;
   const pseudoField = form?.querySelector("#pseudonym") || null;
   const intentField = form?.querySelector("#reply-intent") || null;
@@ -63,6 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const reputationSubscriptions = new Map(); // userId -> unsub
   const voteSubscriptions = new Map(); // replyId -> unsub
+
+  /* -----------------------------------------------------------
+     Vote -> Reply flow memory
+     ----------------------------------------------------------- */
+  let lastVoteAction = {
+    replyId: null,
+    type: null, // "insight" | "agree" | "challenge"
+    at: 0
+  };
+
+  // The comment we are replying to, used for post-scroll-back
+  let activeReplyTargetId = null;
+
+  const VOTE_TO_REPLY_WINDOW_MS = 5 * 60 * 1000; // 5 minutes
 
   /* -----------------------------------------------------------
      Composer rules
@@ -95,13 +111,22 @@ document.addEventListener("DOMContentLoaded", () => {
     intentField.value = value;
   }
 
+  function intentLabel(intent) {
+    switch (intent) {
+      case "insight": return "Insight";
+      case "agree": return "Agree";
+      case "challenge": return "Challenge";
+      default: return "Reply";
+    }
+  }
+
   function updateComposerUI() {
     if (!form) return;
 
     const parentId = getParentId();
     const isReply = Boolean(parentId);
 
-    // Root posts cannot be "challenge" in a meaningful sense, treat as normal post
+    // Root posts are always treated as "reply"
     const intent = getIntent();
     const effectiveIntent = isReply ? intent : "reply";
     if (!isReply && intent !== "reply") setIntent("reply");
@@ -109,18 +134,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const needsSteel = isReply && effectiveIntent === "challenge";
 
     if (steelWrap) steelWrap.hidden = !needsSteel;
+
     if (steelField) {
       steelField.required = needsSteel;
       if (!needsSteel) {
-        // Avoid stale values causing confusion, but do not delete user text if they typed it intentionally
-        // steelField.value = steelField.value || "";
+        // Leave text intact in case user typed it intentionally
       }
     }
 
-    // Body is always required
     if (bodyField) bodyField.required = true;
 
-    // Optional, but helpful status hinting
     if (statusEl) {
       if (!isReply) {
         statusEl.textContent = "Posting a new thread. Keep it concise and clear.";
@@ -130,6 +153,26 @@ document.addEventListener("DOMContentLoaded", () => {
         statusEl.textContent = "Replying in thread.";
       }
     }
+  }
+
+  function openComposerAndScroll() {
+    const detailsEl = document.getElementById("add-reply")?.querySelector("details");
+    if (detailsEl && !detailsEl.open) detailsEl.open = true;
+
+    requestAnimationFrame(() => {
+      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function scrollToComment(commentId) {
+    if (!commentId) return;
+    requestAnimationFrame(() => {
+      const el = document.getElementById(`comment-${commentId}`);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.classList.add("just-replied");
+      setTimeout(() => el.classList.remove("just-replied"), 1200);
+    });
   }
 
   /* -----------------------------------------------------------
@@ -404,14 +447,13 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!card) return;
           threadWrap.appendChild(card);
 
-          // Only set up votes on non-deleted cards (tombstones do not need vote listeners)
+          // Only set up votes on non-deleted cards
           if (!r.data.deleted) setupVotes(topicId, r.id, card);
         });
 
       messagesEl.appendChild(threadWrap);
     });
 
-    // Apply mobile collapse after render
     applyMobileCollapse();
   });
 
@@ -459,7 +501,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return card;
     }
 
-    // Normal rendering
     if (data.pinned) card.classList.add("is-pinned");
 
     const header = document.createElement("div");
@@ -475,8 +516,15 @@ document.addEventListener("DOMContentLoaded", () => {
     meta.className = "discussion-message-meta";
     meta.textContent = toLocalTime(data.createdAt);
 
+    const intent = (data.intent || "reply").trim();
+    const badge = document.createElement("span");
+    badge.className = "reply-intent-badge";
+    badge.dataset.intent = intent;
+    badge.textContent = intentLabel(intent);
+
     header.appendChild(author);
     header.appendChild(meta);
+    header.appendChild(badge);
 
     const steelBlock = document.createElement("div");
     steelBlock.className = "discussion-message-steelman reply-steelman-body";
@@ -531,7 +579,6 @@ document.addEventListener("DOMContentLoaded", () => {
       actions.appendChild(editBtn);
     }
 
-    // Authors should also see delete (soft delete), not just admins
     if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
       const delBtn = document.createElement("button");
       delBtn.type = "button";
@@ -611,7 +658,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const replySnap = await getDoc(replyRef);
     if (!replySnap.exists()) return;
 
-    // Do not allow voting on deleted content
     if (replySnap.data()?.deleted) {
       if (statusEl) statusEl.textContent = "You cannot vote on a removed contribution.";
       return;
@@ -694,12 +740,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Mobile collapse (flat threads)
-     - Collapses cards within each thread group where depth >= 3
-     - Adds a single toggle per thread group
      ----------------------------------------------------------- */
   function applyMobileCollapse() {
     if (window.innerWidth > 768) {
-      // On desktop, ensure everything is visible and remove toggles
       document.querySelectorAll(".discussion-thread-group").forEach(group => {
         group.querySelectorAll(".discussion-message.is-collapsed").forEach(c => {
           c.classList.remove("is-collapsed");
@@ -716,10 +759,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (deepCards.length === 0) return;
 
-      // Collapse deep cards by default on mobile
       deepCards.forEach(c => c.classList.add("is-collapsed"));
 
-      // Ensure exactly one toggle per group
       let toggle = group.querySelector(".reply-collapse-toggle");
       if (!toggle) {
         toggle = document.createElement("button");
@@ -736,14 +777,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("resize", () => {
-    // Light debounce for resize
     clearTimeout(window.__tgk_discussion_resize);
     window.__tgk_discussion_resize = setTimeout(() => applyMobileCollapse(), 120);
   });
 
   /* -----------------------------------------------------------
-     Click handlers (reply, vote, pin, delete, thread collapse)
-     Single delegated handler, mobile-safe
+     Click handlers (reply, vote, pin, delete, collapse)
   ----------------------------------------------------------- */
   async function handleActionEvent(event) {
     const target = event.target;
@@ -759,7 +798,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const replyId = deleteBtn.dataset.commentId;
       const topicIdArg = deleteBtn.dataset.topicId || topicId;
-
       if (!replyId || !topicIdArg) return;
 
       if (!currentUser) {
@@ -780,12 +818,9 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const confirmed = window.confirm(
-          "Delete this reply? This action cannot be undone."
-        );
+        const confirmed = window.confirm("Delete this reply? This action cannot be undone.");
         if (!confirmed) return;
 
-        // Soft delete: tombstone fields (leave votes intact)
         await setDoc(
           replyRef,
           {
@@ -797,7 +832,6 @@ document.addEventListener("DOMContentLoaded", () => {
           { merge: true }
         );
 
-        // Moderation log (optional but useful)
         try {
           await addDoc(collection(db, "moderationLogs"), {
             action: "delete",
@@ -812,7 +846,6 @@ document.addEventListener("DOMContentLoaded", () => {
           console.warn("[Moderation Log] Unable to write delete log:", logErr);
         }
 
-        // Optimistic UI: remove immediately (snapshot will re-render tombstone)
         const card = document.getElementById(`comment-${replyId}`);
         if (card) card.remove();
 
@@ -858,7 +891,6 @@ document.addEventListener("DOMContentLoaded", () => {
           { merge: true }
         );
 
-        // Moderation log
         try {
           await addDoc(collection(db, "moderationLogs"), {
             action: "restore",
@@ -901,11 +933,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentlyPinned = Boolean(snap.data().pinned);
 
       try {
-        await setDoc(
-          replyRef,
-          { pinned: !currentlyPinned },
-          { merge: true }
-        );
+        await setDoc(replyRef, { pinned: !currentlyPinned }, { merge: true });
         if (statusEl) statusEl.textContent = currentlyPinned ? "Unpinned reply." : "Pinned reply.";
       } catch (err) {
         console.error("[Pin Reply]", err);
@@ -930,40 +958,35 @@ document.addEventListener("DOMContentLoaded", () => {
       const collapsed = deepCards.some(c => c.classList.contains("is-collapsed"));
       deepCards.forEach(c => c.classList.toggle("is-collapsed", !collapsed));
 
-      collapseToggle.textContent = collapsed
-        ? "Hide replies"
-        : `View ${deepCards.length} replies`;
-
+      collapseToggle.textContent = collapsed ? "Hide replies" : `View ${deepCards.length} replies`;
       collapseToggle.setAttribute("aria-expanded", String(collapsed));
       return;
     }
 
     /* -----------------------------------------
        REPLY BUTTON
+       - Auto-set reply type based on last vote on this comment
     ----------------------------------------- */
     const replyBtn = target.closest(".btn-reply-comment");
     if (replyBtn) {
       const replyId = replyBtn.dataset.replyId;
       const snippet = replyBtn.dataset.snippet || "";
+      if (!replyId) return;
 
-      if (parentReplyField && replyId) parentReplyField.value = replyId;
+      activeReplyTargetId = replyId;
+
+      if (parentReplyField) parentReplyField.value = replyId;
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
-      // Default reply type when replying to someone
-      setIntent("reply");
+      // Auto intent: if the user recently voted on THIS same reply, mirror that vote type
+      const isFreshVote = (Date.now() - (lastVoteAction.at || 0)) < VOTE_TO_REPLY_WINDOW_MS;
+      const shouldMatch = isFreshVote && lastVoteAction.replyId === replyId && lastVoteAction.type;
+
+      setIntent(shouldMatch ? lastVoteAction.type : "reply");
       updateComposerUI();
 
-      const details = document
-        .getElementById("add-reply")
-        ?.querySelector("details");
-
-      if (details && !details.open) details.open = true;
-
-      requestAnimationFrame(() => {
-        if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-
+      openComposerAndScroll();
       return;
     }
 
@@ -974,7 +997,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (parentReplyField) parentReplyField.value = "";
       if (replyContext) replyContext.hidden = true;
 
-      // Reset to root-post mode
+      activeReplyTargetId = null;
+
       setIntent("reply");
       updateComposerUI();
       return;
@@ -982,6 +1006,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* -----------------------------------------
        VOTING
+       - Records last vote type so Reply can auto-match
     ----------------------------------------- */
     const voteBtn = target.closest(".vote-btn");
     if (voteBtn) {
@@ -990,6 +1015,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const replyId = voteBtn.dataset.replyId;
       const voteType = voteBtn.dataset.voteType;
       if (!replyId || !voteType) return;
+
+      // Record the action for Vote -> Reply flow
+      lastVoteAction = { replyId, type: voteType, at: Date.now() };
 
       spawnRipple(voteBtn, event.clientX || 0, event.clientY || 0);
       if (voteType === "insight") spawnInsightParticles(voteBtn);
@@ -1003,23 +1031,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* Attach once */
   document.addEventListener("pointerup", handleActionEvent, { passive: false });
 
   /* -----------------------------------------------------------
      Composer intent change
      ----------------------------------------------------------- */
   if (intentField) {
-    intentField.addEventListener("change", () => {
-      updateComposerUI();
-    });
+    intentField.addEventListener("change", () => updateComposerUI());
   }
 
-  // Initial UI state
   updateComposerUI();
 
   /* -----------------------------------------------------------
      Submit handler
+     - After posting: close form and scroll back to the comment replied to
      ----------------------------------------------------------- */
   if (form) {
     form.addEventListener("submit", async (evt) => {
@@ -1100,7 +1125,17 @@ document.addEventListener("DOMContentLoaded", () => {
         setIntent("reply");
         updateComposerUI();
 
+        // Close the composer
+        const detailsEl = document.getElementById("add-reply")?.querySelector("details");
+        if (detailsEl) detailsEl.open = false;
+
         if (statusEl) statusEl.textContent = "Reply posted.";
+
+        // Scroll back to the comment the user replied to
+        const backTo = activeReplyTargetId || parentId;
+        activeReplyTargetId = null;
+        if (backTo) scrollToComment(backTo);
+
       } catch (err) {
         console.error("[Reply Error]", err);
         if (statusEl) statusEl.textContent = "There was a problem posting your reply. Please try again.";
