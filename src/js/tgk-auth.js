@@ -24,22 +24,23 @@ await setPersistence(auth, browserLocalPersistence);
 console.log("[Auth] Persistence set to localStorage");
 
 onAuthStateChanged(auth, async (user) => {
-  if (authResolved) return;
-  authResolved = true;
-
   if (!user) {
     removeVerifyBanner();
-    document.documentElement.classList.add("auth-guest");
     return;
   }
 
-  document.documentElement.classList.add("auth-user");
-
   try {
     await user.reload();
-  } catch {}
-});
+  } catch (err) {
+    console.warn("[Auth] Could not reload:", err.message);
+  }
 
+  if (!user.emailVerified) {
+    showVerifyBanner(user);
+  } else {
+    removeVerifyBanner();
+  }
+});
 
 /* ===========================================================
    RETURN URL GATE LINK
@@ -276,8 +277,7 @@ verifyChannel.onmessage = async (msg) => {
     await auth.currentUser?.reload();
     await auth.currentUser?.getIdToken(true);
     removeVerifyBanner();
-    window.location.replace("/dashboard/");
-
+    window.location.reload();
   }
 };
 
@@ -287,12 +287,11 @@ verifyChannel.onmessage = async (msg) => {
 
 setInterval(async () => {
   const u = auth.currentUser;
-  if (!u || u.emailVerified) return;
+  if (!u) return;
 
   await u.reload();
   if (u.emailVerified) {
     removeVerifyBanner();
-    document.documentElement.classList.add("email-verified");
+    window.location.reload();
   }
-}, 15000);
-
+}, 5000);
