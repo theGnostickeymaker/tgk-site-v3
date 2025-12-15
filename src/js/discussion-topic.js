@@ -1,15 +1,7 @@
 /* =============================================================
-   TGK Community — Topic Engine v3.7 (Reddit-style Flat Threads)
-   • Flat thread rendering grouped by root comment (no nested DOM)
-   • Depth-indentation via data-depth (CSS)
-   • Voting (Insight / Agree / Challenge) with ripple + particles
-   • Vote -> Reply flow (auto-intent + scroll)
-   • Reply type badge per post (Reply / Agree / Insight / Challenge)
-   • Pin / unpin (admin)
-   • Reputation hooks + live badges
-   • Reply-context preview when replying
-   • Mobile auto-collapse for deep replies (depth >= 3) per thread
-   • Safe rendering + guards
+   TGK Community — Topic Engine v3.7
+   Fix: Root posts must use intent="comment" to satisfy rules
+   Adds: remembers last vote per reply and preselects reply type on Reply
    ============================================================= */
 
 import { auth, db } from "/js/firebase-init.js";
@@ -32,7 +24,7 @@ import { Reputation } from "./reputation.js";
 document.addEventListener("DOMContentLoaded", () => {
   /* -----------------------------------------------------------
      Core DOM references
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   const root = document.getElementById("discussion-root");
   if (!root) return;
 
@@ -52,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Composer fields
   const steelField = form?.querySelector("#steelman-summary") || null;
-  const steelWrap = document.getElementById("steelman-field-wrap"); // in your form partial
+  const steelWrap = document.getElementById("steelman-field-wrap");
   const bodyField = form?.querySelector("#reply-body") || null;
   const pseudoField = form?.querySelector("#pseudonym") || null;
   const intentField = form?.querySelector("#reply-intent") || null;
@@ -66,23 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const reputationSubscriptions = new Map(); // userId -> unsub
   const voteSubscriptions = new Map(); // replyId -> unsub
 
-  /* -----------------------------------------------------------
-     Vote -> Reply flow memory
-     ----------------------------------------------------------- */
-  let lastVoteAction = {
-    replyId: null,
-    type: null, // "insight" | "agree" | "challenge"
-    at: 0
-  };
-
-  // The comment we are replying to, used for post-scroll-back
-  let activeReplyTargetId = null;
-
-  const VOTE_TO_REPLY_WINDOW_MS = 5 * 60 * 1000; // 5 minutes
+  // Remembers last vote type per reply so Reply can preselect it
+  const lastVoteByReply = new Map(); // replyId -> "insight"|"agree"|"challenge"
 
   /* -----------------------------------------------------------
      Composer rules
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   const RULES = {
     steelMinWords: 10,
     steelMaxWords: 40,
@@ -102,28 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return (parentReplyField?.value || "").trim() || null;
   }
 
-  function getIntent() {
-  return (intentField?.value || "comment").trim();
-  }
-
-  function updateComposerUI() {
-    if (!form) return;
-
-    const parentId = getParentId();
-    const isReply = Boolean(parentId);
-
-    // Root posts must be "comment"
-    if (!isReply && getIntent() !== "comment") setIntent("comment");
-
-    // Replies cannot be "comment"
-    if (isReply && getIntent() === "comment") setIntent("reply");
-
-    const intent = getIntent();
-    const needsSteel = isReply && intent === "challenge";
-
-    if (steelWrap) steelWrap.hidden = !needsSteel;
-    if (steelField) steelField.required = needsSteel;
-
+  function getIntentRaw() {
+    return (intentField?.value || "comment").trim();
   }
 
   function setIntent(value) {
@@ -131,33 +92,33 @@ document.addEventListener("DOMContentLoaded", () => {
     intentField.value = value;
   }
 
-  function intentLabel(intent) {
-    switch (intent) {
-      case "insight": return "Insight";
-      case "agree": return "Agree";
-      case "challenge": return "Challenge";
-      default: return "Reply";
+  function isRootComposer() {
+    return !getParentId();
+  }
+
+  function normaliseIntentForComposer() {
+    // Root posts must be "comment" to satisfy rules
+    if (isRootComposer()) {
+      if (getIntentRaw() !== "comment") setIntent("comment");
+      return "comment";
     }
+
+    // Replies: must not be "comment"
+    const i = getIntentRaw();
+    if (i === "comment") {
+      setIntent("reply");
+      return "reply";
+    }
+    return i;
   }
 
   function updateComposerUI() {
     if (!form) return;
 
-    const parentId = getParentId();
-    const isReply = Boolean(parentId);
+    const isReply = Boolean(getParentId());
+    const intent = normaliseIntentForComposer();
 
-    const intent = getIntent();
-
-    // Root posts: always "comment"
-    if (!isReply) {
-      if (intent !== "comment") setIntent("comment");
-    } else {
-      // Replies: never "comment"
-      if (intent === "comment") setIntent("reply");
-    }
-
-    const effectiveIntent = getIntent();
-    const needsSteel = isReply && effectiveIntent === "challenge";
+    const needsSteel = isReply && intent === "challenge";
 
     if (steelWrap) steelWrap.hidden = !needsSteel;
     if (steelField) steelField.required = needsSteel;
@@ -175,29 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function openComposerAndScroll() {
-    const detailsEl = document.getElementById("add-reply")?.querySelector("details");
-    if (detailsEl && !detailsEl.open) detailsEl.open = true;
-
-    requestAnimationFrame(() => {
-      if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
-
-  function scrollToComment(commentId) {
-    if (!commentId) return;
-    requestAnimationFrame(() => {
-      const el = document.getElementById(`comment-${commentId}`);
-      if (!el) return;
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      el.classList.add("just-replied");
-      setTimeout(() => el.classList.remove("just-replied"), 1200);
-    });
-  }
-
   /* -----------------------------------------------------------
      Small utilities
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   function escapeHtml(str) {
     return String(str || "")
       .replaceAll("&", "&amp;")
@@ -222,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Tier helpers
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   function tierRank(tier) {
     switch (tier) {
       case "initiate": return 1;
@@ -254,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Reputation badge helpers
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   function keysRank(score) {
     if (score >= 500) return "Guardian";
     if (score >= 200) return "Keeper";
@@ -336,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Auth tracking
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   onAuthStateChanged(auth, async (user) => {
     currentUser = user || null;
     currentTier = "free";
@@ -368,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Flat thread rendering (grouped by root comment)
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   const repliesRef = collection(db, "topics", topicId, "replies");
   const repliesQuery = query(repliesRef, orderBy("createdAt", "asc"));
 
@@ -401,7 +342,6 @@ document.addEventListener("DOMContentLoaded", () => {
         depth += 1;
         parent = p.data.parentReplyId;
       }
-
       return depth;
     }
 
@@ -415,7 +355,6 @@ document.addEventListener("DOMContentLoaded", () => {
         rootId = p.id;
         parent = p.data.parentReplyId;
       }
-
       return rootId;
     }
 
@@ -425,20 +364,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (r.data.userId) ensureReputationSubscription(r.data.userId);
     });
 
-    // Build cards once
     const cardById = new Map();
     allReplies.forEach(r => {
       cardById.set(r.id, buildReplyCard(r.id, r.data, r.depth));
     });
 
-    // Group into thread buckets
-    const threads = new Map(); // rootId -> reply[]
+    const threads = new Map();
     allReplies.forEach(r => {
       if (!threads.has(r.rootId)) threads.set(r.rootId, []);
       threads.get(r.rootId).push(r);
     });
 
-    // Stable ordering: pinned threads first (if the root comment is pinned)
     const threadEntries = Array.from(threads.entries()).map(([rootId, items]) => {
       const rootReply = byId.get(rootId);
       const pinned = Boolean(rootReply?.data?.pinned);
@@ -451,7 +387,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return a.rootTime - b.rootTime;
     });
 
-    // Render
     threadEntries.forEach(({ rootId, items }) => {
       const threadWrap = document.createElement("div");
       threadWrap.className = "discussion-thread-group";
@@ -466,8 +401,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const card = cardById.get(r.id);
           if (!card) return;
           threadWrap.appendChild(card);
-
-          // Only set up votes on non-deleted cards
           if (!r.data.deleted) setupVotes(topicId, r.id, card);
         });
 
@@ -479,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Build a reply card
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   function buildReplyCard(replyId, data, depth) {
     const card = document.createElement("article");
     card.className = "discussion-message";
@@ -487,10 +420,8 @@ document.addEventListener("DOMContentLoaded", () => {
     card.id = `comment-${replyId}`;
     card.dataset.depth = String(depth ?? 0);
 
-    // Maintain userId for badge updates (even on tombstones)
     if (data.userId) card.dataset.userId = data.userId;
 
-    // Tombstone rendering
     if (data.deleted) {
       card.classList.add("is-deleted");
 
@@ -501,11 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "by the author"
         : "by a moderator";
 
-      tombstone.innerHTML = `
-        <em>
-          This contribution was removed ${who}.
-        </em>
-      `;
+      tombstone.innerHTML = `<em>This contribution was removed ${who}.</em>`;
 
       if (isAdmin) {
         const restoreBtn = document.createElement("button");
@@ -536,15 +463,8 @@ document.addEventListener("DOMContentLoaded", () => {
     meta.className = "discussion-message-meta";
     meta.textContent = toLocalTime(data.createdAt);
 
-    const intent = (data.intent || "reply").trim();
-    const badge = document.createElement("span");
-    badge.className = "reply-intent-badge";
-    badge.dataset.intent = intent;
-    badge.textContent = intentLabel(intent);
-
     header.appendChild(author);
     header.appendChild(meta);
-    header.appendChild(badge);
 
     const steelBlock = document.createElement("div");
     steelBlock.className = "discussion-message-steelman reply-steelman-body";
@@ -628,18 +548,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Voting system
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   function setupVotes(topicIdArg, replyId, card) {
     if (voteSubscriptions.has(replyId)) return;
 
-    const votesRef = collection(
-      db,
-      "topics",
-      topicIdArg,
-      "replies",
-      replyId,
-      "votes"
-    );
+    const votesRef = collection(db, "topics", topicIdArg, "replies", replyId, "votes");
 
     const unsub = onSnapshot(votesRef, (snapshot) => {
       const counts = { insight: 0, agree: 0, challenge: 0 };
@@ -647,12 +560,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       snapshot.forEach((snap) => {
         const v = snap.data();
-        if (v && v.type && counts[v.type] != null) {
-          counts[v.type] = (counts[v.type] || 0) + 1;
-        }
-        if (currentUser && snap.id === currentUser.uid && v && v.type) {
-          userVote = v.type;
-        }
+        if (v && v.type && counts[v.type] != null) counts[v.type] += 1;
+        if (currentUser && snap.id === currentUser.uid && v && v.type) userVote = v.type;
       });
 
       Object.entries(counts).forEach(([type, count]) => {
@@ -685,16 +594,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const replyAuthor = replySnap.data().userId;
 
-    const voteRef = doc(
-      db,
-      "topics",
-      topicIdArg,
-      "replies",
-      replyId,
-      "votes",
-      currentUser.uid
-    );
-
+    const voteRef = doc(db, "topics", topicIdArg, "replies", replyId, "votes", currentUser.uid);
     const voteSnap = await getDoc(voteRef);
     const prevType = voteSnap.exists() ? voteSnap.data().type : null;
 
@@ -729,7 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Voting animations
-     ----------------------------------------------------------- */
+ ----------------------------------------------------------- */
   function spawnRipple(btn, x, y) {
     const ripple = document.createElement("span");
     ripple.className = "vote-ripple";
@@ -760,7 +660,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -----------------------------------------------------------
      Mobile collapse (flat threads)
-     ----------------------------------------------------------- */
+ ----------------------------------------------------------- */
   function applyMobileCollapse() {
     if (window.innerWidth > 768) {
       document.querySelectorAll(".discussion-thread-group").forEach(group => {
@@ -776,7 +676,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".discussion-thread-group").forEach(group => {
       const cards = Array.from(group.querySelectorAll(".discussion-message"));
       const deepCards = cards.filter(c => Number(c.dataset.depth || 0) >= 3);
-
       if (deepCards.length === 0) return;
 
       deepCards.forEach(c => c.classList.add("is-collapsed"));
@@ -801,183 +700,253 @@ document.addEventListener("DOMContentLoaded", () => {
     window.__tgk_discussion_resize = setTimeout(() => applyMobileCollapse(), 120);
   });
 
+  /* -----------------------------------------------------------
+     Click handlers (reply, vote, pin, delete, collapse)
+ ----------------------------------------------------------- */
+  async function handleActionEvent(event) {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
     /* -----------------------------------------
-    DELETE REPLY (author or admin) - soft delete
-  ----------------------------------------- */
-  const deleteBtn = target.closest(".btn-delete-comment");
-  if (deleteBtn) {
-    event.preventDefault();
-    event.stopPropagation();
+       VOTING
+    ----------------------------------------- */
+    const voteBtn = target.closest(".vote-btn");
+    if (voteBtn) {
+      event.preventDefault();
 
-    const replyId = deleteBtn.dataset.commentId;
-    const topicIdArg = deleteBtn.dataset.topicId || topicId;
-    if (!replyId || !topicIdArg) return;
+      const replyId = voteBtn.dataset.replyId;
+      const voteType = voteBtn.dataset.voteType;
+      if (!replyId || !voteType) return;
 
-    if (!currentUser) {
-      if (statusEl) statusEl.textContent = "You must be signed in to delete replies.";
+      lastVoteByReply.set(replyId, voteType);
+
+      spawnRipple(voteBtn, event.clientX || 0, event.clientY || 0);
+      if (voteType === "insight") spawnInsightParticles(voteBtn);
+
+      try {
+        await toggleVote(topicId, replyId, voteType);
+      } catch (err) {
+        console.error("[Vote] Error:", err);
+        if (statusEl) statusEl.textContent = "Unable to register vote.";
+      }
       return;
     }
 
-    try {
-      const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
-      const snap = await getDoc(replyRef);
-      if (!snap.exists()) return;
+    /* -----------------------------------------
+       REPLY BUTTON
+    ----------------------------------------- */
+    const replyBtn = target.closest(".btn-reply-comment");
+    if (replyBtn) {
+      const replyId = replyBtn.dataset.replyId;
+      const snippet = replyBtn.dataset.snippet || "";
+      if (!replyId) return;
 
-      const data = snap.data();
-      const isAuthor = data.userId === currentUser.uid;
+      if (parentReplyField) parentReplyField.value = replyId;
+      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
+      if (replyContext) replyContext.hidden = false;
 
-      if (!isAuthor && !isAdmin) {
-        if (statusEl) statusEl.textContent = "You do not have permission to delete this reply.";
+      // Preselect reply type based on last vote for this reply (if any)
+      const remembered = lastVoteByReply.get(replyId);
+      setIntent(remembered || "reply");
+
+      updateComposerUI();
+
+      const details = document.getElementById("add-reply")?.querySelector("details");
+      if (details && !details.open) details.open = true;
+
+      requestAnimationFrame(() => {
+        if (form) form.scrollIntoView({ behaviour: "smooth", block: "start" });
+      });
+
+      return;
+    }
+
+    /* -----------------------------------------
+       CANCEL REPLY CONTEXT
+    ----------------------------------------- */
+    if (target.id === "cancel-reply-context") {
+      if (parentReplyField) parentReplyField.value = "";
+      if (replyContext) replyContext.hidden = true;
+
+      setIntent("comment");
+      updateComposerUI();
+      return;
+    }
+
+    /* -----------------------------------------
+       DELETE REPLY (soft delete)
+    ----------------------------------------- */
+    const deleteBtn = target.closest(".btn-delete-comment");
+    if (deleteBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const replyId = deleteBtn.dataset.commentId;
+      const topicIdArg = deleteBtn.dataset.topicId || topicId;
+      if (!replyId || !topicIdArg) return;
+
+      if (!currentUser) {
+        if (statusEl) statusEl.textContent = "You must be signed in to delete replies.";
         return;
       }
 
-      const confirmed = window.confirm("Delete this reply? This action cannot be undone.");
-      if (!confirmed) return;
-
-      await setDoc(
-        replyRef,
-        {
-          deleted: true,
-          deletedAt: serverTimestamp(),
-          deletedBy: currentUser.uid,
-          deleteReason: isAdmin ? "moderator" : "author"
-        },
-        { merge: true }
-      );
-
-      // Moderation log: author_delete for authors, moderator_delete for admins
       try {
-        const action = isAdmin && !isAuthor ? "moderator_delete" : "author_delete";
+        const replyRef = doc(db, "topics", topicIdArg, "replies", replyId);
+        const snap = await getDoc(replyRef);
+        if (!snap.exists()) return;
 
-        await addDoc(collection(db, "moderationLogs"), {
-          action,
-          topicId: topicIdArg,
-          replyId,
-          performedBy: currentUser.uid,
-          targetUser: String(data.userId || ""),
-          reason: isAdmin && !isAuthor ? "moderator" : "author",
-          createdAt: serverTimestamp()
-        });
-      } catch (logErr) {
-        console.warn("[Moderation Log] Unable to write delete log:", logErr);
+        const data = snap.data();
+        const isAuthor = data.userId === currentUser.uid;
+
+        if (!isAuthor && !isAdmin) {
+          if (statusEl) statusEl.textContent = "You do not have permission to delete this reply.";
+          return;
+        }
+
+        const confirmed = window.confirm("Delete this reply? This action cannot be undone.");
+        if (!confirmed) return;
+
+        await setDoc(
+          replyRef,
+          {
+            deleted: true,
+            deletedAt: serverTimestamp(),
+            deletedBy: currentUser.uid,
+            deleteReason: isAdmin ? "moderator" : "author"
+          },
+          { merge: true }
+        );
+
+        // Optional logging (admin only in your rules unless you loosen it)
+        if (isAdmin) {
+          try {
+            await addDoc(collection(db, "moderationLogs"), {
+              action: isAdmin ? "moderator_delete" : "author_delete",
+              topicId: topicIdArg,
+              replyId,
+              performedBy: currentUser.uid,
+              targetUser: data.userId || "",
+              reason: isAdmin ? "moderator" : "author",
+              createdAt: serverTimestamp()
+            });
+          } catch (logErr) {
+            console.warn("[Moderation Log] Unable to write delete log:", logErr);
+          }
+        }
+
+        const card = document.getElementById(`comment-${replyId}`);
+        if (card) card.remove();
+
+        if (statusEl) statusEl.textContent = "Reply deleted.";
+      } catch (err) {
+        console.error("[Delete Reply]", err);
+        if (statusEl) statusEl.textContent = `Unable to delete reply. ${err?.message || ""}`.trim();
       }
 
-      const card = document.getElementById(`comment-${replyId}`);
-      if (card) card.remove();
-
-      if (statusEl) statusEl.textContent = "Reply deleted.";
-    } catch (err) {
-      console.error("[Delete Reply]", err);
-      if (statusEl) statusEl.textContent = "Unable to delete reply.";
+      return;
     }
 
-    return;
-  }
+    /* -----------------------------------------
+       RESTORE REPLY (admin only)
+    ----------------------------------------- */
+    const restoreBtn = target.closest(".btn-restore-reply");
+    if (restoreBtn) {
+      event.preventDefault();
+      event.stopPropagation();
 
-  /* -----------------------------------------
-    RESTORE REPLY (admin only)
-  ----------------------------------------- */
-  const restoreBtn = target.closest(".btn-restore-reply");
-  if (restoreBtn) {
-    event.preventDefault();
-    event.stopPropagation();
+      if (!isAdmin) return;
 
-    if (!isAdmin) return;
+      const replyId = restoreBtn.dataset.replyId;
+      if (!replyId) return;
 
-    const replyId = restoreBtn.dataset.replyId;
-    if (!replyId) return;
+      try {
+        const replyRef = doc(db, "topics", topicId, "replies", replyId);
+        const snap = await getDoc(replyRef);
+        if (!snap.exists()) return;
 
-    try {
+        const data = snap.data();
+
+        await setDoc(
+          replyRef,
+          {
+            deleted: false,
+            deletedAt: null,
+            deletedBy: null,
+            deleteReason: null,
+            restoredAt: serverTimestamp(),
+            restoredBy: currentUser.uid
+          },
+          { merge: true }
+        );
+
+        try {
+          await addDoc(collection(db, "moderationLogs"), {
+            action: "restore",
+            topicId,
+            replyId,
+            performedBy: currentUser.uid,
+            targetUser: data.userId || "",
+            reason: "restore",
+            createdAt: serverTimestamp()
+          });
+        } catch (logErr) {
+          console.warn("[Moderation Log] Unable to write restore log:", logErr);
+        }
+
+        if (statusEl) statusEl.textContent = "Reply restored.";
+      } catch (err) {
+        console.error("[Restore Reply]", err);
+        if (statusEl) statusEl.textContent = `Unable to restore reply. ${err?.message || ""}`.trim();
+      }
+
+      return;
+    }
+
+    /* -----------------------------------------
+       PIN / UNPIN (admin only)
+    ----------------------------------------- */
+    const pinBtn = target.closest(".btn-pin-reply");
+    if (pinBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!isAdmin) return;
+
+      const replyId = pinBtn.dataset.replyId;
+      if (!replyId) return;
+
       const replyRef = doc(db, "topics", topicId, "replies", replyId);
       const snap = await getDoc(replyRef);
       if (!snap.exists()) return;
 
-      const data = snap.data();
+      const currentlyPinned = Boolean(snap.data().pinned);
 
-      await setDoc(
-        replyRef,
-        {
-          deleted: false,
-          deletedAt: null,
-          deletedBy: null,
-          deleteReason: null,
-          restoredAt: serverTimestamp(),
-          restoredBy: currentUser.uid
-        },
-        { merge: true }
-      );
-
-      // Moderation log
       try {
-        await addDoc(collection(db, "moderationLogs"), {
-          action: "restore",
-          topicId,
-          replyId,
-          performedBy: currentUser.uid,
-          targetUser: String(data.userId || ""),
-          reason: "restore",
-          createdAt: serverTimestamp()
-        });
-      } catch (logErr) {
-        console.warn("[Moderation Log] Unable to write restore log:", logErr);
+        await setDoc(replyRef, { pinned: !currentlyPinned }, { merge: true });
+
+        try {
+          await addDoc(collection(db, "moderationLogs"), {
+            action: currentlyPinned ? "unpin" : "pin",
+            topicId,
+            replyId,
+            performedBy: currentUser.uid,
+            targetUser: snap.data().userId || "",
+            reason: currentlyPinned ? "unpin" : "pin",
+            createdAt: serverTimestamp()
+          });
+        } catch (logErr) {
+          console.warn("[Moderation Log] Unable to write pin log:", logErr);
+        }
+
+        if (statusEl) statusEl.textContent = currentlyPinned ? "Unpinned reply." : "Pinned reply.";
+      } catch (err) {
+        console.error("[Pin Reply]", err);
+        if (statusEl) statusEl.textContent = `Unable to update pin. ${err?.message || ""}`.trim();
       }
 
-      if (statusEl) statusEl.textContent = "Reply restored.";
-    } catch (err) {
-      console.error("[Restore Reply]", err);
-      if (statusEl) statusEl.textContent = "Unable to restore reply.";
+      return;
     }
 
-    return;
-  }
-
-  /* -----------------------------------------
-    PIN / UNPIN (admin only)
-  ----------------------------------------- */
-  const pinBtn = target.closest(".btn-pin-reply");
-  if (pinBtn) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (!isAdmin) return;
-
-    const replyId = pinBtn.dataset.replyId;
-    if (!replyId) return;
-
-    const replyRef = doc(db, "topics", topicId, "replies", replyId);
-    const snap = await getDoc(replyRef);
-    if (!snap.exists()) return;
-
-    const data = snap.data();
-    const currentlyPinned = Boolean(data.pinned);
-    const nextPinned = !currentlyPinned;
-
-    try {
-      await setDoc(replyRef, { pinned: nextPinned }, { merge: true });
-
-      // Moderation log for pin/unpin
-      try {
-        await addDoc(collection(db, "moderationLogs"), {
-          action: nextPinned ? "pin" : "unpin",
-          topicId,
-          replyId,
-          performedBy: currentUser.uid,
-          targetUser: String(data.userId || ""),
-          reason: "moderator",
-          createdAt: serverTimestamp()
-        });
-      } catch (logErr) {
-        console.warn("[Moderation Log] Unable to write pin/unpin log:", logErr);
-      }
-
-      if (statusEl) statusEl.textContent = nextPinned ? "Pinned reply." : "Unpinned reply.";
-    } catch (err) {
-      console.error("[Pin Reply]", err);
-      if (statusEl) statusEl.textContent = "Unable to update pin.";
-    }
-
-    return;
-  }
     /* -----------------------------------------
        THREAD COLLAPSE TOGGLE
     ----------------------------------------- */
@@ -997,90 +966,21 @@ document.addEventListener("DOMContentLoaded", () => {
       collapseToggle.setAttribute("aria-expanded", String(collapsed));
       return;
     }
-
-    /* -----------------------------------------
-       REPLY BUTTON
-       - Auto-set reply type based on last vote on this comment
-    ----------------------------------------- */
-    const replyBtn = target.closest(".btn-reply-comment");
-    if (replyBtn) {
-      const replyId = replyBtn.dataset.replyId;
-      const snippet = replyBtn.dataset.snippet || "";
-      if (!replyId) return;
-
-      activeReplyTargetId = replyId;
-
-      if (parentReplyField) parentReplyField.value = replyId;
-      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
-      if (replyContext) replyContext.hidden = false;
-
-      // Auto intent: if the user recently voted on THIS same reply, mirror that vote type
-      const isFreshVote = (Date.now() - (lastVoteAction.at || 0)) < VOTE_TO_REPLY_WINDOW_MS;
-      const shouldMatch = isFreshVote && lastVoteAction.replyId === replyId && lastVoteAction.type;
-
-      setIntent(shouldMatch ? lastVoteAction.type : "reply");
-      updateComposerUI();
-
-      openComposerAndScroll();
-      return;
-    }
-
-    /* -----------------------------------------
-       CANCEL REPLY CONTEXT
-    ----------------------------------------- */
-    if (target.id === "cancel-reply-context") {
-      if (parentReplyField) parentReplyField.value = "";
-      if (replyContext) replyContext.hidden = true;
-
-      activeReplyTargetId = null;
-
-      setIntent("reply");
-      updateComposerUI();
-      return;
-    }
-
-    /* -----------------------------------------
-       VOTING
-       - Records last vote type so Reply can auto-match
-    ----------------------------------------- */
-    const voteBtn = target.closest(".vote-btn");
-    if (voteBtn) {
-      event.preventDefault();
-
-      const replyId = voteBtn.dataset.replyId;
-      const voteType = voteBtn.dataset.voteType;
-      if (!replyId || !voteType) return;
-
-      // Record the action for Vote -> Reply flow
-      lastVoteAction = { replyId, type: voteType, at: Date.now() };
-
-      spawnRipple(voteBtn, event.clientX || 0, event.clientY || 0);
-      if (voteType === "insight") spawnInsightParticles(voteBtn);
-
-      try {
-        await toggleVote(topicId, replyId, voteType);
-      } catch (err) {
-        console.error("[Vote] Error:", err);
-        if (statusEl) statusEl.textContent = "Unable to register vote.";
-      }
-    }
-    
+  }
 
   document.addEventListener("pointerup", handleActionEvent, { passive: false });
 
-  /* -----------------------------------------------------------
-     Composer intent change
-     ----------------------------------------------------------- */
   if (intentField) {
     intentField.addEventListener("change", () => updateComposerUI());
   }
 
+  // Initial UI state
+  setIntent("comment");
   updateComposerUI();
 
   /* -----------------------------------------------------------
      Submit handler
-     - After posting: close form and scroll back to the comment replied to
-     ----------------------------------------------------------- */
+  ----------------------------------------------------------- */
   if (form) {
     form.addEventListener("submit", async (evt) => {
       evt.preventDefault();
@@ -1098,10 +998,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const steel = (steelField?.value || "").trim();
       const body = (bodyField?.value || "").trim();
       const pseudo = (pseudoField?.value || "").trim() || "Anonymous Seeker";
-      const parentId = getParentId();
 
+      const parentId = getParentId();
       const isReply = Boolean(parentId);
-      const intent = isReply ? getIntent() : "comment";
+
+      // IMPORTANT: root posts must be intent="comment"
+      const intent = isReply ? normaliseIntentForComposer() : "comment";
+      if (!isReply) setIntent("comment");
+
       const isChallengeReply = isReply && intent === "challenge";
 
       if (!body) {
@@ -1128,7 +1032,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if (statusEl) statusEl.textContent = "Posting reply...";
+      if (statusEl) statusEl.textContent = "Posting...";
 
       try {
         await addDoc(repliesRef, {
@@ -1138,7 +1042,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body,
           intent,
           createdAt: serverTimestamp(),
-          parentReplyId: parentId,
+          parentReplyId: parentId, // null for root posts
           pinned: false,
           deleted: false
         });
@@ -1151,29 +1055,19 @@ document.addEventListener("DOMContentLoaded", () => {
           topicId
         ).catch(() => {});
 
+        // Reset form back to root-comment mode
         form.reset();
-
         if (parentReplyField) parentReplyField.value = "";
         if (replyContext) replyContext.hidden = true;
 
-        // Default state after posting is root-post mode
-        setIntent("reply");
+        setIntent("comment");
         updateComposerUI();
 
-        // Close the composer
-        const detailsEl = document.getElementById("add-reply")?.querySelector("details");
-        if (detailsEl) detailsEl.open = false;
-
-        if (statusEl) statusEl.textContent = "Reply posted.";
-
-        // Scroll back to the comment the user replied to
-        const backTo = activeReplyTargetId || parentId;
-        activeReplyTargetId = null;
-        if (backTo) scrollToComment(backTo);
-
+        if (statusEl) statusEl.textContent = "Posted.";
       } catch (err) {
         console.error("[Reply Error]", err);
-        if (statusEl) statusEl.textContent = "There was a problem posting your reply. Please try again.";
+        if (statusEl) statusEl.textContent =
+          `There was a problem posting. ${err?.message || ""}`.trim();
       }
     });
   }
