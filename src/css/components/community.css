@@ -16,8 +16,18 @@
     font-size: 1.15rem;
     line-height: 1.9;
     color: var(--text-primary);
-    max-width: 65ch;
+    max-width: 100%;
   }
+
+  .lead p {
+    margin: 0 0 1rem 0;
+  }
+
+  .lead p:last-child {
+    margin-bottom: 0;
+  }
+
+
 
   /* ==========================================================
      FORM ELEMENTS
