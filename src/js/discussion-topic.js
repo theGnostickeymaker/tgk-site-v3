@@ -1,12 +1,9 @@
 /* =============================================================
-   TGK Community, Topic Engine v3.9
+   TGK Community, Topic Engine v3.8
    Fix: Root posts must use intent="comment" to satisfy rules
    Fix: Vote counts + active state survive re-render (cached per reply, then applied on rebuild)
    Adds: Remembers user vote per reply and preselects reply type on Reply
    Adds: Locks composer select for root vs reply modes
-   Adds: Steel Man required once per user per topic (only for Challenge replies)
-   Fix: Form submit handler always fires (no native required blocking)
-   Fix: Vote clicks do not trigger parent navigation or scroll
    ============================================================= */
 
 import { auth, db } from "/js/firebase-init.js";
@@ -47,8 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const replyContext = document.getElementById("reply-context");
   const replyContextSnippet = document.getElementById("reply-context-snippet");
 
-  if (!messagesEl) return;
-
   // Composer fields
   const steelField = form?.querySelector("#steelman-summary") || null;
   const steelWrap = document.getElementById("steelman-field-wrap");
@@ -56,34 +51,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const pseudoField = form?.querySelector("#pseudonym") || null;
   const intentField = form?.querySelector("#reply-intent") || null;
 
-  if (form) {
-    // Critical: stop native validation from blocking the submit event.
-    form.noValidate = true;
-  }
+  if (!messagesEl) return;
 
-  /* -----------------------------------------------------------
-     State
-  ----------------------------------------------------------- */
   let currentUser = null;
   let currentTier = "free";
   let isAdmin = false;
-
   let pendingScrollToReplyId = null; // set after post, consumed after next render
 
   const reputationSubscriptions = new Map(); // userId -> unsub
   const voteSubscriptions = new Map(); // replyId -> unsub
 
   // Keeps the user's current vote per reply (synced by votes snapshot)
-  const lastVoteByReply = new Map(); // replyId -> "insight" | "agree" | "challenge"
+  const lastVoteByReply = new Map(); // replyId -> "insight"|"agree"|"challenge"
 
-  // Cache vote state so rebuilt DOM can be immediately hydrated
-  const voteStateByReply = new Map(); // replyId -> { counts: {..}, userVote: string|null, ready: boolean }
-
-  // Steel Man is required once per user per topic (only for Challenge replies)
-  let steelmanSatisfiedForThread = false;
-
-  // Cache latest replies so we can recompute Steel Man satisfaction on auth changes
-  let lastRepliesCache = [];
+  // Critical fix: cache vote state so rebuilt DOM can be immediately hydrated
+  const voteStateByReply = new Map(); // replyId -> { counts: {..}, userVote: string|null }
 
   /* -----------------------------------------------------------
      Composer rules
@@ -103,28 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return String(str || "").trim().length;
   }
 
-  function escapeHtml(str) {
-    return String(str || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-
-  function toLocalTime(ts) {
-    try {
-      const d = ts?.toDate?.();
-      return d ? d.toLocaleString() : "Pending timestamp";
-    } catch {
-      return "Pending timestamp";
-    }
-  }
-
-  function createdSeconds(data) {
-    return Number(data?.createdAt?.seconds || 0);
-  }
-
   function getParentId() {
     return (parentReplyField?.value || "").trim() || null;
   }
@@ -142,63 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return !getParentId();
   }
 
-  function tierRank(tier) {
-    switch (tier) {
-      case "initiate": return 1;
-      case "adept": return 2;
-      case "admin": return 3;
-      default: return 0;
-    }
-  }
-
-  function minTierSatisfied() {
-    return tierRank(currentTier) >= tierRank(minWriteTierAttr);
-  }
-
-  function setFormEnabled(enabled, message) {
-    if (!form) return;
-
-    if (enabled) {
-      form.classList.remove("is-disabled");
-      Array.from(form.elements).forEach(el => {
-        if (el && "disabled" in el) el.disabled = false;
-      });
-    } else {
-      form.classList.add("is-disabled");
-      Array.from(form.elements).forEach(el => {
-        if (el && "disabled" in el) el.disabled = true;
-      });
-    }
-
-    if (authHintEl && typeof message === "string") authHintEl.textContent = message;
-  }
-
-  /* -----------------------------------------------------------
-     Steel Man satisfaction (once per user per topic)
-  ----------------------------------------------------------- */
-  function refreshSteelmanSatisfiedFlag() {
-    if (!currentUser) {
-      steelmanSatisfiedForThread = false;
-      return;
-    }
-
-    const satisfied = lastRepliesCache.some(r => {
-      if (!r?.data) return false;
-      if (r.data.userId !== currentUser.uid) return false;
-      return String(r.data.steelmanSummary || "").trim().length > 0;
-    });
-
-    if (satisfied !== steelmanSatisfiedForThread) {
-      steelmanSatisfiedForThread = satisfied;
-      updateComposerUI();
-    }
-  }
-
-  /* -----------------------------------------------------------
-     Composer intent rules
-  ----------------------------------------------------------- */
   function normaliseIntentForComposer() {
-    // Root posts must be "comment"
+    // Root posts must be "comment" to satisfy rules
     if (isRootComposer()) {
       if (getIntentRaw() !== "comment") setIntent("comment");
       return "comment";
@@ -232,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (agreeOpt) agreeOpt.disabled = true;
       if (insightOpt) insightOpt.disabled = true;
       if (challengeOpt) challengeOpt.disabled = true;
+
       setIntent("comment");
     } else {
       // Reply composer: everything except comment
@@ -240,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (agreeOpt) agreeOpt.disabled = false;
       if (insightOpt) insightOpt.disabled = false;
       if (challengeOpt) challengeOpt.disabled = false;
+
       if (getIntentRaw() === "comment") setIntent("reply");
     }
   }
@@ -251,18 +158,18 @@ document.addEventListener("DOMContentLoaded", () => {
     lockComposerOptions(isReply);
 
     const intent = normaliseIntentForComposer();
-    const needsSteel = isReply && intent === "challenge" && !steelmanSatisfiedForThread;
+    const needsSteel = isReply && intent === "challenge";
 
     if (steelWrap) steelWrap.hidden = !needsSteel;
-    if (!needsSteel && steelField) steelField.value = "";
+    if (steelField) steelField.required = needsSteel;
+
+    if (bodyField) bodyField.required = true;
 
     if (statusEl) {
       if (!isReply) {
         statusEl.textContent = "Posting a new comment. Keep it concise and clear.";
-      } else if (intent === "challenge" && steelmanSatisfiedForThread) {
-        statusEl.textContent = "Challenge reply: Steel Man already completed for this topic.";
       } else if (needsSteel) {
-        statusEl.textContent = "Challenge reply: Steel Man required (once per topic).";
+        statusEl.textContent = "Challenge reply: Steel Man required.";
       } else {
         statusEl.textContent = "Replying in thread.";
       }
@@ -270,7 +177,83 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* -----------------------------------------------------------
-     Reputation badges
+     Small utilities
+  ----------------------------------------------------------- */
+  function escapeHtml(str) {
+    return String(str || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function toLocalTime(ts) {
+    try {
+      const d = ts?.toDate?.();
+      return d ? d.toLocaleString() : "Pending timestamp";
+    } catch {
+      return "Pending timestamp";
+    }
+  }
+
+  function createdSeconds(data) {
+    return Number(data?.createdAt?.seconds || 0);
+  }function getComposerHost() {
+  return document.getElementById("add") || document.getElementById("add-reply");
+}
+
+function openComposer() {
+  const host = getComposerHost();
+  const details = host?.querySelector("details");
+  if (details) details.open = true;
+
+  requestAnimationFrame(() => {
+    (host || form)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+function closeComposer() {
+  const host = getComposerHost();
+  const details = host?.querySelector("details");
+  if (details) details.open = false;
+}
+
+
+  /* -----------------------------------------------------------
+     Tier helpers
+  ----------------------------------------------------------- */
+  function tierRank(tier) {
+    switch (tier) {
+      case "initiate": return 1;
+      case "adept": return 2;
+      case "admin": return 3;
+      default: return 0;
+    }
+  }
+
+  function minTierSatisfied() {
+    return tierRank(currentTier) >= tierRank(minWriteTierAttr);
+  }
+
+  function setFormEnabled(enabled, message) {
+    if (!form) return;
+
+    if (enabled) {
+      form.classList.remove("is-disabled");
+      Array.from(form.elements).forEach(el => { el.disabled = false; });
+    } else {
+      form.classList.add("is-disabled");
+      Array.from(form.elements).forEach(el => {
+        if (el && el.tagName !== "P") el.disabled = true;
+      });
+    }
+
+    if (authHintEl && message) authHintEl.textContent = message;
+  }
+
+  /* -----------------------------------------------------------
+     Reputation badge helpers
   ----------------------------------------------------------- */
   function keysRank(score) {
     if (score >= 500) return "Guardian";
@@ -316,8 +299,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       el.textContent = badge ? `${baseName} ${badge}` : baseName;
 
-      if (rank && score > 0) el.title = `Keys rank: ${rank} (${score} Keys)`;
-      else el.removeAttribute("title");
+      if (rank && score > 0) {
+        el.title = `Keys rank: ${rank} (${score} Keys)`;
+      } else {
+        el.removeAttribute("title");
+      }
     });
   }
 
@@ -340,7 +326,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const repData = snap.exists() ? snap.data() : null;
         updateAuthorBadges(userId, repData);
       },
-      error => console.warn("[Reputation] Snapshot error:", error)
+      error => {
+        console.warn("[Reputation] Snapshot error:", error);
+      }
     );
 
     reputationSubscriptions.set(userId, unsub);
@@ -356,8 +344,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!user) {
       setFormEnabled(false, "You are currently signed out. Sign in to join the discussion.");
-      steelmanSatisfiedForThread = false;
-      updateComposerUI();
       return;
     }
 
@@ -373,52 +359,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!minTierSatisfied()) {
       setFormEnabled(false, `Upgrade to “${minWriteTierAttr}” to contribute.`);
-      updateComposerUI();
       return;
     }
 
     setFormEnabled(true, "You are signed in. Your contribution will appear with your chosen pseudonym.");
-    refreshSteelmanSatisfiedFlag();
     updateComposerUI();
   });
 
   /* -----------------------------------------------------------
-     Vote UI hydration
+     Vote UI hydration (critical for surviving re-render)
   ----------------------------------------------------------- */
   function getCachedVoteState(replyId) {
-    const cached = voteStateByReply.get(replyId);
-    if (cached && cached.counts) return cached;
-    return { counts: { insight: 0, agree: 0, challenge: 0 }, userVote: null, ready: false };
+  const cached = voteStateByReply.get(replyId);
+  if (cached && cached.counts) return cached;
+  return { counts: { insight: 0, agree: 0, challenge: 0 }, userVote: null, ready: false };
+}
+
+function applyVoteStateToCard(replyId, card) {
+  if (!card) return;
+
+  const state = getCachedVoteState(replyId);
+  const voteGroup = card.querySelector(`.vote-group[data-reply-id="${replyId}"]`);
+
+  if (voteGroup) {
+    voteGroup.classList.toggle("is-loading", !state.ready);
   }
 
-  function applyVoteStateToCard(replyId, card) {
-    if (!card) return;
-
-    const state = getCachedVoteState(replyId);
-    const voteGroup = card.querySelector(`.vote-group[data-reply-id="${replyId}"]`);
-    if (voteGroup) voteGroup.classList.toggle("is-loading", !state.ready);
-
-    if (!state.ready) {
-      ["insight", "agree", "challenge"].forEach(type => {
-        const el = card.querySelector(`.vote-count[data-count-type="${type}"]`);
-        if (el) el.textContent = "…";
-      });
-      card.querySelectorAll(".vote-btn").forEach(btn => btn.classList.remove("is-voted"));
-      return;
-    }
-
-    Object.entries(state.counts).forEach(([type, count]) => {
+  // If not ready, show ellipsis placeholders
+  if (!state.ready) {
+    ["insight", "agree", "challenge"].forEach(type => {
       const el = card.querySelector(`.vote-count[data-count-type="${type}"]`);
-      if (el) el.textContent = String(count);
+      if (el) el.textContent = "…";
     });
 
-    card.querySelectorAll(".vote-btn").forEach(btn => {
-      btn.classList.toggle("is-voted", btn.dataset.voteType === state.userVote);
-    });
+    card.querySelectorAll(".vote-btn").forEach(btn => btn.classList.remove("is-voted"));
+    return;
   }
+
+  // Ready: show real counts and active state
+  Object.entries(state.counts).forEach(([type, count]) => {
+    const el = card.querySelector(`.vote-count[data-count-type="${type}"]`);
+    if (el) el.textContent = String(count);
+  });
+
+  card.querySelectorAll(".vote-btn").forEach(btn => {
+    btn.classList.toggle("is-voted", btn.dataset.voteType === state.userVote);
+  });
+}
 
   /* -----------------------------------------------------------
-     Rendering (flat threads grouped by root)
+     Flat thread rendering (grouped by root comment)
   ----------------------------------------------------------- */
   const repliesRef = collection(db, "topics", topicId, "replies");
   const repliesQuery = query(repliesRef, orderBy("createdAt", "asc"));
@@ -440,14 +430,12 @@ document.addEventListener("DOMContentLoaded", () => {
       data: docSnap.data()
     }));
 
-    lastRepliesCache = allReplies;
-    refreshSteelmanSatisfiedFlag();
-
     const byId = new Map(allReplies.map(r => [r.id, r]));
 
     function getDepth(reply) {
       let depth = 0;
       let parent = reply.data.parentReplyId;
+
       while (parent) {
         const p = byId.get(parent);
         if (!p) break;
@@ -460,6 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getRootId(reply) {
       let rootId = reply.id;
       let parent = reply.data.parentReplyId;
+
       while (parent) {
         const p = byId.get(parent);
         if (!p) break;
@@ -479,6 +468,8 @@ document.addEventListener("DOMContentLoaded", () => {
     allReplies.forEach(r => {
       const card = buildReplyCard(r.id, r.data, r.depth);
       cardById.set(r.id, card);
+
+      // Critical: hydrate vote counts and active state from cache immediately
       applyVoteStateToCard(r.id, card);
     });
 
@@ -516,6 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           threadWrap.appendChild(card);
 
+          // Keep vote listeners alive; they will update cache and DOM when they fire
           if (!r.data.deleted) setupVotes(topicId, r.id);
         });
 
@@ -524,15 +516,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     applyMobileCollapse();
 
+    // After render: jump to the newly created reply (if any)
     if (pendingScrollToReplyId) {
       const id = pendingScrollToReplyId;
       pendingScrollToReplyId = null;
 
+      // Ensure it is visible even on mobile collapse
       const el = document.getElementById(`comment-${id}`);
       if (el) {
         el.classList.remove("is-collapsed");
+
         el.scrollIntoView({ behavior: "smooth", block: "center" });
         el.classList.add("just-posted");
+
         window.setTimeout(() => el.classList.remove("just-posted"), 1400);
       }
     }
@@ -611,6 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const steelBlock = document.createElement("div");
     steelBlock.className = "discussion-message-steelman reply-steelman-body";
+
     if (data.steelmanSummary) {
       steelBlock.innerHTML = `
         <div class="steelman-label">Steel Man Summary</div>
@@ -633,6 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
     replyBtn.textContent = "Reply";
     actions.appendChild(replyBtn);
 
+    // Use cached vote state for initial render (prevents 0s after re-render)
     const cached = getCachedVoteState(replyId);
     const counts = cached.counts;
     const cInsight = cached.ready ? String(counts.insight) : "…";
@@ -656,7 +654,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <span class="vote-count" data-count-type="challenge">${cChallenge}</span>
       </button>
     `;
+
     if (!cached.ready) voteGroup.classList.add("is-loading");
+
     actions.appendChild(voteGroup);
 
     if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
-  /* -----------------------------------------------------------
+    /* -----------------------------------------------------------
      Voting system (DOM-safe + cached)
   ----------------------------------------------------------- */
   function setupVotes(topicIdArg, replyId) {
@@ -713,13 +713,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentUser && snap.id === currentUser.uid && v && v.type) userVote = v.type;
       });
 
+      // Cache state so rebuilt DOM can be hydrated instantly
       voteStateByReply.set(replyId, { counts, userVote, ready: true });
 
+      // Keep last vote per reply in sync for the reply composer preselect
       if (userVote) lastVoteByReply.set(replyId, userVote);
       else lastVoteByReply.delete(replyId);
 
+      // Live update current DOM if present
       const liveCard = document.getElementById(`comment-${replyId}`);
       if (liveCard) {
+        // Optional: disable voting on own posts in the UI
         if (currentUser && liveCard.dataset.userId === currentUser.uid) {
           liveCard.querySelectorAll(".vote-btn").forEach((btn) => {
             btn.disabled = true;
@@ -728,6 +732,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.title = "You cannot vote on your own contribution.";
           });
         }
+
         applyVoteStateToCard(replyId, liveCard);
       }
     });
@@ -746,12 +751,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!replySnap.exists()) return;
 
     const replyData = replySnap.data() || {};
+
     if (replyData.deleted) {
       if (statusEl) statusEl.textContent = "You cannot vote on a removed contribution.";
       return;
     }
 
     const replyAuthor = replyData.userId || null;
+
+    // Block self-voting (UX guard)
     if (replyAuthor && currentUser.uid === replyAuthor) {
       if (statusEl) statusEl.textContent = "You cannot vote on your own contribution.";
       return;
@@ -790,6 +798,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
   /* -----------------------------------------------------------
      Voting animations
   ----------------------------------------------------------- */
@@ -802,7 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ripple.style.top = `${y - rect.top - 7}px`;
 
     btn.appendChild(ripple);
-    window.setTimeout(() => ripple.remove(), 450);
+    setTimeout(() => ripple.remove(), 450);
   }
 
   function spawnInsightParticles(btn) {
@@ -818,7 +827,7 @@ document.addEventListener("DOMContentLoaded", () => {
     particle.style.top = "0px";
 
     btn.appendChild(particle);
-    window.setTimeout(() => particle.remove(), 750);
+    setTimeout(() => particle.remove(), 750);
   }
 
   /* -----------------------------------------------------------
@@ -827,7 +836,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyMobileCollapse() {
     if (window.innerWidth > 768) {
       document.querySelectorAll(".discussion-thread-group").forEach(group => {
-        group.querySelectorAll(".discussion-message.is-collapsed").forEach(c => c.classList.remove("is-collapsed"));
+        group.querySelectorAll(".discussion-message.is-collapsed").forEach(c => {
+          c.classList.remove("is-collapsed");
+        });
         const toggle = group.querySelector(".reply-collapse-toggle");
         if (toggle) toggle.remove();
       });
@@ -858,28 +869,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", () => {
     clearTimeout(window.__tgk_discussion_resize);
-    window.__tgk_discussion_resize = window.setTimeout(() => applyMobileCollapse(), 120);
+    window.__tgk_discussion_resize = setTimeout(() => applyMobileCollapse(), 120);
   });
 
   /* -----------------------------------------------------------
-     Action handler (delegated, capture phase)
+     Click handlers (reply, vote, pin, delete, collapse)
   ----------------------------------------------------------- */
   async function handleActionEvent(event) {
     const target = event.target;
     if (!(target instanceof Element)) return;
-
-    const stopAll = () => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (typeof event.stopImmediatePropagation === "function") event.stopImmediatePropagation();
-    };
 
     /* -----------------------------------------
        VOTING
     ----------------------------------------- */
     const voteBtn = target.closest(".vote-btn");
     if (voteBtn) {
-      stopAll();
+      event.preventDefault();
 
       const replyId = voteBtn.dataset.replyId;
       const voteType = voteBtn.dataset.voteType;
@@ -902,8 +907,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ----------------------------------------- */
     const replyBtn = target.closest(".btn-reply-comment");
     if (replyBtn) {
-      stopAll();
-
       const replyId = replyBtn.dataset.replyId;
       const snippet = replyBtn.dataset.snippet || "";
       if (!replyId) return;
@@ -912,13 +915,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
+      // Preselect reply type based on the user's current vote for this reply
       const remembered = lastVoteByReply.get(replyId);
       setIntent(remembered || "reply");
+
       updateComposerUI();
 
-      requestAnimationFrame(() => {
-        if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
+      openComposer();
       return;
     }
 
@@ -926,8 +929,6 @@ document.addEventListener("DOMContentLoaded", () => {
        CANCEL REPLY CONTEXT
     ----------------------------------------- */
     if (target.id === "cancel-reply-context") {
-      stopAll();
-
       if (parentReplyField) parentReplyField.value = "";
       if (replyContext) replyContext.hidden = true;
 
@@ -937,11 +938,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* -----------------------------------------
-       DELETE
+       DELETE / RESTORE / PIN / UNPIN / COLLAPSE
+       (Your existing handlers below can stay as-is)
     ----------------------------------------- */
+
     const deleteBtn = target.closest(".btn-delete-comment");
     if (deleteBtn) {
-      stopAll();
+      event.preventDefault();
+      event.stopPropagation();
 
       const replyId = deleteBtn.dataset.commentId;
       const topicIdArg = deleteBtn.dataset.topicId || topicId;
@@ -995,20 +999,22 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
 
+        const card = document.getElementById(`comment-${replyId}`);
+        if (card) card.remove();
+
         if (statusEl) statusEl.textContent = "Reply deleted.";
       } catch (err) {
         console.error("[Delete Reply]", err);
         if (statusEl) statusEl.textContent = `Unable to delete reply. ${err?.message || ""}`.trim();
       }
+
       return;
     }
 
-    /* -----------------------------------------
-       RESTORE
-    ----------------------------------------- */
     const restoreBtn = target.closest(".btn-restore-reply");
     if (restoreBtn) {
-      stopAll();
+      event.preventDefault();
+      event.stopPropagation();
 
       if (!isAdmin) return;
 
@@ -1054,15 +1060,14 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("[Restore Reply]", err);
         if (statusEl) statusEl.textContent = `Unable to restore reply. ${err?.message || ""}`.trim();
       }
+
       return;
     }
 
-    /* -----------------------------------------
-       PIN / UNPIN
-    ----------------------------------------- */
     const pinBtn = target.closest(".btn-pin-reply");
     if (pinBtn) {
-      stopAll();
+      event.preventDefault();
+      event.stopPropagation();
 
       if (!isAdmin) return;
 
@@ -1097,16 +1102,12 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("[Pin Reply]", err);
         if (statusEl) statusEl.textContent = `Unable to update pin. ${err?.message || ""}`.trim();
       }
+
       return;
     }
 
-    /* -----------------------------------------
-       COLLAPSE TOGGLE
-    ----------------------------------------- */
     const collapseToggle = target.closest(".reply-collapse-toggle");
     if (collapseToggle) {
-      stopAll();
-
       const group = collapseToggle.closest(".discussion-thread-group");
       if (!group) return;
 
@@ -1119,19 +1120,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       collapseToggle.textContent = collapsed ? "Hide replies" : `View ${deepCards.length} replies`;
       collapseToggle.setAttribute("aria-expanded", String(collapsed));
+      return;
     }
   }
 
-  // Capture phase prevents parent anchors or card click handlers from hijacking.
-  messagesEl.addEventListener("click", handleActionEvent, { capture: true, passive: false });
+  document.addEventListener("pointerup", handleActionEvent, { passive: false });
 
   if (intentField) {
     intentField.addEventListener("change", () => updateComposerUI());
   }
 
-  // Initial UI state
+  // Initial UI state: root comment mode
   setIntent("comment");
-  if (replyContext) replyContext.hidden = true;
   updateComposerUI();
 
   /* -----------------------------------------------------------
@@ -1158,11 +1158,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const parentId = getParentId();
       const isReply = Boolean(parentId);
 
+      // Root posts must always be comment
       const intent = isReply ? normaliseIntentForComposer() : "comment";
       if (!isReply) setIntent("comment");
 
       const isChallengeReply = isReply && intent === "challenge";
-      const requiresSteel = isChallengeReply && !steelmanSatisfiedForThread;
 
       if (!body) {
         if (statusEl) statusEl.textContent = "Please write something before posting.";
@@ -1175,15 +1175,11 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        if (requiresSteel) {
-          const wc = wordCount(steel);
-          if (wc < RULES.steelMinWords || wc > RULES.steelMaxWords) {
-            if (statusEl) {
-              statusEl.textContent =
-                `Steel Man is required for your first Challenge in this topic and must be ${RULES.steelMinWords} to ${RULES.steelMaxWords} words.`;
-            }
-            return;
-          }
+        const wc = wordCount(steel);
+        if (wc < RULES.steelMinWords || wc > RULES.steelMaxWords) {
+          if (statusEl) statusEl.textContent =
+            `Steel Man is required for Challenge replies and must be ${RULES.steelMinWords} to ${RULES.steelMaxWords} words.`;
+          return;
         }
       } else {
         if (charCount(body) < RULES.normalMinChars) {
@@ -1198,17 +1194,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const docRef = await addDoc(repliesRef, {
           userId: currentUser.uid,
           pseudonym: pseudo,
-          steelmanSummary: requiresSteel ? (steel || "") : "",
+          steelmanSummary: steel || "",
           body,
           intent,
           createdAt: serverTimestamp(),
-          parentReplyId: parentId,
+          parentReplyId: parentId, // null for root posts
           pinned: false,
           deleted: false
         });
 
-        if (requiresSteel) steelmanSatisfiedForThread = true;
-
+        // Tell the next render to scroll to this new reply
         pendingScrollToReplyId = docRef.id;
 
         Reputation.awardPoints(
@@ -1219,22 +1214,23 @@ document.addEventListener("DOMContentLoaded", () => {
           topicId
         ).catch(() => {});
 
+        // Reset back to root comment mode
         form.reset();
-
         if (parentReplyField) parentReplyField.value = "";
         if (replyContext) replyContext.hidden = true;
 
         setIntent("comment");
         updateComposerUI();
 
-        // Close an enclosing <details> if you are using one
-        const details = form.closest("details");
-        if (details) details.open = false;
+        // Close the composer panel
+        closeComposer();
 
         if (statusEl) statusEl.textContent = "Posted.";
+
       } catch (err) {
         console.error("[Post Error]", err);
-        if (statusEl) statusEl.textContent = `There was a problem posting. ${err?.message || ""}`.trim();
+        if (statusEl) statusEl.textContent =
+          `There was a problem posting. ${err?.message || ""}`.trim();
       }
     });
   }
