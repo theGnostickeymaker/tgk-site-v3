@@ -897,53 +897,60 @@ function applyVoteStateToCard(replyId, card) {
        VOTING
     ----------------------------------------- */
     const voteBtn = target.closest(".vote-btn");
-    if (voteBtn) {
-      event.preventDefault();
+      if (voteBtn) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (typeof event.stopImmediatePropagation === "function") event.stopImmediatePropagation();
 
-      const replyId = voteBtn.dataset.replyId;
-      const voteType = voteBtn.dataset.voteType;
-      if (!replyId || !voteType) return;
+        const replyId = voteBtn.dataset.replyId;
+        const voteType = voteBtn.dataset.voteType;
+        if (!replyId || !voteType) return;
 
-      spawnRipple(voteBtn, event.clientX || 0, event.clientY || 0);
-      if (voteType === "insight") spawnInsightParticles(voteBtn);
+        spawnRipple(voteBtn, event.clientX || 0, event.clientY || 0);
+        if (voteType === "insight") spawnInsightParticles(voteBtn);
 
-      try {
-        await toggleVote(topicId, replyId, voteType);
-      } catch (err) {
-        console.error("[Vote] Error:", err);
-        if (statusEl) statusEl.textContent = "Unable to register vote.";
+        try {
+          await toggleVote(topicId, replyId, voteType);
+        } catch (err) {
+          console.error("[Vote] Error:", err);
+          if (statusEl) statusEl.textContent = "Unable to register vote.";
+        }
+        return;
       }
-      return;
-    }
+
 
     /* -----------------------------------------
        REPLY BUTTON
     ----------------------------------------- */
     const replyBtn = target.closest(".btn-reply-comment");
-    if (replyBtn) {
-      const replyId = replyBtn.dataset.replyId;
-      const snippet = replyBtn.dataset.snippet || "";
-      if (!replyId) return;
+if (replyBtn) {
+  event.preventDefault();
+  event.stopPropagation();
+  if (typeof event.stopImmediatePropagation === "function") event.stopImmediatePropagation();
 
-      if (parentReplyField) parentReplyField.value = replyId;
-      if (replyContextSnippet) replyContextSnippet.textContent = snippet;
-      if (replyContext) replyContext.hidden = false;
+  const replyId = replyBtn.dataset.replyId;
+  const snippet = replyBtn.dataset.snippet || "";
+  if (!replyId) return;
 
-      // Preselect reply type based on the user's current vote for this reply
-      const remembered = lastVoteByReply.get(replyId);
-      setIntent(remembered || "reply");
+  if (parentReplyField) parentReplyField.value = replyId;
+  if (replyContextSnippet) replyContextSnippet.textContent = snippet;
+  if (replyContext) replyContext.hidden = false;
 
-      updateComposerUI();
+  const remembered = lastVoteByReply.get(replyId);
+  setIntent(remembered || "reply");
 
-      const details = document.getElementById("add-reply")?.querySelector("details");
-      if (details && !details.open) details.open = true;
+  updateComposerUI();
 
-      requestAnimationFrame(() => {
-        if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
+  const details = document.getElementById("add-reply")?.querySelector("details");
+  if (details && !details.open) details.open = true;
 
-      return;
-    }
+  requestAnimationFrame(() => {
+    if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  return;
+}
+
 
     /* -----------------------------------------
        CANCEL REPLY CONTEXT
@@ -1144,7 +1151,7 @@ function applyVoteStateToCard(replyId, card) {
     }
   }
 
-  document.addEventListener("pointerup", handleActionEvent, { passive: false });
+  messagesEl.addEventListener("pointerup", handleActionEvent, { passive: false });
 
   if (intentField) {
     intentField.addEventListener("change", () => updateComposerUI());
