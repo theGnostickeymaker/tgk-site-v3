@@ -121,14 +121,15 @@ breadcrumbs:
 episodeParts:
   - title: "Part I — The British Royals"
     desc: "The monarchy as an extraction engine."
-    url: "/pillars/the-obsidian-key/house-of-grift/season-1/ep1-the-british-royals/index.html"
+    url: "/pillars/the-obsidian-key/house-of-grift/season-1/ep1-the-british-royals/"
+
   - title: "Episode II — The Protected Predator"
     desc: "Institutional shielding and the architecture of impunity."
-    url: "/pillars/the-obsidian-key/house-of-grift/season-1/ep2-the-protected-predator/index.html"
+    url: "/pillars/the-obsidian-key/house-of-grift/season-1/ep2-the-protected-predator/"
 
   - title: "Episode III — Princess Beatrice"
     desc: "A forensic read on minor royal privilege."
-    url: "/pillars/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/index.html"
+    url: "/pillars/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/"
 
 # === Series Navigation ===
 seriesNav:
@@ -760,10 +761,22 @@ scholarly: []
 <!--   CREATIVE + DISCUSSION   -->
 <!-- ========================= -->
 
-{% include "partials/discussion-prompt.njk" %}
-{% include "partials/reference-section.njk" %}
-{% include "partials/series-nav-buttons.njk" %}
-{% include "partials/episode-part-nav.njk" %}
+  {# --- Reflection & engagement --- #}
+  {% include "partials/creative-prompt.njk" %}
+  {% include "partials/discussion-prompt.njk" %}
+
+  {# --- Community bridge --- #}
+  {% include "partials/community-entry.njk" %}
+
+  {# --- Reference & grounding --- #}
+  {% include "partials/reference-section.njk" %}
+
+  {# --- Conversion boundary (CTA lives here) --- #}
+  {% include "partials/cta-buttons.njk" %}
+
+  {# --- Navigation & onward journey --- #}
+  {% include "partials/series-nav-buttons.njk" %}
+  {% include "partials/episode-part-nav.njk" %}
 
 <div class="gnostic-divider">
   <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">♛</span>

@@ -1,13 +1,17 @@
 @layer tokens {
 
   /* ===================================================
-     TGK Community Accent Theme – Aquatic Glow / Coastal Calm
-     Version: 2.1 – All tokens marked !important
+     TGK Community Accent Theme: Aquatic Glow / Coastal Calm
+     Version: 2.2 (readability rebalance)
+     Notes:
+     - Dark mode card gradients no longer run into bright teal
+     - Text tokens shifted to cleaner high contrast
+     - Adds community readability overrides for long-form text
      =================================================== */
 
 
   /* ===================================================
-     LIGHT MODE — Coastal Calm
+     LIGHT MODE: Coastal Calm
      =================================================== */
   html[data-theme="light"] body.community {
 
@@ -83,7 +87,7 @@
   }
 
 
-  /* Component overrides – light */
+  /* Component overrides: light */
   html[data-theme="light"] body.community .site-header,
   html[data-theme="light"] body.community .site-footer {
     background: linear-gradient(to bottom, #ffffff, #eaf9f8) !important;
@@ -102,96 +106,141 @@
     box-shadow: 0 0 16px rgba(107, 210, 204, 0.12) !important;
   }
 
+
   /* ===================================================
-     DARK MODE — Aquatic Glow
+     DARK MODE: Aquatic Glow (readability rebalance)
      =================================================== */
   html[data-theme="dark"] body.community {
 
     /* Core */
-    --bg-opacity: 0.16 !important;
-    --text-primary: #f4f1ea !important;
-    --text-secondary: #aaa !important;
-    --text-muted: #888 !important;
+    --bg-opacity: 0.14 !important;
+    --text-primary: #f6fcfc !important;
+    --text-secondary: #cfd9d9 !important;
+    --text-muted: #a2b0b0 !important;
 
     /* Accents */
-    --text-accent: #88d8d2 !important;
-    --highlight: #c4f4ef !important;
-    --glyph-color: #dffefc !important;
-    --shadow-glow: rgba(136, 216, 210, 0.25) !important;
-    --strong-text: #b3f2ec !important;
-    --cite-color: #98e2dc !important;
+    --text-accent: #86d6d0 !important;
+    --highlight: #bdebe6 !important;
+    --glyph-color: #e8ffff !important;
+    --shadow-glow: rgba(136, 216, 210, 0.20) !important;
+    --strong-text: #e8ffff !important;
+    --cite-color: #9fe7e1 !important;
     --accent-page: #6fcac5 !important;
-    --section-border: #b5ede7 !important;
+    --section-border: rgba(181, 237, 231, 0.55) !important;
 
-    /* Card + page gradient */
+    /* Card + page gradient (kept dark; no bright teal stop) */
     --card-gradient: linear-gradient(
       145deg,
-      #0a1111 0%,
-      #132224 35%,
-      #1c373a 65%,
-      #296265 85%,
-      #88d8d2 100%
+      #071010 0%,
+      #0a1617 40%,
+      #0d2021 70%,
+      #103033 100%
     ) !important;
 
-    --bg-primary: #0a1111 !important;
+    --bg-primary: #050b0b !important;
     --bg-gradient: var(--bg-primary) !important;
     background: var(--bg-primary) !important;
 
     /* Cards */
-    --card-bg: #0d1616 !important;
-    --card-border: rgba(136, 216, 210, 0.28) !important;
-    --card-shadow: 0 0 25px rgba(136, 216, 210, 0.2) !important;
+    --card-bg: #071111 !important;
+    --card-border: rgba(136, 216, 210, 0.22) !important;
+    --card-shadow: 0 0 22px rgba(136, 216, 210, 0.16) !important;
 
     /* Buttons */
-    --btn-bg: #0a1111 !important;
-    --btn-border: #6fcac5 !important;
-    --btn-text: var(--strong-text) !important;
-    --btn-hover-bg: #296265 !important;
+    --btn-bg: #071111 !important;
+    --btn-border: rgba(111, 202, 197, 0.65) !important;
+    --btn-text: var(--text-primary) !important;
+    --btn-hover-bg: #123030 !important;
     --btn-hover-text: #ffffff !important;
 
     /* Form fields */
-    --input-bg: #0a1111 !important;
-    --input-border: var(--section-border) !important;
+    --input-bg: #050b0b !important;
+    --input-border: rgba(181, 237, 231, 0.35) !important;
     --input-text: var(--text-primary) !important;
     --input-focus-border: var(--accent-page) !important;
-    --input-focus-shadow: 0 0 10px rgba(136, 216, 210, 0.35) !important;
+    --input-focus-shadow: 0 0 10px rgba(136, 216, 210, 0.28) !important;
 
     /* Badge tokens */
-    --badge-bg: rgba(136, 216, 210, 0.35) !important;
-    --badge-text: #dffefc !important;
-    --badge-border: rgba(136, 216, 210, 0.35) !important;
-    --badge-shadow: 0 1px 4px rgba(136, 216, 210, 0.2) !important;
+    --badge-bg: rgba(136, 216, 210, 0.16) !important;
+    --badge-text: #e8ffff !important;
+    --badge-border: rgba(136, 216, 210, 0.22) !important;
+    --badge-shadow: 0 1px 4px rgba(136, 216, 210, 0.14) !important;
 
     /* Footer */
-    --footer-opacity: 0.84 !important;
+    --footer-opacity: 0.88 !important;
 
     /* Overlays */
     --overlay-bg-gradient: linear-gradient(
       to right,
-      rgba(5, 20, 20, 0.92),
-      rgba(20, 40, 40, 0.88),
-      rgba(41, 98, 101, 0.85)
+      rgba(5, 15, 15, 0.94),
+      rgba(9, 24, 24, 0.90),
+      rgba(18, 48, 48, 0.86)
     ) !important;
 
     /* Shadows */
-    --page-box-shadow: 0 0 24px rgba(136, 216, 210, 0.22) !important;
-    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    --page-box-shadow: 0 0 22px rgba(136, 216, 210, 0.18) !important;
+    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.34) !important;
   }
 
 
-  /* Component overrides – dark */
+  /* Component overrides: dark */
   html[data-theme="dark"] body.community .site-header,
   html[data-theme="dark"] body.community .site-footer {
     background: linear-gradient(to bottom, #050f0f, #123030) !important;
     color: var(--text-accent) !important;
-    border-bottom: 1px solid var(--highlight) !important;
+    border-bottom: 1px solid rgba(189, 235, 230, 0.45) !important;
   }
 
   html[data-theme="dark"] body.community .section-block {
-    background: linear-gradient(145deg, #132224 0%, #1c373a 60%, #296265 100%) !important;
+    background: linear-gradient(145deg, #0a1617 0%, #0d2021 60%, #103033 100%) !important;
     border-color: var(--section-border) !important;
-    box-shadow: 0 0 25px rgba(136, 216, 210, 0.2) !important;
+    box-shadow: var(--page-box-shadow) !important;
   }
+
+
+  /* ===================================================
+     TGK Community: readability overrides (both themes)
+     These are intentionally scoped to body.community only.
+     =================================================== */
+
+  /* Long-form reading comfort */
+  body.community .thread-card,
+  body.community .comment-card,
+  body.community .reply-card,
+  body.community .post-card {
+    color: var(--text-primary) !important;
+  }
+
+  body.community .thread-card p,
+  body.community .comment-card p,
+  body.community .reply-card p,
+  body.community .post-card p,
+  body.community .thread-card li,
+  body.community .comment-card li,
+  body.community .reply-card li,
+  body.community .post-card li {
+    line-height: 1.65 !important;
+    font-style: normal !important;
+  }
+
+  /* Steel Man box: calm background, solid border, no italics wall-of-text */
+  body.community .steelman-box,
+  body.community .steelman-summary,
+  body.community blockquote.steelman {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    font-style: normal !important;
+  }
+
+  /* If your Steel Man title/label has a class, allow it to stay italic */
+  body.community .steelman-label,
+  body.community .steelman-title {
+    font-style: italic !important;
+    opacity: 0.92 !important;
+  }
+
 
   /* ===================================================
      Global overrides (remove default overlays)
@@ -202,47 +251,49 @@
     --overlay-img: none !important;
     opacity: 0 !important;
   }
-/* ============================================================
-   TGK Community — Rebalanced Vote Colours
-   Subtle, readable, symbolic, non-intrusive  
-============================================================ */
 
-/* LIGHT MODE */
-html[data-theme="light"] body.community {
-  --vote-insight: #3eaaa2 !important;
-  --vote-insight-bg: rgba(62, 170, 162, 0.08) !important;
 
-  --vote-agree: #a58535 !important;
-  --vote-agree-bg: rgba(165, 133, 53, 0.10) !important;
+  /* ============================================================
+     TGK Community: Rebalanced Vote Colours
+     Subtle, readable, symbolic, non-intrusive
+     ============================================================ */
 
-  --vote-challenge: #b25563 !important;
-  --vote-challenge-bg: rgba(178, 85, 99, 0.10) !important;
-}
+  /* LIGHT MODE */
+  html[data-theme="light"] body.community {
+    --vote-insight: #3eaaa2 !important;
+    --vote-insight-bg: rgba(62, 170, 162, 0.08) !important;
 
-/* DARK MODE */
-html[data-theme="dark"] body.community {
-  --vote-insight: #7edde0 !important;
-  --vote-insight-bg: rgba(126, 221, 224, 0.16) !important;
+    --vote-agree: #a58535 !important;
+    --vote-agree-bg: rgba(165, 133, 53, 0.10) !important;
 
-  --vote-agree: #d7bb80 !important;
-  --vote-agree-bg: rgba(215, 187, 128, 0.18) !important;
+    --vote-challenge: #b25563 !important;
+    --vote-challenge-bg: rgba(178, 85, 99, 0.10) !important;
+  }
 
-  --vote-challenge: #ff8aa9 !important;
-  --vote-challenge-bg: rgba(255, 138, 169, 0.18) !important;
-}
+  /* DARK MODE */
+  html[data-theme="dark"] body.community {
+    --vote-insight: #7edde0 !important;
+    --vote-insight-bg: rgba(126, 221, 224, 0.16) !important;
 
-/* Vote button text colour alignment */
-html[data-theme="light"] body.community .vote-btn,
-html[data-theme="dark"] body.community .vote-btn {
-  color: var(--text-primary) !important;
-}
+    --vote-agree: #d7bb80 !important;
+    --vote-agree-bg: rgba(215, 187, 128, 0.18) !important;
 
-html[data-theme="light"] body.community .vote-btn.active {
-  color: var(--text-accent) !important;
-}
+    --vote-challenge: #ff8aa9 !important;
+    --vote-challenge-bg: rgba(255, 138, 169, 0.18) !important;
+  }
 
-html[data-theme="dark"] body.community .vote-btn.active {
-  color: var(--glyph-color) !important;
-}
+  /* Vote button text colour alignment */
+  html[data-theme="light"] body.community .vote-btn,
+  html[data-theme="dark"] body.community .vote-btn {
+    color: var(--text-primary) !important;
+  }
+
+  html[data-theme="light"] body.community .vote-btn.active {
+    color: var(--text-accent) !important;
+  }
+
+  html[data-theme="dark"] body.community .vote-btn.active {
+    color: var(--glyph-color) !important;
+  }
 
 }

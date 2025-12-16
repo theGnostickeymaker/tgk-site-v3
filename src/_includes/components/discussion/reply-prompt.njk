@@ -6,8 +6,9 @@
   <form id="discussion-form" class="discussion-form">
 
     <div class="form-field">
-    <label for="reply-intent" class="form-label">Post type</label>
-      <select id="reply-intent" name="intent" class="form-input">
+      <label for="reply-intent" class="form-label">Post type</label>
+
+      <select id="reply-intent" name="intent" class="form-input" aria-describedby="steelman-hint">
         <option value="comment" selected>Comment</option>
         <option value="reply">Reply</option>
         <option value="agree">Agree</option>
@@ -15,7 +16,10 @@
         <option value="challenge">Challenge</option>
       </select>
 
-      <p class="muted small">Steel Man is only required for Challenge replies to a specific comment.</p>
+      <p id="steelman-hint" class="muted small">
+        Steel Man is required only for Challenge posts replying to a specific comment.
+      </p>
+    </div>
 
     <div class="form-field" id="steelman-field-wrap" hidden>
       <label for="steelman-summary" class="form-label">Steel Man Summary</label>
@@ -23,6 +27,7 @@
                 name="steelmanSummary"
                 class="form-textarea"
                 placeholder="Summarise the strongest version of the position you are replying to (10 to 40 words)."></textarea>
+      <p class="muted small">Aim for 10 to 40 words, and keep it fair.</p>
     </div>
 
     <div class="form-field">
@@ -48,18 +53,14 @@
         Replying to:
         <em id="reply-context-snippet"></em>
       </p>
-      <button type="button" id="cancel-reply-context" class="btn-link">
-        Cancel
-      </button>
+      <button type="button" id="cancel-reply-context" class="btn-link">Cancel</button>
     </div>
 
     <!-- Hidden parent-reply field (CRITICAL for nesting) -->
     <input type="hidden" id="parent-reply-id" name="parentReplyId" value="">
 
     <div class="btn-row">
-      <button type="submit" class="btn">
-        POST
-      </button>
+      <button type="submit" class="btn">POST</button>
     </div>
 
   </form>

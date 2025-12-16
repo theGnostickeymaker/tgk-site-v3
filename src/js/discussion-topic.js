@@ -67,6 +67,30 @@ document.addEventListener("DOMContentLoaded", () => {
   // Critical fix: cache vote state so rebuilt DOM can be immediately hydrated
   const voteStateByReply = new Map(); // replyId -> { counts: {..}, userVote: string|null }
 
+    // Steel Man is required once per user per topic (only for Challenge replies)
+  let steelmanSatisfiedForThread = false;
+
+  // Cache latest replies so we can recompute Steel Man satisfaction on auth changes
+  let lastRepliesCache = [];
+
+  function refreshSteelmanSatisfiedFlag() {
+    if (!currentUser) {
+      steelmanSatisfiedForThread = false;
+      return;
+    }
+
+    const satisfied = lastRepliesCache.some(r => {
+      if (!r?.data) return false;
+      if (r.data.userId !== currentUser.uid) return false;
+      return String(r.data.steelmanSummary || "").trim().length > 0;
+    });
+
+    if (satisfied !== steelmanSatisfiedForThread) {
+      steelmanSatisfiedForThread = satisfied;
+      updateComposerUI();
+    }
+  }
+
   /* -----------------------------------------------------------
      Composer rules
   ----------------------------------------------------------- */
@@ -158,22 +182,28 @@ document.addEventListener("DOMContentLoaded", () => {
     lockComposerOptions(isReply);
 
     const intent = normaliseIntentForComposer();
-    const needsSteel = isReply && intent === "challenge";
+        const needsSteel = isReply && intent === "challenge" && !steelmanSatisfiedForThread;
+
 
     if (steelWrap) steelWrap.hidden = !needsSteel;
     if (steelField) steelField.required = needsSteel;
 
+        if (!needsSteel && steelField) steelField.value = "";
+
     if (bodyField) bodyField.required = true;
 
-    if (statusEl) {
+        if (statusEl) {
       if (!isReply) {
         statusEl.textContent = "Posting a new comment. Keep it concise and clear.";
+      } else if (intent === "challenge" && steelmanSatisfiedForThread) {
+        statusEl.textContent = "Challenge reply: Steel Man already completed for this topic.";
       } else if (needsSteel) {
-        statusEl.textContent = "Challenge reply: Steel Man required.";
+        statusEl.textContent = "Challenge reply: Steel Man required (once per topic).";
       } else {
         statusEl.textContent = "Replying in thread.";
       }
     }
+
   }
 
   /* -----------------------------------------------------------
@@ -410,6 +440,9 @@ function applyVoteStateToCard(replyId, card) {
       id: docSnap.id,
       data: docSnap.data()
     }));
+
+    lastRepliesCache = allReplies;
+    refreshSteelmanSatisfiedFlag();
 
     const byId = new Map(allReplies.map(r => [r.id, r]));
 
@@ -1149,24 +1182,27 @@ function applyVoteStateToCard(replyId, card) {
       const intent = isReply ? normaliseIntentForComposer() : "comment";
       if (!isReply) setIntent("comment");
 
-      const isChallengeReply = isReply && intent === "challenge";
+            const isChallengeReply = isReply && intent === "challenge";
+      const requiresSteel = isChallengeReply && !steelmanSatisfiedForThread;
 
       if (!body) {
         if (statusEl) statusEl.textContent = "Please write something before posting.";
         return;
       }
 
-      if (isChallengeReply) {
+            if (isChallengeReply) {
         if (charCount(body) < RULES.challengeMinChars) {
           if (statusEl) statusEl.textContent = `Challenge replies must be at least ${RULES.challengeMinChars} characters.`;
           return;
         }
 
-        const wc = wordCount(steel);
-        if (wc < RULES.steelMinWords || wc > RULES.steelMaxWords) {
-          if (statusEl) statusEl.textContent =
-            `Steel Man is required for Challenge replies and must be ${RULES.steelMinWords} to ${RULES.steelMaxWords} words.`;
-          return;
+        if (requiresSteel) {
+          const wc = wordCount(steel);
+          if (wc < RULES.steelMinWords || wc > RULES.steelMaxWords) {
+            if (statusEl) statusEl.textContent =
+              `Steel Man is required for your first Challenge in this topic and must be ${RULES.steelMinWords} to ${RULES.steelMaxWords} words.`;
+            return;
+          }
         }
       } else {
         if (charCount(body) < RULES.normalMinChars) {
@@ -1175,13 +1211,14 @@ function applyVoteStateToCard(replyId, card) {
         }
       }
 
+
       if (statusEl) statusEl.textContent = "Posting...";
 
       try {
         const docRef = await addDoc(repliesRef, {
           userId: currentUser.uid,
           pseudonym: pseudo,
-          steelmanSummary: steel || "",
+          steelmanSummary: requiresSteel ? (steel || "") : "",
           body,
           intent,
           createdAt: serverTimestamp(),
@@ -1189,6 +1226,9 @@ function applyVoteStateToCard(replyId, card) {
           pinned: false,
           deleted: false
         });
+
+        if (requiresSteel) steelmanSatisfiedForThread = true;
+                pendingScrollToReplyId = docRef.id;
 
         // Tell the next render to scroll to this new reply
         pendingScrollToReplyId = docRef.id;

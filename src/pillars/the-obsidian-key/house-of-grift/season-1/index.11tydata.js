@@ -51,7 +51,7 @@ export default {
       desc: "A symbolic and financial autopsy of the hidden roles played by minor royals.",
       state: "active",
       tier: "free"
-    }
+    },
   ],
 
   // === Social Meta ===
