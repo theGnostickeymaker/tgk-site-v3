@@ -676,7 +676,7 @@ function applyVoteStateToCard(replyId, card) {
     return card;
   }
 
-  /* -----------------------------------------------------------
+    /* -----------------------------------------------------------
      Voting system (DOM-safe + cached)
   ----------------------------------------------------------- */
   function setupVotes(topicIdArg, replyId) {
@@ -703,7 +703,19 @@ function applyVoteStateToCard(replyId, card) {
 
       // Live update current DOM if present
       const liveCard = document.getElementById(`comment-${replyId}`);
-      if (liveCard) applyVoteStateToCard(replyId, liveCard);
+      if (liveCard) {
+        // Optional: disable voting on own posts in the UI
+        if (currentUser && liveCard.dataset.userId === currentUser.uid) {
+          liveCard.querySelectorAll(".vote-btn").forEach((btn) => {
+            btn.disabled = true;
+            btn.classList.add("is-disabled");
+            btn.setAttribute("aria-disabled", "true");
+            btn.title = "You cannot vote on your own contribution.";
+          });
+        }
+
+        applyVoteStateToCard(replyId, liveCard);
+      }
     });
 
     voteSubscriptions.set(replyId, unsub);
@@ -719,12 +731,20 @@ function applyVoteStateToCard(replyId, card) {
     const replySnap = await getDoc(replyRef);
     if (!replySnap.exists()) return;
 
-    if (replySnap.data()?.deleted) {
+    const replyData = replySnap.data() || {};
+
+    if (replyData.deleted) {
       if (statusEl) statusEl.textContent = "You cannot vote on a removed contribution.";
       return;
     }
 
-    const replyAuthor = replySnap.data().userId;
+    const replyAuthor = replyData.userId || null;
+
+    // Block self-voting (UX guard)
+    if (replyAuthor && currentUser.uid === replyAuthor) {
+      if (statusEl) statusEl.textContent = "You cannot vote on your own contribution.";
+      return;
+    }
 
     const voteRef = doc(db, "topics", topicIdArg, "replies", replyId, "votes", currentUser.uid);
     const voteSnap = await getDoc(voteRef);
@@ -758,6 +778,7 @@ function applyVoteStateToCard(replyId, card) {
       }
     }
   }
+
 
   /* -----------------------------------------------------------
      Voting animations
@@ -1180,7 +1201,6 @@ function applyVoteStateToCard(replyId, card) {
           topicId
         ).catch(() => {});
 
-        // Reset back to root comment mode
         // Reset back to root comment mode
         form.reset();
         if (parentReplyField) parentReplyField.value = "";
