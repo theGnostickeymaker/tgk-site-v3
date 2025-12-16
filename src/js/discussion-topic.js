@@ -570,7 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       card.querySelectorAll(".vote-btn").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.voteType === userVote);
+        btn.classList.toggle("is-voted", btn.dataset.voteType === userVote);
       });
     });
 
