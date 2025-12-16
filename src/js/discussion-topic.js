@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentUser = null;
   let currentTier = "free";
   let isAdmin = false;
+  let pendingScrollToReplyId = null; // set after post, consumed after next render
 
   const reputationSubscriptions = new Map(); // userId -> unsub
   const voteSubscriptions = new Map(); // replyId -> unsub
@@ -495,6 +496,23 @@ function applyVoteStateToCard(replyId, card) {
     });
 
     applyMobileCollapse();
+
+    // After render: jump to the newly created reply (if any)
+    if (pendingScrollToReplyId) {
+      const id = pendingScrollToReplyId;
+      pendingScrollToReplyId = null;
+
+      // Ensure it is visible even on mobile collapse
+      const el = document.getElementById(`comment-${id}`);
+      if (el) {
+        el.classList.remove("is-collapsed");
+
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("just-posted");
+
+        window.setTimeout(() => el.classList.remove("just-posted"), 1400);
+      }
+    }
   });
 
   /* -----------------------------------------------------------
@@ -1139,7 +1157,7 @@ function applyVoteStateToCard(replyId, card) {
       if (statusEl) statusEl.textContent = "Posting...";
 
       try {
-        await addDoc(repliesRef, {
+        const docRef = await addDoc(repliesRef, {
           userId: currentUser.uid,
           pseudonym: pseudo,
           steelmanSummary: steel || "",
@@ -1151,6 +1169,9 @@ function applyVoteStateToCard(replyId, card) {
           deleted: false
         });
 
+        // Tell the next render to scroll to this new reply
+        pendingScrollToReplyId = docRef.id;
+
         Reputation.awardPoints(
           currentUser.uid,
           1,
@@ -1160,6 +1181,7 @@ function applyVoteStateToCard(replyId, card) {
         ).catch(() => {});
 
         // Reset back to root comment mode
+        // Reset back to root comment mode
         form.reset();
         if (parentReplyField) parentReplyField.value = "";
         if (replyContext) replyContext.hidden = true;
@@ -1167,7 +1189,12 @@ function applyVoteStateToCard(replyId, card) {
         setIntent("comment");
         updateComposerUI();
 
+        // Close the composer panel
+        const details = document.getElementById("add-reply")?.querySelector("details");
+        if (details) details.open = false;
+
         if (statusEl) statusEl.textContent = "Posted.";
+
       } catch (err) {
         console.error("[Post Error]", err);
         if (statusEl) statusEl.textContent =
