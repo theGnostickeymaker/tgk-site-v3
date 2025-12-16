@@ -1,7 +1,7 @@
 /* =============================================================
    TGK Community, Topic Engine v3.8
    Fix: Root posts must use intent="comment" to satisfy rules
-   Fix: Vote counts and active state survive re-render (live DOM updates)
+   Fix: Vote counts + active state survive re-render (cached per reply, then applied on rebuild)
    Adds: Remembers user vote per reply and preselects reply type on Reply
    Adds: Locks composer select for root vs reply modes
    ============================================================= */
@@ -60,8 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const reputationSubscriptions = new Map(); // userId -> unsub
   const voteSubscriptions = new Map(); // replyId -> unsub
 
-  // Remembers the user's current vote per reply (kept in sync by votes snapshot)
+  // Keeps the user's current vote per reply (synced by votes snapshot)
   const lastVoteByReply = new Map(); // replyId -> "insight"|"agree"|"challenge"
+
+  // Critical fix: cache vote state so rebuilt DOM can be immediately hydrated
+  const voteStateByReply = new Map(); // replyId -> { counts: {..}, userVote: string|null }
 
   /* -----------------------------------------------------------
      Composer rules
@@ -344,6 +347,47 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -----------------------------------------------------------
+     Vote UI hydration (critical for surviving re-render)
+  ----------------------------------------------------------- */
+  function getCachedVoteState(replyId) {
+  const cached = voteStateByReply.get(replyId);
+  if (cached && cached.counts) return cached;
+  return { counts: { insight: 0, agree: 0, challenge: 0 }, userVote: null, ready: false };
+}
+
+function applyVoteStateToCard(replyId, card) {
+  if (!card) return;
+
+  const state = getCachedVoteState(replyId);
+  const voteGroup = card.querySelector(`.vote-group[data-reply-id="${replyId}"]`);
+
+  if (voteGroup) {
+    voteGroup.classList.toggle("is-loading", !state.ready);
+  }
+
+  // If not ready, show ellipsis placeholders
+  if (!state.ready) {
+    ["insight", "agree", "challenge"].forEach(type => {
+      const el = card.querySelector(`.vote-count[data-count-type="${type}"]`);
+      if (el) el.textContent = "…";
+    });
+
+    card.querySelectorAll(".vote-btn").forEach(btn => btn.classList.remove("is-voted"));
+    return;
+  }
+
+  // Ready: show real counts and active state
+  Object.entries(state.counts).forEach(([type, count]) => {
+    const el = card.querySelector(`.vote-count[data-count-type="${type}"]`);
+    if (el) el.textContent = String(count);
+  });
+
+  card.querySelectorAll(".vote-btn").forEach(btn => {
+    btn.classList.toggle("is-voted", btn.dataset.voteType === state.userVote);
+  });
+}
+
+  /* -----------------------------------------------------------
      Flat thread rendering (grouped by root comment)
   ----------------------------------------------------------- */
   const repliesRef = collection(db, "topics", topicId, "replies");
@@ -402,7 +446,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cardById = new Map();
     allReplies.forEach(r => {
-      cardById.set(r.id, buildReplyCard(r.id, r.data, r.depth));
+      const card = buildReplyCard(r.id, r.data, r.depth);
+      cardById.set(r.id, card);
+
+      // Critical: hydrate vote counts and active state from cache immediately
+      applyVoteStateToCard(r.id, card);
     });
 
     const threads = new Map();
@@ -436,9 +484,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .forEach(r => {
           const card = cardById.get(r.id);
           if (!card) return;
+
           threadWrap.appendChild(card);
 
-          // Vote subscriptions are safe now even if we re-render cards
+          // Keep vote listeners alive; they will update cache and DOM when they fire
           if (!r.data.deleted) setupVotes(topicId, r.id);
         });
 
@@ -544,23 +593,33 @@ document.addEventListener("DOMContentLoaded", () => {
     replyBtn.textContent = "Reply";
     actions.appendChild(replyBtn);
 
+    // Use cached vote state for initial render (prevents 0s after re-render)
+    const cached = getCachedVoteState(replyId);
+    const counts = cached.counts;
+    const cInsight = cached.ready ? String(counts.insight) : "…";
+    const cAgree = cached.ready ? String(counts.agree) : "…";
+    const cChallenge = cached.ready ? String(counts.challenge) : "…";
+
     const voteGroup = document.createElement("div");
     voteGroup.className = "vote-group";
     voteGroup.dataset.replyId = replyId;
     voteGroup.innerHTML = `
       <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="insight" aria-label="Vote Insight">
         🜁 <span class="vote-label">Insight</span>
-        <span class="vote-count" data-count-type="insight">0</span>
+        <span class="vote-count" data-count-type="insight">${cInsight}</span>
       </button>
       <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="agree" aria-label="Vote Agree">
         ✦ <span class="vote-label">Agree</span>
-        <span class="vote-count" data-count-type="agree">0</span>
+        <span class="vote-count" data-count-type="agree">${cAgree}</span>
       </button>
       <button type="button" class="vote-btn" data-reply-id="${replyId}" data-vote-type="challenge" aria-label="Vote Challenge">
         ⛧ <span class="vote-label">Challenge</span>
-        <span class="vote-count" data-count-type="challenge">0</span>
+        <span class="vote-count" data-count-type="challenge">${cChallenge}</span>
       </button>
     `;
+
+    if (!cached.ready) voteGroup.classList.add("is-loading");
+
     actions.appendChild(voteGroup);
 
     if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
@@ -600,7 +659,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* -----------------------------------------------------------
-     Voting system (DOM-safe)
+     Voting system (DOM-safe + cached)
   ----------------------------------------------------------- */
   function setupVotes(topicIdArg, replyId) {
     if (voteSubscriptions.has(replyId)) return;
@@ -608,9 +667,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const votesRef = collection(db, "topics", topicIdArg, "replies", replyId, "votes");
 
     const unsub = onSnapshot(votesRef, (snapshot) => {
-      const liveCard = document.getElementById(`comment-${replyId}`);
-      if (!liveCard) return;
-
       const counts = { insight: 0, agree: 0, challenge: 0 };
       let userVote = null;
 
@@ -620,17 +676,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentUser && snap.id === currentUser.uid && v && v.type) userVote = v.type;
       });
 
+      // Cache state so rebuilt DOM can be hydrated instantly
+      voteStateByReply.set(replyId, { counts, userVote, ready: true });
+
+      // Keep last vote per reply in sync for the reply composer preselect
       if (userVote) lastVoteByReply.set(replyId, userVote);
       else lastVoteByReply.delete(replyId);
 
-      Object.entries(counts).forEach(([type, count]) => {
-        const el = liveCard.querySelector(`.vote-count[data-count-type="${type}"]`);
-        if (el) el.textContent = String(count);
-      });
-
-      liveCard.querySelectorAll(".vote-btn").forEach((btn) => {
-        btn.classList.toggle("is-voted", btn.dataset.voteType === userVote);
-      });
+      // Live update current DOM if present
+      const liveCard = document.getElementById(`comment-${replyId}`);
+      if (liveCard) applyVoteStateToCard(replyId, liveCard);
     });
 
     voteSubscriptions.set(replyId, unsub);
@@ -831,8 +886,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* -----------------------------------------
-       DELETE REPLY (soft delete)
+       DELETE / RESTORE / PIN / UNPIN / COLLAPSE
+       (Your existing handlers below can stay as-is)
     ----------------------------------------- */
+
     const deleteBtn = target.closest(".btn-delete-comment");
     if (deleteBtn) {
       event.preventDefault();
@@ -874,7 +931,6 @@ document.addEventListener("DOMContentLoaded", () => {
           { merge: true }
         );
 
-        // Optional logging (admin only unless your rules allow author_delete)
         if (isAdmin) {
           try {
             await addDoc(collection(db, "moderationLogs"), {
@@ -903,9 +959,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    /* -----------------------------------------
-       RESTORE REPLY (admin only)
-    ----------------------------------------- */
     const restoreBtn = target.closest(".btn-restore-reply");
     if (restoreBtn) {
       event.preventDefault();
@@ -959,9 +1012,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    /* -----------------------------------------
-       PIN / UNPIN (admin only)
-    ----------------------------------------- */
     const pinBtn = target.closest(".btn-pin-reply");
     if (pinBtn) {
       event.preventDefault();
@@ -1004,9 +1054,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    /* -----------------------------------------
-       THREAD COLLAPSE TOGGLE
-    ----------------------------------------- */
     const collapseToggle = target.closest(".reply-collapse-toggle");
     if (collapseToggle) {
       const group = collapseToggle.closest(".discussion-thread-group");

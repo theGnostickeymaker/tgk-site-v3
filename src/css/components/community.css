@@ -364,6 +364,11 @@
   outline: 1px solid var(--section-border);
 }
 
+/* Vote count loading state */
+.vote-group.is-loading .vote-count {
+  opacity: 0.65;
+}
+
 
   @keyframes vote-ripple-anim {
     from { transform: scale(0); opacity: 0.35; }
