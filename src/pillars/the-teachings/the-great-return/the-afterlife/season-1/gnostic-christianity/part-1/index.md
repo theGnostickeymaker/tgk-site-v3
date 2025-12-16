@@ -227,7 +227,7 @@ socialImages:
   <cite>
     Yaldabaoth, <em>Apocryphon of John</em>.  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -252,7 +252,7 @@ socialImages:
   <cite>
     <em>Gospel of Thomas</em>, Saying 70 — 
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-70" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-70" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -276,7 +276,7 @@ socialImages:
   <cite>
     <em>The Hypostasis of the Archons</em> (paraphrased from NHC II,4 94:20–95:5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -360,7 +360,7 @@ socialImages:
   <cite>
     <em>Gospel of Truth</em> (NHC I,3 31:35–32:4), trans. Marvin Meyer.  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/text/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -425,7 +425,7 @@ socialImages:
   <cite>
     <em>The Hypostasis of the Archons</em> (NHC II,4 89:15–20), trans. Marvin Meyer.  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/hypostasis-of-the-archons/text/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -540,15 +540,27 @@ socialImages:
   </figcaption>
 </figure>
 
+  {# --- Reflection & engagement --- #}
   {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}
+
+  {# --- Community bridge --- #}
   {% include "partials/community-entry.njk" %}
+
+  {# --- Optional interactive reinforcement --- #}
   {% include "partials/quiz-block.njk" %}
+
+  {# --- Reference & grounding --- #}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 
+  {# --- Conversion boundary (CTA lives here) --- #}
+  {% include "partials/cta-buttons.njk" %}
+
+  {# --- Navigation & onward journey --- #}
   {% include "partials/series-nav-buttons.njk" %}
   {% include "partials/episode-part-nav.njk" %}
+
 
   <div class="gnostic-divider">
     <span class="divider-symbol pillar-glyph spin" aria-hidden="true">✝</span>

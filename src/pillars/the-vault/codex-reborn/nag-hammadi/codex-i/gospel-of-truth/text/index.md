@@ -6,7 +6,7 @@ siteTitle: "The Gnostic Key"
 pillarTitle: "The Vault"
 gateTitle: "Codex Reborn"
 seriesTitle: "Nag Hammadi – Codex I"
-episodeTitle: "The Gospel of Truth (Text)"
+episodeTitle: "The Gospel of Truth"
 seasonTitle: null
 partTitle: null
 

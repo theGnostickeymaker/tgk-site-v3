@@ -277,7 +277,7 @@ references:
   “I will give you what no eye has seen, what no ear has heard, what no hand has touched, and what has never entered the human mind.”<br>
   <cite>
     <a
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-17"
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-17"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -323,7 +323,7 @@ references:
   “If a blind person leads a blind person, both will fall into a hole.”<br>
   <cite>
     <a
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-34"
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-34"
       target="_blank"
       rel="noopener noreferrer"
     >

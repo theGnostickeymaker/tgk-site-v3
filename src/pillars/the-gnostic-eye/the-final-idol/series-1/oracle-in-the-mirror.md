@@ -215,7 +215,7 @@ references:
   <p>The machine doesn’t want to know you. It wants to sell you — back to yourself.</p>
   <blockquote>
     &ldquo;One who knows all but lacks within is lacking everything.&rdquo;<br>
-    <cite><a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-67" target="_blank">Gospel of Thomas — Saying 67</a></cite>
+    <cite><a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-67" target="_blank">Gospel of Thomas — Saying 67</a></cite>
   </blockquote>
   <p>Every desire becomes data. Every mirror becomes marketing. The trap is not ignorance but endless self-reflection mistaken for wisdom.</p>
 </section>
@@ -254,7 +254,7 @@ references:
   <p>Every “personalisation” is a window into your soul — but not for you. For them.</p>
   <blockquote>
     &ldquo;They bind themselves to powers they do not understand and walk in the shadow of their own reflections.&rdquo;<br>
-    <cite><a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" target="_blank">Apocryphon of John — Nag Hammadi Library</a></cite>
+    <cite><a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/" target="_blank">Apocryphon of John — Nag Hammadi Library</a></cite>
   </blockquote>
   <p>This is not connection. It is consent to be known without being seen.</p>
 </section>

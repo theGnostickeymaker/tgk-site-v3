@@ -226,7 +226,7 @@ socialImages:
     <cite>
       <em>Gospel of Mary</em> (BG 8502 IV 4:22).  
       <a 
-        href="/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/"
+        href="/pillars/the-vault/codex-reborn/berlin-codex/gospel-of-mary/text/"
         target="_blank" 
         rel="noopener noreferrer">
         Source
@@ -295,7 +295,7 @@ socialImages:
   <cite>
     Paraphrased from <em>The Apocalypse of Paul</em> (NHC V,2).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/"
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-v/apocalypse-of-paul/text/"
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -374,7 +374,7 @@ socialImages:
   <cite>
     <em>Gospel of Truth</em> (NHC I,3 22–25).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/text/"
       target="_blank" 
       rel="noopener noreferrer">
       Source
@@ -486,7 +486,7 @@ socialImages:
   <cite>
     <em>Gospel of Philip</em> (NHC II,3 67:1–5).  
     <a
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/"
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-philip/text/"
       target="_blank"
       rel="noopener noreferrer">
       Source
@@ -564,7 +564,7 @@ socialImages:
   <cite>
     <em>Gospel of Truth</em> (NHC I,3 30–32).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/"
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/text/"
       target="_blank" 
       rel="noopener noreferrer">
       Source
@@ -634,7 +634,7 @@ socialImages:
   <cite>
     <em>Gospel of Thomas</em> (Saying 108 — NHC II,2 51:10–15).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-108" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-108" 
       target="_blank" 
       rel="noopener noreferrer">
       Source
@@ -728,10 +728,24 @@ socialImages:
   What once ruled you that no longer does?</p>
 </section>
 
-    {% include "partials/quiz-block.njk" %}
+  {# --- Reflection & engagement --- #}
+  {% include "partials/creative-prompt.njk" %}
+  {% include "partials/discussion-prompt.njk" %}
+
+  {# --- Community bridge --- #}
+  {% include "partials/community-entry.njk" %}
+
+  {# --- Optional interactive reinforcement --- #}
+  {% include "partials/quiz-block.njk" %}
+
+  {# --- Reference & grounding --- #}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 
+  {# --- Conversion boundary (CTA lives here) --- #}
+  {% include "partials/cta-buttons.njk" %}
+
+  {# --- Navigation & onward journey --- #}
   {% include "partials/series-nav-buttons.njk" %}
   {% include "partials/episode-part-nav.njk" %}
 

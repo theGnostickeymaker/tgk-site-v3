@@ -279,7 +279,7 @@ socialImages:
 
   <blockquote>
     &ldquo;If you have gained this within you, what you have will save you. If you do not have this in you, what you do not have in you will kill you.&rdquo;<br>
-    <cite> <a href="/TGK-vault/codex-reborn/gnostic-texts/the-gospel-of-thomas.html#thomas-70" target="_blank" rel="noopener noreferrer">Gospel of Thomas, Saying 70</a></cite>
+    <cite> <a href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-70" target="_blank" rel="noopener noreferrer">Gospel of Thomas, Saying 70</a></cite>
   </blockquote>
 
 </section>

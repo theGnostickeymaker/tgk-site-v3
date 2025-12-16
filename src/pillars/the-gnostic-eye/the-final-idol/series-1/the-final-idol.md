@@ -276,7 +276,7 @@ references:
   &ldquo;The Archons created a counterfeit spirit to lead astray the soul.&rdquo;<br>
   <cite>
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/apocryphon-of-john/text/" 
       target="_blank" 
       rel="noopener noreferrer"
     >The Apocryphon of John — Nag Hammadi Library</a>
@@ -328,7 +328,7 @@ references:
   "They are blind in their hearts and do not see the light of the truth..."<br>
   <cite>
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/gospel-of-truth/text/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Gospel of Truth &mdash; Nag Hammadi Library</a>

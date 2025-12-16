@@ -478,11 +478,24 @@ socialImages:
   </figcaption>
 </figure>
 
+  {# --- Reflection & engagement --- #}
+  {% include "partials/creative-prompt.njk" %}
   {% include "partials/discussion-prompt.njk" %}
+
+  {# --- Community bridge --- #}
+  {% include "partials/community-entry.njk" %}
+
+  {# --- Optional interactive reinforcement --- #}
   {% include "partials/quiz-block.njk" %}
+
+  {# --- Reference & grounding --- #}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 
+  {# --- Conversion boundary (CTA lives here) --- #}
+  {% include "partials/cta-buttons.njk" %}
+
+  {# --- Navigation & onward journey --- #}
   {% include "partials/series-nav-buttons.njk" %}
   {% include "partials/episode-part-nav.njk" %}
 

@@ -1,6 +1,6 @@
 {# ===========================================================
-   TGK — Community Tabs Navigation (v1.0)
-   Sections: Intro, Add, Thread, Share
+   TGK — Community Tabs Navigation (v1.1)
+   Sections: Intro, Add, Thread, Share, Source
 =========================================================== #}
 
 <nav class="page-tabs community-tabs" role="navigation">
@@ -8,5 +8,16 @@
   <a class="tab-link" href="#add-reply">Add Reply</a>
   <a class="tab-link" href="#discussion-messages">Discussion</a>
   <a class="tab-link" href="#share">Share</a>
+
+  {% if sourcePermalink %}
+    <a
+      class="tab-link tab-link-source"
+      href="{{ sourcePermalink }}"
+      rel="noopener"
+    >
+      Original Post
+    </a>
+  {% endif %}
 </nav>
+
 

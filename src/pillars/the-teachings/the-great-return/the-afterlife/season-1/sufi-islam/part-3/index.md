@@ -447,10 +447,24 @@ socialImages:
   <p><strong>Suggestion:</strong> Start a 21-day "Remembrance Log." Alternate practices daily. Record your insights, dreams, or shifts. At the end, ask: <em>&ldquo;Where is the Beloved now?&rdquo;</em></p>
 </section>
   
-    {% include "partials/quiz-block.njk" %}
+  {# --- Reflection & engagement --- #}
+  {% include "partials/creative-prompt.njk" %}
+  {% include "partials/discussion-prompt.njk" %}
+
+  {# --- Community bridge --- #}
+  {% include "partials/community-entry.njk" %}
+
+  {# --- Optional interactive reinforcement --- #}
+  {% include "partials/quiz-block.njk" %}
+
+  {# --- Reference & grounding --- #}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 
+  {# --- Conversion boundary (CTA lives here) --- #}
+  {% include "partials/cta-buttons.njk" %}
+
+  {# --- Navigation & onward journey --- #}
   {% include "partials/series-nav-buttons.njk" %}
   {% include "partials/episode-part-nav.njk" %}
 

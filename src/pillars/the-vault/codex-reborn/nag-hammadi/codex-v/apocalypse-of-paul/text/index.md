@@ -1,5 +1,15 @@
 ---
 layout: base.njk
+
+# === Unified Header Hierarchy ===
+siteTitle: "The Gnostic Key"
+pillarTitle: "The Vault"
+gateTitle: "Codex Reborn"
+seriesTitle: "Nag Hammadi – Codex V"
+episodeTitle: "The Apocalypse of Paul"
+seasonTitle: null
+partTitle: null
+
 title: "The Apocalypse of Paul"
 description: "Paul’s vision of ascent through the heavens — the Gnostic revelation of the soul’s journey beyond judgment to the freedom of light."
 tagline: "The ascent ✦ the interrogation ✦ the release"

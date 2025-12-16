@@ -52,11 +52,16 @@
       account, and creating new threads is reserved for Adepts.
     </p>
 
-    <a href="/pillars/tgk-community/threads/topics/{{ resolvedTopicId }}/"
-      class="btn btn-primary">
-      {{ community.label or "Discuss this Scroll in the TGK Community" }}
-    </a>
-
+    <div class="btn-row">
+      <div class="btn-wrap">
+        <a
+          href="/pillars/tgk-community/threads/topics/{{ resolvedTopicId }}/"
+          class="btn btn-primary"
+        >
+          {{ community.label or "Discuss this Scroll in the TGK Community" }}
+        </a>
+      </div>
+    </div>
   </section>
 
 {% endif %}

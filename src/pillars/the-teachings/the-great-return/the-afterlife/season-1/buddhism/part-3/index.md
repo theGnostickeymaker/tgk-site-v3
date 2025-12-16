@@ -820,10 +820,21 @@ socialImages:
   <p>These practices soften karma, widen compassion, and strengthen recognition. They are the bodhisattva&rsquo;s tools, for liberation now and after death.</p>
 </section>
 
-    {% include "partials/quiz-block.njk" %}
+  {# --- Reflection & engagement --- #}
+  {% include "partials/creative-prompt.njk" %}
+  {% include "partials/discussion-prompt.njk" %}
+
+  {# --- Community bridge --- #}
+  {% include "partials/community-entry.njk" %}
+
+  {# --- Optional interactive reinforcement --- #}
+  {% include "partials/quiz-block.njk" %}
+
+  {# --- Reference & grounding --- #}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 
+  {# --- Navigation & onward journey --- #}
   {% include "partials/series-nav-buttons.njk" %}
   {% include "partials/episode-part-nav.njk" %}
 

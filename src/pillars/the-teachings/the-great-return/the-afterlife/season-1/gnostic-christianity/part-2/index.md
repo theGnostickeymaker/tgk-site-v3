@@ -208,7 +208,7 @@ socialImages:
   <cite>
     <em>Gospel of Thomas</em> (Saying 108 — NHC II,2 51:10–15).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-108" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-108" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -275,7 +275,7 @@ socialImages:
   <cite>
     <em>Gospel of Thomas</em> (Saying 3 — NHC II,2 32:10–33:5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-3" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-3" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -299,7 +299,7 @@ socialImages:
   <cite>
     <em>The Second Treatise of the Great Seth</em> (NHC VII,2 55:15–56:5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-vii/second-treatise-of-the-great-seth/text/" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -362,7 +362,7 @@ socialImages:
   <cite>
     <em>Gospel of Thomas</em> (Saying 102 — NHC II,2 51:1–5).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-102" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-102" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -432,7 +432,7 @@ socialImages:
   <cite>
     <em>Gospel of Thomas</em> (Saying 2 — NHC II,2 32:2–10).  
     <a 
-      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/#thomas-2" 
+      href="/pillars/the-vault/codex-reborn/nag-hammadi/codex-ii/gospel-of-thomas/text/#thomas-2" 
       target="_blank" 
       rel="noopener noreferrer"
     >Source</a>
@@ -540,10 +540,24 @@ socialImages:
   </figcaption>
 </figure>
 
-    {% include "partials/quiz-block.njk" %}
+  {# --- Reflection & engagement --- #}
+  {% include "partials/creative-prompt.njk" %}
+  {% include "partials/discussion-prompt.njk" %}
+
+  {# --- Community bridge --- #}
+  {% include "partials/community-entry.njk" %}
+
+  {# --- Optional interactive reinforcement --- #}
+  {% include "partials/quiz-block.njk" %}
+
+  {# --- Reference & grounding --- #}
   {% include "partials/glossary-block.njk" %}
   {% include "partials/reference-section.njk" %}
 
+  {# --- Conversion boundary (CTA lives here) --- #}
+  {% include "partials/cta-buttons.njk" %}
+
+  {# --- Navigation & onward journey --- #}
   {% include "partials/series-nav-buttons.njk" %}
   {% include "partials/episode-part-nav.njk" %}
 

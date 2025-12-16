@@ -295,7 +295,7 @@
 }
 
 .upper-band-line {
-  font-size: 1rem;
+  font-size: 1.4rem;
   opacity: 0.65;
   color: var(--text-accent);
 }
