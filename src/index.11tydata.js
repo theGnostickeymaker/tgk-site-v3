@@ -35,7 +35,7 @@ export default {
       glyph: "✶",
       desc: "Accessible pages, glossaries, and guides for seekers of all paths.",
       tier: "initiate-trial",
-      state: "default"
+      state: "active"
     },
     {
       href: "/pillars/the-obsidian-key/",
@@ -43,7 +43,7 @@ export default {
       glyph: "🜂",
       desc: "Deep-dive investigations into power, law, and empire.",
       tier: "initiate-trial",
-      state: "default"
+      state: "active"
     },
     {
       href: "/pillars/the-gnostic-eye/",
@@ -51,7 +51,7 @@ export default {
       glyph: "☿",
       desc: "Symbolic and archetypal analysis of modern and mythic events.",
       tier: "initiate-trial",
-      state: "default"
+      state: "active"
     },
     {
       href: "/pillars/the-vault/",
@@ -59,7 +59,15 @@ export default {
       glyph: "🗄️",
       desc: "Preserved forbidden and sacred texts — the erased memory of humanity.",
       tier: "initiate-trial",
-      state: "default"
+      state: "active"
+    },
+        {
+      href: "/pillars/tgk-community/",
+      title: "TGK Community",
+      glyph: "💬",
+      desc: "Forums, study circles, and live sessions.",
+      tier: "initiate-trial",
+      state: "active"
     },
     {
       href: "/pillars/the-resonant-key/",
@@ -74,14 +82,6 @@ export default {
       title: "Children’s Corner",
       glyph: "🧸",
       desc: "Gentle stories and parables for young seekers.",
-      tier: "initiate-trial",
-      state: "coming-soon"
-    },
-    {
-      href: "/pillars/tgk-community/",
-      title: "TGK Community",
-      glyph: "💬",
-      desc: "Forums, study circles, and live sessions.",
       tier: "initiate-trial",
       state: "coming-soon"
     },
