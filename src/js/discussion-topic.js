@@ -166,12 +166,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bodyField) bodyField.required = true;
 
     if (statusEl) {
+      const rx = form?.dataset?.reaction
+        ? ` Your reaction: ${voteLabel(form.dataset.reaction)}.`
+        : "";
+
       if (!isReply) {
         statusEl.textContent = "Posting a new comment. Keep it concise and clear.";
       } else if (needsSteel) {
-        statusEl.textContent = "Challenge reply: Steel Man required.";
+        statusEl.textContent = `Challenge reply: Steel Man required.${rx}`;
       } else {
-        statusEl.textContent = "Replying in thread.";
+        statusEl.textContent = `Replying in thread.${rx}`;
       }
     }
   }
@@ -198,29 +202,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function createdSeconds(data) {
-    return Number(data?.createdAt?.seconds || 0);
+  return Number(data?.createdAt?.seconds || 0);
   }
-  
+
+  function voteLabel(type) {
+    if (type === "insight") return "Insight";
+    if (type === "agree") return "Agree";
+    if (type === "challenge") return "Challenge";
+    return "";
+  }
+
+  function pickComposerIntentFromVote(voteType) {
+    // Only "challenge" should auto-map to a post intent.
+    // Agree/Insight are reactions, not post types.
+    return voteType === "challenge" ? "challenge" : "reply";
+  }
+
   function getComposerHost() {
   return document.getElementById("add") || document.getElementById("add-reply");
-}
+  }
 
-function openComposer() {
-  const host = getComposerHost();
-  const details = host?.querySelector("details");
-  if (details) details.open = true;
+  function openComposer() {
+    const host = getComposerHost();
+    const details = host?.querySelector("details");
+    if (details) details.open = true;
 
-  requestAnimationFrame(() => {
-    (host || form)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-}
+    requestAnimationFrame(() => {
+      (host || form)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 
-function closeComposer() {
-  const host = getComposerHost();
-  const details = host?.querySelector("details");
-  if (details) details.open = false;
-}
-
+  function closeComposer() {
+    const host = getComposerHost();
+    const details = host?.querySelector("details");
+    if (details) details.open = false;
+  }
 
   /* -----------------------------------------------------------
      Tier helpers
@@ -918,8 +934,10 @@ function applyVoteStateToCard(replyId, card) {
       if (replyContext) replyContext.hidden = false;
 
       // Preselect reply type based on the user's current vote for this reply
-      const remembered = lastVoteByReply.get(replyId);
-      setIntent(remembered || "reply");
+      const remembered = lastVoteByReply.get(replyId) || "";
+      if (form) form.dataset.reaction = remembered;
+
+      setIntent(pickComposerIntentFromVote(remembered));
 
       updateComposerUI();
 
@@ -933,6 +951,8 @@ function applyVoteStateToCard(replyId, card) {
     if (target.id === "cancel-reply-context") {
       if (parentReplyField) parentReplyField.value = "";
       if (replyContext) replyContext.hidden = true;
+
+      if (form) delete form.dataset.reaction;
 
       setIntent("comment");
       updateComposerUI();
@@ -1220,6 +1240,7 @@ function applyVoteStateToCard(replyId, card) {
         form.reset();
         if (parentReplyField) parentReplyField.value = "";
         if (replyContext) replyContext.hidden = true;
+        if (form) delete form.dataset.reaction;
 
         setIntent("comment");
         updateComposerUI();
