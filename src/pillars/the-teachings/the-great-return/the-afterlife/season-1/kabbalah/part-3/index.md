@@ -53,6 +53,11 @@ published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Kabbalah", "Season 1", "The Teachings"]
 
+community:
+  topicId: "kabbalah"
+  pageId: "the-great-return-afterlife-season-1-kabbalah-part-3"
+  label: "Discuss this Scroll in the TGK Community"
+
 # Visibility
 sitemap: true
 seriesNavEnabled: true

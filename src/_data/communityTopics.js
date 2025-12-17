@@ -20,31 +20,31 @@ export default {
 
     // === House of Grift ===
     "house-of-grift-ep1-british-royals":
-    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/the-british-royals/",
+    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep1-the-british-royals/",
 
     "house-of-grift-ep2-protected-predator":
-    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/the-protected-predator/",
+    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep2-the-protected-predator/",
 
     "house-of-grift-ep3-princess-beatrice":
-    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/princess-beatrice/",
+    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/",
 
     // === The Gnostic Eye ===
-    "the-gnostic-eye-the-final-idol-series-1-part-1":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol",
+    "the-final-idol-series-1":
+        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
 
-    "the-gnostic-eye-the-final-idol-series-1-part-2":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol",
+    "the-final-idol-series-1":
+        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
 
-    "the-gnostic-eye-the-final-idol-series-1-part-3":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol",
+    "the-final-idol-series-1":
+        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
 
-    "the-gnostic-eye-the-final-idol-series-1-part-4":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol",
+    "the-final-idol-series-1":
+        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
 
-    "the-gnostic-eye-the-final-idol-series-1-part-5":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol",
+    "the-final-idol-series-1":
+        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
 
-    "the-gnostic-eye-the-final-idol-series-1-part-6":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol",
+    "the-final-idol-series-1":
+        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
 
 };

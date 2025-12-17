@@ -36,19 +36,6 @@ export default {
 
   // === Final Idol Discussion Gates ===
 topicGrid: [
-
-  // === Whole-series discussion (optional but recommended) ===
-  {
-    href:
-      "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/discussion/",
-    title: "The Final Idol (Series Overview Discussion)",
-    glyph: "🜏",
-    desc:
-      "High-level discussion of The Final Idol as a complete investigation into AI as idol, prophecy, power structure, and false salvation.",
-    state: "active",
-    tier: "free"
-  },
-
   // === Series-level discussions ===
   {
     href:

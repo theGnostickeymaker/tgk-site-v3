@@ -10,6 +10,11 @@ pageId: "the-great-return-afterlife-season-1-ancient-egypt-part-3"
 episode: 5
 partNumeral: III
 
+community:
+  topicId: "ancient-egypt"
+  pageId: "the-teachings-the-great-return-the-afterlife-season-1-ancient-egypt-part-3"
+  label: "Discuss this Scroll in the TGK Community"
+
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
 gateTitle: "The Great Return"

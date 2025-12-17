@@ -14,6 +14,11 @@ pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-3"
 episode: 1
 partNumeral: III
 
+community:
+  topicId: "gnostic-christianity"
+  pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-3"
+  label: "Discuss this Scroll in the TGK Community"
+
 # === Unified Hierarchy Metadata ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"

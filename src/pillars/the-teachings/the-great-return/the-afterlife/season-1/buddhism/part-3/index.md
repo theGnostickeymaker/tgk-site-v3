@@ -44,6 +44,11 @@ published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Buddhism", "Series 1", "The Teachings"]
 
+community:
+  topicId: "buddhism"
+  pageId: "the-great-return-afterlife-season-1-buddhism-part-3"
+  label: "Discuss this Scroll in the TGK Community"
+
 # Visibility Toggles
 sitemap: true
 discussEnabled: true

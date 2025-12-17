@@ -13,7 +13,7 @@ export default {
 
   title: "Topic: The Final Idol — Series I",
   description:
-    "Community discussion space for Series I of The Final Idol, examining AI as idol, prophet, and false saviour through symbolic and Gnostic analysis.",
+    "Community discussion space for Series I of The Final Idol, examining artificial intelligence as idol, prophet, and false saviour through symbolic and Gnostic analysis.",
 
   glyph: "🜏",
   glyphRow: ["✦", "☉", "✦"],

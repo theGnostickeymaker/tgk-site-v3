@@ -48,6 +48,11 @@ published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Gnostic Christianity", "Season 1", "The Teachings"]
 
+community:
+  topicId: "gnostic-christianity"
+  pageId: "the-great-return-afterlife-season-1-gnostic-christianity-part-2"
+  label: "Discuss this Scroll in the TGK Community"
+
 sitemap: true
 discussEnabled: true
 referencesEnabled: true

@@ -70,6 +70,11 @@ published: "2025-10-14"
 publishedBy: "The Gnostic Key"
 tags: ["Afterlife", "Sufi Islam", "Season 1", "The Teachings"]
 
+community:
+  topicId: "sufi-islam"
+  pageId: "the-great-return-afterlife-season-1-sufi-islam-part-3"
+  label: "Discuss this Scroll in the TGK Community"
+
 # Visibility
 sitemap: true
 discussEnabled: true

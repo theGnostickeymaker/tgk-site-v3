@@ -15,6 +15,11 @@ tier: initiate
 
 pageId: "the-great-return-afterlife-season-1-mesoamerica-part-2"
 
+community:
+  topicId: "mesoamerica"
+  pageId: "the-great-return-afterlife-season-1-mesoamerica-part-2"
+  label: "Discuss this Scroll in the TGK Community"
+
 episode: 6
 partNumeral: II
 

@@ -10,6 +10,11 @@ pageId: "the-teachings-the-great-return-the-afterlife-season-1-ancient-egypt-par
 episode: 5
 partNumeral: I
 
+community:
+  topicId: "ancient-egypt"
+  pageId: "the-teachings-the-great-return-the-afterlife-season-1-ancient-egypt-part-1"
+  label: "Discuss this Scroll in the TGK Community"
+
 # === New Unified Hierarchy Fields ===
 siteTitle: "The Gnostic Key"
 pillarTitle: "The Teachings"
