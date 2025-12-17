@@ -199,7 +199,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createdSeconds(data) {
     return Number(data?.createdAt?.seconds || 0);
-  }function getComposerHost() {
+  }
+  
+  function getComposerHost() {
   return document.getElementById("add") || document.getElementById("add-reply");
 }
 
