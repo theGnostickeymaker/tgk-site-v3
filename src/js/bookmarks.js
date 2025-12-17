@@ -73,7 +73,7 @@ async function toggleBookmark(btn) {
 
   const pageId = btn.dataset.bookmarkId || window.location.pathname;
   const permalink = window.location.pathname;
-  const ref = doc(db, "bookmarks", user.uid, "pages", pageId);
+  const ref = doc(db, "users", user.uid, "bookmarks", pageId);
   const snap = await getDoc(ref);
 
   // 🜂 Pull metadata from embedded <script id="tgk-page-meta">
@@ -204,7 +204,7 @@ function renderPillarGrid(bookmarks) {
       if (!id) return;
 
       try {
-        await deleteDoc(doc(db, "bookmarks", auth.currentUser.uid, "pages", id));
+        await deleteDoc(doc(db, "users", auth.currentUser.uid, "bookmarks", id));
         card.style.transition = "opacity .25s ease, transform .25s ease";
         card.style.opacity = "0";
         card.style.transform = "scale(.97) translateY(4px)";
@@ -246,7 +246,7 @@ onAuthStateChanged(auth, async (user) => {
   if (!mount) return;
 
   try {
-    const snap = await getDocs(collection(db, "bookmarks", user.uid, "pages"));
+    const snap = await getDocs(collection(db, "users", user.uid, "bookmarks"));
     if (loading) loading.remove();
 
     if (snap.empty) {
