@@ -1,14 +1,14 @@
 export default {
-  
+
   layout: "base.njk",
 
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",
-  seriesTitle: "Topic Threads",
+  seriesTitle: "Discussion Hubs",
 
-  title: "Discussion Topics",
-  description: "Browse all active and upcoming TGK community discussion areas.",
+  title: "TGK Community",
+  description: "Structured discussion spaces aligned to the architecture of The Gnostic Key.",
 
   bodyClass: "community",
   accent: "community",
@@ -18,23 +18,81 @@ export default {
   showSeriesNav: false,
 
   topicGrid: [
-  {
-    href: "/pillars/tgk-community/threads/topics/steel-man-method/",
-    title: "The Steel Man Method",
-    desc: "Master and apply the Steel Man principle.",
-    glyph: "∞",
-    state: "active",
-    tier: "free",
-    minWriteTier: "initiate"
-  },
-  {
-    href: "/pillars/tgk-community/threads/topics/gnostic-christianity/",
-    title: "Gnostic Christianity Q&A",
-    desc: "Interpretation and symbolic analysis of the Gnostic Christianity scroll.",
-    glyph: "✝",
-    state: "active",
-    tier: "free",
-    minWriteTier: "initiate"
-  }
-]
+
+    {
+      href: "/pillars/tgk-community/threads/topics/steel-man-method/",
+      title: "The Steel Man Method",
+      desc: "A disciplined practice space for mastering intellectual honesty and fair argument.",
+      glyph: "⚯",
+      state: "active",
+      tier: "free",
+      minWriteTier: "initiate"
+    },
+
+    {
+      href: "/pillars/tgk-community/threads/topics/the-teachings/",
+      title: "The Teachings",
+      glyph: "✶",
+      desc: "Discussion hubs for Afterlife, cosmology, metaphysics, and sacred traditions.",
+      tier: "free",
+      state: "active"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/",
+      title: "The Obsidian Key",
+      glyph: "🜂",
+      desc: "Debate and analysis on power, corruption, law, and systemic control.",
+      tier: "free",
+      state: "active"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/the-gnostic-eye/",
+      title: "The Gnostic Eye",
+      glyph: "☿",
+      desc: "Symbolic, archetypal, and investigative discussion threads.",
+      tier: "free",
+      state: "active"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/the-vault/",
+      title: "The Vault",
+      glyph: "🗄️",
+      desc: "Textual analysis and discussion of preserved sacred and forbidden texts.",
+      tier: "free",
+      state: "active"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/the-steel-man-method/",
+      title: "The Steel Man Method",
+      glyph: "⚯",
+      desc: "A disciplined practice space for intellectual honesty and fair argument.",
+      tier: "free",
+      state: "active"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/the-resonant-key/",
+      title: "The Resonant Key",
+      glyph: "🎧",
+      desc: "Discussion on sound, music, resonance, and experiential media.",
+      tier: "free",
+      state: "coming-soon"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/childrens-corner/",
+      title: "Children’s Corner",
+      glyph: "🧸",
+      desc: "Guided, age-appropriate discussion spaces for young seekers.",
+      tier: "free",
+      state: "coming-soon"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/the-keymakers-dream/",
+      title: "The Keymaker’s Dream",
+      glyph: "🗝️",
+      desc: "Discussion around personal myth, memory, and symbolic autobiography.",
+      tier: "free",
+      state: "coming-soon"
+    }
+
+  ]
 };

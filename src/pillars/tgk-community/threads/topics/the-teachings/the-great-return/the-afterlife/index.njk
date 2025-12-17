@@ -1,42 +1,29 @@
 ---
 layout: base.njk
-
-siteTitle: "The Gnostic Key"
-pillarTitle: "TGK Community"
-gateTitle: "Community Threads"
-seriesTitle: "Discussion Hubs"
-
-title: "TGK Community"
-description: "Structured discussion spaces aligned to the architecture of The Gnostic Key."
-
-glyph: "💬"
-glyphRow: ["✦", "☉", "✦"]
-bodyClass: "community"
-accent: "community"
-tier: "free"
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "TGK Community", url: "/pillars/tgk-community/" }
-  - { title: "Discussion Threads" }
 ---
 
 <main class="main-content">
   <section class="content-container">
 
-    <section class="section-block">
-      <h1 class="section-heading">TGK Community</h1>
+    <section class="section-block align-centre">
+      <h1 class="section-heading">Series I: The Afterlife</h1>
 
       <p class="lead">
-        Each hub below opens a layered discussion space aligned to a pillar,
-        allowing conversation to flow from broad thematic debate down to
-        focused series, season, or episode-level analysis where appropriate.</p>
+        This hub contains community discussion spaces aligned to Series I: The Afterlife.
+      </p>
 
+      <p>
+        Discussions here move between broad cross-tradition analysis and focused
+        seasonal and episode-level exploration of how cultures understand death,
+        rebirth, judgement, liberation, and return.
+      </p>
+
+      <p>
+        Select a gate below to enter the appropriate discussion space.
+      </p>
     </section>
 
     <section class="section-block">
-      <h2 class="section-heading">Discussion Hubs</h2>
-
       <div class="portal-grid">
         {% for m in topicGrid %}
           {% set state = m.state or "default" %}
