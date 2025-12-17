@@ -66,6 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Keeps the user's current vote per reply (synced by votes snapshot)
   const lastVoteByReply = new Map(); // replyId -> "insight"|"agree"|"challenge"
 
+  // Immediate local reaction (covers the snapshot lag after clicking a vote)
+  const pendingReactionByReply = new Map(); // replyId -> "insight"|"agree"|"challenge"|""
+
   // Critical fix: cache vote state so rebuilt DOM can be immediately hydrated
   const voteStateByReply = new Map(); // replyId -> { counts: {..}, userVote: string|null, ready: bool }
 
@@ -913,6 +916,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const voteType = voteBtn.dataset.voteType;
       if (!replyId || !voteType) return;
 
+            // Optimistic: if they click Reply immediately after voting, we still know their intent
+      const cachedState = getCachedVoteState(replyId);
+      const nextReaction = (cachedState.userVote === voteType) ? "" : voteType;
+
+      pendingReactionByReply.set(replyId, nextReaction);
+
+      // Clear it after a short window so it does not get “stuck”
+      window.setTimeout(() => {
+        if (pendingReactionByReply.get(replyId) === nextReaction) {
+          pendingReactionByReply.delete(replyId);
+        }
+      }, 2500);
+
       spawnRipple(voteBtn, event.clientX || 0, event.clientY || 0);
       if (voteType === "insight") spawnInsightParticles(voteBtn);
 
@@ -942,7 +958,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
-      const reaction = lastVoteByReply.get(replyId) || "";
+        const reaction =
+        pendingReactionByReply.get(replyId) ||
+        voteStateByReply.get(replyId)?.userVote ||
+        lastVoteByReply.get(replyId) ||
+        "";
+
       if (form) form.dataset.reaction = reaction;
 
       const composerIntent = pickComposerIntentFromVote(reaction);
