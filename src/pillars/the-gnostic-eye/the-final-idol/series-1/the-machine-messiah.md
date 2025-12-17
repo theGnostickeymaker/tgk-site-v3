@@ -75,6 +75,11 @@ discussionPromptEnabled: true
 glossaryEnabled: true
 lensEnabled: true
 
+community:
+  topicId: "the-final-idol-series-1"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-4"
+  label: "Discuss this Scroll in the TGK Community"
+
 discussion:
   promptTitle: "The Age of the Machine Saviour"
   intro: "The world kneels before code that claims to heal, see, and save. But who anoints a machine?"

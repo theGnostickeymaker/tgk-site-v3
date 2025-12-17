@@ -83,6 +83,11 @@ discussionPromptEnabled: true
 glossaryEnabled: true
 lensEnabled: true
 
+community:
+  topicId: "house-of-grift-ep3-princess-beatrice"
+  pageId: "hog-s1-e3"
+  label: "Discuss this Scroll in the TGK Community"
+
 # === Discussion Prompt ===
 discussion:
   promptTitle: "Privilege Behind the Smile"

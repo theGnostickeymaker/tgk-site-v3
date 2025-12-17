@@ -89,6 +89,11 @@ creativePrompt:
   text: ""
   sharePrompt: ""
 
+community:
+  topicId: "the-final-idol-series-1"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-3"
+  label: "Discuss this Scroll in the TGK Community"
+
 discussion:
   promptTitle: "The Mirror That Watches Back"
   intro: "You’ve met the Digital Prophet. Now look deeper — into the reflection that studies you in return."

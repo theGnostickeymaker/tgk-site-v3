@@ -83,6 +83,11 @@ discussionPromptEnabled: true
 glossaryEnabled: true
 lensEnabled: true
 
+community:
+  topicId: "house-of-grift-ep1-british-royals"
+  pageId: "hog-s1-e1"
+  label: "Discuss this Scroll in the TGK Community"
+
 # === Discussion Prompt ===
 discussion:
   promptTitle: "The Crown Beyond Ceremony"

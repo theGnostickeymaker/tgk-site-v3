@@ -83,6 +83,11 @@ discussionPromptEnabled: true
 glossaryEnabled: true
 lensEnabled: true
 
+community:
+  topicId: "house-of-grift-ep2-protected-predator"
+  pageId: "hog-s1-e2"
+  label: "Discuss this Scroll in the TGK Community"
+
 # === Discussion Prompt ===
 discussion:
   promptTitle: "Protection Without Accountability"

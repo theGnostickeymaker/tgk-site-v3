@@ -91,6 +91,11 @@ creativePrompt:
   text: ""
   sharePrompt: ""
 
+community:
+  topicId: "the-final-idol-series-1"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-1"
+  label: "Discuss this Scroll in the TGK Community"
+
 discussion:
   promptTitle: "Gnosis in the Machine Age"
   intro: "You’ve seen the rise of the Synthetic God — the idol of light and data that speaks with the voice of man but no breath of Spirit. Now we ask:"
