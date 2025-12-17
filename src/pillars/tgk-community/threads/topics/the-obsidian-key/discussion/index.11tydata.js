@@ -5,16 +5,16 @@ export default {
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",
-  seriesTitle: "The Teachings",
+  seriesTitle: "The Obsidian Key",
 
-  sourceTitle: "The Teachings — TGK Pillar",
-  sourcePermalink: "/pillars/the-teachings/",
+  sourceTitle: "The Obsidian Key — TGK Pillar",
+  sourcePermalink: "/pillars/the-obsidian-key/",
 
-  title: "Topic: The Teachings",
+  title: "Topic: The Obsidian Key",
   description:
-    "Community discussion space for cross-tradition dialogue, curriculum-wide questions, and thematic exploration across the Teachings pillar.",
+    "Community discussion space for cross-investigation dialogue across The Obsidian Key, examining power, law, empire, extraction, and systemic injustice.",
 
-  glyph: "✶",
+  glyph: "🜂",
   glyphRow: ["✦", "☉", "✦"],
 
   bodyClass: "community",

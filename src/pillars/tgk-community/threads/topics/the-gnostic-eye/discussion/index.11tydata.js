@@ -5,16 +5,16 @@ export default {
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",
-  seriesTitle: "The Teachings",
+  seriesTitle: "The Gnostic Eye",
 
-  sourceTitle: "The Teachings — TGK Pillar",
-  sourcePermalink: "/pillars/the-teachings/",
+  sourceTitle: "The Gnostic Eye — TGK Pillar",
+  sourcePermalink: "/pillars/the-gnostic-eye/",
 
-  title: "Topic: The Teachings",
+  title: "Topic: The Gnostic Eye",
   description:
-    "Community discussion space for cross-tradition dialogue, curriculum-wide questions, and thematic exploration across the Teachings pillar.",
+    "Community discussion space for symbolic analysis, archetypal interpretation, and examination of power structures, myths, and modern systems explored within The Gnostic Eye.",
 
-  glyph: "✶",
+  glyph: "🜏",
   glyphRow: ["✦", "☉", "✦"],
 
   bodyClass: "community",

@@ -5,18 +5,18 @@ export default {
   // === Core Identity ===
   suppressPageTitle: true,
 
-  pageId: "community-teachings",
-  permalink: "/pillars/tgk-community/threads/topics/the-teachings/index.html",
+  pageId: "community-gnostic-eye",
+  permalink: "/pillars/tgk-community/threads/topics/the-gnostic-eye/index.html",
 
   siteTitle: "The Gnostic Key",
-  title: "The Teachings | TGK Community",
+  title: "The Gnostic Eye | TGK Community",
 
-  tagline: "Discussion spaces aligned to the Teachings pillar.",
+  tagline: "Discussion spaces aligned to The Gnostic Eye pillar.",
 
   description:
-    "Community discussion hubs for the Teachings pillar, structured to mirror the spiritual curricula and learning arcs of The Gnostic Key.",
+    "Community discussion hubs for The Gnostic Eye pillar, structured to mirror its symbolic investigations, archetypal analyses, and modern myth-breaking series.",
 
-  glyph: "✶",
+  glyph: "🜏",
   glyphRow: ["✦", "☉", "✦"],
   accent: "community",
   bodyClass: "community",
@@ -26,44 +26,57 @@ export default {
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "TGK Community", url: "/pillars/tgk-community/" },
-    { title: "The Teachings" }
+    { title: "The Gnostic Eye" }
   ],
 
-  // === Teachings Discussion Gates ===
+  // === Gnostic Eye Discussion Gates ===
   topicGrid: [
+
+    // === Pillar-level discussion ===
     {
-      href: "/pillars/tgk-community/threads/topics/the-teachings/discussion/",
-      title: "The Teachings (Pillar Discussion)",
-      glyph: "☥",
+      href: "/pillars/tgk-community/threads/topics/the-gnostic-eye/discussion/",
+      title: "The Gnostic Eye (Pillar Discussion)",
+      glyph: "🜏",
       desc:
-        "Pillar-level discussion space for synthesising ideas across all Teachings. Use this forum to explore shared themes, contrasts between traditions, curriculum structure, and what the Teachings collectively reveal about the human condition.",
+        "Pillar-level discussion for symbolic interpretation of current events, mythic structures, power archetypes, and the spiritual mechanics behind modern systems.",
+      state: "active",
+      tier: "free"
+    },
+
+    // === Series-level discussions ===
+    {
+      href: "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/",
+      title: "The Final Idol",
+      glyph: "🜏",
+      desc:
+        "Discussion hub for AI as idol, prophet, and antichrist, decoding synthetic spirituality, machine prophecy, and the false light of progress.",
       state: "active",
       tier: "free"
     },
     {
-      href: "/pillars/tgk-community/threads/topics/the-teachings/the-great-return/",
-      title: "The Great Return",
-      glyph: "☥",
+      href: "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-martyr-of-memory/",
+      title: "The Martyr of Memory",
+      glyph: "🕱",
       desc:
-        "Discussion on remembrance, return, death, rebirth, and the recovery of the soul’s original knowledge.",
-      state: "active",
-      tier: "free"
-    },
-    {
-      href: "/pillars/tgk-community/threads/topics/the-teachings/the-sovereign-path/",
-      title: "The Sovereign Path",
-      glyph: "⚖",
-      desc:
-        "Civic autonomy, rights, self-defence, and practical sovereignty in a managed age.",
+        "Discussion hub for erased history, forbidden knowledge, memory-holing, and the spiritual cost of forgetting.",
       state: "coming-soon",
       tier: "free"
     },
     {
-      href: "/pillars/tgk-community/threads/topics/the-teachings/the-childrens-codex/",
-      title: "The Children’s Codex",
-      glyph: "📜",
+      href: "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-architecture-of-control/",
+      title: "The Architecture of Control",
+      glyph: "🏙️",
       desc:
-        "Foundational knowledge, imagination, ethics, and memory work for the next generation.",
+        "Discussion hub on smart cities, silent obedience, surveillance architectures, and digital captivity disguised as innovation.",
+      state: "coming-soon",
+      tier: "free"
+    },
+    {
+      href: "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-archetype-war/",
+      title: "The Archetype War",
+      glyph: "⚔️",
+      desc:
+        "Discussion hub for media myth-making, politics as ritual, and the weaponisation of collective consciousness.",
       state: "coming-soon",
       tier: "free"
     }

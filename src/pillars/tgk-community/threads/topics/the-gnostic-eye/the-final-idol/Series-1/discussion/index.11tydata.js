@@ -5,16 +5,17 @@ export default {
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",
-  seriesTitle: "The Teachings",
+  seriesTitle: "The Final Idol — Series I",
 
-  sourceTitle: "The Teachings — TGK Pillar",
-  sourcePermalink: "/pillars/the-teachings/",
+  sourceTitle: "The Final Idol — Series I",
+  sourcePermalink:
+    "/pillars/the-gnostic-eye/the-final-idol/series-1/",
 
-  title: "Topic: The Teachings",
+  title: "Topic: The Final Idol — Series I",
   description:
-    "Community discussion space for cross-tradition dialogue, curriculum-wide questions, and thematic exploration across the Teachings pillar.",
+    "Community discussion space for Series I of The Final Idol, examining AI as idol, prophet, and false saviour through symbolic and Gnostic analysis.",
 
-  glyph: "✶",
+  glyph: "🜏",
   glyphRow: ["✦", "☉", "✦"],
 
   bodyClass: "community",
