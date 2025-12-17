@@ -5,22 +5,6 @@
 
   <form id="discussion-form" class="discussion-form">
 
-    <div class="form-field">
-      <label for="reply-intent" class="form-label">Post type</label>
-
-      <select id="reply-intent" name="intent" class="form-input" aria-describedby="steelman-hint">
-        <option value="comment" selected>Comment</option>
-        <option value="reply">Reply</option>
-        <option value="agree">Agree</option>
-        <option value="insight">Insight</option>
-        <option value="challenge">Challenge</option>
-      </select>
-
-      <p id="steelman-hint" class="muted small">
-        Steel Man is required only for Challenge posts replying to a specific comment.
-      </p>
-    </div>
-
     <div class="form-field" id="steelman-field-wrap" hidden>
       <label for="steelman-summary" class="form-label">Steel Man Summary</label>
       <textarea id="steelman-summary"
