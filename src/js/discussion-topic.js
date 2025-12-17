@@ -1240,7 +1240,7 @@ function applyVoteStateToCard(replyId, card) {
         form.reset();
         if (parentReplyField) parentReplyField.value = "";
         if (replyContext) replyContext.hidden = true;
-        if (form) delete form.dataset.reaction;
+        if (form) delete form.dataset.reaction;s
 
         setIntent("comment");
         updateComposerUI();
