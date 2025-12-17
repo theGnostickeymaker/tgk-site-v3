@@ -175,6 +175,62 @@ document.addEventListener("DOMContentLoaded", () => {
       .replaceAll("'", "&#039;");
   }
 
+    function renderUserText(raw) {
+    const text = String(raw || "").replace(/\r\n/g, "\n").trim();
+    if (!text) return "";
+
+    const lines = text.split("\n");
+
+    const html = [];
+    let inUl = false;
+    let inOl = false;
+
+    function closeLists() {
+      if (inUl) { html.push("</ul>"); inUl = false; }
+      if (inOl) { html.push("</ol>"); inOl = false; }
+    }
+
+    function startUl() { if (!inUl) { closeLists(); html.push("<ul>"); inUl = true; } }
+    function startOl() { if (!inOl) { closeLists(); html.push("<ol>"); inOl = true; } }
+
+    for (const lineRaw of lines) {
+      const line = lineRaw.trimEnd();
+
+      // Blank line = paragraph break
+      if (!line.trim()) {
+        closeLists();
+        html.push("<p></p>");
+        continue;
+      }
+
+      // Unordered list: "- item" or "* item" or "• item"
+      const ulMatch = line.match(/^(\-|\*|•)\s+(.+)$/);
+      if (ulMatch) {
+        startUl();
+        html.push(`<li>${escapeHtml(ulMatch[2])}</li>`);
+        continue;
+      }
+
+      // Ordered list: "1. item"
+      const olMatch = line.match(/^(\d+)\.\s+(.+)$/);
+      if (olMatch) {
+        startOl();
+        html.push(`<li>${escapeHtml(olMatch[2])}</li>`);
+        continue;
+      }
+
+      // Normal text line: close lists, then add as paragraph line
+      closeLists();
+      html.push(`<p>${escapeHtml(line)}</p>`);
+    }
+
+    closeLists();
+
+    // Remove empty <p></p> blocks created by multiple blank lines
+    return html.join("\n").replace(/<p><\/p>\s*/g, "<br>");
+  }
+
+
   function toLocalTime(ts) {
     try {
       const d = ts?.toDate?.();
@@ -600,13 +656,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data.steelmanSummary) {
       steelBlock.innerHTML = `
         <div class="steelman-label">Steel Man Summary</div>
-        <div class="steelman-text">${escapeHtml(data.steelmanSummary)}</div>
+        <div class="steelman-text">${renderUserText(data.steelmanSummary)}</div>
       `;
     }
 
     const body = document.createElement("div");
     body.className = "discussion-message-body reply-body-text";
-    body.textContent = data.body || "";
+    body.innerHTML = renderUserText(data.body || "");
 
     const actions = document.createElement("div");
     actions.className = "discussion-actions";

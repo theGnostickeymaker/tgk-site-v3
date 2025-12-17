@@ -609,6 +609,52 @@
     color: var(--text-primary);
   }
 
+  /* Preserve user formatting safely (no HTML needed) */
+  .reply-body-text,
+  .reply-steelman-body .steelman-text {
+    white-space: pre-wrap;   /* keeps new lines + wraps long lines */
+    word-break: break-word;  /* prevents overflow on long URLs */
+  }
+
+    /* ==========================================================
+    TGK Community: Preserve user formatting
+    Keeps line breaks, allows paragraph spacing, prevents overflow
+  ========================================================== */
+
+  .discussion-message-body,
+  .reply-body-text,
+  .steelman-text,
+  .reply-steelman-body .steelman-text {
+    white-space: pre-wrap;      /* preserves new lines and wraps */
+    overflow-wrap: anywhere;    /* breaks very long tokens safely */
+    word-break: break-word;     /* extra safety for long URLs */
+  }
+
+  /* If you later render <p>, <ul>, <ol> from text, these will look sane */
+  .reply-body-text p,
+  .steelman-text p {
+    margin: 0 0 0.75rem 0;
+  }
+
+  .reply-body-text p:last-child,
+  .steelman-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .reply-body-text ul,
+  .reply-body-text ol,
+  .steelman-text ul,
+  .steelman-text ol {
+    margin: 0.25rem 0 0.75rem 1.25rem;
+    padding: 0;
+  }
+
+  .reply-body-text li,
+  .steelman-text li {
+    margin: 0.15rem 0;
+  }
+
+
   /* ==========================================================
      HIGHLIGHT ANIMATION
   ========================================================== */
