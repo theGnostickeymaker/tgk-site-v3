@@ -175,13 +175,14 @@ document.addEventListener("DOMContentLoaded", () => {
       .replaceAll("'", "&#039;");
   }
 
-    function renderUserText(raw) {
-    const text = String(raw || "").replace(/\r\n/g, "\n").trim();
+  function renderUserText(raw) {
+    const text = String(raw || "").replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
     if (!text) return "";
 
     const lines = text.split("\n");
 
     const html = [];
+    let para = [];
     let inUl = false;
     let inOl = false;
 
@@ -190,21 +191,29 @@ document.addEventListener("DOMContentLoaded", () => {
       if (inOl) { html.push("</ol>"); inOl = false; }
     }
 
-    function startUl() { if (!inUl) { closeLists(); html.push("<ul>"); inUl = true; } }
-    function startOl() { if (!inOl) { closeLists(); html.push("<ol>"); inOl = true; } }
+    function flushPara() {
+      if (!para.length) return;
+      const safe = escapeHtml(para.join("\n")).replace(/\n/g, "<br>");
+      html.push(`<p>${safe}</p>`);
+      para = [];
+    }
+
+    function startUl() { if (!inUl) { closeLists(); flushPara(); html.push("<ul>"); inUl = true; } }
+    function startOl() { if (!inOl) { closeLists(); flushPara(); html.push("<ol>"); inOl = true; } }
 
     for (const lineRaw of lines) {
-      const line = lineRaw.trimEnd();
+      const line = lineRaw.replace(/\s+$/g, "");
+      const trimmed = line.trim();
 
       // Blank line = paragraph break
-      if (!line.trim()) {
+      if (!trimmed) {
         closeLists();
-        html.push("<p></p>");
+        flushPara();
         continue;
       }
 
       // Unordered list: "- item" or "* item" or "• item"
-      const ulMatch = line.match(/^(\-|\*|•)\s+(.+)$/);
+      const ulMatch = trimmed.match(/^(\-|\*|•)\s+(.+)$/);
       if (ulMatch) {
         startUl();
         html.push(`<li>${escapeHtml(ulMatch[2])}</li>`);
@@ -212,24 +221,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Ordered list: "1. item"
-      const olMatch = line.match(/^(\d+)\.\s+(.+)$/);
+      const olMatch = trimmed.match(/^(\d+)\.\s+(.+)$/);
       if (olMatch) {
         startOl();
         html.push(`<li>${escapeHtml(olMatch[2])}</li>`);
         continue;
       }
 
-      // Normal text line: close lists, then add as paragraph line
+      // Normal text line: accumulate into current paragraph
       closeLists();
-      html.push(`<p>${escapeHtml(line)}</p>`);
+      para.push(trimmed);
     }
 
     closeLists();
+    flushPara();
 
-    // Remove empty <p></p> blocks created by multiple blank lines
-    return html.join("\n").replace(/<p><\/p>\s*/g, "<br>");
+    return html.join("\n");
   }
-
 
   function toLocalTime(ts) {
     try {
