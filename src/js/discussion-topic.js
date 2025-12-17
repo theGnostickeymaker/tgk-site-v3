@@ -1,11 +1,10 @@
 /* =============================================================
-   TGK Community, Topic Engine v3.8.1
-   Fix: Root posts must use intent="comment" to satisfy rules
-   Fix: Vote counts + active state survive re-render (cached per reply, then applied on rebuild)
-   Adds: Remembers user vote per reply and preselects reply type on Reply
-   Adds: Locks composer select for root vs reply modes
-   Fix: Reply chip now reflects the reaction intent (agree/insight/challenge) when replying from a vote
-   Fix: Prevents vote versus reply intent mismatch by locking the dropdown when a reaction is driving the reply
+   TGK Community, Topic Engine v3.9
+   - Root posts always intent="comment" (rules-safe)
+   - Reply intent is derived from the user’s reaction (vote) to prevent UX mismatch
+   - Steel Man field shows only for Challenge replies
+   - Vote counts + active state survive re-render (cached per reply)
+   - Composer select is locked to the derived intent (no manual drift)
    ============================================================= */
 
 import { auth, db } from "/js/firebase-init.js";
@@ -58,18 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentUser = null;
   let currentTier = "free";
   let isAdmin = false;
-  let pendingScrollToReplyId = null; // set after post, consumed after next render
+  let pendingScrollToReplyId = null;
 
   const reputationSubscriptions = new Map(); // userId -> unsub
   const voteSubscriptions = new Map(); // replyId -> unsub
 
-  // Keeps the user's current vote per reply (synced by votes snapshot)
+  // User vote per reply (synced by votes snapshot)
   const lastVoteByReply = new Map(); // replyId -> "insight"|"agree"|"challenge"
 
-  // Immediate local reaction (covers the snapshot lag after clicking a vote)
-  const pendingReactionByReply = new Map(); // replyId -> "insight"|"agree"|"challenge"|""
-
-  // Critical fix: cache vote state so rebuilt DOM can be immediately hydrated
+  // Cache vote state so rebuilt DOM can be hydrated instantly
   const voteStateByReply = new Map(); // replyId -> { counts: {..}, userVote: string|null, ready: bool }
 
   /* -----------------------------------------------------------
@@ -103,12 +99,28 @@ document.addEventListener("DOMContentLoaded", () => {
     intentField.value = value;
   }
 
+  function getReaction() {
+    return (form?.dataset?.reaction || "").trim();
+  }
+
+  function clearReaction() {
+    if (!form) return;
+    delete form.dataset.reaction;
+  }
+
   function isRootComposer() {
     return !getParentId();
   }
 
+  function validReplyIntentFromReaction(reaction) {
+    if (reaction === "insight") return "insight";
+    if (reaction === "agree") return "agree";
+    if (reaction === "challenge") return "challenge";
+    return "reply";
+  }
+
   function normaliseIntentForComposer() {
-    // Root posts must be "comment" to satisfy rules
+    // Root posts must be "comment"
     if (isRootComposer()) {
       if (getIntentRaw() !== "comment") setIntent("comment");
       return "comment";
@@ -123,17 +135,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return i;
   }
 
-  function voteLabel(type) {
-    if (type === "insight") return "Insight";
-    if (type === "agree") return "Agree";
-    if (type === "challenge") return "Challenge";
-    return "";
-  }
-
-  function pickComposerIntentFromVote(voteType) {
-    return (voteType === "insight" || voteType === "agree" || voteType === "challenge")
-      ? voteType
-      : "reply";
+  function intentLabelValue(value) {
+    if (value === "insight") return "Insight";
+    if (value === "agree") return "Agree";
+    if (value === "challenge") return "Challenge";
+    if (value === "reply") return "Reply";
+    return "Comment";
   }
 
   function lockComposerOptions(isReply) {
@@ -142,36 +149,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const options = Array.from(intentField.querySelectorAll("option"));
     const byValue = new Map(options.map(o => [o.value, o]));
 
-    const commentOpt = byValue.get("comment");
-    const replyOpt = byValue.get("reply");
-    const agreeOpt = byValue.get("agree");
-    const insightOpt = byValue.get("insight");
-    const challengeOpt = byValue.get("challenge");
+    // Helper: disable all, then enable only one value
+    function enableOnly(valueToEnable) {
+      options.forEach(o => { o.disabled = true; });
+      const opt = byValue.get(valueToEnable);
+      if (opt) opt.disabled = false;
+      setIntent(valueToEnable);
+    }
+
+    // We lock the select to prevent “vote says X, reply says Y”
+    intentField.disabled = true;
 
     if (!isReply) {
-      // Root composer: comment only
-      if (commentOpt) commentOpt.disabled = false;
-      if (replyOpt) replyOpt.disabled = true;
-      if (agreeOpt) agreeOpt.disabled = true;
-      if (insightOpt) insightOpt.disabled = true;
-      if (challengeOpt) challengeOpt.disabled = true;
-
-      setIntent("comment");
-      if (intentField) intentField.disabled = true;
-    } else {
-      // Reply composer: everything except comment
-      if (commentOpt) commentOpt.disabled = true;
-      if (replyOpt) replyOpt.disabled = false;
-      if (agreeOpt) agreeOpt.disabled = false;
-      if (insightOpt) insightOpt.disabled = false;
-      if (challengeOpt) challengeOpt.disabled = false;
-
-      if (getIntentRaw() === "comment") setIntent("reply");
-
-      // If a vote reaction is driving this reply, lock the dropdown to avoid mismatches
-      const reaction = (form?.dataset?.reaction || "").trim();
-      if (intentField) intentField.disabled = Boolean(reaction);
+      enableOnly("comment");
+      return;
     }
+
+    const reaction = getReaction();
+    const forced = validReplyIntentFromReaction(reaction);
+    enableOnly(forced);
   }
 
   function updateComposerUI() {
@@ -189,15 +185,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bodyField) bodyField.required = true;
 
     if (statusEl) {
-      const reaction = (form.dataset.reaction || "").trim();
-      const rx = reaction ? ` Your reaction: ${voteLabel(reaction)}.` : "";
-
       if (!isReply) {
         statusEl.textContent = "Posting a new comment. Keep it concise and clear.";
-      } else if (needsSteel) {
-        statusEl.textContent = `Challenge reply: Steel Man required.${rx}`;
       } else {
-        statusEl.textContent = `Replying in thread.${rx}`;
+        const reaction = getReaction();
+        const rx = reaction ? ` Your reaction: ${intentLabelValue(reaction)}.` : "";
+        if (needsSteel) {
+          statusEl.textContent = `Challenge reply: Steel Man required.${rx}`;
+        } else {
+          statusEl.textContent = `Replying in thread.${rx}`;
+        }
       }
     }
   }
@@ -247,18 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (details) details.open = false;
   }
 
-  function clearReplyContext() {
-    if (parentReplyField) parentReplyField.value = "";
-    if (replyContext) replyContext.hidden = true;
-
-    if (form) {
-      delete form.dataset.reaction;
-    }
-
-    setIntent("comment");
-    updateComposerUI();
-  }
-
   /* -----------------------------------------------------------
      Tier helpers
   ----------------------------------------------------------- */
@@ -289,6 +274,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (authHintEl && message) authHintEl.textContent = message;
+
+    // We re-lock intent after enabling/disabling
+    updateComposerUI();
   }
 
   /* -----------------------------------------------------------
@@ -402,11 +390,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     setFormEnabled(true, "You are signed in. Your contribution will appear with your chosen pseudonym.");
-    updateComposerUI();
   });
 
   /* -----------------------------------------------------------
-     Vote UI hydration (critical for surviving re-render)
+     Vote UI hydration
   ----------------------------------------------------------- */
   function getCachedVoteState(replyId) {
     const cached = voteStateByReply.get(replyId);
@@ -693,9 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
       editBtn.dataset.replyId = replyId;
       editBtn.textContent = "Edit";
       actions.appendChild(editBtn);
-    }
 
-    if (currentUser && (currentUser.uid === data.userId || isAdmin)) {
       const delBtn = document.createElement("button");
       delBtn.type = "button";
       delBtn.className = "btn-link btn-delete-comment";
@@ -730,40 +715,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const votesRef = collection(db, "topics", topicIdArg, "replies", replyId, "votes");
 
-    const unsub = onSnapshot(
-      votesRef,
-      (snapshot) => {
-        const counts = { insight: 0, agree: 0, challenge: 0 };
-        let userVote = null;
+    const unsub = onSnapshot(votesRef, (snapshot) => {
+      const counts = { insight: 0, agree: 0, challenge: 0 };
+      let userVote = null;
 
-        snapshot.forEach((snap) => {
-          const v = snap.data();
-          if (v && v.type && counts[v.type] != null) counts[v.type] += 1;
-          if (currentUser && snap.id === currentUser.uid && v && v.type) userVote = v.type;
-        });
+      snapshot.forEach((snap) => {
+        const v = snap.data();
+        if (v && v.type && counts[v.type] != null) counts[v.type] += 1;
+        if (currentUser && snap.id === currentUser.uid && v && v.type) userVote = v.type;
+      });
 
-        voteStateByReply.set(replyId, { counts, userVote, ready: true });
+      voteStateByReply.set(replyId, { counts, userVote, ready: true });
 
-        if (userVote) lastVoteByReply.set(replyId, userVote);
-        else lastVoteByReply.delete(replyId);
+      if (userVote) lastVoteByReply.set(replyId, userVote);
+      else lastVoteByReply.delete(replyId);
 
-        const liveCard = document.getElementById(`comment-${replyId}`);
-        if (liveCard) {
-          if (currentUser && liveCard.dataset.userId === currentUser.uid) {
-            liveCard.querySelectorAll(".vote-btn").forEach((btn) => {
-              btn.disabled = true;
-              btn.classList.add("is-disabled");
-              btn.setAttribute("aria-disabled", "true");
-              btn.title = "You cannot vote on your own contribution.";
-            });
-          }
-          applyVoteStateToCard(replyId, liveCard);
+      const liveCard = document.getElementById(`comment-${replyId}`);
+      if (liveCard) {
+        if (currentUser && liveCard.dataset.userId === currentUser.uid) {
+          liveCard.querySelectorAll(".vote-btn").forEach((btn) => {
+            btn.disabled = true;
+            btn.classList.add("is-disabled");
+            btn.setAttribute("aria-disabled", "true");
+            btn.title = "You cannot vote on your own contribution.";
+          });
         }
-      },
-      (error) => {
-        console.warn("[Votes] Snapshot error:", error);
+
+        applyVoteStateToCard(replyId, liveCard);
       }
-    );
+    });
 
     voteSubscriptions.set(replyId, unsub);
   }
@@ -779,7 +759,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!replySnap.exists()) return;
 
     const replyData = replySnap.data() || {};
-
     if (replyData.deleted) {
       if (statusEl) statusEl.textContent = "You cannot vote on a removed contribution.";
       return;
@@ -905,9 +884,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = event.target;
     if (!(target instanceof Element)) return;
 
-    /* -----------------------------------------
-       VOTING
-    ----------------------------------------- */
+    // Voting
     const voteBtn = target.closest(".vote-btn");
     if (voteBtn) {
       event.preventDefault();
@@ -915,19 +892,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const replyId = voteBtn.dataset.replyId;
       const voteType = voteBtn.dataset.voteType;
       if (!replyId || !voteType) return;
-
-            // Optimistic: if they click Reply immediately after voting, we still know their intent
-      const cachedState = getCachedVoteState(replyId);
-      const nextReaction = (cachedState.userVote === voteType) ? "" : voteType;
-
-      pendingReactionByReply.set(replyId, nextReaction);
-
-      // Clear it after a short window so it does not get “stuck”
-      window.setTimeout(() => {
-        if (pendingReactionByReply.get(replyId) === nextReaction) {
-          pendingReactionByReply.delete(replyId);
-        }
-      }, 2500);
 
       spawnRipple(voteBtn, event.clientX || 0, event.clientY || 0);
       if (voteType === "insight") spawnInsightParticles(voteBtn);
@@ -941,15 +905,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    /* -----------------------------------------
-       REPLY BUTTON
-       - Locks composer intent to the vote reaction (if present)
-       - Prevents mismatch: vote says Challenge but reply posts as Agree
-    ----------------------------------------- */
+    // Reply button
     const replyBtn = target.closest(".btn-reply-comment");
     if (replyBtn) {
-      event.preventDefault();
-
       const replyId = replyBtn.dataset.replyId;
       const snippet = replyBtn.dataset.snippet || "";
       if (!replyId) return;
@@ -958,35 +916,34 @@ document.addEventListener("DOMContentLoaded", () => {
       if (replyContextSnippet) replyContextSnippet.textContent = snippet;
       if (replyContext) replyContext.hidden = false;
 
-        const reaction =
-        pendingReactionByReply.get(replyId) ||
+      const reaction =
         voteStateByReply.get(replyId)?.userVote ||
         lastVoteByReply.get(replyId) ||
         "";
 
       if (form) form.dataset.reaction = reaction;
 
-      const composerIntent = pickComposerIntentFromVote(reaction);
-      setIntent(composerIntent);
+      const forcedIntent = validReplyIntentFromReaction(reaction);
+      setIntent(forcedIntent);
 
       updateComposerUI();
       openComposer();
       return;
     }
 
-    /* -----------------------------------------
-       CANCEL REPLY CONTEXT
-    ----------------------------------------- */
+    // Cancel reply context
     if (target.id === "cancel-reply-context") {
-      event.preventDefault();
-      clearReplyContext();
+      if (parentReplyField) parentReplyField.value = "";
+      if (replyContext) replyContext.hidden = true;
+
+      clearReaction();
+
+      setIntent("comment");
+      updateComposerUI();
       return;
     }
 
-    /* -----------------------------------------
-       DELETE / RESTORE / PIN / UNPIN / COLLAPSE
-       (Existing handlers)
-    ----------------------------------------- */
+    // Delete
     const deleteBtn = target.closest(".btn-delete-comment");
     if (deleteBtn) {
       event.preventDefault();
@@ -1056,6 +1013,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Restore
     const restoreBtn = target.closest(".btn-restore-reply");
     if (restoreBtn) {
       event.preventDefault();
@@ -1109,6 +1067,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Pin / unpin
     const pinBtn = target.closest(".btn-pin-reply");
     if (pinBtn) {
       event.preventDefault();
@@ -1151,6 +1110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Collapse toggle
     const collapseToggle = target.closest(".reply-collapse-toggle");
     if (collapseToggle) {
       const group = collapseToggle.closest(".discussion-thread-group");
@@ -1171,20 +1131,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("pointerup", handleActionEvent, { passive: false });
 
-  if (intentField) {
-    intentField.addEventListener("change", () => {
-      // If a reaction is driving the reply, the dropdown is locked (disabled),
-      // but guard anyway in case the DOM is changed or the browser ignores disabled events.
-      const reaction = (form?.dataset?.reaction || "").trim();
-      if (reaction) {
-        setIntent(pickComposerIntentFromVote(reaction));
-      }
-      updateComposerUI();
-    });
-  }
-
   // Initial UI state: root comment mode
   setIntent("comment");
+  clearReaction();
   updateComposerUI();
 
   /* -----------------------------------------------------------
@@ -1211,20 +1160,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const parentId = getParentId();
       const isReply = Boolean(parentId);
 
-      // Determine intent
-      let intent = "comment";
-      if (isReply) {
-        const reaction = (form.dataset.reaction || "").trim();
-        if (reaction) {
-          intent = pickComposerIntentFromVote(reaction);
-          setIntent(intent); // keep UI and payload aligned
-        } else {
-          intent = normaliseIntentForComposer();
-        }
-      } else {
-        intent = "comment";
-        setIntent("comment");
-      }
+      const reaction = getReaction();
+      const derivedIntent = isReply ? validReplyIntentFromReaction(reaction) : "comment";
+
+      // Enforce root intent
+      const intent = isReply ? derivedIntent : "comment";
+      if (!isReply) setIntent("comment");
 
       const isChallengeReply = isReply && intent === "challenge";
 
@@ -1262,7 +1203,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body,
           intent,
           createdAt: serverTimestamp(),
-          parentReplyId: parentId, // null for root posts
+          parentReplyId: parentId,
           pinned: false,
           deleted: false
         });
@@ -1277,9 +1218,15 @@ document.addEventListener("DOMContentLoaded", () => {
           topicId
         ).catch(() => {});
 
-        // Reset back to root comment mode
+        // Reset to root mode
         form.reset();
-        clearReplyContext();
+        if (parentReplyField) parentReplyField.value = "";
+        if (replyContext) replyContext.hidden = true;
+
+        clearReaction();
+        setIntent("comment");
+        updateComposerUI();
+
         closeComposer();
 
         if (statusEl) statusEl.textContent = "Posted.";
