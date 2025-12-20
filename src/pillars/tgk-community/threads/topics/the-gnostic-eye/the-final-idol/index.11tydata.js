@@ -35,16 +35,27 @@ export default {
 
   // === Final Idol Discussion Gates (Link Cards) ===
   topicGrid: [
+        {
+      href:
+        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/discussion/",
+      title: "The Final Idol: Series I (General Discussion)",
+      glyph: "💬",
+      desc:
+        "Single forum thread for the entire Series I discussion, tracking patterns, symbols, evidence, and refusal practices across the whole arc.",
+      state: "active",
+      tier: "free"
+    },
     {
       href:
         "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/",
       title: "Series I: The Final Idol",
       glyph: "🜏",
       desc:
-        "Single thread for the entire Series I argument, tracking the image as god, algorithmic prophecy, and the rise of synthetic faith.",
+        "Series landing hub for the full Series I run, linking the scrolls and framing the argument.",
       state: "active",
       tier: "free"
     },
+
     {
       href:
         "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-2/",
