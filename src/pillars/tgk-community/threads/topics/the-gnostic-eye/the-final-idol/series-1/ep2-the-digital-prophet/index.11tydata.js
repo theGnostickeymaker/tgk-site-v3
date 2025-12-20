@@ -1,0 +1,47 @@
+export default {
+  layout: "community-topic",
+
+  suppressPageTitle: true,
+
+  pageId: "the-final-idol-series-1-ep2-the-digital-prophet",
+  topicId: "the-final-idol-s1-ep2-the-digital-prophet",
+
+  permalink:
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/ep2-the-digital-prophet/index.html",
+
+  title: "Episode II: The Digital Prophet, Discussion",
+  description:
+    "This thread is dedicated to discussion of Episode II of The Final Idol. Use this space to analyse how prediction becomes authority, how “guidance” turns into obedience, and how the machine begins to function as prophet, advisor, and moral compass. Discussion should focus on mechanisms, symbolism, narrative conditioning, and the way trust is transferred from human judgement to automated certainty. Speculation, abuse, or unfounded claims are not appropriate here.",
+
+  minWriteTier: "initiate",
+  minCreateTier: "adept",
+  state: "active",
+
+  glyph: "⚯",
+  glyphRow: ["✦", "☉", "✦"],
+
+  bodyClass: "community",
+  accent: "community",
+  tier: "free",
+
+  breadcrumbs: [
+    { title: "The Gnostic Key", url: "/" },
+    { title: "TGK Community", url: "/pillars/tgk-community/" },
+    {
+      title: "The Gnostic Eye",
+      url: "/pillars/tgk-community/threads/topics/the-gnostic-eye/"
+    },
+    {
+      title: "The Final Idol",
+      url: "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/"
+    },
+    {
+      title: "Series I",
+      url: "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/index.html"
+    },
+    { title: "Episode II: The Digital Prophet" }
+  ],
+
+  showLens: false,
+  showSeriesNav: false
+};

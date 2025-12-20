@@ -1,0 +1,36 @@
+{% block head %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <header class="scroll-hero">
+      <div class="glyph-wrap" aria-hidden="true">
+        <div class="glyph">{{ glyph }}</div>
+        {% if glyphRow and glyphRow.length %}
+          <div class="glyph-row">
+            {% for g in glyphRow %}
+              <span>{{ g }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <h1 class="hero-title">The Final Idol</h1>
+      {% if tagline %}<p class="hero-tagline">{{ tagline }}</p>{% endif %}
+      {% if description %}<p class="hero-description">{{ description }}</p>{% endif %}
+    </header>
+
+    <div class="card-grid">
+      {% for t in threads %}
+        <a class="card card-link" href="{{ t.url }}">
+          <h3 class="card-title">{{ t.title }}</h3>
+          <p class="card-text">{{ t.description }}</p>
+          <span class="card-cta">Open thread</span>
+        </a>
+      {% endfor %}
+    </div>
+
+  </section>
+</main>

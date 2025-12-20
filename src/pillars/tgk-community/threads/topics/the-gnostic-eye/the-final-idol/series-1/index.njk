@@ -1,36 +1,60 @@
 ---
-layout: "community-topic"
-
-topicId: "the-final-idol-series-1"
-pageId: "the-gnostic-eye-the-final-idol-series-1-discussion"
-
-title: "The Final Idol — Series I Discussion"
-description: >
-  This thread is dedicated to discussion of Series I of The Final Idol as a unified investigation.
-  Rather than separating discussion by episode, this space treats the series as a single,
-  unfolding argument about artificial intelligence, idolatry, prophecy, and control.
-  Use this thread to analyse how symbolism accumulates across the sequence, how themes develop,
-  and what the series reveals about modern faith in machines.
-  This is a space for synthesis rather than fragmentation.
-  I would love to hear how you are interpreting Series I as a whole:
-
-minWriteTier: "initiate"
-minCreateTier: "adept"
-state: "active"
-glyph: "⚯"
-
-breadcrumbs:
-  - { title: "The Gnostic Key", url: "/" }
-  - { title: "TGK Community", url: "/pillars/tgk-community/" }
-  - {
-      title: "The Gnostic Eye",
-      url: "/pillars/tgk-community/threads/topics/the-gnostic-eye/"
-    }
-  - {
-      title: "The Final Idol",
-      url: "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/"
-    }
-  - { title: "Series I" }
+layout: base.njk
 ---
 
-{# All rendering handled by the community-topic layout #}
+<main class="main-content">
+  <section class="content-container">
+
+    <section class="section-block align-centre">
+      <h1 class="section-heading">The Final Idol</h1>
+
+      <p class="lead">
+        This hub contains community discussion spaces aligned to The Final Idol series.
+      </p>
+
+      <p>
+        Discussions here explore AI, technology, and modern power through symbolic,
+        mythic, and Gnostic lenses. This is a space for pattern recognition, critique,
+        and resistance, not technical evangelism.
+      </p>
+
+      <p>
+        Select a gate below to enter the appropriate discussion space.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="portal-grid">
+        {% for m in topicGrid %}
+          {% set state = m.state or "default" %}
+
+          <article class="gnostic-card {{ state }}">
+            <a class="card-link" href="{{ m.href }}">
+              <div class="card-body">
+                {% if m.glyph %}
+                  <div class="card-glyph">{{ m.glyph }}</div>
+                {% endif %}
+                <h3 class="card-title">{{ m.title }}</h3>
+                {% if m.desc %}
+                  <p class="card-desc">{{ m.desc }}</p>
+                {% endif %}
+              </div>
+
+              {% if state != "active" %}
+                <div class="card-overlay">
+                  <span class="banner">
+                    {% if state == "coming-soon" %} Coming Soon {% endif %}
+                    {% if state == "locked" %} Locked {% endif %}
+                  </span>
+                </div>
+              {% endif %}
+
+              <div class="card-badge tier-free">Free</div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+  </section>
+</main>
