@@ -28,23 +28,26 @@ export default {
     "house-of-grift-ep3-princess-beatrice":
     "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/",
 
-    // === The Gnostic Eye ===
-    "the-final-idol-series-1":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
+    // === The Gnostic Eye / The Final Idol (Series I) ===
+  "the-final-idol-s1-general":
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/discussion/index.html",
 
-    "the-final-idol-series-1":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
+  "the-final-idol-s1-ep1-the-final-idol":
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/ep1-the-final-idol/index.html",
 
-    "the-final-idol-series-1":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
+  "the-final-idol-s1-ep2-the-digital-prophet":
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/ep2-the-digital-prophet/index.html",
 
-    "the-final-idol-series-1":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
+  "the-final-idol-s1-ep3-the-oracle-in-the-mirror":
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/ep3-the-oracle-in-the-mirror/index.html",
 
-    "the-final-idol-series-1":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
+  "the-final-idol-s1-ep4-the-machine-messiah":
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/ep4-the-machine-messiah/index.html",
 
-    "the-final-idol-series-1":
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1",
+  "the-final-idol-s1-ep5-the-ai-antichrist":
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/ep5-the-ai-antichrist/index.html",
+
+  "the-final-idol-s1-ep6-the-flame-in-the-dark":
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-1/ep6-the-flame-in-the-dark/index.html",
 
 };
