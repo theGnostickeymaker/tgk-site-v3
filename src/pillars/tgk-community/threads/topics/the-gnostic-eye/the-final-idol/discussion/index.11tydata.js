@@ -6,7 +6,7 @@ export default {
 
   pageId: "community-final-idol-hub",
   permalink:
-    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/index.html",
+    "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/discussion/index.html",
 
   siteTitle: "The Gnostic Key",
   title: "The Final Idol | TGK Community",
