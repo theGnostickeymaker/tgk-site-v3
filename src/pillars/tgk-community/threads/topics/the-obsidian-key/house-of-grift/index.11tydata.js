@@ -4,18 +4,19 @@ export default {
   // === Core Identity ===
   suppressPageTitle: true,
 
-  pageId: "community-obsidian-key",
-  permalink: "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/index.html",
+  pageId: "community-house-of-grift",
+  permalink:
+    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/index.html",
 
   siteTitle: "The Gnostic Key",
-  title: "The Obsidian Key | TGK Community",
+  title: "House of Grift | TGK Community",
 
-  tagline: "Discussion spaces aligned to The Obsidian Key pillar.",
+  tagline: "Discussion spaces for the House of Grift series.",
 
   description:
-    "Community discussion hubs for The Obsidian Key pillar, structured to mirror its investigations into power, law, empire, extraction, and systemic injustice.",
+    "Community discussion hubs for House of Grift, tracking royal theatre, dynastic extraction, protected institutions, and the narrative machinery that shields power.",
 
-  glyph: "🜂",
+  glyph: "♛",
   glyphRow: ["✦", "☉", "✦"],
   accent: "community",
   bodyClass: "community",
@@ -25,54 +26,31 @@ export default {
   breadcrumbs: [
     { title: "The Gnostic Key", url: "/" },
     { title: "TGK Community", url: "/pillars/tgk-community/" },
-    { title: "The Obsidian Key" }
+    {
+      title: "The Obsidian Key",
+      url: "/pillars/tgk-community/threads/topics/the-obsidian-key/"
+    },
+    { title: "House of Grift" }
   ],
 
-  // === Obsidian Key Discussion Gates ===
+  // === House of Grift Gates ===
   topicGrid: [
     {
-      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/discussion/",
-      title: "The Obsidian Key (Pillar Discussion)",
-      glyph: "🜂",
-      desc:
-        "Pillar-level discussion examining power, law, extraction, empire, and systemic injustice across all Obsidian Key investigations.",
-      state: "active",
-      tier: "free"
-    },
-    {
-      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/",
-      title: "House of Grift",
+      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/discussion/",
+      title: "House of Grift (Series Discussion)",
       glyph: "♛",
       desc:
-        "Discussion hub for royal theatre, dynastic extraction, and the parasitic bloodlines of empire.",
+        "A single thread for cross-season themes: extraction, immunity, laundering, and the theatre that normalises it.",
       state: "active",
       tier: "free"
     },
     {
-      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/systemic/",
-      title: "SYSTEMIC",
-      glyph: "⚖",
+      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/",
+      title: "Season I",
+      glyph: "♛",
       desc:
-        "Discussion hub for rights erosion, courtroom alchemy, legislative rituals, and the architecture of modern control.",
-      state: "coming-soon",
-      tier: "free"
-    },
-    {
-      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/empire-codes/",
-      title: "Empire Codes",
-      glyph: "¤",
-      desc:
-        "Discussion hub for robber barons, financial occultism, debt sorcery, and imperial continuity.",
-      state: "coming-soon",
-      tier: "free"
-    },
-    {
-      href: "/pillars/tgk-community/threads/topics/the-obsidian-key/gnostic-liberation/",
-      title: "Gnostic Liberation",
-      glyph: "⨳",
-      desc:
-        "Discussion hub confronting race, colonisation, class warfare, inherited hierarchy, and the illusions of empire.",
-      state: "coming-soon",
+        "Season I gates for Episode I: The British Royals, Episode II: Protected Predator, and Episode III: Princess Beatrice.",
+      state: "active",
       tier: "free"
     }
   ],
