@@ -85,7 +85,7 @@ lensEnabled: true
 
 community:
   topicId: "the-final-idol-s1-ep6-the-flame-in-the-dark"
-  pageId: "the-final-idol-series-1-ep6-the-flame-in-the-dark"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-6"
   label: "Discuss this Scroll in the TGK Community"
 
 creativePrompt:

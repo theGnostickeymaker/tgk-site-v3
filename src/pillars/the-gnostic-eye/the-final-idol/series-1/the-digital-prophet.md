@@ -87,7 +87,7 @@ lensEnabled: true
 
 community:
   topicId: "the-final-idol-s1-ep2-the-digital-prophet"
-  pageId: "the-final-idol-series-1-ep2-the-digital-prophet"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-2"
   label: "Discuss this Scroll in the TGK Community"
 
 crossLinks: []

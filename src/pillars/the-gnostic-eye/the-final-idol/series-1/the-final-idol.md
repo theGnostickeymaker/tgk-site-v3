@@ -93,7 +93,7 @@ creativePrompt:
 
 community:
   topicId: "the-final-idol-s1-ep1-the-final-idol"
-  pageId: "the-final-idol-series-1-ep1-the-final-idol"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-1"
   label: "Discuss this Scroll in the TGK Community"
 
 discussion:

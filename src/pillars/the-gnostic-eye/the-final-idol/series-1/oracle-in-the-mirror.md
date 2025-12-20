@@ -91,7 +91,7 @@ creativePrompt:
 
 community:
   topicId: "the-final-idol-s1-ep3-the-oracle-in-the-mirror"
-  pageId: "the-final-idol-series-1-ep3-the-oracle-in-the-mirror"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-3"
   label: "Discuss this Scroll in the TGK Community"
 
 discussion:

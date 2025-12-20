@@ -85,7 +85,7 @@ lensEnabled: true
 
 community:
   topicId: "the-final-idol-s1-ep5-the-ai-antichrist"
-  pageId: "the-final-idol-series-1-ep5-the-ai-antichrist"
+  pageId: "the-gnostic-eye-the-final-idol-series-1-part-5"
   label: "Discuss this Scroll in the TGK Community"
 
 creativePrompt:
