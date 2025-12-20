@@ -7,7 +7,7 @@ export default {
 
   pageId: "community-house-of-grift-season-1",
   permalink:
-    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/index.html",
+    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/discussion/index.html",
 
   siteTitle: "The Gnostic Key",
   title: "House of Grift — Season I | TGK Community",
@@ -56,7 +56,7 @@ export default {
     // === Episode-level discussions ===
     {
       href:
-        "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/the-british-royals/",
+        "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep1-the-british-royals/",
       title: "Episode I: The British Royals",
       glyph: "♛",
       desc:
@@ -66,7 +66,7 @@ export default {
     },
     {
       href:
-        "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/the-protected-predator/",
+        "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep2-the-protected-predator/",
       title: "Episode II: The Protected Predator",
       glyph: "♛",
       desc:
@@ -76,7 +76,7 @@ export default {
     },
     {
       href:
-        "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/princess-beatrice/",
+        "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/",
       title: "Episode III: Princess Beatrice",
       glyph: "♛",
       desc:

@@ -1,21 +1,28 @@
 export default {
-
   layout: "community-topic",
-  
+
+  suppressPageTitle: true,
+
+  pageId: "community-hog-s1-ep3",
+  topicId: "house-of-grift-s1-ep3-princess-beatrice",
+
+  permalink:
+    "/pillars/tgk-community/threads/topics/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/index.html",
+
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",
-  seriesTitle: "House of Grift — Season I",
+  seriesTitle: "House of Grift",
 
-  sourceTitle: "House of Grift — Episode III: Princess Beatrice",
+  sourceTitle: "House of Grift, Season I, Episode III: Princess",
   sourcePermalink:
-    "/pillars/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/",
+    "/pillars/the-obsidian-key/house-of-grift/season-1/ep3-princess/",
 
   title: "Topic: Princess Beatrice",
   description:
-    "Community discussion space for Episode III of House of Grift, examining the role of minor royals, soft power, and symbolic utility within dynastic protection systems.",
+    "Community discussion space for Episode III of House of Grift, examining royal womanhood as branding, containment, and managed spectacle.",
 
-  glyph: "♛",
+  glyph: "❖",
   glyphRow: ["✦", "☉", "✦"],
 
   bodyClass: "community",
