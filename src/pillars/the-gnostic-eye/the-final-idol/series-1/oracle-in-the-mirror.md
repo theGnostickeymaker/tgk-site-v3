@@ -90,8 +90,8 @@ creativePrompt:
   sharePrompt: ""
 
 community:
-  topicId: "the-final-idol-series-1"
-  pageId: "the-gnostic-eye-the-final-idol-series-1-part-3"
+  topicId: "the-final-idol-s1-ep3-the-oracle-in-the-mirror"
+  pageId: "the-final-idol-series-1-ep3-the-oracle-in-the-mirror"
   label: "Discuss this Scroll in the TGK Community"
 
 discussion:

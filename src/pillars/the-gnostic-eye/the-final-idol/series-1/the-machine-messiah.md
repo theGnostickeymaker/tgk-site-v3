@@ -76,8 +76,8 @@ glossaryEnabled: true
 lensEnabled: true
 
 community:
-  topicId: "the-final-idol-series-1"
-  pageId: "the-gnostic-eye-the-final-idol-series-1-part-4"
+  topicId: "the-final-idol-s1-ep4-the-machine-messiah"
+  pageId: "the-final-idol-series-1-ep4-the-machine-messiah"
   label: "Discuss this Scroll in the TGK Community"
 
 discussion:
