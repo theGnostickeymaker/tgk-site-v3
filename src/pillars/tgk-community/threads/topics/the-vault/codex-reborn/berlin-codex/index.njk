@@ -1,0 +1,45 @@
+---
+layout: base.njk
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <section class="section-block align-centre">
+      <h1 class="section-heading">Berlin Codex</h1>
+
+      <p class="lead">
+        Discussion hub for the Berlin Codex.
+      </p>
+
+      <p>
+        The Berlin Codex preserves important Gnostic writings transmitted
+        outside the Nag Hammadi Library. Its texts foreground marginalised
+        apostolic voices, contested authority, and post-resurrection revelation.
+      </p>
+
+      <p>
+        Use this hub to enter codex-level discussion or proceed to individual
+        text threads.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="portal-grid">
+        {% for m in topicGrid %}
+          <article class="gnostic-card {{ m.state }}">
+            <a class="card-link" href="{{ m.href }}">
+              <div class="card-body">
+                <div class="card-glyph">{{ m.glyph }}</div>
+                <h3 class="card-title">{{ m.title }}</h3>
+                <p class="card-desc">{{ m.desc }}</p>
+              </div>
+              <div class="card-badge tier-free">Free</div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+  </section>
+</main>

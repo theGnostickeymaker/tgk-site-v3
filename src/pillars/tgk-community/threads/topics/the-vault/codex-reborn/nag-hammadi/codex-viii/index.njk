@@ -1,0 +1,46 @@
+---
+layout: base.njk
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <section class="section-block align-centre">
+      <h1 class="section-heading">Codex VIII</h1>
+
+      <p class="lead">
+        Discussion hub for Codex VIII of the Nag Hammadi Library.
+      </p>
+
+      <p>
+        Codex VIII brings together epistolary instruction and expansive
+        visionary ascent. Its texts explore how esoteric knowledge is
+        transmitted, authorised, and preserved, balancing communal
+        responsibility with secret revelation.
+      </p>
+
+      <p>
+        Use this hub to enter codex-level synthesis or proceed to individual
+        text discussion threads.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="portal-grid">
+        {% for m in topicGrid %}
+          <article class="gnostic-card {{ m.state }}">
+            <a class="card-link" href="{{ m.href }}">
+              <div class="card-body">
+                <div class="card-glyph">{{ m.glyph }}</div>
+                <h3 class="card-title">{{ m.title }}</h3>
+                <p class="card-desc">{{ m.desc }}</p>
+              </div>
+              <div class="card-badge tier-free">Free</div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+  </section>
+</main>

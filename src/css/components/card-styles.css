@@ -327,6 +327,12 @@
     margin-top: 1rem;
   }
 
+  .guide-grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4, 1rem);
+  }
+
   /* Responsive tweaks */
   @media (max-width: 700px) {
     .dashboard-grid,

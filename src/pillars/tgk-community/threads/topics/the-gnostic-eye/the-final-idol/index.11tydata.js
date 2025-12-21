@@ -55,17 +55,6 @@ export default {
       state: "active",
       tier: "free"
     },
-
-    {
-      href:
-        "/pillars/tgk-community/threads/topics/the-gnostic-eye/the-final-idol/series-2/",
-      title: "Series II: The Final Idol",
-      glyph: "⚠️",
-      desc:
-        "Coming soon. Expansion into control systems, obedience architectures, and the deeper mechanics of machine worship.",
-      state: "coming-soon",
-      tier: "free"
-    }
   ],
 
   // === Behaviour Flags ===

@@ -5,7 +5,7 @@ export default {
   siteTitle: "The Gnostic Key",
   pillarTitle: "TGK Community",
   gateTitle: "Community Threads",
-  seriesTitle: "Discussion Hubs",
+  seriesTitle: "The Vault Hub",
 
   title: "TGK Community",
   description: "Structured discussion spaces aligned to the architecture of The Gnostic Key.",

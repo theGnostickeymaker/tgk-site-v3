@@ -123,7 +123,7 @@ references:
     - author: "R. O. Faulkner"
       year: "1969–1978"
       work: "The Ancient Egyptian Coffin Texts (Vols I–III)"
-      pub: "Aris & Phillips"
+      pub: "Aris & Philips"
     - author: "E. A. Wallis Budge"
       year: "1895 / rev. 1972"
       work: "The Egyptian Book of the Dead (Papyrus of Ani)"

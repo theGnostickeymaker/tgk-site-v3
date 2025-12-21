@@ -75,7 +75,7 @@ export default {
         "/pillars/the-vault/codex-reborn/nag-hammadi/codex-i/tripartite-tractate/text/",
       glyph: "🕯",
       tier: "free",
-      state: "coming-soon"
+      state: "active"
     },
     {
       title: "Treatise on the Resurrection",
