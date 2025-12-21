@@ -1,0 +1,60 @@
+---
+layout: base.njk
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <section class="section-block align-centre">
+      <h1 class="section-heading">House of Grift — Season I</h1>
+
+      <p class="lead">
+        This hub contains community discussion spaces aligned to Season I of House of Grift.
+      </p>
+
+      <p>
+        Discussions here move between cross-episode analysis and focused examination
+        of individual investigations into royal entitlement, institutional protection,
+        and the machinery of extraction.
+      </p>
+
+      <p>
+        Select a gate below to enter the appropriate discussion space.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="portal-grid">
+        {% for m in topicGrid %}
+          {% set state = m.state or "default" %}
+
+          <article class="gnostic-card {{ state }}">
+            <a class="card-link" href="{{ m.href }}">
+              <div class="card-body">
+                {% if m.glyph %}
+                  <div class="card-glyph">{{ m.glyph }}</div>
+                {% endif %}
+                <h3 class="card-title">{{ m.title }}</h3>
+                {% if m.desc %}
+                  <p class="card-desc">{{ m.desc }}</p>
+                {% endif %}
+              </div>
+
+              {% if state != "active" %}
+                <div class="card-overlay">
+                  <span class="banner">
+                    {% if state == "coming-soon" %} Coming Soon {% endif %}
+                    {% if state == "locked" %} Locked {% endif %}
+                  </span>
+                </div>
+              {% endif %}
+
+              <div class="card-badge tier-free">Free</div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+  </section>
+</main>

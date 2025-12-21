@@ -1,0 +1,69 @@
+---
+layout: base.njk
+title: "SYSTEMIC — Season I"
+description: "Season I maps the UK rights erosion staircase, the storycraft used to secure convictions, and the courtroom mechanics that turn procedure into control."
+tagline: "Rights erosion, forensic fictions, and courtroom alchemy"
+tier: free
+
+glyph: "Ⅰ"
+accent: obsidian
+bodyClass: obsidian systemic
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Obsidian Key", url: "/pillars/the-obsidian-key/" }
+  - { title: "SYSTEMIC", url: "/pillars/the-obsidian-key/systemic/" }
+  - { title: "Season I" }
+
+socialImage: "/tgk-assets/images/share/the-obsidian-key/systemic/season-1/systemic-season-1.jpg"
+---
+
+{% block head %}
+  {% set socialImage = socialImage %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- ✦ Intro -->
+    <h4 class="index-heading">
+      Season I establishes the SYSTEMIC baseline: the legal staircase that narrowed civil liberties, the narrative machinery
+      that converts uncertainty into guilt, and the courtroom procedures that make coercion feel routine.
+    </h4>
+
+    <!-- ✦ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">Ⅰ About This Season</span>
+      </summary>
+
+      <p>
+        <strong>Season I: Diagnosing Injustice</strong> is the entry point to SYSTEMIC. It maps the UK control stack in its most
+        recognisable form: legislation, policing practice, prosecution framing, and the procedural theatre of court.
+      </p>
+
+      <p>
+        These scrolls are mechanism-first and UK-focused. Global geopolitics belongs to Empire Codes. Here, the question is
+        simpler: how does a state turn rights into permissions without declaring a coup?
+      </p>
+    </details>
+
+    <!-- ✦ Scroll Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- ✦ JSON-LD -->
+    {% set items = seriesGrid %}
+    {% set headline = "SYSTEMIC — Season I Scrolls" %}
+    {% set base = "/pillars/the-obsidian-key/systemic/season-1/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph }}
+      </span>
+    </div>
+
+  </section>
+</main>

@@ -1,0 +1,73 @@
+---
+layout: base.njk
+title: "SYSTEMIC"
+description: "A forensic journey through the UK control stack: rights erosion, protest suppression, surveillance expansion, and courtroom machinery."
+tagline: "Rights erosion, courtroom alchemy, and the machinery of control"
+tier: free
+
+glyph: "⚖"
+accent: obsidian
+bodyClass: obsidian systemic
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Obsidian Key", url: "/pillars/the-obsidian-key/" }
+  - { title: "SYSTEMIC" }
+
+socialImage: "/tgk-assets/images/share/the-obsidian-key/systemic/systemic-index.jpg"
+---
+
+{% block head %}
+  {% set socialImage = socialImage %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <!-- ✦ Intro -->
+    <h4 class="index-heading">
+      A domestic map of the UK control stack: how crisis language becomes law, how law becomes procedure,
+      and how procedure becomes a cage.
+    </h4>
+
+    <!-- ✦ Disclaimer -->
+    <details class="disclaimer-box">
+      <summary>
+        <span class="disclaimer-heading">⚖ About SYSTEMIC</span>
+      </summary>
+
+      <p>
+        <strong>SYSTEMIC</strong> is an Obsidian Key investigation into how UK institutions erode civil liberties
+        through legal layering, discretionary enforcement, and crisis-driven consent.
+      </p>
+
+      <p>
+        This series is UK-focused and mechanism-first: Acts, policies, court practice, policing culture, surveillance,
+        and the administrative pressures that reshape what a person can say, do, and refuse.
+      </p>
+
+      <p>
+        Global geopolitics and war architecture belong to <strong>Empire Codes</strong>. SYSTEMIC tracks what happens
+        when the machine turns inward.
+      </p>
+    </details>
+
+    <!-- ✦ Grid -->
+    {% include "partials/pillar-grid.njk" %}
+
+    <!-- ✦ JSON-LD Collection -->
+    {% set items = seriesGrid %}
+    {% set headline = "SYSTEMIC - Series Overview" %}
+    {% set base = "/pillars/the-obsidian-key/systemic/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <!-- ✦ Divider -->
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">
+        {{ glyph }}
+      </span>
+    </div>
+
+  </section>
+</main>

@@ -107,6 +107,9 @@ relatedProducts: []
 
   <section class="section-block">
     <h2 class="section-heading">Part I</h2>
+    </section>
+
+  <section class="section-block">
     <h2 class="section-heading">1. Introduction</h2>
     <p>As for what we can say about the things which are exalted, what is fitting is that we begin with the Father, who is the root of the Totality, the one from whom we have received grace to speak about him.</p>
 </section>
@@ -356,6 +359,10 @@ relatedProducts: []
 
   <section class="section-block">
           <h2 class="section-heading">Part II</h2>
+</section>  
+
+<section class="section-block">
+
                   <h2 class="section-heading">11. The Creation of Material Humanity</h2>
     <p>The matter which flows through its form (is) a cause by which the invisibility which exists through the powers [...] for them all, for [...], as they beget before them and destroy.</p>
 
@@ -378,6 +385,9 @@ relatedProducts: []
 
   <section class="section-block">
     <h2 class="section-heading">Part III</h2>
+  </section>
+
+  <section class="section-block">
       <h2 class="section-heading">12. The Variety of Theologies</h2>
     <p>If both the orders, those on the right and those on the left, are brought together with one another by the thought which is set between them, which gives them their organization with each other, it happens that they both act with the same emulation of their deeds, with those of the right resembling those of the left, and those of the left resembling those of the right. And if at times the evil order begins to do evil in a foolish way, the <wise> order emulates, in the form of a man of violence, also doing what is evil, as if it were a power of a man of violence. At other times the foolish order attempts to do good, making itself like it, since the hidden order, too, is zealous to do it. Just as it is in the things which are established, so (it is) in the things which have come to be. Since they bring things unlike one another, those who were not instructed were unable to know the cause of the things which exist. Therefore, they have introduced other types (of explanation), some saying that it is according to providence that the things which exist have their being. These are the people who observe the stability and the conformity of the movement of creation. Others say that it is something alien. These are people who observe the diversity and the lawlessness and the evil of the powers. Others say that the things which exist are what is destined to happen. These are the people who were occupied with this matter. Others say that it is something in accordance with nature. Others say that it is a self-existent. The majority, however, all who have reached as far as the visible elements, do not know anything more than them.</p>
 

@@ -45,3 +45,14 @@ communityThreads:
 
 relatedProducts: []
 ---
+<main class="main-content">
+  <section class="content-container">
+    {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
+    <h2>Teimophic Protennia</h2>
+    <p>
+      Text coming soon — preserved within <strong>The Vault</strong> for translation and study.
+      This treatise explores the divine architecture of light and the emanations of the Pleroma,
+      revealing the luminous hierarchy of the Invisible Spirit.
+    </p>
+  </section>
+</main>

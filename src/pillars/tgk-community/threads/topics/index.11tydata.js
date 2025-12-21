@@ -62,14 +62,6 @@ export default {
       state: "active"
     },
     {
-      href: "/pillars/tgk-community/threads/topics/the-steel-man-method/",
-      title: "The Steel Man Method",
-      glyph: "⚯",
-      desc: "A disciplined practice space for intellectual honesty and fair argument.",
-      tier: "free",
-      state: "active"
-    },
-    {
       href: "/pillars/tgk-community/threads/topics/the-resonant-key/",
       title: "The Resonant Key",
       glyph: "🎧",

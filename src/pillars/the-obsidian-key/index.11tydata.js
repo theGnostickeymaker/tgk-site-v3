@@ -34,7 +34,7 @@ tagline: "Follow the money, decode the myths and the masks",
   pillarGrid: [
     {
       href: "/pillars/the-obsidian-key/house-of-grift/",
-      title: "House of Grift",
+      title: "Series I: House of Grift",
       glyph: "♛",
       desc:
         "Royal theatre, dynastic extraction, and the parasitic bloodlines of empire. A forensic journey through entitlement, illusion and public manipulation.",
@@ -43,16 +43,16 @@ tagline: "Follow the money, decode the myths and the masks",
     },
     {
       href: "/pillars/the-obsidian-key/systemic/",
-      title: "SYSTEMIC",
+      title: "Series II: SYSTEMIC",
       glyph: "⚖",
       desc:
         "Rights erosion, courtroom alchemy, legislative rituals and the architecture of modern control. Mapping injustice at the structural level.",
-      state: "coming-soon",
-      tier: "free"
+      state: "active",
+      tier: "initiate-trial"
     },
     {
       href: "/pillars/the-obsidian-key/empire-codes/",
-      title: "Empire Codes",
+      title: "Series IIIEmpire Codes",
       glyph: "¤",
       desc:
         "Robber barons, financial occultism and debt sorcery. Following currency as a mechanism of obedience and imperial continuity.",
@@ -61,7 +61,7 @@ tagline: "Follow the money, decode the myths and the masks",
     },
     {
       href: "/pillars/the-obsidian-key/gnostic-liberation/",
-      title: "Gnostic Liberation",
+      title: "Series V:Gnostic Liberation",
       glyph: "⨳",
       desc:
         "Race, colonisation and class. A spiritual confrontation with whiteness, hierarchy, inherited violence and the illusions of empire.",
