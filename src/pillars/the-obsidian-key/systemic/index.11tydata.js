@@ -41,7 +41,7 @@ export default {
       glyph: "🕳",
       desc:
         "Orders, leverage, procedural traps, and the quiet infrastructure that makes repression feel administrative.",
-      state: "coming-soon",
+      state: "active",
       tier: "adept"
     },
     {

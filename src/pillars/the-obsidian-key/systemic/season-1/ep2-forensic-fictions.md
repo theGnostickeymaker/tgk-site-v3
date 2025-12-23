@@ -645,15 +645,6 @@ scholarly: []
   </p>
 </section>
 
-<section class="section-block">
-  <h2 class="section-heading">⚔️ Final Reflection: Naming the Machine</h2>
-  <p>
-    The Machine does not fear outrage. It feeds on it.<br>
-    But it fears disobedience with <em>conscience</em>. It fears juries who remember they are sovereign.<br>
-    It fears names, because what is named can be bound.
-  </p>
-</section>
-
 <!-- ⚔️ Final Reflection -->
 <section class="section-block">
   <h2 class="section-heading">⚔️ Final Reflection: Naming the Machine</h2>
