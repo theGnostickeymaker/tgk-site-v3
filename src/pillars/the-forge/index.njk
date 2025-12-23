@@ -1,0 +1,54 @@
+---
+layout: base.njk
+title: "The Forge"
+description: "Founder work, guest essays, and creator publishing hubs inside The Gnostic Key."
+tagline: "Work becomes artefact ✦ authors meet readers ✦ culture forged in public"
+tier: free
+
+glyph: "🗝️"
+accent: forge
+bodyClass: forge
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "The Forge", url: "/pillars/the-forge/" }
+---
+
+{% block head %}
+  {% set socialImage = "/tgk-assets/images/share/the-forge/forge-index.jpg" %}
+  {% include "partials/head-meta.njk" %}
+{% endblock %}
+
+<main class="main-content">
+  <section class="content-container">
+
+    <h4 class="index-heading">
+      A creator gateway for founder work, guest essays, investigations, and publishing hubs,
+      where ideas are tested, refined, and released.
+    </h4>
+
+    <details class="disclaimer-box">
+      <summary><span class="disclaimer-heading">🗝️ About The Forge</span></summary>
+      <p>
+        <strong>The Forge</strong> is where TGK becomes an institution, not only a library of scrolls.
+        It is a home for creators who want serious readers, structured dialogue, and a lasting archive for their work.
+      </p>
+      <p>
+        Inside The Forge you will find founder work, guest essays, collaborative investigations, and author hubs,
+        each designed to support clarity, rigour, and direct connection between writer and reader.
+      </p>
+    </details>
+
+    {% include "partials/pillar-grid.njk" %}
+
+    {% set items = pillarGrid %}
+    {% set headline = "The Gnostic Key — The Forge" %}
+    {% set base = "/pillars/the-forge/" %}
+    {% include "partials/jsonld-collection.njk" %}
+
+    <div class="gnostic-divider">
+      <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ pillarGlyph }}</span>
+    </div>
+
+  </section>
+</main>

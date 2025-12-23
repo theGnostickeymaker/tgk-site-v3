@@ -48,7 +48,7 @@ export default {
     },
     {
       href: "/pillars/tgk-community/threads/topics/the-obsidian-key/systemic/season-1/",
-      title: "Season I",
+      title: "Season I: Diagnosing Injustice",
       glyph: "⚖",
       desc:
         "Season I gates for Episode I: The Erosion Code, Episode II: Forensic Fictions, and Episode III: Courtroom Alchemy.",

@@ -1,0 +1,65 @@
+{# =========================================================
+   🪞 TGK — Reflection Prompt Partial
+   Purpose:
+   Quiet, inward-facing reflection block.
+   No colour overrides.
+   No community buttons beyond share.
+   ========================================================= #}
+
+{% if reflectionPrompt %}
+  {% set siteBase = "https://thegnostickey.com" %}
+  {% set shareTitle = title or page.fileSlug or "The Gnostic Key" %}
+  {% set relativeUrl = permalink or page.url or "/" %}
+  {% set shareUrl = siteBase + relativeUrl %}
+
+  {% set sharePrompt =
+    reflectionPrompt.sharePrompt
+    or reflectionPrompt.promptTitle
+    or "A reflection from The Gnostic Key"
+  %}
+  {% set encodedSharePrompt = sharePrompt | striptags | urlencode %}
+
+  <section id="reflection" class="section-block reflection-prompt">
+
+    <h2 class="section-heading">
+      🪞 {{ reflectionPrompt.promptTitle or "Reflection Prompt" }}
+    </h2>
+
+    {% if reflectionPrompt.intro %}
+      <p>{{ reflectionPrompt.intro | safe }}</p>
+    {% endif %}
+
+    {% if reflectionPrompt.points %}
+      <ul class="list-emoji">
+        {% for p in reflectionPrompt.points %}
+          <li>{{ p }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if reflectionPrompt.footer %}
+      <p>{{ reflectionPrompt.footer | safe }}</p>
+    {% endif %}
+
+    <div class="btn-row">
+      <div class="btn-wrap">
+        <a href="https://x.com/intent/tweet?url={{ shareUrl | urlencode }}&text={{ encodedSharePrompt }}%20%23TheGnosticKey"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-outline">
+          📤 <strong>Discuss on X</strong>
+        </a>
+      </div>
+
+      <div class="btn-wrap">
+        <a href="https://t.me/TheGnosticKey"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-outline">
+          💬 <strong>Join Us on Telegram</strong>
+        </a>
+      </div>
+    </div>
+
+  </section>
+{% endif %}

@@ -70,6 +70,14 @@ export default {
       state: "active"
     },
     {
+      href: "/pillars/the-forge/",
+      title: "The Forge",
+      glyph: "🗝️",
+      desc: "Creator halls, guest essays, and TGK publishing hubs, where work is tested, refined, and released.",
+      tier: "initiate-trial",
+      state: "coming-soon"
+    },
+    {
       href: "/pillars/the-resonant-key/",
       title: "The Resonant Key",
       glyph: "🎧",
@@ -93,14 +101,6 @@ export default {
       tier: "initiate-trial",
       state: "coming-soon"
     },
-    {
-      href: "/pillars/the-keymakers-dream/",
-      title: "The Keymaker’s Dream",
-      glyph: "🗝️",
-      desc: "A personal Gnostic memoir — the dream that made the lock.",
-      tier: "initiate-trial",
-      state: "coming-soon"
-    }
   ],
 
   // === Social Meta ===

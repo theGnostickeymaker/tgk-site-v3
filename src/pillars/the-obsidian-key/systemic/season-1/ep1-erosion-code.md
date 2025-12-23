@@ -39,7 +39,7 @@ socialAlt: "SYSTEMIC Episode I artwork: a broken scale over a dark legal grid."
 # Note: imgBase is season-level so Episode I can reference shared season assets.
 imgBase: "/media/the-obsidian-key/systemic/season-1/"
 imgPrefix: "systemic-s1-e1-"
-bodyClass: "obsidian systemic"
+bodyClass: "obsidian"
 
 # === Glyphs ===
 glyph: "⚖"

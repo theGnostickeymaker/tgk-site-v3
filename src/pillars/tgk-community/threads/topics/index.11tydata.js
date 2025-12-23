@@ -62,6 +62,14 @@ export default {
       state: "active"
     },
     {
+      href: "/pillars/tgk-community/threads/topics/the-forge/",
+      title: "The Forge",
+      glyph: "🗝️",
+      desc: "Guest work, founder pages, and author hubs, where creators meet readers through structured dialogue.",
+      tier: "free",
+      state: "coming-soon"
+    },
+    {
       href: "/pillars/tgk-community/threads/topics/the-resonant-key/",
       title: "The Resonant Key",
       glyph: "🎧",
@@ -76,15 +84,6 @@ export default {
       desc: "Guided, age-appropriate discussion spaces for young seekers.",
       tier: "free",
       state: "coming-soon"
-    },
-    {
-      href: "/pillars/tgk-community/threads/topics/the-keymakers-dream/",
-      title: "The Keymaker’s Dream",
-      glyph: "🗝️",
-      desc: "Discussion around personal myth, memory, and symbolic autobiography.",
-      tier: "free",
-      state: "coming-soon"
     }
-
   ]
 };
