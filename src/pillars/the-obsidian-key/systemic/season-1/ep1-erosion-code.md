@@ -86,7 +86,7 @@ glossaryEnabled: true
 lensEnabled: true
 
 community:
-  topicId: "systemic-ep1-erosion-code"
+  topicId: "systemic-s1-ep1-erosion-code"
   pageId: "systemic-s1-e1"
   label: "Discuss this Episode in the TGK Community"
 

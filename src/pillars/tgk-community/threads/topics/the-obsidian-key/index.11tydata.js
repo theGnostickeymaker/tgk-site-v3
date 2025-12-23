@@ -54,7 +54,7 @@ export default {
       glyph: "⚖",
       desc:
         "Discussion hub for rights erosion, courtroom alchemy, legislative rituals, and the architecture of modern control.",
-      state: "coming-soon",
+      state: "active",
       tier: "free"
     },
     {

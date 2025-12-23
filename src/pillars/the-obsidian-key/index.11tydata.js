@@ -52,7 +52,7 @@ tagline: "Follow the money, decode the myths and the masks",
     },
     {
       href: "/pillars/the-obsidian-key/empire-codes/",
-      title: "Series IIIEmpire Codes",
+      title: "Series III: Empire Codes",
       glyph: "¤",
       desc:
         "Robber barons, financial occultism and debt sorcery. Following currency as a mechanism of obedience and imperial continuity.",
@@ -61,7 +61,7 @@ tagline: "Follow the money, decode the myths and the masks",
     },
     {
       href: "/pillars/the-obsidian-key/gnostic-liberation/",
-      title: "Series V:Gnostic Liberation",
+      title: "Series V: Gnostic Liberation",
       glyph: "⨳",
       desc:
         "Race, colonisation and class. A spiritual confrontation with whiteness, hierarchy, inherited violence and the illusions of empire.",

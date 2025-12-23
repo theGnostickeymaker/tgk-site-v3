@@ -33,7 +33,7 @@ export default {
       desc:
         "The legal staircase, the forensic storycraft, and the courtroom mechanics that turn rights into permissions.",
       state: "active",
-      tier: "free"
+      tier: "initiate-trial"
     },
     {
       href: "/pillars/the-obsidian-key/systemic/season-2/",
@@ -41,8 +41,8 @@ export default {
       glyph: "🕳",
       desc:
         "Orders, leverage, procedural traps, and the quiet infrastructure that makes repression feel administrative.",
-      state: "active",
-      tier: "free"
+      state: "coming-soon",
+      tier: "adept"
     },
     {
       href: "/pillars/the-obsidian-key/systemic/season-3/",
@@ -50,8 +50,8 @@ export default {
       glyph: "🔥",
       desc:
         "Refusal, counter-strategy, and the psychology of consent. How people regain agency inside hostile systems.",
-      state: "active",
-      tier: "free"
+      state: "coming-soon",
+      tier: "adept"
     },
     {
       href: "/pillars/the-obsidian-key/systemic/season-4/",
@@ -59,8 +59,8 @@ export default {
       glyph: "🎙",
       desc:
         "The public pulse, collective refusal, and the last remaining channels of lawful dissent.",
-      state: "active",
-      tier: "free"
+      state: "coming-soon",
+      tier: "adept"
     },
     {
       href: "/pillars/the-obsidian-key/systemic/shadow-codex/",
@@ -68,8 +68,8 @@ export default {
       glyph: "🗝",
       desc:
         "Standalone scrolls that slot between seasons: surveillance, charity laundering, extraction taxes, and sacred refusal.",
-      state: "active",
-      tier: "free"
+      state: "coming-soon",
+      tier: "adept"
     },
     {
       href: "/pillars/the-teachings/know-your-rights/",
@@ -77,8 +77,8 @@ export default {
       glyph: "📘",
       desc:
         "Practical tool scrolls linked to SYSTEMIC, built for real-world protection and clarity.",
-      state: "active",
-      tier: "free"
+      state: "coming-soon",
+      tier: "adept"
     }
   ],
 
