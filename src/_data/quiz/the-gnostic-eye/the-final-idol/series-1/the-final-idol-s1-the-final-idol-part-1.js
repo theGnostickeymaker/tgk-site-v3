@@ -13,7 +13,7 @@ export default {
   questions: [
     {
       id: "q1",
-      prompt: "What is the ‘Final Idol’ according to this scroll?",
+      prompt: "What is the ‘Final Idol’ according to this Episode?",
       options: [
         { key: "A", label: "A golden statue from antiquity" },
         { key: "B", label: "The last human prophet" },
