@@ -68,7 +68,7 @@ seriesMeta:
   version: 1
 
 # === Publication Metadata ===
-author: "The Architect"
+author: "The Keymaker"
 published: "2025-12-22"
 updated: "2025-12-23"
 publishedBy: "The Gnostic Key"
@@ -258,9 +258,9 @@ references:
       desc: "Introduced new protest offences, pre-emptive controls, and Serious Disruption Prevention Orders."
 
     - id: source11
-      title: "Just Stop Oil protesters jailed after M25 blocked (BBC)"
-      url: "https://www.bbc.co.uk/news/articles/c51yww1nv0vo"
-      desc: "Sentencing example illustrating disruption framing, deterrence logic, and custodial punishment."
+      title: "Climate protesters jailed today. Who’s next?"
+      url: "https://www.theguardian.com/environment/article/2024/jul/19/climate-protesters-jailed-today-whos-next"
+      desc: "Guardian letters reflecting on the harsh custodial sentences for Just Stop Oil’s planned M25 blockade, used here as an example of how disruption is framed, punished, and justified through public-order and deterrence narratives."
 
     - id: source12
       title: "Just Stop Oil protesters jailed for Dartford Crossing protest (The Guardian)"
@@ -317,6 +317,9 @@ scholarly: []
 <!-- ========================= -->
 <!--  EPISODE CONTENT BEGINS   -->
 <!-- ========================= -->
+
+<main class="main-content">
+  <section class="content-container">
 
 <!-- 📜 SYSTEMIC - Scroll II: Forensic Fictions -->
 

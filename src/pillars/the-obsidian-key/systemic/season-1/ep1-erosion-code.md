@@ -69,7 +69,7 @@ seriesMeta:
   version: 1
 
 # === Publication Metadata ===
-author: "The Architect"
+author: "The Keymaker"
 published: "2025-12-21"
 updated: "2025-12-21"
 publishedBy: "The Gnostic Key"
@@ -333,9 +333,9 @@ references:
       desc: "Illustrative example of local authority surveillance and proportionality debates (often discussed alongside RIPA)."
 
     - id: source31
-      title: "M25 protester jailings (BBC)"
-      url: "https://www.bbc.co.uk/news/articles/c51yww1nv0vo"
-      desc: "Sentencing example used to show how disruption is framed and punished."
+      title: "Climate protesters jailed today. Who’s next?"
+      url: "https://www.theguardian.com/environment/article/2024/jul/19/climate-protesters-jailed-today-whos-next"
+      desc: "Guardian letters responding to the record jail sentences for Just Stop Oil activists over the planned M25 action, highlighting proportionality, deterrence logic, and the justice system’s treatment of climate protest."
 
     - id: source32
       title: "Dartford Crossing protest sentencing (The Guardian)"

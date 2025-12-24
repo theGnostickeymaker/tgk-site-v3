@@ -28,7 +28,7 @@ export default {
   pillarGrid: [
     {
       href: "/pillars/the-obsidian-key/systemic/season-1/ep1-the-erosion-code/",
-      title: "Scroll I: The Erosion Code",
+      title: "Episode I: The Erosion Code",
       glyph: "⚖",
       desc:
         "The legal staircase that hollowed out UK rights through crisis language, public order law, surveillance, and protest criminalisation.",
@@ -37,7 +37,7 @@ export default {
     },
     {
       href: "/pillars/the-obsidian-key/systemic/season-1/ep2-forensic-fictions/",
-      title: "Scroll II: Forensic Fictions",
+      title: "Episode II: Forensic Fictions",
       glyph: "🧾",
       desc:
         "How narrative, charging decisions, expert framing, and disclosure practices can turn ambiguity into certainty.",
@@ -46,7 +46,7 @@ export default {
     },
     {
       href: "/pillars/the-obsidian-key/systemic/season-1/ep3-courtroom-alchemy/",
-      title: "Scroll III: Courtroom Alchemy",
+      title: "Episode III: Courtroom Alchemy",
       glyph: "⚗",
       desc:
         "Procedure as theatre, leverage as routine, and the quiet mechanics that make coercion feel lawful.",

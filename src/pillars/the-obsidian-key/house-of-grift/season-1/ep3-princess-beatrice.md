@@ -68,7 +68,7 @@ seriesMeta:
   version: 1
 
 # === Publication Metadata ===
-author: "The Architect"
+author: "The Keymaker"
 published: "2025-11-29"
 publishedBy: "The Gnostic Key"
 tags: ["House of Grift","Obsidian Key","Princess Beatrice","Soft Power","Royal Privilege"]
