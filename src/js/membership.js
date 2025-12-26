@@ -1,6 +1,7 @@
 /* ===========================================================
    TGK — Membership Upgrade Flow (Stripe + Firebase)
-   - Wires buttons with [data-price] to Stripe Checkout
+   - Always wires buttons with [data-price]
+   - Initialises Stripe only when needed
    - Claims entitlements on return via session_id
    =========================================================== */
 
@@ -12,9 +13,6 @@ import {
 const auth = getAuth();
 let stripe = null;
 
-// -----------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------
 function qp(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
@@ -22,18 +20,36 @@ function qp(name) {
 function log(...args) {
   console.log("[TGK][Membership]", ...args);
 }
-
 function warn(...args) {
   console.warn("[TGK][Membership]", ...args);
 }
-
-function err(...args) {
+function error(...args) {
   console.error("[TGK][Membership]", ...args);
 }
 
-// -----------------------------------------------------------
-// Post-checkout: claim entitlements immediately
-// -----------------------------------------------------------
+function ensureStripe() {
+  const publishableKey = window.STRIPE_PUBLISHABLE_KEY;
+
+  log("window.STRIPE_PUBLISHABLE_KEY =", publishableKey);
+
+  if (!publishableKey) {
+    error("Missing window.STRIPE_PUBLISHABLE_KEY. Set it in base.njk.");
+    return null;
+  }
+
+  if (typeof window.Stripe !== "function") {
+    error("Stripe.js not loaded. Ensure https://js.stripe.com/v3 is in base.njk.");
+    return null;
+  }
+
+  if (!stripe) {
+    stripe = window.Stripe(publishableKey);
+    log("Stripe initialised");
+  }
+
+  return stripe;
+}
+
 async function claimCheckoutReturn(user) {
   const session = qp("session");
   const sessionId = qp("session_id");
@@ -64,7 +80,6 @@ async function claimCheckoutReturn(user) {
       return;
     }
 
-    // Force refresh so custom claims land client-side
     await user.getIdToken(true);
 
     if (data?.tier) {
@@ -72,68 +87,13 @@ async function claimCheckoutReturn(user) {
       log("Tier cached:", data.tier);
     }
 
-    // Remove querystring so it does not re-run on refresh
     window.history.replaceState({}, "", "/membership/");
-
-    // Optional: send them onward after unlock
     window.location.replace("/dashboard/");
   } catch (e) {
-    err("Post-checkout sync error:", e);
+    error("Post-checkout sync error:", e);
   }
 }
 
-// -----------------------------------------------------------
-// Stripe + button wiring
-// -----------------------------------------------------------
-function initStripe() {
-  const publishableKey = window.STRIPE_PUBLISHABLE_KEY;
-
-  log("window.STRIPE_PUBLISHABLE_KEY =", publishableKey);
-
-  if (!publishableKey) {
-    err(
-      "Missing window.STRIPE_PUBLISHABLE_KEY. " +
-      "Fix: set window.STRIPE_PUBLISHABLE_KEY in base.njk."
-    );
-    return null;
-  }
-
-  if (typeof window.Stripe !== "function") {
-    err(
-      "Stripe.js not loaded. " +
-      "Fix: ensure <script src='https://js.stripe.com/v3'></script> is in base.njk."
-    );
-    return null;
-  }
-
-  const s = window.Stripe(publishableKey);
-  log("Stripe initialised");
-  return s;
-}
-
-function wireButtons() {
-  const buttons = Array.from(document.querySelectorAll("[data-price]"));
-  log(`Found ${buttons.length} buttons with [data-price]`);
-
-  buttons.forEach((btn) => {
-    // Avoid double-binding if this script runs twice for any reason
-    if (btn.dataset.tgkBound === "1") return;
-    btn.dataset.tgkBound = "1";
-
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault();
-
-      const priceId = btn.dataset.price;
-      if (!priceId) return;
-
-      await startCheckout(priceId, btn);
-    });
-  });
-}
-
-// -----------------------------------------------------------
-// Start Stripe Checkout
-// -----------------------------------------------------------
 async function startCheckout(priceId, buttonEl) {
   const user = auth.currentUser;
 
@@ -144,15 +104,12 @@ async function startCheckout(priceId, buttonEl) {
     return;
   }
 
-  if (!stripe) {
-    stripe = initStripe();
-    if (!stripe) {
-      alert("Stripe could not be initialised. Please refresh and try again.");
-      return;
-    }
+  const s = ensureStripe();
+  if (!s) {
+    alert("Stripe is not ready. Please refresh, or contact support if this persists.");
+    return;
   }
 
-  // Light UX lock
   const originalText = buttonEl?.textContent;
   if (buttonEl) {
     buttonEl.disabled = true;
@@ -178,21 +135,21 @@ async function startCheckout(priceId, buttonEl) {
     const data = await res.json().catch(() => ({}));
 
     if (!res.ok || !data.sessionId) {
-      err("Checkout session creation failed:", data);
-      alert("Sorry, we could not start your checkout session.");
+      error("Checkout session creation failed:", data);
+      alert("Sorry, we could not start checkout. Please try again.");
       return;
     }
 
     log("Redirecting to Stripe Checkout. sessionId =", data.sessionId);
-    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
 
-    // redirectToCheckout only returns if something blocked it
+    const result = await s.redirectToCheckout({ sessionId: data.sessionId });
+
     if (result?.error?.message) {
-      err("Stripe redirect error:", result.error.message);
+      error("Stripe redirect error:", result.error.message);
       alert(result.error.message);
     }
   } catch (e) {
-    err("Checkout flow failed:", e);
+    error("Checkout flow failed:", e);
     alert("An unexpected error occurred. Please try again later.");
   } finally {
     if (buttonEl) {
@@ -202,15 +159,26 @@ async function startCheckout(priceId, buttonEl) {
   }
 }
 
-// -----------------------------------------------------------
-// Boot safely regardless of load timing
-// -----------------------------------------------------------
-function boot() {
-  // Initialise Stripe once
-  stripe = initStripe();
+function wireButtons() {
+  const buttons = Array.from(document.querySelectorAll("[data-price]"));
+  log(`Found ${buttons.length} buttons with [data-price]`);
 
-  // Wire buttons (even if Stripe failed, handlers still attach and will warn)
+  buttons.forEach((btn) => {
+    if (btn.dataset.tgkBound === "1") return;
+    btn.dataset.tgkBound = "1";
+
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const priceId = btn.dataset.price;
+      if (!priceId) return;
+      await startCheckout(priceId, btn);
+    });
+  });
+}
+
+function boot() {
   wireButtons();
+  ensureStripe(); // optional early init for nicer logs
 }
 
 if (document.readyState === "loading") {
@@ -219,7 +187,6 @@ if (document.readyState === "loading") {
   boot();
 }
 
-// Observe auth state and claim checkout return
 onAuthStateChanged(auth, (user) => {
   if (user) claimCheckoutReturn(user);
 });
