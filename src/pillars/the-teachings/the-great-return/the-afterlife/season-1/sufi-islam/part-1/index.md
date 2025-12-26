@@ -11,6 +11,7 @@ excerpt: |
   To the mystic, it is unveiling.
 
 tier: free
+requiredTier: verified
 
 pageId: "the-great-return-afterlife-season-1-sufi-islam-part-1"
 
@@ -198,9 +199,7 @@ socialImages:
   hero: "/tgk-assets/images/share/the-teachings/the-great-return/the-afterlife/season-1/sufi-islam/part-1/sufi-islam-part-1@2x.jpg"
 ---
 
-
 {% include "partials/page-tabs.njk" %} {% block bookmark %}{% include "partials/bookmark.njk" %}{% endblock %}
-
 
 <main class="main-content">
   <section class="content-container">

@@ -14,6 +14,7 @@ export default {
   accent: "gold",
   bodyClass: "gold",
   tier: "free",
+  requiredTier: "verified",
 
   title: "Sufi Islam",
   tagline: "Divine love ✦ annihilation of self ✦ union with the Beloved.",

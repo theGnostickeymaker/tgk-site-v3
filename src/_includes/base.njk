@@ -151,27 +151,54 @@
       All other pages (index, dashboard, membership, etc.)
       inherit site.defaultTier = free and show normally.
     #}
-    {% if tier and tier != "free" %}
-      <div class="locked-page" data-required-tier="{{ tier }}">
-        <div class="locked-placeholder">
+    
+      {# ============================================================
+    TGK Gating Wrapper
+    - tier: display/SEO/meta tier (free/initiate/adept/admin)
+    - requiredTier: gate logic tier (free/verified/initiate/adept/admin)
+    ============================================================ #}
+
+  {% set gateRequired = requiredTier or tier or site.defaultTier or "free" %}
+  {% set gateRequired = gateRequired | trim %}
+
+  {% if gateRequired != "free" %}
+    <div class="locked-page" data-required-tier="{{ gateRequired }}">
+      <div class="locked-placeholder">
+
+        {% if gateRequired == "verified" %}
+          <h2>Verify to Unlock</h2>
+          <p>This episode is free, but it requires a verified account.</p>
+
+          <p class="locked-actions">
+            <a href="/signin/" class="btn outline signin-btn">Sign In</a>
+            <a href="/signup/" class="btn outline">Create Free Account</a>
+          </p>
+
+          <p class="locked-note">
+            After signing in, you will be prompted to verify your email.
+          </p>
+
+        {% else %}
           <h2>Locked Page</h2>
-          <p>This Episode is reserved for <strong>{{ tier | capitalize }}</strong> members.</p>
+          <p>This Episode is reserved for <strong>{{ gateRequired | capitalize }}</strong> members.</p>
 
           <p class="locked-actions">
             <a href="/signup/" class="btn outline">Join Now</a>
-            <a href="/signin/" class="btn outline">Sign In</a>
+            <a href="/signin/" class="btn outline signin-btn">Sign In</a>
           </p>
-        </div>
+        {% endif %}
 
-        <div class="page-content" style="display:none;">
-          {{ content | safe }}
-        </div>
       </div>
-    {% else %}
-      {% block content %}
+
+      <div class="page-content" style="display:none;">
         {{ content | safe }}
-      {% endblock %}
-    {% endif %}
+      </div>
+    </div>
+  {% else %}
+    {% block content %}
+      {{ content | safe }}
+    {% endblock %}
+  {% endif %}
 
   </main>
 

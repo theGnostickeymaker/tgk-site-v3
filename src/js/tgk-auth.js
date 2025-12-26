@@ -1,6 +1,6 @@
 /* ===========================================================
-   TGK — Auth System v8.0
-   Sign-In, Sign-Up, Verify Banner, Claim Sync, Resume Support
+   TGK - Auth System v8.1
+   Sign-in, Sign-up, Verify banner, Claim sync, Return support
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -15,6 +15,16 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const auth = getAuth(app);
+
+const RETURN_KEY = "tgk-return-url";
+
+function getReturnUrl() {
+  const url =
+    sessionStorage.getItem(RETURN_KEY) ||
+    localStorage.getItem(RETURN_KEY) ||
+    "";
+  return url || "";
+}
 
 /* ===========================================================
    PERSISTENCE + LISTENER
@@ -83,7 +93,7 @@ function showError(code, fallback) {
    =========================================================== */
 
 window.pageSignin = async (email, password) => {
-  console.log("[Auth] Sign-in…");
+  console.log("[Auth] Sign-in...");
 
   try {
     const cred = await signInWithEmailAndPassword(auth, normalise(email), password);
@@ -149,10 +159,14 @@ window.pageSignup = async (email, password, confirm) => {
 
     const cred = await createUserWithEmailAndPassword(auth, e1, password);
 
-    // Send verification link
-    await sendEmailVerification(cred.user);
+    // Send verification link (prefer redirecting back to attempted page if present)
+    const returnUrl = getReturnUrl();
+    await sendEmailVerification(cred.user, {
+      url: returnUrl || `${location.origin}/dashboard/`,
+      handleCodeInApp: false
+    });
 
-    // Create Stripe free-tier customer
+    // Create Stripe free-tier customer (no redirect)
     const checkout = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -209,7 +223,7 @@ if (document.readyState === "loading") {
 }
 
 function bindForms() {
-  console.log("[Auth] Binding forms…");
+  console.log("[Auth] Binding forms...");
 
   const sIn = document.getElementById("signin-form");
   if (sIn) {
@@ -246,14 +260,18 @@ function showVerifyBanner(user) {
   b.id = "verify-banner";
   b.innerHTML = `
     <span>Your email has not yet been verified.</span>
-    <button id="resend-link">Resend verification link</button>
+    <button id="resend-link" type="button">Resend verification link</button>
   `;
 
   document.body.prepend(b);
 
   b.querySelector("#resend-link").addEventListener("click", async () => {
     try {
-      await sendEmailVerification(user);
+      const returnUrl = getReturnUrl();
+      await sendEmailVerification(user, {
+        url: returnUrl || window.location.href,
+        handleCodeInApp: false
+      });
       b.innerHTML = `<span>Verification link sent to ${user.email}</span>`;
     } catch (err) {
       b.innerHTML = `<span>Could not send link: ${err.message}</span>`;
@@ -266,22 +284,6 @@ function removeVerifyBanner() {
 }
 
 /* ===========================================================
-   CROSS-TAB VERIFICATION LISTENER
-   =========================================================== */
-
-const verifyChannel = new BroadcastChannel("tgk-email-verify");
-
-verifyChannel.onmessage = async (msg) => {
-  if (msg.data?.verified) {
-    console.log("[Auth] Verification noticed across tabs");
-    await auth.currentUser?.reload();
-    await auth.currentUser?.getIdToken(true);
-    removeVerifyBanner();
-    window.location.reload();
-  }
-};
-
-/* ===========================================================
    POLLING FAILSAFE
    =========================================================== */
 
@@ -292,6 +294,5 @@ setInterval(async () => {
   await u.reload();
   if (u.emailVerified) {
     removeVerifyBanner();
-    window.location.reload();
   }
 }, 5000);

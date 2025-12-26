@@ -11,6 +11,7 @@ excerpt: |
   It is the surrender of the “I”.
 
 tier: free
+requiredTier: verified
 
 pageId: "the-great-return-afterlife-season-1-sufi-islam-part-3"
 

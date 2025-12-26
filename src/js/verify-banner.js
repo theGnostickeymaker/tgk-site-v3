@@ -1,5 +1,5 @@
 /* ===========================================================
-   TGK — Verify Banner Module v1.1 (Restored & Corrected)
+   TGK Verify Banner Module v1.2
    Lightweight, token-aware email verification banner
    Safe for global inclusion
    =========================================================== */
@@ -25,7 +25,7 @@ onAuthStateChanged(auth, async (user) => {
   try {
     await user.reload();
   } catch (err) {
-    console.warn("[VerifyBanner] Reload failed:", err.message);
+    console.warn("[VerifyBanner] Reload failed:", err?.message || err);
   }
 
   if (!user.emailVerified) {
@@ -39,28 +39,74 @@ onAuthStateChanged(auth, async (user) => {
  * Display the verification banner
  */
 function showVerifyBanner(user) {
-  if (document.getElementById("verify-banner")) return;
+  const existing = document.getElementById("verify-banner");
+  if (existing) return;
 
   const banner = document.createElement("div");
   banner.id = "verify-banner";
   banner.innerHTML = `
-    <span>Your email has not been verified.</span>
-    <button id="resend-link">Resend verification link</button>
+    <div class="verify-banner-inner">
+      <span>Your email is not verified.</span>
+      <div class="verify-banner-actions">
+        <button id="resend-link" type="button">Resend link</button>
+        <button id="refresh-verify" type="button">I have verified, refresh</button>
+      </div>
+    </div>
   `;
 
   document.body.prepend(banner);
 
   const resendBtn = banner.querySelector("#resend-link");
   resendBtn.addEventListener("click", async () => {
+    resendBtn.disabled = true;
+    const original = resendBtn.textContent;
+    resendBtn.textContent = "Sending...";
+
     try {
       await sendEmailVerification(user);
-      banner.innerHTML = `<span>Verification link sent to ${user.email}.</span>`;
+      note(banner, `Verification link sent to ${user.email}.`);
       console.log("[VerifyBanner] Email re-sent successfully.");
     } catch (err) {
       console.error("[VerifyBanner] Resend failed:", err);
-      banner.innerHTML = `<span>Could not send link: ${err.message}</span>`;
+      note(banner, `Could not send link: ${err?.message || err}`);
+    } finally {
+      resendBtn.disabled = false;
+      resendBtn.textContent = original || "Resend link";
     }
   });
+
+  const refreshBtn = banner.querySelector("#refresh-verify");
+  refreshBtn.addEventListener("click", async () => {
+    refreshBtn.disabled = true;
+    const original = refreshBtn.textContent;
+    refreshBtn.textContent = "Checking...";
+
+    try {
+      await user.reload();
+      await user.getIdToken(true);
+
+      if (user.emailVerified) {
+        removeVerifyBanner();
+        window.location.reload();
+        return;
+      }
+
+      note(banner, "Not verified yet. Please click the link in your email, then try again.");
+    } catch (err) {
+      note(banner, `Could not refresh state: ${err?.message || err}`);
+    } finally {
+      refreshBtn.disabled = false;
+      refreshBtn.textContent = original || "I have verified, refresh";
+    }
+  });
+}
+
+function note(host, text) {
+  const el = document.createElement("div");
+  el.className = "verify-banner-note";
+  el.textContent = text;
+  host.appendChild(el);
+  setTimeout(() => el.remove(), 6000);
 }
 
 /**
