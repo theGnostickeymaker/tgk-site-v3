@@ -68,8 +68,8 @@ seriesMeta:
 
 # === Publication Metadata ===
 author: "The Keymaker"
-published: ""
-updated: ""
+published: "2025-12-24"
+updated: "2025-12-24"
 publishedBy: "The Gnostic Key"
 
 tags:

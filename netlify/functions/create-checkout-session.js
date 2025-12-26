@@ -61,7 +61,7 @@ export async function handler(event) {
     }
 
     // 🜂 Handle Free Tier (no payment required)
-    if (priceId === "price_1SSbN52NNS39COWZzEg9tTWn") {
+    if (priceId === process.env.PRICE_FREE) {
       console.log("[Checkout] Free tier signup detected — skipping Stripe checkout");
 
       // Ensure entitlement record is up to date
@@ -88,7 +88,7 @@ export async function handler(event) {
       payment_method_types: ["card"],
       customer: customerId,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${site}/dashboard/?session=success`,
+      success_url: `${site}/dashboard/?session=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${site}/dashboard/?session=cancel`,
       metadata: { firebase_uid: uid, action: "upgrade" },
     });
