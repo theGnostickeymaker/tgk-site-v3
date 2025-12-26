@@ -1,7 +1,8 @@
 {# =========================================================
-   TGK — Membership Tier Grid (v2.4)
-   Inactive Initiate + Adept tiers (no badge)
+   TGK — Membership Tier Grid (v2.5)
+   Active Initiate + Adept tiers (live Stripe checkout)
    ========================================================= #}
+
 <section class="membership-grid">
   <div class="portal-grid">
 
@@ -10,7 +11,7 @@
       <div class="card-glyph" aria-hidden="true">✦</div>
       <h3 class="card-title">Free Seeker</h3>
       <p class="card-desc">
-        Begin your path at no cost — access the first three pages of every series,
+        Begin your path at no cost, access the first three pages of every series,
         explore open Vault texts, and join the TGK community as a silent observer.
       </p>
       <ul class="list-emoji">
@@ -23,42 +24,59 @@
       </button>
     </article>
 
-    <!-- Initiate Tier (inactive) -->
-    <article class="gnostic-card coming-soon inactive" data-tier="initiate">
+    <!-- Initiate Tier -->
+    <article class="gnostic-card" data-tier="initiate">
       <div class="card-glyph" aria-hidden="true">☥</div>
       <h3 class="card-title">Initiate</h3>
       <p class="card-desc">
-        Deepen your initiation and open the full first series of every pillar —
-        with access to member discussions, rituals, and community gatherings.
+        Deepen your initiation and open the full first series of every pillar,
+        with access to member discussions and community participation.
       </p>
       <ul class="list-emoji">
         <li>Full Series I access (all pillars)</li>
-        <li>Forum participation</li>
-        <li>Community events</li>
+        <li>Community participation</li>
+        <li>Member-only threads</li>
       </ul>
-      <button class="btn gold full-width" disabled>
-        Coming Soon
-      </button>
-      <p class="small yearly muted">Membership launching soon</p>
+
+      <div class="btn-stack">
+        <button class="btn gold full-width" data-price="price_1SM2wm2NNS39COWZdPxFTo7w">
+          Upgrade to Initiate (£5 monthly)
+        </button>
+        <button class="btn outline full-width" data-price="price_1SKl9p2NNS39COWZ1fFuC9SU">
+          Upgrade to Initiate (£50 yearly)
+        </button>
+      </div>
+
+      <p class="small yearly muted">You can manage or cancel any time via the billing portal.</p>
     </article>
 
-    <!-- Adept Tier (inactive) -->
-    <article class="gnostic-card inactive" data-tier="adept">
+    <!-- Adept Tier -->
+    <article class="gnostic-card" data-tier="adept">
       <div class="card-glyph" aria-hidden="true">🜂</div>
       <h3 class="card-title">Adept</h3>
       <p class="card-desc">
-        Enter the inner circle — every page unlocked, premium Vault archives,
-        Resonant Key media, early shop access, and exclusive Adept gatherings.
+        Enter the inner circle, every page unlocked, premium Vault archives,
+        and priority access as the library expands.
       </p>
       <ul class="list-emoji">
         <li>All pages unlocked</li>
         <li>Premium Vault archives</li>
-        <li>Event priority & shop discounts</li>
+        <li>Priority access to new drops</li>
       </ul>
-      <button class="btn obsidian full-width" disabled>
-        Coming Soon
-      </button>
-      <p class="small yearly muted">Available at full launch</p>
+
+      <div class="btn-stack">
+        <button class="btn obsidian full-width" data-price="price_1SKl9u2NNS39COWZN9PE34Pa">
+          Upgrade to Adept (£12 monthly)
+        </button>
+        <button class="btn outline full-width" data-price="price_1SKl9s2NNS39COWZc0QdRagE">
+          Upgrade to Adept (£100 yearly)
+        </button>
+        <button class="btn outline full-width" data-price="price_1SKl9k2NNS39COWZ7bDLXh18">
+          Lifetime Adept (£300 one-off)
+        </button>
+      </div>
+
+      <p class="small yearly muted">You can manage or cancel any time via the billing portal.</p>
     </article>
 
   </div>
