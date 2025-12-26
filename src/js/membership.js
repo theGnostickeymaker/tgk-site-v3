@@ -1,26 +1,50 @@
 /* ===========================================================
    TGK — Membership Upgrade Flow (Stripe + Firebase)
-   Clean Stripe v3 init using global Stripe()
+   - Wires buttons with [data-price] to Stripe Checkout
+   - Claims entitlements on return via session_id
    =========================================================== */
 
-import { app } from "./firebase-init.js";
 import {
   getAuth,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
-const auth = getAuth(app);
+const auth = getAuth();
 let stripe = null;
 
+// -----------------------------------------------------------
+// Helpers
+// -----------------------------------------------------------
+function qp(name) {
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function log(...args) {
+  console.log("[TGK][Membership]", ...args);
+}
+
+function warn(...args) {
+  console.warn("[TGK][Membership]", ...args);
+}
+
+function err(...args) {
+  console.error("[TGK][Membership]", ...args);
+}
+
+// -----------------------------------------------------------
+// Post-checkout: claim entitlements immediately
+// -----------------------------------------------------------
 async function claimCheckoutReturn(user) {
-  const params = new URLSearchParams(window.location.search);
-  const session = params.get("session");
-  const sessionId = params.get("session_id");
+  const session = qp("session");
+  const sessionId = qp("session_id");
 
   if (session !== "success" || !sessionId) return;
 
+  log("Checkout return detected. session_id =", sessionId);
+
   try {
     const token = await user.getIdToken();
+
     const res = await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -28,63 +52,89 @@ async function claimCheckoutReturn(user) {
         token,
         uid: user.uid,
         email: user.email,
-        session_id: sessionId,
-      }),
+        session_id: sessionId
+      })
     });
 
-    const data = await res.json();
-    console.log("[TGK] Post-checkout entitlement sync:", data);
+    const data = await res.json().catch(() => ({}));
+    log("Post-checkout entitlement sync response:", data);
 
-    if (!res.ok) return;
+    if (!res.ok) {
+      warn("Entitlement sync failed:", data);
+      return;
+    }
 
-    // Force refresh so custom claims land in the browser token
+    // Force refresh so custom claims land client-side
     await user.getIdToken(true);
 
-    // Cache tier for UI consistency
-    if (data.tier) localStorage.setItem("tgk-tier", data.tier);
+    if (data?.tier) {
+      localStorage.setItem("tgk-tier", data.tier);
+      log("Tier cached:", data.tier);
+    }
 
-    // Clean URL so it does not keep running on refresh
+    // Remove querystring so it does not re-run on refresh
     window.history.replaceState({}, "", "/membership/");
 
-    // Optional: send them to dashboard after unlock
+    // Optional: send them onward after unlock
     window.location.replace("/dashboard/");
-  } catch (err) {
-    console.error("[TGK] Post-checkout sync error:", err);
+  } catch (e) {
+    err("Post-checkout sync error:", e);
   }
 }
 
-// Initialise Stripe once DOM + Stripe.js are ready
-document.addEventListener("DOMContentLoaded", () => {
+// -----------------------------------------------------------
+// Stripe + button wiring
+// -----------------------------------------------------------
+function initStripe() {
   const publishableKey = window.STRIPE_PUBLISHABLE_KEY;
 
-  console.log("DEBUG window.STRIPE_PUBLISHABLE_KEY:", publishableKey);
+  log("window.STRIPE_PUBLISHABLE_KEY =", publishableKey);
 
   if (!publishableKey) {
-    console.error("[TGK] Stripe publishable key missing. Check env + base.njk.");
-    return;
+    err(
+      "Missing window.STRIPE_PUBLISHABLE_KEY. " +
+      "Fix: set window.STRIPE_PUBLISHABLE_KEY in base.njk."
+    );
+    return null;
   }
 
   if (typeof window.Stripe !== "function") {
-    console.error("[TGK] Stripe.js not loaded. Check <script src='https://js.stripe.com/v3'>.");
-    return;
+    err(
+      "Stripe.js not loaded. " +
+      "Fix: ensure <script src='https://js.stripe.com/v3'></script> is in base.njk."
+    );
+    return null;
   }
 
-  stripe = window.Stripe(publishableKey);
-  console.log("[TGK] Stripe initialised");
+  const s = window.Stripe(publishableKey);
+  log("Stripe initialised");
+  return s;
+}
 
-  // Attach click handlers
-  document.querySelectorAll("[data-price]").forEach((btn) => {
-    btn.addEventListener("click", () => {
+function wireButtons() {
+  const buttons = Array.from(document.querySelectorAll("[data-price]"));
+  log(`Found ${buttons.length} buttons with [data-price]`);
+
+  buttons.forEach((btn) => {
+    // Avoid double-binding if this script runs twice for any reason
+    if (btn.dataset.tgkBound === "1") return;
+    btn.dataset.tgkBound = "1";
+
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+
       const priceId = btn.dataset.price;
-      startCheckout(priceId);
+      if (!priceId) return;
+
+      await startCheckout(priceId, btn);
     });
   });
-});
+}
 
-// ===========================================================
-//  Start Checkout Flow
-// ===========================================================
-async function startCheckout(priceId) {
+// -----------------------------------------------------------
+// Start Stripe Checkout
+// -----------------------------------------------------------
+async function startCheckout(priceId, buttonEl) {
   const user = auth.currentUser;
 
   if (!user) {
@@ -94,25 +144,23 @@ async function startCheckout(priceId) {
     return;
   }
 
-  await user.reload();
-  if (!user.emailVerified) {
-    const proceed = confirm(
-      "Your email has not been verified yet.\n\n" +
-        "You can continue, but please confirm your address to avoid membership access issues.\n\n" +
-        "Continue anyway?"
-    );
-    if (!proceed) return;
+  if (!stripe) {
+    stripe = initStripe();
+    if (!stripe) {
+      alert("Stripe could not be initialised. Please refresh and try again.");
+      return;
+    }
+  }
+
+  // Light UX lock
+  const originalText = buttonEl?.textContent;
+  if (buttonEl) {
+    buttonEl.disabled = true;
+    buttonEl.textContent = "Redirecting…";
   }
 
   try {
     const token = await user.getIdToken();
-
-    const body = {
-      priceId,
-      uid: user.uid,
-      email: user.email,
-      returnUrl: window.location.origin + "/account/"
-    };
 
     const res = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
@@ -120,35 +168,58 @@ async function startCheckout(priceId) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        priceId,
+        uid: user.uid,
+        email: user.email
+      })
     });
 
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
 
     if (!res.ok || !data.sessionId) {
-      console.error("[TGK] Checkout error:", data);
+      err("Checkout session creation failed:", data);
       alert("Sorry, we could not start your checkout session.");
       return;
     }
 
-    console.log("[TGK] Redirecting to Stripe session", data.sessionId);
-    await stripe.redirectToCheckout({ sessionId: data.sessionId });
-  } catch (err) {
-    console.error("[TGK] Checkout flow failed:", err);
+    log("Redirecting to Stripe Checkout. sessionId =", data.sessionId);
+    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+
+    // redirectToCheckout only returns if something blocked it
+    if (result?.error?.message) {
+      err("Stripe redirect error:", result.error.message);
+      alert(result.error.message);
+    }
+  } catch (e) {
+    err("Checkout flow failed:", e);
     alert("An unexpected error occurred. Please try again later.");
+  } finally {
+    if (buttonEl) {
+      buttonEl.disabled = false;
+      buttonEl.textContent = originalText || "Continue";
+    }
   }
 }
 
-// ===========================================================
-//  Auth State Awareness (optional UX enhancement)
-// ===========================================================
-onAuthStateChanged(auth, (user) => {
-  document
-    .querySelectorAll("[data-auth='false']")
-    .forEach((el) => (el.hidden = !!user));
-  document
-    .querySelectorAll("[data-auth='true']")
-    .forEach((el) => (el.hidden = !user));
+// -----------------------------------------------------------
+// Boot safely regardless of load timing
+// -----------------------------------------------------------
+function boot() {
+  // Initialise Stripe once
+  stripe = initStripe();
 
-      if (user) claimCheckoutReturn(user);
+  // Wire buttons (even if Stripe failed, handlers still attach and will warn)
+  wireButtons();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+
+// Observe auth state and claim checkout return
+onAuthStateChanged(auth, (user) => {
+  if (user) claimCheckoutReturn(user);
 });
