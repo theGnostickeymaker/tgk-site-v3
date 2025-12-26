@@ -7,6 +7,7 @@ description: "An examination of how courtrooms operate as ritual spaces, where l
 excerpt: "Justice is not only argued in courts. It is performed."
 
 tier: free
+requiredTier: verified
 pageId: "systemic-s1-e3"
 
 # === Unified TGK Hierarchy ===

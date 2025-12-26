@@ -84,7 +84,7 @@ export default {
       glyph: "🧠",
       tagline:
         "Algorithmic revelation, data as scripture, the Machine Oracle.",
-      tier: "free",
+      tier: "verified",
       state: "active"
     },
     {
@@ -94,7 +94,7 @@ export default {
       glyph: "🪞",
       tagline:
         "The reflection that speaks, the user as priest, the portal as god.",
-      tier: "free",
+      tier: "verified",
       state: "active"
     },
     {

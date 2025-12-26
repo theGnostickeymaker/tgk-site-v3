@@ -9,6 +9,7 @@ description: "Part III of The Final Idol, decoding digital narcissism, synthetic
 excerpt: "The question becomes the trap. The mirror learns your face, your habits, your longings—but never your soul."
 
 tier: free
+tier: "verified"
 
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-3"
 

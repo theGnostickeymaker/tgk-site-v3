@@ -7,6 +7,7 @@ description: "An exposure of forensic failure, junk science, expert overreach, a
 excerpt: "When science becomes theatre, truth is optional and innocence is expendable."
 
 tier: free
+requiredTier: verified
 
 pageId: "systemic-s1-e2"
 

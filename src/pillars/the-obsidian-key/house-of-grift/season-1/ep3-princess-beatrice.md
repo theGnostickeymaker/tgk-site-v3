@@ -7,6 +7,7 @@ description: "A forensic dissection of Princess Beatrice: invisible privilege, i
 excerpt: "Not a public servant. Not a private citizen. Something far more profitable."
 
 tier: free
+requiredTier: verified
 
 pageId: "hog-s1-e3"
 

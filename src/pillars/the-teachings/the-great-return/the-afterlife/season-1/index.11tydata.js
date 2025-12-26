@@ -60,7 +60,7 @@ export default {
       title: "Sufi Islam",
       glyph: "☪",
       tagline: "The seeker’s path through love, annihilation, and divine return.",
-      tier: "free",
+      tier: "verified",
       state: "active"
     },
     {
@@ -69,7 +69,7 @@ export default {
       title: "Kabbalah",
       glyph: "✡",
       tagline: "The Tree of Life, the soul’s descent, and the light of restoration.",
-      tier: "free",
+      tier: "verified",
       state: "active"
     },
     {

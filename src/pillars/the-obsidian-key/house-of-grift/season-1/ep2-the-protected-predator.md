@@ -7,6 +7,7 @@ description: "A forensic investigation into Prince Andrew: sealed files, state p
 excerpt: "Power does not only corrupt. It protects its own."
 
 tier: free
+requiredTier: verified
 
 pageId: "hog-s1-e2"
 

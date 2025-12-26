@@ -9,6 +9,7 @@ description: "Part II of the Afterlife Scrolls: the passage through the ten Sefi
 excerpt: "You walked the soul’s journey from Gehinnom to Gan Eden, through sparks and tikkun, glimpsing the Divine hidden in the descent."
 
 tier: free
+requiredTier: verified
 pageId: "the-great-return-afterlife-season-1-kabbalah-part-2"
 
 episode: 3

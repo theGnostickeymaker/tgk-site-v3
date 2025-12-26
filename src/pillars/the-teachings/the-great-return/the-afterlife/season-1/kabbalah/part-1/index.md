@@ -9,6 +9,7 @@ description: "Part I of the Afterlife Scrolls: the Kabbalistic map of the afterl
 excerpt: "Before there was a Bible, there was a flame."
 
 tier: free
+requiredTier: verified
 pageId: "the-great-return-afterlife-season-1-kabbalah-part-1"
 
 episode: 3

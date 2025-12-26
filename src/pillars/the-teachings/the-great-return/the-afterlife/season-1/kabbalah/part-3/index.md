@@ -9,6 +9,7 @@ description: "Part III of the Afterlife Scrolls: the soul’s post-mortem ascent
 excerpt: "You climbed the Tree, from Malkhut’s dust to Keter’s crown, tracing the soul’s ascent through divine light and shadow. Now the final gates open, where remembrance becomes return."
 
 tier: free
+requiredTier: verified
 
 pageId: "the-great-return-afterlife-season-1-kabbalah-part-3"
 

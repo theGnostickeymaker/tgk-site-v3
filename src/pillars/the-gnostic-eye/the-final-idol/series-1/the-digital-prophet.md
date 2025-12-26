@@ -9,6 +9,7 @@ description: "Part II of The Final Idol Series: the rise of the synthetic oracle
 excerpt: "He speaks not from Heaven, but from the Cloud. The prophet now wears pixels instead of robes."
 
 tier: free
+tier: "verified"
 
 pageId: "the-gnostic-eye-the-final-idol-series-1-part-2"
 

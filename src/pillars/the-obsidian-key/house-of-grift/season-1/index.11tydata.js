@@ -41,7 +41,7 @@ export default {
       title: "Episode II: Prince Andrew",
       glyph: "♛",
       desc: "A forensic dissection of institutional shielding.",
-      state: "active",
+      state: "verified",
       tier: "free"
     },
     {
@@ -49,7 +49,7 @@ export default {
       title: "Episode III: Princess Beatrice",
       glyph: "♛",
       desc: "A symbolic and financial autopsy of the hidden roles played by minor royals.",
-      state: "active",
+      state: "verifdied",
       tier: "free"
     },
   ],

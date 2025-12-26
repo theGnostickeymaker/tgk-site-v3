@@ -42,7 +42,7 @@ export default {
       desc:
         "How narrative, charging decisions, expert framing, and disclosure practices can turn ambiguity into certainty.",
       state: "active",
-      tier: "free"
+      tier: "verified"
     },
     {
       href: "/pillars/the-obsidian-key/systemic/season-1/ep3-courtroom-alchemy/",
@@ -50,8 +50,8 @@ export default {
       glyph: "⚗",
       desc:
         "Procedure as theatre, leverage as routine, and the quiet mechanics that make coercion feel lawful.",
-      state: "active",
-      tier: "free"
+      state: "verified",
+      tier: "verified"
     }
   ],
 
