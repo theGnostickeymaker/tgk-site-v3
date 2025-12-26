@@ -1,4 +1,6 @@
-/* ===========================================================
+@layer components {
+  
+  /* ===========================================================
    TGK — Tier Badges (Tokenised + Pillar Adaptive)
    =========================================================== */
 
@@ -78,4 +80,24 @@
 .tier-badge:active {
   transform: translateY(1px);
   box-shadow: 0 0 6px var(--shadow-glow);
+}
+
+/* Verified (free, but requires email verification) */
+.tier-verified {
+  background: color-mix(in srgb, var(--badge-bg) 65%, var(--highlight, #bfa865) 35%);
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--highlight, #bfa865) 55%, var(--section-border) 45%);
+  box-shadow: 0 0 10px var(--shadow-glow);
+  border: 1px solid var(--badge-border, rgba(0,0,0,0.1));
+}
+
+/* Free Intro (marketing tier) */
+.tier-free-intro {
+  background: color-mix(in srgb, var(--badge-bg) 70%, var(--bg-primary) 30%);
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--section-border) 70%, var(--badge-border) 30%);
+  box-shadow: 0 0 10px var(--shadow-glow);
+  border: 1px solid var(--badge-border, rgba(0,0,0,0.1));
+}
+
 }

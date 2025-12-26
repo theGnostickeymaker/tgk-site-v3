@@ -92,24 +92,41 @@
             <div class="card-overlay"><span class="banner">In Development</span></div>
           {% endif %}
 
-          {# --- Tier badge logic --- #}
+          {# --- Tier badge logic (v4.0) --- #}
           {% set badgeTxt = c.badge %}
+
+          {# Normalise tier strings (legacy support) #}
+          {% set tRaw = (c.tier or "free") | lower | trim %}
+          {% set t = tRaw %}
+
+          {# Legacy aliases #}
+          {% if t == "initiate-trial" %}
+            {% set t = "free-intro" %}
+          {% endif %}
+
           {% if not badgeTxt %}
-            {% if c.tier == "adept" %}
+            {% if t == "admin" %}
+              {% set badgeTxt = "Admin" %}
+            {% elif t == "adept" %}
               {% set badgeTxt = "Adept Access" %}
-            {% elif c.tier == "initiate" %}
+            {% elif t == "initiate" %}
               {% set badgeTxt = "Initiate" %}
-            {% elif c.tier == "adept" %}
-              {% set badgeTxt = "Adept" %}
-            {% elif c.tier == "initiate-trial" %}
+            {% elif t == "verified" %}
+              {% set badgeTxt = "Verify" %}
+            {% elif t == "free-intro" %}
               {% set badgeTxt = "Free Intro" %}
-            {% elif c.tier == "free" %}
+            {% elif t == "free" %}
               {% set badgeTxt = "Free" %}
+            {% else %}
+              {# Unknown tier, hide badge unless explicitly provided #}
+              {% set badgeTxt = "" %}
             {% endif %}
           {% endif %}
+
           {% if badgeTxt %}
-            <div class="card-badge tier-{{ c.tier | default('none') }}">{{ badgeTxt }}</div>
+            <div class="card-badge tier-badge tier-{{ t }}">{{ badgeTxt }}</div>
           {% endif %}
+
         </a>
       </article>
     {% endfor %}
