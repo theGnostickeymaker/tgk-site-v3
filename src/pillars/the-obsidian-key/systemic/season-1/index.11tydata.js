@@ -21,7 +21,7 @@ export default {
   glyph: "Ⅰ",
   glyphRow: ["Ⅰ", "⚖", "Ⅰ"],
   accent: "obsidian",
-  bodyClass: "obsidian systemic",
+  bodyClass: "obsidian",
   tier: "free",
 
   // === Scroll Grid ===
@@ -50,7 +50,7 @@ export default {
       glyph: "⚗",
       desc:
         "Procedure as theatre, leverage as routine, and the quiet mechanics that make coercion feel lawful.",
-      state: "verified",
+      state: "active",
       tier: "verified"
     }
   ],

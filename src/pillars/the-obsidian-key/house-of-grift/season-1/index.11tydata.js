@@ -41,16 +41,16 @@ export default {
       title: "Episode II: Prince Andrew",
       glyph: "♛",
       desc: "A forensic dissection of institutional shielding.",
-      state: "verified",
-      tier: "free"
+      state: "active",
+      tier: "verified"
     },
     {
       href: "/pillars/the-obsidian-key/house-of-grift/season-1/ep3-princess-beatrice/",
       title: "Episode III: Princess Beatrice",
       glyph: "♛",
       desc: "A symbolic and financial autopsy of the hidden roles played by minor royals.",
-      state: "verifdied",
-      tier: "free"
+      state: "active",
+      tier: "verified"
     },
   ],
 
