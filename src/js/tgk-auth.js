@@ -1,6 +1,7 @@
 /* ===========================================================
-   TGK - Auth System v8.1
+   TGK - Auth System v8.2
    Sign-in, Sign-up, Verify banner, Claim sync, Return support
+   + Email opt-in capture (no sending)
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -14,7 +15,15 @@ import {
   sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 const RETURN_KEY = "tgk-return-url";
 
@@ -98,7 +107,6 @@ window.pageSignin = async (email, password) => {
   try {
     const cred = await signInWithEmailAndPassword(auth, normalise(email), password);
 
-    // Force fresh claims via set-entitlements
     const token = await cred.user.getIdToken(true);
 
     await fetch("/.netlify/functions/set-entitlements", {
@@ -124,12 +132,13 @@ window.pageSignin = async (email, password) => {
 
 let signupLock = false;
 
-window.pageSignup = async (email, password, confirm) => {
+window.pageSignup = async (email, password, confirm, emailOptIn) => {
   if (signupLock) return;
   signupLock = true;
 
   try {
-    const e1 = normalise(email), e2 = normalise(confirm);
+    const e1 = normalise(email);
+    const e2 = normalise(confirm);
 
     if (e1 !== e2) {
       document.getElementById("email-mismatch").style.display = "block";
@@ -139,7 +148,6 @@ window.pageSignup = async (email, password, confirm) => {
 
     document.getElementById("email-mismatch").style.display = "none";
 
-    // Simple password rules
     const OK =
       password.length >= 8 &&
       /[A-Z]/.test(password) &&
@@ -153,20 +161,44 @@ window.pageSignup = async (email, password, confirm) => {
       return;
     }
 
-    // Create Firebase user
     const { createUserWithEmailAndPassword } =
       await import("https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js");
 
     const cred = await createUserWithEmailAndPassword(auth, e1, password);
 
-    // Send verification link (prefer redirecting back to attempted page if present)
+    /* -------------------------------------------
+       Create user profile with explicit consent
+       ------------------------------------------- */
+    const userRef = doc(db, "users", cred.user.uid);
+
+    const userPayload = {
+      email: e1,
+      tier: "free",
+      verified: false,
+      emailOptIn: emailOptIn === true,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    };
+
+    if (emailOptIn === true) {
+      userPayload.emailOptInAt = serverTimestamp();
+      userPayload.emailOptInSource = "signup-form";
+    }
+
+    await setDoc(userRef, userPayload, { merge: true });
+
+    /* -------------------------------------------
+       Verification email
+       ------------------------------------------- */
     const returnUrl = getReturnUrl();
     await sendEmailVerification(cred.user, {
       url: returnUrl || `${location.origin}/dashboard/`,
       handleCodeInApp: false
     });
 
-    // Create Stripe free-tier customer (no redirect)
+    /* -------------------------------------------
+       Stripe free-tier customer
+       ------------------------------------------- */
     const checkout = await fetch("/.netlify/functions/create-checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -179,7 +211,6 @@ window.pageSignup = async (email, password, confirm) => {
 
     const { customerId } = await checkout.json();
 
-    // Sync entitlements
     await fetch("/.netlify/functions/set-entitlements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -206,6 +237,7 @@ window.pageSignup = async (email, password, confirm) => {
 /* ===========================================================
    PASSWORD RESET
    =========================================================== */
+
 window.pageReset = (email) => {
   const e = normalise(email);
   if (!e.includes("@")) return alert("Invalid email.");
@@ -240,10 +272,15 @@ function bindForms() {
   if (sUp) {
     sUp.addEventListener("submit", (e) => {
       e.preventDefault();
+
+      const optIn =
+        sUp.querySelector("#signup-email-optin")?.checked === true;
+
       pageSignup(
         sUp.querySelector("#signup-email").value,
         sUp.querySelector("#signup-password").value,
-        sUp.querySelector("#signup-email-confirm").value
+        sUp.querySelector("#signup-email-confirm").value,
+        optIn
       );
     });
   }

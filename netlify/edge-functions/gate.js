@@ -2,7 +2,7 @@
 // Purpose: Protect gated pages and verify membership tier
 // Runs at CDN edge before page delivery
 
-import { jwtVerify } from "https://deno.land/x/jose@v4.14.4/index.ts";
+import { jwtVerify } from "https://deno.land/x/jose@v5.6.3/index.ts";
 
 export default async function gate(request, context) {
   const url = new URL(request.url);

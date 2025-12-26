@@ -1,6 +1,6 @@
 /* ===========================================================
    TGK — User System (Unified Dashboard Edition)
-   Version 4.1 — Member Since Integration + Live Sync
+   Version 4.2 — Email Opt-In + Member Since + Live Sync
    =========================================================== */
 
 import { app } from "./firebase-init.js";
@@ -14,7 +14,8 @@ import {
   getFirestore,
   doc,
   getDoc,
-  setDoc
+  updateDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const auth = getAuth(app);
@@ -31,6 +32,7 @@ export async function loadDashboardHeader(user) {
   const nameInput = document.getElementById("profile-name");
   const emailInput = document.getElementById("profile-email");
   const memberSinceEl = document.getElementById("member-since");
+  const emailOptInBox = document.getElementById("profile-email-optin");
 
   try {
     const [userSnap, entSnap] = await Promise.all([
@@ -43,29 +45,51 @@ export async function loadDashboardHeader(user) {
       (userSnap.exists() && userSnap.data().displayName) ||
       (user.email ? user.email.split("@")[0] : "Seeker");
 
-    const tier = entSnap.exists() ? (entSnap.data().tier || "free") : "free";
+    const tier = entSnap.exists()
+      ? (entSnap.data().tier || "free")
+      : "free";
 
     let memberSince = "";
     if (entSnap.exists() && entSnap.data().created) {
       const created = entSnap.data().created.toDate
         ? entSnap.data().created.toDate()
         : new Date(entSnap.data().created);
-      memberSince = created.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+      memberSince = created.toLocaleDateString("en-GB", {
+        month: "long",
+        year: "numeric"
+      });
     } else if (user.metadata?.creationTime) {
       const fallbackDate = new Date(user.metadata.creationTime);
-      memberSince = fallbackDate.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+      memberSince = fallbackDate.toLocaleDateString("en-GB", {
+        month: "long",
+        year: "numeric"
+      });
     }
 
     if (nameEl) nameEl.textContent = displayName;
     if (tierEl) tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
-    if (memberSinceEl && memberSince) memberSinceEl.textContent = `Member since: ${memberSince}`;
+    if (memberSinceEl && memberSince) {
+      memberSinceEl.textContent = `Member since: ${memberSince}`;
+    }
     if (nameInput) nameInput.value = displayName;
     if (emailInput) emailInput.value = user.email;
+
+    /* -------------------------------------------
+       Load email opt-in preference
+       ------------------------------------------- */
+    if (emailOptInBox && userSnap.exists()) {
+      const data = userSnap.data();
+      if (typeof data.emailOptIn === "boolean") {
+        emailOptInBox.checked = data.emailOptIn;
+      }
+    }
 
     localStorage.setItem("tgk-tier", tier);
     updateTierUI(tier);
 
-    console.log(`[TGK] User header loaded → ${displayName} (${tier}) | Since ${memberSince || "N/A"}`);
+    console.log(
+      `[TGK] User header loaded → ${displayName} (${tier}) | Since ${memberSince || "N/A"}`
+    );
   } catch (err) {
     console.error("[TGK] Header load error:", err);
     if (tierEl) tierEl.textContent = "Error";
@@ -73,7 +97,7 @@ export async function loadDashboardHeader(user) {
 }
 
 /* ===========================================================
-   🜂 Save Profile (Display Name)
+   🜂 Save Profile (Display Name + Email Opt-In)
    =========================================================== */
 export async function saveProfile(e) {
   e.preventDefault();
@@ -83,21 +107,45 @@ export async function saveProfile(e) {
   const name = document.getElementById("profile-name")?.value.trim();
   if (!name) return alert("Name cannot be empty.");
 
+  const emailOptIn =
+    document.getElementById("profile-email-optin")?.checked === true;
+
   try {
-    await setDoc(doc(db, "users", user.uid), { displayName: name }, { merge: true });
-    if (user.displayName !== name) await updateProfile(user, { displayName: name });
+    const updates = {
+      displayName: name,
+      emailOptIn: emailOptIn,
+      updatedAt: serverTimestamp()
+    };
+
+    if (emailOptIn === true) {
+      updates.emailOptInAt = serverTimestamp();
+      updates.emailOptInSource = "dashboard";
+    }
+
+    await updateDoc(doc(db, "users", user.uid), updates);
+
+    if (user.displayName !== name) {
+      await updateProfile(user, { displayName: name });
+    }
 
     const dashName = document.getElementById("user-name");
     if (dashName) dashName.textContent = name;
 
     const status = document.getElementById("profile-status");
     if (status) {
-      status.textContent = "Saved!";
+      status.textContent = "Preferences saved.";
       status.style.color = "var(--gold)";
-      setTimeout(() => (status.textContent = ""), 2000);
+      status.setAttribute("aria-live", "polite");
+
+      clearTimeout(status._clearTimer);
+      status._clearTimer = setTimeout(() => {
+        status.textContent = "";
+      }, 2500);
     }
 
-    console.log(`[TGK] Display name updated → ${name}`);
+    console.log(
+      `[TGK] Profile updated → ${name} | Email opt-in: ${emailOptIn}`
+    );
   } catch (err) {
     console.error("[TGK] Save profile error:", err);
     alert("Error saving profile: " + err.message);
@@ -141,6 +189,7 @@ export function pageReset(email) {
 export function updateTierUI(tier = "visitor") {
   const badge = document.getElementById("tier-badge");
   const tierEl = document.getElementById("user-tier");
+
   const labelMap = {
     free: "Free",
     initiate: "Initiate",
@@ -203,6 +252,7 @@ export async function refreshEntitlementsLive(user) {
   } catch (err) {
     console.error("[TGK] Live entitlement sync error:", err);
   }
+
   return "free";
 }
 
