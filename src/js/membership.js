@@ -12,6 +12,47 @@ import {
 const auth = getAuth(app);
 let stripe = null;
 
+async function claimCheckoutReturn(user) {
+  const params = new URLSearchParams(window.location.search);
+  const session = params.get("session");
+  const sessionId = params.get("session_id");
+
+  if (session !== "success" || !sessionId) return;
+
+  try {
+    const token = await user.getIdToken();
+    const res = await fetch("/.netlify/functions/set-entitlements", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token,
+        uid: user.uid,
+        email: user.email,
+        session_id: sessionId,
+      }),
+    });
+
+    const data = await res.json();
+    console.log("[TGK] Post-checkout entitlement sync:", data);
+
+    if (!res.ok) return;
+
+    // Force refresh so custom claims land in the browser token
+    await user.getIdToken(true);
+
+    // Cache tier for UI consistency
+    if (data.tier) localStorage.setItem("tgk-tier", data.tier);
+
+    // Clean URL so it does not keep running on refresh
+    window.history.replaceState({}, "", "/membership/");
+
+    // Optional: send them to dashboard after unlock
+    window.location.replace("/dashboard/");
+  } catch (err) {
+    console.error("[TGK] Post-checkout sync error:", err);
+  }
+}
+
 // Initialise Stripe once DOM + Stripe.js are ready
 document.addEventListener("DOMContentLoaded", () => {
   const publishableKey = window.STRIPE_PUBLISHABLE_KEY;
@@ -108,4 +149,6 @@ onAuthStateChanged(auth, (user) => {
   document
     .querySelectorAll("[data-auth='true']")
     .forEach((el) => (el.hidden = !user));
+
+      if (user) claimCheckoutReturn(user);
 });
