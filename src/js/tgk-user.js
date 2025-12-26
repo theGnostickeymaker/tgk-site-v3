@@ -14,7 +14,7 @@ import {
   getFirestore,
   doc,
   getDoc,
-  updateDoc,
+  setDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
