@@ -122,7 +122,14 @@ export async function saveProfile(e) {
       updates.emailOptInSource = "dashboard";
     }
 
-    await updateDoc(doc(db, "users", user.uid), updates);
+    await setDoc(
+      doc(db, "users", user.uid),
+      {
+        email: user.email,
+        ...updates
+      },
+      { merge: true }
+    );
 
     if (user.displayName !== name) {
       await updateProfile(user, { displayName: name });
