@@ -6,11 +6,20 @@ export default {
   // === Core Identity ===
   suppressPageTitle: true,
 
+  siteTitle: "",
+  pillarTitle: "",
+  gateTitle: "",
+
+  seriesTitle: "The Gnostic Key",
+  seasonTitle: "",
+  episodeTitle: "",
+  partTitle: "",
+
   pageId: "home",
   permalink: "/index.html",
   title: "The Gnostic Key | Exposing Hidden Power, Restoring Memory and Reclaiming Human Sovereignty",
 
-  siteTitle: "The Gnostic Key",
+  siteTitle: "",
   tagline: "Where the erased, the forbidden, and the sacred converge.",
 
   description:
