@@ -1,0 +1,79 @@
+---
+layout: base.njk
+pagination:
+  data: courtLogs.logs
+  size: 1
+  alias: log
+permalink: "/pillars/tgk-community/court/{{ log.id }}/index.html"
+
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Community Court"
+seriesTitle: "Court Logs"
+
+title: "{{ log.title }}"
+description: "{{ log.summary }}"
+
+tier: "free"
+glyph: "⚖"
+glyphRow: ["⚖", "✦", "⚖"]
+
+bodyClass: "community"
+accent: "community"
+
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
+  - { title: "Community Court", url: "/pillars/tgk-community/court/" }
+  - { title: "{{ log.title }}" }
+---
+
+<main class="main-content">
+  <section class="content-container">
+
+    <section class="section-block court-header">
+      <h1 class="section-heading">{{ log.title }}</h1>
+
+      <p class="lead">
+        {{ log.summary }}
+      </p>
+
+      <ul class="meta-list muted small">
+        <li><strong>Jurisdiction:</strong> {{ log.jurisdiction }}</li>
+        <li><strong>Status:</strong> {{ log.status }}</li>
+        <li>
+          <strong>Published:</strong>
+          {{ log.publishedAt._seconds | date("dd LLL yyyy") }}
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-block court-entries">
+      <h2 class="section-heading">Court Record</h2>
+
+      {% if log.entries and log.entries.length %}
+        <ol class="court-entry-list">
+          {% for entry in log.entries %}
+            <li class="court-entry">
+              <div class="court-entry-meta muted small">
+                <span class="court-entry-type">{{ entry.type | capitalize }}</span>
+                <span class="court-entry-date">
+                  {{ entry.createdAt._seconds | date("dd LLL yyyy, HH:mm") }}
+                </span>
+              </div>
+
+              <div class="court-entry-body">
+                <p>{{ entry.body }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+        <p class="muted">
+          No entries have been published for this court log yet.
+        </p>
+      {% endif %}
+    </section>
+
+  </section>
+</main>
