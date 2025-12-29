@@ -1,16 +1,24 @@
-import { apps, initializeApp, credential as _credential, firestore } from "firebase-admin";
+const admin = require("firebase-admin");
 
-if (!apps.length) {
-  initializeApp({
-    credential: _credential.cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+if (!admin.apps.length) {
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+
+  if (!projectId || !clientEmail || !privateKey) {
+    throw new Error("Firebase admin env vars missing");
+  }
+
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId,
+      clientEmail,
+      privateKey: privateKey.replace(/\\n/g, "\n"),
     }),
   });
 }
 
-const db = firestore();
+const db = admin.firestore();
 
 export async function handler(event) {
   try {
@@ -38,7 +46,7 @@ export async function handler(event) {
       return { statusCode: 409, body: "Case already published" };
     }
 
-    const now = firestore.Timestamp.now();
+    const now = admin.firestore.Timestamp.now();
     const courtLogRef = db.collection("courtLogs").doc();
 
     await db.runTransaction(async (tx) => {
