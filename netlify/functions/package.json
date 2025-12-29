@@ -1,7 +1,8 @@
 {
-  "name": "tgk-functions",
+  "name": "tgk-netlify-functions",
   "private": true,
+  "type": "commonjs",
   "dependencies": {
-    "firebase-admin": "^13.6.0"
+    "firebase-admin": "^12.0.0"
   }
 }
