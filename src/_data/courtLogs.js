@@ -1,17 +1,32 @@
-export default async () => {
+const admin = require("firebase-admin");
+
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    }),
+  });
+}
+
+module.exports = async () => {
   try {
-    const base =
-      process.env.ELEVENTY_ENV === "production"
-        ? "https://thegnostickey.com"
-        : "http://localhost:8888";
+    const db = admin.firestore();
 
-    const res = await fetch(`${base}/.netlify/functions/get-court-logs`);
-    if (!res.ok) {
-      return { logs: [] };
-    }
+    const snap = await db
+      .collection("courtLogs")
+      .orderBy("publishedAt", "desc")
+      .get();
 
-    return await res.json();
+    const logs = snap.docs.map((d) => ({
+      id: d.id,
+      ...d.data(),
+    }));
+
+    return { logs };
   } catch (err) {
+    console.error("CourtLogs build fetch failed:", err);
     return { logs: [] };
   }
 };
