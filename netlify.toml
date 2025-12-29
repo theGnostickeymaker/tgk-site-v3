@@ -105,3 +105,6 @@
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[functions]
+  directory = "netlify/functions"
