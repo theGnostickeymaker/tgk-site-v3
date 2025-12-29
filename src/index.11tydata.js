@@ -75,7 +75,7 @@ export default {
       title: "TGK Community",
       glyph: "💬",
       desc: "Forums, study circles, and live sessions.",
-      tier: "initiate-trial",
+      tier: "none",
       state: "active"
     },
     {
@@ -107,12 +107,12 @@ export default {
       title: "TGK Shop",
       glyph: "🛍️",
       desc: "Artefacts, decks, prints, and collector editions.",
-      tier: "initiate-trial",
+      tier: "none",
       state: "coming-soon"
     },
   ],
 
-  // === Social Meta ===
+  // === Social Meta ==
   socialImage: "/tgk-assets/images/share/the-gnostic-key/index.jpg",
 
   // === behavior Flags ===
