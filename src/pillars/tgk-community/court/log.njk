@@ -42,7 +42,7 @@ breadcrumbs:
         <li><strong>Status:</strong> {{ log.status }}</li>
         <li>
           <strong>Published:</strong>
-          {{ log.publishedAt._seconds | date("dd LLL yyyy") }}
+          {{ (log.publishedAt._seconds * 1000) | date("dd LLL yyyy") }}
         </li>
       </ul>
     </section>
@@ -57,7 +57,7 @@ breadcrumbs:
               <div class="court-entry-meta muted small">
                 <span class="court-entry-type">{{ entry.type | capitalize }}</span>
                 <span class="court-entry-date">
-                  {{ entry.createdAt._seconds | date("dd LLL yyyy, HH:mm") }}
+                  {{ (entry.createdAt._seconds * 1000) | date("dd LLL yyyy, HH:mm") }}
                 </span>
               </div>
 
