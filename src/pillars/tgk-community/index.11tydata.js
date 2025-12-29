@@ -58,6 +58,14 @@ export default {
         "Topic-based discussions, replies, and the practice of the Steel Man principle.",
       tier: "free",
       state: "active"
+    },
+    {
+      href: "/pillars/tgk-community/court/",
+      title: "Community Court",
+      glyph: "⚖",
+      desc: "Public court logs, precedent, and published rulings. Read-only transparency archive.",
+      tier: "free",
+      state: "active"
     }
   ],
 

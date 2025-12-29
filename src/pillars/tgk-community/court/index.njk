@@ -1,0 +1,44 @@
+---
+layout: base.njk
+siteTitle: "The Gnostic Key"
+pillarTitle: "TGK Community"
+gateTitle: "Community Court"
+seriesTitle: "Court Logs"
+title: "Community Court"
+description: "Public court logs and precedent archive."
+tier: "free"
+glyph: "⚖"
+glyphRow: ["⚖", "✦", "⚖"]
+bodyClass: "community"
+accent: "community"
+breadcrumbs:
+  - { title: "The Gnostic Key", url: "/" }
+  - { title: "TGK Community", url: "/pillars/tgk-community/" }
+  - { title: "Community Court" }
+---
+
+<main class="main-content">
+  <section class="content-container">
+    <section class="section-block">
+      <h1 class="section-heading">Community Court</h1>
+      <p class="lead">A public precedent archive. Logs are immutable and readable by all.</p>
+    </section>
+
+    <section class="section-block">
+      <div class="portal-grid">
+        {% for log in courtLogs.logs %}
+          <article class="gnostic-card active">
+            <a class="card-link" href="/pillars/tgk-community/court/{{ log.id }}/">
+              <div class="card-body">
+                <div class="card-glyph">⚖</div>
+                <h3 class="card-title">{{ log.title }}</h3>
+                <p class="card-desc">{{ log.summary }}</p>
+              </div>
+              <div class="card-badge tier-free">Public</div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  </section>
+</main>
