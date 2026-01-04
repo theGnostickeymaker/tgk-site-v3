@@ -218,7 +218,7 @@ breadcrumbs:
 
     await refreshEntitlementsLive(user);
     await loadDashboardHeader(user);
-    await loadJuryConsole(user);
+    await loadJuryConsole(user); // ← THIS LINE MUST EXIST
 
     document
       .getElementById("profile-form")

@@ -1,6 +1,7 @@
 /* ===========================================================
    TGK — Dashboard Jury Console
    =========================================================== */
+console.log("[Jury] dashboard-jury.js loaded");
 
 import { app } from "./firebase-init.js";
 import {
@@ -21,6 +22,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 export async function loadJuryConsole(user) {
+  console.log("[Jury] loadJuryConsole called for", user?.uid);
   if (!user) return;
 
   const consoleEl = document.getElementById("jury-console");
