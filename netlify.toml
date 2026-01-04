@@ -111,3 +111,6 @@
   node_bundler = "esbuild"
   external_node_modules = ["firebase-admin"]
 
+[functions."scanOpenJuryCases"]
+  schedule = "*/5 * * * *"
+

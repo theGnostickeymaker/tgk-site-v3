@@ -50,30 +50,22 @@ async function countVotes(caseRef) {
   return { counts, totalVotes, nonAbstain };
 }
 
-async function adjudicateAndMaybePublish(caseId) {
-  const caseRef = db.collection("juryCases").doc(caseId);
-
+async function adjudicateAndMaybePublish(caseRef, caseId) {
   const caseSnap = await caseRef.get();
-  if (!caseSnap.exists) return { status: "not_found" };
+  if (!caseSnap.exists) return { caseId, status: "not_found" };
 
   const caseData = caseSnap.data() || {};
   if (caseData.status === "published") {
-    return {
-      status: "published",
-      verdict: caseData.verdict || null,
-      publishedCourtLogId: caseData.publishedCourtLogId || null,
-      counts: caseData.counts || null,
-    };
+    return { caseId, status: "published" };
   }
-
   if (caseData.status !== "open") {
-    return { status: caseData.status || "unknown" };
+    return { caseId, status: caseData.status || "unknown" };
   }
 
   const { counts, totalVotes, nonAbstain } = await countVotes(caseRef);
 
   if (totalVotes < MIN_TOTAL_VOTES || nonAbstain === 0) {
-    return { status: "pending", counts, totalVotes, nonAbstain };
+    return { caseId, status: "pending", totalVotes };
   }
 
   const required = requiredForVotes(nonAbstain);
@@ -87,9 +79,9 @@ async function adjudicateAndMaybePublish(caseId) {
 
   await db.runTransaction(async (tx) => {
     const snap = await tx.get(caseRef);
-    if (!snap.exists) throw new Error("Jury case vanished");
-    const d = snap.data() || {};
+    if (!snap.exists) return;
 
+    const d = snap.data() || {};
     if (d.status === "published") return;
     if (d.status !== "open") return;
 
@@ -124,38 +116,36 @@ async function adjudicateAndMaybePublish(caseId) {
     });
   });
 
-  return {
-    status: "published",
-    verdict,
-    counts,
-    totalVotes,
-    nonAbstain,
-    publishedCourtLogId: courtLogRef.id,
-  };
+  return { caseId, status: "published", verdict, publishedCourtLogId: courtLogRef.id };
 }
 
-exports.handler = async (event) => {
+exports.handler = async () => {
   try {
-    if (event.httpMethod !== "POST") {
-      return { statusCode: 405, body: "Method Not Allowed" };
+    // Scan a batch of open cases. You can increase limit later.
+    const snap = await db
+      .collection("juryCases")
+      .where("status", "==", "open")
+      .limit(25)
+      .get();
+
+    const results = [];
+
+    for (const doc of snap.docs) {
+      const caseId = doc.id;
+      const caseRef = db.collection("juryCases").doc(caseId);
+      const r = await adjudicateAndMaybePublish(caseRef, caseId);
+      results.push(r);
     }
 
-    const payload = JSON.parse(event.body || "{}");
-    const { caseId } = payload;
-
-    if (!caseId) {
-      return { statusCode: 400, body: "Missing caseId" };
-    }
-
-    const result = await adjudicateAndMaybePublish(caseId);
-
-    if (result.status === "not_found") {
-      return { statusCode: 404, body: "Jury case not found" };
-    }
-
-    return { statusCode: 200, body: JSON.stringify(result) };
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        scanned: snap.size,
+        results,
+      }),
+    };
   } catch (err) {
-    console.error("checkJuryThreshold error:", err);
-    return { statusCode: 500, body: "Internal adjudication error" };
+    console.error("scanOpenJuryCases error:", err);
+    return { statusCode: 500, body: "Internal scan error" };
   }
 };

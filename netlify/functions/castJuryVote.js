@@ -23,6 +23,9 @@ function initAdmin() {
 initAdmin();
 const db = admin.firestore();
 
+/* ===========================
+   POLICY CONSTANTS
+=========================== */
 const MIN_TOTAL_VOTES = 7;
 const SUPERMAJORITY_NUM = 2;
 const SUPERMAJORITY_DEN = 3;
@@ -32,7 +35,20 @@ function ceilDiv(num, den) {
 }
 
 function requiredForVotes(nonAbstain) {
+  // ceil((2/3) * nonAbstain) with integer arithmetic
   return ceilDiv(SUPERMAJORITY_NUM * nonAbstain, SUPERMAJORITY_DEN);
+}
+
+async function getUidFromAuthHeader(event) {
+  const header =
+    event.headers?.authorization || event.headers?.Authorization || "";
+  if (!header.startsWith("Bearer ")) return null;
+
+  const idToken = header.slice("Bearer ".length).trim();
+  if (!idToken) return null;
+
+  const decoded = await admin.auth().verifyIdToken(idToken);
+  return decoded?.uid || null;
 }
 
 async function countVotes(caseRef) {
@@ -50,11 +66,20 @@ async function countVotes(caseRef) {
   return { counts, totalVotes, nonAbstain };
 }
 
+/**
+ * Adjudicate and, if threshold met, publish verdict to courtLogs.
+ * Idempotent:
+ * - If already published, returns published.
+ * - If still under threshold, returns pending.
+ */
 async function adjudicateAndMaybePublish(caseId) {
   const caseRef = db.collection("juryCases").doc(caseId);
 
+  // Quick existence check before expensive work
   const caseSnap = await caseRef.get();
-  if (!caseSnap.exists) return { status: "not_found" };
+  if (!caseSnap.exists) {
+    return { status: "not_found" };
+  }
 
   const caseData = caseSnap.data() || {};
   if (caseData.status === "published") {
@@ -79,8 +104,11 @@ async function adjudicateAndMaybePublish(caseId) {
   const required = requiredForVotes(nonAbstain);
   const verdict = counts.for >= required ? "sanction" : "dismissed";
   const now = admin.firestore.Timestamp.now();
-  const courtLogRef = db.collection("courtLogs").doc();
 
+  // Publish as immutable precedent log
+  const courtLogRef = db.collection("courtLogs").doc(); // auto id
+
+  // Single ruling entry is enough for first version
   const rulingBody =
     `Verdict: ${verdict.toUpperCase()} ` +
     `${counts.for} for, ${counts.against} against, ${counts.abstain} abstained`;
@@ -88,11 +116,16 @@ async function adjudicateAndMaybePublish(caseId) {
   await db.runTransaction(async (tx) => {
     const snap = await tx.get(caseRef);
     if (!snap.exists) throw new Error("Jury case vanished");
+
     const d = snap.data() || {};
 
+    // Idempotency guards
     if (d.status === "published") return;
     if (d.status !== "open") return;
 
+    // Re-check votes inside transaction boundary (light re-check via stored values is not possible),
+    // so we rely on our computed counts and accept minor race. If two publishes race,
+    // only one will win because we set published state in this same transaction.
     tx.update(caseRef, {
       status: "published",
       verdict,
@@ -140,22 +173,72 @@ exports.handler = async (event) => {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
 
-    const payload = JSON.parse(event.body || "{}");
-    const { caseId } = payload;
-
-    if (!caseId) {
-      return { statusCode: 400, body: "Missing caseId" };
+    const uid = await getUidFromAuthHeader(event);
+    if (!uid) {
+      return { statusCode: 401, body: "Missing or invalid auth token" };
     }
 
-    const result = await adjudicateAndMaybePublish(caseId);
+    const payload = JSON.parse(event.body || "{}");
+    const { caseId, vote } = payload;
 
-    if (result.status === "not_found") {
+    if (!caseId || !vote) {
+      return { statusCode: 400, body: "Missing caseId or vote" };
+    }
+
+    if (!["for", "against", "abstain"].includes(vote)) {
+      return { statusCode: 400, body: "Invalid vote" };
+    }
+
+    const caseRef = db.collection("juryCases").doc(caseId);
+    const caseSnap = await caseRef.get();
+
+    if (!caseSnap.exists) {
       return { statusCode: 404, body: "Jury case not found" };
     }
 
-    return { statusCode: 200, body: JSON.stringify(result) };
+    const caseData = caseSnap.data() || {};
+    if (caseData.status !== "open") {
+      return {
+        statusCode: 409,
+        body: JSON.stringify({ status: caseData.status, message: "Case not open" }),
+      };
+    }
+
+    // Optional: enforce juror assignment
+    const jurorRef = caseRef.collection("jurors").doc(uid);
+    const jurorSnap = await jurorRef.get();
+    if (!jurorSnap.exists) {
+      return { statusCode: 403, body: "Not an assigned juror" };
+    }
+
+    // One vote per juror, doc id is uid
+    const voteRef = caseRef.collection("votes").doc(uid);
+    const now = admin.firestore.Timestamp.now();
+
+    await db.runTransaction(async (tx) => {
+      const existing = await tx.get(voteRef);
+      if (existing.exists) {
+        // Immutable vote. If they already voted, we do not overwrite.
+        return;
+      }
+      tx.create(voteRef, { vote, castAt: now });
+    });
+
+    // Adjudicate and auto publish if threshold met
+    const result = await adjudicateAndMaybePublish(caseId);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        success: true,
+        castBy: uid,
+        caseId,
+        vote,
+        result,
+      }),
+    };
   } catch (err) {
-    console.error("checkJuryThreshold error:", err);
-    return { statusCode: 500, body: "Internal adjudication error" };
+    console.error("castJuryVote error:", err);
+    return { statusCode: 500, body: "Internal error" };
   }
 };
