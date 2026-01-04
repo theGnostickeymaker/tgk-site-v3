@@ -1,130 +1,85 @@
-/* ===========================================================
-   TGK — Dashboard Jury Console (Corrected)
-   =========================================================== */
-
-import { app } from "./firebase-init.js";
-import {
-  getAuth
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+// /js/dashboard-jury.js
 
 import {
   getFirestore,
-  collection,
+  collectionGroup,
+  query,
+  where,
   getDocs,
   doc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-const auth = getAuth(app);
-const db = getFirestore(app);
+const db = getFirestore();
 
 export async function loadJuryConsole(user) {
-  if (!user) return;
+  const mount = document.getElementById("jury-cases");
+  const section = document.getElementById("jury-console");
+
+  if (!mount || !section) return;
 
   console.log("[Jury] Loading jury console for", user.uid);
 
-  const consoleEl = document.getElementById("jury-console");
-  const casesEl = document.getElementById("jury-cases");
+  mount.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
 
-  if (!consoleEl || !casesEl) return;
-
-  casesEl.innerHTML = "<p class='muted small'>Checking jury assignments…</p>";
-
-  const juryCasesSnap = await getDocs(collection(db, "juryCases"));
-  const assignedCases = [];
-
-  for (const caseDoc of juryCasesSnap.docs) {
-    const jurorRef = doc(
-      db,
-      "juryCases",
-      caseDoc.id,
-      "jurors",
-      user.uid
+  try {
+    // 🔑 Query juror assignments
+    const q = query(
+      collectionGroup(db, "jurors"),
+      where("__name__", "==", user.uid)
     );
 
-    const jurorSnap = await getDoc(jurorRef);
+    const snap = await getDocs(q);
 
-    if (jurorSnap.exists()) {
-      assignedCases.push({
-        id: caseDoc.id,
-        ...caseDoc.data()
-      });
+    if (snap.empty) {
+      mount.innerHTML = `
+        <p class="muted small">
+          You are not currently assigned to any jury cases.
+        </p>
+      `;
+      section.style.display = "none"; // hide whole panel if none
+      return;
     }
+
+    section.style.display = "block";
+
+    let html = "";
+
+    for (const jurorDoc of snap.docs) {
+      const caseRef = jurorDoc.ref.parent.parent;
+      if (!caseRef) continue;
+
+      const caseSnap = await getDoc(caseRef);
+      if (!caseSnap.exists()) continue;
+
+      const data = caseSnap.data();
+
+      html += `
+        <article class="jury-case card">
+          <h4>${data.title || "Community Case"}</h4>
+          <p class="small muted">
+            Status: <strong>${data.status}</strong>
+          </p>
+          <p class="small muted">
+            Required votes: ${data.requiredVotes ?? "—"}
+          </p>
+          <div class="btn-wrap">
+            <a href="/jury/${caseRef.id}/" class="btn outline small">
+              Review case
+            </a>
+          </div>
+        </article>
+      `;
+    }
+
+    mount.innerHTML = html;
+
+  } catch (err) {
+    console.error("[Jury] Failed to load jury cases:", err);
+    mount.innerHTML = `
+      <p class="small muted">
+        Unable to load jury cases at this time.
+      </p>
+    `;
   }
-
-  if (!assignedCases.length) {
-    console.log("[Jury] No assigned cases");
-    return;
-  }
-
-  console.log("[Jury] Assigned cases found:", assignedCases.length);
-
-  // 🔓 Reveal console ONLY now
-  consoleEl.hidden = false;
-  casesEl.innerHTML = "";
-
-  assignedCases.forEach(juryCase => {
-    casesEl.appendChild(renderJuryCase(juryCase));
-  });
-}
-
-function renderJuryCase(juryCase) {
-  const el = document.createElement("div");
-  el.className = "jury-case-card";
-
-  el.innerHTML = `
-    <h4 class="jury-case-title">
-      ${juryCase.title || "Community Case"}
-    </h4>
-
-    <p class="small muted">
-      Status: ${juryCase.status || "unknown"} ·
-      Required votes: ${juryCase.requiredVotes ?? "—"}
-    </p>
-
-    <div class="jury-vote-actions">
-      <button data-vote="for" class="btn outline small">For</button>
-      <button data-vote="against" class="btn outline small">Against</button>
-      <button data-vote="abstain" class="btn outline small">Abstain</button>
-    </div>
-
-    <p class="jury-status muted small"></p>
-  `;
-
-  el.querySelectorAll("button[data-vote]").forEach(btn => {
-    btn.addEventListener("click", () =>
-      castVote(juryCase.id, btn.dataset.vote, el)
-    );
-  });
-
-  return el;
-}
-
-async function castVote(caseId, vote, container) {
-  const statusEl = container.querySelector(".jury-status");
-  statusEl.textContent = "Submitting vote…";
-
-  const user = auth.currentUser;
-  const token = await user.getIdToken();
-
-  const res = await fetch("/.netlify/functions/castJuryVote", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    },
-    body: JSON.stringify({ caseId, vote })
-  });
-
-  const data = await res.json();
-
-  if (!res.ok || data.success === false) {
-    statusEl.textContent = data.message || "Vote failed.";
-    return;
-  }
-
-  statusEl.textContent =
-    data.result.status === "published"
-      ? "Verdict reached. Case closed."
-      : "Vote recorded.";
 }

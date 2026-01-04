@@ -659,5 +659,8 @@
   padding: var(--space-md);
   margin-bottom: var(--space-md);
 }
+#jury-console {
+  display: block;
+}
 
 }
