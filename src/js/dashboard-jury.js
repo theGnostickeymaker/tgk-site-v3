@@ -1,6 +1,6 @@
 import {
   getFirestore,
-  collectionGroup,
+  collection,
   getDocs,
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
@@ -11,57 +11,55 @@ export async function loadJuryConsole(user) {
   const container = document.getElementById("jury-cases");
   const panel = document.getElementById("jury-console");
 
-  if (!container || !panel || !user) return;
+  if (!container || !panel) return;
 
   container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
-  panel.style.display = "none";
 
   try {
-    const jurorSnap = await getDocs(collectionGroup(db, "jurors"));
+    const casesSnap = await getDocs(collection(db, "juryCases"));
 
-    const matchingJurorDocs = jurorSnap.docs.filter(
-      doc => doc.id === user.uid
-    );
+    const assignedCases = [];
 
-    if (!matchingJurorDocs.length) {
+    for (const caseDoc of casesSnap.docs) {
+      const jurorRef = doc(
+        db,
+        "juryCases",
+        caseDoc.id,
+        "jurors",
+        user.uid
+      );
+
+      const jurorSnap = await getDoc(jurorRef);
+
+      if (jurorSnap.exists()) {
+        assignedCases.push({ id: caseDoc.id, ...caseDoc.data() });
+      }
+    }
+
+    if (assignedCases.length === 0) {
+      panel.style.display = "none";
       return;
     }
 
     panel.style.display = "block";
     container.innerHTML = "";
 
-    for (const jurorDoc of matchingJurorDocs) {
-      const caseRef = jurorDoc.ref.parent.parent;
-      const caseSnap = await getDoc(caseRef);
-
-      if (!caseSnap.exists()) continue;
-
-      const data = caseSnap.data();
-
-      if (data.status !== "open") continue;
-
+    for (const data of assignedCases) {
       const card = document.createElement("div");
       card.className = "jury-case-card";
 
       card.innerHTML = `
         <h4>${data.title}</h4>
-        <p class="muted small">
-          Threshold: ${data.threshold} · Required votes: ${data.requiredVotes}
-        </p>
-
+        <p class="muted small">Status: ${data.status}</p>
+        <p class="muted small">Required votes: ${data.requiredVotes}</p>
         <div class="btn-wrap">
-          <a href="/court/jury/${caseSnap.id}/" class="btn outline small">
+          <a href="/court/jury/${data.id}/" class="btn outline">
             Review case
           </a>
         </div>
       `;
 
       container.appendChild(card);
-    }
-
-    if (!container.children.length) {
-      container.innerHTML =
-        `<p class="muted small">No active jury cases.</p>`;
     }
 
   } catch (err) {
