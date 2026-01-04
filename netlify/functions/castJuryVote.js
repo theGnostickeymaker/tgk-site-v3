@@ -14,10 +14,16 @@ const db = admin.firestore();
 
 exports.handler = async (event) => {
   try {
+    /* -------------------------------------------
+       Method guard
+    ------------------------------------------- */
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
 
+    /* -------------------------------------------
+       Auth
+    ------------------------------------------- */
     const authHeader = event.headers.authorization || "";
     if (!authHeader.startsWith("Bearer ")) {
       return { statusCode: 401, body: "Missing auth token" };
@@ -27,6 +33,9 @@ exports.handler = async (event) => {
     const decoded = await admin.auth().verifyIdToken(token);
     const uid = decoded.uid;
 
+    /* -------------------------------------------
+       Payload
+    ------------------------------------------- */
     const { caseId, vote } = JSON.parse(event.body || "{}");
     if (!caseId || !["for", "against", "abstain"].includes(vote)) {
       return { statusCode: 400, body: "Invalid payload" };
@@ -35,6 +44,9 @@ exports.handler = async (event) => {
     const caseRef = db.collection("juryCases").doc(caseId);
     const voteRef = caseRef.collection("votes").doc(uid);
 
+    /* -------------------------------------------
+       Cast vote transaction
+    ------------------------------------------- */
     await db.runTransaction(async (tx) => {
       const caseSnap = await tx.get(caseRef);
       if (!caseSnap.exists) throw new Error("Case not found");
@@ -61,11 +73,19 @@ exports.handler = async (event) => {
       });
     });
 
-    // ---- Re-count votes AFTER transaction ----
-    const votesSnap = await caseRef.collection("votes").get();
-    const counts = { for: 0, against: 0, abstain: 0 };
+    /* -------------------------------------------
+       Recount votes
+    ------------------------------------------- */
+    const [caseSnap, votesSnap, jurorsSnap] = await Promise.all([
+      caseRef.get(),
+      caseRef.collection("votes").get(),
+      caseRef.collection("jurors").get(),
+    ]);
 
-    votesSnap.forEach(doc => {
+    const caseData = caseSnap.data();
+
+    const counts = { for: 0, against: 0, abstain: 0 };
+    votesSnap.forEach((doc) => {
       const v = doc.data().vote;
       if (counts[v] !== undefined) counts[v]++;
     });
@@ -73,9 +93,18 @@ exports.handler = async (event) => {
     const totalVotes = counts.for + counts.against + counts.abstain;
     const nonAbstain = counts.for + counts.against;
 
-    // ---- Threshold rules ----
-    const MIN_VOTES = 7;
-    if (totalVotes < MIN_VOTES || nonAbstain === 0) {
+    /* -------------------------------------------
+       Threshold logic (data-driven)
+    ------------------------------------------- */
+    const configuredRequired =
+      typeof caseData.requiredVotes === "number"
+        ? caseData.requiredVotes
+        : 3; // dev fallback
+
+    const jurorCount = jurorsSnap.size;
+    const effectiveMinVotes = Math.min(configuredRequired, jurorCount);
+
+    if (totalVotes < effectiveMinVotes || nonAbstain === 0) {
       return {
         statusCode: 200,
         body: JSON.stringify({
@@ -84,54 +113,63 @@ exports.handler = async (event) => {
             status: "pending",
             counts,
             totalVotes,
-            nonAbstain
-          }
-        })
+            nonAbstain,
+            requiredVotes: effectiveMinVotes,
+          },
+        }),
       };
     }
 
-    const required = Math.ceil((2 / 3) * nonAbstain);
-    const verdict = counts.for >= required ? "sanction" : "dismissed";
+    const requiredMajority = Math.ceil((2 / 3) * nonAbstain);
+    const verdict = counts.for >= requiredMajority ? "sanction" : "dismissed";
     const now = admin.firestore.Timestamp.now();
 
-    // ---- Auto-publication ----
+    /* -------------------------------------------
+       Auto-publication (race-safe)
+    ------------------------------------------- */
     const courtLogRef = db.collection("courtLogs").doc();
 
     await db.runTransaction(async (tx) => {
-      const freshCase = await tx.get(caseRef);
-      if (freshCase.data().status !== "open") return;
+      const freshSnap = await tx.get(caseRef);
+      const freshData = freshSnap.data();
+
+      if (freshData.status !== "open") return;
 
       tx.update(caseRef, {
         status: "published",
         verdict,
         counts,
         decidedAt: now,
-        publishedCourtLogId: courtLogRef.id
+        publishedAt: now,
+        publishedCourtLogId: courtLogRef.id,
       });
 
       tx.create(courtLogRef, {
-        title: freshCase.data().title || "Community Court Ruling",
-        summary: freshCase.data().summary || "",
+        title: freshData.title || "Community Court Ruling",
+        summary: `${counts.for} for, ${counts.against} against, ${counts.abstain} abstained`,
         status: "Closed",
         jurisdiction: "TGK Community Court",
         createdBy: "system",
         createdAt: now,
         publishedAt: now,
-        tags: ["jury", verdict]
+        tags: ["jury", "verdict", verdict],
       });
 
       tx.create(
         courtLogRef.collection("entries").doc("verdict"),
         {
           type: "ruling",
-          body: `Verdict: ${verdict}. Jury vote: ${counts.for} for, ${counts.against} against, ${counts.abstain} abstained.`,
+          body: `Verdict: ${verdict.toUpperCase()} — ${counts.for} for, ${counts.against} against, ${counts.abstain} abstained.`,
           sequence: 1,
           createdBy: "system",
-          createdAt: now
+          createdAt: now,
         }
       );
     });
 
+    /* -------------------------------------------
+       Final response
+    ------------------------------------------- */
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -141,9 +179,10 @@ exports.handler = async (event) => {
           verdict,
           counts,
           totalVotes,
-          nonAbstain
-        }
-      })
+          nonAbstain,
+          requiredVotes: effectiveMinVotes,
+        },
+      }),
     };
 
   } catch (err) {
@@ -152,8 +191,8 @@ exports.handler = async (event) => {
       statusCode: 400,
       body: JSON.stringify({
         success: false,
-        message: err.message
-      })
+        message: err.message,
+      }),
     };
   }
 };
