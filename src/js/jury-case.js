@@ -34,9 +34,13 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-function getCaseIdFromUrl() {
-  return new URLSearchParams(window.location.search).get("case");
-}
+  const caseId = getCaseIdFromUrl();
+
+  if (!caseId) {
+    qs("case-body").innerHTML =
+      `<p class="muted small">Invalid or missing jury case.</p>`;
+    return;
+  }
 
   try {
     await loadCase(user, caseId);
@@ -74,8 +78,11 @@ async function loadCase(user, caseId) {
   }
 
   // Header
-  qs("case-title").textContent = caseData.title || "Community Jury Case";
-  qs("case-status").textContent = `Status: ${caseData.status}`;
+  qs("case-title").textContent =
+    caseData.title || "Community Jury Case";
+
+  qs("case-status").textContent =
+    `Status: ${caseData.status}`;
 
   qs("case-body").innerHTML = `
     <p class="lead">
@@ -107,7 +114,7 @@ async function loadCase(user, caseId) {
 function bindVoteButtons(user, caseId) {
   const buttons = document.querySelectorAll("[data-vote]");
 
-  buttons.forEach(btn => {
+  buttons.forEach((btn) => {
     btn.addEventListener("click", async () => {
       const vote = btn.dataset.vote;
       btn.disabled = true;
