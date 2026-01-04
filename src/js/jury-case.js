@@ -4,39 +4,26 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const db = getFirestore();
 const auth = getAuth();
-
-/* ============================================================
-   Helpers
-============================================================ */
-
-function getCaseIdFromUrl() {
-  return new URLSearchParams(window.location.search).get("case");
-}
 
 function qs(id) {
   return document.getElementById(id);
 }
 
-/* ============================================================
-   Bootstrap
-============================================================ */
+function getCaseIdFromUrl() {
+  return new URLSearchParams(window.location.search).get("case");
+}
 
-onAuthStateChanged(auth, async (user) => {
+document.addEventListener("DOMContentLoaded", async () => {
+  const user = auth.currentUser;
+
   if (!user) {
     window.location.replace("/signin/");
     return;
   }
-
-  await refreshEntitlementsLive(user);
-  await loadDashboardHeader(user);
-  await loadJuryConsole(user);
 
   const caseId = getCaseIdFromUrl();
 
