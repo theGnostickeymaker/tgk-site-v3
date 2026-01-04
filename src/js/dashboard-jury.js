@@ -1,7 +1,6 @@
 /* ===========================================================
-   TGK — Dashboard Jury Console
+   TGK — Dashboard Jury Console (Corrected)
    =========================================================== */
-console.log("[Jury] dashboard-jury.js loaded");
 
 import { app } from "./firebase-init.js";
 import {
@@ -11,8 +10,6 @@ import {
 import {
   getFirestore,
   collection,
-  query,
-  where,
   getDocs,
   doc,
   getDoc
@@ -22,23 +19,21 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 export async function loadJuryConsole(user) {
-  console.log("[Jury] loadJuryConsole called for", user?.uid);
   if (!user) return;
+
+  console.log("[Jury] Loading jury console for", user.uid);
 
   const consoleEl = document.getElementById("jury-console");
   const casesEl = document.getElementById("jury-cases");
 
   if (!consoleEl || !casesEl) return;
 
-  // Step 1: find jury cases where this user is assigned
-  const juryCasesRef = collection(db, "juryCases");
-  const q = query(juryCasesRef, where("status", "==", "open"));
+  casesEl.innerHTML = "<p class='muted small'>Checking jury assignments…</p>";
 
-  const snap = await getDocs(q);
-
+  const juryCasesSnap = await getDocs(collection(db, "juryCases"));
   const assignedCases = [];
 
-  for (const caseDoc of snap.docs) {
+  for (const caseDoc of juryCasesSnap.docs) {
     const jurorRef = doc(
       db,
       "juryCases",
@@ -48,6 +43,7 @@ export async function loadJuryConsole(user) {
     );
 
     const jurorSnap = await getDoc(jurorRef);
+
     if (jurorSnap.exists()) {
       assignedCases.push({
         id: caseDoc.id,
@@ -57,16 +53,19 @@ export async function loadJuryConsole(user) {
   }
 
   if (!assignedCases.length) {
-    return; // user is not a juror anywhere
+    console.log("[Jury] No assigned cases");
+    return;
   }
 
-  // Reveal console
+  console.log("[Jury] Assigned cases found:", assignedCases.length);
+
+  // 🔓 Reveal console ONLY now
   consoleEl.hidden = false;
   casesEl.innerHTML = "";
 
-  for (const jc of assignedCases) {
-    casesEl.appendChild(renderJuryCase(jc));
-  }
+  assignedCases.forEach(juryCase => {
+    casesEl.appendChild(renderJuryCase(juryCase));
+  });
 }
 
 function renderJuryCase(juryCase) {
@@ -74,10 +73,13 @@ function renderJuryCase(juryCase) {
   el.className = "jury-case-card";
 
   el.innerHTML = `
-    <h4 class="jury-case-title">${juryCase.title || "Community Case"}</h4>
+    <h4 class="jury-case-title">
+      ${juryCase.title || "Community Case"}
+    </h4>
+
     <p class="small muted">
-      Threshold: ${juryCase.threshold || "two-thirds"} ·
-      Required votes: ${juryCase.requiredVotes || "—"}
+      Status: ${juryCase.status || "unknown"} ·
+      Required votes: ${juryCase.requiredVotes ?? "—"}
     </p>
 
     <div class="jury-vote-actions">
