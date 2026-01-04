@@ -4,143 +4,71 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-
 const db = getFirestore();
-const auth = getAuth();
 
-/* ============================================================
-   Helpers
-============================================================ */
+export async function loadJuryConsole(user) {
+  const panel = document.getElementById("jury-console");
+  const container = document.getElementById("jury-cases");
 
-function getCaseIdFromUrl() {
-  return new URLSearchParams(window.location.search).get("case");
-}
+  if (!panel || !container) return;
 
-function qs(id) {
-  return document.getElementById(id);
-}
-
-/* ============================================================
-   Bootstrap
-============================================================ */
-
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.replace("/signin/");
-    return;
-  }
-
-  const caseId = getCaseIdFromUrl();
-
-  if (!caseId) {
-    qs("case-body").innerHTML =
-      `<p class="muted small">Invalid or missing jury case.</p>`;
-    return;
-  }
+  panel.hidden = true;
+  container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
 
   try {
-    await loadCase(user, caseId);
-  } catch (err) {
-    console.error("[Jury Case] Fatal error:", err);
-    qs("case-body").innerHTML =
-      `<p class="muted small">Unable to load jury case.</p>`;
-  }
-});
+    console.log("[Jury] Loading assignments for user:", user.uid);
 
-/* ============================================================
-   Load case
-============================================================ */
+    // 1) Read assignment index
+    const assignmentRef = doc(db, "userJuryAssignments", user.uid);
+    const assignmentSnap = await getDoc(assignmentRef);
 
-async function loadCase(user, caseId) {
-  const caseRef = doc(db, "juryCases", caseId);
-  const caseSnap = await getDoc(caseRef);
-
-  if (!caseSnap.exists()) {
-    qs("case-body").innerHTML =
-      `<p class="muted small">Case not found.</p>`;
-    return;
-  }
-
-  const caseData = caseSnap.data();
-
-  // Juror check
-  const jurorRef = doc(db, "juryCases", caseId, "jurors", user.uid);
-  const jurorSnap = await getDoc(jurorRef);
-
-  if (!jurorSnap.exists()) {
-    qs("case-body").innerHTML =
-      `<p class="muted small">You are not assigned to this jury.</p>`;
-    return;
-  }
-
-  // Header
-  qs("case-title").textContent = caseData.title;
-  qs("case-status").textContent = `Status: ${caseData.status}`;
-
-  qs("case-body").innerHTML = `
-    <p class="lead">
-      This case is open for community review.
-    </p>
-    <p class="muted small">
-      Required votes: ${caseData.requiredVotes}
-    </p>
-  `;
-
-  // Vote state
-  const voteRef = doc(db, "juryCases", caseId, "votes", user.uid);
-  const voteSnap = await getDoc(voteRef);
-
-  if (voteSnap.exists() || caseData.status !== "open") {
-    qs("jury-actions").hidden = true;
-    qs("jury-locked").hidden = false;
-    return;
-  }
-
-  qs("jury-actions").hidden = false;
-  bindVoteButtons(user, caseId);
-}
-
-/* ============================================================
-   Voting (Netlify function)
-============================================================ */
-
-function bindVoteButtons(user, caseId) {
-  document.querySelectorAll("[data-vote]").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      btn.disabled = true;
-      await castVote(user, caseId, btn.dataset.vote);
-    });
-  });
-}
-
-async function castVote(user, caseId, vote) {
-  try {
-    const token = await user.getIdToken();
-
-    const res = await fetch("/.netlify/functions/castJuryVote", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify({ caseId, vote })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok || !data.success) {
-      throw new Error(data.message || "Vote failed");
+    if (!assignmentSnap.exists()) {
+      console.log("[Jury] No assignment document found");
+      return;
     }
 
-    qs("jury-actions").hidden = true;
-    qs("jury-locked").hidden = false;
+    const { assignedCases = [] } = assignmentSnap.data();
+
+    if (!Array.isArray(assignedCases) || assignedCases.length === 0) {
+      console.log("[Jury] Empty assignment list");
+      return;
+    }
+
+    panel.hidden = false;
+    container.innerHTML = "";
+
+    // 2) Load each assigned case
+    for (const caseId of assignedCases) {
+      const caseRef = doc(db, "juryCases", caseId);
+      const caseSnap = await getDoc(caseRef);
+
+      if (!caseSnap.exists()) continue;
+
+      const data = caseSnap.data();
+
+      const card = document.createElement("div");
+      card.className = "jury-case-card";
+
+      card.innerHTML = `
+        <h4>${data.title}</h4>
+        <p class="muted small">Status: ${data.status}</p>
+        <p class="muted small">Required votes: ${data.requiredVotes}</p>
+        <div class="btn-wrap">
+          <a href="/court/jury/?case=${caseId}" class="btn outline">
+            Review case
+          </a>
+        </div>
+      `;
+
+      container.appendChild(card);
+    }
+
+    console.log("[Jury] Jury console rendered");
 
   } catch (err) {
-    console.error("[Jury Vote] Failed:", err);
-    alert("Unable to cast vote. Please try again.");
+    console.error("[Jury] Failed to load cases:", err);
+    panel.hidden = false;
+    container.innerHTML =
+      `<p class="muted small">Unable to load jury cases at this time.</p>`;
   }
 }
