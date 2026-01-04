@@ -1,12 +1,7 @@
 import {
   getFirestore,
-  collection,
-  getDocs,
-  getDoc,
-  collectionGroup,
-  query,
-  where,
-  doc
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const db = getFirestore();
@@ -20,49 +15,39 @@ export async function loadJuryConsole(user) {
   container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
 
   try {
-    console.log("[Jury] Starting jury console load for user:", user.uid);
+    console.log("[Jury] Loading assignments for user:", user.uid);
 
-    // Query the collectionGroup for juror assignments matching this user
-    const jurorQuery = query(
-      collectionGroup(db, "jurors"),
-      where("uid", "==", user.uid)
-    );
+    // Get the user's assignment document
+    const assignmentRef = doc(db, "userJuryAssignments", user.uid);
+    const assignmentSnap = await getDoc(assignmentRef);
 
-    console.log("[Jury] Executing collectionGroup query...");
-    const jurorSnap = await getDocs(jurorQuery);
-    console.log("[Jury] Query returned", jurorSnap.size, "juror documents");
-
-    if (jurorSnap.empty) {
-      console.log("[Jury] No juror assignments found");
+    if (!assignmentSnap.exists() || !assignmentSnap.data().assignedCases?.length) {
+      console.log("[Jury] No assignments found");
       panel.style.display = "none";
       return;
     }
 
+    const caseIds = assignmentSnap.data().assignedCases;
+    console.log("[Jury] Found", caseIds.length, "assigned cases:", caseIds);
+
     const assignedCases = [];
 
-    // For each juror assignment, fetch the parent case document
-    for (const jurorDoc of jurorSnap.docs) {
-      const caseId = jurorDoc.ref.parent.parent.id;
-      console.log("[Jury] Found assignment for case:", caseId);
-      console.log("[Jury] Juror doc path:", jurorDoc.ref.path);
-      
-      const caseRef = doc(db, "juryCases", caseId);
-      console.log("[Jury] Attempting to fetch case document...");
-      
+    // Fetch each assigned case
+    for (const caseId of caseIds) {
       try {
+        const caseRef = doc(db, "juryCases", caseId);
         const caseSnap = await getDoc(caseRef);
-        console.log("[Jury] Case fetch result - exists:", caseSnap.exists());
-        
+
         if (caseSnap.exists()) {
-          console.log("[Jury] Case data:", caseSnap.data());
+          console.log("[Jury] Loaded case:", caseId);
           assignedCases.push({ id: caseSnap.id, ...caseSnap.data() });
+        } else {
+          console.warn("[Jury] Case not found:", caseId);
         }
-      } catch (caseErr) {
-        console.error("[Jury] Error fetching case", caseId, ":", caseErr);
+      } catch (err) {
+        console.error("[Jury] Error loading case", caseId, ":", err);
       }
     }
-
-    console.log("[Jury] Total assigned cases loaded:", assignedCases.length);
 
     if (assignedCases.length === 0) {
       panel.style.display = "none";
@@ -90,9 +75,10 @@ export async function loadJuryConsole(user) {
       container.appendChild(card);
     }
 
+    console.log("[Jury] Successfully loaded", assignedCases.length, "cases");
+
   } catch (err) {
     console.error("[Jury] Failed to load cases:", err);
-    console.error("[Jury] Error details:", err.code, err.message);
     container.innerHTML =
       `<p class="muted small">Unable to load jury cases at this time.</p>`;
   }
