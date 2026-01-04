@@ -17,9 +17,7 @@ const auth = getAuth();
 ============================================================ */
 
 function getCaseIdFromUrl() {
-  const parts = window.location.pathname.split("/").filter(Boolean);
-  // /court/jury/{caseId}/
-  return parts[parts.length - 1];
+  return new URLSearchParams(window.location.search).get("case");
 }
 
 function qs(id) {
