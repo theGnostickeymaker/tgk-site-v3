@@ -23,16 +23,14 @@ export async function loadJuryConsole(user) {
     const assignmentSnap = await getDoc(assignmentRef);
 
     if (!assignmentSnap.exists()) {
-      console.log("[Jury] No assignments found");
-      panel.hidden = true;
+      console.log("[Jury] No assignment document found");
       return;
     }
 
-    const { cases = [] } = assignmentSnap.data();
+    const { assignedCases = [] } = assignmentSnap.data();
 
-    if (!cases.length) {
+    if (!Array.isArray(assignedCases) || assignedCases.length === 0) {
       console.log("[Jury] Empty assignment list");
-      panel.hidden = true;
       return;
     }
 
@@ -40,7 +38,7 @@ export async function loadJuryConsole(user) {
     container.innerHTML = "";
 
     // 2) Load each assigned case
-    for (const caseId of cases) {
+    for (const caseId of assignedCases) {
       const caseRef = doc(db, "juryCases", caseId);
       const caseSnap = await getDoc(caseRef);
 
