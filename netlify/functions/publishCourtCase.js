@@ -1,125 +1,89 @@
 const admin = require("firebase-admin");
 
 if (!admin.apps.length) {
-  const projectId = process.env.FIREBASE_PROJECT_ID;
-  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-  const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+  const { FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY } = process.env;
 
-  if (!projectId || !clientEmail || !privateKey) {
+  if (!FIREBASE_PROJECT_ID || !FIREBASE_CLIENT_EMAIL || !FIREBASE_PRIVATE_KEY) {
     throw new Error("Firebase admin env vars missing");
   }
 
   admin.initializeApp({
     credential: admin.credential.cert({
-      projectId,
-      clientEmail,
-      privateKey: privateKey.replace(/\\n/g, "\n"),
+      projectId: FIREBASE_PROJECT_ID,
+      clientEmail: FIREBASE_CLIENT_EMAIL,
+      privateKey: FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
     }),
   });
 }
 
 const db = admin.firestore();
 
-exports.handler = async function handler(event) {
+exports.handler = async (event) => {
   try {
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
 
-    let payload;
-    try {
-      payload = JSON.parse(event.body || "{}");
-    } catch {
-      return { statusCode: 400, body: "Invalid JSON" };
+    const {
+      courtLogId,
+      verdict,
+      jurySummary,
+      counts,
+    } = JSON.parse(event.body || "{}");
+
+    if (
+      !courtLogId ||
+      !verdict ||
+      !jurySummary ||
+      !counts ||
+      typeof counts.for !== "number" ||
+      typeof counts.against !== "number"
+    ) {
+      return { statusCode: 400, body: "Invalid payload" };
     }
 
-    const { caseId } = payload;
+    const logRef = db.collection("courtLogs").doc(courtLogId);
+    const logSnap = await logRef.get();
 
-    if (!caseId || typeof caseId !== "string") {
-      return { statusCode: 400, body: "Invalid payload: caseId required" };
+    if (!logSnap.exists) {
+      return { statusCode: 404, body: "Court log not found" };
     }
 
-    const caseRef = db.collection("juryCases").doc(caseId);
-    const caseSnap = await caseRef.get();
-
-    if (!caseSnap.exists) {
-      return { statusCode: 404, body: "Jury case not found" };
-    }
-
-    const caseData = caseSnap.data();
-
-    if (caseData.status === "published") {
-      return { statusCode: 409, body: "Case already published" };
-    }
-
-    if (caseData.status !== "verdict") {
-      return { statusCode: 400, body: "Case has no final verdict" };
+    if (logSnap.data().status === "Closed") {
+      return { statusCode: 409, body: "Court log already closed" };
     }
 
     const now = admin.firestore.Timestamp.now();
-    const courtLogRef = db.collection("courtLogs").doc();
-
-    const entries = [
-      {
-        type: "hearing",
-        body: "Community jury convened and deliberated.",
-      },
-      {
-        type: "ruling",
-        body: caseData.jurySummary,
-      },
-      {
-        type: "note",
-        body: `Verdict: ${caseData.verdict}. Votes for: ${caseData.counts.for}, against: ${caseData.counts.against}, abstained: ${caseData.counts.abstain}.`,
-      },
-    ];
 
     await db.runTransaction(async (tx) => {
-      tx.create(courtLogRef, {
-        title: caseData.title,
-        summary: caseData.jurySummary,
+      tx.update(logRef, {
         status: "Closed",
-        jurisdiction: "TGK Community Court",
+        verdict,
+        jurySummary,
+        juryCounts: counts,
+        closedAt: now,
+      });
+
+      const entryRef = logRef
+        .collection("entries")
+        .doc(`entry-${Date.now()}`);
+
+      tx.create(entryRef, {
+        type: "ruling",
+        body: `Verdict: ${verdict}\n\n${jurySummary}`,
+        sequence: 999,
         createdBy: "system",
         createdAt: now,
-        publishedAt: now,
-        tags: ["jury", "moderation"],
-      });
-
-      entries.forEach((entry, index) => {
-        const entryRef = courtLogRef
-          .collection("entries")
-          .doc(`entry-${String(index + 1).padStart(3, "0")}`);
-
-        tx.create(entryRef, {
-          type: entry.type,
-          body: entry.body,
-          sequence: index + 1,
-          createdBy: "system",
-          createdAt: now,
-        });
-      });
-
-      tx.update(caseRef, {
-        status: "published",
-        publishedCourtLogId: courtLogRef.id,
-        publishedAt: now,
       });
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        success: true,
-        courtLogId: courtLogRef.id,
-      }),
+      body: JSON.stringify({ success: true }),
     };
 
   } catch (err) {
     console.error("Publish failed:", err);
-    return {
-      statusCode: 500,
-      body: "Internal error during publication",
-    };
+    return { statusCode: 500, body: "Internal error" };
   }
 };
