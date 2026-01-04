@@ -1,9 +1,7 @@
 import {
   getFirestore,
-  collection,
-  getDocs,
-  getDoc,
-  doc
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const db = getFirestore();
@@ -20,49 +18,45 @@ export async function loadJuryConsole(user) {
   try {
     console.log("[Jury] Loading assignments for user:", user.uid);
 
-    // 1) Find juror assignments
-    const jurorCol = collection(db, "juryCases");
-    const casesSnap = await getDocs(jurorCol);
+    // 1) Read assignment index
+    const assignmentRef = doc(db, "userJuryAssignments", user.uid);
+    const assignmentSnap = await getDoc(assignmentRef);
 
-    const assignedCases = [];
-
-    for (const caseDoc of casesSnap.docs) {
-      const jurorRef = doc(db, "juryCases", caseDoc.id, "jurors", user.uid);
-      const jurorSnap = await getDoc(jurorRef);
-
-      if (jurorSnap.exists()) {
-        assignedCases.push({
-          id: caseDoc.id,
-          data: caseDoc.data()
-        });
-      }
-    }
-
-    console.log("[Jury] Found assigned cases:", assignedCases.map(c => c.id));
-
-    if (!assignedCases.length) {
+    if (!assignmentSnap.exists()) {
+      console.log("[Jury] No assignments found");
       panel.hidden = true;
       return;
     }
 
-    // 2) Show panel
+    const { cases = [] } = assignmentSnap.data();
+
+    if (!cases.length) {
+      console.log("[Jury] Empty assignment list");
+      panel.hidden = true;
+      return;
+    }
+
     panel.hidden = false;
     container.innerHTML = "";
 
-    // 3) Render cards
-    for (const c of assignedCases) {
+    // 2) Load each assigned case
+    for (const caseId of cases) {
+      const caseRef = doc(db, "juryCases", caseId);
+      const caseSnap = await getDoc(caseRef);
+
+      if (!caseSnap.exists()) continue;
+
+      const data = caseSnap.data();
+
       const card = document.createElement("div");
       card.className = "jury-case-card";
 
       card.innerHTML = `
-        <h4>${c.data.title}</h4>
-        <p class="muted small">Status: ${c.data.status}</p>
-        <p class="muted small">Required votes: ${c.data.requiredVotes}</p>
+        <h4>${data.title}</h4>
+        <p class="muted small">Status: ${data.status}</p>
+        <p class="muted small">Required votes: ${data.requiredVotes}</p>
         <div class="btn-wrap">
-          <a
-            href="/court/jury/?case=${c.id}"
-            class="btn outline"
-          >
+          <a href="/court/jury/?case=${caseId}" class="btn outline">
             Review case
           </a>
         </div>
@@ -70,6 +64,8 @@ export async function loadJuryConsole(user) {
 
       container.appendChild(card);
     }
+
+    console.log("[Jury] Jury console rendered");
 
   } catch (err) {
     console.error("[Jury] Failed to load cases:", err);
