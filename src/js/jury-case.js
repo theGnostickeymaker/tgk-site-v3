@@ -34,12 +34,9 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  const caseId = getCaseIdFromUrl();
-  if (!caseId) {
-    qs("case-body").innerHTML =
-      `<p class="muted small">Invalid jury case.</p>`;
-    return;
-  }
+function getCaseIdFromUrl() {
+  return new URLSearchParams(window.location.search).get("case");
+}
 
   try {
     await loadCase(user, caseId);

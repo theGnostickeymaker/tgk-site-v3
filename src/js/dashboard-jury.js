@@ -61,16 +61,16 @@ export async function loadJuryConsole(user) {
       const card = document.createElement("div");
       card.className = "jury-case-card";
 
-      card.innerHTML = `
-        <h4>${data.title}</h4>
-        <p class="muted small">Status: ${data.status}</p>
-        <p class="muted small">Required votes: ${data.requiredVotes}</p>
-        <div class="btn-wrap">
-          <a href="/court/jury/${data.id}/" class="btn outline">
-            Review case
-          </a>
-        </div>
-      `;
+    card.innerHTML = `
+      <h4>${data.title}</h4>
+      <p class="muted small">Status: ${data.status}</p>
+      <p class="muted small">Required votes: ${data.requiredVotes}</p>
+      <div class="btn-wrap">
+        <a href="/court/jury/?case=${caseSnap.id}" class="btn outline">
+          Review case
+        </a>
+      </div>
+    `;
 
       container.appendChild(card);
     }
