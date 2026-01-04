@@ -2,7 +2,11 @@ import {
   getFirestore,
   collection,
   getDocs,
-  getDoc
+  getDoc,
+  collectionGroup,
+  query,
+  where,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const db = getFirestore();
@@ -16,23 +20,29 @@ export async function loadJuryConsole(user) {
   container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
 
   try {
-    const casesSnap = await getDocs(collection(db, "juryCases"));
+    // Query the collectionGroup for juror assignments matching this user
+    const jurorQuery = query(
+      collectionGroup(db, "jurors"),
+      where("__name__", "==", user.uid)
+    );
+
+    const jurorSnap = await getDocs(jurorQuery);
+
+    if (jurorSnap.empty) {
+      panel.style.display = "none";
+      return;
+    }
 
     const assignedCases = [];
 
-    for (const caseDoc of casesSnap.docs) {
-      const jurorRef = doc(
-        db,
-        "juryCases",
-        caseDoc.id,
-        "jurors",
-        user.uid
-      );
+    // For each juror assignment, fetch the parent case document
+    for (const jurorDoc of jurorSnap.docs) {
+      const caseId = jurorDoc.ref.parent.parent.id;
+      const caseRef = doc(db, "juryCases", caseId);
+      const caseSnap = await getDoc(caseRef);
 
-      const jurorSnap = await getDoc(jurorRef);
-
-      if (jurorSnap.exists()) {
-        assignedCases.push({ id: caseDoc.id, ...caseDoc.data() });
+      if (caseSnap.exists()) {
+        assignedCases.push({ id: caseSnap.id, ...caseSnap.data() });
       }
     }
 
