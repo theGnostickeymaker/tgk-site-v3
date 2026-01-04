@@ -2,9 +2,7 @@ import {
   getFirestore,
   collectionGroup,
   getDocs,
-  getDoc,
-  query,
-  where
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const db = getFirestore();
@@ -13,27 +11,26 @@ export async function loadJuryConsole(user) {
   const container = document.getElementById("jury-cases");
   const panel = document.getElementById("jury-console");
 
-  if (!container || !panel) return;
+  if (!container || !panel || !user) return;
 
   container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
+  panel.style.display = "none";
 
   try {
-    const jurorSnap = await getDocs(
-      query(
-        collectionGroup(db, "jurors"),
-        where("uid", "==", user.uid)
-      )
+    const jurorSnap = await getDocs(collectionGroup(db, "jurors"));
+
+    const matchingJurorDocs = jurorSnap.docs.filter(
+      doc => doc.id === user.uid
     );
 
-    if (jurorSnap.empty) {
-      panel.style.display = "none";
+    if (!matchingJurorDocs.length) {
       return;
     }
 
     panel.style.display = "block";
     container.innerHTML = "";
 
-    for (const jurorDoc of jurorSnap.docs) {
+    for (const jurorDoc of matchingJurorDocs) {
       const caseRef = jurorDoc.ref.parent.parent;
       const caseSnap = await getDoc(caseRef);
 
@@ -41,21 +38,30 @@ export async function loadJuryConsole(user) {
 
       const data = caseSnap.data();
 
+      if (data.status !== "open") continue;
+
       const card = document.createElement("div");
       card.className = "jury-case-card";
 
       card.innerHTML = `
         <h4>${data.title}</h4>
-        <p class="muted small">Status: ${data.status}</p>
-        <p class="muted small">Required votes: ${data.requiredVotes}</p>
+        <p class="muted small">
+          Threshold: ${data.threshold} · Required votes: ${data.requiredVotes}
+        </p>
+
         <div class="btn-wrap">
-          <a href="/court/jury/${caseSnap.id}/" class="btn outline">
+          <a href="/court/jury/${caseSnap.id}/" class="btn outline small">
             Review case
           </a>
         </div>
       `;
 
       container.appendChild(card);
+    }
+
+    if (!container.children.length) {
+      container.innerHTML =
+        `<p class="muted small">No active jury cases.</p>`;
     }
 
   } catch (err) {
