@@ -215,7 +215,8 @@ breadcrumbs:
       window.__TGK_GATE__?.saveReturnUrl?.();
       return window.location.replace("/signin/");
     }
-
+    await loadJuryConsole(user);
+    
     await refreshEntitlementsLive(user);
     await loadDashboardHeader(user);
     await loadJuryConsole(user); // ← THIS LINE MUST EXIST
