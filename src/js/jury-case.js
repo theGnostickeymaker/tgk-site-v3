@@ -4,7 +4,10 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 const db = getFirestore();
 const auth = getAuth();
@@ -17,9 +20,7 @@ function getCaseIdFromUrl() {
   return new URLSearchParams(window.location.search).get("case");
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const user = auth.currentUser;
-
+onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.replace("/signin/");
     return;
@@ -42,11 +43,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+
 /* ============================================================
    Load case
 ============================================================ */
 
 async function loadCase(user, caseId) {
+    
+console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
+
   const caseRef = doc(db, "juryCases", caseId);
   const caseSnap = await getDoc(caseRef);
 
