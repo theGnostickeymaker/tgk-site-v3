@@ -20,15 +20,20 @@ export async function loadJuryConsole(user) {
   container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
 
   try {
+    console.log("[Jury] Starting jury console load for user:", user.uid);
+
     // Query the collectionGroup for juror assignments matching this user
     const jurorQuery = query(
       collectionGroup(db, "jurors"),
       where("uid", "==", user.uid)
     );
 
+    console.log("[Jury] Executing collectionGroup query...");
     const jurorSnap = await getDocs(jurorQuery);
+    console.log("[Jury] Query returned", jurorSnap.size, "juror documents");
 
     if (jurorSnap.empty) {
+      console.log("[Jury] No juror assignments found");
       panel.style.display = "none";
       return;
     }
@@ -38,13 +43,26 @@ export async function loadJuryConsole(user) {
     // For each juror assignment, fetch the parent case document
     for (const jurorDoc of jurorSnap.docs) {
       const caseId = jurorDoc.ref.parent.parent.id;
+      console.log("[Jury] Found assignment for case:", caseId);
+      console.log("[Jury] Juror doc path:", jurorDoc.ref.path);
+      
       const caseRef = doc(db, "juryCases", caseId);
-      const caseSnap = await getDoc(caseRef);
-
-      if (caseSnap.exists()) {
-        assignedCases.push({ id: caseSnap.id, ...caseSnap.data() });
+      console.log("[Jury] Attempting to fetch case document...");
+      
+      try {
+        const caseSnap = await getDoc(caseRef);
+        console.log("[Jury] Case fetch result - exists:", caseSnap.exists());
+        
+        if (caseSnap.exists()) {
+          console.log("[Jury] Case data:", caseSnap.data());
+          assignedCases.push({ id: caseSnap.id, ...caseSnap.data() });
+        }
+      } catch (caseErr) {
+        console.error("[Jury] Error fetching case", caseId, ":", caseErr);
       }
     }
+
+    console.log("[Jury] Total assigned cases loaded:", assignedCases.length);
 
     if (assignedCases.length === 0) {
       panel.style.display = "none";
@@ -74,6 +92,7 @@ export async function loadJuryConsole(user) {
 
   } catch (err) {
     console.error("[Jury] Failed to load cases:", err);
+    console.error("[Jury] Error details:", err.code, err.message);
     container.innerHTML =
       `<p class="muted small">Unable to load jury cases at this time.</p>`;
   }
