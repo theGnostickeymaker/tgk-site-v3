@@ -1,84 +1,79 @@
 import {
   getFirestore,
-  doc,
-  getDoc
+  collection,
+  getDocs,
+  getDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const db = getFirestore();
 
 export async function loadJuryConsole(user) {
-  const container = document.getElementById("jury-cases");
   const panel = document.getElementById("jury-console");
+  const container = document.getElementById("jury-cases");
 
-  if (!container || !panel) return;
+  if (!panel || !container) return;
 
+  panel.hidden = true;
   container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
 
   try {
     console.log("[Jury] Loading assignments for user:", user.uid);
 
-    // Get the user's assignment document
-    const assignmentRef = doc(db, "userJuryAssignments", user.uid);
-    const assignmentSnap = await getDoc(assignmentRef);
-
-    if (!assignmentSnap.exists() || !assignmentSnap.data().assignedCases?.length) {
-      console.log("[Jury] No assignments found");
-      panel.style.display = "none";
-      return;
-    }
-
-    const caseIds = assignmentSnap.data().assignedCases;
-    console.log("[Jury] Found", caseIds.length, "assigned cases:", caseIds);
+    // 1) Find juror assignments
+    const jurorCol = collection(db, "juryCases");
+    const casesSnap = await getDocs(jurorCol);
 
     const assignedCases = [];
 
-    // Fetch each assigned case
-    for (const caseId of caseIds) {
-      try {
-        const caseRef = doc(db, "juryCases", caseId);
-        const caseSnap = await getDoc(caseRef);
+    for (const caseDoc of casesSnap.docs) {
+      const jurorRef = doc(db, "juryCases", caseDoc.id, "jurors", user.uid);
+      const jurorSnap = await getDoc(jurorRef);
 
-        if (caseSnap.exists()) {
-          console.log("[Jury] Loaded case:", caseId);
-          assignedCases.push({ id: caseSnap.id, ...caseSnap.data() });
-        } else {
-          console.warn("[Jury] Case not found:", caseId);
-        }
-      } catch (err) {
-        console.error("[Jury] Error loading case", caseId, ":", err);
+      if (jurorSnap.exists()) {
+        assignedCases.push({
+          id: caseDoc.id,
+          data: caseDoc.data()
+        });
       }
     }
 
-    if (assignedCases.length === 0) {
-      panel.style.display = "none";
+    console.log("[Jury] Found assigned cases:", assignedCases.map(c => c.id));
+
+    if (!assignedCases.length) {
+      panel.hidden = true;
       return;
     }
 
-    panel.style.display = "block";
+    // 2) Show panel
+    panel.hidden = false;
     container.innerHTML = "";
 
-    for (const data of assignedCases) {
+    // 3) Render cards
+    for (const c of assignedCases) {
       const card = document.createElement("div");
       card.className = "jury-case-card";
 
-    card.innerHTML = `
-      <h4>${data.title}</h4>
-      <p class="muted small">Status: ${data.status}</p>
-      <p class="muted small">Required votes: ${data.requiredVotes}</p>
-      <div class="btn-wrap">
-        <a href="/court/jury/?case=${caseSnap.id}" class="btn outline">
-          Review case
-        </a>
-      </div>
-    `;
+      card.innerHTML = `
+        <h4>${c.data.title}</h4>
+        <p class="muted small">Status: ${c.data.status}</p>
+        <p class="muted small">Required votes: ${c.data.requiredVotes}</p>
+        <div class="btn-wrap">
+          <a
+            href="/court/jury/?case=${c.id}"
+            class="btn outline"
+          >
+            Review case
+          </a>
+        </div>
+      `;
 
       container.appendChild(card);
     }
 
-    console.log("[Jury] Successfully loaded", assignedCases.length, "cases");
-
   } catch (err) {
     console.error("[Jury] Failed to load cases:", err);
+    panel.hidden = false;
     container.innerHTML =
       `<p class="muted small">Unable to load jury cases at this time.</p>`;
   }
