@@ -23,6 +23,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const auth = getAuth(app);
+window.TGK_AUTH = auth;
+
 const db = getFirestore(app);
 
 const RETURN_KEY = "tgk-return-url";
