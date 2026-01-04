@@ -48,6 +48,7 @@ function getCaseIdFromUrl() {
 
 async function loadCase(user, caseId) {
   console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
+  console.log("[Jury Case] loadCase reached");
 
   const caseRef = doc(db, "juryCases", caseId);
   const caseSnap = await getDoc(caseRef);
