@@ -214,11 +214,11 @@ breadcrumbs:
     if (!user) {
       window.__TGK_GATE__?.saveReturnUrl?.();
       return window.location.replace("/signin/");
-      await loadJuryConsole(user);
     }
 
     await refreshEntitlementsLive(user);
     await loadDashboardHeader(user);
+    await loadJuryConsole(user);
 
     document
       .getElementById("profile-form")
