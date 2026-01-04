@@ -1,85 +1,66 @@
-// /js/dashboard-jury.js
-
 import {
   getFirestore,
   collectionGroup,
-  query,
-  where,
   getDocs,
-  doc,
-  getDoc
+  getDoc,
+  query,
+  where
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 const db = getFirestore();
 
 export async function loadJuryConsole(user) {
-  const mount = document.getElementById("jury-cases");
-  const section = document.getElementById("jury-console");
+  const container = document.getElementById("jury-cases");
+  const panel = document.getElementById("jury-console");
 
-  if (!mount || !section) return;
+  if (!container || !panel) return;
 
-  console.log("[Jury] Loading jury console for", user.uid);
-
-  mount.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
+  container.innerHTML = `<p class="muted small">Loading assigned cases…</p>`;
 
   try {
-    // 🔑 Query juror assignments
-    const q = query(
-      collectionGroup(db, "jurors"),
-      where("__name__", "==", user.uid)
+    const jurorSnap = await getDocs(
+      query(
+        collectionGroup(db, "jurors"),
+        where("__name__", "==", user.uid)
+      )
     );
 
-    const snap = await getDocs(q);
-
-    if (snap.empty) {
-      mount.innerHTML = `
-        <p class="muted small">
-          You are not currently assigned to any jury cases.
-        </p>
-      `;
-      section.style.display = "none"; // hide whole panel if none
+    if (jurorSnap.empty) {
+      panel.style.display = "none";
       return;
     }
 
-    section.style.display = "block";
+    panel.style.display = "block";
+    container.innerHTML = "";
 
-    let html = "";
-
-    for (const jurorDoc of snap.docs) {
+    for (const jurorDoc of jurorSnap.docs) {
       const caseRef = jurorDoc.ref.parent.parent;
-      if (!caseRef) continue;
-
       const caseSnap = await getDoc(caseRef);
+
       if (!caseSnap.exists()) continue;
 
       const data = caseSnap.data();
 
-      html += `
-        <article class="jury-case card">
-          <h4>${data.title || "Community Case"}</h4>
-          <p class="small muted">
-            Status: <strong>${data.status}</strong>
-          </p>
-          <p class="small muted">
-            Required votes: ${data.requiredVotes ?? "—"}
-          </p>
-          <div class="btn-wrap">
-            <a href="/jury/${caseRef.id}/" class="btn outline small">
-              Review case
-            </a>
-          </div>
-        </article>
+      const card = document.createElement("div");
+      card.className = "jury-case-card";
+
+      card.innerHTML = `
+        <h4>${data.title}</h4>
+        <p class="muted small">Status: ${data.status}</p>
+        <p class="muted small">Required votes: ${data.requiredVotes}</p>
+        <div class="btn-wrap">
+          <a href="/court/jury/${caseSnap.id}/" class="btn outline">
+            Review case
+          </a>
+        </div>
       `;
+
+      container.appendChild(card);
     }
 
-    mount.innerHTML = html;
-
   } catch (err) {
-    console.error("[Jury] Failed to load jury cases:", err);
-    mount.innerHTML = `
-      <p class="small muted">
-        Unable to load jury cases at this time.
-      </p>
-    `;
+    console.error("[Jury] Failed to load cases:", err);
+    container.innerHTML =
+      `<p class="muted small">Unable to load jury cases at this time.</p>`;
   }
 }
