@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: "Community Jury Case"
+description: "Review and vote on a TGK community jury case."
+bodyClass: "lightgold requires-auth"
+permalink: "/court/jury/{{ caseId }}/index.html"
+
+# Dynamic param
+pagination:
+  data: juryCases
+  size: 1
+  alias: case
+
+eleventyComputed:
+  caseId: "{{ case.fileSlug }}"
+---
+
+<main class="main-content court-jury">
+  <section class="content-container">
+
+    <h1 class="section-heading" id="case-title">
+      Loading case…
+    </h1>
+
+    <p class="muted" id="case-status"></p>
+
+    <div id="case-body" class="jury-case-body">
+      <p class="muted small">Loading case details…</p>
+    </div>
+
+    <div id="jury-actions" class="jury-actions" hidden>
+      <h3>Your vote</h3>
+
+      <div class="btn-wrap">
+        <button data-vote="for" class="btn outline">For</button>
+        <button data-vote="against" class="btn outline">Against</button>
+        <button data-vote="abstain" class="btn outline">Abstain</button>
+      </div>
+    </div>
+
+    <div id="jury-locked" class="muted" hidden>
+      You have already cast your vote.
+    </div>
+
+  </section>
+</main>
+<script type="module" src="/js/jury-case.js?v={{ bust }}"></script>
+<script type="module" src="/js/tgk-auth.js?v={{ bust }}" defer></script>

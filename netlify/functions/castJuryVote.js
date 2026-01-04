@@ -14,17 +14,17 @@ const db = admin.firestore();
 
 exports.handler = async (event) => {
   try {
-    /* -------------------------------------------
-       Method guard
-    ------------------------------------------- */
+    // -------------------------------------------
+    // Method guard
+    // -------------------------------------------
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
 
-    /* -------------------------------------------
-       Auth
-    ------------------------------------------- */
-    const authHeader = event.headers.authorization || "";
+    // -------------------------------------------
+    // Auth
+    // -------------------------------------------
+    const authHeader = event.headers.authorization || event.headers.Authorization || "";
     if (!authHeader.startsWith("Bearer ")) {
       return { statusCode: 401, body: "Missing auth token" };
     }
@@ -33,9 +33,9 @@ exports.handler = async (event) => {
     const decoded = await admin.auth().verifyIdToken(token);
     const uid = decoded.uid;
 
-    /* -------------------------------------------
-       Payload
-    ------------------------------------------- */
+    // -------------------------------------------
+    // Payload
+    // -------------------------------------------
     const { caseId, vote } = JSON.parse(event.body || "{}");
     if (!caseId || !["for", "against", "abstain"].includes(vote)) {
       return { statusCode: 400, body: "Invalid payload" };
@@ -44,28 +44,22 @@ exports.handler = async (event) => {
     const caseRef = db.collection("juryCases").doc(caseId);
     const voteRef = caseRef.collection("votes").doc(uid);
 
-    /* -------------------------------------------
-       Cast vote transaction
-    ------------------------------------------- */
+    // -------------------------------------------
+    // Cast vote transaction (single-cast, immutable)
+    // -------------------------------------------
     await db.runTransaction(async (tx) => {
       const caseSnap = await tx.get(caseRef);
       if (!caseSnap.exists) throw new Error("Case not found");
 
       const caseData = caseSnap.data();
-      if (caseData.status !== "open") {
-        throw new Error("Case not open");
-      }
+      if (caseData.status !== "open") throw new Error("Case not open");
 
       const jurorRef = caseRef.collection("jurors").doc(uid);
       const jurorSnap = await tx.get(jurorRef);
-      if (!jurorSnap.exists) {
-        throw new Error("Not an assigned juror");
-      }
+      if (!jurorSnap.exists) throw new Error("Not an assigned juror");
 
       const existingVote = await tx.get(voteRef);
-      if (existingVote.exists) {
-        throw new Error("Vote already cast");
-      }
+      if (existingVote.exists) throw new Error("Vote already cast");
 
       tx.create(voteRef, {
         vote,
@@ -73,9 +67,9 @@ exports.handler = async (event) => {
       });
     });
 
-    /* -------------------------------------------
-       Recount votes
-    ------------------------------------------- */
+    // -------------------------------------------
+    // Recount votes
+    // -------------------------------------------
     const [caseSnap, votesSnap, jurorsSnap] = await Promise.all([
       caseRef.get(),
       caseRef.collection("votes").get(),
@@ -93,17 +87,16 @@ exports.handler = async (event) => {
     const totalVotes = counts.for + counts.against + counts.abstain;
     const nonAbstain = counts.for + counts.against;
 
-    /* -------------------------------------------
-       Threshold logic (data-driven)
-    ------------------------------------------- */
+    // -------------------------------------------
+    // Required votes (data-driven)
+    // -------------------------------------------
     const configuredRequired =
-      typeof caseData.requiredVotes === "number"
-        ? caseData.requiredVotes
-        : 3; // dev fallback
+      typeof caseData.requiredVotes === "number" ? caseData.requiredVotes : 3;
 
     const jurorCount = jurorsSnap.size;
     const effectiveMinVotes = Math.min(configuredRequired, jurorCount);
 
+    // Not enough votes yet
     if (totalVotes < effectiveMinVotes || nonAbstain === 0) {
       return {
         statusCode: 200,
@@ -120,19 +113,32 @@ exports.handler = async (event) => {
       };
     }
 
-    const requiredMajority = Math.ceil((2 / 3) * nonAbstain);
-    const verdict = counts.for >= requiredMajority ? "sanction" : "dismissed";
+    // -------------------------------------------
+    // Threshold logic (data-driven)
+    // -------------------------------------------
+    let verdict;
+    const threshold = (caseData.threshold || "majority").toLowerCase();
+
+    if (threshold === "supermajority") {
+      const required = Math.ceil((2 / 3) * nonAbstain);
+      verdict = counts.for >= required ? "sanction" : "dismissed";
+    } else {
+      // majority
+      verdict = counts.for > counts.against ? "sanction" : "dismissed";
+    }
+
     const now = admin.firestore.Timestamp.now();
 
-    /* -------------------------------------------
-       Auto-publication (race-safe)
-    ------------------------------------------- */
+    // -------------------------------------------
+    // Auto-publication (race-safe)
+    // -------------------------------------------
     const courtLogRef = db.collection("courtLogs").doc();
 
     await db.runTransaction(async (tx) => {
       const freshSnap = await tx.get(caseRef);
-      const freshData = freshSnap.data();
+      if (!freshSnap.exists) return;
 
+      const freshData = freshSnap.data();
       if (freshData.status !== "open") return;
 
       tx.update(caseRef, {
@@ -155,21 +161,18 @@ exports.handler = async (event) => {
         tags: ["jury", "verdict", verdict],
       });
 
-      tx.create(
-        courtLogRef.collection("entries").doc("verdict"),
-        {
-          type: "ruling",
-          body: `Verdict: ${verdict.toUpperCase()} — ${counts.for} for, ${counts.against} against, ${counts.abstain} abstained.`,
-          sequence: 1,
-          createdBy: "system",
-          createdAt: now,
-        }
-      );
+      tx.create(courtLogRef.collection("entries").doc("verdict"), {
+        type: "ruling",
+        body: `Verdict: ${verdict.toUpperCase()}. Votes: ${counts.for} for, ${counts.against} against, ${counts.abstain} abstained.`,
+        sequence: 1,
+        createdBy: "system",
+        createdAt: now,
+      });
     });
 
-    /* -------------------------------------------
-       Final response
-    ------------------------------------------- */
+    // -------------------------------------------
+    // Final response
+    // -------------------------------------------
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -184,14 +187,13 @@ exports.handler = async (event) => {
         },
       }),
     };
-
   } catch (err) {
-    console.error("Vote error:", err.message);
+    console.error("Vote error:", err);
     return {
       statusCode: 400,
       body: JSON.stringify({
         success: false,
-        message: err.message,
+        message: err.message || "Unknown error",
       }),
     };
   }
