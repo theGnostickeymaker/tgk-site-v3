@@ -25,7 +25,7 @@ function qs(id) {
 }
 
 /* ============================================================
-   Auth + bootstrap
+   Auth bootstrap
 ============================================================ */
 
 onAuthStateChanged(auth, async (user) => {
@@ -38,7 +38,7 @@ onAuthStateChanged(auth, async (user) => {
 
   if (!caseId) {
     qs("case-body").innerHTML =
-      `<p class="muted small">Invalid or missing jury case.</p>`;
+      `<p class="muted small">Invalid jury case link.</p>`;
     return;
   }
 
@@ -56,6 +56,8 @@ onAuthStateChanged(auth, async (user) => {
 ============================================================ */
 
 async function loadCase(user, caseId) {
+  console.log("[Jury Case] Loading case:", caseId);
+
   const caseRef = doc(db, "juryCases", caseId);
   const caseSnap = await getDoc(caseRef);
 
@@ -77,12 +79,9 @@ async function loadCase(user, caseId) {
     return;
   }
 
-  // Header
-  qs("case-title").textContent =
-    caseData.title || "Community Jury Case";
-
-  qs("case-status").textContent =
-    `Status: ${caseData.status}`;
+  // Populate UI
+  qs("case-title").textContent = caseData.title || "Community Jury Case";
+  qs("case-status").textContent = `Status: ${caseData.status}`;
 
   qs("case-body").innerHTML = `
     <p class="lead">
@@ -93,7 +92,7 @@ async function loadCase(user, caseId) {
     </p>
   `;
 
-  // Has user already voted?
+  // Vote state
   const voteRef = doc(db, "juryCases", caseId, "votes", user.uid);
   const voteSnap = await getDoc(voteRef);
 
@@ -108,17 +107,14 @@ async function loadCase(user, caseId) {
 }
 
 /* ============================================================
-   Voting (via Netlify function)
+   Voting
 ============================================================ */
 
 function bindVoteButtons(user, caseId) {
-  const buttons = document.querySelectorAll("[data-vote]");
-
-  buttons.forEach((btn) => {
+  document.querySelectorAll("[data-vote]").forEach(btn => {
     btn.addEventListener("click", async () => {
-      const vote = btn.dataset.vote;
       btn.disabled = true;
-      await castVote(user, caseId, vote);
+      await castVote(user, caseId, btn.dataset.vote);
     });
   });
 }
