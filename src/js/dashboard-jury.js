@@ -23,7 +23,7 @@ export async function loadJuryConsole(user) {
     // Query the collectionGroup for juror assignments matching this user
     const jurorQuery = query(
       collectionGroup(db, "jurors"),
-      where("__name__", "==", user.uid)
+      where("uid", "==", user.uid)
     );
 
     const jurorSnap = await getDocs(jurorQuery);
