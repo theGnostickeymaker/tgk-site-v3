@@ -25,6 +25,18 @@ import {
 const auth = getAuth(app);
 window.TGK_AUTH = auth;
 
+/* ===========================================================
+   GLOBAL AUTH READY PROMISE (single source of truth)
+   =========================================================== */
+
+if (!window.__TGK_AUTH_READY__) {
+  window.__TGK_AUTH_READY__ = new Promise((resolve) => {
+    onAuthStateChanged(auth, (user) => {
+      resolve(user || null);
+    });
+  });
+}
+
 const db = getFirestore(app);
 
 const RETURN_KEY = "tgk-return-url";

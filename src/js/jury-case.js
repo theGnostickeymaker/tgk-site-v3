@@ -4,13 +4,7 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-
 const db = getFirestore();
-const auth = getAuth();
 
 function qs(id) {
   return document.getElementById(id);
@@ -20,7 +14,18 @@ function getCaseIdFromUrl() {
   return new URLSearchParams(window.location.search).get("case");
 }
 
-onAuthStateChanged(auth, async (user) => {
+/* ============================================================
+   Bootstrap (wait for auth)
+============================================================ */
+
+(async () => {
+  if (!window.__TGK_AUTH_READY__) {
+    console.error("[Jury Case] Auth system not initialised");
+    return;
+  }
+
+  const user = await window.__TGK_AUTH_READY__;
+
   if (!user) {
     window.location.replace("/signin/");
     return;
@@ -34,23 +39,15 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  try {
-    await loadCase(user, caseId);
-  } catch (err) {
-    console.error("[Jury Case] Fatal error:", err);
-    qs("case-body").innerHTML =
-      `<p class="muted small">Unable to load jury case.</p>`;
-  }
-});
-
+  await loadCase(user, caseId);
+})();
 
 /* ============================================================
    Load case
 ============================================================ */
 
 async function loadCase(user, caseId) {
-    
-console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
+  console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
 
   const caseRef = doc(db, "juryCases", caseId);
   const caseSnap = await getDoc(caseRef);
@@ -63,7 +60,6 @@ console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
 
   const caseData = caseSnap.data();
 
-  // Juror check
   const jurorRef = doc(db, "juryCases", caseId, "jurors", user.uid);
   const jurorSnap = await getDoc(jurorRef);
 
@@ -73,7 +69,6 @@ console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
     return;
   }
 
-  // Header
   qs("case-title").textContent = caseData.title;
   qs("case-status").textContent = `Status: ${caseData.status}`;
 
@@ -86,7 +81,6 @@ console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
     </p>
   `;
 
-  // Vote state
   const voteRef = doc(db, "juryCases", caseId, "votes", user.uid);
   const voteSnap = await getDoc(voteRef);
 
@@ -101,7 +95,7 @@ console.log("[Jury Case] Loading case:", caseId, "for user:", user.uid);
 }
 
 /* ============================================================
-   Voting (Netlify function)
+   Voting
 ============================================================ */
 
 function bindVoteButtons(user, caseId) {
