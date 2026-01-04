@@ -45,9 +45,13 @@ export async function loadDashboardHeader(user) {
       (userSnap.exists() && userSnap.data().displayName) ||
       (user.email ? user.email.split("@")[0] : "Seeker");
 
-    const tier = entSnap.exists()
-      ? (entSnap.data().tier || "free")
-      : "free";
+    const tokenResult = await user.getIdTokenResult();
+    const claimTier = tokenResult.claims?.tier;
+
+    const tier =
+      claimTier ||
+      (entSnap.exists() && entSnap.data().tier) ||
+      "free";
 
     let memberSince = "";
     if (entSnap.exists() && entSnap.data().created) {
