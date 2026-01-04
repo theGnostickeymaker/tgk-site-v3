@@ -21,7 +21,7 @@ export async function loadJuryConsole(user) {
     const jurorSnap = await getDocs(
       query(
         collectionGroup(db, "jurors"),
-        where("__name__", "==", user.uid)
+        where("uid", "==", user.uid)
       )
     );
 
