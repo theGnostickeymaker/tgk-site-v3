@@ -20,17 +20,23 @@ if (!admin.apps.length) {
 
 const db = admin.firestore();
 
-export async function handler(event) {
+exports.handler = async function handler(event) {
   try {
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
 
-    const payload = JSON.parse(event.body || "{}");
-    const { caseId, court, entries } = payload;
+    let payload;
+    try {
+      payload = JSON.parse(event.body || "{}");
+    } catch {
+      return { statusCode: 400, body: "Invalid JSON" };
+    }
 
-    if (!caseId || !court || !Array.isArray(entries) || entries.length === 0) {
-      return { statusCode: 400, body: "Invalid payload" };
+    const { caseId } = payload;
+
+    if (!caseId || typeof caseId !== "string") {
+      return { statusCode: 400, body: "Invalid payload: caseId required" };
     }
 
     const caseRef = db.collection("juryCases").doc(caseId);
@@ -46,19 +52,38 @@ export async function handler(event) {
       return { statusCode: 409, body: "Case already published" };
     }
 
+    if (caseData.status !== "verdict") {
+      return { statusCode: 400, body: "Case has no final verdict" };
+    }
+
     const now = admin.firestore.Timestamp.now();
     const courtLogRef = db.collection("courtLogs").doc();
 
+    const entries = [
+      {
+        type: "hearing",
+        body: "Community jury convened and deliberated.",
+      },
+      {
+        type: "ruling",
+        body: caseData.jurySummary,
+      },
+      {
+        type: "note",
+        body: `Verdict: ${caseData.verdict}. Votes for: ${caseData.counts.for}, against: ${caseData.counts.against}, abstained: ${caseData.counts.abstain}.`,
+      },
+    ];
+
     await db.runTransaction(async (tx) => {
       tx.create(courtLogRef, {
-        title: court.title,
-        summary: court.summary,
+        title: caseData.title,
+        summary: caseData.jurySummary,
         status: "Closed",
         jurisdiction: "TGK Community Court",
         createdBy: "system",
         createdAt: now,
         publishedAt: now,
-        tags: court.tags,
+        tags: ["jury", "moderation"],
       });
 
       entries.forEach((entry, index) => {
@@ -97,4 +122,4 @@ export async function handler(event) {
       body: "Internal error during publication",
     };
   }
-}
+};
