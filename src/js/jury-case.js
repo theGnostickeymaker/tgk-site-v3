@@ -1,9 +1,7 @@
 import {
   getFirestore,
   doc,
-  getDoc,
-  setDoc,
-  serverTimestamp
+  getDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
 import {
@@ -29,7 +27,7 @@ function qs(id) {
 }
 
 /* ============================================================
-   Main loader
+   Auth + bootstrap
 ============================================================ */
 
 onAuthStateChanged(auth, async (user) => {
@@ -55,7 +53,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 /* ============================================================
-   Core logic
+   Load case
 ============================================================ */
 
 async function loadCase(user, caseId) {
@@ -70,7 +68,7 @@ async function loadCase(user, caseId) {
 
   const caseData = caseSnap.data();
 
-  // Check juror assignment
+  // Juror check
   const jurorRef = doc(db, "juryCases", caseId, "jurors", user.uid);
   const jurorSnap = await getDoc(jurorRef);
 
@@ -80,11 +78,10 @@ async function loadCase(user, caseId) {
     return;
   }
 
-  // Populate header
-  qs("case-title").textContent = caseData.title;
+  // Header
+  qs("case-title").textContent = caseData.title || "Community Jury Case";
   qs("case-status").textContent = `Status: ${caseData.status}`;
 
-  // Case body (expand later)
   qs("case-body").innerHTML = `
     <p class="lead">
       This case is open for community review.
@@ -94,7 +91,7 @@ async function loadCase(user, caseId) {
     </p>
   `;
 
-  // Check vote state
+  // Has user already voted?
   const voteRef = doc(db, "juryCases", caseId, "votes", user.uid);
   const voteSnap = await getDoc(voteRef);
 
@@ -104,13 +101,12 @@ async function loadCase(user, caseId) {
     return;
   }
 
-  // Enable voting
   qs("jury-actions").hidden = false;
   bindVoteButtons(user, caseId);
 }
 
 /* ============================================================
-   Voting
+   Voting (via Netlify function)
 ============================================================ */
 
 function bindVoteButtons(user, caseId) {
@@ -119,19 +115,30 @@ function bindVoteButtons(user, caseId) {
   buttons.forEach(btn => {
     btn.addEventListener("click", async () => {
       const vote = btn.dataset.vote;
+      btn.disabled = true;
       await castVote(user, caseId, vote);
     });
   });
 }
 
 async function castVote(user, caseId, vote) {
-  const voteRef = doc(db, "juryCases", caseId, "votes", user.uid);
-
   try {
-    await setDoc(voteRef, {
-      vote,
-      castAt: serverTimestamp()
+    const token = await user.getIdToken();
+
+    const res = await fetch("/.netlify/functions/castJuryVote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ caseId, vote })
     });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      throw new Error(data.message || "Vote failed");
+    }
 
     qs("jury-actions").hidden = true;
     qs("jury-locked").hidden = false;

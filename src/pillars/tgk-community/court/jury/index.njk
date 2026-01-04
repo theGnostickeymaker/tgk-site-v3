@@ -3,16 +3,7 @@ layout: base.njk
 title: "Community Jury Case"
 description: "Review and vote on a TGK community jury case."
 bodyClass: "lightgold requires-auth"
-permalink: "/court/jury/{{ caseId }}/index.html"
-
-# Dynamic param
-pagination:
-  data: juryCases
-  size: 1
-  alias: case
-
-eleventyComputed:
-  caseId: "{{ case.fileSlug }}"
+permalink: "/court/jury/index.html"
 ---
 
 <main class="main-content court-jury">
@@ -44,5 +35,6 @@ eleventyComputed:
 
   </section>
 </main>
+
 <script type="module" src="/js/jury-case.js?v={{ bust }}"></script>
 <script type="module" src="/js/tgk-auth.js?v={{ bust }}" defer></script>
