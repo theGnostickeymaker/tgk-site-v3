@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: "Your TGK Dashboard"
-description: "Your personal TGK space, including bookmarks, progress, membership, and billing."
+description: "Your personal TGK space for membership, activity, bookmarks, and community participation."
 glyph: "🜂"
 glyphRow: ["🜂", "☥", "🜂"]
 bodyClass: "lightgold requires-auth"
@@ -25,7 +25,7 @@ breadcrumbs:
 {% block head %}
   {% set socialImage = "/tgk-assets/images/share/system/dashboard.jpg" %}
   {% include "partials/head-meta.njk" %}
-  {% set headline = "Dashboard — The Gnostic Key" %}
+  {% set headline = "User Dashboard — The Gnostic Key" %}
   {% set base = "/dashboard/" %}
   {% include "partials/jsonld-collection.njk" %}
 {% endblock %}
@@ -33,28 +33,44 @@ breadcrumbs:
 <main class="main-content dashboard">
   <section class="content-container" id="page-dashboard">
 
-    <!-- Welcome Header -->
+    <!-- Welcome -->
     <div class="dashboard-welcome">
       <h2 class="section-heading">
         Welcome, <span id="user-name" class="highlight">Seeker</span>
       </h2>
     </div>
 
-    <!-- Current Tier Summary -->
+    <!-- Membership Tier -->
     <div class="tier-display inline">
-      <span>Your current tier:</span>
+      <span>Your current membership:</span>
       <span id="tier-badge" class="tier-badge tier-free">Free</span>
-      <span class="member-since muted"><span id="member-since">—</span></span>
+      <span class="member-since muted">
+        <span id="member-since">—</span>
+      </span>
     </div>
 
-    <!-- Resume Reading (auto-shown only if a last page exists) -->
+    <!-- Jury Console -->
+    <section class="section-block" id="jury-console" hidden>
+      <h3 class="section-heading">Community Jury</h3>
+
+      <p class="lead muted">
+        You have been selected to take part in one or more community jury cases.
+        Your role is to review the matter presented and cast a considered vote.
+      </p>
+
+      <div id="jury-cases">
+        <p class="muted small">Loading assigned cases…</p>
+      </div>
+    </section>
+
+    <!-- Resume Reading -->
     <section class="section-block" id="resume-block" style="display:none;">
-      <h3 class="section-heading">Continue your journey</h3>
+      <h3 class="section-heading">Continue Reading</h3>
       <p class="lead muted" id="resume-text">
-        Pick up where you last left off.
+        Resume where you last left off.
       </p>
       <div class="btn-wrap">
-        <a id="resume-link" href="#" class="btn outline">Resume Reading</a>
+        <a id="resume-link" href="#" class="btn outline">Resume</a>
       </div>
     </section>
 
@@ -62,94 +78,110 @@ breadcrumbs:
     <section class="section-block">
       <h3 class="section-heading">Membership and Billing</h3>
       <div class="btn-wrap">
-        <a href="/membership/" class="btn outline">View or Manage Membership</a>
+        <a href="/membership/" class="btn outline">
+          View or manage membership
+        </a>
       </div>
       <p class="small muted">
-        Upgrade, join, or manage your billing at any time through your membership centre.
+        You may upgrade, downgrade, or review billing details at any time via the membership centre.
       </p>
     </section>
 
-    <!-- Profile Information -->
+    <!-- Profile -->
     <section class="section-block auth-form">
-      <h2 class="section-heading">Profile Information</h2>
-      <p class="lead muted">Update your display name or review your account details below.</p>
+      <h2 class="section-heading">Profile Details</h2>
+      <p class="lead muted">
+        Review or update your display name and communication preferences.
+      </p>
 
       <form id="profile-form" class="tgk-form" autocomplete="off" novalidate>
         <div class="form-group">
-          <label for="profile-name">Display Name</label>
-          <input type="text" id="profile-name" placeholder="Your display name" required>
+          <label for="profile-name">Display name</label>
+          <input
+            type="text"
+            id="profile-name"
+            placeholder="Your display name"
+            required>
         </div>
 
         <div class="form-group">
-          <label for="profile-email">Email Address</label>
-          <input type="email" id="profile-email" disabled>
+          <label for="profile-email">Email address</label>
+          <input
+            type="email"
+            id="profile-email"
+            disabled>
         </div>
 
         <div class="form-group checkbox-group">
-        <label class="checkbox-label">
-          <input
-            type="checkbox"
-            id="profile-email-optin"
-            name="emailOptIn">
-          <span>
-            Receive updates, new scroll releases, and announcements from The Gnostic Key.
-          </span>
-        </label>
-      </div>
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              id="profile-email-optin"
+              name="emailOptIn">
+            <span>
+              Receive updates, new releases, and announcements from The Gnostic Key.
+            </span>
+          </label>
+        </div>
 
-      <p class="small muted privacy-note">
-        We only use your email for essential account messages and, if you opt in, occasional updates from The Gnostic Key.
-        You can change this preference at any time. We do not sell or share your data.
-      </p>
+        <p class="small muted privacy-note">
+          Your email is used only for essential account communication and optional updates if you opt in.
+          We do not sell or share personal data.
+        </p>
 
         <div class="btn-wrap center">
-          <button type="submit" class="btn outline full-width">Save Changes</button>
+          <button type="submit" class="btn outline full-width">
+            Save changes
+          </button>
           <span id="profile-status" class="small muted"></span>
         </div>
       </form>
     </section>
 
-    <!-- Activity Widgets (placeholder) -->
-    <section hidden>
-      <h3 class="section-heading">Your Activity</h3>
-      <div class="dashboard-widgets">
-        <div id="widget-quiz-progress" class="widget-slot"></div>
-        <div id="widget-community-feed" class="widget-slot"></div>
-        <div id="widget-key-balance" class="widget-slot"></div>
-      </div>
-    </section>
-
     <!-- Bookmarks -->
     <section class="section-block">
-      <h3 class="section-heading">Your Bookmarks</h3>
+      <h3 class="section-heading">Saved Bookmarks</h3>
 
       <div id="bookmark-dashboard">
-        <p id="bookmark-loading" class="muted small">Loading bookmarks...</p>
+        <p id="bookmark-loading" class="muted small">
+          Loading bookmarks…
+        </p>
 
         <div id="bookmark-grid-mount"></div>
 
         <p id="no-bookmarks" class="muted small" hidden>
-          No bookmarks yet. Explore the
-          <a href="/pillars/the-teachings/">Teachings</a> or the
-          <a href="/pillars/the-vault/">Vault</a> to begin your journey.
+          You have not saved any bookmarks yet.
+          Explore the
+          <a href="/pillars/the-teachings/">Teachings</a>
+          or the
+          <a href="/pillars/the-vault/">Vault</a>
+          to begin.
         </p>
       </div>
     </section>
 
-    <!-- Logout -->
+    <!-- Sign Out -->
     <section class="section-block">
-      <h3 class="section-heading">Sign Out</h3>
-      <p class="small">You may securely sign out of your TGK account below.</p>
+      <h3 class="section-heading">Sign out</h3>
+      <p class="small">
+        Sign out securely from your TGK account.
+      </p>
 
       <div class="btn-wrap center">
-        <button id="logout-btn" class="btn outline">Sign Out</button>
+        <button id="logout-btn" class="btn outline">
+          Sign out
+        </button>
       </div>
     </section>
 
   </section>
 
   <div class="gnostic-divider">
-    <span class="divider-symbol pillar-glyph spin glow" aria-hidden="true">{{ glyph }}</span>
+    <span
+      class="divider-symbol pillar-glyph spin glow"
+      aria-hidden="true">
+      {{ glyph }}
+    </span>
   </div>
 </main>
 
@@ -168,6 +200,8 @@ breadcrumbs:
     onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
+  import { loadJuryConsole } from "/js/dashboard-jury.js?v={{ bust }}";
+  
   const auth = getAuth();
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -180,18 +214,21 @@ breadcrumbs:
     if (!user) {
       window.__TGK_GATE__?.saveReturnUrl?.();
       return window.location.replace("/signin/");
+      await loadJuryConsole(user);
     }
 
     await refreshEntitlementsLive(user);
     await loadDashboardHeader(user);
 
-    document.getElementById("profile-form").addEventListener("submit", saveProfile);
-    document.getElementById("logout-btn").addEventListener("click", pageSignout);
+    document
+      .getElementById("profile-form")
+      .addEventListener("submit", saveProfile);
+
+    document
+      .getElementById("logout-btn")
+      .addEventListener("click", pageSignout);
   });
 
-  /* ===========================================================
-     🜂 Resume Reading — Dashboard Loader
-     =========================================================== */
   function loadResumeCard() {
     const resumeUrl = localStorage.getItem("tgk-last-page");
     const block = document.getElementById("resume-block");
