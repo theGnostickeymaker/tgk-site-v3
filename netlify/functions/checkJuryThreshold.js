@@ -12,15 +12,12 @@ if (!admin.apps.length) {
 
 const db = admin.firestore();
 
-const REQUIRED_JURORS = 9;
-const THRESHOLD = 6;
-
 exports.handler = async (event) => {
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
-  }
-
   try {
+    if (event.httpMethod !== "POST") {
+      return { statusCode: 405, body: "Method Not Allowed" };
+    }
+
     const { caseId } = JSON.parse(event.body || "{}");
     if (!caseId) {
       return { statusCode: 400, body: "Missing caseId" };
@@ -35,107 +32,65 @@ exports.handler = async (event) => {
 
     const caseData = caseSnap.data();
 
-    if (caseData.status === "published") {
+    if (caseData.status !== "open") {
       return {
         statusCode: 200,
-        body: JSON.stringify({ status: "already_published" })
+        body: JSON.stringify({ status: caseData.status }),
       };
     }
 
     const votesSnap = await caseRef.collection("votes").get();
 
-    const counts = { for: 0, against: 0, abstain: 0 };
+    let counts = { for: 0, against: 0, abstain: 0 };
 
     votesSnap.forEach(doc => {
       const v = doc.data().vote;
       if (counts[v] !== undefined) counts[v]++;
     });
 
-    const totalVotes = votesSnap.size;
+    const totalVotes = counts.for + counts.against + counts.abstain;
+    const nonAbstain = counts.for + counts.against;
 
-    // Not enough jurors yet
-    if (totalVotes < REQUIRED_JURORS) {
+    if (totalVotes < 7 || nonAbstain === 0) {
       return {
         statusCode: 200,
         body: JSON.stringify({
           status: "pending",
           counts,
           totalVotes
-        })
+        }),
       };
     }
 
-    let verdict = null;
-
-    if (counts.for >= THRESHOLD) verdict = "sanction";
-    if (counts.against >= THRESHOLD) verdict = "dismiss";
-
-    if (!verdict) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({
-          status: "no_majority",
-          counts
-        })
-      };
-    }
-
-    /* ===============================
-       AUTO-PUBLISH TO COURT LOG
-    =============================== */
+    const required = Math.ceil((2 / 3) * nonAbstain);
+    const verdict = counts.for >= required ? "sanction" : "dismissed";
 
     const now = admin.firestore.Timestamp.now();
-    const courtLogRef = db.collection("courtLogs").doc();
 
-    await db.runTransaction(async (tx) => {
-      tx.create(courtLogRef, {
-        title: caseData.title,
-        summary: `Jury verdict: ${verdict}`,
-        status: "Closed",
-        jurisdiction: "TGK Community Court",
-        createdBy: "system",
-        createdAt: now,
-        publishedAt: now,
-        tags: ["jury", verdict]
-      });
-
-      tx.create(
-        courtLogRef.collection("entries").doc("entry-001"),
-        {
-          type: "ruling",
-          body:
-            `Verdict: ${verdict}\n\n` +
-            `Votes for: ${counts.for}\n` +
-            `Votes against: ${counts.against}\n` +
-            `Abstentions: ${counts.abstain}`,
-          sequence: 1,
-          createdBy: "system",
-          createdAt: now
-        }
-      );
-
-      tx.update(caseRef, {
-        status: "published",
-        publishedCourtLogId: courtLogRef.id,
-        publishedAt: now
-      });
+    // 🔒 Lock the jury case
+    await caseRef.update({
+      status: "verdict",
+      verdict,
+      counts,
+      jurySummary: `${counts.for} for, ${counts.against} against, ${counts.abstain} abstained`,
+      decidedAt: now,
     });
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        status: "published",
+        status: "verdict",
         verdict,
-        courtLogId: courtLogRef.id,
-        counts
-      })
+        counts,
+        totalVotes,
+      }),
     };
 
   } catch (err) {
-    console.error("Threshold check failed:", err);
+    console.error("Threshold error:", err);
     return {
       statusCode: 500,
-      body: "Internal threshold error"
+      body: "Internal adjudication error",
     };
   }
 };
