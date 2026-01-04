@@ -25,7 +25,7 @@ function qs(id) {
 }
 
 /* ============================================================
-   Auth bootstrap
+   Bootstrap
 ============================================================ */
 
 onAuthStateChanged(auth, async (user) => {
@@ -34,11 +34,15 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
+  await refreshEntitlementsLive(user);
+  await loadDashboardHeader(user);
+  await loadJuryConsole(user);
+
   const caseId = getCaseIdFromUrl();
 
   if (!caseId) {
     qs("case-body").innerHTML =
-      `<p class="muted small">Invalid jury case link.</p>`;
+      `<p class="muted small">Invalid or missing jury case.</p>`;
     return;
   }
 
@@ -56,8 +60,6 @@ onAuthStateChanged(auth, async (user) => {
 ============================================================ */
 
 async function loadCase(user, caseId) {
-  console.log("[Jury Case] Loading case:", caseId);
-
   const caseRef = doc(db, "juryCases", caseId);
   const caseSnap = await getDoc(caseRef);
 
@@ -79,8 +81,8 @@ async function loadCase(user, caseId) {
     return;
   }
 
-  // Populate UI
-  qs("case-title").textContent = caseData.title || "Community Jury Case";
+  // Header
+  qs("case-title").textContent = caseData.title;
   qs("case-status").textContent = `Status: ${caseData.status}`;
 
   qs("case-body").innerHTML = `
@@ -107,7 +109,7 @@ async function loadCase(user, caseId) {
 }
 
 /* ============================================================
-   Voting
+   Voting (Netlify function)
 ============================================================ */
 
 function bindVoteButtons(user, caseId) {
