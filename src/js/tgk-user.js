@@ -1,9 +1,9 @@
 /* ===========================================================
    TGK — User System (Unified Dashboard Edition)
-   Version 4.2 — Email Opt-In + Member Since + Live Sync
+   Version 4.3 — Phase C: Write-through caching + safe sync
    =========================================================== */
 
-import { app } from "./firebase-init.js";
+import { app } from "/js/firebase-init.js";
 import {
   getAuth,
   signOut,
@@ -18,12 +18,35 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
+import {
+  getCached,
+  setCached,
+  clearAllTgkCache
+} from "/js/session-cache.js";
+
+/* ===========================================================
+   ✦ Firebase
+   =========================================================== */
+
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 /* ===========================================================
-   🜂 Load Dashboard Header
+   ✦ Cache keys
    =========================================================== */
+
+function userCacheKey(uid) {
+  return `user:${uid}`;
+}
+
+function entitlementCacheKey(uid) {
+  return `entitlements:${uid}`;
+}
+
+/* ===========================================================
+   🜂 Load Dashboard Header (Phase C)
+   =========================================================== */
+
 export async function loadDashboardHeader(user) {
   if (!user) return;
 
@@ -33,6 +56,18 @@ export async function loadDashboardHeader(user) {
   const emailInput = document.getElementById("profile-email");
   const memberSinceEl = document.getElementById("member-since");
   const emailOptInBox = document.getElementById("profile-email-optin");
+
+  const cached = getCached(userCacheKey(user.uid));
+  if (cached) {
+    renderHeaderFromData(cached, {
+      nameEl,
+      tierEl,
+      nameInput,
+      emailInput,
+      memberSinceEl,
+      emailOptInBox
+    });
+  }
 
   try {
     const [userSnap, entSnap] = await Promise.all([
@@ -70,24 +105,27 @@ export async function loadDashboardHeader(user) {
       });
     }
 
-    if (nameEl) nameEl.textContent = displayName;
-    if (tierEl) tierEl.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
-    if (memberSinceEl && memberSince) {
-      memberSinceEl.textContent = `Member since: ${memberSince}`;
-    }
-    if (nameInput) nameInput.value = displayName;
-    if (emailInput) emailInput.value = user.email;
+    const data = {
+      displayName,
+      tier,
+      memberSince,
+      email: user.email,
+      emailOptIn:
+        userSnap.exists() && typeof userSnap.data().emailOptIn === "boolean"
+          ? userSnap.data().emailOptIn
+          : null
+    };
 
-    /* -------------------------------------------
-       Load email opt-in preference
-       ------------------------------------------- */
-    if (emailOptInBox && userSnap.exists()) {
-      const data = userSnap.data();
-      if (typeof data.emailOptIn === "boolean") {
-        emailOptInBox.checked = data.emailOptIn;
-      }
-    }
+    renderHeaderFromData(data, {
+      nameEl,
+      tierEl,
+      nameInput,
+      emailInput,
+      memberSinceEl,
+      emailOptInBox
+    });
 
+    setCached(userCacheKey(user.uid), data, 300);
     localStorage.setItem("tgk-tier", tier);
     updateTierUI(tier);
 
@@ -101,8 +139,37 @@ export async function loadDashboardHeader(user) {
 }
 
 /* ===========================================================
-   🜂 Save Profile (Display Name + Email Opt-In)
+   ✦ Header renderer (pure)
    =========================================================== */
+
+function renderHeaderFromData(data, els) {
+  const {
+    nameEl,
+    tierEl,
+    nameInput,
+    emailInput,
+    memberSinceEl,
+    emailOptInBox
+  } = els;
+
+  if (nameEl) nameEl.textContent = data.displayName;
+  if (tierEl)
+    tierEl.textContent =
+      data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
+  if (nameInput) nameInput.value = data.displayName;
+  if (emailInput) emailInput.value = data.email;
+  if (memberSinceEl && data.memberSince) {
+    memberSinceEl.textContent = `Member since: ${data.memberSince}`;
+  }
+  if (emailOptInBox && typeof data.emailOptIn === "boolean") {
+    emailOptInBox.checked = data.emailOptIn;
+  }
+}
+
+/* ===========================================================
+   🜂 Save Profile (write-through)
+   =========================================================== */
+
 export async function saveProfile(e) {
   e.preventDefault();
   const user = auth.currentUser;
@@ -117,7 +184,7 @@ export async function saveProfile(e) {
   try {
     const updates = {
       displayName: name,
-      emailOptIn: emailOptIn,
+      emailOptIn,
       updatedAt: serverTimestamp()
     };
 
@@ -128,10 +195,7 @@ export async function saveProfile(e) {
 
     await setDoc(
       doc(db, "users", user.uid),
-      {
-        email: user.email,
-        ...updates
-      },
+      { email: user.email, ...updates },
       { merge: true }
     );
 
@@ -139,24 +203,14 @@ export async function saveProfile(e) {
       await updateProfile(user, { displayName: name });
     }
 
-    const dashName = document.getElementById("user-name");
-    if (dashName) dashName.textContent = name;
+    setCached(userCacheKey(user.uid), {
+      displayName: name,
+      tier: localStorage.getItem("tgk-tier") || "free",
+      email: user.email,
+      emailOptIn
+    }, 300);
 
-    const status = document.getElementById("profile-status");
-    if (status) {
-      status.textContent = "Preferences saved.";
-      status.style.color = "var(--gold)";
-      status.setAttribute("aria-live", "polite");
-
-      clearTimeout(status._clearTimer);
-      status._clearTimer = setTimeout(() => {
-        status.textContent = "";
-      }, 2500);
-    }
-
-    console.log(
-      `[TGK] Profile updated → ${name} | Email opt-in: ${emailOptIn}`
-    );
+    console.log(`[TGK] Profile updated → ${name}`);
   } catch (err) {
     console.error("[TGK] Save profile error:", err);
     alert("Error saving profile: " + err.message);
@@ -164,19 +218,23 @@ export async function saveProfile(e) {
 }
 
 /* ===========================================================
-   🜂 Sign Out
+   🜂 Sign Out (full cache clear)
    =========================================================== */
+
 export async function pageSignout() {
   try {
     await signOut(auth);
     localStorage.clear();
     sessionStorage.clear();
+    clearAllTgkCache();
+
     document.cookie.split(";").forEach(c => {
       document.cookie = c
         .replace(/^ +/, "")
         .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
-    console.log("[TGK] Signed out and cleared session");
+
+    console.log("[TGK] Signed out and cleared all cache");
     window.location.href = "/";
   } catch (err) {
     console.error("[TGK] Signout error:", err);
@@ -187,6 +245,7 @@ export async function pageSignout() {
 /* ===========================================================
    🜂 Password Reset
    =========================================================== */
+
 export function pageReset(email) {
   if (!email || !email.includes("@")) return alert("Invalid email.");
   sendPasswordResetEmail(auth, email)
@@ -195,8 +254,9 @@ export function pageReset(email) {
 }
 
 /* ===========================================================
-   🜂 Tier Badge & Dynamic Button States
+   🜂 Tier UI
    =========================================================== */
+
 export function updateTierUI(tier = "visitor") {
   const badge = document.getElementById("tier-badge");
   const tierEl = document.getElementById("user-tier");
@@ -215,29 +275,15 @@ export function updateTierUI(tier = "visitor") {
     badge.className = `tier-badge tier-${tier}`;
     badge.textContent = label;
   }
-
   if (tierEl) tierEl.textContent = label;
-
-  document.querySelectorAll(".checkout-btn").forEach(btn => {
-    const parentTier = btn.closest("[data-tier]")?.dataset?.tier;
-    if (!parentTier) return;
-    if (tier === "adept" || tier === "admin") {
-      btn.textContent = "Unlocked";
-      btn.disabled = true;
-    } else if (tier === parentTier) {
-      btn.textContent = "Already a Member";
-      btn.disabled = true;
-    } else {
-      btn.disabled = false;
-    }
-  });
 
   console.log(`[TGK] Tier UI updated → ${label}`);
 }
 
 /* ===========================================================
-   🜂 Force Entitlement Sync (every dashboard load)
+   🜂 Live Entitlement Sync (safe)
    =========================================================== */
+
 export async function refreshEntitlementsLive(user) {
   if (!user) return;
 
@@ -249,27 +295,32 @@ export async function refreshEntitlementsLive(user) {
       body: JSON.stringify({ token, uid: user.uid, email: user.email })
     });
 
-    const data = await res.json();
-    console.log("[TGK] Live entitlement sync:", data);
+    const text = await res.text();
+    let data = null;
 
-    if (res.ok && data.tier) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      console.warn("[TGK] Entitlement sync returned non-JSON");
+      return;
+    }
+
+    if (res.ok && data?.tier) {
       localStorage.setItem("tgk-tier", data.tier);
+      setCached(entitlementCacheKey(user.uid), data, 300);
       await user.getIdToken(true);
       updateTierUI(data.tier);
       return data.tier;
-    } else {
-      console.warn("[TGK] Unexpected entitlement response:", data);
     }
   } catch (err) {
     console.error("[TGK] Live entitlement sync error:", err);
   }
-
-  return "free";
 }
 
 /* ===========================================================
-   🜂 Auto-Tier Display on Startup (no flash)
+   🜂 Startup tier (no flash)
    =========================================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
   const cachedTier = localStorage.getItem("tgk-tier") || "visitor";
   updateTierUI(cachedTier);

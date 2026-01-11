@@ -1,10 +1,11 @@
 /* ===========================================================
-   TGK - Auth System v8.2
+   TGK - Auth System v8.3
    Sign-in, Sign-up, Verify banner, Claim sync, Return support
    + Email opt-in capture (no sending)
+   Phase: Micro-optimisation (non-blocking entitlement sync)
    =========================================================== */
 
-import { app } from "./firebase-init.js";
+import { app } from "/js/firebase-init.js";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -12,7 +13,7 @@ import {
   setPersistence,
   browserLocalPersistence,
   onAuthStateChanged,
-  sendEmailVerification,
+  sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 import {
@@ -65,7 +66,7 @@ onAuthStateChanged(auth, async (user) => {
   try {
     await user.reload();
   } catch (err) {
-    console.warn("[Auth] Could not reload:", err.message);
+    console.warn("[Auth] Could not reload:", err?.message || err);
   }
 
   if (!user.emailVerified) {
@@ -101,7 +102,7 @@ const friendly = {
   "auth/invalid-email": "Please enter a valid email address.",
   "auth/missing-password": "Please enter your password.",
   "auth/too-many-requests": "Too many attempts. Please wait.",
-  "auth/email-already-in-use": "That email is already associated with an account.",
+  "auth/email-already-in-use": "That email is already associated with an account."
 };
 
 function showError(code, fallback) {
@@ -112,6 +113,42 @@ function showError(code, fallback) {
 }
 
 /* ===========================================================
+   NON-BLOCKING ENTITLEMENT SYNC (Phase v8.3)
+   - Fire-and-forget: do not block redirect
+   - Never throws
+   - Handles non-JSON responses safely
+   =========================================================== */
+
+async function syncEntitlementsNonBlocking(user) {
+  if (!user) return;
+
+  try {
+    const token = await user.getIdToken();
+
+    const res = await fetch("/.netlify/functions/set-entitlements", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token })
+    });
+
+    const text = await res.text();
+
+    // Best-effort parse (function may return HTML in local dev)
+    try {
+      const data = JSON.parse(text);
+      console.log("[Auth] Entitlements sync (non-blocking):", data);
+      if (res.ok && data?.tier) {
+        localStorage.setItem("tgk-tier", data.tier);
+      }
+    } catch {
+      console.warn("[Auth] Entitlements sync returned non-JSON (non-blocking).");
+    }
+  } catch (err) {
+    console.warn("[Auth] Entitlements sync failed (non-blocking):", err?.message || err);
+  }
+}
+
+/* ===========================================================
    SIGN IN
    =========================================================== */
 
@@ -119,24 +156,23 @@ window.pageSignin = async (email, password) => {
   console.log("[Auth] Sign-in...");
 
   try {
-    const cred = await signInWithEmailAndPassword(auth, normalise(email), password);
+    const cred = await signInWithEmailAndPassword(
+      auth,
+      normalise(email),
+      password
+    );
 
-    const token = await cred.user.getIdToken(true);
+    // Start entitlement sync in the background
+    syncEntitlementsNonBlocking(cred.user);
 
-    await fetch("/.netlify/functions/set-entitlements", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token }),
-    });
-
-    await cred.user.getIdToken(true);
-
+    // Return support
     if (consumeReturnUrl()) return;
-    window.location.replace("/dashboard/");
 
+    // Redirect immediately after auth success
+    window.location.replace("/dashboard/");
   } catch (err) {
-    console.error("[Auth] Sign-in failed:", err.code);
-    showError(err.code, err.message);
+    console.error("[Auth] Sign-in failed:", err?.code || err);
+    showError(err?.code, err?.message);
   }
 };
 
@@ -219,30 +255,44 @@ window.pageSignup = async (email, password, confirm, emailOptIn) => {
       body: JSON.stringify({
         uid: cred.user.uid,
         email: e1,
-        priceId: "price_1SSbN52NNS39COWZzEg9tTWn",
-      }),
+        priceId: "price_1SSbN52NNS39COWZzEg9tTWn"
+      })
     });
 
-    const { customerId } = await checkout.json();
+    const checkoutText = await checkout.text();
+    let customerId = null;
 
-    await fetch("/.netlify/functions/set-entitlements", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        uid: cred.user.uid,
-        email: e1,
-        customerId,
-      }),
-    });
+    try {
+      const checkoutJson = JSON.parse(checkoutText);
+      customerId = checkoutJson?.customerId || null;
+    } catch {
+      console.warn("[Auth] Checkout session returned non-JSON.");
+    }
+
+    // Best effort: entitlement setup. Do not block signup completion.
+    (async () => {
+      try {
+        await fetch("/.netlify/functions/set-entitlements", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            uid: cred.user.uid,
+            email: e1,
+            customerId
+          })
+        });
+      } catch (e) {
+        console.warn("[Auth] set-entitlements failed during signup (non-blocking).");
+      }
+    })();
 
     alert("Welcome to The Gnostic Key. A verification email has been sent to you.");
 
     if (consumeReturnUrl()) return;
     window.location.replace("/dashboard/");
-
   } catch (err) {
-    console.error("[Auth] Signup failed:", err.code);
-    showError(err.code, err.message);
+    console.error("[Auth] Signup failed:", err?.code || err);
+    showError(err?.code, err?.message);
   }
 
   signupLock = false;
@@ -325,7 +375,7 @@ function showVerifyBanner(user) {
       });
       b.innerHTML = `<span>Verification link sent to ${user.email}</span>`;
     } catch (err) {
-      b.innerHTML = `<span>Could not send link: ${err.message}</span>`;
+      b.innerHTML = `<span>Could not send link: ${err?.message || err}</span>`;
     }
   });
 }
@@ -342,8 +392,10 @@ setInterval(async () => {
   const u = auth.currentUser;
   if (!u) return;
 
-  await u.reload();
-  if (u.emailVerified) {
-    removeVerifyBanner();
+  try {
+    await u.reload();
+    if (u.emailVerified) removeVerifyBanner();
+  } catch {
+    // Silent by design
   }
 }, 5000);

@@ -1,7 +1,7 @@
 /* ===========================================================
-   TGK Gate System v9.0
-   Adds "verified" as a gate level (email verification)
-   Soft-gating only: unlocks static content already in the page
+   TGK Gate System v9.1 — Phase D
+   Adds advisory session-cache for gate decisions
+   Preserves verified-tier + soft-gating behaviour
    =========================================================== */
 
 import { app } from "/js/firebase-init.js";
@@ -11,6 +11,7 @@ import {
   getIdTokenResult,
   sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { getCached, setCached } from "/js/session-cache.js";
 
 const auth = getAuth(app);
 
@@ -28,8 +29,11 @@ const rankMap = {
   admin: 4
 };
 
+// Gate decisions should be short-lived
+const GATE_TTL_MS = 2 * 60 * 1000;
+
 /* -----------------------------------------------------------
-   Return URL helpers
+   Return URL helpers (unchanged)
 ----------------------------------------------------------- */
 export function saveReturnUrl(url = window.location.href) {
   try {
@@ -38,7 +42,6 @@ export function saveReturnUrl(url = window.location.href) {
     const origin = window.location.origin;
     if (!url.startsWith(origin)) return;
 
-    // Do not trap on auth pages or the site root
     const u = new URL(url);
     if (
       u.pathname.startsWith("/signin") ||
@@ -58,7 +61,9 @@ export function saveReturnUrl(url = window.location.href) {
 }
 
 export function consumeReturnUrl() {
-  const url = sessionStorage.getItem(RETURN_KEY) || localStorage.getItem(RETURN_KEY);
+  const url =
+    sessionStorage.getItem(RETURN_KEY) ||
+    localStorage.getItem(RETURN_KEY);
 
   if (!url) return false;
   if (!url.startsWith(window.location.origin)) return false;
@@ -90,7 +95,6 @@ function initGate() {
 
   const path = window.location.pathname;
 
-  // Do not apply gate logic on auth pages
   if (
     path.startsWith("/signin") ||
     path.startsWith("/signup") ||
@@ -109,14 +113,11 @@ function initGate() {
 
   console.log(`[Gate] ${locked.length} locked blocks found.`);
 
-  // Global click handlers for lock UIs
   wireLockUiHandlers();
 
-  // Auth resolution and unlock flow
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       console.log("[Gate] No user signed in, locked content remains locked.");
-      // Leave placeholders as-is
       return;
     }
 
@@ -125,14 +126,30 @@ function initGate() {
 }
 
 /* -----------------------------------------------------------
-   Resolve access rank and apply unlocks
+   Cache helpers
+----------------------------------------------------------- */
+function gateCacheKey(uid) {
+  return `gate:${uid}:${window.location.pathname}`;
+}
+
+/* -----------------------------------------------------------
+   Resolve access rank and apply unlocks (Phase D)
 ----------------------------------------------------------- */
 async function applyGate(user, lockedBlocks) {
   try {
-    // Always refresh verification state first
+    const cacheKey = gateCacheKey(user.uid);
+    const cached = getCached(cacheKey);
+
+    // Cached decisions are advisory only
+    if (cached && typeof cached.accessRank === "number") {
+      console.log("[Gate] Cache hit, applying cached gate decision");
+      applyBlocksFromDecision(cached, lockedBlocks, user);
+    }
+
+    // Always refresh verification state
     try { await user.reload(); } catch {}
 
-    // Refresh token and claims (paid tiers)
+    // Refresh token and claims
     await user.getIdToken(true);
     const tk = await getIdTokenResult(user);
     const claims = tk?.claims || {};
@@ -147,37 +164,49 @@ async function applyGate(user, lockedBlocks) {
     const membershipRank = rankMap[membershipTier] ?? 0;
     const verifiedRank = user.emailVerified ? rankMap.verified : rankMap.free;
 
-    // Effective access rank is max(membershipRank, verifiedRank)
     const accessRank = Math.max(membershipRank, verifiedRank);
+
+    const decision = {
+      accessRank,
+      membershipTier,
+      emailVerified: !!user.emailVerified
+    };
 
     console.log(
       `[Gate] membership=${membershipTier} (rank ${membershipRank}), emailVerified=${!!user.emailVerified}, accessRank=${accessRank}`
     );
 
-    lockedBlocks.forEach((block) => {
-      const requiredTier = (block.dataset.requiredTier || "initiate").trim();
-      const requiredRank = rankMap[requiredTier] ?? rankMap.initiate;
+    applyBlocksFromDecision(decision, lockedBlocks, user);
 
-      console.log(`[Gate] Block requires ${requiredTier} (rank ${requiredRank})`);
-
-      if (accessRank >= requiredRank) {
-        unlockBlock(block);
-      } else {
-        // If the block is "verified" gated, swap placeholder into verify mode
-        if (requiredTier === "verified") {
-          renderVerifyPlaceholder(block, user);
-        }
-      }
-    });
+    setCached(cacheKey, decision, GATE_TTL_MS);
   } catch (err) {
     console.error("[Gate] Gate resolution failed:", err);
   }
 }
 
+function applyBlocksFromDecision(decision, lockedBlocks, user) {
+  lockedBlocks.forEach((block) => {
+    const requiredTier =
+      (block.dataset.requiredTier || "initiate").trim();
+    const requiredRank = rankMap[requiredTier] ?? rankMap.initiate;
+
+    console.log(
+      `[Gate] Block requires ${requiredTier} (rank ${requiredRank})`
+    );
+
+    if (decision.accessRank >= requiredRank) {
+      unlockBlock(block);
+    } else if (requiredTier === "verified") {
+      renderVerifyPlaceholder(block, user);
+    }
+  });
+}
+
+/* -----------------------------------------------------------
+   Unlock block
+----------------------------------------------------------- */
 function unlockBlock(block) {
   block.classList.add("unlocked-page");
-
-  // Remove placeholder entirely to prevent flicker
   block.querySelector(".locked-placeholder")?.remove();
 
   const content = block.querySelector(".page-content");
@@ -188,7 +217,7 @@ function unlockBlock(block) {
 }
 
 /* -----------------------------------------------------------
-   Lock UI: Sign in, resend verify, refresh verify
+   Lock UI handlers (unchanged)
 ----------------------------------------------------------- */
 function wireLockUiHandlers() {
   document.addEventListener("click", async (e) => {
@@ -224,7 +253,6 @@ function wireLockUiHandlers() {
         resendBtn.disabled = false;
         resendBtn.textContent = original || "Resend verification link";
       }
-
       return;
     }
 
@@ -248,19 +276,20 @@ function wireLockUiHandlers() {
         await u.getIdToken(true);
 
         if (u.emailVerified) {
-          // Reload the page so the gate can unlock cleanly
           window.location.reload();
           return;
         }
 
-        toastInto(refreshBtn, "Not verified yet. Please click the link in your email, then refresh again.");
+        toastInto(
+          refreshBtn,
+          "Not verified yet. Please click the link in your email, then refresh again."
+        );
       } catch (err) {
         toastInto(refreshBtn, `Could not refresh state: ${err?.message || err}`);
       } finally {
         refreshBtn.disabled = false;
         refreshBtn.textContent = original || "I have verified, refresh";
       }
-
       return;
     }
   });
@@ -276,22 +305,17 @@ function toastInto(btn, message) {
 }
 
 /* -----------------------------------------------------------
-   Placeholder renderer for verified-gated pages
-   (If your Nunjucks already outputs a custom placeholder, this
-   will only adjust it when needed.)
+   Verified placeholder renderer (unchanged)
 ----------------------------------------------------------- */
 function renderVerifyPlaceholder(block, user) {
   const ph = block.querySelector(".locked-placeholder");
   if (!ph) return;
-
-  // Avoid re-render loops
   if (ph.dataset.mode === "verified") return;
   ph.dataset.mode = "verified";
 
   const email = user?.email || "your email";
   const signedIn = !!user;
 
-  // Keep any existing title/intro, then append controls
   ph.innerHTML = `
     <div class="gate-card">
       <h2 class="gate-title">Verify your email to unlock this episode</h2>

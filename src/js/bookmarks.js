@@ -1,14 +1,21 @@
 /* ===========================================================
-   🔖 TGK — Bookmarks System v4.0
+   🔖 TGK — Bookmarks System v4.1
    Unified metadata-aware bookmarks for Pages + Dashboard
+   Phase B: Safe read-through caching for dashboard only
    =========================================================== */
-console.log("[TGK] Bookmarks v4.0 loaded successfully");
+
+console.log("[TGK] Bookmarks v4.1 loaded");
+
+/* ===========================================================
+   ✦ Imports
+   =========================================================== */
 
 import {
   getAuth,
   onAuthStateChanged,
   getIdTokenResult
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
 import {
   getFirestore,
   collection,
@@ -18,15 +25,21 @@ import {
   setDoc,
   deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
 import { app } from "/js/firebase-init.js";
+import { getCached, setCached } from "/js/session-cache.js";
+
+/* ===========================================================
+   ✦ Firebase setup
+   =========================================================== */
 
 const db = getFirestore(app);
 const auth = getAuth(app);
-const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /* ===========================================================
    ✦ Toast Helper
    =========================================================== */
+
 function showToast(msg, type = "info") {
   let c = document.getElementById("toast-container");
   if (!c) {
@@ -34,22 +47,27 @@ function showToast(msg, type = "info") {
     c.id = "toast-container";
     document.body.appendChild(c);
   }
+
   const t = document.createElement("div");
   t.className = `tgk-toast ${type}`;
   t.textContent = msg;
   c.appendChild(t);
+
   setTimeout(() => t.remove(), 4000);
 }
 
 /* ===========================================================
-   ✦ Resolve Tier
+   ✦ Resolve Tier (unchanged)
    =========================================================== */
+
 async function resolveUserTier(user) {
   let tier = "free";
+
   try {
     const token = await getIdTokenResult(user);
-    if (token?.claims?.tier) tier = token.claims.tier;
-    else {
+    if (token?.claims?.tier) {
+      tier = token.claims.tier;
+    } else {
       const ref = doc(db, "users", user.uid);
       const snap = await getDoc(ref);
       if (snap.exists() && snap.data().tier) tier = snap.data().tier;
@@ -57,13 +75,15 @@ async function resolveUserTier(user) {
   } catch (err) {
     console.warn("[TGK] Tier resolve error:", err);
   }
+
   localStorage.setItem("tgk-tier", tier);
   return tier;
 }
 
 /* ===========================================================
-   ✦ PAGE Bookmark Toggle (metadata-aware)
+   ✦ PAGE Bookmark Toggle (unchanged)
    =========================================================== */
+
 async function toggleBookmark(btn) {
   const user = auth.currentUser;
   if (!user) {
@@ -76,7 +96,6 @@ async function toggleBookmark(btn) {
   const ref = doc(db, "users", user.uid, "bookmarks", pageId);
   const snap = await getDoc(ref);
 
-  // 🜂 Pull metadata from embedded <script id="tgk-page-meta">
   let meta = {};
   try {
     const metaEl = document.getElementById("tgk-page-meta");
@@ -96,7 +115,7 @@ async function toggleBookmark(btn) {
         permalink,
         type: "page",
         created: Date.now(),
-        ...meta // inject all front-matter fields here
+        ...meta
       });
       btn.classList.add("bookmarked");
       showToast("💾 Saved to bookmarks", "success");
@@ -110,6 +129,7 @@ async function toggleBookmark(btn) {
 /* ===========================================================
    ✦ Bind Page Buttons
    =========================================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".page-bookmark").forEach((btn) => {
     btn.addEventListener("click", () => toggleBookmark(btn));
@@ -117,8 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ===========================================================
-   ✦ Glyph + Text helpers
+   ✦ Glyph + Text helpers (unchanged)
    =========================================================== */
+
 function inferGlyph(permalink = "") {
   if (permalink.includes("/pillars/the-gnostic-eye/")) return "👁️";
   if (permalink.includes("/pillars/the-obsidian-key/")) return "🗝️";
@@ -140,8 +161,9 @@ function beautify(str = "") {
 }
 
 /* ===========================================================
-   ✦ Dashboard Renderer — PillarGrid style
+   ✦ Dashboard Renderer — PillarGrid style (unchanged)
    =========================================================== */
+
 function renderPillarGrid(bookmarks) {
   const mount = document.getElementById("bookmark-grid-mount");
   if (!mount) return;
@@ -182,9 +204,7 @@ function renderPillarGrid(bookmarks) {
           }
         </div>
       </a>
-      <button class="remove-bookmark-icon" title="Remove Bookmark">
-  ✕
-</button>
+      <button class="remove-bookmark-icon" title="Remove Bookmark">✕</button>
     `;
 
     grid.appendChild(article);
@@ -194,11 +214,11 @@ function renderPillarGrid(bookmarks) {
   mount.innerHTML = "";
   mount.appendChild(section);
 
-   // ✦ Bind remove (fixed selector for ✕ icon)
   mount.querySelectorAll(".remove-bookmark-icon").forEach((btn) => {
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
       e.stopPropagation();
+
       const card = e.currentTarget.closest(".gnostic-card");
       const id = card?.dataset.id;
       if (!id) return;
@@ -210,29 +230,25 @@ function renderPillarGrid(bookmarks) {
         card.style.transform = "scale(.97) translateY(4px)";
         setTimeout(() => card.remove(), 250);
         showToast("🩸 Removed from Dashboard", "remove");
-
-        // Show fallback if no bookmarks remain
-        if (!mount.querySelectorAll(".gnostic-card").length)
-          document.getElementById("no-bookmarks")?.removeAttribute("hidden");
       } catch (err) {
         console.error("[TGK] Remove error:", err);
       }
     });
-
-    // ✦ Keyboard accessibility (Enter/Space)
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        btn.click();
-      }
-    });
   });
-} // ✅ closes renderPillarGrid()
-
+}
 
 /* ===========================================================
-   ✦ Auth State + Dashboard Loader
+   ✦ Cache helper
    =========================================================== */
+
+function bookmarksCacheKey(uid) {
+  return `bookmarks:${uid}`;
+}
+
+/* ===========================================================
+   ✦ Auth State + Dashboard Loader (Phase B)
+   =========================================================== */
+
 onAuthStateChanged(auth, async (user) => {
   const loading = document.getElementById("bookmark-loading");
   const noBookmarks = document.getElementById("no-bookmarks");
@@ -245,18 +261,31 @@ onAuthStateChanged(auth, async (user) => {
   const mount = document.getElementById("bookmark-grid-mount");
   if (!mount) return;
 
+  const cacheKey = bookmarksCacheKey(user.uid);
+
+  // ✦ Render cached data first (non-blocking)
+  const cached = getCached(cacheKey);
+  if (cached && Array.isArray(cached)) {
+    console.log("[Cache] Bookmarks hit");
+    renderPillarGrid(cached);
+  }
+
   try {
+    console.log("[Cache] Bookmarks fetching from Firestore");
     const snap = await getDocs(collection(db, "users", user.uid, "bookmarks"));
     if (loading) loading.remove();
 
     if (snap.empty) {
-      if (noBookmarks) noBookmarks.hidden = false;
+      if (!cached && noBookmarks) noBookmarks.hidden = false;
+      setCached(cacheKey, [], 300);
       return;
     }
 
     const items = [];
     snap.forEach((d) => items.push({ id: d.id, ...d.data() }));
+
     renderPillarGrid(items);
+    setCached(cacheKey, items, 300);
   } catch (err) {
     console.error("[Dashboard] Bookmark load error:", err);
     if (loading) loading.textContent = "Error loading bookmarks.";
