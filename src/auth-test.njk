@@ -1,0 +1,46 @@
+---
+layout: null
+permalink: "/auth-test.html"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Firebase Auth Test</title>
+</head>
+<body>
+
+  <h1>Firebase Local Auth Test</h1>
+  <button id="login">Login</button>
+
+  <script type="module">
+    import { auth } from "/js/firebase-init.js";
+    import {
+      signInWithEmailAndPassword,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+    onAuthStateChanged(auth, (user) => {
+      console.log(
+        "[AUTH STATE]",
+        user ? `SIGNED IN: ${user.uid}` : "SIGNED OUT"
+      );
+    });
+
+    document.getElementById("login").onclick = async () => {
+      try {
+        const cred = await signInWithEmailAndPassword(
+          auth,
+          "the.keymaker@thegnostickey.com",
+          "rykxoj-2jorqi-nudZan"
+        );
+        console.log("LOGIN OK:", cred.user.uid);
+      } catch (err) {
+        console.error("LOGIN FAILED:", err.code, err.message);
+      }
+    };
+  </script>
+
+</body>
+</html>
